@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Ignia OnTopic</title>
+    @Styles.Render("~/Shared/Styles")
+  </head>
+  <body>
+
+    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    <nav>
+      <ul>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+      </ul>
+    </nav>
+
+    <main>
+      @RenderBody()
+    </main>
+
+    @RenderSection("scripts", required: false)
+
+  </body>
+</html>
