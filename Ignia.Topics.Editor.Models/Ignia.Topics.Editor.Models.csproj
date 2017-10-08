@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\FormFieldEditorAttribute.cs" />
+    <Compile Include="Attributes\BooleanEditorAttribute.cs" />
     <Compile Include="Attributes\HtmlEditorAttribute.cs" />
     <Compile Include="Attributes\EditorAttribute.cs" />
     <Compile Include="Collections\EditorAttributeCollection.cs" />

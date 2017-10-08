@@ -197,6 +197,9 @@
     <Content Include="Areas\Editor\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Editor\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\HtmlEditor.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\FormField.cshtml" />
+    <Content Include="Areas\Editor\Views\Shared\CloseModal.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
