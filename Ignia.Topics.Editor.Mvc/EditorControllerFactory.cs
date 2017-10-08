@@ -13,6 +13,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Ignia.Topics.Data.Sql;
 using Ignia.Topics.Editor.Mvc.Controllers;
+using System.Configuration;
+using Ignia.Topics.Data.Caching;
 
 namespace Ignia.Topics.Editor.Mvc {
 
@@ -36,7 +38,9 @@ namespace Ignia.Topics.Editor.Mvc {
       /*------------------------------------------------------------------------------------------------------------------------
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicRepository = new SqlTopicRepository(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=OnTopic;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+      var topicRepository = new CachedTopicRepository(
+        new SqlTopicRepository(ConfigurationManager.ConnectionStrings["TopicsServer"].ConnectionString)
+      );
       var rootTopic = topicRepository.Load();
       var topicRoutingService = new TopicRoutingService(topicRepository, requestContext);
 
