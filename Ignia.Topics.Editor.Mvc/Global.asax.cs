@@ -31,11 +31,21 @@ namespace Ignia.Topics.Editor.Mvc {
     ///   <see cref="RouteConfig"/> class.
     /// </summary>
     protected void Application_Start() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | CONFIGURE APPLICATION
+      \-----------------------------------------------------------------------------------------------------------------------*/
       AreaRegistration.RegisterAllAreas();
       FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
       RouteConfig.RegisterRoutes(RouteTable.Routes);
       BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | CUSTOM CONFIGURATION
+      \-----------------------------------------------------------------------------------------------------------------------*/
       ModelBinders.Binders.Add(typeof(EditorAttribute), new EditorAttributeModelBinder());
+      ControllerBuilder.Current.SetControllerFactory(new EditorControllerFactory());
+
     }
 
   } //Class
