@@ -20,7 +20,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     string                          _key                            = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -64,9 +63,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     ///   <see cref="GetValue()"/> method is intended to be overwritten by derived versions of the <see cref="EditorAttribute"/>
     ///   class, in order to provide specific serialization instructions.
     /// </remarks>
-    public virtual string GetValue() {
-      return Value;
-    }
+    public virtual string GetValue() => Value;
 
   } //Class
 

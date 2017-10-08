@@ -20,7 +20,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     string                          _key                            = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -37,9 +36,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Retrieves the value associated with the attribute.
     /// </summary>
-    public override string GetValue() {
-      return Value;
-    }
+    public override string GetValue() => Value;
 
   } //Class
 

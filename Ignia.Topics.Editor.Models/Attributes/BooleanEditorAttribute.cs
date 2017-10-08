@@ -20,7 +20,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     string                          _key                            = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -40,9 +39,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <remarks>
     ///   Determines whether the value is checked and, if it is, returns "1"; otherwise returns "0".
     /// </remarks>
-    public override string GetValue() {
-      return Value.Equals("True")? "1" : "0";
-    }
+    public override string GetValue() => Value.Equals("True")? "1" : "0";
 
   } //Class
 

@@ -20,7 +20,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     string                          _key                            = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -41,9 +40,11 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     ///   The CkEditor that Ignia uses for the frontend will occasionally inject extraneous line breaks. Prior to saving, this
     ///   strips any extra line breaks from the body.
     /// </remarks>
-    public override string GetValue() {
-      return Value.Replace("<p>&nbsp;</p>", "").Replace("<p>&amp;nbsp;</p>", "").Replace("<p></p>", "").Replace("\r\n", "");
-    }
+    public override string GetValue() => Value
+      .Replace("<p>&nbsp;</p>", "")
+      .Replace("<p>&amp;nbsp;</p>", "")
+      .Replace("<p></p>", "")
+      .Replace("\r\n", "");
 
   } //Class
 
