@@ -203,7 +203,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     }
 
     /*============================================================================================================================
-    | METHOD: SET TOPIC VERSION
+    | [POST] SET TOPIC VERSION
     \---------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Calls Topic.Rollback() with the selected version datetime to set the data to that version and re-save the Topic.
@@ -224,7 +224,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     }
 
     /*============================================================================================================================
-    | METHOD: DELETE TOPIC
+    | [POST] DELETE TOPIC
     \---------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Fires when the user clicks the "Delete" button; deletes the current topic and any child attributes.
@@ -241,7 +241,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Lock the Topic repository before executing the delete
       \-------------------------------------------------------------------------------------------------------------------------*/
-      lock (TopicRepository.Load()) {
+      lock (TopicRepository) {
         TopicRepository.Delete(CurrentTopic);
       }
 
@@ -264,9 +264,49 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       \-------------------------------------------------------------------------------------------------------------------------*/
       return Redirect("?Path=" + parent.UniqueKey);
 
-
     }
 
+    /*============================================================================================================================
+    | [POST] MOVE
+    \---------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   AJAX-parsable, querystring-configurable wrapper to the Ignia.Topics engine code that moves a node from one place in the
+    ///   hierarchy to another. "true" if succeeded, Returns "false" if failure, as string values. The JS throws a generic
+    ///   "failure" error on "false".
+    /// </summary>
+    [HttpPost]
+    public ActionResult Move(int topicId, int targetTopicId, int siblingId) {
+
+      /*--------------------------------------------------------------------------------------------------------------------------
+      | Retrieve the source and destination topics
+      \-------------------------------------------------------------------------------------------------------------------------*/
+      Topic topic = TopicRepository.Load().GetTopic(topicId);
+      Topic target = TopicRepository.Load().GetTopic(targetTopicId);
+
+      /*--------------------------------------------------------------------------------------------------------------------------
+      | Reset the source topic's Parent
+      \-------------------------------------------------------------------------------------------------------------------------*/
+      topic.Parent = target;
+
+      /*--------------------------------------------------------------------------------------------------------------------------
+      | Move the topic and/or reorder it with its siblings; lock the Topic repository prior to execution
+      \-------------------------------------------------------------------------------------------------------------------------*/
+      lock (TopicRepository) {
+        if (siblingId > 0) {
+          Topic sibling = TopicRepository.Load().GetTopic(siblingId);
+          TopicRepository.Move(topic, target, sibling);
+        }
+        else {
+          TopicRepository.Move(topic, target);
+        }
+      }
+
+      /*--------------------------------------------------------------------------------------------------------------------------
+      | Return
+      \-------------------------------------------------------------------------------------------------------------------------*/
+      return Content("true");
+
+    }
 
   } //Class
 
