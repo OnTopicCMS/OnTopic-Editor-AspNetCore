@@ -70,7 +70,7 @@
     <Compile Include="Attributes\EditorAttribute.cs" />
     <Compile Include="Collections\EditorAttributeCollection.cs" />
     <Compile Include="EditorBindingModel.cs" />
-    <Compile Include="EditorBindingModelBinder.cs" />
+    <Compile Include="Attributes\EditorAttributeModelBinder.cs" />
     <Compile Include="EditorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
