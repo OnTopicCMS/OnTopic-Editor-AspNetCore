@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ignia.Topics.Editor.Models;
+using Ignia.Topics.Editor.Models.Attributes;
 using Ignia.Topics.Repositories;
 
 namespace Ignia.Topics.Editor.Mvc.Controllers {
@@ -66,13 +67,36 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     }
 
     /*==========================================================================================================================
+    | CURRENT CONTENT TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the current content type associated with the request.
+    /// </summary>
+    /// <returns>The Content Type associated with the current request.</returns>
+    protected ContentType CurrentContentType {
+      get {
+        return TopicRepository.GetContentTypes().Where(t => t.Key.Equals(CurrentTopic.Key)).First();
+      }
+    }
+
+    /*==========================================================================================================================
     | [GET] INDEX
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Present an editor view bound to a specific topic.
     /// </summary>
     public ActionResult Index() {
-      return View();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | CONSTRUCT VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var editorViewModel = new EditorViewModel(CurrentTopic, CurrentContentType);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN VIEW
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View(editorViewModel);
+
     }
 
     [HttpPost]
