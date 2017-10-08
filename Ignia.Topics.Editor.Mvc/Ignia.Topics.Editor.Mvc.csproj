@@ -164,6 +164,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Editor\Shared\Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Configuration\ConnectionStrings.Debug.config">
+      <DependentUpon>ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Configuration\ConnectionStrings.Release.config">
+      <DependentUpon>ConnectionStrings.config</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -200,6 +206,7 @@
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\Boolean.cshtml" />
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\FormField.cshtml" />
     <Content Include="Areas\Editor\Views\Shared\CloseModal.cshtml" />
+    <Content Include="Configuration\ConnectionStrings.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
