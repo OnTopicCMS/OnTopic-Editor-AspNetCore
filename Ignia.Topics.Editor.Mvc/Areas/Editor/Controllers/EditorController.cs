@@ -122,11 +122,14 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       if (isNew) {
         topic = Topic.Create("NewTopic", contentType);
       }
+      else {
+        contentType = CurrentTopic.ContentType;
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SET ATTRIBUTES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var attribute in CurrentContentType.SupportedAttributes.Values) {
+      foreach (var attribute in GetContentType(contentType).SupportedAttributes.Values) {
 
         //Handle hidden attributes
         if (attribute.IsHidden) {
