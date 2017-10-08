@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ignia.Topics.Editor.Models", "Ignia.Topics.Editor.Models.csproj", "{02A3D98A-BF8A-4150-8FEC-45A0D9C322E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ignia.Topics.Editor.Models", "Ignia.Topics.Editor.Models\Ignia.Topics.Editor.Models.csproj", "{02A3D98A-BF8A-4150-8FEC-45A0D9C322E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ignia.Topics.Editor.Mvc", "..\Ignia.Topics.Editor.Mvc\Ignia.Topics.Editor.Mvc.csproj", "{77022C14-28B2-4182-9F11-796E8B3C73F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ignia.Topics.Editor.Mvc", "Ignia.Topics.Editor.Mvc\Ignia.Topics.Editor.Mvc.csproj", "{77022C14-28B2-4182-9F11-796E8B3C73F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
