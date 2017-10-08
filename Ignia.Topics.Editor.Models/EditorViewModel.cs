@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using Ignia.Topics.Collections;
 
 namespace Ignia.Topics.Editor.Models {
 
@@ -28,13 +29,14 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
     /// </summary>
-    public EditorViewModel(Topic topic, ContentType contentType) {
+    public EditorViewModel(Topic topic, ContentType contentType, ContentTypeCollection contentTypes) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
       Topic = topic;
       ContentType = contentType;
+      ContentTypes = contentTypes;
 
     }
 
@@ -55,6 +57,17 @@ namespace Ignia.Topics.Editor.Models {
     ///   Read-only reference to the current <see cref="ContentType"/> associated with the request.
     /// </summary>
     public ContentType ContentType {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | CONTENT TYPES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Read-only reference to the full list of <see cref="ContentType"/> instances available, in order to be bound to the
+    ///   list of new content types available.
+    /// </summary>
+    public ContentTypeCollection ContentTypes {
       get;
     }
 

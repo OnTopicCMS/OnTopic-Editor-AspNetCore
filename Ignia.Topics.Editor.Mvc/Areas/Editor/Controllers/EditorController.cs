@@ -89,11 +89,12 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       | CONSTRUCT VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       EditorViewModel editorViewModel;
+      var contentTypes = TopicRepository.GetContentTypes();
       if (isNew) {
-        editorViewModel = new EditorViewModel(Topic.Create("NewTopic", contentType), GetContentType(contentType));
+        editorViewModel = new EditorViewModel(Topic.Create("NewTopic", contentType), GetContentType(contentType), contentTypes);
       }
       else {
-        editorViewModel = new EditorViewModel(CurrentTopic, GetContentType(CurrentTopic.ContentType));
+        editorViewModel = new EditorViewModel(CurrentTopic, GetContentType(CurrentTopic.ContentType), contentTypes);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
