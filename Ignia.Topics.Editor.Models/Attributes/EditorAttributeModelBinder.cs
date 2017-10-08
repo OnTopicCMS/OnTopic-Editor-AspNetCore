@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ignia.Topics.Editor.Models.Attributes;
 
-namespace Ignia.Topics.Editor.Models {
+namespace Ignia.Topics.Editor.Models.Attributes {
 
   /*============================================================================================================================
   | CLASS: EDITOR BINDING MODEL
@@ -23,7 +23,7 @@ namespace Ignia.Topics.Editor.Models {
   /// </summary>
   /// <remarks>
   /// </remarks>
-  class EditorAttributeModelBinder : DefaultModelBinder {
+  public class EditorAttributeModelBinder : DefaultModelBinder {
 
     /*==========================================================================================================================
     | OVERRIDE: CREATE MODEL
