@@ -8,7 +8,17 @@
 
 @using (Html.BeginForm()) {
 
-  @Html.EditorForModel()
+  @foreach (var attribute in Model.ContentType.SupportedAttributes.Values) {
+    <section id="@attribute.Key" class="attribute @attribute.Key">
+      <h3>@attribute.Title</h3>
+      <p>@attribute.Description</p>
+      <div class="fields">
+        @Html.EditorFor(m => attribute, attribute.Type, attribute.Key, Model.Topic)
+      </div>
+    </section>
+  }
+
   <input type="submit" value="Save" />
 
 }
+
