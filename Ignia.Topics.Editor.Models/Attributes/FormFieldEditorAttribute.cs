@@ -15,7 +15,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   /// </summary>
   /// <remarks>
   /// </remarks>
-  public class BooleanEditorAttribute : EditorAttribute {
+  public class FormFieldEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -28,7 +28,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
     /// </summary>
-    public BooleanEditorAttribute() : base() {
+    public FormFieldEditorAttribute() : base() {
     }
 
     /*==========================================================================================================================
@@ -37,12 +37,8 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Retrieves the value associated with the attribute.
     /// </summary>
-    /// <remarks>
-    ///   The CkEditor that Ignia uses for the frontend will occasionally inject extraneous line breaks. Prior to saving, this
-    ///   strips any extra line breaks from the body.
-    /// </remarks>
     public override string GetValue() {
-      return Value.Equals("True")? "1" : "0";
+      return Value;
     }
 
   } //Class

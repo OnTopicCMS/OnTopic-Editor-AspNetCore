@@ -38,8 +38,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     ///   Retrieves the value associated with the attribute.
     /// </summary>
     /// <remarks>
-    ///   The CkEditor that Ignia uses for the frontend will occasionally inject extraneous line breaks. Prior to saving, this
-    ///   strips any extra line breaks from the body.
+    ///   Determines whether the value is checked and, if it is, returns "1"; otherwise returns "0".
     /// </remarks>
     public override string GetValue() {
       return Value.Equals("True")? "1" : "0";
