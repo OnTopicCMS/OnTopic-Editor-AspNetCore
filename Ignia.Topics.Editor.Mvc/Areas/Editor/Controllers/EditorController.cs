@@ -99,9 +99,92 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
     }
 
+    /*==========================================================================================================================
+    | [POST] INDEX
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Handles postback from the editor, based on an <see cref="EditorBindingModel"/>.
+    /// </summary>
+    /// <param name="model">An instance of the <see cref="EditorBindingModel"/> constructed from the HTTP Post.</param>
     [HttpPost]
-    public ActionResult Index(EditorBindingModel) {
+    public ActionResult Index(EditorBindingModel model, bool isNew = false, string contentType = null, bool isModal = false) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SET TOPIC
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var topic = CurrentTopic;
+
+      if (isNew) {
+        topic = Topic.Create("NewTopic", contentType);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SET ATTRIBUTES
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var attribute in CurrentContentType.SupportedAttributes.Values) {
+
+        //Handle hidden attributes
+        if (attribute.IsHidden) {
+          continue;
+        }
+
+        //Get reference to current instance
+        EditorAttribute attributeValue = model.Attributes[attribute.Key];
+
+        //Save value
+        if (attribute.Type.Equals("Relationship")) {
+          SetRelationships(attribute, attributeValue);
+        }
+        else if (attribute.Key.Equals("Key")) {
+          CurrentTopic.Key = attributeValue.Value.TrimStart(' ').TrimEnd(' ').Replace(" ", "");
+        }
+        else if (String.IsNullOrEmpty(attributeValue.Value)) {
+          CurrentTopic.Attributes.Remove(attribute.Key);
+        }
+        else {
+          CurrentTopic.Attributes.SetValue(attribute.Key, attributeValue.Value);
+        }
+
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SET PARENT
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (isNew) {
+        topic.Parent = CurrentTopic;
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SAVE VALUE
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      //TopicRepository.Save(CurrentTopic);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN INDEX
+      \-----------------------------------------------------------------------------------------------------------------------*/
       return Index();
+
+    }
+
+    /*==========================================================================================================================
+    | SET RELATIONSHIP VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Private helper function that saves relationship values to the topic.
+    /// </summary>
+    private void SetRelationships(Attribute attribute, EditorAttribute attributeValue) {
+      List<string> relatedTopics = attributeValue.Value.Split(',').ToList();
+      CurrentTopic.Relationships.ClearTopics(attribute.Key);
+      foreach (string topicIdString in relatedTopics) {
+        Topic relatedTopic = null;
+        bool isTopicId = Int32.TryParse(topicIdString, out int topicIdInt);
+        if (isTopicId && topicIdInt > 0) {
+          relatedTopic = TopicRepository.Load().GetTopic(topicIdInt);
+        }
+        if (relatedTopic != null) {
+          CurrentTopic.Relationships.SetTopic(attribute.Key, relatedTopic);
+        }
+      }
     }
 
   } //Class
