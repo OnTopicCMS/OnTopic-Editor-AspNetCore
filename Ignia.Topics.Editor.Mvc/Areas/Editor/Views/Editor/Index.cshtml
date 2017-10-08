@@ -8,7 +8,7 @@
 
 @using (Html.BeginForm()) {
 
-  @foreach (var attribute in Model.ContentType.SupportedAttributes.Values) {
+  foreach (var attribute in Model.ContentType.SupportedAttributes.Values) {
     <section id="@attribute.Key" class="attribute @attribute.Key">
       <h3>@attribute.Title</h3>
       <p>@attribute.Description</p>
