@@ -67,16 +67,14 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     }
 
     /*==========================================================================================================================
-    | CURRENT CONTENT TYPE
+    | GET CONTENT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a reference to the current content type associated with the request.
+    ///   Provides a reference to the a strongly typed content type, if available.
     /// </summary>
     /// <returns>The Content Type associated with the current request.</returns>
-    protected ContentType CurrentContentType {
-      get {
-        return TopicRepository.GetContentTypes().Where(t => t.Key.Equals(CurrentTopic.Key)).First();
-      }
+    protected ContentType GetContentType(string contentType) {
+      return TopicRepository.GetContentTypes().Where(t => t.Key.Equals(contentType)).First();
     }
 
     /*==========================================================================================================================
@@ -85,12 +83,18 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <summary>
     ///   Present an editor view bound to a specific topic.
     /// </summary>
-    public ActionResult Index() {
+    public ActionResult Index(bool isNew = false, string contentType = null, bool isModal = false) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = new EditorViewModel(CurrentTopic, CurrentContentType);
+      EditorViewModel editorViewModel;
+      if (isNew) {
+        editorViewModel = new EditorViewModel(Topic.Create("NewTopic", contentType), GetContentType(contentType));
+      }
+      else {
+        editorViewModel = new EditorViewModel(CurrentTopic, GetContentType(CurrentTopic.ContentType));
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW
