@@ -36,7 +36,7 @@ namespace Ignia.Topics.Editor.Mvc {
       /*------------------------------------------------------------------------------------------------------------------------
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicRepository = new SqlTopicRepository("Data Source=(localdb)\ProjectsV13;Initial Catalog=OnTopic;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+      var topicRepository = new SqlTopicRepository(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=OnTopic;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
       var rootTopic = topicRepository.Load();
       var topicRoutingService = new TopicRoutingService(topicRepository, requestContext);
 
