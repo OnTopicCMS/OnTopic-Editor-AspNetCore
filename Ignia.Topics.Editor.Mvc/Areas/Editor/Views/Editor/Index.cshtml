@@ -4,5 +4,11 @@
   ViewBag.Title = "Home Page";
 }
 
-@Html.EditorForModel()
+<h1>@Model.Topic.Title</h1>
 
+@using (Html.BeginForm()) {
+
+  @Html.EditorForModel()
+  <input type="submit" value="Save" />
+
+}
