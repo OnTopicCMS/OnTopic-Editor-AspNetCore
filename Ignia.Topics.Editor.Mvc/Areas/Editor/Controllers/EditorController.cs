@@ -138,7 +138,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
         //Save value
         if (attribute.Type.Equals("Relationship")) {
-          SetRelationships(attribute, attributeValue);
+          SetRelationships(topic, attribute, attributeValue);
         }
         else if (attribute.Key.Equals("Key")) {
           CurrentTopic.Key = attributeValue.Value.TrimStart(' ').TrimEnd(' ').Replace(" ", "");
@@ -177,9 +177,9 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <summary>
     ///   Private helper function that saves relationship values to the topic.
     /// </summary>
-    private void SetRelationships(Attribute attribute, EditorAttribute attributeValue) {
+    private void SetRelationships(Topic topic, Attribute attribute, EditorAttribute attributeValue) {
       List<string> relatedTopics = attributeValue.Value.Split(',').ToList();
-      CurrentTopic.Relationships.ClearTopics(attribute.Key);
+      topic.Relationships.ClearTopics(attribute.Key);
       foreach (string topicIdString in relatedTopics) {
         Topic relatedTopic = null;
         bool isTopicId = Int32.TryParse(topicIdString, out int topicIdInt);
@@ -187,7 +187,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
           relatedTopic = TopicRepository.Load().GetTopic(topicIdInt);
         }
         if (relatedTopic != null) {
-          CurrentTopic.Relationships.SetTopic(attribute.Key, relatedTopic);
+          topic.Relationships.SetTopic(attribute.Key, relatedTopic);
         }
       }
     }
