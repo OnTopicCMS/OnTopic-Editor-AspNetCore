@@ -13,7 +13,7 @@
       <h2>@attribute.Title</h2>
       <p>@attribute.Description</p>
       <div class="fields">
-        @Html.EditorFor(m => attribute, "Html", attribute.Key, Model.Topic)
+        @Html.EditorFor(m => attribute, attribute.Type.Replace(".ascx", ""), attribute.Key, Model.Topic)
       </div>
     </section>
   }
