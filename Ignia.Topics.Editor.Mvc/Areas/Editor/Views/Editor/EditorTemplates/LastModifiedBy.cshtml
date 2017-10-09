@@ -1,6 +1,5 @@
 ﻿@model Ignia.Topics.Attribute
 
-<h3>@Model.Key (LastModifiedBy)</h3>
+<h4>@Model.Key (LastModifiedBy)</h4>
 
-@Html.LabelFor(m => m.Key, Model.Title)
 @(((EditorViewModel)ViewData["Parent"]).Topic.Attributes.GetValue(Model.Key))
