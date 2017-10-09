@@ -64,8 +64,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\TopicListEditorAttribute.cs" />
+    <Compile Include="Attributes\TopicPointerEditorAttribute.cs" />
+    <Compile Include="Attributes\WysiwygEditorAttribute.cs" />
+    <Compile Include="Attributes\TopicLookupEditorAttribute.cs" />
+    <Compile Include="Attributes\TokenizedTopicListEditorAttribute.cs" />
+    <Compile Include="Attributes\RelationshipsEditorAttribute.cs" />
+    <Compile Include="Attributes\LastModifiedByEditorAttribute.cs" />
+    <Compile Include="Attributes\LastModifiedEditorAttribute.cs" />
+    <Compile Include="Attributes\FileUploadEditorAttribute.cs" />
+    <Compile Include="Attributes\FilePathEditorAttribute.cs" />
+    <Compile Include="Attributes\FileEditorAttribute.cs" />
+    <Compile Include="Attributes\DisplayOptionsEditorAttribute.cs" />
     <Compile Include="Attributes\FormFieldEditorAttribute.cs" />
     <Compile Include="Attributes\BooleanEditorAttribute.cs" />
+    <Compile Include="Attributes\DateTimeSelectorEditorAttribute.cs" />
     <Compile Include="Attributes\HtmlEditorAttribute.cs" />
     <Compile Include="Attributes\EditorAttribute.cs" />
     <Compile Include="Collections\EditorAttributeCollection.cs" />

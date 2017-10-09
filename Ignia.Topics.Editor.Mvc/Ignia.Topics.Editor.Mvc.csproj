@@ -220,6 +220,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\TopicPointer.cshtml" />
+    <Content Include="Areas\Editor\Html.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\File.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\FileUpload.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\LastModifiedBy.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\TopicLookup.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\TopicList.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\DateTimeSelector.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\DisplayOptions.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\FilePath.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\LastModified.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\Relationships.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\TokenizedTopicList.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\WYSIWYG.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
