@@ -27,7 +27,14 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
     /// </summary>
-    public EditorAttribute() {
+    /// <param name="type">Optionally defines the type of attribute.</param>
+    public EditorAttribute(string type = "") {
+      if (String.IsNullOrWhiteSpace(type)) {
+        Type = GetType().Name.Replace("EditorAttribute", "");
+      }
+      else {
+        Type = type;
+      }
     }
 
     /*==========================================================================================================================
@@ -37,6 +44,17 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     ///   The unique name associated with the specified attribute.
     /// </summary>
     public string Key {
+      get;
+      set;
+    }
+
+    /*==========================================================================================================================
+    | TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The type associated with the attribute.
+    /// </summary>
+    public string Type {
       get;
       set;
     }
