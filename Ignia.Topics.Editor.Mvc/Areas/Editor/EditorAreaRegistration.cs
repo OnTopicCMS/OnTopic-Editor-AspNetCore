@@ -44,9 +44,9 @@ namespace Ignia.Topics.Editor.Mvc.Areas.Editor {
       \-----------------------------------------------------------------------------------------------------------------------*/
       context.Routes.MapRoute(
         name: "TopicEditor",
-        url: "Edit/{*path}",
-        defaults: new { controller = "Editor", action = "Index", id = UrlParameter.Optional }
-      );
+        url: "Web/{*path}",
+        defaults: new { controller = "Editor", action = "Index", id = UrlParameter.Optional,  }
+      ).DataTokens.Add("area", "Editor"); ;
 
     }
 
