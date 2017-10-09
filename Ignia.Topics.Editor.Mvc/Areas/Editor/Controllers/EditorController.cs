@@ -94,7 +94,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       var contentTypes = currentContentType.PermittedContentTypes;
 
       if (contentTypes.Count.Equals(0)) {
-        contentTypes = TopicRepository.GetContentTypes();
+        contentTypes = TopicRepository.GetContentTypes().AsReadOnly();
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
