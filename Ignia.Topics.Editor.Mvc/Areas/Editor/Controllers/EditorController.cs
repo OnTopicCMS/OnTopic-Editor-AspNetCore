@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Attributes;
 using Ignia.Topics.Repositories;
@@ -87,10 +88,24 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     public ActionResult Index(bool isNew = false, string contentType = null, bool isModal = false) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | FILTER CONTENT TYPES
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentTypes = new ContentTypeCollection();
+      var currentContentType = GetContentType(CurrentTopic.ContentType);
+
+      if (currentContentType.PermittedContentTypes.Count >= 0) {
+        foreach (var permittedContentType in currentContentType.PermittedContentTypes) {
+          contentTypes.Add(permittedContentType);
+        }
+      }
+      else {
+        contentTypes = TopicRepository.GetContentTypes();
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       EditorViewModel editorViewModel;
-      var contentTypes = TopicRepository.GetContentTypes();
       if (isNew) {
         editorViewModel = new EditorViewModel(Topic.Create("NewTopic", contentType), GetContentType(contentType), contentTypes);
       }
