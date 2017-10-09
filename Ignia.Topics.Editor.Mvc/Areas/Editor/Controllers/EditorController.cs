@@ -145,7 +145,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | SET ATTRIBUTES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var attribute in GetContentType(contentType).SupportedAttributes.Values) {
+      foreach (var attribute in GetContentType(contentType).SupportedAttributes) {
 
         //Handle hidden attributes
         if (attribute.IsHidden) {
@@ -153,7 +153,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
         }
 
         //Get reference to current instance
-        EditorAttribute attributeValue = model.Attributes[attribute.Key];
+        var attributeValue = model.Attributes[attribute.Key];
 
         //Save value
         if (attribute.Type.Equals("Relationship")) {
@@ -204,11 +204,11 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   Private helper function that saves relationship values to the topic.
     /// </summary>
     private void SetRelationships(Topic topic, Attribute attribute, EditorAttribute attributeValue) {
-      List<string> relatedTopics = attributeValue.Value.Split(',').ToList();
+      var relatedTopics = attributeValue.Value.Split(',').ToList();
       topic.Relationships.ClearTopics(attribute.Key);
-      foreach (string topicIdString in relatedTopics) {
+      foreach (var topicIdString in relatedTopics) {
         Topic relatedTopic = null;
-        bool isTopicId = Int32.TryParse(topicIdString, out int topicIdInt);
+        var isTopicId = Int32.TryParse(topicIdString, out int topicIdInt);
         if (isTopicId && topicIdInt > 0) {
           relatedTopic = TopicRepository.Load().GetTopic(topicIdInt);
         }
@@ -296,8 +296,8 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Retrieve the source and destination topics
       \-------------------------------------------------------------------------------------------------------------------------*/
-      Topic topic = TopicRepository.Load().GetTopic(topicId);
-      Topic target = TopicRepository.Load().GetTopic(targetTopicId);
+      var topic = TopicRepository.Load().GetTopic(topicId);
+      var target = TopicRepository.Load().GetTopic(targetTopicId);
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Reset the source topic's Parent
@@ -309,7 +309,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       \-------------------------------------------------------------------------------------------------------------------------*/
       lock (TopicRepository) {
         if (siblingId > 0) {
-          Topic sibling = TopicRepository.Load().GetTopic(siblingId);
+          var sibling = TopicRepository.Load().GetTopic(siblingId);
           TopicRepository.Move(topic, target, sibling);
         }
         else {
