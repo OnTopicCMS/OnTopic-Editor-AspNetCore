@@ -14,8 +14,10 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   ///   Represents an instance of a WYSIWYG attribute in the Topic Editor.
   /// </summary>
   /// <remarks>
+  ///   This class breaks naming convention standards in order to maintain backward compatibility with data, and ensure it can
+  ///   be dynamically accessessed using the <see cref="EditorAttributeModelBinder"/>.
   /// </remarks>
-  public class WysiwygEditorAttribute : EditorAttribute {
+  public class WYSIWYGEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -27,7 +29,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
     /// </summary>
-    public WysiwygEditorAttribute() : base() {
+    public WYSIWYGEditorAttribute() : base() {
     }
 
     /*==========================================================================================================================
