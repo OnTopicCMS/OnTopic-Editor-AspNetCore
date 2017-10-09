@@ -90,15 +90,10 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | FILTER CONTENT TYPES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var contentTypes = new TopicCollection<ContentType>();
       var currentContentType = GetContentType(CurrentTopic.ContentType);
+      var contentTypes = currentContentType.SupportedContentTypes;
 
-      if (currentContentType.PermittedContentTypes.Count >= 0) {
-        foreach (var permittedContentType in currentContentType.PermittedContentTypes) {
-          contentTypes.Add(permittedContentType);
-        }
-      }
-      else {
+      if (contentTypes.Count.Equals(0)) {
         contentTypes = TopicRepository.GetContentTypes();
       }
 
