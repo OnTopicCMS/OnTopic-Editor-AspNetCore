@@ -10,17 +10,15 @@
 
   for (int i = 0; i < Model.ContentType.SupportedAttributes.Count; i++) {
     var attribute = Model.ContentType.SupportedAttributes[i];
+    var type = attribute.Type.Replace(".ascx", "");
 
     <section id="@attribute.Key" class="attribute @attribute.Key">
       <h2>@attribute.Title</h2>
       <p>@attribute.Description</p>
+      @Html.Hidden("Attributes[" + i + "].Type", type)
+      @Html.Hidden("Attributes[" + i + "].Key", attribute.Key)
       <div class="fields">
-        @Html.EditorFor(
-          m => attribute,
-          attribute.Type.Replace(".ascx", ""),
-          "Attribute[" + i + "]",
-          new { Parent = Model }
-        )
+        @Html.EditorFor(m => attribute, type, "Attributes[" + i + "]", new { Parent = Model })
       </div>
     </section>
 
