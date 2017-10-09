@@ -25,10 +25,15 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class.
+    /// </summary>
+    public EditorAttribute() : this("") {}
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class.
     /// </summary>
     /// <param name="type">Optionally defines the type of attribute.</param>
-    public EditorAttribute(string type = "") {
+    public EditorAttribute(string type) {
       if (String.IsNullOrWhiteSpace(type)) {
         Type = GetType().Name.Replace("EditorAttribute", "");
       }
