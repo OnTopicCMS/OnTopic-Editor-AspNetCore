@@ -15,9 +15,10 @@
     <section id="@attribute.Key" class="attribute @attribute.Key">
       <h2>@attribute.Title</h2>
       <p>@attribute.Description</p>
-      @Html.Hidden("Attributes[" + i + "].Type", type)
-      @Html.Hidden("Attributes[" + i + "].Key", attribute.Key)
       <div class="fields">
+        @Html.Hidden("Attributes[" + i + "].Type", type)
+        @Html.Hidden("Attributes[" + i + "].Key", attribute.Key)
+        @Html.Label("Attributes[" + i + "].Value", attribute.Title)
         @Html.EditorFor(m => attribute, type, "Attributes[" + i + "]", new { Parent = Model })
       </div>
     </section>
