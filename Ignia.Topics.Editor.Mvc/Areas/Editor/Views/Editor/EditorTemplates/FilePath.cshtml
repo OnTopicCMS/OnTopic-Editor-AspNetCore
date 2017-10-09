@@ -1,3 +1,6 @@
 ﻿@model Ignia.Topics.Attribute
 
 <h3>@Model.Key (FilePath)</h3>
+
+@Html.LabelFor(m => m.Key, Model.Title)
+@Html.TextBoxFor(m => m.Key)
