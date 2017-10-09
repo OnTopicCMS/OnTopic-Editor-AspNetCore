@@ -8,14 +8,22 @@
 
 @using (Html.BeginForm()) {
 
-  foreach (var attribute in Model.ContentType.SupportedAttributes) {
+  for (int i = 0; i < Model.ContentType.SupportedAttributes.Count; i++) {
+    var attribute = Model.ContentType.SupportedAttributes[i];
+
     <section id="@attribute.Key" class="attribute @attribute.Key">
       <h2>@attribute.Title</h2>
       <p>@attribute.Description</p>
       <div class="fields">
-        @Html.EditorFor(m => attribute, attribute.Type.Replace(".ascx", ""), attribute.Key, Model.Topic)
+        @Html.EditorFor(
+          m => attribute,
+          attribute.Type.Replace(".ascx", ""),
+          "Attribute[" + i + "]",
+          new { Parent = Model }
+        )
       </div>
     </section>
+
   }
 
   <input type="submit" value="Save" />
