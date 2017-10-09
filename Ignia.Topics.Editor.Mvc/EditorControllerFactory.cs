@@ -15,6 +15,7 @@ using Ignia.Topics.Data.Sql;
 using Ignia.Topics.Editor.Mvc.Controllers;
 using System.Configuration;
 using Ignia.Topics.Data.Caching;
+using Ignia.Topics.Repositories;
 
 namespace Ignia.Topics.Editor.Mvc {
 
@@ -27,6 +28,11 @@ namespace Ignia.Topics.Editor.Mvc {
   class EditorControllerFactory : DefaultControllerFactory {
 
     /*==========================================================================================================================
+    | DEFINE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    static ITopicRepository _topicRepository = null;
+
+    /*==========================================================================================================================
     | GET CONTROLLER INSTANCE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -36,19 +42,25 @@ namespace Ignia.Topics.Editor.Mvc {
     protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Establish repository cache
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (_topicRepository == null) {
+        _topicRepository = new CachedTopicRepository(
+          new SqlTopicRepository(ConfigurationManager.ConnectionStrings["TopicsServer"].ConnectionString)
+        );
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicRepository = new CachedTopicRepository(
-        new SqlTopicRepository(ConfigurationManager.ConnectionStrings["TopicsServer"].ConnectionString)
-      );
-      var rootTopic = topicRepository.Load();
-      var topicRoutingService = new TopicRoutingService(topicRepository, requestContext);
+      var rootTopic = _topicRepository.Load();
+      var topicRoutingService = new TopicRoutingService(_topicRepository, requestContext);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (controllerType == typeof(EditorController)) {
-        return new EditorController(topicRepository, topicRoutingService.Topic);
+        return new EditorController(_topicRepository, topicRoutingService.Topic);
       }
 
       return base.GetControllerInstance(requestContext, controllerType);
