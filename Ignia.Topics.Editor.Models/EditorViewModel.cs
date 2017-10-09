@@ -29,7 +29,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
     /// </summary>
-    public EditorViewModel(Topic topic, ContentType contentType, ContentTypeCollection contentTypes) {
+    public EditorViewModel(Topic topic, ContentType contentType, TopicCollection<ContentType> contentTypes) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
@@ -67,7 +67,7 @@ namespace Ignia.Topics.Editor.Models {
     ///   Read-only reference to the full list of <see cref="ContentType"/> instances available, in order to be bound to the
     ///   list of new content types available.
     /// </summary>
-    public ContentTypeCollection ContentTypes {
+    public TopicCollection<ContentType> ContentTypes {
       get;
     }
 
