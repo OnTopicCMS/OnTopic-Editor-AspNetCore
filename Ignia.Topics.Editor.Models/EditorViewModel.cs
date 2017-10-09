@@ -29,14 +29,14 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
     /// </summary>
-    public EditorViewModel(Topic topic, ContentType contentType, TopicCollection<ContentType> contentTypes) {
+    public EditorViewModel(Topic topic, ContentType contentType, TopicCollection<ContentType> permittedContentTypes) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
       Topic = topic;
       ContentType = contentType;
-      ContentTypes = contentTypes;
+      PermittedContentTypes = permittedContentTypes;
 
     }
 
@@ -61,13 +61,15 @@ namespace Ignia.Topics.Editor.Models {
     }
 
     /*==========================================================================================================================
-    | CONTENT TYPES
+    | PERMITTED CONTENT TYPES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Read-only reference to the full list of <see cref="ContentType"/> instances available, in order to be bound to the
-    ///   list of new content types available.
+    ///   Read-only reference to the full list of <see cref="ContentType"/> instances permitted as child topics.
     /// </summary>
-    public TopicCollection<ContentType> ContentTypes {
+    /// <remarks>
+    ///   This is intended to be bound to the list of new content types available in the interface.
+    /// </remarks>
+    public TopicCollection<ContentType> PermittedContentTypes {
       get;
     }
 
