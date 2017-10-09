@@ -37,7 +37,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </remarks>
     protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType) {
       var typeValue = bindingContext.ValueProvider.GetValue(bindingContext.ModelName + ".Type");
-      var type = Type.GetType((string)typeValue.ConvertTo(typeof(string)) + "EditorAttribute", true);
+      var type = Type.GetType("Ignia.Topics.Editor.Models.Attributes." + (string)typeValue.ConvertTo(typeof(string)) + "EditorAttribute", true);
       var model = Activator.CreateInstance(type);
       bindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(() => model, type);
       return model;
