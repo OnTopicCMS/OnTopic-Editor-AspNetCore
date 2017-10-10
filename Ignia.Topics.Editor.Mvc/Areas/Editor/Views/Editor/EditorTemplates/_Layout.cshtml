@@ -4,7 +4,7 @@
 
 <section id="@Model.Key" class="attribute @Model.Key">
 
-  <h2>@Html.LabelFor(m => m.Value, Model.Definition.Title)</h2>
+  @Html.LabelFor(m => m.Value, Model.Definition.Title)
   <p>@Model.Definition.Description</p>
 
   <div class="fields">
