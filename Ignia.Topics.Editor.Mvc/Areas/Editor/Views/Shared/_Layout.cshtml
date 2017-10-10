@@ -48,6 +48,7 @@
               <h1 class="h2"><a href="~/" style="color:rgb(255,255,255);text-decoration:none;">OnTopic</a></h1>
             </div>
             <!-- /Site Name -->
+
             <!-- Site Description -->
             <div class="col-md-10 col-sm-9 Page-Title-Area">
 
@@ -63,10 +64,8 @@
       </header>
     </div>
 
+    <!--
     @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-
-
-
     <nav>
       <ul>
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -74,10 +73,26 @@
         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
       </ul>
     </nav>
+    -->
 
-    <main>
-      @RenderBody()
-    </main>
+    <div id="BodyArea" class="container Content-Container">
+      <div class="row">
+
+        <!-- Primary Sidebar -->
+        <div class="col-md-2 col-sm-3 Sidebar">
+          <div id="FixedSidebar">
+          </div>
+        </div>
+        <div class="col-md-10 col-sm-9 Content">
+          <div id="PageContentArea" class="Page-Content Primary">
+            <main>
+              @RenderBody()
+            </main>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     @RenderSection("scripts", required: false)
 
