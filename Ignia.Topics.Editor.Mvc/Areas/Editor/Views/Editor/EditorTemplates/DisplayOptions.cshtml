@@ -3,3 +3,7 @@
 @{
   Layout = "~/Areas/Editor/Views/Editor/EditorTemplates/_Layout.cshtml";
 }
+
+@Html.RadioButtonFor(m => m.Value, "Default") @Html.LabelFor(m => m.Value, "Desktop and Mobile") <br/>
+@Html.RadioButtonFor(m => m.Value, "Desktop") @Html.LabelFor(m => m.Value, "Desktop Only") <br />
+@Html.RadioButtonFor(m => m.Value, "Mobile") @Html.LabelFor(m => m.Value, "Mobile Only")
