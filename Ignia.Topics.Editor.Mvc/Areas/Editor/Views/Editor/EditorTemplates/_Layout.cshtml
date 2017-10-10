@@ -1,5 +1,7 @@
 ﻿@model Ignia.Topics.Editor.Models.AttributeViewModel
 
+<!-- Begin: @(((RazorView)ViewContext.View).ViewPath) -->
+
 <section id="@Model.Key" class="attribute @Model.Key">
 
   <h2>@Html.LabelFor(m => m.Value, Model.Definition.Title)</h2>
@@ -15,3 +17,5 @@
   </div>
 
 </section>
+
+<!-- End: @(((RazorView)ViewContext.View).ViewPath) -->
