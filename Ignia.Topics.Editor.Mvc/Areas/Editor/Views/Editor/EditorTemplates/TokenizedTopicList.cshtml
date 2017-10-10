@@ -1,5 +1,5 @@
-﻿@model Ignia.Topics.Attribute
+﻿@model AttributeViewModel
 
-<h4>@Model.Key (TokenizedTopicList)</h4>
+<!-- EditorTemplate: TokenizedTopicList -->
 
-@Html.TextArea("Value")
+@Html.TextAreaFor(m => m.Value)

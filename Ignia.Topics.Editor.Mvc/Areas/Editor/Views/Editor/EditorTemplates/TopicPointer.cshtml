@@ -1,5 +1,5 @@
-﻿@model Ignia.Topics.Attribute
+﻿@model AttributeViewModel
 
-<h4>@Model.Key (TopicPointer)</h4>
+<!-- EditorTemplate: TopicPointer -->
 
-@Html.TextArea("Value")
+@Html.TextBoxFor(m => m.Value)

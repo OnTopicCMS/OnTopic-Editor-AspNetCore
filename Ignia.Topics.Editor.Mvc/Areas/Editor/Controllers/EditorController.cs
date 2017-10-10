@@ -102,10 +102,20 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       EditorViewModel editorViewModel;
       if (isNew) {
-        editorViewModel = new EditorViewModel(Topic.Create("NewTopic", contentType), GetContentType(contentType), contentTypes);
+        editorViewModel = new EditorViewModel(
+          Topic.Create("NewTopic", contentType),
+          GetContentType(contentType),
+          contentTypes,
+          TopicRepository
+        );
       }
       else {
-        editorViewModel = new EditorViewModel(CurrentTopic, GetContentType(CurrentTopic.ContentType), contentTypes);
+        editorViewModel = new EditorViewModel(
+          CurrentTopic,
+          GetContentType(CurrentTopic.ContentType),
+          contentTypes,
+          TopicRepository
+        );
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -144,6 +154,12 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
         //Handle hidden attributes
         if (attribute.IsHidden) {
+          continue;
+        }
+
+        //Handle missing attributes
+        if (!model.Attributes.Contains(attribute.Key)) {
+          CurrentTopic.Attributes.Remove(attribute.Key);
           continue;
         }
 

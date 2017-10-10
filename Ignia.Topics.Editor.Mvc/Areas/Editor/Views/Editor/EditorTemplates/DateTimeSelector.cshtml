@@ -1,5 +1,5 @@
-﻿@model Ignia.Topics.Attribute
+﻿@model AttributeViewModel
 
-<h4>@Model.Key (DateTimeSelector)</h4>
+<!-- EditorTemplate: DateTimeSelector -->
 
-@Html.TextBox("Value", new { type="date" })
+@Html.TextBoxFor(m => m.Value)

@@ -81,6 +81,7 @@
     <Compile Include="Attributes\DateTimeSelectorEditorAttribute.cs" />
     <Compile Include="Attributes\HtmlEditorAttribute.cs" />
     <Compile Include="Attributes\EditorAttribute.cs" />
+    <Compile Include="AttributeViewModel.cs" />
     <Compile Include="Collections\EditorAttributeCollection.cs" />
     <Compile Include="EditorBindingModel.cs" />
     <Compile Include="Attributes\EditorAttributeModelBinder.cs" />

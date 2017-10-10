@@ -1,5 +1,5 @@
-﻿@model Ignia.Topics.Attribute
+﻿@model AttributeViewModel
 
-<h4>@Model.Key (HTML)</h4>
+<!-- EditorTemplate: HTML -->
 
-@Html.TextArea("Value", "TextArea")
+@Html.TextAreaFor(m => m.Value)

@@ -13,12 +13,11 @@ namespace Ignia.Topics.Editor.Models {
   | CLASS: EDITOR VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents a model for interacting with the editor interface, including the established list of
-  ///   <see cref="Ignia.Topics.Attribute"/> and their values.
+  ///   Represents a model for an individual <see cref="Ignia.Topics.Attribute"/>, its values, and dependencies.
   /// </summary>
   /// <remarks>
   /// </remarks>
-  public class EditorViewModel {
+  public class AttributeViewModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -30,53 +29,75 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
     /// </summary>
-    public EditorViewModel(
-      Topic topic,
-      ContentType contentType,
-      ReadOnlyTopicCollection<ContentType> permittedContentTypes,
-      ITopicRepository topicRepository
-    ) {
+    public AttributeViewModel(Attribute attribute, Topic topic, ITopicRepository topicRepository) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic = topic;
-      ContentType = contentType;
-      PermittedContentTypes = permittedContentTypes;
-      TopicRepository = topicRepository;
+      Definition                = attribute;
+      Topic                     = topic;
+      TopicRepository           = topicRepository;
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Key                       = attribute.Key;
+      Value                     = topic.Attributes.GetValue(attribute.Key, null, false, false);
+      InheritedValue            = topic.Attributes.GetValue(attribute.Key);
+
+    }
+
+    /*==========================================================================================================================
+    | ATTRIBUTE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the global definition for the attribute, as defined on the corresponding <see cref="ContentType"/>.
+    /// </summary>
+    public Attribute Definition {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the current key, as defined on the <see cref="AttributeValue"/> instance.
+    /// </summary>
+    public string Key {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the current value, as defined on the <see cref="AttributeValue"/> instance.
+    /// </summary>
+    public string Value {
+      get;
     }
 
     /*==========================================================================================================================
     | TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Read-only reference to the current topic being edited, for familiar access to the full context.
+    ///   Provides a reference to the current <see cref="Topic"/>.
     /// </summary>
     public Topic Topic {
       get;
     }
 
     /*==========================================================================================================================
-    | CONTENT TYPE
+    | INHERITED VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Read-only reference to the current <see cref="ContentType"/> associated with the request.
-    /// </summary>
-    public ContentType ContentType {
-      get;
-    }
-
-    /*==========================================================================================================================
-    | PERMITTED CONTENT TYPES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Read-only reference to the full list of <see cref="ContentType"/> instances permitted as child topics.
+    ///   Provides the inherited value, as defined on either parent or derived topics.
     /// </summary>
     /// <remarks>
-    ///   This is intended to be bound to the list of new content types available in the interface.
+    ///   If the <see cref="Value"/> is set, then the <see cref="InhertedValue"/> will always be equal to the
+    ///   <see cref="Value"/>.
     /// </remarks>
-    public ReadOnlyTopicCollection<ContentType> PermittedContentTypes {
+    public string InheritedValue {
       get;
     }
 

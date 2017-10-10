@@ -10,16 +10,20 @@
 
   for (int i = 0; i < Model.ContentType.SupportedAttributes.Count; i++) {
     var attribute = Model.ContentType.SupportedAttributes[i];
+    var attributeViewModel = new AttributeViewModel(attribute, Model.Topic, Model.TopicRepository);
     var type = attribute.Type.Replace(".ascx", "");
 
+    if (attribute.Attributes.GetValue("IsHidden", "0").Equals("1")) {
+      continue;
+    }
+
     <section id="@attribute.Key" class="attribute @attribute.Key">
-      <h2>@attribute.Title</h2>
+      <h2>@Html.Label("Attributes[" + i + "].Value", attribute.Title)</h2>
       <p>@attribute.Description</p>
       <div class="fields">
         @Html.Hidden("Attributes[" + i + "].Type", type)
         @Html.Hidden("Attributes[" + i + "].Key", attribute.Key)
-        @Html.Label("Attributes[" + i + "].Value", attribute.Title)
-        @Html.EditorFor(m => attribute, type, "Attributes[" + i + "]", new { Parent = Model })
+        @Html.EditorFor(m => attributeViewModel, type, "Attributes[" + i + "]")
       </div>
     </section>
 
@@ -28,4 +32,3 @@
   <input type="submit" value="Save" />
 
 }
-
