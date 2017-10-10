@@ -35,9 +35,37 @@
     <link rel="stylesheet" type="text/css" href="~/Areas/Editor/Shared/Styles/Stylesheet.css" />
 
   </head>
-  <body>
+  <body style="padding-top:86px">
+
+    <div id="HeaderArea" class="navbar navbar-fixed-top">
+      <header>
+        <!-- Header Container -->
+        <div id="HeaderContainer" class="container Header">
+          <div class="row">
+
+            <!-- Site Name -->
+            <div class="col-md-2 col-sm-3 Site-Name">
+              <h1 class="h2"><a href="~/" style="color:rgb(255,255,255);text-decoration:none;">OnTopic</a></h1>
+            </div>
+            <!-- /Site Name -->
+            <!-- Site Description -->
+            <div class="col-md-10 col-sm-9 Page-Title-Area">
+
+              <!-- Page Title -->
+              <h2 class="h3 Page-Title">@Model.Topic.Title</h2>
+
+            </div>
+            <!-- /Site Description -->
+
+          </div>
+        </div>
+        <!-- /Header Container -->
+      </header>
+    </div>
 
     @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+
 
     <nav>
       <ul>
