@@ -8,16 +8,33 @@
 
 @using (Html.BeginForm()) {
 
-  for (int i = 0; i < Model.ContentType.SupportedAttributes.Count; i++) {
-    var attribute = Model.ContentType.SupportedAttributes[i];
-    var attributeViewModel = new AttributeViewModel(attribute, Model.Topic, Model.TopicRepository);
-    var type = attribute.Type.Replace(".ascx", "");
+  foreach (string category in Model.ContentType.SupportedAttributes.Select(a => a.DisplayGroup).Distinct()) {
 
-    if (attribute.Attributes.GetValue("IsHidden", "0").Equals("1")) {
-      continue;
-    }
+    var supportedAttributes = Model.ContentType.SupportedAttributes.Where(a => a.DisplayGroup.Equals(category));
 
-    @Html.EditorFor(m => attributeViewModel, type, "Attributes[" + i + "]")
+    <section id="@category.Replace(" ", "-")">
+
+      <div class="tab-header">
+        <h2>@category</h2>
+      </div>
+
+      <div class="tab-content">
+        @for (int i = 0; i < supportedAttributes.Count(); i++) {
+
+          var attribute = supportedAttributes.ElementAt(i);
+          var attributeViewModel = new AttributeViewModel(attribute, Model.Topic, Model.TopicRepository);
+          var type = attribute.Type.Replace(".ascx", "");
+
+          if (attribute.Attributes.GetValue("IsHidden", "0").Equals("1")) {
+            continue;
+          }
+
+          @Html.EditorFor(m => attributeViewModel, type, "Attributes[" + i + "]")
+
+        }
+      </div>
+
+    </section>
 
   }
 
