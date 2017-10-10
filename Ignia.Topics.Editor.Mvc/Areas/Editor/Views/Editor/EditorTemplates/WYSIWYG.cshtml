@@ -1,5 +1,5 @@
 ﻿@model AttributeViewModel
 
-<h4>@Model.Attribute.Key (WYSIWYG)</h4>
+<!-- EditorTemplate: WYSIWYG -->
 
-@Html.TextArea("Value", "")
+@Html.TextAreaFor(m => m.Value)

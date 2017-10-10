@@ -1,5 +1,5 @@
 ﻿@model AttributeViewModel
 
-<h4>@Model.Attribute.Key (Boolean)</h4>
+<!-- EditorTemplate: Boolean -->
 
-@Html.CheckBox("Value", false)
+@Html.CheckBox("Value", Model.Value?.Equals("1")?? false)
