@@ -172,7 +172,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Editor\Shared\Styles\Stylesheet.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -231,6 +230,7 @@
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\Relationships.cshtml" />
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\TokenizedTopicList.cshtml" />
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\WYSIWYG.cshtml" />
+    <Content Include="Areas\Editor\Shared\Styles\Style.scss" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
