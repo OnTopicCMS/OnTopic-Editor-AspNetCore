@@ -216,6 +216,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Editor\Views\Editor\EditorTemplates\_Layout.cshtml" />
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\TopicPointer.cshtml" />
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\File.cshtml" />
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\FileUpload.cshtml" />

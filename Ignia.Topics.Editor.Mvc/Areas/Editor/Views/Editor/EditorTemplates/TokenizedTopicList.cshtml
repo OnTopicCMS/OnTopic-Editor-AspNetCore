@@ -1,5 +1,7 @@
 ﻿@model AttributeViewModel
 
-<!-- EditorTemplate: TokenizedTopicList -->
+@{
+  Layout = "~/Areas/Editor/Views/Editor/EditorTemplates/_Layout.cshtml";
+}
 
 @Html.TextAreaFor(m => m.Value)
