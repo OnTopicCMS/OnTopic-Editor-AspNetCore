@@ -1,27 +1,41 @@
 ﻿//==============================================================================================
-// STYLE
+// UTILITIES
 //----------------------------------------------------------------------------------------------
-// Primary entry point for application. Imports all other manifest files, including variables.
+// Provides centralized, reusable selectors and corresponding treatments for commonly-needed
+// style applications.
+//----------------------------------------------------------------------------------------------
+// NOTE: These selectors may be used within the site's HTML or in the Sass by invoking them
+// via the @extend [.selector] directive.
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
-// IMPORT VARIABLES
+// DISPLAY
 //----------------------------------------------------------------------------------------------
-// NOTE: When possible, all changes should be made to variables. Only when that is not practical
-// should changes be made elsewhere.
-//----------------------------------------------------------------------------------------------
-@import "variables";
+.hidden {
+  display                       : none;
+}
 
 //----------------------------------------------------------------------------------------------
-// IMPORT EXTERNAL LIBRARIES
+// POSITIONING
 //----------------------------------------------------------------------------------------------
+.centered {
+  text-align                    : center;
+}
 
 //----------------------------------------------------------------------------------------------
-// IMPORT OTHER MANIFESTS
+// ELEMENTS
 //----------------------------------------------------------------------------------------------
-@import "Helpers/mixins";
-@import "Base/base";
-@import "Layout/layout";
-@import "Components/components";
-@import "Views/views";
-@import "Overrides/overrides";
+.no-list-style {
+  list-style                    : none;
+}
+
+//----------------------------------------------------------------------------------------------
+// TEXT
+//----------------------------------------------------------------------------------------------
+.uppercase {
+  text-transform                : uppercase;
+}
+
+.no-transform {
+  text-transform                : none;
+}

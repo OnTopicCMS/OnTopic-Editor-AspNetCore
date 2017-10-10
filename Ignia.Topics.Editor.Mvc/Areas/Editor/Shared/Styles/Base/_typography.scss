@@ -1,27 +1,42 @@
 ﻿//==============================================================================================
-// STYLE
+// TYPOGRAPHY
 //----------------------------------------------------------------------------------------------
-// Primary entry point for application. Imports all other manifest files, including variables.
+// Overrides type-related settings such as default fonts, headings, and common text-related
+// styles, such as .error.
+//----------------------------------------------------------------------------------------------
+// NOTE: Font imports should be placed in the _fonts.scss file.
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
-// IMPORT VARIABLES
+// VARIABLES
 //----------------------------------------------------------------------------------------------
-// NOTE: When possible, all changes should be made to variables. Only when that is not practical
-// should changes be made elsewhere.
-//----------------------------------------------------------------------------------------------
-@import "variables";
+@import "../variables";
 
 //----------------------------------------------------------------------------------------------
-// IMPORT EXTERNAL LIBRARIES
+// DEFAULTS
 //----------------------------------------------------------------------------------------------
+body,
+p,
+td,
+ol,
+ul {
+  font-size                     : rem-calc(16);
+  line-height                   : 1.4;
+}
 
 //----------------------------------------------------------------------------------------------
-// IMPORT OTHER MANIFESTS
+// HEADINGS
 //----------------------------------------------------------------------------------------------
-@import "Helpers/mixins";
-@import "Base/base";
-@import "Layout/layout";
-@import "Components/components";
-@import "Views/views";
-@import "Overrides/overrides";
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom                 : 0;
+  font-weight                   : $heading-font-weight;
+}
+
+//----------------------------------------------------------------------------------------------
+// GLOBAL CLASSES
+//----------------------------------------------------------------------------------------------
