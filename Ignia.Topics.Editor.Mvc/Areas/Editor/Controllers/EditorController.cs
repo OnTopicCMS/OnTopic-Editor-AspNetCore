@@ -157,6 +157,12 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
           continue;
         }
 
+        //Handle missing attributes
+        if (!model.Attributes.Contains(attribute.Key)) {
+          CurrentTopic.Attributes.Remove(attribute.Key);
+          continue;
+        }
+
         //Get reference to current instance
         var attributeValue = model.Attributes[attribute.Key];
 
