@@ -1,5 +1,5 @@
-﻿@model Ignia.Topics.Attribute
+﻿@model AttributeViewModel
 
-<h4>@Model.Key (LastModifiedBy)</h4>
+<h4>@Model.Attribute.Key (LastModifiedBy)</h4>
 
-@(((EditorViewModel)ViewData["Parent"]).Topic.Attributes.GetValue(Model.Key))
+@Model.Topic.Attributes.GetValue(Model.Attribute.Key)
