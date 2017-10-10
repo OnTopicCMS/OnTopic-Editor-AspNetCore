@@ -290,3 +290,16 @@ __pycache__/
 # Application settings
 **/connectionStrings.*
 **/smtp.config
+
+# Gulp build process files
+/node_modules
+/bower_components
+**/*/.sass-cache
+*.sass-cache*
+gulpFile.js
+
+# Custom
+config.yml
+/_site
+compilerconfig.json
+compilerconfig.json.defaults
