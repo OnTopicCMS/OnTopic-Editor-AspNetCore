@@ -34,9 +34,16 @@ namespace Ignia.Topics.Editor.Models {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Attribute = attribute;
-      Topic = topic;
-      TopicRepository = topicRepository;
+      Definition                = attribute;
+      Topic                     = topic;
+      TopicRepository           = topicRepository;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Key                       = attribute.Key;
+      Value                     = topic.Attributes.GetValue(attribute.Key, null, false, false);
+      InheritedValue            = topic.Attributes.GetValue(attribute.Key);
 
     }
 
@@ -46,7 +53,27 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Provides the global definition for the attribute, as defined on the corresponding <see cref="ContentType"/>.
     /// </summary>
-    public Attribute Attribute {
+    public Attribute Definition {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the current key, as defined on the <see cref="AttributeValue"/> instance.
+    /// </summary>
+    public string Key {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the current value, as defined on the <see cref="AttributeValue"/> instance.
+    /// </summary>
+    public string Value {
       get;
     }
 
@@ -54,9 +81,23 @@ namespace Ignia.Topics.Editor.Models {
     | TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a reference to the current <see cref="AttributeValue"/> instance of the attribute.
+    ///   Provides a reference to the current <see cref="Topic"/>.
     /// </summary>
     public Topic Topic {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | INHERITED VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the inherited value, as defined on either parent or derived topics.
+    /// </summary>
+    /// <remarks>
+    ///   If the <see cref="Value"/> is set, then the <see cref="InhertedValue"/> will always be equal to the
+    ///   <see cref="Value"/>.
+    /// </remarks>
+    public string InheritedValue {
       get;
     }
 
