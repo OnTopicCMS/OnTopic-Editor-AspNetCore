@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using Ignia.Topics.Collections;
+using Ignia.Topics.Repositories;
 
 namespace Ignia.Topics.Editor.Models {
 
@@ -29,7 +30,12 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
     /// </summary>
-    public EditorViewModel(Topic topic, ContentType contentType, ReadOnlyTopicCollection<ContentType> permittedContentTypes) {
+    public EditorViewModel(
+      Topic topic,
+      ContentType contentType,
+      ReadOnlyTopicCollection<ContentType> permittedContentTypes,
+      ITopicRepository topicRepository
+    ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
@@ -37,6 +43,7 @@ namespace Ignia.Topics.Editor.Models {
       Topic = topic;
       ContentType = contentType;
       PermittedContentTypes = permittedContentTypes;
+      TopicRepository = topicRepository;
 
     }
 
@@ -70,6 +77,16 @@ namespace Ignia.Topics.Editor.Models {
     ///   This is intended to be bound to the list of new content types available in the interface.
     /// </remarks>
     public ReadOnlyTopicCollection<ContentType> PermittedContentTypes {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | TOPIC REPOSITORY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the <see cref="ITopicRepository"/> for dynamic access to the entire topic graph.
+    /// </summary>
+    public ITopicRepository TopicRepository {
       get;
     }
 
