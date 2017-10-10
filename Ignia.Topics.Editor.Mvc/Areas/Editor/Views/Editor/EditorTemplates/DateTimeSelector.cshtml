@@ -4,4 +4,4 @@
   Layout = "~/Areas/Editor/Views/Editor/EditorTemplates/_Layout.cshtml";
 }
 
-@Html.TextBoxFor(m => m.Value)
+@Html.TextBoxFor(m => m.Value, "{0:d MMM yyyy}", new { type = "date" })
