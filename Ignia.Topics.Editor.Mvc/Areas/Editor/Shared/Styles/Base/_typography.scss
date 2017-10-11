@@ -43,6 +43,20 @@ h6,
   font-weight                   : $heading-font-weight;
   line-height                   : 1.1;
 }
+.Site-Name h1,
+.Page-Title-Area h2 {
+  margin                        : 0;
+  padding-top                   : 25px;
+  font-size                     : rem-calc(34);
+  line-height                   : 41px;
+  color                         : $white;
+}
+.Site-Name h1 {
+  margin-left                   : -2px;
+}
+h2.Page-Title {
+  margin-left                   : 3px;
+}
 
 //----------------------------------------------------------------------------------------------
 // GLOBAL CLASSES
