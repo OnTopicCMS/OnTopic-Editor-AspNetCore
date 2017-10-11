@@ -344,6 +344,7 @@
     <Content Include="Areas\Editor\Shared\Styles\Base\_buttons.scss" />
     <Content Include="Areas\Editor\Shared\Styles\Base\_utilities.scss" />
     <Content Include="Areas\Editor\Shared\Styles\Layout\_layout.scss" />
+    <Content Include="Areas\Editor\Views\Shared\_Toolbar.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
