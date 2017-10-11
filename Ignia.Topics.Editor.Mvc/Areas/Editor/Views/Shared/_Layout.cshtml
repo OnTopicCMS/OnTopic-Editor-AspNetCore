@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,38 +31,34 @@
     <link rel="stylesheet" type="text/css" href="~/Areas/Editor/Shared/Styles/Vendor/TokenInput/token-input.css" />
 
     <!-- Site Stylesheet -->
+    <!-- <link rel="stylesheet" type="text/css" href="~/Areas/Editor/Shared/Styles/Site.css" /> -->
     <link rel="stylesheet" type="text/css" href="~/Areas/Editor/Shared/Styles/Style.css" />
     <link rel="stylesheet" type="text/css" href="~/Areas/Editor/Shared/Styles/Stylesheet.css" />
 
   </head>
-  <body style="padding-top:86px">
+  <body vocab="http://schema.org" typeof="WebPage">
 
-    <div id="HeaderArea" class="navbar navbar-fixed-top">
-      <header>
-        <!-- Header Container -->
-        <div id="HeaderContainer" class="container Header">
-          <div class="row">
+    <header id="SiteHeader" class="navbar fixed-top" role="banner" vocab="http://schema.org" typeof="WPHeader">
+      <!-- Header Container -->
+      <div id="HeaderContainer" class="container header">
+        <div class="row">
 
-            <!-- Site Name -->
-            <div class="col-md-2 col-sm-3 Site-Name">
-              <h1 class="h2"><a href="~/" style="color:rgb(255,255,255);text-decoration:none;">OnTopic</a></h1>
-            </div>
-            <!-- /Site Name -->
-
-            <!-- Site Description -->
-            <div class="col-md-10 col-sm-9 Page-Title-Area">
-
-              <!-- Page Title -->
-              <h2 class="h3 Page-Title">@Model.Topic.Title</h2>
-
-            </div>
-            <!-- /Site Description -->
-
+          <!-- Site Name -->
+          <div class="col-md-2 col-sm-3 logotype lockup">
+            <a href="~/">OnTopic</a>
           </div>
+          <!-- /Site Name -->
+
+          <!-- Page Title (Current Topic) -->
+          <div class="col-md-10 col-sm-9 page title">
+            <h1>@Model.Topic.Title</h1>
+          </div>
+          <!-- /Page Title (Current Topic) -->
+
         </div>
-        <!-- /Header Container -->
-      </header>
-    </div>
+      </div>
+      <!-- /Header Container -->
+    </header>
 
     <!--
     @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
@@ -75,24 +71,24 @@
     </nav>
     -->
 
-    <div id="BodyArea" class="container Content-Container">
+    <main id="MainContentArea" class="container" role="main">
       <div class="row">
 
-        <!-- Primary Sidebar -->
-        <div class="col-md-2 col-sm-3 Sidebar">
+        <!-- Primary (Treeview) Sidebar -->
+        <nav id="Sidebar" class="col-md-2 col-sm-3 sidebar" role="navigation">
           <div id="FixedSidebar">
           </div>
+        </nav>
+        <!-- /Primary (Treeview) Sidebar -->
+
+        <!-- Primary Page Content -->
+        <div id="PageContentArea" class="col-md-10 col-sm-9 page content">
+          @RenderBody()
         </div>
-        <div class="col-md-10 col-sm-9 Content">
-          <div id="PageContentArea" class="Page-Content Primary">
-            <main>
-              @RenderBody()
-            </main>
-          </div>
-        </div>
+        <!-- /Primary Page Content -->
 
       </div>
-    </div>
+    </main>
 
     @RenderSection("scripts", required: false)
 
