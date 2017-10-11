@@ -75,9 +75,10 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   Provides a reference to the a strongly typed content type, if available.
     /// </summary>
     /// <returns>The Content Type associated with the current request.</returns>
-    protected ContentType GetContentType(string contentType) {
-      return TopicRepository.GetContentTypes().Where(t => t.Key.Equals(contentType)).First();
-    }
+    protected ContentType GetContentType(string contentType) => TopicRepository
+      .GetContentTypes()
+      .Where(t => t.Key.Equals(contentType))
+      .First();
 
     /*==========================================================================================================================
     | [GET] INDEX
