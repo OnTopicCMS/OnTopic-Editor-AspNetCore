@@ -40,22 +40,22 @@ h5,
 h6,
 .h6 {
   margin-bottom                 : 0;
+  font-family                   : $heading-font-family;
   font-weight                   : $heading-font-weight;
   line-height                   : 1.1;
 }
-.Site-Name h1,
-.Page-Title-Area h2 {
+.logotype.lockup a,
+.page.title h1 {
   margin                        : 0;
   padding-top                   : 25px;
-  font-size                     : rem-calc(34);
+  font-family                   : $heading-font-family;
+  font-size                     : 34px;
+  font-weight                   : 300;
   line-height                   : 41px;
   color                         : $white;
 }
-.Site-Name h1 {
-  margin-left                   : -2px;
-}
-h2.Page-Title {
-  margin-left                   : 3px;
+.logotype.lockup a {
+  text-decoration               : none;
 }
 
 //----------------------------------------------------------------------------------------------

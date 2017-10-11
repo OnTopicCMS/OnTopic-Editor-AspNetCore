@@ -19,13 +19,13 @@
 //----------------------------------------------------------------------------------------------
 // HEADER AREA ELEMENTS
 //----------------------------------------------------------------------------------------------
-.navbar-fixed-top,
-.Header {
+.navbar.fixed-top,
+.header {
   background-color              : $black-light;
 }
-.navbar-fixed-top {
+.navbar.fixed-top {
   border-bottom                 : 1px solid $grey-lighter;
-  .Site-Name {
+  .logotype.lockup {
     border                      : 1px solid $grey-lighter;
     border-top                  : 0 none transparent;
     background-color            : $red;
