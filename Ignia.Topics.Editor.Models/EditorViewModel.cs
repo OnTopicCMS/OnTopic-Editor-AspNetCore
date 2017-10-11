@@ -34,7 +34,8 @@ namespace Ignia.Topics.Editor.Models {
       Topic topic,
       ContentType contentType,
       ReadOnlyTopicCollection<ContentType> permittedContentTypes,
-      ITopicRepository topicRepository
+      ITopicRepository topicRepository,
+      bool isModal
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -44,6 +45,7 @@ namespace Ignia.Topics.Editor.Models {
       ContentType = contentType;
       PermittedContentTypes = permittedContentTypes;
       TopicRepository = topicRepository;
+      isModal = isModal;
 
     }
 
@@ -77,6 +79,16 @@ namespace Ignia.Topics.Editor.Models {
     ///   This is intended to be bound to the list of new content types available in the interface.
     /// </remarks>
     public ReadOnlyTopicCollection<ContentType> PermittedContentTypes {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | IS MODAL
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether or not the page should be rendered as a modal (e.g., including the chrome or not).
+    /// </summary>
+    public bool IsModal {
       get;
     }
 

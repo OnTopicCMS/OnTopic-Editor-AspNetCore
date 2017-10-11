@@ -106,7 +106,8 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
           Topic.Create("NewTopic", contentType),
           GetContentType(contentType),
           contentTypes,
-          TopicRepository
+          TopicRepository,
+          isModal
         );
       }
       else {
@@ -114,7 +115,8 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
           CurrentTopic,
           GetContentType(CurrentTopic.ContentType),
           contentTypes,
-          TopicRepository
+          TopicRepository,
+          isModal
         );
       }
 
