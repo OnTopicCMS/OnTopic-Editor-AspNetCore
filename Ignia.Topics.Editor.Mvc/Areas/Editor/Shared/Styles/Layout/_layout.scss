@@ -29,6 +29,7 @@ html {
 body {
   position                      : relative;
   margin                        : 0;
+  padding-top                   : 87px;
   min-height                    : 100%;
   background-color              : $grey-dark;
 }
@@ -36,8 +37,30 @@ body {
 //----------------------------------------------------------------------------------------------
 // HEADER
 //----------------------------------------------------------------------------------------------
-#SiteHeader {
-
+#SiteHeader,
+#HeaderContainer {
+  padding                       : 0;
+  min-height                    : 85px;
+  .row {
+    width                       : 100%;
+  }
+  .logotype.lockup,
+  .page.title {
+    min-height                  : 84px;
+  }
+  .logotype.lockup {
+    margin-bottom               : -9px;
+    min-height                  : 95px;
+    a {
+      display                   : block;
+      margin-left               : -2px;
+    }
+  }
+  .page.title {
+    h1 {
+      margin-left               : 3px;
+    }
+  }
 }
 
 //----------------------------------------------------------------------------------------------

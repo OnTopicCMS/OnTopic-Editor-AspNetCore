@@ -28,13 +28,34 @@ ul {
 // HEADINGS
 //----------------------------------------------------------------------------------------------
 h1,
+.h1,
 h2,
+.h2,
 h3,
+.h3,
 h4,
+.h4,
 h5,
-h6 {
+.h5,
+h6,
+.h6 {
   margin-bottom                 : 0;
+  font-family                   : $heading-font-family;
   font-weight                   : $heading-font-weight;
+  line-height                   : 1.1;
+}
+.logotype.lockup a,
+.page.title h1 {
+  margin                        : 0;
+  padding-top                   : 25px;
+  font-family                   : $heading-font-family;
+  font-size                     : 34px;
+  font-weight                   : 300;
+  line-height                   : 41px;
+  color                         : $white;
+}
+.logotype.lockup a {
+  text-decoration               : none;
 }
 
 //----------------------------------------------------------------------------------------------
