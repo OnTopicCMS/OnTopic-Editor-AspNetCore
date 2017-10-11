@@ -4,8 +4,6 @@
   ViewBag.Title = "Home Page";
 }
 
-<h1>@Model.Topic.Title</h1>
-
 @using (Html.BeginForm()) {
 
   foreach (string category in Model.ContentType.SupportedAttributes.Select(a => a.DisplayGroup).Distinct()) {
