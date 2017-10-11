@@ -169,6 +169,7 @@
     <Content Include="Areas\Editor\Shared\Scripts\Window.Primary.Functions.js" />
     <Content Include="Areas\Editor\Shared\Styles\CKEditor.css" />
     <Content Include="Areas\Editor\Shared\Styles\CKEditor.min.css" />
+    <Content Include="Areas\Editor\Shared\Styles\Site.css" />
     <Content Include="Areas\Editor\Shared\Styles\Style.css" />
     <Content Include="Areas\Editor\Shared\Styles\Style.min.css" />
     <Content Include="Areas\Editor\Shared\Styles\Stylesheet.css" />
@@ -285,6 +286,10 @@
     <Folder Include="Areas\Editor\Shared\Scripts\Vendor\TokenInput\" />
     <Folder Include="Areas\Editor\Shared\Scripts\Vendor\TrentRichardson\" />
     <Folder Include="Areas\Editor\Shared\Scripts\Vendor\UI-Bootstrap\" />
+    <Folder Include="Areas\Editor\Shared\Styles\Components\" />
+    <Folder Include="Areas\Editor\Shared\Styles\Helpers\" />
+    <Folder Include="Areas\Editor\Shared\Styles\Overrides\" />
+    <Folder Include="Areas\Editor\Shared\Styles\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Editor\Shared\Fonts\glyphicons-halflings-regular.woff" />
@@ -329,6 +334,16 @@
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\TokenizedTopicList.cshtml" />
     <Content Include="Areas\Editor\Views\Editor\EditorTemplates\WYSIWYG.cshtml" />
     <Content Include="Areas\Editor\Shared\Styles\Style.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\_variables.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_base.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_fonts.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_typography.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_forms.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_links.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_icons.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_buttons.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_utilities.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Layout\_layout.scss" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
