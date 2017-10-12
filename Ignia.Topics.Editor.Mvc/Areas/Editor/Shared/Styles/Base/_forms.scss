@@ -41,43 +41,21 @@ label, .label {
 //----------------------------------------------------------------------------------------------
 // INPUT
 //----------------------------------------------------------------------------------------------
-[type='text'],
-[type='password'],
-[type='date'],
-[type='datetime'],
-[type='datetime-local'],
-[type='month'],
-[type='week'],
-[type='email'],
-[type='number'],
-[type='search'],
-[type='tel'],
-[type='time'],
-[type='url'],
-[type='color'],
-textarea,
-select {
-  box-shadow                    : none;
-  &:active,
-  &:focus {
-    box-shadow                  : none;
-  }
-}
-
 input {
-  &:active,
-  &:focus {
-    box-shadow                  : none;
-  }
-  &:hover {
-  }
   &.submit {
     margin-bottom               : 0;
   }
 }
-
 textarea {
-  min-height                    : rem-calc(128);
+  max-width                     : 100%;
+  min-height                    : 128px;
+}
+.form-control {
+  border-radius                 : 1px;
+  &:focus,
+  &:active {
+    border-color                : $blue;
+  }
 }
 
 //----------------------------------------------------------------------------------------------
@@ -86,8 +64,8 @@ textarea {
 .radio,
 .checkbox {
   label {
-    height                      : auto !important;
-    line-height                 : rem-calc(20) !important;
+    height                      : auto;
+    line-height                 : 20px;
     &:before {
     }
   }
