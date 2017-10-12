@@ -16,8 +16,8 @@ $(function() {
   });
 
   // Set editor tabs bar width (tabs + action buttons)
-  var $dynamicFormWidth = $('div[id*="FormArea"]').width();
-  var $editorNavBar     = $('#DynamicForm div.Editor-Navbar');
+  var $dynamicFormWidth = $('#PageContentArea').width();
+  var $editorNavBar     = $('#Toolbar');
   if ($editorNavBar) {
     $editorNavBar.css('width', $dynamicFormWidth + 'px').css('top', ($topBarHeight + 1) + 'px');
   }
@@ -25,7 +25,7 @@ $(function() {
   // Set body top padding (compensation for fixed top bar) based on initial screen size or adjustment
   $(window).resize(function() {
     setTimeout(function() {
-      $dynamicFormWidth = $('div[id*="DynamicForm"]').width();
+      $dynamicFormWidth = $('#PageContentArea').width();
       $editorNavBar.css('width', $dynamicFormWidth + 'px').css('top', ($topBarHeight + 1) + 'px');
     }, 50);
   });
