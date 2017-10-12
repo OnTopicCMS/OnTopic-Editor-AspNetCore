@@ -3,9 +3,35 @@
 @{
   Layout = null;
   var displayGroups = Model.ContentType.SupportedAttributes.Select(a => a.DisplayGroup).Distinct().ToList();
+  bool disableDelete = Model.ContentType.Attributes.GetValue("DisableDelete").Equals("1");
 }
 
 <div id="Toolbar" class="toolbar">
+  <!-- Action Buttons -->
+  <div class="action buttons">
+    <div id="VersionsDropdown" class="dropdown" style="display:inline-block;">
+      <button class="btn btn-sm btn-ancillary dropdown-toggle" type="button" id="VersionsButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="fa fa-history"></span>
+        Versions
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="VersionsButton" style="left: 3px; top: 98%;">
+        @foreach (DateTime version in Model.Topic.VersionHistory) {
+          <li role="presentation" class="small">
+            <a tabindex="-1" role="menuitem" href="@Url.Action("SetVersion", "Editor", new { version = version })">@version.ToString()</a>
+          </li>
+        }
+      </ul>
+    </div>
+    <button id="ModalCloseButton" type="button" visible="IsModal" class="btn btn-ancillary btn-sm hidden" data-dismiss="modal">Cancel</button>
+    @if (Model.Topic.Parent.Attributes.GetValue("ContentType").Equals("List")) {
+      <a href="Default.aspx?Path=<%# ((IsNew)? Topic.Parent.UniqueKey : ((Topic.Parent.Parent != null)? Topic.Parent.Parent.UniqueKey : "#")) %>"class="btn btn-ancillary btn-sm">Cancel</a>
+    }
+    <button id="DeletePageButtonTop" disabled="@(disableDelete ? "true" : "false")" class="btn btn-default btn-sm" onclick="if (!confirmDelete()) return false;" onserverclick="DeleteTopic" RunAt="Server">Delete</button>
+    <button id="SavePageButtonTop" onclick="saveTopic()" class="btn btn-primary btn-sm">Save</button>
+  </div>
+  <!-- /Action Buttons -->
+
   <ul id="DisplayGroupNavTabs" class="nav nav-tabs" role="tablist">
     @for (int i = 0; i < @displayGroups.Count(); i++) {
       var displayGroup = @displayGroups[i].Replace(" ", "");
