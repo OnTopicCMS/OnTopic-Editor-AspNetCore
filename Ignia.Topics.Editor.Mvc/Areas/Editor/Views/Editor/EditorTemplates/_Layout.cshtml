@@ -5,8 +5,7 @@
 <section id="@Model.Key" class="attribute @Model.Key">
 
   @Html.LabelFor(m => m.Value, Model.Definition.Title)
-  <p>@Model.Definition.Description</p>
-
+  <span class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="@Model.Definition.Description"></span>
   <div class="fields">
 
     @Html.HiddenFor(m => m.Definition.Type)
