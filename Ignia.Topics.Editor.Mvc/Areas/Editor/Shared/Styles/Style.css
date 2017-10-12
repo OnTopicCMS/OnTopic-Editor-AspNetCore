@@ -220,6 +220,9 @@ a {
     border-top: 0 none transparent;
     background-color: #ef4a24; }
 
+.attribute {
+  margin-bottom: 20px; }
+
 html {
   height: 100%; }
 
