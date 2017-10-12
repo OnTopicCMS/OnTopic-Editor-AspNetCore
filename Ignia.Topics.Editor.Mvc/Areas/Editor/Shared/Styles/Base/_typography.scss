@@ -20,6 +20,7 @@ p,
 td,
 ol,
 ul {
+  font-family                   : $base-font-family;
   font-size                     : rem-calc(16);
   line-height                   : 1.4;
 }

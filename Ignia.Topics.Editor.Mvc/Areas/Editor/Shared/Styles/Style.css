@@ -4,6 +4,7 @@ p,
 td,
 ol,
 ul {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: rem-calc(16);
   line-height: 1.4; }
 
@@ -186,7 +187,7 @@ a {
 
 .fa-info-circle {
   position: relative;
-  top: 1px;
+  top: 0;
   left: 3px;
   padding-right: 12px;
   font-size: 16px;
