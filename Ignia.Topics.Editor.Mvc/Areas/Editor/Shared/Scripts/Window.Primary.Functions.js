@@ -37,9 +37,9 @@ $(function() {
   });
 
   // Set height for form area
-  var $formAreaOffset   = $('#FormArea').offset();
+  var $formAreaOffset   = $('#DisplayGroupTabsContent').offset();
   if ($formAreaOffset) {
-    $('#FormArea').css('min-height', ($windowHeight - $formAreaOffset.top) + 'px');
+    $('#DisplayGroupTabsContent').css('min-height', ($windowHeight - $formAreaOffset.top) + 'px');
   };
 
 });
