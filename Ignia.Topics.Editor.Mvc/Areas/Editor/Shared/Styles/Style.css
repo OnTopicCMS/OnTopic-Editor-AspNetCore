@@ -266,5 +266,9 @@ body {
     z-index: 50;
     position: fixed;
     padding-top: 10px; }
+    #MainContentArea #Toolbar .buttons {
+      float: right;
+      margin-top: -2px;
+      padding: 0 8px; }
   #MainContentArea #FormArea {
     margin: 0; }

@@ -80,6 +80,11 @@ body {
     z-index                     : 50;
     position                    : fixed;
     padding-top                 : 10px;
+    .buttons {
+      float                     : right;
+      margin-top                : -2px;
+      padding                   : 0 8px;
+    }
   }
   #FormArea {
     margin                      : 0;
