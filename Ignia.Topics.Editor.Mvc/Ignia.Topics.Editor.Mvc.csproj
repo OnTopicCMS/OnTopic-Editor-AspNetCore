@@ -346,6 +346,7 @@
     <Content Include="Areas\Editor\Shared\Styles\Layout\_layout.scss" />
     <Content Include="Areas\Editor\Views\Shared\_Toolbar.cshtml" />
     <Content Include="Areas\Editor\Shared\Styles\Base\_tabs.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_tooltips.scss" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>

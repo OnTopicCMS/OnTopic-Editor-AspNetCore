@@ -37,6 +37,9 @@ h6,
 .logotype.lockup a {
   text-decoration: none; }
 
+.form {
+  background-color: white; }
+
 fieldset legend {
   margin-bottom: rem-calc(18);
   padding-top: rem-calc(34);
@@ -167,7 +170,28 @@ a {
           background-color: transparent; }
 
 .tab-content {
+  padding: 20px 0 20px 5px;
   background-color: white; }
+
+.tooltip-arrow {
+  border-right-color: #1a1a1a; }
+
+.tooltip-inner {
+  padding: 5px 10px;
+  max-width: 550px;
+  font-size: 14px;
+  color: #eeeeee;
+  text-align: left;
+  background-color: #1a1a1a; }
+
+.fa-info-circle {
+  position: relative;
+  top: 2px;
+  left: 3px;
+  padding: 2px 5.5px 1px;
+  font-size: 16px;
+  color: #959595;
+  cursor: pointer; }
 
 .hidden {
   display: none; }
@@ -230,7 +254,7 @@ body {
     margin-left: 3px; }
 
 #MainContentArea #PageContentArea {
-  margin: 0 -15px;
+  margin: 0;
   padding: 50px 0 0; }
 
 #MainContentArea #Toolbar {
