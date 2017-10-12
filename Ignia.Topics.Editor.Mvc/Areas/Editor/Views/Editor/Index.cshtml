@@ -8,35 +8,49 @@
 
   @Html.Partial("_Toolbar")
 
-  int index = 0;
-  <div id="DisplayGroupTabsContent" class="tab-content">
-    @foreach (string category in Model.ContentType.SupportedAttributes.Select(a => a.DisplayGroup).Distinct()) {
+  <div class="row form area">
+    <div class="col-md-9">
+      @{int index = 0;}
+      <div id="DisplayGroupTabsContent" class="tab-content">
+        @foreach (string category in Model.ContentType.SupportedAttributes.Select(a => a.DisplayGroup).Distinct()) {
 
-      var supportedAttributes = Model.ContentType.SupportedAttributes.Where(a => a.DisplayGroup.Equals(category));
-      var displayGroup = category.Replace(" ", "");
+          var supportedAttributes = Model.ContentType.SupportedAttributes.Where(a => a.DisplayGroup.Equals(category));
+          var displayGroup = category.Replace(" ", "");
 
-      <div id="Group_@displayGroup" class="tab-pane fade@(index == 0 ? " show active" : "")" role="tabpanel" aria-labelledby="Tab_@displayGroup">
-        <section id="@category.Replace(" ", "-")">
+          <div id="Group_@displayGroup" class="tab-pane fade@(index == 0 ? " show active" : "")" role="tabpanel" aria-labelledby="Tab_@displayGroup">
+            <section id="@category.Replace(" ", "-")">
 
-          @for (int i = 0; i < supportedAttributes.Count(); i++) {
+              @for (int i = 0; i < supportedAttributes.Count(); i++) {
 
-            var attribute = supportedAttributes.ElementAt(i);
-            var attributeViewModel = new AttributeViewModel(attribute, Model.Topic, Model.TopicRepository);
-            var type = attribute.Type.Replace(".ascx", "");
+                var attribute = supportedAttributes.ElementAt(i);
+                var attributeViewModel = new AttributeViewModel(attribute, Model.Topic, Model.TopicRepository);
+                var type = attribute.Type.Replace(".ascx", "");
 
-            if (attribute.Attributes.GetValue("IsHidden", "0").Equals("1")) {
-              continue;
-            }
+                if (attribute.Attributes.GetValue("IsHidden", "0").Equals("1")) {
+                  continue;
+                }
 
-            @Html.EditorFor(m => attributeViewModel, type, "Attributes[" + i + "]")
+                @Html.EditorFor(m => attributeViewModel, type, "Attributes[" + i + "]")
 
-          }
+              }
 
-        </section>
+            </section>
+          </div>
+
+          index++;
+        }
       </div>
 
-      index++;
-    }
+    </div>
+    <div class="col-md-3"></div>
   </div>
 
+}
+
+@section scripts {
+  <script>
+    $(function() {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+  </script>
 }
