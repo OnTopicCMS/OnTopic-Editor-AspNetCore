@@ -5,5 +5,55 @@
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+@import '../variables';
+
+//----------------------------------------------------------------------------------------------
 // GLOBAL
 //----------------------------------------------------------------------------------------------
+.btn {
+  border-radius                 : 1px;
+  color                         : $white;
+}
+.btn-default {
+  border-color                  : $grey-light;
+  background-color              : $grey-light;
+}
+.btn-primary {
+  border-color                  : $button-primary;
+  background-color              : $button-primary;
+  &:hover,
+  &:focus,
+  &:active {
+    border-color                : rgb(7, 107, 154);             // #076B9A
+    background-color            : rgb(8, 114, 163);             // #0872A3
+  }
+}
+.btn-ancillary {
+  border-color                  : rgb(77, 77, 77);              // #4D4D4D
+  background-color              : rgb(77, 77, 77);              // #4D4D4D
+  &:hover,
+  &:focus,
+  &:active {
+    border-color                : rgb(46, 46, 46);              // #2E2E2E
+    background-color            : $grey-dark;
+  }
+}
+.open {
+  > .dropdown-toggle {
+    border-color                : rgb(46, 46, 46);              // #2E2E2E
+    background-color            : $grey-dark;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// TOOLBAR
+//----------------------------------------------------------------------------------------------
+.buttons {
+  &.action {
+    button {
+      margin-left               : 4px;
+    }
+  }
+}

@@ -122,7 +122,7 @@ textarea {
   height: 17px !important; }
 
 .radio input[type="radio"]:checked + label:after {
-  background-color: #0872a3; }
+  background-color: #09a4d4; }
 
 span.radio {
   display: block; }
@@ -133,7 +133,7 @@ span.radio {
     line-height: 1.8;
     color: black; }
   .checkbox input[type="checkbox"]:checked + label:before {
-    background-color: #0872a3; }
+    background-color: #09a4d4; }
 
 .instructions {
   font-size: rem-calc(16);
@@ -143,9 +143,38 @@ span.radio {
     color: #ef4a24; }
 
 a {
-  color: #0872a3; }
+  color: #09a4d4; }
   a:hover, a:focus, a:active {
     color: #07618b; }
+
+.btn {
+  border-radius: 1px;
+  color: white; }
+
+.btn-default {
+  border-color: #959595;
+  background-color: #959595; }
+
+.btn-primary {
+  border-color: #09a4d4;
+  background-color: #09a4d4; }
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    border-color: #076b9a;
+    background-color: #0872a3; }
+
+.btn-ancillary {
+  border-color: #4d4d4d;
+  background-color: #4d4d4d; }
+  .btn-ancillary:hover, .btn-ancillary:focus, .btn-ancillary:active {
+    border-color: #2e2e2e;
+    background-color: #333333; }
+
+.open > .dropdown-toggle {
+  border-color: #2e2e2e;
+  background-color: #333333; }
+
+.buttons.action button {
+  margin-left: 4px; }
 
 .nav-tabs {
   border-bottom: 0 none transparent;
