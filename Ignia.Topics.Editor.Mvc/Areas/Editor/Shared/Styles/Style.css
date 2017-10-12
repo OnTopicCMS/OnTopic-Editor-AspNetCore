@@ -143,6 +143,32 @@ a {
   a:hover, a:focus, a:active {
     color: #07618b; }
 
+.nav-tabs {
+  border-bottom: 0 none transparent;
+  padding-left: 15px; }
+  .nav-tabs > .nav-item {
+    margin-bottom: 0; }
+    .nav-tabs > .nav-item .nav-link {
+      margin-right: 10px;
+      border: 0 none transparent;
+      border-bottom: 8px solid transparent;
+      padding: 5px;
+      color: #cccccc; }
+      .nav-tabs > .nav-item .nav-link:hover, .nav-tabs > .nav-item .nav-link:focus, .nav-tabs > .nav-item .nav-link:active {
+        border-bottom-color: #cccccc;
+        color: white; }
+      .nav-tabs > .nav-item .nav-link.active {
+        border-bottom-color: #cccccc;
+        color: white;
+        background-color: transparent; }
+        .nav-tabs > .nav-item .nav-link.active:hover, .nav-tabs > .nav-item .nav-link.active:focus {
+          border-bottom-color: #cccccc;
+          color: white;
+          background-color: transparent; }
+
+.tab-content {
+  background-color: white; }
+
 .hidden {
   display: none; }
 
@@ -202,3 +228,12 @@ body {
   #SiteHeader .page.title h1,
   #HeaderContainer .page.title h1 {
     margin-left: 3px; }
+
+#MainContentArea #PageContentArea {
+  margin: 0 -15px;
+  padding: 50px 0 0; }
+
+#MainContentArea #Toolbar {
+  z-index: 50;
+  position: fixed;
+  padding-top: 10px; }

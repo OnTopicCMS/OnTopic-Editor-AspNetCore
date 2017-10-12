@@ -1,0 +1,52 @@
+﻿//==============================================================================================
+// TABS (AND TAB PANELS)
+//----------------------------------------------------------------------------------------------
+// Extends or overrides Bootstrap styles for tab-based navigation and tab content panels.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+@import '../variables';
+
+//----------------------------------------------------------------------------------------------
+// TAB NAVIGATION
+//----------------------------------------------------------------------------------------------
+.nav-tabs {
+  border-bottom                 : 0 none transparent;
+  padding-left                  : 15px;
+  > .nav-item {
+    margin-bottom               : 0;
+    .nav-link {
+      margin-right              : 10px;
+      border                    : 0 none transparent;
+      border-bottom             : 8px solid transparent;
+      padding                   : 5px;
+      color                     : $grey-lighter;
+      &:hover,
+      &:focus,
+      &:active {
+        border-bottom-color     : $grey-lighter;
+        color                   : $white;
+      }
+      &.active {
+        border-bottom-color     : $grey-lighter;
+        color                   : $white;
+        background-color        : transparent;
+        &:hover,
+        &:focus {
+          border-bottom-color   : $grey-lighter;
+          color                 : $white;
+          background-color      : transparent;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// TAB PANELS
+//----------------------------------------------------------------------------------------------
+.tab-content {
+  background-color              : $white;
+}
