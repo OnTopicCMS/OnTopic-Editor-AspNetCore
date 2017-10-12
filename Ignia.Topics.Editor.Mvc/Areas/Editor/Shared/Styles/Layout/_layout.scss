@@ -71,4 +71,13 @@ body {
 // PRIMARY CONTENT AREA
 //----------------------------------------------------------------------------------------------
 #MainContentArea {
+  #PageContentArea {
+    margin                      : 0 -15px;
+    padding                     : 50px 0 0;
+  }
+  #Toolbar {
+    z-index                     : 50;
+    position                    : fixed;
+    padding-top                 : 10px;
+  }
 }
