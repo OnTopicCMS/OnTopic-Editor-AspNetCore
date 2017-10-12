@@ -257,11 +257,14 @@ body {
   #HeaderContainer .page.title h1 {
     margin-left: 3px; }
 
-#MainContentArea #PageContentArea {
-  margin: 0;
-  padding: 50px 0 0; }
-
-#MainContentArea #Toolbar {
-  z-index: 50;
-  position: fixed;
-  padding-top: 10px; }
+#MainContentArea {
+  padding: 0; }
+  #MainContentArea #PageContentArea {
+    margin: 0;
+    padding: 50px 0 0; }
+  #MainContentArea #Toolbar {
+    z-index: 50;
+    position: fixed;
+    padding-top: 10px; }
+  #MainContentArea #FormArea {
+    margin: 0; }

@@ -71,6 +71,7 @@ body {
 // PRIMARY CONTENT AREA
 //----------------------------------------------------------------------------------------------
 #MainContentArea {
+  padding                       : 0;
   #PageContentArea {
     margin                      : 0;
     padding                     : 50px 0 0;
@@ -79,5 +80,8 @@ body {
     z-index                     : 50;
     position                    : fixed;
     padding-top                 : 10px;
+  }
+  #FormArea {
+    margin                      : 0;
   }
 }
