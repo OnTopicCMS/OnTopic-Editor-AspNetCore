@@ -197,7 +197,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Areas\Editor\Views\Shared\Error.cshtml" />
-    <Content Include="Areas\Editor\Views\Editor\Index.cshtml" />
+    <Content Include="Areas\Editor\Views\Editor\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

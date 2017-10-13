@@ -81,12 +81,12 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       .First();
 
     /*==========================================================================================================================
-    | [GET] INDEX
+    | [GET] EDIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Present an editor view bound to a specific topic.
     /// </summary>
-    public ActionResult Index(bool isNew = false, string contentType = null, bool isModal = false) {
+    public ActionResult Edit(bool isNew = false, string contentType = null, bool isModal = false) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | FILTER CONTENT TYPES
@@ -129,14 +129,14 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     }
 
     /*==========================================================================================================================
-    | [POST] INDEX
+    | [POST] EDIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Handles postback from the editor, based on an <see cref="EditorBindingModel"/>.
     /// </summary>
     /// <param name="model">An instance of the <see cref="EditorBindingModel"/> constructed from the HTTP Post.</param>
     [HttpPost]
-    public ActionResult Index(EditorBindingModel model, bool isNew = false, string contentType = null, bool isModal = false) {
+    public ActionResult Edit(EditorBindingModel model, bool isNew = false, string contentType = null, bool isModal = false) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SET TOPIC
@@ -207,7 +207,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN INDEX
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return Index();
+      return Edit();
 
     }
 
@@ -249,7 +249,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Render index
       \-------------------------------------------------------------------------------------------------------------------------*/
-      return Index();
+      return Edit();
 
     }
 
