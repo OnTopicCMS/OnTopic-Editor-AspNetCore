@@ -347,9 +347,30 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     public JsonResult Json(JsonTopicViewModelOptions options) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
+      | Get related topics
+      \-------------------------------------------------------------------------------------------------------------------------*/
+      var relatedTopics = (ReadOnlyTopicCollection<Topic>)null;
+
+      if (options.MarkRelated) {
+
+        var relatedTopic = CurrentTopic;
+        if (options.RelatedTopicId > 0) {
+          relatedTopic = TopicRepository.Load().GetTopic(options.RelatedTopicId);
+        }
+
+        if (!String.IsNullOrWhiteSpace(options.RelatedNamespace)) {
+          relatedTopics = new ReadOnlyTopicCollection<Topic>(relatedTopic.Relationships.GetTopics(options.RelatedNamespace));
+        }
+        else {
+          relatedTopics = relatedTopic.Relationships.GetAllTopics();
+        }
+
+      }
+
+      /*--------------------------------------------------------------------------------------------------------------------------
       | Assembly view model
       \-------------------------------------------------------------------------------------------------------------------------*/
-      var jsonTopicViewModel = new JsonTopicViewModel(CurrentTopic, options);
+      var jsonTopicViewModel = new JsonTopicViewModel(CurrentTopic, relatedTopics, options);
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Return flat view model, if requested

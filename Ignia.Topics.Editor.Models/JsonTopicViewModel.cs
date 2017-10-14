@@ -28,12 +28,18 @@ namespace Ignia.Topics.Editor.Models {
     ///   Initializes a new instance of the <see cref="JsonTopicViewModel"/> class using a <see cref="Topic"/> to seed the
     ///   values.
     /// </summary>
-    public JsonTopicViewModel(Topic topic, JsonTopicViewModelOptions options) : this(
+    public JsonTopicViewModel(Topic topic, JsonTopicViewModelOptions options) : this(topic, null, options) { }
+
+    public JsonTopicViewModel(
+      Topic topic,
+      ReadOnlyTopicCollection<Topic> related,
+      JsonTopicViewModelOptions options
+    ) : this(
       topic.Id,
       topic.Key,
       options.UseKeyAsText? topic.Title : topic.Key,
       topic.UniqueKey,
-      false,
+      options.MarkRelated? related.Contains(topic) : true,
       topic.Attributes.GetValue("DisableDelete", "0").Equals("1")
     ) {
 
@@ -55,7 +61,7 @@ namespace Ignia.Topics.Editor.Models {
       if (options.IsRecursive) {
         foreach (var child in topic.Children) {
           if (JsonTopicViewModel.IsValidTopic(child, options)) {
-            Children.Add(new JsonTopicViewModel(child, options));
+            Children.Add(new JsonTopicViewModel(child, related, options));
           }
         }
       }
@@ -82,6 +88,7 @@ namespace Ignia.Topics.Editor.Models {
       Title = title;
       UniqueKey = uniqueKey;
       WebPath = "/" + UniqueKey.Replace(':', '/');
+      IsChecked = isChecked;
       IsDraggable = isDraggable;
 
       /*------------------------------------------------------------------------------------------------------------------------
