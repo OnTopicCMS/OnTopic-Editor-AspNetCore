@@ -67,9 +67,10 @@ namespace Ignia.Topics.Editor.Models {
 
     /*==========================================================================================================================
     | USE KEY AS TEXT
-    >---------------------------------------------------------------------------------------------------------------------------
-    | Determines if the name should be displayed using the Title (if available) or the Key.  Defaults to Title.
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the name should be displayed using the Title (if available) or the Key.  Defaults to Title.
+    /// </summary>
     public bool UseKeyAsText {
       get;
       set;
@@ -77,10 +78,11 @@ namespace Ignia.Topics.Editor.Models {
 
     /*==========================================================================================================================
     | IS RECURSIVE
-    >---------------------------------------------------------------------------------------------------------------------------
-    | Determine whether grandchildren of the RootTopic should be displayed, or whether the tree should only show one tier of
-    | Topics.  Defaults to recursive.
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determine whether grandchildren of the RootTopic should be displayed, or whether the tree should only show one tier of
+    ///   Topics.  Defaults to recursive.
+    /// </summary>
     public bool IsRecursive {
       get;
       set;
@@ -88,10 +90,11 @@ namespace Ignia.Topics.Editor.Models {
 
     /*==========================================================================================================================
     | FLATTEN STRUCTURE
-    >---------------------------------------------------------------------------------------------------------------------------
-    | Determine whether all Topics should be added to the output at the same (top) level, or whether sub-tiers of Topics should
-    | be added to the output under a "children" array (of the parent).
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determine whether all Topics should be added to the output at the same (top) level, or whether sub-tiers of Topics
+    ///   should be added to the output under a "children" array (of the parent).
+    /// </summary>
     public bool FlattenStructure {
       get;
       set;
@@ -99,10 +102,11 @@ namespace Ignia.Topics.Editor.Models {
 
     /*==========================================================================================================================
     | SHOW NESTED TOPICS
-    >---------------------------------------------------------------------------------------------------------------------------
-    | Determine whether or not nested topics (i.e., topics within List ContentTypes) should be displayed or not.  By default, it
-    | is assumed that they should not be displayed.
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determine whether or not nested topics (i.e., topics within List ContentTypes) should be displayed or not.  By default,
+    ///   it is assumed that they should not be displayed.
+    /// </summary>
     public bool ShowNestedTopics {
       get;
       set;
@@ -110,10 +114,11 @@ namespace Ignia.Topics.Editor.Models {
 
     /*==========================================================================================================================
     | USE PARTIAL MATCH
-    >---------------------------------------------------------------------------------------------------------------------------
-    | If set, changes the FilterChildren query to find Topics based on a partial match against the specified AttributeName's
-    | AttributeValue, if both are present; otherwise, the query returns only exact matches.
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   If set, changes the FilterChildren query to find Topics based on a partial match against the specified AttributeName's
+    ///   AttributeValue, if both are present; otherwise, the query returns only exact matches.
+    /// </summary>
     public bool UsePartialMatch {
       get;
       set;
@@ -121,10 +126,11 @@ namespace Ignia.Topics.Editor.Models {
 
     /*==========================================================================================================================
     | RESULT LIMIT
-    >---------------------------------------------------------------------------------------------------------------------------
-    | If set, should limit the number of Topics loaded/output to the JSON. Includes setter in order to be decremented along with
-    | resultLimit in AddNodeToOutput().
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   If set, should limit the number of Topics loaded/output to the JSON. Includes setter in order to be decremented along
+    ///   with resultLimit in AddNodeToOutput().
+    /// </summary>
     public int ResultLimit {
       get;
       set;
@@ -132,9 +138,10 @@ namespace Ignia.Topics.Editor.Models {
 
     /*==========================================================================================================================
     | ATTRIBUTE NAME
-    >---------------------------------------------------------------------------------------------------------------------------
-    | May optionally filter out topics based on attribute values; if so, this property defines the attribute name.
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   May optionally filter out topics based on attribute values; if so, this property defines the attribute name.
+    /// </summary>
     public string AttributeName {
       get;
       set;
@@ -142,9 +149,10 @@ namespace Ignia.Topics.Editor.Models {
 
     /*==========================================================================================================================
     | ATTRIBUTE VALUE
-    >---------------------------------------------------------------------------------------------------------------------------
-    | May optionally filter out topics based on attribute values; if so, this property defines the attribute value.
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   May optionally filter out topics based on attribute values; if so, this property defines the attribute value.
+    /// </summary>
     public string AttributeValue {
       get;
       set;
@@ -152,9 +160,10 @@ namespace Ignia.Topics.Editor.Models {
 
     /*==========================================================================================================================
     | QUERY
-    >---------------------------------------------------------------------------------------------------------------------------
-    | May optionally filter out topics based on attribute values; if so, this property defines the attribute value.
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   May optionally filter out topics based on attribute values; if so, this property defines the attribute value.
+    /// </summary>
     public string Query {
       get;
       set;
