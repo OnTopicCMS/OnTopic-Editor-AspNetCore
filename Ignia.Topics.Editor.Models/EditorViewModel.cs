@@ -45,7 +45,7 @@ namespace Ignia.Topics.Editor.Models {
       ContentType = contentType;
       PermittedContentTypes = permittedContentTypes;
       TopicRepository = topicRepository;
-      isModal = isModal;
+      IsModal = isModal;
 
     }
 
