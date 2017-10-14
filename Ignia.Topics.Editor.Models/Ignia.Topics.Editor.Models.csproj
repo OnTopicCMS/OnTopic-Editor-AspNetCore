@@ -86,6 +86,8 @@
     <Compile Include="EditorBindingModel.cs" />
     <Compile Include="Attributes\EditorAttributeModelBinder.cs" />
     <Compile Include="EditorViewModel.cs" />
+    <Compile Include="JsonTopicViewModel.cs" />
+    <Compile Include="JsonTopicViewModelOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

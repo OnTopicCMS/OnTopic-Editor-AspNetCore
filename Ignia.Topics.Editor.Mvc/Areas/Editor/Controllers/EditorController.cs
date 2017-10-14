@@ -338,6 +338,42 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
     }
 
-  } //Class
+    /*==========================================================================================================================
+    | JSON
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves JSON the specified topic, and all of its children.
+    /// </summary>
+    public JsonResult Json(JsonTopicViewModelOptions options) {
+
+      /*--------------------------------------------------------------------------------------------------------------------------
+      | Assembly view model
+      \-------------------------------------------------------------------------------------------------------------------------*/
+      var jsonTopicViewModel = new JsonTopicViewModel(CurrentTopic, options);
+
+      /*--------------------------------------------------------------------------------------------------------------------------
+      | Return flat view model, if requested
+      \-------------------------------------------------------------------------------------------------------------------------*/
+      if (options.FlattenStructure) {
+        var flatJsonTopicViewModel = jsonTopicViewModel.AsFlatStructure();
+        if (!options.ShowRoot) {
+          flatJsonTopicViewModel.RemoveAt(0);
+        }
+        return Json(flatJsonTopicViewModel, JsonRequestBehavior.AllowGet);
+      }
+
+      /*--------------------------------------------------------------------------------------------------------------------------
+      | Otherwise, return hierarchical view model
+      \-------------------------------------------------------------------------------------------------------------------------*/
+      if (options.ShowRoot) {
+        return Json(jsonTopicViewModel, JsonRequestBehavior.AllowGet);
+      }
+      else {
+        return Json(jsonTopicViewModel.Children, JsonRequestBehavior.AllowGet);
+      }
+
+  }
+
+} //Class
 
 } //Namespace
