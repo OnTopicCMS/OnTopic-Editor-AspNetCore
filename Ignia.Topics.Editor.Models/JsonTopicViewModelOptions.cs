@@ -19,6 +19,11 @@ namespace Ignia.Topics.Editor.Models {
   public class JsonTopicViewModelOptions {
 
     /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    bool                        _markRelated                    = false;
+
+    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -40,6 +45,9 @@ namespace Ignia.Topics.Editor.Models {
       AttributeName             = null;
       AttributeValue            = null;
       Query                     = null;
+      MarkRelated               = false;
+      RelatedTopicId            = -1;
+      RelatedNamespace          = null;
 
     }
 
@@ -167,6 +175,22 @@ namespace Ignia.Topics.Editor.Models {
     public string Query {
       get;
       set;
+    }
+
+    /*==========================================================================================================================
+    | MARK RELATED
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether <see cref="JsonTopicViewModel"/>s should be marked as <see cref="JsonTopicViewModel.IsChecked"/>
+    ///   based on their presence in related topics.
+    /// </summary>
+    /// <remarks>
+    ///   This will automatically be set to true is <see cref="RelatedTopicId"/> or <see cref="RelatedNamespace"/> are set. If
+    ///   <see cref="RelatedTopicId"/> is <i>not</i> set, then the current <see cref="Topic"/> should be assumed.
+    /// </remarks>
+    public bool MarkRelated {
+      get => (RelatedTopicId > 0 || String.IsNullOrEmpty(RelatedNamespace) || _markRelated);
+      set => _markRelated = value;
     }
 
     /*==========================================================================================================================
