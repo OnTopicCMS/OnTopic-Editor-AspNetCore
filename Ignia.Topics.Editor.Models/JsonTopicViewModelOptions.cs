@@ -169,6 +169,28 @@ namespace Ignia.Topics.Editor.Models {
       set;
     }
 
+    /*==========================================================================================================================
+    | RELATED TOPIC ID
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The identifier of the topic to use to determine if items are marked as checked, based on its relationships.
+    /// </summary>
+    public int RelatedTopicId {
+      get;
+      set;
+    }
+
+    /*==========================================================================================================================
+    | RELATED NAMESPACE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The name of the relationship scope to use with the <see cref="RelatedTopicId"/>.
+    /// </summary>
+    public string RelatedNamespace {
+      get;
+      set;
+    }
+
   } //Class
 
 } //Namespace
