@@ -2,6 +2,7 @@
 
 @{
   Layout = null;
+  var rootTopic = Model.TopicRepository.Load("Web");
 }
 
 <script>
@@ -35,7 +36,7 @@
       rootVisible               : false,
       listeners: {
         click                   : function(n) {
-          location.href         = "?Path=" + n.attributes.path;
+          location.href         = "/OnTopic/Edit" + n.attributes.WebPath;
         },
         load: function(n) {
           if (!n) return;
@@ -43,13 +44,15 @@
             currentPosition     = currentTopic.length;
             }
           var currentNode       = n;
+          console.log('n.attributes');
+          console.log(n.attributes);
           if (currentPosition <= currentTopic.length && currentPosition >= 0) {
-            currentNode         = currentNode.findChild('Path', currentTopic.substring(0, currentPosition));
+            currentNode         = currentNode.findChild('UniqueKey', currentTopic.substring(0, currentPosition));
             if (currentPosition == currentTopic.length) {
               currentPosition++;
             }
             else {
-              currentPosition   = currentTopic.indexOf(':', currentNode.attributes.path.length + 1);
+              currentPosition   = currentTopic.indexOf(':', currentNode.attributes.UniqueKey.length + 1);
             }
             if (currentPosition < 0) {
               currentPosition   = currentTopic.length;
@@ -67,7 +70,7 @@
           currentNode.select(currentNode);
         },
         startdrag: function(tree, node, event) {
-          node.draggable        = (node.attributes.draggable == 'false');
+          node.draggable        = (node.attributes.Draggable == 'false');
           oldPosition           = node.parentNode.indexOf(node);
           oldNextSibling        = node.nextSibling;
         },
@@ -89,8 +92,8 @@
           // console.log("Node: " + node.attributes.id + ", Parent: " + newParent.attributes.id + ", Sibling: " + siblingId);
 
           PageMethods.MoveNode(
-            node.attributes.id,
-            newParent.attributes.id,
+            node.attributes.Id,
+            newParent.attributes.Id,
             siblingId,
             function(result) {}
           );
@@ -104,6 +107,6 @@
 
   });
 
-  var rootTopicId = 'Model.';
+  var rootTopicId = @rootTopic.Id;
 
 </script>
