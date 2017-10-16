@@ -37,7 +37,7 @@ namespace Ignia.Topics.Editor.Models {
     ) : this(
       topic.Id,
       topic.Key,
-      options.UseKeyAsText? topic.Title : topic.Key,
+      options.UseKeyAsText? topic.Key : topic.Title,
       topic.UniqueKey,
       options.MarkRelated? related.Contains(topic) : true,
       topic.Attributes.GetValue("DisableDelete", "0").Equals("1")
