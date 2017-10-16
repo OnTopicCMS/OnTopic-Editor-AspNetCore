@@ -189,7 +189,7 @@ namespace Ignia.Topics.Editor.Models {
     ///   <see cref="RelatedTopicId"/> is <i>not</i> set, then the current <see cref="Topic"/> should be assumed.
     /// </remarks>
     public bool MarkRelated {
-      get => (RelatedTopicId > 0 || String.IsNullOrEmpty(RelatedNamespace) || _markRelated);
+      get => (RelatedTopicId > 0 || !String.IsNullOrEmpty(RelatedNamespace) || _markRelated);
       set => _markRelated = value;
     }
 
