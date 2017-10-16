@@ -77,6 +77,7 @@
         <!-- Primary (Treeview) Sidebar -->
         <nav id="Sidebar" class="col-md-2 col-sm-3 sidebar" role="navigation">
           <div id="FixedSidebar">
+            <div id="TreeView"></div>
           </div>
         </nav>
         <!-- /Primary (Treeview) Sidebar -->
@@ -91,6 +92,8 @@
     </main>
 
     <script src="~/Areas/Editor/Shared/Scripts/Window.Primary.Functions.js"></script>
+
+    @Html.Partial("_TreeviewScript")
 
     @RenderSection("scripts", required: false)
 

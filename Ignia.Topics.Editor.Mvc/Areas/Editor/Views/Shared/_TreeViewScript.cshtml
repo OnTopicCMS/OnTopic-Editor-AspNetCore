@@ -1,0 +1,109 @@
+﻿@model Ignia.Topics.Editor.Models.EditorViewModel
+
+@{
+  Layout = null;
+}
+
+<script>
+  var
+    tree,
+    rootTopicId                 = 0;
+
+  Ext.onReady(function() {
+    var
+      Tree                      = Ext.tree,
+      currentTopic              = '@Model.Topic.UniqueKey',
+      currentPosition           = currentTopic.indexOf(':', 5),
+      // Track what nodes are moved
+      oldPosition               = null,
+      oldNextSibling            = null;
+
+    tree = new Tree.TreePanel({
+      useArrows                 : true,
+      autoScroll                : true,
+      animate                   : true,
+      enableDD                  : true,
+      containerScroll           : true,
+      border                    : false,
+      baseCls                   : 'TreeView',
+      dataUrl                   : '/OnTopic/JSON/Web/?ShowAll=true&UseKeyAsText=true',
+      root: new Ext.tree.AsyncTreeNode({
+        text                    : 'Web',
+        draggable               : false,
+        id                      : rootTopicId
+      }),
+      rootVisible               : false,
+      listeners: {
+        click                   : function(n) {
+          location.href         = "?Path=" + n.attributes.path;
+        },
+        load: function(n) {
+          if (!n) return;
+          if (currentPosition < 0) {
+            currentPosition     = currentTopic.length;
+            }
+          var currentNode       = n;
+          if (currentPosition <= currentTopic.length && currentPosition >= 0) {
+            currentNode         = currentNode.findChild('Path', currentTopic.substring(0, currentPosition));
+            if (currentPosition == currentTopic.length) {
+              currentPosition++;
+            }
+            else {
+              currentPosition   = currentTopic.indexOf(':', currentNode.attributes.path.length + 1);
+            }
+            if (currentPosition < 0) {
+              currentPosition   = currentTopic.length;
+            }
+            if (currentNode.hasChildNodes() && !currentNode.isExpanded()) {
+              currentNode.expand(false);
+              return;
+            }
+          }
+          currentNode.ensureVisible();
+          tree.selectPath(
+            currentNode.getPath('Title'),
+            'text'
+          );
+          currentNode.select(currentNode);
+        },
+        startdrag: function(tree, node, event) {
+          node.draggable        = (node.attributes.draggable == 'false');
+          oldPosition           = node.parentNode.indexOf(node);
+          oldNextSibling        = node.nextSibling;
+        },
+        movenode: function(tree, node, oldParent, newParent, position) {
+          var params;
+          if (oldParent == newParent) {
+            params              = {'node': node.id, 'delta': (position-oldPosition)};
+          }
+          else {
+            params              = {'node': node.id, 'parent': newParent.id, 'position': position};
+          }
+
+          // Determine sibling ID to place node after, based off position
+          var siblingId         = -1;
+          if (position > 0) {
+            siblingId           = newParent.childNodes[position-1].id; // TODO: double check indexing here
+          }
+
+          // console.log("Node: " + node.attributes.id + ", Parent: " + newParent.attributes.id + ", Sibling: " + siblingId);
+
+          PageMethods.MoveNode(
+            node.attributes.id,
+            newParent.attributes.id,
+            siblingId,
+            function(result) {}
+          );
+
+        }
+      }
+
+    });
+
+    tree.render('TreeView');
+
+  });
+
+  var rootTopicId = 'Model.';
+
+</script>
