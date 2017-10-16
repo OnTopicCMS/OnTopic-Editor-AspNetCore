@@ -303,3 +303,4 @@ config.yml
 /_site
 compilerconfig.json
 compilerconfig.json.defaults
+**/ExtJS/*
