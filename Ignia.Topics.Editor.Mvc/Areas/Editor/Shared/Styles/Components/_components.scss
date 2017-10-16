@@ -1,0 +1,16 @@
+﻿//==============================================================================================
+// COMPONENTS
+//----------------------------------------------------------------------------------------------
+// Components represent reusable blocks that are expected to be applied multiple times across a
+// site. Components will often map to reusable blocks of HTML (e.g., partial views) or
+// JavaScript (e.g., controls); in these cases, the components should share the same name as
+// their counterparts.
+//----------------------------------------------------------------------------------------------
+// NOTE: Since components are intended to be self-contained, they should each be included in
+// their own file (e.g., in /Components/_component.scss) and imported into this manifest.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+@import "TreeView/treeView";
