@@ -40,6 +40,7 @@ namespace Ignia.Topics.Editor.Models.Json {
       topic.Key,
       options.UseKeyAsText? topic.Key : topic.Title,
       topic.UniqueKey,
+      topic.WebPath,
       options.MarkRelated? related.Contains(topic) : true,
       topic.Attributes.GetValue("DisableDelete", "0").Equals("1")
     ) {
@@ -77,6 +78,7 @@ namespace Ignia.Topics.Editor.Models.Json {
       string                    key,
       string                    title,
       string                    uniqueKey,
+      string                    webPath,
       bool                      isChecked                       = false,
       bool                      isDraggable                     = true
     ) {
@@ -84,13 +86,13 @@ namespace Ignia.Topics.Editor.Models.Json {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Id = id;
-      Key = key;
-      Title = title;
-      UniqueKey = uniqueKey;
-      WebPath = "/" + UniqueKey.Replace(':', '/');
-      IsChecked = isChecked;
-      IsDraggable = isDraggable;
+      Id                        = id;
+      Key                       = key;
+      Title                     = title;
+      UniqueKey                 = uniqueKey;
+      WebPath                   = webPath;
+      IsChecked                 = isChecked;
+      IsDraggable               = isDraggable;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Initialize collection
