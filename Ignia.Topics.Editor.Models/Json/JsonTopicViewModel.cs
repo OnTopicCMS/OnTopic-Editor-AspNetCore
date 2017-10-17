@@ -189,6 +189,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     /// <summary>
     ///   The fully-qualified, unique key for the topic, in OnTopic format.
     /// </summary>
+    [JsonProperty(PropertyName = "path")]
     public string UniqueKey {
       get;
     }
@@ -199,7 +200,6 @@ namespace Ignia.Topics.Editor.Models.Json {
     /// <summary>
     ///   The fully-qualified, unique path to the topic, in HTTP format.
     /// </summary>
-    [JsonProperty(PropertyName = "path")]
     public string WebPath {
       get;
     }
