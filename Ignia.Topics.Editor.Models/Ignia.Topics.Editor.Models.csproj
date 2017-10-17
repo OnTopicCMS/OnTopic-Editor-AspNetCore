@@ -36,8 +36,10 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -86,6 +88,7 @@
     <Compile Include="EditorBindingModel.cs" />
     <Compile Include="Attributes\EditorAttributeModelBinder.cs" />
     <Compile Include="EditorViewModel.cs" />
+    <Compile Include="Json\JsonNetResult.cs" />
     <Compile Include="Json\JsonTopicViewModel.cs" />
     <Compile Include="Json\JsonTopicViewModelOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
