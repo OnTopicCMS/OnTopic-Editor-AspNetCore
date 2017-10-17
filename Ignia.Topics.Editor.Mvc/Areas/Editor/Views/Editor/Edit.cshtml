@@ -23,7 +23,7 @@
               @for (int i = 0; i < supportedAttributes.Count(); i++) {
 
                 var attribute = supportedAttributes.ElementAt(i);
-                var attributeViewModel = new AttributeViewModel(attribute, Model.Topic, Model.TopicRepository);
+                var attributeViewModel = new AttributeViewModel(attribute, Model.Topic, Model.TopicRepository, ViewData);
                 var type = attribute.Type.Replace(".ascx", "");
 
                 if (attribute.Attributes.GetValue("IsHidden", "0").Equals("1")) {
