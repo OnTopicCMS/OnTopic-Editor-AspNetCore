@@ -4,6 +4,18 @@
   Layout = "~/Areas/Editor/Views/Editor/EditorTemplates/_Layout.cshtml";
 }
 
-@Html.RadioButtonFor(m => m.Value, "Default") @Html.LabelFor(m => m.Value, "Desktop and Mobile") <br/>
-@Html.RadioButtonFor(m => m.Value, "Desktop") @Html.LabelFor(m => m.Value, "Desktop Only") <br />
-@Html.RadioButtonFor(m => m.Value, "Mobile") @Html.LabelFor(m => m.Value, "Mobile Only")
+<div class="form-check form-check-inline">
+  <label class="form-check-label">
+    @Html.RadioButtonFor(m => m.Value, "Default", new { id = "DisplayOptions_" + Model.Key + "_Default", @class = "form-check-input" }) Default
+  </label>
+</div>
+<div class="form-check form-check-inline">
+  <label class="form-check-label">
+    @Html.RadioButtonFor(m => m.Value, "Desktop", new { id = "DisplayOptions_" + Model.Key + "_Desktop", @class = "form-check-input" }) Desktop Only
+  </label>
+</div>
+<div class="form-check form-check-inline">
+  <label class="form-check-label">
+    @Html.RadioButtonFor(m => m.Value, "Mobile", new { id = "DisplayOptions_" + Model.Key + "_Mobile", @class = "form-check-input" }) Mobile Only
+  </label>
+</div>
