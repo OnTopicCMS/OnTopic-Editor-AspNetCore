@@ -160,6 +160,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Editor\Images\Navigation\Arrows.png" />
+    <Content Include="Areas\Editor\Images\Navigation\Dashes.png" />
     <Content Include="Areas\Editor\Shared\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Areas\Editor\Shared\Scripts\Common.Functions.js" />
     <Content Include="Areas\Editor\Shared\Scripts\Modal.js" />
@@ -1074,7 +1076,6 @@
     <Folder Include="Areas\Editor\Shared\Scripts\Vendor\TokenInput\" />
     <Folder Include="Areas\Editor\Shared\Scripts\Vendor\TrentRichardson\" />
     <Folder Include="Areas\Editor\Shared\Scripts\Vendor\UI-Bootstrap\" />
-    <Folder Include="Areas\Editor\Shared\Styles\Components\" />
     <Folder Include="Areas\Editor\Shared\Styles\Helpers\" />
     <Folder Include="Areas\Editor\Shared\Styles\Overrides\" />
     <Folder Include="Areas\Editor\Shared\Styles\Views\" />
@@ -1160,6 +1161,8 @@
     <Content Include="Areas\Editor\Shared\Scripts\Vendor\ExtJS\resources\images\yourtheme\window\right-corners.psd" />
     <Content Include="Areas\Editor\Shared\Scripts\Vendor\ExtJS\resources\images\yourtheme\window\top-bottom.psd" />
     <Content Include="Areas\Editor\Shared\Scripts\Vendor\ExtJS\resources\resources.jsb" />
+    <Content Include="Areas\Editor\Shared\Styles\Components\_components.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Components\TreeView\_treeView.scss" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
