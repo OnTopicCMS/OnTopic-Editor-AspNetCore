@@ -287,6 +287,8 @@ body {
 
 .sidebar {
   padding-top: 50px; }
+  .sidebar .treeview input[type="checkbox"] {
+    display: none; }
 
 .x-tree-arrows .x-tree-elbow-minus,
 .x-tree-arrows .x-tree-elbow-plus,
