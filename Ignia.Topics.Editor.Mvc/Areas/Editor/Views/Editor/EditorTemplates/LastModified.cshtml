@@ -4,4 +4,6 @@
   Layout = "~/Areas/Editor/Views/Editor/EditorTemplates/_Layout.cshtml";
 }
 
-@Model.Value
+<div class="label">
+  @(Model.Value ?? ((Model.Topic.LastModified != null && Model.Topic.LastModified != DateTime.MinValue) ? Model.Topic.LastModified.ToString() : DateTime.Now.ToString()))
+</div>
