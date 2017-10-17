@@ -8,8 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Repositories;
+using Newtonsoft.Json;
 
-namespace Ignia.Topics.Editor.Models {
+namespace Ignia.Topics.Editor.Models.Json {
 
   /*============================================================================================================================
   | CLASS: JSON VIEW MODEL
@@ -175,6 +176,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   The title of the topic, which will fall back to <see cref="Key"/> if not set.
     /// </summary>
+    [JsonProperty(PropertyName = "text")]
     public string Title {
       get;
     }
@@ -195,6 +197,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   The fully-qualified, unique path to the topic, in HTTP format.
     /// </summary>
+    [JsonProperty(PropertyName = "path")]
     public string WebPath {
       get;
     }
@@ -205,6 +208,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Determines whether the current topic is selected or not.
     /// </summary>
+    [JsonProperty(PropertyName = "checked")]
     public bool IsChecked {
       get;
     }
@@ -215,6 +219,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Determines whether the current topic is intended to be draggable or not.
     /// </summary>
+    [JsonProperty(PropertyName = "draggable")]
     public bool IsDraggable {
       get;
     }
@@ -225,6 +230,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Determines whether the current topic is a leaf node or not.
     /// </summary>
+    [JsonProperty(PropertyName = "leaf")]
     public bool IsLeaf {
       get => Children.Count.Equals(0);
     }
