@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Attributes;
+using Ignia.Topics.Editor.Models.Json;
 using Ignia.Topics.Repositories;
 
 namespace Ignia.Topics.Editor.Mvc.Controllers {
