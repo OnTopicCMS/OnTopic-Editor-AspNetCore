@@ -1163,6 +1163,7 @@
     <Content Include="Areas\Editor\Shared\Scripts\Vendor\ExtJS\resources\resources.jsb" />
     <Content Include="Areas\Editor\Shared\Styles\Components\_components.scss" />
     <Content Include="Areas\Editor\Shared\Styles\Components\TreeView\_treeView.scss" />
+    <Content Include="Areas\Editor\Shared\Styles\Base\_callouts.scss" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>

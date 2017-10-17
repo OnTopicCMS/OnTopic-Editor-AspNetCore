@@ -153,6 +153,39 @@ a {
   padding: 20px 0 20px 5px;
   background-color: white; }
 
+.callouts {
+  padding-top: 20px;
+  padding-right: 20px; }
+
+.callout.topic-info {
+  position: fixed;
+  border: 1px solid #cccccc;
+  padding: 15px;
+  width: 10.5%;
+  max-width: 214px; }
+  .callout.topic-info h3,
+  .callout.topic-info dt,
+  .callout.topic-info dd {
+    color: #666666; }
+  .callout.topic-info h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 300; }
+  .callout.topic-info dl {
+    margin-bottom: -13px;
+    font-size: 13px;
+    line-height: 18px; }
+    .callout.topic-info dl dt,
+    .callout.topic-info dl dd {
+      font-weight: normal; }
+    .callout.topic-info dl dt .fa {
+      margin-right: 5px;
+      width: 1em; }
+    .callout.topic-info dl dd {
+      margin-bottom: 8px;
+      margin-left: 22px; }
+
 .tooltip-arrow {
   border-right-color: #1a1a1a; }
 
