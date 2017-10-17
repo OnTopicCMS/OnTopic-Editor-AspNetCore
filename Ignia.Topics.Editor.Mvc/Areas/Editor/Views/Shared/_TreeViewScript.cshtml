@@ -27,7 +27,7 @@
       containerScroll           : true,
       border                    : false,
       baseCls                   : 'TreeView',
-      dataUrl                   : '/OnTopic/JSON/Web/?ShowAll=true&UseKeyAsText=true',
+      dataUrl                   : '/OnTopic/JSON/Root/?ShowAll=true&UseKeyAsText=true',
       root: new Ext.tree.AsyncTreeNode({
         text                    : 'Web',
         draggable               : false,
@@ -36,7 +36,7 @@
       rootVisible               : false,
       listeners: {
         click                   : function(n) {
-          location.href         = "/OnTopic/Edit" + n.attributes.WebPath;
+          location.href         = "/OnTopic/Edit" + n.attributes.webPath;
         },
         load: function(n) {
           if (!n) return;
@@ -47,12 +47,12 @@
           console.log('n.attributes');
           console.log(n.attributes);
           if (currentPosition <= currentTopic.length && currentPosition >= 0) {
-            currentNode         = currentNode.findChild('UniqueKey', currentTopic.substring(0, currentPosition));
+            currentNode         = currentNode.findChild('path', currentTopic.substring(0, currentPosition));
             if (currentPosition == currentTopic.length) {
               currentPosition++;
             }
             else {
-              currentPosition   = currentTopic.indexOf(':', currentNode.attributes.UniqueKey.length + 1);
+              currentPosition   = currentTopic.indexOf(':', currentNode.attributes.path.length + 1);
             }
             if (currentPosition < 0) {
               currentPosition   = currentTopic.length;
@@ -64,13 +64,13 @@
           }
           currentNode.ensureVisible();
           tree.selectPath(
-            currentNode.getPath('Title'),
+            currentNode.getPath('text'),
             'text'
           );
           currentNode.select(currentNode);
         },
         startdrag: function(tree, node, event) {
-          node.draggable        = (node.attributes.Draggable == 'false');
+          node.draggable        = (node.attributes.draggable == 'false');
           oldPosition           = node.parentNode.indexOf(node);
           oldNextSibling        = node.nextSibling;
         },
