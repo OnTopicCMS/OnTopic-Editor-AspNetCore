@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Web.Mvc;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Repositories;
 
@@ -29,7 +30,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
     /// </summary>
-    public AttributeViewModel(Attribute attribute, Topic topic, ITopicRepository topicRepository) {
+    public AttributeViewModel(Attribute attribute, Topic topic, ITopicRepository topicRepository, ViewDataDictionary viewData) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
@@ -37,6 +38,7 @@ namespace Ignia.Topics.Editor.Models {
       Definition                = attribute;
       Topic                     = topic;
       TopicRepository           = topicRepository;
+      ViewData                  = viewData;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set values
@@ -109,6 +111,30 @@ namespace Ignia.Topics.Editor.Models {
     /// </summary>
     public ITopicRepository TopicRepository {
       get;
+    }
+
+    /*==========================================================================================================================
+    | VIEW DATA
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the <see cref="ViewDataDictionary"/> for the request.
+    /// </summary>
+    private ViewDataDictionary ViewData {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | PROPERTY: GET CONFIGURATION VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves a configuration value from the <see cref="Configuration"/> dictionary; if the value doesn't exist, then
+    ///   optionally returns a default value.
+    /// </summary>
+    public string GetConfigurationValue(string key, string defaultValue = null) {
+      if (ViewData != null && ViewData.ContainsKey(key) && ViewData[key] != null) {
+        return ViewData[key].ToString();
+      }
+      return Definition.GetConfigurationValue(key, defaultValue);
     }
 
   } //Class
