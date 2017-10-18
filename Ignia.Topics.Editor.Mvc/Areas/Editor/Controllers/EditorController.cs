@@ -218,7 +218,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <summary>
     ///   Private helper function that saves relationship values to the topic.
     /// </summary>
-    private void SetRelationships(Topic topic, Attribute attribute, EditorAttribute attributeValue) {
+    private void SetRelationships(Topic topic, AttributeDescriptor attribute, EditorAttribute attributeValue) {
       var relatedTopics = attributeValue.Value.Split(',').ToList();
       topic.Relationships.ClearTopics(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
