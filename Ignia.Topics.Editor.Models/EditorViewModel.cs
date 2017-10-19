@@ -32,8 +32,8 @@ namespace Ignia.Topics.Editor.Models {
     /// </summary>
     public EditorViewModel(
       Topic topic,
-      ContentType contentType,
-      ReadOnlyTopicCollection<ContentType> permittedContentTypes,
+      ContentTypeDescriptor contentTypeDescriptor,
+      ReadOnlyTopicCollection<ContentTypeDescriptor> permittedContentTypes,
       ITopicRepository topicRepository,
       bool isModal
     ) {
@@ -42,7 +42,7 @@ namespace Ignia.Topics.Editor.Models {
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
       Topic = topic;
-      ContentType = contentType;
+      ContentTypeDescriptor = contentTypeDescriptor;
       PermittedContentTypes = permittedContentTypes;
       TopicRepository = topicRepository;
       IsModal = isModal;
@@ -60,12 +60,12 @@ namespace Ignia.Topics.Editor.Models {
     }
 
     /*==========================================================================================================================
-    | CONTENT TYPE
+    | CONTENT TYPE DESCRIPTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Read-only reference to the current <see cref="ContentType"/> associated with the request.
+    ///   Read-only reference to the current <see cref="ContentTypeDescriptor"/> associated with the request.
     /// </summary>
-    public ContentType ContentType {
+    public ContentTypeDescriptor ContentTypeDescriptor {
       get;
     }
 
@@ -78,7 +78,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <remarks>
     ///   This is intended to be bound to the list of new content types available in the interface.
     /// </remarks>
-    public ReadOnlyTopicCollection<ContentType> PermittedContentTypes {
+    public ReadOnlyTopicCollection<ContentTypeDescriptor> PermittedContentTypes {
       get;
     }
 

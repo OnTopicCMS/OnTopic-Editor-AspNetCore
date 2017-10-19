@@ -12,9 +12,9 @@
     <div class="col-md-9">
       @{int index = 0;}
       <div id="DisplayGroupTabsContent" class="tab-content">
-        @foreach (string category in Model.ContentType.SupportedAttributes.Select(a => a.DisplayGroup).Distinct()) {
+        @foreach (string category in Model.ContentTypeDescriptor.AttributeDescriptors.Select(a => a.DisplayGroup).Distinct()) {
 
-          var supportedAttributes = Model.ContentType.SupportedAttributes.Where(a => a.DisplayGroup.Equals(category));
+          var supportedAttributes = Model.ContentTypeDescriptor.AttributeDescriptors.Where(a => a.DisplayGroup.Equals(category));
           var displayGroup = category.Replace(" ", "");
 
           <div id="Group_@displayGroup" class="tab-pane fade@(index == 0 ? " show active" : "")" role="tabpanel" aria-labelledby="Tab_@displayGroup">

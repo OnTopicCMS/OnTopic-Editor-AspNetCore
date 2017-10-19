@@ -76,8 +76,8 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   Provides a reference to the a strongly typed content type, if available.
     /// </summary>
     /// <returns>The Content Type associated with the current request.</returns>
-    protected ContentType GetContentType(string contentType) => TopicRepository
-      .GetContentTypes()
+    protected ContentTypeDescriptor GetContentType(string contentType) => TopicRepository
+      .GetContentTypeDescriptors()
       .Where(t => t.Key.Equals(contentType))
       .First();
 
@@ -96,7 +96,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       var contentTypes = currentContentType.PermittedContentTypes;
 
       if (contentTypes.Count.Equals(0)) {
-        contentTypes = TopicRepository.GetContentTypes().AsReadOnly();
+        contentTypes = TopicRepository.GetContentTypeDescriptors().AsReadOnly();
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | SET ATTRIBUTES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var attribute in GetContentType(contentType).SupportedAttributes) {
+      foreach (var attribute in GetContentType(contentType).AttributeDescriptors) {
 
         //Handle hidden attributes
         if (attribute.IsHidden) {
