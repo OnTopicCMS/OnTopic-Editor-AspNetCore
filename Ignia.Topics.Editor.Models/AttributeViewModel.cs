@@ -30,12 +30,16 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
     /// </summary>
-    public AttributeViewModel(Attribute attribute, Topic topic, ITopicRepository topicRepository, ViewDataDictionary viewData) {
+    public AttributeViewModel(
+      AttributeDescriptor attributeDescriptor,
+      Topic topic, ITopicRepository topicRepository,
+      ViewDataDictionary viewData
+    ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Definition                = attribute;
+      Definition                = attributeDescriptor;
       Topic                     = topic;
       TopicRepository           = topicRepository;
       ViewData                  = viewData;
@@ -43,9 +47,9 @@ namespace Ignia.Topics.Editor.Models {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Key                       = attribute.Key;
-      Value                     = topic.Attributes.GetValue(attribute.Key, null, false, false);
-      InheritedValue            = topic.Attributes.GetValue(attribute.Key);
+      Key                       = attributeDescriptor.Key;
+      Value                     = topic.Attributes.GetValue(attributeDescriptor.Key, null, false, false);
+      InheritedValue            = topic.Attributes.GetValue(attributeDescriptor.Key);
 
     }
 
@@ -55,7 +59,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Provides the global definition for the attribute, as defined on the corresponding <see cref="ContentType"/>.
     /// </summary>
-    public Attribute Definition {
+    public AttributeDescriptor Definition {
       get;
     }
 

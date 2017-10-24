@@ -2,8 +2,8 @@
 
 @{
   Layout = null;
-  var displayGroups = Model.ContentType.SupportedAttributes.Select(a => a.DisplayGroup).Distinct().ToList();
-  bool disableDelete = Model.ContentType.Attributes.GetValue("DisableDelete").Equals("1");
+  var displayGroups = Model.ContentTypeDescriptor.AttributeDescriptors.Select(a => a.DisplayGroup).Distinct().ToList();
+  bool disableDelete = Model.ContentTypeDescriptor.Attributes.GetValue("DisableDelete").Equals("1");
 }
 
 <div id="Toolbar" class="toolbar">

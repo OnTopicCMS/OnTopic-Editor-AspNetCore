@@ -54,7 +54,11 @@ namespace Ignia.Topics.Editor.Mvc {
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
       var rootTopic = _topicRepository.Load();
-      var topicRoutingService = new TopicRoutingService(_topicRepository, requestContext);
+      var topicRoutingService = new TopicRoutingService(
+        _topicRepository,
+        requestContext.HttpContext.Request.Url,
+        requestContext.RouteData
+      );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
