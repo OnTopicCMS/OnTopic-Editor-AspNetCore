@@ -9,6 +9,8 @@
 <div id="Toolbar" class="toolbar">
   <!-- Action Buttons -->
   <div class="action buttons">
+
+    <!-- Versions -->
     <div id="VersionsDropdown" class="dropdown" style="display:inline-block;">
       <button class="btn btn-sm btn-ancillary dropdown-toggle" type="button" id="VersionsButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="fa fa-history"></span>
@@ -23,12 +25,21 @@
         }
       </ul>
     </div>
+    <!-- /Versions -->
+
+    <!-- Cancel -->
     <button id="ModalCloseButton" type="button" visible="IsModal" class="btn btn-ancillary btn-sm hidden" data-dismiss="modal">Cancel</button>
     @if (Model.Topic.Parent.Attributes.GetValue("ContentType").Equals("List")) {
       <a href="Default.aspx?Path=<%# ((IsNew)? Topic.Parent.UniqueKey : ((Topic.Parent.Parent != null)? Topic.Parent.Parent.UniqueKey : "#")) %>"class="btn btn-ancillary btn-sm">Cancel</a>
     }
+    <!-- /Cancel -->
+
+    <!-- Delete -->
     <button id="DeletePageButton" disabled="@(disableDelete ? "true" : "false")" class="btn btn-default btn-sm" onclick="if (!confirmDelete()) return false;">Delete</button>
+
+    <!-- Save -->
     <button id="SavePageButton" onclick="saveTopic()" class="btn btn-primary btn-sm">Save</button>
+
   </div>
   <!-- /Action Buttons -->
 
