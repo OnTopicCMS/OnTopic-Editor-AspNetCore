@@ -71,6 +71,43 @@
        */
       $('[data-toggle="tooltip"]').tooltip();
 
+      /**
+       * Sends AJAX request to Save/Edit Action
+       */
+      $('#SavePageButton').click(function() {
+
+        $.ajax({
+          url                   : '@Url.Action("Edit","Editor")',
+          type                  : 'POST',
+          data                  : @Model.Topic,
+          success: function (result) {
+            if (result == true) {
+            }
+            else {
+            }
+          }
+        });
+
+      });
+
+      /**
+       * Sends AJAX request to Delete Action
+       */
+      $('#DeletePageButton').click(function () {
+
+        $.ajax({
+          url                   : '@Url.Action("Delete","Editor")',
+          type                  : 'POST',
+          success: function (result) {
+            if (result == true) {
+            }
+            else {
+            }
+          }
+        });
+
+      });
+
     });
 
     /**
