@@ -44,8 +44,6 @@
             currentPosition     = currentTopic.length;
             }
           var currentNode       = n;
-          console.log('n.attributes');
-          console.log(n.attributes);
           if (currentPosition <= currentTopic.length && currentPosition >= 0) {
             currentNode         = currentNode.findChild('path', currentTopic.substring(0, currentPosition));
             if (currentPosition == currentTopic.length) {
