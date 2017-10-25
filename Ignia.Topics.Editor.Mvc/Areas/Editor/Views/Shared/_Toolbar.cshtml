@@ -27,8 +27,8 @@
     @if (Model.Topic.Parent.Attributes.GetValue("ContentType").Equals("List")) {
       <a href="Default.aspx?Path=<%# ((IsNew)? Topic.Parent.UniqueKey : ((Topic.Parent.Parent != null)? Topic.Parent.Parent.UniqueKey : "#")) %>"class="btn btn-ancillary btn-sm">Cancel</a>
     }
-    <button id="DeletePageButtonTop" disabled="@(disableDelete ? "true" : "false")" class="btn btn-default btn-sm" onclick="if (!confirmDelete()) return false;">Delete</button>
-    <button id="SavePageButtonTop" onclick="saveTopic()" class="btn btn-primary btn-sm">Save</button>
+    <button id="DeletePageButton" disabled="@(disableDelete ? "true" : "false")" class="btn btn-default btn-sm" onclick="if (!confirmDelete()) return false;">Delete</button>
+    <button id="SavePageButton" onclick="saveTopic()" class="btn btn-primary btn-sm">Save</button>
   </div>
   <!-- /Action Buttons -->
 
