@@ -67,6 +67,9 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       get {
         return _currentTopic;
       }
+      set {
+        _currentTopic = value;
+      }
     }
 
     /*==========================================================================================================================
