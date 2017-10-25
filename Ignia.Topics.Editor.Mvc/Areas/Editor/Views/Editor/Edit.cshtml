@@ -2,6 +2,7 @@
 
 @{
   ViewBag.Title = "Home Page";
+  var bindingModel = new EditorBindingModel();
 }
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "EditorForm" })) {
@@ -77,9 +78,9 @@
       $('#SavePageButton').click(function() {
 
         $.ajax({
-          url                   : '@Url.Action("Edit","Editor")',
+          url                   : '@Url.Action("Edit" + Model.Topic.WebPath, "Editor")',
           type                  : 'POST',
-          data                  : @Model.Topic,
+          data                  : @bindingModel,
           success: function (result) {
             if (result == true) {
             }
@@ -95,14 +96,19 @@
        */
       $('#DeletePageButton').click(function () {
 
+        var topicToDelete       = @Model.Topic.UniqueKey;
+
         $.ajax({
-          url                   : '@Url.Action("Delete","Editor")',
+          url                   : '@Url.Action("Delete" + Model.Topic.WebPath, "Editor")',
           type                  : 'POST',
           success: function (result) {
             if (result == true) {
+              console.log('Topic ' + topicToDelete + ' deleted.');
             }
-            else {
-            }
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest);
+            console.log(errorThrown);
           }
         });
 
