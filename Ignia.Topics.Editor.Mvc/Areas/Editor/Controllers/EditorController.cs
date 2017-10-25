@@ -239,7 +239,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <summary>
     ///   Calls Topic.Rollback() with the selected version datetime to set the data to that version and re-save the Topic.
     /// </summary>
-    [HttpPost]
+    [HttpGet]
     public ActionResult SetVersion(DateTime version) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
