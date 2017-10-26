@@ -5,7 +5,7 @@
   var bindingModel = new EditorBindingModel();
 }
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "EditorForm" })) {
+@using (Html.BeginForm("Edit", "Editor", FormMethod.Post, new { id = "EditorForm" })) {
 
   @Html.Partial("_Toolbar")
 
