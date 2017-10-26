@@ -96,7 +96,7 @@
        */
       $('#DeletePageButton').click(function () {
 
-        var topicToDelete       = @Model.Topic.UniqueKey;
+        var topicToDelete       = '@Model.Topic.UniqueKey';
 
         $.ajax({
           url                   : '@Url.Action("Delete" + Model.Topic.WebPath, "Editor")',
