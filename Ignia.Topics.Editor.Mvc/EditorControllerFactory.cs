@@ -46,7 +46,7 @@ namespace Ignia.Topics.Editor.Mvc {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (_topicRepository == null) {
         _topicRepository = new CachedTopicRepository(
-          new SqlTopicRepository(ConfigurationManager.ConnectionStrings["TopicsServer"].ConnectionString)
+          (ITopicRepository)new SqlTopicRepository(ConfigurationManager.ConnectionStrings["TopicsServer"].ConnectionString)
         );
       }
 
