@@ -291,7 +291,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       \-------------------------------------------------------------------------------------------------------------------------*/
       else if (parent.Attributes.GetValue("ContentType", "") == "List") {
         CurrentTopic = parent.Parent;
-        return Redirect("/OnTopic/Edit" + parent.Parent.WebPath + "?DeletedTopic=" + deletedTopic + "&DeletedFrom=" + parent.Title + "&Action=Deleted");
+        return Redirect("/OnTopic/Edit" + parent.Parent.GetWebPath() + "?DeletedTopic=" + deletedTopic + "&DeletedFrom=" + parent.Title + "&Action=Deleted");
       }
 
       /*--------------------------------------------------------------------------------------------------------------------------
@@ -299,7 +299,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       \-------------------------------------------------------------------------------------------------------------------------*/
       else {
         CurrentTopic = parent;
-        return Redirect("/OnTopic/Edit" + parent.WebPath);
+        return Redirect("/OnTopic/Edit" + parent.GetWebPath());
       }
 
     }
