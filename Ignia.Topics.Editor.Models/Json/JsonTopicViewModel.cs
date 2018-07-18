@@ -39,8 +39,8 @@ namespace Ignia.Topics.Editor.Models.Json {
       topic.Id,
       topic.Key,
       options.UseKeyAsText? topic.Key : topic.Title,
-      topic.UniqueKey,
-      topic.WebPath,
+      topic.GetUniqueKey(),
+      topic.GetWebPath(),
       options.MarkRelated? related.Contains(topic) : true,
       topic.Attributes.GetValue("DisableDelete", "0").Equals("1")
     ) {
@@ -263,6 +263,6 @@ namespace Ignia.Topics.Editor.Models.Json {
       return output;
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace
