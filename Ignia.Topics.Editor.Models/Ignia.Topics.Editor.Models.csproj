@@ -33,8 +33,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ignia.Topics">
-      <HintPath>bin\Ignia.Topics.dll</HintPath>
+    <Reference Include="Ignia.Topics, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.3.7.1\lib\net47\Ignia.Topics.dll</HintPath>
+    </Reference>
+    <Reference Include="Ignia.Topics.Data.Caching, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.Data.Caching.3.7.1\lib\net47\Ignia.Topics.Data.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Ignia.Topics.Data.Sql, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.Data.Sql.3.7.1\lib\net47\Ignia.Topics.Data.Sql.dll</HintPath>
+    </Reference>
+    <Reference Include="Ignia.Topics.ViewModels, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.ViewModels.3.7.1\lib\net47\Ignia.Topics.ViewModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Ignia.Topics.Web, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.Web.3.7.1\lib\net47\Ignia.Topics.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Ignia.Topics.Web.Mvc, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.Web.Mvc.3.7.1\lib\net47\Ignia.Topics.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ApplicationInsights, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.6.4\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>

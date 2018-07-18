@@ -46,17 +46,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ignia.Topics, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Ignia.Topics.dll</HintPath>
+    <Reference Include="Ignia.Topics, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.3.7.1\lib\net47\Ignia.Topics.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ignia.Topics.Data.Caching, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Ignia.Topics.Data.Caching.dll</HintPath>
+    <Reference Include="Ignia.Topics.Data.Caching, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.Data.Caching.3.7.1\lib\net47\Ignia.Topics.Data.Caching.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ignia.Topics.Data.Sql, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Ignia.Topics.Data.Sql.dll</HintPath>
+    <Reference Include="Ignia.Topics.Data.Sql, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.Data.Sql.3.7.1\lib\net47\Ignia.Topics.Data.Sql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ignia.Topics.ViewModels, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.ViewModels.3.7.1\lib\net47\Ignia.Topics.ViewModels.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ignia.Topics.Web, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.Web.3.7.1\lib\net47\Ignia.Topics.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ignia.Topics.Web.Mvc, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ignia.Topics.Web.Mvc.3.7.1\lib\net47\Ignia.Topics.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
