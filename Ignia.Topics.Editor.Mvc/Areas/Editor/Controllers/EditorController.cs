@@ -108,7 +108,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       EditorViewModel editorViewModel;
       if (isNew) {
         editorViewModel = new EditorViewModel(
-          Topic.Create("NewTopic", contentType),
+          TopicFactory.Create("NewTopic", contentType),
           GetContentType(contentType),
           contentTypes,
           TopicRepository,
@@ -148,7 +148,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       var topic = CurrentTopic;
 
       if (isNew) {
-        topic = Topic.Create("NewTopic", contentType);
+        topic = TopicFactory.Create("NewTopic", contentType);
       }
       else {
         contentType = CurrentTopic.ContentType;
