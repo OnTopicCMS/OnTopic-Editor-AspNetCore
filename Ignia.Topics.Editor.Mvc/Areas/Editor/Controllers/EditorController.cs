@@ -228,7 +228,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
         Topic relatedTopic = null;
         var isTopicId = Int32.TryParse(topicIdString, out int topicIdInt);
         if (isTopicId && topicIdInt > 0) {
-          relatedTopic = TopicRepository.Load().GetTopic(topicIdInt);
+          relatedTopic = TopicRepository.Load(topicIdInt);
         }
         if (relatedTopic != null) {
           topic.Relationships.SetTopic(attribute.Key, relatedTopic);
@@ -318,8 +318,8 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Retrieve the source and destination topics
       \-------------------------------------------------------------------------------------------------------------------------*/
-      var topic = TopicRepository.Load().GetTopic(topicId);
-      var target = TopicRepository.Load().GetTopic(targetTopicId);
+      var topic = TopicRepository.Load(topicId);
+      var target = TopicRepository.Load(targetTopicId);
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Reset the source topic's Parent
@@ -331,7 +331,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       \-------------------------------------------------------------------------------------------------------------------------*/
       lock (TopicRepository) {
         if (siblingId > 0) {
-          var sibling = TopicRepository.Load().GetTopic(siblingId);
+          var sibling = TopicRepository.Load(siblingId);
           TopicRepository.Move(topic, target, sibling);
         }
         else {
@@ -363,7 +363,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
         var relatedTopic = CurrentTopic;
         if (options.RelatedTopicId > 0) {
-          relatedTopic = TopicRepository.Load().GetTopic(options.RelatedTopicId);
+          relatedTopic = TopicRepository.Load(options.RelatedTopicId);
         }
 
         if (!String.IsNullOrWhiteSpace(options.RelatedNamespace)) {
