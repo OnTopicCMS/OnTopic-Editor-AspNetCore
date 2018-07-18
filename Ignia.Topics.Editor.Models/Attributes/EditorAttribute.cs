@@ -14,13 +14,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   /// <summary>
   ///   Represents an instance of a generic attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
   public class EditorAttribute {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -90,6 +84,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </remarks>
     public virtual string GetValue() => Value;
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

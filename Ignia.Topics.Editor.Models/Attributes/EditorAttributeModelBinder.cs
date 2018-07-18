@@ -4,12 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
-using Ignia.Topics.Editor.Models.Attributes;
 
 namespace Ignia.Topics.Editor.Models.Attributes {
 
@@ -21,8 +16,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   ///   This is necessary to retain strongly typed instances in <see cref="EditorBindingModel.Attributes"/>, which otherwise
   ///   exposes a collection of <see cref="EditorAttribute"/> instances.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
   public class EditorAttributeModelBinder : DefaultModelBinder {
 
     /*==========================================================================================================================
@@ -42,5 +35,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
       bindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(() => model, type);
       return model;
     }
-  }
-}
+
+  } // Class
+
+} // Namespace

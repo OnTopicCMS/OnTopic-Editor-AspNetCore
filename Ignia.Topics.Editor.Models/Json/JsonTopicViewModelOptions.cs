@@ -4,9 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
-using Ignia.Topics.Collections;
-using Ignia.Topics.Repositories;
 
 namespace Ignia.Topics.Editor.Models {
 
@@ -215,6 +212,6 @@ namespace Ignia.Topics.Editor.Models {
       set;
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

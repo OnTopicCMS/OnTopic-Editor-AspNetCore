@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 
 namespace Ignia.Topics.Editor.Models.Attributes {
 
@@ -18,10 +17,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   ///   be dynamically accessessed using the <see cref="EditorAttributeModelBinder"/>.
   /// </remarks>
   public class WYSIWYGEditorAttribute : EditorAttribute {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -40,6 +35,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </summary>
     public override string GetValue() => Value;
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

@@ -13,13 +13,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   /// <summary>
   ///   Represents an instance of an HTML attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
   public class HtmlEditorAttribute : EditorAttribute {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -46,6 +40,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
       .Replace("<p></p>", "")
       .Replace("\r\n", "");
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

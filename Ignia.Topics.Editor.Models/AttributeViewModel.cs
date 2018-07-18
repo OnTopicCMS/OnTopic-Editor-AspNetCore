@@ -3,9 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using System.Web.Mvc;
-using Ignia.Topics.Collections;
 using Ignia.Topics.Repositories;
 
 namespace Ignia.Topics.Editor.Models {
@@ -16,13 +14,7 @@ namespace Ignia.Topics.Editor.Models {
   /// <summary>
   ///   Represents a model for an individual <see cref="Ignia.Topics.Attribute"/>, its values, and dependencies.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
   public class AttributeViewModel {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -141,6 +133,6 @@ namespace Ignia.Topics.Editor.Models {
       return Definition.GetConfigurationValue(key, defaultValue);
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

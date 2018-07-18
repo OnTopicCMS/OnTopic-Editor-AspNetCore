@@ -13,8 +13,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   /// <summary>
   ///   Represents an instance of a file path attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
   public class FilePathEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
@@ -38,6 +36,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </summary>
     public override string GetValue() => Value;
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

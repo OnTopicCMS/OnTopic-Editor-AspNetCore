@@ -403,6 +403,6 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Ignia.Topics.Collections;
-using Ignia.Topics.Repositories;
 using Newtonsoft.Json;
 
 namespace Ignia.Topics.Editor.Models.Json {

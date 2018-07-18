@@ -38,6 +38,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </summary>
     public override string GetValue() => Value;
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

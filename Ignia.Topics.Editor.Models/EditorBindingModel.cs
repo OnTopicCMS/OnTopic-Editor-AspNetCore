@@ -15,13 +15,7 @@ namespace Ignia.Topics.Editor.Models {
   ///   Represents a model for retrieving data from the editor interface, primarily as a collection of
   ///   <see cref="EditorAttribute"/> instances, via the <see cref="EditorAttributeCollection"/>.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
   public class EditorBindingModel {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -44,6 +38,6 @@ namespace Ignia.Topics.Editor.Models {
       set;
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

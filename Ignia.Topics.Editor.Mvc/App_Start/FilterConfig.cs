@@ -30,6 +30,6 @@ namespace Ignia.Topics.Editor.Mvc {
       filters.Add(new HandleErrorAttribute());
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 
 namespace Ignia.Topics.Editor.Models.Attributes {
 
@@ -38,6 +37,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </summary>
     public override string GetValue() => Value;
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

@@ -4,11 +4,8 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
 using Ignia.Topics.Editor.Models.Attributes;
 
 namespace Ignia.Topics.Editor.Models.Collections {
@@ -20,10 +17,6 @@ namespace Ignia.Topics.Editor.Models.Collections {
   ///   Provides a keyed collection of <see cref="EditorAttribute"/> instances.
   /// </summary>
   public class EditorAttributeCollection : KeyedCollection<string, EditorAttribute> {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -47,6 +40,6 @@ namespace Ignia.Topics.Editor.Models.Collections {
       return item.Key;
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

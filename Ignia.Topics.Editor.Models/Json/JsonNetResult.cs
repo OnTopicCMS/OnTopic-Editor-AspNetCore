@@ -4,14 +4,10 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using Ignia.Topics.Collections;
-using Ignia.Topics.Repositories;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -31,7 +27,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref           ="JsonNetResult"/> class.
+    ///   Initializes a new instance of the <see cref="JsonNetResult"/> class.
     /// </summary>
     public JsonNetResult(
       object                    responseBody                    = null,
@@ -162,6 +158,6 @@ namespace Ignia.Topics.Editor.Models.Json {
       }
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

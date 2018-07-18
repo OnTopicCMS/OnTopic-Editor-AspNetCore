@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 
 namespace Ignia.Topics.Editor.Models.Attributes {
 
@@ -13,13 +12,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   /// <summary>
   ///   Represents an instance of a topic pointer attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
   public class TopicPointerEditorAttribute : EditorAttribute {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -38,6 +31,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </summary>
     public override string GetValue() => Value;
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 
 namespace Ignia.Topics.Editor.Models.Attributes {
 
@@ -13,8 +12,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   /// <summary>
   ///   Represents an instance of a file upload attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
   public class FileUploadEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
@@ -38,6 +35,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </summary>
     public override string GetValue() => Value;
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Repositories;
 
@@ -16,13 +15,7 @@ namespace Ignia.Topics.Editor.Models {
   ///   Represents a model for interacting with the editor interface, including the established list of
   ///   <see cref="Ignia.Topics.Attribute"/> and their values.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
   public class EditorViewModel {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -102,6 +95,6 @@ namespace Ignia.Topics.Editor.Models {
       get;
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

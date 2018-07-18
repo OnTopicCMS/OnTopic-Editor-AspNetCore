@@ -51,5 +51,7 @@ namespace Ignia.Topics.Editor.Mvc {
       );
 
     }
-  }
-}
+
+  } // Class
+
+} // Namespace
