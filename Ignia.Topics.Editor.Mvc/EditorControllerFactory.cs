@@ -3,19 +3,15 @@
 | Client        Ignia, LLC
 | Project       Topic Editor
 \=============================================================================================================================*/
-using Ignia.Topics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Ignia.Topics.Data.Sql;
 using Ignia.Topics.Editor.Mvc.Controllers;
-using System.Configuration;
-using Ignia.Topics.Data.Caching;
+using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
+using Ignia.Topics.Web;
+using Ignia.Topics.Web.Mvc;
+using Ignia.Topics.Web.Mvc.Controllers;
 
 namespace Ignia.Topics.Editor.Mvc {
 
@@ -28,9 +24,27 @@ namespace Ignia.Topics.Editor.Mvc {
   class EditorControllerFactory : DefaultControllerFactory {
 
     /*==========================================================================================================================
-    | DEFINE VARIABLES
+    | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    static ITopicRepository _topicRepository = null;
+    private readonly            ITypeLookupService              _typeLookupService              = null;
+    private readonly            ITopicMappingService            _topicMappingService            = null;
+    private readonly            ITopicRepository                _topicRepository                = null;
+    private readonly            Topic                           _rootTopic                      = null;
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Establishes a new instance of the <see cref="IgniaControllerFactory"/>, including any shared dependencies to be used
+    ///   across instances of controllers.
+    /// </summary>
+    public EditorControllerFactory() : base() {
+      #pragma warning disable CS0618
+      _topicRepository          = TopicRepository.DataProvider;
+      _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
+      _rootTopic                = TopicRepository.RootTopic;
+      #pragma warning restore CS0618
+    }
 
     /*==========================================================================================================================
     | GET CONTROLLER INSTANCE
@@ -42,39 +56,42 @@ namespace Ignia.Topics.Editor.Mvc {
     protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType) {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish repository cache
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (_topicRepository == null) {
-        _topicRepository = new CachedTopicRepository(
-          (ITopicRepository)new SqlTopicRepository(ConfigurationManager.ConnectionStrings["TopicsServer"].ConnectionString)
-        );
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var rootTopic = _topicRepository.Load();
-      var topicRoutingService = new TopicRoutingService(
+      var mvcTopicRoutingService = new MvcTopicRoutingService(
         _topicRepository,
         requestContext.HttpContext.Request.Url,
         requestContext.RouteData
       );
 
+      // Set default controller
+      if (controllerType == null) {
+        controllerType = typeof(FallbackController);
+      }
+
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (controllerType == typeof(EditorController)) {
-        return new EditorController(_topicRepository, topicRoutingService.Topic);
-      }
+      switch (controllerType.Name) {
 
-      return base.GetControllerInstance(requestContext, controllerType);
+        case (nameof(EditorController)):
+          return new EditorController(_topicRepository, mvcTopicRoutingService.GetCurrentTopic());
+
+        case nameof(TopicController):
+          return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
+
+        default:
+          return base.GetControllerInstance(requestContext, controllerType);
+
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Release
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //There are no resources to release
+      // There are no resources to release
 
     }
 
-  } //Class
-} //Namespace
+  } // Class
+
+} // Namespace
