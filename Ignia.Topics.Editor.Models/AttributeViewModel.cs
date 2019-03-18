@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Web.Mvc;
+using Ignia.Topics.Metadata;
 using Ignia.Topics.Repositories;
 
 namespace Ignia.Topics.Editor.Models {
