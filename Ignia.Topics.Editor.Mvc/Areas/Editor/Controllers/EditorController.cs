@@ -6,14 +6,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Attributes;
 using Ignia.Topics.Editor.Models.Json;
 using Ignia.Topics.Metadata;
 using Ignia.Topics.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Ignia.Topics.Editor.Mvc.Controllers {
 

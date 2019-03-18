@@ -4,7 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Ignia.Topics.Editor.Models.Attributes {
 
