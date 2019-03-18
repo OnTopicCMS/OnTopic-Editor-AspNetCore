@@ -25,7 +25,7 @@
 
                 var attribute = supportedAttributes.ElementAt(i);
                 var attributeViewModel = new AttributeViewModel(attribute, Model.Topic, Model.TopicRepository, ViewData);
-                var type = attribute.Type.Replace(".ascx", "");
+                var type = attribute.EditorType.Replace(".ascx", "");
 
                 if (attribute.Attributes.GetValue("IsHidden", "0").Equals("1")) {
                   continue;
@@ -53,7 +53,7 @@
           <dt><i class="fa fa-database"></i> Topic ID</dt>
           <dd><a href="/Topic/@Model.Topic.Id/">@Model.Topic.Id</a></dd>
           <dt><i class="fa fa-eye"></i> Current</dt>
-          <dd><a href="@Model.Topic.WebPath">View Page</a></dd>
+          <dd><a href="@Model.Topic.GetWebPath()">View Page</a></dd>
         </dl>
 
       </div>
@@ -78,7 +78,7 @@
       $('#SavePageButton').click(function() {
 
         $.ajax({
-          url                   : '@Url.Action("Edit" + Model.Topic.WebPath, "Editor")',
+          url                   : '@Url.Action("Edit" + Model.Topic.GetWebPath(), "Editor")',
           type                  : 'POST',
           data                  : @bindingModel,
           success: function (result) {
@@ -96,10 +96,10 @@
        */
       $('#DeletePageButton').click(function () {
 
-        var topicToDelete       = '@Model.Topic.UniqueKey';
+        var topicToDelete       = '@Model.Topic.GetUniqueKey()';
 
         $.ajax({
-          url                   : '@Url.Action("Delete" + Model.Topic.WebPath, "Editor")',
+          url                   : '@Url.Action("Delete" + Model.Topic.GetWebPath(), "Editor")',
           type                  : 'POST',
           success: function (result) {
             if (result == true) {

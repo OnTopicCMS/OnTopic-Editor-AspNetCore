@@ -13,7 +13,7 @@
   Ext.onReady(function() {
     var
       Tree                      = Ext.tree,
-      currentTopic              = '@Model.Topic.UniqueKey',
+      currentTopic              = '@Model.Topic.GetUniqueKey()',
       currentPosition           = currentTopic.indexOf(':', 5),
       // Track what nodes are moved
       oldPosition               = null,

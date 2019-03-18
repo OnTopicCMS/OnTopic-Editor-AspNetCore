@@ -174,7 +174,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
         var attributeValue = model.Attributes[attribute.Key];
 
         //Save value
-        if (attribute.Type.Equals("Relationship")) {
+        if (attribute.EditorType.Equals("Relationship")) {
           SetRelationships(topic, attribute, attributeValue);
         }
         else if (attribute.Key.Equals("Key")) {
