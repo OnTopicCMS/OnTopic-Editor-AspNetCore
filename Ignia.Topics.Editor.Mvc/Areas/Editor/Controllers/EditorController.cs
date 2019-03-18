@@ -352,7 +352,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <summary>
     ///   Retrieves JSON the specified topic, and all of its children.
     /// </summary>
-    public JsonNetResult Json(JsonTopicViewModelOptions options) {
+    public JsonResult Json(JsonTopicViewModelOptions options) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Get related topics
@@ -388,17 +388,17 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
         if (!options.ShowRoot) {
           flatJsonTopicViewModel.RemoveAt(0);
         }
-        return new JsonNetResult(flatJsonTopicViewModel, JsonRequestBehavior.AllowGet);
+        return new JsonResult(flatJsonTopicViewModel);
       }
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Otherwise, return hierarchical view model
       \-------------------------------------------------------------------------------------------------------------------------*/
       if (options.ShowRoot) {
-        return new JsonNetResult(jsonTopicViewModel, JsonRequestBehavior.AllowGet);
+        return new JsonResult(jsonTopicViewModel);
       }
       else {
-        return new JsonNetResult(jsonTopicViewModel.Children, JsonRequestBehavior.AllowGet);
+        return new JsonResult(jsonTopicViewModel.Children);
       }
 
     }
