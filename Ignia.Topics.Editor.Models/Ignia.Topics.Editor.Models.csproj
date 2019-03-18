@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyTitle>Ignia.Topics.Editor.Models</AssemblyTitle>
     <Product>Ignia.Topics.Editor.Models</Product>
     <Copyright>Copyright ©  2017</Copyright>
