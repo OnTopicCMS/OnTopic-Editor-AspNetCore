@@ -20,11 +20,9 @@
     <PackageReference Include="Ignia.Topics.Data.Sql" Version="3.8.0-alpha.255" />
     <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-alpha.255" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.6.4" />
-    <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="2.0.0" />
     <PackageReference Include="Microsoft.Net.Compilers" Version="2.8.2">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.0" />
   </ItemGroup>
