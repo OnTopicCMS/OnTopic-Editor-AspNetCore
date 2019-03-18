@@ -4,7 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Web.Mvc;
 
 namespace Ignia.Topics.Editor.Models.Attributes {
 
@@ -65,7 +64,6 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   The value associated with the attribute.
     /// </summary>
-    [AllowHtml]
     public string Value {
       get;
       set;
