@@ -22,7 +22,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
   /// <summary>
   ///   Provides data access and processing for editor related functions.
   /// </summary>
-  [RouteArea("Editor", AreaPrefix = "OnTopic")]
+  [Area("Editor")]
   public class EditorController : Controller {
 
     /*==========================================================================================================================
