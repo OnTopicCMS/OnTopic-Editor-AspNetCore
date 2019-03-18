@@ -72,6 +72,13 @@ namespace OnTopicTest {
         //Add OnTopic support
         .AddTopicSupport();
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Register: Activators
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var activator = new SampleActivator(Configuration.GetConnectionString("OnTopic"));
+
+      services.AddSingleton<IControllerActivator>(activator);
+      services.AddSingleton<IViewComponentActivator>(activator);
 
     }
 
