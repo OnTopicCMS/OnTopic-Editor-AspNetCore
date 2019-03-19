@@ -134,14 +134,14 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       EditorViewModel editorViewModel;
       if (isNew) {
         editorViewModel = new EditorViewModel(
-          new TopicViewModel() { ContentType = contentType },
+          new EditingTopicViewModel() { ContentType = contentType },
           contentTypeViewModel,
           isModal
         );
       }
       else {
         editorViewModel = new EditorViewModel(
-          await _topicMappingService.MapAsync<TopicViewModel>(CurrentTopic),
+          await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic),
           contentTypeViewModel,
           isModal
         );

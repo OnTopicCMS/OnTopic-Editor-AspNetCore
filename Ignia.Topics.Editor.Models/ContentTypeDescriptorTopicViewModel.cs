@@ -15,7 +15,7 @@ namespace Ignia.Topics.Editor.Models {
   ///   Provides core properties from a <see cref="ContentTypeDescriptor"/> to provide to the editor interface. Specifically,
   ///   the <see cref="ContentTypeDescriptorTopicViewModel"/> is critical in providing the schema of attributes to be presented.
   /// </summary>
-  public class ContentTypeDescriptorTopicViewModel: TopicViewModel {
+  public class ContentTypeDescriptorTopicViewModel: EditingTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

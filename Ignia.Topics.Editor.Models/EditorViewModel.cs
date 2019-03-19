@@ -23,7 +23,7 @@ namespace Ignia.Topics.Editor.Models {
     ///   Initializes a new instance of the <see cref="EditorViewModel"/> class.
     /// </summary>
     public EditorViewModel(
-      TopicViewModel topic,
+      EditingTopicViewModel topic,
       ContentTypeDescriptorTopicViewModel contentTypeDescriptor,
       bool isModal
     ) {
@@ -41,9 +41,10 @@ namespace Ignia.Topics.Editor.Models {
     | TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The <see cref="TopicViewModel"/> representing the core properties of the currently selected <see cref="Topic"/>.
+    ///   The <see cref="EditingTopicViewModel"/> representing the core properties of the currently selected <see
+    ///   cref="Topic"/>.
     /// </summary>
-    public TopicViewModel Topic {
+    public EditingTopicViewModel Topic {
       get;
     }
 

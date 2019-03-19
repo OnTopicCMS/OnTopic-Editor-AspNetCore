@@ -9,14 +9,14 @@ using System.Collections.Generic;
 namespace Ignia.Topics.Editor.Models {
 
   /*============================================================================================================================
-  | CLASS: TOPIC VIEW MODEL
+  | CLASS: EDITING TOPIC VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Represents a model for a <see cref="Topic"/>. Since attributes are handled via the <see cref="AttributeViewModel"/>, the
-  ///   <see cref="TopicViewModel"/> needn't account for them. It only accounts for items that will be exposed to the general
-  ///   interface of the Topic Editor.
+  ///   <see cref="EditingTopicViewModel"/> needn't account for them. It only accounts for items that will be exposed to the
+  ///   general interface of the Topic Editor.
   /// </summary>
-  public class TopicViewModel: ViewModels.TopicViewModel {
+  public class EditingTopicViewModel: ViewModels.TopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -24,7 +24,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
     /// </summary>
-    public TopicViewModel() : base() {}
+    public EditingTopicViewModel() : base() {}
 
     /*==========================================================================================================================
     | PROPERTY: WEB PATH
