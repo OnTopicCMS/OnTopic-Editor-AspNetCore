@@ -120,6 +120,14 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
       var contentTypeViewModel = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor);
 
+      //Manually map attribute types, since mapping reference collections isn't currently supported
+      foreach (var attributeDescriptor in contentTypeDescriptor.AttributeDescriptors) {
+        contentTypeViewModel.AttributeDescriptors.Add(
+          await _topicMappingService.MapAsync<AttributeDescriptorTopicViewModel>(attributeDescriptor)
+        );
+      }
+
+      //Manually map permitted content types since mapping reference collections isn't currently supported
       if (contentTypeViewModel.PermittedContentTypes.Count.Equals(0)) {
         foreach (var contentTypeReference in _topicRepository.GetContentTypeDescriptors()) {
           contentTypeViewModel.PermittedContentTypes.Add(
