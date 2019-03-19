@@ -15,6 +15,7 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a WYSIWYG attribute type.
   /// </summary>
+  [ViewComponent(Name = "WYSIWYG")]
   public class WysiwygViewComponent : AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
