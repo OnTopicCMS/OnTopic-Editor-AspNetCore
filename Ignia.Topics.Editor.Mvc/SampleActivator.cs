@@ -158,7 +158,10 @@ namespace OnTopicTest {
         return new FormFieldViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(HtmlViewComponent)) {
-        return new FormFieldViewComponent(mvcTopicRoutingService);
+        return new HtmlViewComponent(mvcTopicRoutingService);
+      }
+      if (type == typeof(LastModifiedByViewComponent)) {
+        return new LastModifiedByViewComponent(mvcTopicRoutingService);
       }
       else {
         throw new Exception($"Unknown view component {type.Name}");
