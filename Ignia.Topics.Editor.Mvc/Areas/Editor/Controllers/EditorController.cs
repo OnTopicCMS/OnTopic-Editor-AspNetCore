@@ -10,6 +10,8 @@ using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Attributes;
 using Ignia.Topics.Editor.Models.Json;
+using Ignia.Topics.Internal.Diagnostics;
+using Ignia.Topics.Mapping;
 using Ignia.Topics.Metadata;
 using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +31,8 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private                     ITopicRepository                _topicRepository                = null;
+    private                     ITopicRoutingService            _topicRoutingService            = null;
+    private                     ITopicMappingService            _topicMappingService            = null;
     private                     Topic                           _currentTopic                   = null;
 
     /*==========================================================================================================================
@@ -38,9 +42,26 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public EditorController(ITopicRepository topicRepository, Topic currentTopic) {
+    public EditorController(
+      ITopicRepository topicRepository,
+      ITopicRoutingService topicRoutingService,
+      ITopicMappingService topicMappingService
+    ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(topicRepository != null, "A concrete implementation of an ITopicRepository is required.");
+      Contract.Requires(topicRoutingService != null, "A concrete implementation of an ITopicRoutingService is required.");
+      Contract.Requires(topicMappingService != null, "A concrete implementation of an ITopicMappingService is required.");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set values locally
+      \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository = topicRepository;
-      _currentTopic = currentTopic;
+      _topicRoutingService = topicRoutingService;
+      _topicMappingService = topicMappingService;
+
     }
 
     /*==========================================================================================================================
@@ -65,10 +86,10 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <returns>The Topic associated with the current request.</returns>
     protected Topic CurrentTopic {
       get {
+        if (_currentTopic == null) {
+          _currentTopic = _topicRoutingService.GetCurrentTopic();
+        }
         return _currentTopic;
-      }
-      set {
-        _currentTopic = value;
       }
     }
 
@@ -79,7 +100,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   Provides a reference to the a strongly typed content type, if available.
     /// </summary>
     /// <returns>The Content Type associated with the current request.</returns>
-    protected ContentTypeDescriptor GetContentType(string contentType) => TopicRepository
+    protected ContentTypeDescriptor GetContentType(string contentType) => _topicRepository
       .GetContentTypeDescriptors()
       .Where(t => t.Key.Equals(contentType))
       .First();

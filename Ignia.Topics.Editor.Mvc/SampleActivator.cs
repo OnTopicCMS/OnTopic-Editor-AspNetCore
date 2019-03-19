@@ -152,7 +152,7 @@ namespace OnTopicTest {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return TopicController
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return new EditorController(_topicRepository, mvcTopicRoutingService.GetCurrentTopic());
+      return new EditorController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
 
     }
 
