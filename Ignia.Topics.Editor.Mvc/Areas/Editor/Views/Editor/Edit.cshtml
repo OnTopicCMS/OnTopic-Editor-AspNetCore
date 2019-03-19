@@ -7,7 +7,7 @@
 
 @using (Html.BeginForm("Edit", "Editor", FormMethod.Post, new { id = "EditorForm" })) {
 
-  @Html.Partial("_Toolbar")
+  <partial name="_Toolbar" />
 
   <div id="FormArea" class="row form area">
     <div class="col-md-9">
