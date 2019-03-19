@@ -39,7 +39,7 @@ Ext.onReady(function(){
         var currentNode = n;
         if (currentPosition <= currentTopic.length && currentPosition >= 0) {
           currentNode = currentNode.findChild("path", currentTopic.substring(0, currentPosition));
-          if (currentPosition == currentTopic.length) {
+          if (currentPosition === currentTopic.length) {
             currentPosition++;
             }
           else {
@@ -60,12 +60,13 @@ Ext.onReady(function(){
         oldPosition = node.parentNode.indexOf(node);
         oldNextSibling = node.nextSibling;
         },
-      movenode            : function(tree, node, oldParent, newParent, position) {
-        if (oldParent == newParent){
-          var params = {'node':node.id, 'delta':(position-oldPosition)};
+      movenode: function (tree, node, oldParent, newParent, position) {
+        var params;
+        if (oldParent === newParent){
+          params = {'node':node.id, 'delta':position-oldPosition};
           }
         else {
-          var params = {'node':node.id, 'parent':newParent.id, 'position':position};
+          params = {'node':node.id, 'parent':newParent.id, 'position':position};
         //### REM JJC081410: Temporarily disabled moving between nodes until core bug can be identified and resolved.
         //Ext.Msg.alert("Disabled", "Moving between nodes is currently not supported.  This functionality is currently being redeveloped.");
         //return;
