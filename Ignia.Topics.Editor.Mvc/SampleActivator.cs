@@ -178,6 +178,9 @@ namespace OnTopicTest {
       if (type == typeof(TopicPointerViewComponent)) {
         return new TopicPointerViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(WysiwygViewComponent)) {
+        return new WysiwygViewComponent(mvcTopicRoutingService);
+      }
       else {
         throw new Exception($"Unknown view component {type.Name}");
       }
