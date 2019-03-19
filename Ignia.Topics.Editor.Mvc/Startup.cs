@@ -122,7 +122,7 @@ namespace OnTopicTest {
         routes.MapAreaRoute(
           name: "TopicEditor",
           areaName: "Editor",
-          template: "OnTopic/{action}/{*path}",
+          template: "OnTopic/{action}/{**path}",
           defaults: new { controller = "Editor" }
         );
 
