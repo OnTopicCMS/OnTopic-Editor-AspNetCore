@@ -312,7 +312,6 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       | If the content type is a nested list, display parent.
       \-------------------------------------------------------------------------------------------------------------------------*/
       else if (parent.Attributes.GetValue("ContentType", "") == "List") {
-        CurrentTopic = parent.Parent;
         return Redirect("/OnTopic/Edit" + parent.Parent.GetWebPath() + "?DeletedTopic=" + deletedTopic + "&DeletedFrom=" + parent.Title + "&Action=Deleted");
       }
 
@@ -320,7 +319,6 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       | Redirect to parent
       \-------------------------------------------------------------------------------------------------------------------------*/
       else {
-        CurrentTopic = parent;
         return Redirect("/OnTopic/Edit" + parent.GetWebPath());
       }
 
