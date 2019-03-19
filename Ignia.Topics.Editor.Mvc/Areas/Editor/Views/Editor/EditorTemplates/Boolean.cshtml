@@ -6,11 +6,11 @@
 
 <div class="form-check form-check-inline">
   <label class="form-check-label">
-    @Html.RadioButtonFor(m => m.Value, "1", new { id = "Boolean_" + Model.Key + "_1", @class = "form-check-input" }) Yes
+    @Html.RadioButtonFor(m => m.Value, "1", new { id = "Boolean_" + Model.AttributeDescriptor.Key + "_1", @class = "form-check-input" }) Yes
   </label>
 </div>
 <div class="form-check form-check-inline">
   <label class="form-check-label">
-    @Html.RadioButtonFor(m => m.Value, "0", new { id = "Boolean_" + Model.Key + "_0", @class = "form-check-input" }) No
+    @Html.RadioButtonFor(m => m.Value, "0", new { id = "Boolean_" + Model.AttributeDescriptor.Key + "_0", @class = "form-check-input" }) No
   </label>
 </div>
