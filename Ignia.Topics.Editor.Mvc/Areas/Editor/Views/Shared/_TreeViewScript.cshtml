@@ -2,7 +2,10 @@
 
 @{
   Layout = null;
-  var rootTopic = Model.TopicRepository.Load("Web");
+  var rootTopic = (Ignia.Topics.ViewModels.TopicViewModel)Model.Topic;
+  while (rootTopic.Parent.Parent != null) {
+    rootTopic = rootTopic.Parent;
+  }
 }
 
 <script>
@@ -13,7 +16,7 @@
   Ext.onReady(function() {
     var
       Tree                      = Ext.tree,
-      currentTopic              = '@Model.Topic.GetUniqueKey()',
+      currentTopic              = '@Model.Topic.UniqueKey',
       currentPosition           = currentTopic.indexOf(':', 5),
       // Track what nodes are moved
       oldPosition               = null,

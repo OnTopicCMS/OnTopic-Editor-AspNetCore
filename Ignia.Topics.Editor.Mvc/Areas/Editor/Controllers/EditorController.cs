@@ -115,13 +115,17 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     public async Task<IActionResult> Edit(bool isNew = false, string contentType = null, bool isModal = false) {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | FILTER CONTENT TYPES
+      | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var currentContentType = GetContentType(CurrentTopic.ContentType);
-      var contentTypes = currentContentType.PermittedContentTypes;
+      var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
+      var contentTypeViewModel = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor);
 
-      if (contentTypes.Count.Equals(0)) {
-        contentTypes = TopicRepository.GetContentTypeDescriptors().AsReadOnly();
+      if (contentTypeViewModel.PermittedContentTypes.Count.Equals(0)) {
+        foreach (var contentTypeReference in _topicRepository.GetContentTypeDescriptors()) {
+          contentTypeViewModel.PermittedContentTypes.Add(
+            await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeReference)
+          );
+        }
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -130,19 +134,15 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       EditorViewModel editorViewModel;
       if (isNew) {
         editorViewModel = new EditorViewModel(
-          TopicFactory.Create("NewTopic", contentType),
-          GetContentType(contentType),
-          contentTypes,
-          TopicRepository,
+          new TopicViewModel() { ContentType = contentType },
+          contentTypeViewModel,
           isModal
         );
       }
       else {
         editorViewModel = new EditorViewModel(
-          CurrentTopic,
-          GetContentType(CurrentTopic.ContentType),
-          contentTypes,
-          TopicRepository,
+          await _topicMappingService.MapAsync<TopicViewModel>(CurrentTopic),
+          contentTypeViewModel,
           isModal
         );
       }

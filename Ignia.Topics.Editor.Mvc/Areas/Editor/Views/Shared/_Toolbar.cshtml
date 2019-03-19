@@ -3,7 +3,7 @@
 @{
   Layout = null;
   var displayGroups = Model.ContentTypeDescriptor.AttributeDescriptors.Select(a => a.DisplayGroup).Distinct().ToList();
-  bool disableDelete = Model.ContentTypeDescriptor.Attributes.GetValue("DisableDelete").Equals("1");
+  bool disableDelete = Model.ContentTypeDescriptor.DisableDelete;
 }
 
 <div id="Toolbar" class="toolbar">
@@ -20,7 +20,7 @@
       <ul class="dropdown-menu" role="menu" aria-labelledby="VersionsButton" style="left: 3px; top: 98%;">
         @foreach (DateTime version in Model.Topic.VersionHistory) {
           <li role="presentation" class="small">
-            <a tabindex="-1" role="menuitem" href="@Url.Action("SetVersion" + Model.Topic.GetWebPath(), "Editor", new { version = version })">@version.ToString()</a>
+            <a tabindex="-1" role="menuitem" href="@Url.Action("SetVersion" + Model.Topic.WebPath, "Editor", new { version = version })">@version.ToString()</a>
           </li>
         }
       </ul>
@@ -29,7 +29,7 @@
 
     <!-- Cancel -->
     <button id="ModalCloseButton" type="button" visible="IsModal" class="btn btn-ancillary btn-sm hidden" data-dismiss="modal">Cancel</button>
-    @if (Model.Topic.Parent.Attributes.GetValue("ContentType").Equals("List")) {
+    @if (Model.Topic.Parent.ContentType.Equals("List")) {
       <a href="Default.aspx?Path=<%# ((IsNew)? Topic.Parent.GetUniqueKey() : ((Topic.Parent.Parent != null)? Topic.Parent.Parent.GetUniqueKey() : "#")) %>"class="btn btn-ancillary btn-sm">Cancel</a>
     }
     <!-- /Cancel -->
