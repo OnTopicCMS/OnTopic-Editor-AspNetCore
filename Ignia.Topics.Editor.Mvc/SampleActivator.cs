@@ -136,6 +136,9 @@ namespace OnTopicTest {
       if (type == typeof(LastModifiedViewComponent)) {
         return new LastModifiedViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(BooleanViewComponent)) {
+        return new BooleanViewComponent(mvcTopicRoutingService);
+      }
       else {
         throw new Exception($"Unknown view component {type.Name}");
       }
