@@ -145,6 +145,9 @@ namespace OnTopicTest {
       if (type == typeof(DisplayOptionsViewComponent)) {
         return new DisplayOptionsViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(FileViewComponent)) {
+        return new FileViewComponent(mvcTopicRoutingService);
+      }
       else {
         throw new Exception($"Unknown view component {type.Name}");
       }
