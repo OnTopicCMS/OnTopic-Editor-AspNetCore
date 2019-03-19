@@ -24,14 +24,15 @@
               @for (int i = 0; i < supportedAttributes.Count(); i++) {
 
                 var attribute = supportedAttributes.ElementAt(i);
-                var attributeViewModel = new AttributeViewModel(attribute, Model.Topic, Model.TopicRepository, ViewData);
-                var type = attribute.EditorType.Replace(".ascx", "");
 
                 if (attribute.IsHidden) {
                   continue;
                 }
 
-                @Html.EditorFor(m => attributeViewModel, type, displayGroup + "Attributes[" + i + "]")
+                @await Component.InvokeAsync(
+                  attribute.EditorType.Replace(".ascx", ""),
+                  new { Attribute=attribute, Id=displayGroup + "Attributes[" + i + "]" }
+                )
 
               }
 
