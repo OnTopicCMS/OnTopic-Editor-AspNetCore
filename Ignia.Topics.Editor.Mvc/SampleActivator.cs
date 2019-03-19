@@ -6,6 +6,7 @@
 using System;
 using Ignia.Topics;
 using Ignia.Topics.AspNetCore.Mvc;
+using Ignia.Topics.AspNetCore.Mvc.Components;
 using Ignia.Topics.Data.Caching;
 using Ignia.Topics.Data.Sql;
 using Ignia.Topics.Editor.Mvc.Controllers;
@@ -121,10 +122,19 @@ namespace OnTopicTest {
       Type type = context.ViewComponentDescriptor.TypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Register
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var mvcTopicRoutingService = new MvcTopicRoutingService(
+        _topicRepository,
+        new Uri($"https://{context.ViewContext.HttpContext.Request.Host}/{context.ViewContext.HttpContext.Request.Path}"),
+        context.ViewContext.RouteData
+      );
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Configure and return appropriate view component
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (type == typeof(ViewComponent)) {
-        return null;
+      if (type == typeof(LastModifiedViewComponent)) {
+        return new LastModifiedViewComponent(mvcTopicRoutingService);
       }
       else {
         throw new Exception($"Unknown view component {type.Name}");
