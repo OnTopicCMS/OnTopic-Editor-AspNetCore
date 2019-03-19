@@ -142,6 +142,9 @@ namespace OnTopicTest {
       if (type == typeof(DateTimeSelectorViewComponent)) {
         return new DateTimeSelectorViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(DisplayOptionsViewComponent)) {
+        return new DisplayOptionsViewComponent(mvcTopicRoutingService);
+      }
       else {
         throw new Exception($"Unknown view component {type.Name}");
       }
