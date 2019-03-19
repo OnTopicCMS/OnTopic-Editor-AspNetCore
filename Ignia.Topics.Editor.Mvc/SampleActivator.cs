@@ -166,6 +166,9 @@ namespace OnTopicTest {
       if (type == typeof(RelationshipsViewComponent)) {
         return new RelationshipsViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(TokenizedTopicListViewComponent)) {
+        return new TokenizedTopicListViewComponent(mvcTopicRoutingService);
+      }
       else {
         throw new Exception($"Unknown view component {type.Name}");
       }
