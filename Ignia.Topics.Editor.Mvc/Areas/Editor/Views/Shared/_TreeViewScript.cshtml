@@ -3,7 +3,7 @@
 @{
   Layout = null;
   var rootTopic = (Ignia.Topics.ViewModels.TopicViewModel)Model.Topic;
-  while (rootTopic.Parent.Parent != null) {
+  while (rootTopic?.Parent?.Parent != null) {
     rootTopic = rootTopic.Parent;
   }
 }
