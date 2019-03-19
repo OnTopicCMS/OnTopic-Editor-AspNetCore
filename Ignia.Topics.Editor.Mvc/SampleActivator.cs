@@ -163,6 +163,9 @@ namespace OnTopicTest {
       if (type == typeof(LastModifiedByViewComponent)) {
         return new LastModifiedByViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(RelationshipsViewComponent)) {
+        return new RelationshipsViewComponent(mvcTopicRoutingService);
+      }
       else {
         throw new Exception($"Unknown view component {type.Name}");
       }
