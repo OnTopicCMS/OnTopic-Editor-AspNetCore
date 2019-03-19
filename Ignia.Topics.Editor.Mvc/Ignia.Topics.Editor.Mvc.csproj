@@ -29,4 +29,8 @@
     <ProjectReference Include="..\Ignia.Topics.Editor.Models\Ignia.Topics.Editor.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Editor\Views\Editor\Components\" />
+  </ItemGroup>
+
 </Project>
