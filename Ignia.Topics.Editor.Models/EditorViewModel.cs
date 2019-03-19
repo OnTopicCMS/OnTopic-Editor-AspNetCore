@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using Ignia.Topics.Collections;
 using Ignia.Topics.Metadata;
-using Ignia.Topics.Repositories;
 
 namespace Ignia.Topics.Editor.Models {
 
@@ -13,8 +12,7 @@ namespace Ignia.Topics.Editor.Models {
   | CLASS: EDITOR VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents a model for interacting with the editor interface, including the established list of
-  ///   <see cref="Ignia.Topics.Attribute"/> and their values.
+  ///   Represents a model for interacting with the editor interface.
   /// </summary>
   public class EditorViewModel {
 
@@ -22,24 +20,20 @@ namespace Ignia.Topics.Editor.Models {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="EditorViewModel"/> class.
     /// </summary>
     public EditorViewModel(
-      Topic topic,
-      ContentTypeDescriptor contentTypeDescriptor,
-      ReadOnlyTopicCollection<ContentTypeDescriptor> permittedContentTypes,
-      ITopicRepository topicRepository,
+      TopicViewModel topic,
+      ContentTypeDescriptorTopicViewModel contentTypeDescriptor,
       bool isModal
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic = topic;
-      ContentTypeDescriptor = contentTypeDescriptor;
-      PermittedContentTypes = permittedContentTypes;
-      TopicRepository = topicRepository;
-      IsModal = isModal;
+      Topic                     = topic;
+      ContentTypeDescriptor     = contentTypeDescriptor;
+      IsModal                   = isModal;
 
     }
 
@@ -47,9 +41,9 @@ namespace Ignia.Topics.Editor.Models {
     | TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Read-only reference to the current topic being edited, for familiar access to the full context.
+    ///   The <see cref="TopicViewModel"/> representing the core properties of the currently selected <see cref="Topic"/>.
     /// </summary>
-    public Topic Topic {
+    public TopicViewModel Topic {
       get;
     }
 
@@ -57,22 +51,10 @@ namespace Ignia.Topics.Editor.Models {
     | CONTENT TYPE DESCRIPTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Read-only reference to the current <see cref="ContentTypeDescriptor"/> associated with the request.
+    ///   The <see cref="ContentTypeDescriptorTopicViewModel"/> representing the core properties of the <see cref="Topic"/>'s
+    ///   <see cref="ContentTypeDescriptor"/>.
     /// </summary>
-    public ContentTypeDescriptor ContentTypeDescriptor {
-      get;
-    }
-
-    /*==========================================================================================================================
-    | PERMITTED CONTENT TYPES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Read-only reference to the full list of <see cref="ContentType"/> instances permitted as child topics.
-    /// </summary>
-    /// <remarks>
-    ///   This is intended to be bound to the list of new content types available in the interface.
-    /// </remarks>
-    public ReadOnlyTopicCollection<ContentTypeDescriptor> PermittedContentTypes {
+    public ContentTypeDescriptorTopicViewModel ContentTypeDescriptor {
       get;
     }
 
@@ -86,16 +68,5 @@ namespace Ignia.Topics.Editor.Models {
       get;
     }
 
-    /*==========================================================================================================================
-    | TOPIC REPOSITORY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a reference to the <see cref="ITopicRepository"/> for dynamic access to the entire topic graph.
-    /// </summary>
-    public ITopicRepository TopicRepository {
-      get;
-    }
-
   } // Class
-
 } // Namespace
