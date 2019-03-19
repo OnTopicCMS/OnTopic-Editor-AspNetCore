@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Attributes;
@@ -111,7 +112,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <summary>
     ///   Present an editor view bound to a specific topic.
     /// </summary>
-    public ActionResult Edit(bool isNew = false, string contentType = null, bool isModal = false) {
+    public async Task<IActionResult> Edit(bool isNew = false, string contentType = null, bool isModal = false) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | FILTER CONTENT TYPES
@@ -161,7 +162,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// </summary>
     /// <param name="model">An instance of the <see cref="EditorBindingModel"/> constructed from the HTTP Post.</param>
     [HttpPost]
-    public ActionResult Edit(EditorBindingModel model, bool isNew = false, string contentType = null, bool isModal = false) {
+    public async Task<IActionResult> Edit(EditorBindingModel model, bool isNew = false, string contentType = null, bool isModal = false) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SET TOPIC
@@ -232,7 +233,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN INDEX
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return Edit();
+      return await Edit();
 
     }
 
@@ -264,7 +265,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   Calls Topic.Rollback() with the selected version datetime to set the data to that version and re-save the Topic.
     /// </summary>
     [HttpGet]
-    public ActionResult SetVersion(DateTime version) {
+    public async Task<IActionResult> SetVersion(DateTime version) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Initiate rollback
@@ -274,7 +275,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Render index
       \-------------------------------------------------------------------------------------------------------------------------*/
-      return Edit();
+      return await Edit();
 
     }
 
@@ -285,7 +286,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   Fires when the user clicks the "Delete" button; deletes the current topic and any child attributes.
     /// </summary>
     [HttpPost]
-    public ActionResult Delete(bool isModal = false) {
+    public IActionResult Delete(bool isModal = false) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Define variables
@@ -334,7 +335,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   "failure" error on "false".
     /// </summary>
     [HttpPost]
-    public ActionResult Move(int topicId, int targetTopicId, int siblingId) {
+    public IActionResult Move(int topicId, int targetTopicId, int siblingId) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Retrieve the source and destination topics
