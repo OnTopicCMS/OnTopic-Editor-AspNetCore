@@ -5,7 +5,7 @@
   var bindingModel = new EditorBindingModel();
 }
 
-@using (Html.BeginForm("Edit", "Editor", FormMethod.Post, new { id = "EditorForm" })) {
+<form asp-controller="Editor" asp-action="Edit" method="post" id="EditorForm">
 
   <partial name="_Toolbar" />
 
@@ -61,7 +61,7 @@
     </div>
   </div>
 
-}
+</form>
 
 @section scripts {
   <script>
