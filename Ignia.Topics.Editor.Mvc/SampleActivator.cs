@@ -175,6 +175,9 @@ namespace OnTopicTest {
       if (type == typeof(TopicLookupViewComponent)) {
         return new TopicLookupViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(TopicPointerViewComponent)) {
+        return new TopicPointerViewComponent(mvcTopicRoutingService);
+      }
       else {
         throw new Exception($"Unknown view component {type.Name}");
       }
