@@ -38,15 +38,42 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     ///   convention, when it attempts to bind a model with a corresponding name.
     /// </remarks>
     public Task BindModelAsync(ModelBindingContext bindingContext) {
-      var modelName = bindingContext.ModelName;
-      var typeValue = bindingContext.ValueProvider.GetValue(modelName + ".AttributeDescriptor.EditorType").FirstValue.ToString();
-      if (typeValue != null) {
-        typeValue = typeValue.Replace(".ascx", "");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | LOOKUP FIELD
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var modelName             = bindingContext.ModelName;
+      var typeValueReference    = bindingContext.ValueProvider.GetValue(modelName + ".AttributeDescriptor.EditorType").FirstValue;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | HANDLE OUT-OF-RANGE ERROR
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      //The ASP.NET Core binder will keep iterating over the index until no result is returned. Assume failure to located
+      //dependency fields means this point has been reached.
+      if (typeValueReference == null) {
+        return Task.CompletedTask;
       }
-      var type = Type.GetType("Ignia.Topics.Editor.Models.Attributes." + typeValue.ToString() + "EditorAttribute", true);
-      var model = Activator.CreateInstance(type);
-      bindingContext.Result = ModelBindingResult.Success(model);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SET TYPE VALUE
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var typeValue             = typeValueReference.ToString();
+      if (typeValue != null) {
+        typeValue               = typeValue.Replace(".ascx", "");
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var type                  = Type.GetType("Ignia.Topics.Editor.Models.Attributes." + typeValue + "EditorAttribute", true);
+      var model                 = Activator.CreateInstance(type);
+      bindingContext.Result     = ModelBindingResult.Success(model);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | COMPLETE
+      \-----------------------------------------------------------------------------------------------------------------------*/
       return Task.CompletedTask;
+
     }
 
   } // Class
