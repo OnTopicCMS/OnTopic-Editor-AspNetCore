@@ -21,9 +21,7 @@
           <div id="Group_@displayGroup" class="tab-pane fade@(index == 0 ? " show active" : "")" role="tabpanel" aria-labelledby="Tab_@displayGroup">
             <section id="@category.Replace(" ", "-")">
 
-              @for (int i = 0; i < supportedAttributes.Count(); i++) {
-
-                var attribute = supportedAttributes.ElementAt(i);
+              @foreach (var attribute in supportedAttributes) {
 
                 if (attribute.IsHidden) {
                   continue;
