@@ -43,22 +43,29 @@ namespace Ignia.Topics.Editor.Models.Attributes {
       | LOOKUP FIELD
       \-----------------------------------------------------------------------------------------------------------------------*/
       var modelName             = bindingContext.ModelName;
-      var typeValueReference    = bindingContext.ValueProvider.GetValue(modelName + ".AttributeDescriptor.EditorType").FirstValue;
+      var key                   = bindingContext.ValueProvider.GetValue(modelName + ".Key").FirstValue;
+      var editorType            = bindingContext.ValueProvider.GetValue(modelName + ".EditorType").FirstValue;
+      var value                 = bindingContext.ValueProvider.GetValue(modelName + ".Value").FirstValue;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | HANDLE OUT-OF-RANGE ERROR
       \-----------------------------------------------------------------------------------------------------------------------*/
       //The ASP.NET Core binder will keep iterating over the index until no result is returned. Assume failure to located
       //dependency fields means this point has been reached.
-      if (typeValueReference == null) {
+      if (key == null || editorType == null) {
         return Task.CompletedTask;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var type                  = Type.GetType("Ignia.Topics.Editor.Models.Attributes." + typeValue + "EditorAttribute", true);
-      var model                 = Activator.CreateInstance(type);
+      var type                  = Type.GetType("Ignia.Topics.Editor.Models.Attributes." + editorType + "EditorAttribute", true);
+      var model                 = (EditorAttribute)Activator.CreateInstance(type);
+
+      model.Key                 = key;
+      model.Value               = value;
+      model.EditorType          = editorType;
+
       bindingContext.Result     = ModelBindingResult.Success(model);
 
       /*------------------------------------------------------------------------------------------------------------------------
