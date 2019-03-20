@@ -33,7 +33,8 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
     /// <summary>
     ///   Assembles the view model for the <see cref="LastModifiedViewComponent"/>.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(AttributeDescriptorTopicViewModel attribute, string Id) {
+    public async Task<IViewComponentResult> InvokeAsync(AttributeDescriptorTopicViewModel attribute, string htmlFieldPrefix) {
+      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
       var viewModel = GetAttributeViewModel(attribute);
       if (viewModel.Value == null) {
         if (CurrentTopic.LastModified != null && CurrentTopic.LastModified != DateTime.MinValue) {
