@@ -46,6 +46,32 @@ namespace Ignia.Topics.Editor.Models {
     public AttributeDescriptorTopicViewModel AttributeDescriptor { get; set; }
 
     /*==========================================================================================================================
+    | KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the associated attribute key, as defined on the <see cref="AttributeDescriptor"/> instance.
+    /// </summary>
+    /// <remarks>
+    ///   While this value can be retrieved directly from the <see cref="AttributeDescriptor"/> property, relaying it through
+    ///   the <see cref="AttributeViewModel"/> provides cleaner output in the forms by allowing the generated <c>id</c> and
+    ///   <c>name</c> attributes to map to the target <see cref="EditorBindingModel"/> interface.
+    /// </remarks>
+    public string Key => AttributeDescriptor.Key;
+
+    /*==========================================================================================================================
+    | EDITOR TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the associated attribute type, as defined on the <see cref="AttributeDescriptor"/> instance.
+    /// </summary>
+    /// <remarks>
+    ///   While this value can be retrieved directly from the <see cref="AttributeDescriptor"/> property, relaying it through
+    ///   the <see cref="AttributeViewModel"/> provides cleaner output in the forms by allowing the generated <c>id</c> and
+    ///   <c>name</c> attributes to map to the target <see cref="EditorBindingModel"/> interface.
+    /// </remarks>
+    public string EditorType => AttributeDescriptor.EditorType.Replace(".ascx", "");
+
+    /*==========================================================================================================================
     | VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
