@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Ignia.Topics.Editor.Models.Attributes {
 
@@ -13,6 +14,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
   /// <summary>
   ///   Represents an instance of a generic attribute in the Topic Editor.
   /// </summary>
+  [ModelBinder(BinderType=typeof(EditorAttributeModelBinder))]
   public class EditorAttribute {
 
     /*==========================================================================================================================
