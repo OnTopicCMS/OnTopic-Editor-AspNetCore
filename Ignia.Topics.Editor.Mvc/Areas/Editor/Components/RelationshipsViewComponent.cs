@@ -31,8 +31,10 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
     /// <summary>
     ///   Assembles the view model for the <see cref="RelationshipsViewComponent"/>.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(AttributeDescriptorTopicViewModel attribute, string Id) =>
-      View(GetAttributeViewModel(attribute));
+    public async Task<IViewComponentResult> InvokeAsync(AttributeDescriptorTopicViewModel attribute, string htmlFieldPrefix) {
+      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+      return View(GetAttributeViewModel(attribute));
+    }
 
   } // Class
 } // Namespace
