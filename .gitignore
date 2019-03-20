@@ -304,3 +304,4 @@ config.yml
 compilerconfig.json
 compilerconfig.json.defaults
 **/ExtJS/*
+**/Vendor/*
