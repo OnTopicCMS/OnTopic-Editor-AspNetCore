@@ -39,7 +39,10 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </remarks>
     public Task BindModelAsync(ModelBindingContext bindingContext) {
       var modelName = bindingContext.ModelName;
-      var typeValue = bindingContext.ValueProvider.GetValue(modelName + ".AttributeDescriptor.EditorType").FirstValue;
+      var typeValue = bindingContext.ValueProvider.GetValue(modelName + ".AttributeDescriptor.EditorType").FirstValue.ToString();
+      if (typeValue != null) {
+        typeValue = typeValue.Replace(".ascx", "");
+      }
       var type = Type.GetType("Ignia.Topics.Editor.Models.Attributes." + typeValue.ToString() + "EditorAttribute", true);
       var model = Activator.CreateInstance(type);
       bindingContext.Result = ModelBindingResult.Success(model);
