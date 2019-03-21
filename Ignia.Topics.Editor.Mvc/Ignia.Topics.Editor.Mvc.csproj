@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,6 +36,10 @@
     <Folder Include="Areas\Editor\Views\Editor\Components\TopicList\" />
     <Folder Include="Areas\Editor\Views\Editor\Components\TokenizedTopicList\" />
     <Folder Include="Areas\Editor\Views\Editor\Components\Relationships\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\**\*" />
   </ItemGroup>
 
 </Project>
