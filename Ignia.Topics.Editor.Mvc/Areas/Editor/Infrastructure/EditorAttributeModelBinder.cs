@@ -5,9 +5,10 @@
 \=============================================================================================================================*/
 using System;
 using System.Threading.Tasks;
+using Ignia.Topics.Editor.Models.Attributes;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Mvc.Infrastructure {
 
   /*============================================================================================================================
   | CLASS: EDITOR BINDING MODEL

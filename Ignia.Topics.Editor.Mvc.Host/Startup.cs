@@ -71,7 +71,10 @@ namespace OnTopicTest {
         .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
 
         //Add OnTopic support
-        .AddTopicSupport();
+        .AddTopicSupport()
+
+        //Add OnTopic editor support
+        .AddTopicEditor();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: OnTopic Editor
