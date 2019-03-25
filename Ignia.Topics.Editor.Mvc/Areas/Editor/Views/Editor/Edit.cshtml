@@ -23,7 +23,7 @@
 
               @foreach (var attribute in supportedAttributes) {
 
-                if (attribute.IsHidden) {
+                if (attribute.IsHidden || String.IsNullOrEmpty(attribute.EditorType)) {
                   continue;
                 }
 
