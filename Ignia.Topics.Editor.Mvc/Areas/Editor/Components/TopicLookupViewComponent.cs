@@ -5,7 +5,9 @@
 \=============================================================================================================================*/
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
+using Ignia.Topics.Editor.Mvc.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ignia.Topics.AspNetCore.Mvc.Components {
 
@@ -32,8 +34,30 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
     ///   Assembles the view model for the <see cref="TopicLookupViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(AttributeDescriptorTopicViewModel attribute, string htmlFieldPrefix) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | DEFAULT PROCESSING
+      \-----------------------------------------------------------------------------------------------------------------------*/
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      return View(GetAttributeViewModel(attribute));
+      var viewModel = (TopicLookupAttributeViewModel)GetAttributeViewModel(new TopicLookupAttributeViewModel(attribute));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SET OPTIONS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      //### TODO JJC20190324: Custom logic to lookup and set the TopicLookupAttributeViewModel.Options values.
+      var value = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
+      viewModel.Options.Add(
+        new SelectListItem {
+          Value = value,
+          Text = value
+        }
+      );
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View(viewModel);
+
     }
 
   } // Class
