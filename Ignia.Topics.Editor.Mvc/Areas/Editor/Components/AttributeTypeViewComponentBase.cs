@@ -65,18 +65,26 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
     | METHOD: GET ATTRIBUTE VIEW MODEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given an <see cref="AttributeDescriptorTopicViewModel"/> and, optionally, a target <see cref="AttributeViewModel"/>,
-    ///   ensures that the properties of the <see cref="AttributeViewModel"/> are properly set.
+    ///   Given an <see cref="AttributeDescriptorTopicViewModel"/>, creates a new <see cref="AttributeViewModel"/> and ensures
+    ///   that the properties are properly set.
     /// </summary>
+    /// <param name="attribute">
+    ///   The <see cref="AttributeDescriptorTopicViewModel"/> to initialize a new <see cref="AttributeViewModel"/> with.
+    /// </param>
     /// <returns>The Topic associated with the current request.</returns>
-    public AttributeViewModel GetAttributeViewModel(
-      AttributeDescriptorTopicViewModel attribute,
-      AttributeViewModel viewModel = null
-    ) {
+    public AttributeViewModel GetAttributeViewModel(AttributeDescriptorTopicViewModel attribute) =>
+      GetAttributeViewModel(new AttributeViewModel(attribute));
 
-      viewModel = viewModel ?? new AttributeViewModel(attribute);
-      viewModel.InheritedValue = CurrentTopic.Parent.Attributes.GetValue(attribute.Key, true);
-      viewModel.Value = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
+    /// <summary>
+    ///   Ensures that the properties of the <see cref="AttributeViewModel"/> are properly set.
+    /// </summary>
+    /// <param name="viewModel">The <see cref="AttributeViewModel"/> to populate with values.</param>
+    /// <returns>The Topic associated with the current request.</returns>
+    public AttributeViewModel GetAttributeViewModel(AttributeViewModel viewModel = null) {
+
+      var attribute             = viewModel.AttributeDescriptor;
+      viewModel.InheritedValue  = CurrentTopic.Parent.Attributes.GetValue(attribute.Key, true);
+      viewModel.Value           = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
 
       return viewModel;
 
