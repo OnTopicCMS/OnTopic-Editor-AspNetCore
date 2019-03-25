@@ -6,6 +6,7 @@
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Mvc.Models;
+using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -20,12 +21,22 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
   public class TopicLookupViewComponent : AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITopicRepository                _topicRepository                = null;
+
+    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Initializes a new instance of a <see cref="TopicLookupViewComponent"/> with necessary dependencies.
     /// </summary>
-    public TopicLookupViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public TopicLookupViewComponent(
+      ITopicRoutingService      topicRoutingService,
+      ITopicRepository          topicRepository
+    ) : base(topicRoutingService) {
+      _topicRepository          = topicRepository;
+    }
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)

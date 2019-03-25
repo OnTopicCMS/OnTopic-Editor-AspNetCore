@@ -173,7 +173,7 @@ namespace OnTopicTest {
         return new TopicListViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(TopicLookupViewComponent)) {
-        return new TopicLookupViewComponent(mvcTopicRoutingService);
+        return new TopicLookupViewComponent(mvcTopicRoutingService, _topicRepository);
       }
       if (type == typeof(TopicPointerViewComponent)) {
         return new TopicPointerViewComponent(mvcTopicRoutingService);
