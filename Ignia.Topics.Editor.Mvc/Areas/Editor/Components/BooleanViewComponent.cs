@@ -24,4 +24,5 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
     public BooleanViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
 
   } // Class
+
 } // Namespace
