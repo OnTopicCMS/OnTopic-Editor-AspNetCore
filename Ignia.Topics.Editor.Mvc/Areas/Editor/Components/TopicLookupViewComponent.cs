@@ -53,9 +53,8 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
       var viewModel = (TopicLookupAttributeViewModel)GetAttributeViewModel(new TopicLookupAttributeViewModel(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | SET OPTIONS
+      | SET DEFAULT OPTION
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //### TODO JJC20190324: Custom logic to lookup and set the TopicLookupAttributeViewModel.Options values.
       var value = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
       viewModel.Options.Add(
         new SelectListItem {
@@ -63,6 +62,11 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
           Text = value
         }
       );
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SET OPTIONS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      //### TODO JJC20190324: Custom logic to lookup and set the TopicLookupAttributeViewModel.Options values.
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW MODEL
