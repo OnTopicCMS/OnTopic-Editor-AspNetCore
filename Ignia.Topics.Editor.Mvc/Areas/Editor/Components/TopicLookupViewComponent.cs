@@ -81,19 +81,23 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | DEFAULT PROCESSING
       \-----------------------------------------------------------------------------------------------------------------------*/
-      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix?? ViewData.TemplateInfo.HtmlFieldPrefix;
       var viewModel = (TopicLookupAttributeViewModel)GetAttributeViewModel(new TopicLookupAttributeViewModel(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | SET DEFAULT OPTION
+      | SET LABEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var value = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
       viewModel.Options.Add(
         new SelectListItem {
-          Value = value,
-          Text = value
+          Value = null,
+          Text = label
         }
       );
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SET DEFAULT VALUE
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var defaultValue = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SET OPTIONS
