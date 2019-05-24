@@ -73,6 +73,27 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(viewModel);
 
+    /*==========================================================================================================================
+    | REPLACE TOKENS
+    >---------------------------------------------------------------------------------------------------------------------------
+    | Replaces tokenized parameters (e.g., {Key}) in the source string based on the source Topic's properties.
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private string ReplaceTokens(Topic topic, string source, string defaultValue = null) {
+      if (topic != null && !String.IsNullOrEmpty(source)) {
+        source = source
+          .Replace("{Topic}", topic.Key)
+          .Replace("{TopicId}", topic.Id.ToString())
+          .Replace("{Name}", topic.Key)
+          .Replace("{FullName}", topic.GetUniqueKey())
+          .Replace("{Key}", topic.Key)
+          .Replace("{UniqueKey}", topic.GetUniqueKey())
+          .Replace("{Title}", topic.Title)
+          .Replace("{Parent}", topic.Parent.GetUniqueKey())
+          .Replace("{ParentId}", topic.Parent.Id.ToString())
+          .Replace("{GrandParent}", topic.Parent?.Parent?.GetUniqueKey())
+          .Replace("{GrandParentId}", topic.Parent?.Parent?.Id.ToString());
+      }
+      return source;
     }
 
   } // Class
