@@ -3,9 +3,13 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Mvc.Models;
+using Ignia.Topics.Querying;
 using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -44,7 +48,35 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
     /// <summary>
     ///   Assembles the view model for the <see cref="TopicLookupViewComponent"/>.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(AttributeDescriptorTopicViewModel attribute, string htmlFieldPrefix) {
+    public async Task<IViewComponentResult> InvokeAsync(
+      AttributeDescriptorTopicViewModel attribute,
+      string                    htmlFieldPrefix                 = null,
+      string                    label                           = null,
+      string                    scope                           = null,
+      string                    attributeName                   = null,
+      string                    attributeValue                  = null,
+      string                    allowedKeys                     = null,
+      bool?                     useUniqueKey                    = null,
+      string                    valueProperty                   = null,
+      bool?                     targetPopup                     = null,
+      string                    targetUrl                       = null,
+      string                    onClientClose                   = null
+    ) {
+
+     /*============================================================================================================================
+     | SET ATTRIBUTE DEFAULTS
+     \---------------------------------------------------------------------------------------------------------------------------*/
+      label                     = setConfiguration("Label", label, "Select a Topic...");
+      scope                     = setConfiguration("Scope", scope, null);
+      attributeName             = setConfiguration("AttributeName", attributeName, null);
+      attributeValue            = setConfiguration("AttributeValue", attributeValue, null);
+      allowedKeys               = setConfiguration("AllowedKeys", allowedKeys, null);
+      useUniqueKey              = setBooleanConfiguration("UseUniqueKey", useUniqueKey, true);
+      valueProperty             = setConfiguration("ValueProperty", valueProperty, useUniqueKey.Value? "UniqueKey" : "Key");
+
+      targetPopup               = setBooleanConfiguration("TargetPopup", targetPopup, false);
+      targetUrl                 = targetUrl?? attribute.GetConfigurationValue("TargetUrl", null);
+      onClientClose             = onClientClose ?? attribute.GetConfigurationValue("OnClientClose", null);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | DEFAULT PROCESSING
@@ -72,6 +104,24 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
       | RETURN VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(viewModel);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | LOCAL HELPER FUNCTIONS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      bool? setBooleanConfiguration(string parameterName, bool? parameterValue, bool defaultParameterValue) {
+        if (parameterValue.HasValue) {
+          return parameterValue;
+        }
+        return Boolean.Parse(attribute.GetConfigurationValue(parameterName, defaultParameterValue.ToString()));
+      }
+
+      string setConfiguration(string parameterName, string parameterValue, string defaultParameterValue) {
+        return parameterValue?? attribute.GetConfigurationValue(parameterName, defaultParameterValue);
+      }
+
+
+    }
+
 
     /*==========================================================================================================================
     | METHOD: GET TOPICS
