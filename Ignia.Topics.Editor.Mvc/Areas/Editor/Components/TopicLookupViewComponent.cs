@@ -102,7 +102,22 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | SET OPTIONS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //### TODO JJC20190324: Custom logic to lookup and set the TopicLookupAttributeViewModel.Options values.
+      var topics = GetTopics(scope, attributeName, attributeValue, allowedKeys);
+
+      foreach (var topic in topics) {
+
+        string title = viewModel.Options.Any(t => t.Text == topic.Title)? $"{topic.Title} ({topic.Key})" : topic.Title;
+        string value = getValue(topic);
+
+        viewModel.Options.Add(
+          new SelectListItem {
+            Value = value,
+            Text = title,
+            Selected = value == defaultValue
+          }
+        );
+
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW MODEL
@@ -123,6 +138,20 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
         return parameterValue?? attribute.GetConfigurationValue(parameterName, defaultParameterValue);
       }
 
+      string getValue(Topic topic) {
+        if (!String.IsNullOrEmpty(targetUrl)) {
+          // Add TopicID if not already available
+          var uniqueTargetUrl = targetUrl;
+          if (
+            uniqueTargetUrl.IndexOf("?") >= 0 &&
+            uniqueTargetUrl.IndexOf("TopicID", StringComparison.InvariantCultureIgnoreCase) < 0
+          ) {
+            uniqueTargetUrl     += "&TopicID=" + topic.Id.ToString();
+          }
+          return ReplaceTokens(topic, uniqueTargetUrl);
+        }
+        return ReplaceTokens(topic, "{" + valueProperty + "}");
+      }
 
     }
 
