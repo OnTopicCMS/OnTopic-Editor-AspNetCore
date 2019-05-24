@@ -74,6 +74,80 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
       return View(viewModel);
 
     /*==========================================================================================================================
+    | METHOD: GET TOPICS
+    >---------------------------------------------------------------------------------------------------------------------------
+    | Retrieves a collection of topics with optional control call filter properties Scope, AttributeName and AttributeValue.
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    public TopicCollection<Topic> GetTopics(
+      string scope = null,
+      string attributeName = null,
+      string attributeValue = null,
+      string allowedKeys = ""
+    ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Instantiate object
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      TopicCollection<Topic> topics = new TopicCollection<Topic>();
+      Topic topic = null;
+
+      if (scope != null) {
+        topic = _topicRepository.Load(scope);
+      }
+
+      // Use RootTopic if Scope is available but does not return a topic object
+      if (topic == null) {
+        topic = _topicRepository.Load();
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Filter Topics selection list by AttributeName/AttributeValue
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (attributeName != null && attributeValue != null) {
+
+        var readOnlyTopics = topic.FindAllByAttribute(attributeName, attributeValue);
+        foreach (Topics.Topic readOnlyTopic in readOnlyTopics) {
+          if (!topics.Contains(readOnlyTopic.Key)) {
+            topics.Add(readOnlyTopic);
+          }
+        }
+
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Get all Topics under RootTopic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (topics.Count == 0) {
+        foreach (Topic childTopic in topic.Children) {
+          if (!topics.Contains(childTopic)) {
+            topics.Add(childTopic);
+          }
+        }
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Filter Topics selection list based on Content Types
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      string[] allowedKeyList = null;
+      if (!String.IsNullOrEmpty(allowedKeys)) {
+        allowedKeyList = allowedKeys.Split(',');
+        for (int i = 0; i < topics.Count; i++) {
+          Topic childTopic = topics[i];
+          if (Array.IndexOf(allowedKeyList, childTopic.Key) < 0) {
+            topics.RemoveAt(i);
+            i--;
+          }
+        }
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return Topics list
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return topics;
+
+    }
+
+    /*==========================================================================================================================
     | REPLACE TOKENS
     >---------------------------------------------------------------------------------------------------------------------------
     | Replaces tokenized parameters (e.g., {Key}) in the source string based on the source Topic's properties.
