@@ -72,7 +72,7 @@ namespace Ignia.Topics.Editor.Models {
     ///   Provides a parsed version of the <see cref="DefaultConfiguration"/>, with key/value pairs being represented in a
     ///   dictionary for easy reference.
     /// </summary>
-    public Dictionary<string, string> Configuration { get; set; }
+    public IDictionary<string, string> Configuration { get; set; }
 
     /*==========================================================================================================================
     | METHOD: GET CONFIGURATION VALUE
