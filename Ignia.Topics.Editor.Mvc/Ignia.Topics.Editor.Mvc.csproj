@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="foundation-sites" Version="6.5.3" />
     <PackageReference Include="Ignia.Topics" Version="3.8.0-alpha.255" />
     <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-alpha.255" />
     <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-alpha.255" />
