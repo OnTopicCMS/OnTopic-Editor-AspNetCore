@@ -23,7 +23,7 @@
     <PackageReference Include="Microsoft.ApplicationInsights.PerfCounterCollector" version="2.6.4" />
     <PackageReference Include="Microsoft.ApplicationInsights.WindowsServer" version="2.6.4" />
     <PackageReference Include="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel" version="2.6.4" />
-    <PackageReference Include="Newtonsoft.Json" version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" version="12.0.2" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" version="4.5.0" />
   </ItemGroup>
 
