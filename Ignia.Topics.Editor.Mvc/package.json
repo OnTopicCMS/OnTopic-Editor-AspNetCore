@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/Ignia/gulp-workflow",
   "devDependencies": {
-    "bower": "^1.8.0",
+    "bower": "^1.8.8",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
