@@ -71,7 +71,7 @@ namespace Ignia.Topics.Editor.Mvc {
       /*------------------------------------------------------------------------------------------------------------------------
       | Add provider for embedded resources
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var fileProvider = new ManifestEmbeddedFileProvider(this.GetType().Assembly, "Resources");
+      var fileProvider = new ManifestEmbeddedFileProvider(this.GetType().Assembly, "wwwroot");
       options.FileProvider = new CompositeFileProvider(options.FileProvider, fileProvider);
 
     }
