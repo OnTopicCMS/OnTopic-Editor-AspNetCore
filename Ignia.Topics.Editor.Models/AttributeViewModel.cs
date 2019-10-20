@@ -77,7 +77,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Provides the current value, as defined on the <see cref="AttributeValue"/> instance.
     /// </summary>
-    public string Value { get; set; }
+    public virtual string Value { get; set; }
 
     /*==========================================================================================================================
     | INHERITED VALUE
@@ -89,7 +89,7 @@ namespace Ignia.Topics.Editor.Models {
     ///   If the <see cref="Value"/> is set, then the <see cref="InhertedValue"/> will always be equal to the
     ///   <see cref="Value"/>.
     /// </remarks>
-    public string InheritedValue { get; set; }
+    public virtual string InheritedValue { get; set; }
 
   } // Class
 
