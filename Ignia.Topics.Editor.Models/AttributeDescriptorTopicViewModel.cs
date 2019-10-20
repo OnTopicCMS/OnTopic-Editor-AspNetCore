@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using System.Collections.Generic;
 using Ignia.Topics.Metadata;
 
@@ -84,6 +85,32 @@ namespace Ignia.Topics.Editor.Models {
     public string GetConfigurationValue(string key, string defaultValue = null) {
       if (Configuration != null && Configuration.ContainsKey(key) && Configuration[key] != null) {
         return Configuration[key].ToString();
+      }
+      return defaultValue;
+    }
+
+    /*==========================================================================================================================
+    | METHOD: GET BOOLEAN CONFIGURATION VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves a configuration value from the <see cref="Configuration"/> dictionary as a boolean value.
+    /// </summary>
+    public bool GetBooleanConfigurationValue(string key, bool defaultValue = false) {
+      if (Boolean.TryParse(GetConfigurationValue(key, defaultValue.ToString()), out var value)) {
+        return value;
+      }
+      return defaultValue;
+    }
+
+    /*==========================================================================================================================
+    | METHOD: GET INTEGER CONFIGURATION VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves a configuration value from the <see cref="Configuration"/> dictionary as an integer value.
+    /// </summary>
+    public int GetIntegerConfigurationValue(string key, int defaultValue = 0) {
+      if (Int32.TryParse(GetConfigurationValue(key, defaultValue.ToString()), out var value)) {
+        return value;
       }
       return defaultValue;
     }
