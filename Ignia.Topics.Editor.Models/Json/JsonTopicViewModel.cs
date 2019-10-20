@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Ignia.Topics.Collections;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Ignia.Topics.Editor.Models.Json {
 
@@ -177,7 +177,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     /// <summary>
     ///   The title of the topic, which will fall back to <see cref="Key"/> if not set.
     /// </summary>
-    [JsonProperty(PropertyName = "text")]
+    [JsonPropertyName("text")]
     public string Title {
       get;
     }
@@ -188,7 +188,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     /// <summary>
     ///   The fully-qualified, unique key for the topic, in OnTopic format.
     /// </summary>
-    [JsonProperty(PropertyName = "path")]
+    [JsonPropertyName("path")]
     public string UniqueKey {
       get;
     }
@@ -209,7 +209,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     /// <summary>
     ///   Determines whether the current topic is selected or not.
     /// </summary>
-    [JsonProperty(PropertyName = "checked")]
+    [JsonPropertyName("checked")]
     public bool IsChecked {
       get;
     }
@@ -220,7 +220,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     /// <summary>
     ///   Determines whether the current topic is intended to be draggable or not.
     /// </summary>
-    [JsonProperty(PropertyName = "draggable")]
+    [JsonPropertyName("draggable")]
     public bool IsDraggable {
       get;
     }
@@ -231,7 +231,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     /// <summary>
     ///   Determines whether the current topic is a leaf node or not.
     /// </summary>
-    [JsonProperty(PropertyName = "leaf")]
+    [JsonPropertyName("leaf")]
     public bool IsLeaf {
       get => Children.Count.Equals(0);
     }
