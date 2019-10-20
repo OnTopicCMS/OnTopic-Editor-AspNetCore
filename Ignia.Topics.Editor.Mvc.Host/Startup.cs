@@ -7,16 +7,11 @@ using Ignia.Topics.AspNetCore.Mvc;
 using Ignia.Topics.Editor.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using System.IO;
 using Microsoft.Extensions.Hosting;
 
 namespace OnTopicTest {
@@ -38,9 +33,8 @@ namespace OnTopicTest {
     /// <param name="configuration">
     ///   The shared <see cref="IConfiguration"/> dependency.
     /// </param>
-    public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment) {
+    public Startup(IConfiguration configuration) {
       Configuration = configuration;
-      HostingEnvironment = hostingEnvironment;
     }
 
     /*==========================================================================================================================
@@ -50,14 +44,6 @@ namespace OnTopicTest {
     ///   Provides a (public) reference to the application's <see cref="IConfiguration"/> service.
     /// </summary>
     public IConfiguration Configuration { get; }
-
-    /*==========================================================================================================================
-    | PROPERTY: HOSTING ENVIRONMENT
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a (public) reference to the application's <see cref="IHostingEnvironment"/> service.
-    /// </summary>
-    public IHostingEnvironment HostingEnvironment { get; }
 
     /*==========================================================================================================================
     | METHOD: CONFIGURE SERVICES
@@ -88,20 +74,15 @@ namespace OnTopicTest {
         .AddTopicEditor();
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Configure: OnTopic Editor
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      services.AddTopicEditor();
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Watch Razor Class Library (RCLs) views
       >-------------------------------------------------------------------------------------------------------------------------
       | ### HACK JJC20190523: Due to a limitation of Visual Studio, updates in views in RCLs don't trigger a dynamic recompile.
       | This thus requires rebuilding and reloading the application after every change in a view—not very practical! The
       | following works around this limitation. It is not necessary in production environments.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      services.Configure<RazorViewEngineOptions>(options => options.FileProviders.Add(
-        new PhysicalFileProvider(Path.Combine(HostingEnvironment.ContentRootPath, "..\\Ignia.Topics.Editor.Mvc"))
-      ));
+      //services.Configure<RazorViewEngineOptions>(options => options.FileProviders.Add(
+      //  new PhysicalFileProvider(Path.Combine(HostingEnvironment.ContentRootPath, "..\\Ignia.Topics.Editor.Mvc"))
+      //));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register: Activators

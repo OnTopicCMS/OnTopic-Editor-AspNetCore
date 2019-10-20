@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="foundation-sites" Version="6.5.3" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.2.0" />
     <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.1+357" />
     <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-csharp8-update.1+357" />
     <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.1+357" />
@@ -19,28 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ignia.Topics.Editor.Models\Ignia.Topics.Editor.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Editor\Views\Editor\Components\Boolean\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\DateTimeSelector\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\DisplayOptions\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\File\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\FilePath\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\FileUpload\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\FormField\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\Html\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\LastModifiedBy\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\WYSIWYG\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\TopicPointer\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\TopicLookup\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\TopicList\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\TokenizedTopicList\" />
-    <Folder Include="Areas\Editor\Views\Editor\Components\Relationships\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="wwwroot\**\*" />
   </ItemGroup>
 
 </Project>
