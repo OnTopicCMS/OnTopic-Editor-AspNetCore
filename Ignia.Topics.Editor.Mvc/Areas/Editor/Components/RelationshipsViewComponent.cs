@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ignia.Topics.AspNetCore.Mvc.Components {
+namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
   | CLASS: RELATIONSHIPS (VIEW COMPONENT)

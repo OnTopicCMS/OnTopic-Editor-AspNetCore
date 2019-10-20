@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ignia.Topics.AspNetCore.Mvc.Components {
+namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
   | CLASS: WYSIWYG (VIEW COMPONENT)

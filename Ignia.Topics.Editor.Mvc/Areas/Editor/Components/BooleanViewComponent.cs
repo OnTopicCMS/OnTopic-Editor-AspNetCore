@@ -4,7 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.AspNetCore.Mvc.Components {
+namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
   | CLASS: BOOLEAN (VIEW COMPONENT)

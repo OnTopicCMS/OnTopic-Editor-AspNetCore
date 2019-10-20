@@ -14,7 +14,7 @@ using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Ignia.Topics.AspNetCore.Mvc.Components {
+namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
   | CLASS: TOPIC LOOKUP (VIEW COMPONENT)
