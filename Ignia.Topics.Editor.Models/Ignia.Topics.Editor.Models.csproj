@@ -7,8 +7,8 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Ignia.Topics" Version="3.8.0-alpha.255" />
-    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-alpha.255" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.1+357" />
+    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.1+357" />
   </ItemGroup>
 </Project>
