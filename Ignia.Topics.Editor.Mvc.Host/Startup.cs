@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Microsoft.Extensions.Hosting;
 
 namespace OnTopicTest {
 
@@ -122,7 +123,7 @@ namespace OnTopicTest {
     ///   Provides configuration the application. This method is called by the runtime to bootstrap the application
     ///   configuration, including the HTTP pipeline.
     /// </summary>
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Error Pages
