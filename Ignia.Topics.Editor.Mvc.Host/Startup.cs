@@ -79,10 +79,7 @@ namespace OnTopicTest {
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: MVC
       \-----------------------------------------------------------------------------------------------------------------------*/
-      services.AddMvc()
-
-        //Set to use .NET Core 2.2
-        .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+      services.AddControllersWithViews()
 
         //Add OnTopic support
         .AddTopicSupport()
