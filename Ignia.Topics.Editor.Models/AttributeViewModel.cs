@@ -91,6 +91,22 @@ namespace Ignia.Topics.Editor.Models {
     /// </remarks>
     public virtual string InheritedValue { get; set; }
 
+    /*==========================================================================================================================
+    | IS ENABLED
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeValue"/> instance.
+    /// </summary>
+    public virtual bool IsEnabled { get; set; } = true;
+
+    /*==========================================================================================================================
+    | CSS CLASS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Defines the CSS class names to be used, if any are configured.
+    /// </summary>
+    public virtual string CssClass { get; set; }
+
   } // Class
 
 } // Namespace

@@ -44,6 +44,32 @@ namespace Ignia.Topics.Editor.Models {
     /// </summary>
     public T Options { get; set; }
 
+    /*==========================================================================================================================
+    | IS ENABLED
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeValue"/> instance.
+    /// </summary>
+    public override bool IsEnabled {
+      get => Options.IsEnabled?? true;
+      set {
+        Options.IsEnabled = value;
+       }
+    }
+
+    /*==========================================================================================================================
+    | CSS CLASS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Defines the CSS class names to be used, if any are configured.
+    /// </summary>
+    public override string CssClass {
+      get => Options.CssClass;
+      set {
+        Options.CssClass = value;
+      }
+    }
+
   } // Class
 
 } // Namespace
