@@ -12,7 +12,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a file attribute type.
   /// </summary>
-  public class FileViewComponent: DefaultAttributeTypeViewComponent {
+  public class FileListViewComponent: AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
