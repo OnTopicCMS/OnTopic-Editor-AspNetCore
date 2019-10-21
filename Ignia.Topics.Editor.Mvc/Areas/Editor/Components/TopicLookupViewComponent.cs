@@ -87,7 +87,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | SET LABEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      viewModel.Options.Add(
+      viewModel.TopicList.Add(
         new SelectListItem {
           Value = null,
           Text = label
@@ -106,10 +106,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
 
       foreach (var topic in topics) {
 
-        string title = viewModel.Options.Any(t => t.Text == topic.Title)? $"{topic.Title} ({topic.Key})" : topic.Title;
+        string title = viewModel.TopicList.Any(t => t.Text == topic.Title)? $"{topic.Title} ({topic.Key})" : topic.Title;
         string value = getValue(topic);
 
-        viewModel.Options.Add(
+        viewModel.TopicList.Add(
           new SelectListItem {
             Value = value,
             Text = title,

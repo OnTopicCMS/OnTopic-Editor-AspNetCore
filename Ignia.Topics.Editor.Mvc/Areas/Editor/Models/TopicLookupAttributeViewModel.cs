@@ -37,7 +37,7 @@ namespace Ignia.Topics.Editor.Mvc.Models {
     ) {}
 
     /*==========================================================================================================================
-    | OPTIONS
+    | TOPIC LIST
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Provides a list of key/value pairs associated with the topic lookup.
@@ -48,7 +48,7 @@ namespace Ignia.Topics.Editor.Mvc.Models {
     ///   cref="TopicLookupAttributeViewModel"/> representing countries, <c>US</c> might by the key associated with a <c>United
     ///   States</c> value.
     /// </remarks>
-    public List<SelectListItem> Options { get; } = new List<SelectListItem>();
+    public List<SelectListItem> TopicList { get; } = new List<SelectListItem>();
 
   } // Class
 
