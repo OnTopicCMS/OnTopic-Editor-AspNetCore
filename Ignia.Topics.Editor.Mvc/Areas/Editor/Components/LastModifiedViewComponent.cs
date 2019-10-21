@@ -6,6 +6,7 @@
 using System;
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
+using Ignia.Topics.Editor.Models.Components.Options;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ignia.Topics.Editor.Mvc.Components {
@@ -33,9 +34,15 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Assembles the view model for the <see cref="LastModifiedViewComponent"/>.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(AttributeDescriptorTopicViewModel attribute, string htmlFieldPrefix) {
+    public async Task<IViewComponentResult> InvokeAsync(
+      AttributeDescriptorTopicViewModel attribute,
+      string htmlFieldPrefix,
+      DefaultOptions options = null
+    ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      var viewModel = GetAttributeViewModel(attribute);
+      options ??= new DefaultOptions();
+      var viewModel = new AttributeViewModel<DefaultOptions>(attribute, options);
+      GetAttributeViewModel(viewModel);
       if (viewModel.Value == null) {
         if (CurrentTopic.LastModified != null && CurrentTopic.LastModified != DateTime.MinValue) {
           viewModel.Value = CurrentTopic.LastModified.ToString();

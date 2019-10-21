@@ -9,8 +9,10 @@ using Ignia.Topics.Mapping;
 using Ignia.Topics.Models;
 using Ignia.Topics.AspNetCore.Mvc.Models;
 using Ignia.Topics.Editor.Models;
+using System;
+using Ignia.Topics.Editor.Models.Components.Options;
 
-namespace Ignia.Topics.AspNetCore.Mvc.Components {
+namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
   | CLASS: ATTRIBUTE TYPE (VIEW COMPONENT)
@@ -72,8 +74,14 @@ namespace Ignia.Topics.AspNetCore.Mvc.Components {
     ///   The <see cref="AttributeDescriptorTopicViewModel"/> to initialize a new <see cref="AttributeViewModel"/> with.
     /// </param>
     /// <returns>The Topic associated with the current request.</returns>
-    public AttributeViewModel GetAttributeViewModel(AttributeDescriptorTopicViewModel attribute) =>
-      GetAttributeViewModel(new AttributeViewModel(attribute));
+    public AttributeViewModel<DefaultOptions> GetAttributeViewModel(
+      AttributeDescriptorTopicViewModel attribute,
+      DefaultOptions options
+    ) {
+      var viewModel = new AttributeViewModel<DefaultOptions>(attribute, options);
+      GetAttributeViewModel(viewModel);
+      return viewModel;
+    }
 
     /// <summary>
     ///   Ensures that the properties of the <see cref="AttributeViewModel"/> are properly set.
