@@ -90,9 +90,29 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <returns>The Topic associated with the current request.</returns>
     public AttributeViewModel GetAttributeViewModel(AttributeViewModel viewModel = null) {
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set attribute
+      \-----------------------------------------------------------------------------------------------------------------------*/
       var attribute             = viewModel.AttributeDescriptor;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set contextual values from current topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
       viewModel.InheritedValue  = CurrentTopic.Parent.Attributes.GetValue(attribute.Key, true);
       viewModel.Value           = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set convenience pass-throughs to configuration
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      viewModel.IsEnabled       = attribute.GetBooleanConfigurationValue(
+        "IsEnabled",
+        attribute.GetBooleanConfigurationValue("Enabled", true)
+      );
+
+      viewModel.CssClass      = attribute.GetConfigurationValue(
+        "CssClass",
+        attribute.GetConfigurationValue("CssClassField", null)
+      );
 
       return viewModel;
 
