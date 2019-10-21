@@ -4,7 +4,7 @@
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 }
 
-<div class="form-check form-check-inline">
+<div class="form-check form-check-inline @(Model.CssClass?? "Radio-Buttons")">
   <label class="form-check-label">
     @Html.RadioButtonFor(m => m.Value, "1", new { id = "Boolean_" + Model.AttributeDescriptor.Key + "_1", @class = "form-check-input" }) Yes
   </label>
