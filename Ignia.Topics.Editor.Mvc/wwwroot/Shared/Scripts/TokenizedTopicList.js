@@ -51,13 +51,13 @@
   /*----------------------------------------------------------------------------------------------------------------------------
   | Build Topics.Json.aspx call URL
   \---------------------------------------------------------------------------------------------------------------------------*/
-    var topicsUrl               = '/!Admin/Topics/Client/Topics.Json.aspx'
+    var topicsUrl               = '/OnTopic/Json/'
+      + self.scope
       + '?ShowRoot=true'
       + '&FlattenStructure=true'
       + '&UsePartialMatch=true'
       + '&AttributeName='       + self.attributeName
       + '&AttributeValue='      + self.attributeValue
-      + '&Scope='               + self.scope
       + '&ResultLimit='         + self.resultLimit;
 
   /*----------------------------------------------------------------------------------------------------------------------------
