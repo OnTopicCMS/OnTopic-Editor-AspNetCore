@@ -1,7 +1,20 @@
-﻿@model AttributeViewModel
+﻿@model AttributeViewModel<TopicPointerOptions>
 
 @{
-  Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+  var options                   = new TokenizedTopicListOptions() {
+    Scope                       = Model.Options.Scope,
+    AttributeName               = String.IsNullOrEmpty(Model.Options.ContentType)? "": "ContentType",
+    AttributeValue              = Model.Options.ContentType,
+    SearchProperty              = "text",
+    QueryParameter              = "Query",
+    ResultLimit                 = Model.Options.ResultLimit,
+    TokenLimit                  = 1,
+    IsAutoPostBack              = true
+  };
 }
 
-@Html.TextBoxFor(m => m.Value)
+<vc:tokenized-topic-list
+  html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
+  attribute=@Model.AttributeDescriptor
+  options=@options>
+</vc:tokenized-topic-list>
