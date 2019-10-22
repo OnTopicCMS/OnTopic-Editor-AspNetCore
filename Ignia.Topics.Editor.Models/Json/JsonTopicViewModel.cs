@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Ignia.Topics.Collections;
 using System.Text.Json.Serialization;
+using System.ComponentModel;
 
 namespace Ignia.Topics.Editor.Models.Json {
 
@@ -41,7 +42,7 @@ namespace Ignia.Topics.Editor.Models.Json {
       topic.GetUniqueKey(),
       topic.GetWebPath(),
       options.MarkRelated? related.Contains(topic) : true,
-      topic.Attributes.GetValue("DisableDelete", "0").Equals("1")
+      topic.Attributes.GetValue("DisableDelete", "0").Equals("0")
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -221,6 +222,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     ///   Determines whether the current topic is intended to be draggable or not.
     /// </summary>
     [JsonPropertyName("draggable")]
+    [DefaultValue(true)]
     public bool IsDraggable {
       get;
     }

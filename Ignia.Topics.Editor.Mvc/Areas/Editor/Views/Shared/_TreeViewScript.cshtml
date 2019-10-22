@@ -92,12 +92,11 @@
 
           // console.log("Node: " + node.attributes.id + ", Parent: " + newParent.attributes.id + ", Sibling: " + siblingId);
 
-          PageMethods.MoveNode(
-            node.attributes.Id,
-            newParent.attributes.Id,
-            siblingId,
-            function(result) {}
-          );
+          $.ajax({
+            method: "POST",
+            url: "/OnTopic/Move",
+            data: { topicId: node.attributes.id, targetTopicId: newParent.attributes.id, siblingId }
+          })
 
         }
       }
