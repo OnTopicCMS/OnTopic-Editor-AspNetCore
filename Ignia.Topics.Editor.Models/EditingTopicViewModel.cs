@@ -41,7 +41,7 @@ namespace Ignia.Topics.Editor.Models {
     ///   Provides a collection of <see cref="DateTime"/> instances during which the represented <see cref="Topic"/> was
     ///   modified.
     /// </summary>
-    public List<DateTime> VersionHistory { get; set; }
+    public List<DateTime> VersionHistory { get; set; } = new List<DateTime>();
 
   } // Class
 
