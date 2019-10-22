@@ -4,8 +4,8 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Diagnostics.Contracts;
 using Ignia.Topics.Editor.Mvc.Infrastructure;
+using Ignia.Topics.Internal.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
