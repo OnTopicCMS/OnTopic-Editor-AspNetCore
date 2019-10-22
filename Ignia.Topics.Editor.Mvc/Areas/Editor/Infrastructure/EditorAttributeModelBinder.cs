@@ -29,6 +29,14 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
     public EditorAttributeModelBinder() { }
 
     /*==========================================================================================================================
+    | PROPERTY: TYPE LOOKUP SERVICE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Establishes static variables for the <see cref="TopicFactory"/>.
+    /// </summary>
+    public static ITypeLookupService TypeLookupService { get; set; } = new EditorAttributeLookupService();
+
+    /*==========================================================================================================================
     | OVERRIDE: BIND MODEL (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -60,7 +68,7 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var type                  = Type.GetType("Ignia.Topics.Editor.Models.Attributes." + editorType + "EditorAttribute", true);
+      var type                  = TypeLookupService.Lookup($"{editorType}EditorAttribute");
       var model                 = (EditorAttribute)Activator.CreateInstance(type);
 
       model.Key                 = key;
