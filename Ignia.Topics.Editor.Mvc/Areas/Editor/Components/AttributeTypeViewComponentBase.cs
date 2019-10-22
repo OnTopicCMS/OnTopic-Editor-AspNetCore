@@ -10,6 +10,7 @@ using Ignia.Topics.Models;
 using Ignia.Topics.AspNetCore.Mvc.Models;
 using Ignia.Topics.Editor.Models;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Ignia.Topics.Editor.Models.Components.Options;
 
 namespace Ignia.Topics.Editor.Mvc.Components {
@@ -88,6 +89,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// </summary>
     /// <param name="viewModel">The <see cref="AttributeViewModel"/> to populate with values.</param>
     /// <returns>The Topic associated with the current request.</returns>
+    [return: NotNullIfNotNull("viewModel")]
     public AttributeViewModel GetAttributeViewModel(AttributeViewModel viewModel = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
