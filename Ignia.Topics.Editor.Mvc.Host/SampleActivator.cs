@@ -9,11 +9,13 @@ using Ignia.Topics.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Components;
 using Ignia.Topics.Data.Caching;
 using Ignia.Topics.Data.Sql;
+using Ignia.Topics.Editor.Mvc.Components;
 using Ignia.Topics.Editor.Mvc.Controllers;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Reflection;
 using Ignia.Topics.Repositories;
 using Ignia.Topics.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
@@ -36,6 +38,7 @@ namespace OnTopicTest {
     private readonly            ITypeLookupService              _typeLookupService              = null;
     private readonly            ITopicMappingService            _topicMappingService            = null;
     private readonly            ITopicRepository                _topicRepository                = null;
+    private readonly            IWebHostEnvironment             _webHostEnvironment             = null;
     private readonly            Topic                           _rootTopic                      = null;
 
     /*==========================================================================================================================
@@ -54,12 +57,13 @@ namespace OnTopicTest {
     ///   The constructor is responsible for establishing dependencies with the singleton lifestyle so that they are available
     ///   to all requests.
     /// </remarks>
-    public SampleActivator(string connectionString) {
+    public SampleActivator(string connectionString, IWebHostEnvironment webHostEnvironment) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Initialize Topic Repository
       \-----------------------------------------------------------------------------------------------------------------------*/
                                 _connectionString               = connectionString;
+                                _webHostEnvironment             = webHostEnvironment;
       var                       sqlTopicRepository              = new SqlTopicRepository(connectionString);
       var                       cachedTopicRepository           = new CachedTopicRepository(sqlTopicRepository);
       var                       topicViewModel                  = new PageTopicViewModel();
@@ -146,7 +150,10 @@ namespace OnTopicTest {
         return new DisplayOptionsViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(FileViewComponent)) {
-        return new FileViewComponent(mvcTopicRoutingService);
+        return new FileViewComponent(mvcTopicRoutingService, _webHostEnvironment);
+      }
+      if (type == typeof(FileListViewComponent)) {
+        return new FileListViewComponent(mvcTopicRoutingService, _webHostEnvironment);
       }
       if (type == typeof(FilePathViewComponent)) {
         return new FilePathViewComponent(mvcTopicRoutingService);
