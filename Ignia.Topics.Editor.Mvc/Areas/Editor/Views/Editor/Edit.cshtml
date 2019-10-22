@@ -21,7 +21,7 @@
           <div id="Group_@displayGroup" class="tab-pane fade@(index == 0 ? " show active" : "")" role="tabpanel" aria-labelledby="Tab_@displayGroup">
             <section id="@category.Replace(" ", "-")">
 
-              @foreach (var attribute in supportedAttributes) {
+              @foreach (var attribute in supportedAttributes.OrderBy(a => a.SortOrder)) {
 
                 if (attribute.IsHidden || String.IsNullOrEmpty(attribute.EditorType)) {
                   continue;

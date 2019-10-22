@@ -131,6 +131,14 @@ namespace Ignia.Topics.Editor.Models {
     /// </summary>
     public string DefaultValue { get; set; }
 
+    /*==========================================================================================================================
+    | PROPERTY: SORT ORDER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines the attribute's prioritization in the page order.
+    /// </summary>
+    public int SortOrder { get; set; }
+
   } // Class
 
 } // Namespace
