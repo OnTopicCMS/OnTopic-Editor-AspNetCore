@@ -153,6 +153,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
           contentTypeViewModel,
           isModal
         );
+        editorViewModel.Topic.VersionHistory = CurrentTopic.VersionHistory;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
