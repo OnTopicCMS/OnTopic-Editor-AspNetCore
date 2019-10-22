@@ -279,7 +279,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Initiate rollback
       \-------------------------------------------------------------------------------------------------------------------------*/
-      TopicRepository.Rollback(CurrentTopic, version);
+      //TopicRepository.Rollback(CurrentTopic, version);
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Render index
@@ -307,7 +307,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       | Lock the Topic repository before executing the delete
       \-------------------------------------------------------------------------------------------------------------------------*/
       lock (TopicRepository) {
-        TopicRepository.Delete(CurrentTopic);
+      //TopicRepository.Delete(CurrentTopic);
       }
 
       /*--------------------------------------------------------------------------------------------------------------------------
@@ -361,10 +361,10 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       lock (TopicRepository) {
         if (siblingId > 0) {
           var sibling = TopicRepository.Load(siblingId);
-          TopicRepository.Move(topic, target, sibling);
+        //TopicRepository.Move(topic, target, sibling);
         }
         else {
-          TopicRepository.Move(topic, target);
+        //TopicRepository.Move(topic, target);
         }
       }
 
@@ -405,7 +405,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       }
 
       /*--------------------------------------------------------------------------------------------------------------------------
-      | Assembly view model
+      | Assemble view model
       \-------------------------------------------------------------------------------------------------------------------------*/
       var jsonTopicViewModel = new JsonTopicViewModel(CurrentTopic, relatedTopics, options);
 
