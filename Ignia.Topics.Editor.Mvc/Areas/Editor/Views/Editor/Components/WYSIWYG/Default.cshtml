@@ -1,7 +1,52 @@
-﻿@model AttributeViewModel
+﻿@model AttributeViewModel<WysiwygOptions>
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 }
 
-@Html.TextAreaFor(m => m.Value, 15, 100, new { id = "Wysiwyg_" + Model.AttributeDescriptor.Key, @class = "form-control" })
+<style type="text/css">
+  .Content div.x-tab-panel {
+    margin-top: 30px;
+  }
+
+  .Content ul.x-tab-strip {
+    list-style-image: none;
+    padding-left: 0px;
+  }
+</style>
+
+<textarea
+  asp-for                       ="Value"
+  height                        =@Model.Options.Rows
+  columns                       =@Model.Options.Columns
+  enabled                       =@Model.IsEnabled
+  class                         =@Model.Options.CssClass
+></textarea>
+
+<script type="text/javascript">
+  (function($) {
+
+    var textareaId      = '@Html.IdFor(m => m.Value)';
+
+    $('[id*="EditorModal"]').on('shown.bs.modal', function(e) {
+      $('.Modal [id*="@Html.IdFor(m => m.Value)"]').attr('id', '@Html.IdFor(m => m.Value)_Modal');
+      console.log('new id: ' + $('[id*="@Html.IdFor(m => m.Value)"]').attr('id'));
+      textareaId = '@Html.IdFor(m => m.Value)_Modal';
+      setEditorInstance(textareaId);
+      console.log(textareaId);
+      return;
+    });
+
+    setEditorInstance(textareaId);
+
+  })(jQuery);
+
+  function setEditorInstance(textareaId) {
+  //console.log(textareaId + ' on setEditorInstance');
+    CKEDITOR.replace(textareaId, {
+      height            : '@Model.Options.Height',
+      resize_maxHeight  : '@(Model.Options.Height+300)',
+      customConfig      : 'customConfig.js'
+    });
+  }
+</script>
