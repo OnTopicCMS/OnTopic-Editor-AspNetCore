@@ -13,7 +13,7 @@
     <div class="col-md-9">
       @{int index = 0;}
       <div id="DisplayGroupTabsContent" class="tab-content">
-        @foreach (string category in Model.ContentTypeDescriptor.AttributeDescriptors.Select(a => a.DisplayGroup).Distinct()) {
+        @foreach (string category in Model.ContentTypeDescriptor.AttributeDescriptors.Select(a => a.DisplayGroup).Distinct().OrderBy(a => a)) {
 
           var supportedAttributes = Model.ContentTypeDescriptor.AttributeDescriptors.Where(a => a.DisplayGroup.Equals(category));
           var displayGroup = category.Replace(" ", "");
