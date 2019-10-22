@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
+using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Mvc.Models;
 using Ignia.Topics.Querying;
 using Ignia.Topics.Repositories;
@@ -50,39 +51,36 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
       AttributeDescriptorTopicViewModel attribute,
-      string                    htmlFieldPrefix                 = null,
-      string                    label                           = null,
-      string                    scope                           = null,
-      string                    attributeName                   = null,
-      string                    attributeValue                  = null,
-      string                    allowedKeys                     = null,
-      bool?                     useUniqueKey                    = null,
-      string                    valueProperty                   = null,
-      bool?                     targetPopup                     = null,
-      string                    targetUrl                       = null,
-      string                    onClientClose                   = null
+      TopicLookupOptions options = null,
+      string htmlFieldPrefix = null
     ) {
 
-     /*============================================================================================================================
-     | SET ATTRIBUTE DEFAULTS
-     \---------------------------------------------------------------------------------------------------------------------------*/
-      label                     = setConfiguration("Label", label, "Select a Topic...");
-      scope                     = setConfiguration("Scope", scope, null);
-      attributeName             = setConfiguration("AttributeName", attributeName, null);
-      attributeValue            = setConfiguration("AttributeValue", attributeValue, null);
-      allowedKeys               = setConfiguration("AllowedKeys", allowedKeys, null);
-      useUniqueKey              = setBooleanConfiguration("UseUniqueKey", useUniqueKey, true);
-      valueProperty             = setConfiguration("ValueProperty", valueProperty, useUniqueKey.Value? "UniqueKey" : "Key");
-
-      targetPopup               = setBooleanConfiguration("TargetPopup", targetPopup, false);
-      targetUrl                 = targetUrl?? attribute.GetConfigurationValue("TargetUrl", null);
-      onClientClose             = onClientClose ?? attribute.GetConfigurationValue("OnClientClose", null);
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set configuration values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      options                   ??= new TopicLookupOptions();
+      options.Label             ??= attribute.GetConfigurationValue(            "Label",                "Select a Topic…");
+      options.Scope             ??= attribute.GetConfigurationValue(            "Scope",                null);
+      options.AttributeName     ??= attribute.GetConfigurationValue(            "AttributeName",        null);
+      options.AttributeValue    ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
+      options.AllowedKeys       ??= attribute.GetConfigurationValue(            "AllowedKeys",          null);
+      options.UseUniqueKey      ??= attribute.GetBooleanConfigurationValue(     "UseUniqueKey",         false);
+      options.ValueProperty     ??= attribute.GetConfigurationValue(            "ValueProperty",        null);
+      options.TargetPopup       ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          false);
+      options.TargetUrl         ??= attribute.GetConfigurationValue(            "TargetUrl",            null);
+      options.OnClientClose     ??= attribute.GetConfigurationValue(            "OnClientClose",        null);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | DEFAULT PROCESSING
+      | Set HTML prefix
       \-----------------------------------------------------------------------------------------------------------------------*/
-      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix?? ViewData.TemplateInfo.HtmlFieldPrefix;
-      var viewModel = (TopicLookupAttributeViewModel)GetAttributeViewModel(new TopicLookupAttributeViewModel(attribute));
+      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var viewModel = new TopicLookupAttributeViewModel(attribute, options);
+
+      GetAttributeViewModel(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SET LABEL
@@ -90,7 +88,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       viewModel.TopicList.Add(
         new SelectListItem {
           Value = null,
-          Text = label
+          Text = options.Label
         }
       );
 
@@ -102,7 +100,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | SET OPTIONS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topics = GetTopics(scope, attributeName, attributeValue, allowedKeys);
+      var topics = GetTopics(options.Scope, options.AttributeName, options.AttributeValue, options.AllowedKeys);
 
       foreach (var topic in topics) {
 
@@ -120,28 +118,17 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | RETURN VIEW MODEL
+      | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | LOCAL HELPER FUNCTIONS
+      | Helper functions
       \-----------------------------------------------------------------------------------------------------------------------*/
-      bool? setBooleanConfiguration(string parameterName, bool? parameterValue, bool defaultParameterValue) {
-        if (parameterValue.HasValue) {
-          return parameterValue;
-        }
-        return Boolean.Parse(attribute.GetConfigurationValue(parameterName, defaultParameterValue.ToString()));
-      }
-
-      string setConfiguration(string parameterName, string parameterValue, string defaultParameterValue) {
-        return parameterValue?? attribute.GetConfigurationValue(parameterName, defaultParameterValue);
-      }
-
       string getValue(Topic topic) {
-        if (!String.IsNullOrEmpty(targetUrl)) {
+        if (!String.IsNullOrEmpty(options.TargetUrl)) {
           // Add TopicID if not already available
-          var uniqueTargetUrl = targetUrl;
+          var uniqueTargetUrl = options.TargetUrl;
           if (
             uniqueTargetUrl.IndexOf("?") >= 0 &&
             uniqueTargetUrl.IndexOf("TopicID", StringComparison.InvariantCultureIgnoreCase) < 0
@@ -150,11 +137,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
           }
           return ReplaceTokens(topic, uniqueTargetUrl);
         }
-        return ReplaceTokens(topic, "{" + valueProperty + "}");
+        return ReplaceTokens(topic, "{" + options.ValueProperty + "}");
       }
 
     }
-
 
     /*==========================================================================================================================
     | METHOD: GET TOPICS

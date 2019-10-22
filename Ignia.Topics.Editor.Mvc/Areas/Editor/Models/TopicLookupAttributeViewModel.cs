@@ -16,7 +16,7 @@ namespace Ignia.Topics.Editor.Mvc.Models {
   /// <summary>
   ///   Extends the <see cref="AttributeViewModel"/> to include properties that are specific to the topic lookup view component.
   /// </summary>
-  public class TopicLookupAttributeViewModel: AttributeViewModel<DefaultOptions> {
+  public class TopicLookupAttributeViewModel: AttributeViewModel<TopicLookupOptions> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -26,7 +26,7 @@ namespace Ignia.Topics.Editor.Mvc.Models {
     /// </summary>
     public TopicLookupAttributeViewModel(
       AttributeDescriptorTopicViewModel attributeDescriptor,
-      DefaultOptions options = null,
+      TopicLookupOptions options,
       string value = null,
       string inheritedValue = null
     ) : base(
