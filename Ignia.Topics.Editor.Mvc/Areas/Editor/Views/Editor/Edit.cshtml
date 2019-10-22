@@ -118,7 +118,7 @@
      * Force the user to confirm they wish to delete a Topic before performing the deletion
      */
     function confirmDelete() {
-      return confirm('Are you sure you want to delete the "@Model.Topic.Title.Replace("'", "&rsquo;")" topic? The topic and all descendants will be permanently deleted.');
+      return confirm('Are you sure you want to delete the "@(Model.Topic.Title?.Replace("'", "&rsquo;")?? Model.Topic.Key)" topic? The topic and all descendants will be permanently deleted.');
     }
 
   </script>
