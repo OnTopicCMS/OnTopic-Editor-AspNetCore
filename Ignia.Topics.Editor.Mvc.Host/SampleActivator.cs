@@ -158,9 +158,6 @@ namespace OnTopicTest {
       if (type == typeof(FilePathViewComponent)) {
         return new FilePathViewComponent(mvcTopicRoutingService);
       }
-      if (type == typeof(FileUploadViewComponent)) {
-        return new FileUploadViewComponent(mvcTopicRoutingService);
-      }
       if (type == typeof(FormFieldViewComponent)) {
         return new FormFieldViewComponent(mvcTopicRoutingService);
       }
@@ -174,7 +171,7 @@ namespace OnTopicTest {
         return new RelationshipsViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(TokenizedTopicListViewComponent)) {
-        return new TokenizedTopicListViewComponent(mvcTopicRoutingService);
+        return new TokenizedTopicListViewComponent(mvcTopicRoutingService, _topicRepository);
       }
       if (type == typeof(TopicListViewComponent)) {
         return new TopicListViewComponent(mvcTopicRoutingService);
@@ -183,7 +180,7 @@ namespace OnTopicTest {
         return new TopicLookupViewComponent(mvcTopicRoutingService, _topicRepository);
       }
       if (type == typeof(TopicPointerViewComponent)) {
-        return new TopicPointerViewComponent(mvcTopicRoutingService);
+        return new TopicPointerViewComponent(mvcTopicRoutingService, _topicRepository);
       }
       if (type == typeof(WysiwygViewComponent)) {
         return new WysiwygViewComponent(mvcTopicRoutingService);
