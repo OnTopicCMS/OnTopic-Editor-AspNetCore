@@ -3,10 +3,9 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using Ignia.Topics.Editor.Models;
 
 #nullable enable
-
-using Ignia.Topics.Editor.Models;
 
 namespace Ignia.Topics.Editor.Models.Components.Options {
 
@@ -34,7 +33,7 @@ namespace Ignia.Topics.Editor.Models.Components.Options {
     /// </summary>
     public string? CssClass { get; set; }
 
-  }
-}
+  } //Class
+} //Namespace
 
 #nullable restore
