@@ -3,3 +3,38 @@
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 }
+
+<script type="text/javascript">
+  var @($"{Model.AttributeDescriptor.Key}Tree");
+
+  Ext.onReady(function(){
+    var Tree            = Ext.tree;
+
+  //track what nodes are moved
+    var oldPosition     = null;
+    var oldNextSibling  = null;
+    var debugMessage    = "";
+
+    @($"{Model.AttributeDescriptor.Key}Tree") = new Tree.TreePanel({
+      useArrows                 : true,
+      autoScroll                : true,
+      animate                   : false,
+      enableDD                  : true,
+      containerScroll           : true,
+      border                    : false,
+      baseCls                   : 'TreeView',
+      dataUrl                   : '/OnTopic/Json/@Model.WebPath/@Model.AttributeDescriptor.Key?ShowAll=true',
+      root                      : new Ext.tree.AsyncTreeNode({}),
+      rootVisible               : false,
+    });
+
+    @if (!Model.IsNew) {
+      <text>
+        @($"{Model.AttributeDescriptor.Key}Tree").render('@ViewData.TemplateInfo.GetFullHtmlFieldName("Container")');
+      </text>
+    }
+  });
+
+  </script>
+
+<div id="@ViewData.TemplateInfo.GetFullHtmlFieldName("Container")"></div>

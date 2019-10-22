@@ -3,9 +3,12 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components.Options;
+using Ignia.Topics.Editor.Models.Components.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ignia.Topics.Editor.Mvc.Components {
@@ -35,12 +38,42 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     public async Task<IViewComponentResult> InvokeAsync(
       AttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix,
-      DefaultOptions options
+      TopicListOptions options = null
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set HTML prefix
+      \-----------------------------------------------------------------------------------------------------------------------*/
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      options ??= new DefaultOptions();
-      var viewModel = new AttributeViewModel<DefaultOptions>(attribute, options);
-      return View(GetAttributeViewModel(viewModel));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set configuration values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      options                   ??= new TopicListOptions();
+      options.ContentTypes      ??= attribute.GetConfigurationValue(            "ContentTypes",         "");
+      options.TargetPopup       ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          false);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var viewModel = new TopicListAttributeViewModel(attribute, options);
+
+      GetAttributeViewModel(viewModel);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set model values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (HttpContext.Request.Query.TryGetValue("Action", out var action)) {
+        viewModel.IsNew = action.FirstOrDefault().Equals("Add", StringComparison.InvariantCultureIgnoreCase);
+      }
+      viewModel.UniqueKey = CurrentTopic.GetUniqueKey();
+      viewModel.WebPath   = CurrentTopic.GetWebPath();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return view with view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View(viewModel);
+
     }
 
   } // Class
