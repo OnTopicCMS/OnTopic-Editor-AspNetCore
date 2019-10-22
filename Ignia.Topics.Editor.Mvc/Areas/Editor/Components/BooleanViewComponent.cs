@@ -4,6 +4,13 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
+using Ignia.Topics.Editor.Models;
+using Ignia.Topics.Editor.Models.Components;
+using Ignia.Topics.Editor.Models.Components.Options;
+using Ignia.Topics.Editor.Models.Components.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
 namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
@@ -12,7 +19,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a boolean attribute type.
   /// </summary>
-  public class BooleanViewComponent: DefaultAttributeTypeViewComponent {
+  public class BooleanViewComponent: AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -22,6 +29,22 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// </summary>
     /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
     public BooleanViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+
+    /*==========================================================================================================================
+    | METHOD: INVOKE (ASYNC)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Assembles the view model for the <see cref="DefaultAttributeTypeViewComponent"/>.
+    /// </summary>
+    public async Task<IViewComponentResult> InvokeAsync(
+      AttributeDescriptorTopicViewModel attribute,
+      string htmlFieldPrefix,
+      BooleanOptions options = null
+    ) {
+      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+      options ??= new BooleanOptions();
+      return View(GetAttributeViewModel(new BooleanAttributeViewModel(attribute, options)));
+    }
 
   } // Class
 
