@@ -98,6 +98,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set contextual values from current topic
       \-----------------------------------------------------------------------------------------------------------------------*/
+      viewModel.TopicId         = CurrentTopic.Id;
       viewModel.InheritedValue  = CurrentTopic.Parent.Attributes.GetValue(attribute.Key, true);
       viewModel.Value           = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
 
