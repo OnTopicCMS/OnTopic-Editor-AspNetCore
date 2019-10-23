@@ -38,3 +38,28 @@
   </script>
 
 <div id="@ViewData.TemplateInfo.GetFullHtmlFieldName("Container")"></div>
+
+@if (!Model.IsNew) {
+  var options                   = new TopicLookupOptions() {
+    Scope                       = "Configuration:ContentTypes",
+    AttributeName               = "ContentType",
+    AttributeValue              = "ContentType",
+    AllowedKeys                 = Model.Options.ContentTypes,
+    Label                       = "Add child topic…",
+    TargetUrl                   = $"?ContentType{{Topic}}&Path={Model.UniqueKey}:{Model.AttributeDescriptor.Key}&Action=Add",
+    TargetPopup                 = Model.Options.TargetPopup,
+    OnClientClose               = $"{Model.AttributeDescriptor.Key}Tree_refresh"
+  };
+  <text>
+    <vc:topic-lookup
+      attribute=@Model.AttributeDescriptor
+      html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
+      options=@options>
+    </vc:topic-lookup>
+  </text>
+}
+else {
+  <div class="alert alert-warning">
+    Subtopics cannot be created until this topic has been saved. Save the topic, then add nested topics.
+  </div>
+}
