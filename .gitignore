@@ -293,10 +293,8 @@ __pycache__/
 
 # Gulp build process files
 /node_modules
-/bower_components
 **/*/.sass-cache
 *.sass-cache*
-gulpFile.js
 
 # Custom
 config.yml
@@ -305,3 +303,7 @@ compilerconfig.json
 compilerconfig.json.defaults
 **/ExtJS/*
 **/Vendor/*
+*.js.map
+*.css.map
+**/wwwroot/Shared/Styles/*.css
+**/wwwroot/Shared/Scripts/*.js
