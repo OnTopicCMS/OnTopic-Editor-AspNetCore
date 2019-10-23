@@ -11,8 +11,8 @@ using Ignia.Topics.Data.Caching;
 using Ignia.Topics.Data.Sql;
 using Ignia.Topics.Editor.Mvc.Components;
 using Ignia.Topics.Editor.Mvc.Controllers;
+using Ignia.Topics.Editor.Mvc.Infrastructure;
 using Ignia.Topics.Mapping;
-using Ignia.Topics.Reflection;
 using Ignia.Topics.Repositories;
 using Ignia.Topics.ViewModels;
 using Microsoft.AspNetCore.Hosting;
@@ -72,7 +72,7 @@ namespace OnTopicTest {
       | Preload repository
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository                                          = cachedTopicRepository;
-      _typeLookupService                                        = new DynamicTopicViewModelLookupService();
+      _typeLookupService                                        = new EditorViewModelLookupService();
       _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
       _rootTopic                                                = _topicRepository.Load();
 
