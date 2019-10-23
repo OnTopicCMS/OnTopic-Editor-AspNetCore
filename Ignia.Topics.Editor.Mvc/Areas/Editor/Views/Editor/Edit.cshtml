@@ -92,34 +92,15 @@
       /**
        * Sends AJAX request to Delete Action
        */
-      $('#DeletePageButton').click(function () {
-
-        var topicToDelete       = '@Model.Topic.UniqueKey';
-
-        $.ajax({
-          url                   : '@Url.Action("Delete" + Model.Topic.WebPath, "Editor")',
-          type                  : 'POST',
-          success: function (result) {
-            if (result == true) {
-              console.log('Topic ' + topicToDelete + ' deleted.');
-            }
-          },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest);
-            console.log(errorThrown);
-          }
-        });
-
+      $('#DeletePageButton').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        if (confirm('Are you sure you want to delete the "@(Model.Topic.Title?.Replace("'", "&rsquo;")?? Model.Topic.Key)" topic? The topic and all descendants will be permanently deleted.')) {
+          window.location.href = "@Url.Action("Delete", "Editor", new { path = Model.Topic.WebPath })";
+        }
       });
 
     });
-
-    /**
-     * Force the user to confirm they wish to delete a Topic before performing the deletion
-     */
-    function confirmDelete() {
-      return confirm('Are you sure you want to delete the "@(Model.Topic.Title?.Replace("'", "&rsquo;")?? Model.Topic.Key)" topic? The topic and all descendants will be permanently deleted.');
-    }
 
   </script>
 }

@@ -294,7 +294,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <summary>
     ///   Fires when the user clicks the "Delete" button; deletes the current topic and any child attributes.
     /// </summary>
-    [HttpPost]
+    [HttpPost, HttpGet]
     public IActionResult Delete(bool isModal = false) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
