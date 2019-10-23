@@ -30,7 +30,7 @@ namespace Ignia.Topics.Editor.Models {
     | PROPERTY: WEB PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a reference to the <see cref="Topic.GetUniqueKey()"/> result.
+    ///   Provides a reference to the <see cref="Topic.GetWebPath()"/> result.
     /// </summary>
     public string WebPath { get; set; }
 
