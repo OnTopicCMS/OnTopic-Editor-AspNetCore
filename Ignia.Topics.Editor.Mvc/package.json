@@ -1,53 +1,22 @@
 {
-  "name": "gulp-workflow",
-  "version": "0.0.1",
-  "description": "Ignia's default front-end workflow using Gulp, Bower, and Sass",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "name": "Ignia.Topics.Editor.Mvc",
+  "description": "Loads client-side dependencies for the Topic Editor.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ignia/gulp-workflow.git"
+    "url": "https://github.com/Ignia/topic-editor-mvc.git"
   },
-  "keywords": [
-    "Gulp",
-    "Bower",
-    "Sass",
-    "workflow",
-    "build",
-    "process",
-    "boilerplate",
-    "Ignia"
-  ],
-  "author": "Ignia, LLC",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Ignia/gulp-workflow/issues"
-  },
-  "homepage": "https://github.com/Ignia/gulp-workflow",
   "devDependencies": {
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.1.0",
-    "gulp-babel": "^6.1.3",
-    "gulp-clean-css": "^3.10.0",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
-    "gulp-connect": "^5.7.0",
-    "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^3.1.1",
+    "gulp-if": "^3.0.0",
     "gulp-jshint": "^2.1.0",
-    "gulp-jsonminify": "^1.1.0",
-    "gulp-livereload": "^3.8.1",
-    "gulp-minify-html": "^1.0.6",
-    "gulp-notify": "^3.2.0",
-    "gulp-sass": "^3.2.1",
-    "gulp-sass-unicode": "^1.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
-    "gulp-util": "^3.0.8",
-    "imagemin-pngcrush": "^5.0.0",
     "jshint": "^2.10.2",
-    "jsonminify": "^0.4.1"
+    "merge2": "^1.3.0"
   }
 }
