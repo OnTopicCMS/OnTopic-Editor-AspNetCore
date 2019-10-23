@@ -129,7 +129,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
       //Manually map permitted content types since mapping reference collections isn't currently supported
       if (contentTypeViewModel.PermittedContentTypes.Count.Equals(0)) {
-        foreach (var contentTypeReference in _topicRepository.GetContentTypeDescriptors()) {
+        foreach (var contentTypeReference in contentTypeDescriptor.PermittedContentTypes) {
           contentTypeViewModel.PermittedContentTypes.Add(
             await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeReference)
           );

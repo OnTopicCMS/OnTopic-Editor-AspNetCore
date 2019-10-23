@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model EditorViewModel
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -89,6 +91,23 @@
         <nav id="Sidebar" class="col-md-2 col-sm-3 sidebar" role="navigation">
           <div id="FixedSidebar">
             <div id="TreeView"></div>
+            @{
+              var options       = new TopicLookupOptions() {
+                Scope           = "Configuration:ContentTypes",
+                AttributeName   = "ContentType",
+                AttributeValue  = "ContentType",
+                Label           = "Add new topic…",
+                AllowedKeys     = String.Join(",", Model.ContentTypeDescriptor.PermittedContentTypes.Select(m => m.Key).ToArray()),
+                TargetUrl       = $"?ContentType{{Topic}}&Path={Model.Topic.UniqueKey}&Action=Add",
+              };
+            }
+            <text>
+              <vc:topic-lookup
+                attribute=@(new AttributeDescriptorTopicViewModel() { Key="Placeholder", EditorType="TopicLookup.ascx" })
+                html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
+                options=@options>
+              </vc:topic-lookup>
+            </text>
           </div>
         </nav>
         <!-- /Primary (Treeview) Sidebar -->

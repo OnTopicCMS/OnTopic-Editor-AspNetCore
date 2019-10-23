@@ -67,7 +67,6 @@ namespace Ignia.Topics.Editor.Models {
     ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created under <see cref="Topic"/>s of the
     ///   current <see cref="ContentType"/>.
     /// </summary>
-    [Relationship(RelationshipType.Relationship)]
     public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new List<ContentTypeDescriptorTopicViewModel>();
 
   } // Class
