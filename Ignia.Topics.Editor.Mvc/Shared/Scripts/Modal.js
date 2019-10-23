@@ -23,7 +23,7 @@
         backdrop                : 'static',
         keyboard                : false
         });
-      };
+      }
 
     };
 

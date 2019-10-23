@@ -15,12 +15,12 @@
 |               04.14.15        Katherine Trunkey               Refactored to TokenizedTopics class structure
 \-----------------------------------------------------------------------------------------------------------------------------*/
 
-  'use strict';
-
 /*==============================================================================================================================
 | TOKENIZED TOPICS CLASS
 \-----------------------------------------------------------------------------------------------------------------------------*/
   var TokenizedTopics           = function() {
+
+    'use strict';
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Constructor/internal properties
@@ -51,14 +51,14 @@
   /*----------------------------------------------------------------------------------------------------------------------------
   | Build Topics.Json.aspx call URL
   \---------------------------------------------------------------------------------------------------------------------------*/
-    var topicsUrl               = '/OnTopic/Json/'
-      + self.scope
-      + '?ShowRoot=true'
-      + '&FlattenStructure=true'
-      + '&UsePartialMatch=true'
-      + '&AttributeName='       + self.attributeName
-      + '&AttributeValue='      + self.attributeValue
-      + '&ResultLimit='         + self.resultLimit;
+    var topicsUrl               = '/OnTopic/Json/'       +
+      self.scope                                         +
+      '?ShowRoot=true'                                   +
+      '&FlattenStructure=true'                           +
+      '&UsePartialMatch=true'                            +
+      '&AttributeName='       + self.attributeName       +
+      '&AttributeValue='      + self.attributeValue      +
+      '&ResultLimit='         + self.resultLimit;
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Initialize Token-Input with options set on TokenizedTopics
@@ -83,11 +83,11 @@
         if (breadcrumbs.indexOf('Root:') >= 0) {
           breadcrumbs           = breadcrumbs.substring(breadcrumbs.indexOf('Root:') + 5);
         }
-        return ''
-          + '<li>'
-          + '  <small class="Breadcrumbs">' + breadcrumbs + '</small>'
-          + '  <div class="Selection">' + item.text + '</div>'
-          + '</li>';
+        return '' +
+          '<li>' +
+          '  <small class="Breadcrumbs">' + breadcrumbs + '</small>' +
+          '  <div class="Selection">' + item.text + '</div>' +
+          '</li>';
       }
     });
 

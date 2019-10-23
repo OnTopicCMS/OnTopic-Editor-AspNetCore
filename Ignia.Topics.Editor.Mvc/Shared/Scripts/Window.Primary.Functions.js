@@ -40,7 +40,7 @@ $(function() {
   var $formAreaOffset   = $('#DisplayGroupTabsContent').offset();
   if ($formAreaOffset) {
     $('#DisplayGroupTabsContent').css('min-height', ($windowHeight - $formAreaOffset.top) + 'px');
-  };
+  }
 
 });
 

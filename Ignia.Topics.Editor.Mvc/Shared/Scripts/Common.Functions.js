@@ -88,9 +88,9 @@ function initEditorModal(title, targetUrl, onCloseFunction) {
       backdrop          : 'static',
       keyboard          : false
     });
-  };
+  }
 
-};
+}
 
 // Passthrough function for evaluating/setting the Topic Key value based on the Title value
 function getKeyValue(input) {
