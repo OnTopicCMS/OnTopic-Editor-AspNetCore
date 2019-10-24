@@ -42,6 +42,37 @@ const files = {
 };
 
 /*==============================================================================================================================
+| DEPENDENCIES
+>-------------------------------------------------------------------------------------------------------------------------------
+| Paths to third-party dependencies that need to by copies into the project. This is exclusively for pre-compiled client-side
+| files, such as JavaScript (excluding TypeScript), CSS (excluding SCSS), images, and the occasional font.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+const dependencies = {
+  'Scripts': {
+    'jQuery'                    : 'node_modules/jquery/dist/*.*',
+    'jQueryUI'                  : 'node_modules/jquery-ui-dist/jquery-ui.*.js',
+    'Bootstrap'                 : 'node_modules/bootstrap/dist/js/bootstrap.min.*',
+    'Popper'                    : 'node_modules/popper.js/dist/umd/popper.min*',
+    'TokenInput'                : 'node_modules/jquery-tokeninput/dist/js/*.js',
+    'ExtJS'                     : 'Shared/Scripts/ExtJS/*.js',
+    'CkEditor'                  : [ 'node_modules/ckeditor/**/*',
+                                    'Shared/Scripts/CkEditor/**/*.js'
+                                  ],
+    'TrentRichardson'           : 'node_modules/jquery-ui-timepicker-addon/dist/*.js'
+  },
+  'Styles': {
+    'Bootstrap'                 : 'node_modules/bootstrap/dist/css/bootstrap.min.*',
+    'jQueryUI'                  : 'node_modules/jquery-ui-dist/jquery-ui.*.css',
+    'ExtJS'                     : 'Shared/Scripts/ExtJS/Resources/**/*',
+    'TokenInput'                : 'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
+    'TrentRichardson'           : 'node_modules/jquery-ui-timepicker-addon/dist/*.css'
+  },
+  'Fonts': {
+   'FontAwesome'                : 'node_modules/@fortawesome/fontawesome-free/webfonts/*'
+  }
+};
+
+/*==============================================================================================================================
 | SET ENVIRONMENT
 >-------------------------------------------------------------------------------------------------------------------------------
 | Looks for an environment variable and conditionally set local context accordingly.
@@ -95,19 +126,38 @@ function jsTask() {
 }
 
 /*==============================================================================================================================
+| TASK: DEPENDENCIES
+>-------------------------------------------------------------------------------------------------------------------------------
+| Copies static dependencies from their source folders and into their appropriate build folders.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+function dependenciesTask() {
+  var streams = [];
+  for (var contentType in dependencies) {
+    for (var dependency in dependencies[contentType]) {
+      streams.push(
+        src(dependencies[contentType][dependency])
+          .pipe(dest(outputDir.concat('/Shared/', contentType, '/Vendor/', dependency)))
+      );
+    }
+  }
+  return merge(streams);
+}
+
+/*==============================================================================================================================
 | EXPORT TASKS
 >-------------------------------------------------------------------------------------------------------------------------------
 | Exports the above defined tasks for use by gulp.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 exports.scss                    = scssTask;
 exports.js                      = jsTask;
+exports.dependencies            = dependenciesTask;
 
 /*==============================================================================================================================
 | TASK: BUILD
 >-------------------------------------------------------------------------------------------------------------------------------
 | Composite task that will call all build-related tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.build = parallel(scssTask, jsTask);
+exports.build = parallel(dependenciesTask, scssTask, jsTask);
 
 /*==============================================================================================================================
 | TASK: DEFAULT
@@ -115,4 +165,4 @@ exports.build = parallel(scssTask, jsTask);
 | The default task when Gulp runs, assuming no task is specified. Assuming the environment variable isn't explicitly defined
 | otherwise, will run on development-oriented tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.default = parallel(scssTask, jsTask);
+exports.default = parallel(dependenciesTask, scssTask, jsTask);
