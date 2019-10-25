@@ -7,9 +7,9 @@
 
   <ItemGroup>
     <PackageReference Include="foundation-sites" Version="6.5.3" />
-    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.1+357" />
-    <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-csharp8-update.1+357" />
-    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.1+357" />
+    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.3" />
+    <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-csharp8-update.3" />
+    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.3" />
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Newtonsoft.Json" version="12.0.2" />
   </ItemGroup>
