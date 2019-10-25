@@ -33,7 +33,6 @@ namespace Ignia.Topics.Editor.Models {
     ///   A list of <see cref="AttributeDescriptorTopicViewModel"/> instances representing each of the <see
     ///   cref="AttributeDescriptor"/> permitted by the underlying <see cref="ContentTypeDescriptor"/>.
     /// </summary>
-    [Relationship("Attributes", Type=RelationshipType.NestedTopics)]
     public List<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new List<AttributeDescriptorTopicViewModel>();
 
     /*==========================================================================================================================
@@ -68,7 +67,6 @@ namespace Ignia.Topics.Editor.Models {
     ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created under <see cref="Topic"/>s of the
     ///   current <see cref="ContentType"/>.
     /// </summary>
-    [Relationship("ContentTypes", Type=RelationshipType.Relationship)]
     public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; set; }
 
   } // Class
