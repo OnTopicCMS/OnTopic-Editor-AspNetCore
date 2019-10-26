@@ -58,7 +58,8 @@ const dependencies = {
     'CkEditor'                  : [ 'node_modules/ckeditor/**/*',
                                     'Shared/Scripts/CkEditor/**/*.js'
                                   ],
-    'TrentRichardson'           : 'node_modules/jquery-ui-timepicker-addon/dist/*.js'
+    'TrentRichardson'           : 'node_modules/jquery-ui-timepicker-addon/dist/*.js',
+    'PaperCut'                  : 'node_modules/jquery.are-you-sure/*.js'
   },
   'Styles': {
     'Bootstrap'                 : 'node_modules/bootstrap/dist/css/bootstrap.min.*',
