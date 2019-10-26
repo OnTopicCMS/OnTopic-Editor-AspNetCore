@@ -71,7 +71,7 @@
       $('#SavePageButton').click(function() {
 
         $.ajax({
-          url                   : '@Url.Action("Edit" + Model.Topic.WebPath, "Editor")',
+          url                   : '@Url.Action("Edit", "Editor", new { path = Model.Topic.WebPath })',
           type                  : 'POST',
           data                  : @bindingModel,
           success: function (result) {
