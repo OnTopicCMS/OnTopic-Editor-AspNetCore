@@ -120,7 +120,7 @@ function jsTask() {
     .pipe(sourceMaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
-    //.pipe(concat('Scripts.js'))
+    .pipe(concat('Scripts.js'))
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
     .pipe(dest(outputDir + '/Shared/Scripts/'));
