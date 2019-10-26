@@ -29,7 +29,7 @@
 
                 @await Component.InvokeAsync(
                   attribute.EditorType.Replace(".ascx", ""),
-                  new { Attribute=attribute, HtmlFieldPrefix="Attributes[" + index++ + "]" }
+                  new { Attribute=attribute, HtmlFieldPrefix=$"Attributes[{index++}]" }
                 )
 
               }
