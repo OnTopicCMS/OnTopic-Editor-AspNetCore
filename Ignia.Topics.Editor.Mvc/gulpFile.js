@@ -62,7 +62,7 @@ const files = {
 /*==============================================================================================================================
 | DEPENDENCIES
 >-------------------------------------------------------------------------------------------------------------------------------
-| Paths to third-party dependencies that need to by copies into the project. This is exclusively for pre-compiled client-side
+| Paths to third-party dependencies that need to be copied into the project. This is exclusively for pre-compiled client-side
 | files, such as JavaScript (excluding TypeScript), CSS (excluding SCSS), images, and the occasional font.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const dependencies = {
