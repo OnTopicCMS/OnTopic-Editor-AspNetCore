@@ -51,7 +51,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       options                   ??= new TopicListOptions();
       options.ContentTypes      ??= attribute.GetConfigurationValue(            "ContentTypes",         "");
-      options.TargetPopup       ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          false);
+      options.TargetPopup       ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
