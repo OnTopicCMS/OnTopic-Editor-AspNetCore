@@ -4,16 +4,14 @@
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 }
 
-@if (Model.TopicList.Count > 1) {
+@if (Model.TopicList.Count > 2) {
   <select asp-for="Value" asp-items="Model.TopicList" class="FormField Field"></select>
 }
 
-@if (Model.TopicList.Count == 1 && !String.IsNullOrEmpty(Model.Options.TargetUrl)) {
+@if (Model.TopicList.Count <= 2 && !String.IsNullOrEmpty(Model.Options.TargetUrl)) {
   <div class="ChildTopic">
     <!-- @Model.Options.Label -->
     @if (Model.Options.TargetPopup is false) {
-      <a href="@Model.TopicList.FirstOrDefault().Value" class="btn btn-info btn-sm">
-        Add @Model.TopicList.FirstOrDefault().Text
       </a>
     }
   </div>
