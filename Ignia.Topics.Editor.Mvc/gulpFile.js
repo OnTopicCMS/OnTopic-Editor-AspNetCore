@@ -38,8 +38,26 @@ var     environment             = 'development',
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const files = {
   scss                          : 'Shared/Styles/Style.scss',
-  js                            : 'Shared/Scripts/*.js'
+  js                            : 'Shared/Scripts/*.js',
+  jsVendor                      : [ 'node_modules/jquery/dist/jquery.min.js',
+                                    'node_modules/jquery-ui-dist/jquery-ui.min.js',
+                                    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+                                    'node_modules/popper.js/dist/umd/popper.min.js',
+                                    'node_modules/jquery-tokeninput/dist/js/jquery-tokeninput.min.js',
+                                    'Shared/Scripts/ExtJS/ext-base.js',
+                                    'Shared/Scripts/ExtJS/ext-all.js',
+                                    'Shared/Scripts/ExtJS/ext-ExtendTextField.js',
+                                    'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js',
+                                    'node_modules/jquery.are-you-sure/jquery.are-you-sure.js'
+                                  ],
+  cssVendor                     : [ 'node_modules/bootstrap/dist/css/bootstrap.min.css',
+                                    'node_modules/jquery-ui-dist/jquery-ui.min.css',
+                                    'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
+                                    'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css'
+                                  ]
 };
+
+
 
 /*==============================================================================================================================
 | DEPENDENCIES
@@ -127,6 +145,32 @@ function jsTask() {
 }
 
 /*==============================================================================================================================
+| TASK: JAVASCRIPT VENDOR FILES
+>-------------------------------------------------------------------------------------------------------------------------------
+| Consolidates third-party JavaScript files sourced from npm as part of production process.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+function jsVendorTask() {
+  return src(files.jsVendor)
+    .pipe(sourceMaps.init())
+    .pipe(concat('Vendor.js'))
+    .pipe(sourceMaps.write('.'))
+    .pipe(dest(outputDir + '/Shared/Scripts/'));
+}
+
+/*==============================================================================================================================
+| TASK: STYLESHEET VENDOR FILES
+>-------------------------------------------------------------------------------------------------------------------------------
+| Consolidates third-party Stylesheet files sourced from npm as part of production process.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+function cssVendorTask() {
+  return src(files.cssVendor)
+    .pipe(sourceMaps.init())
+    .pipe(concat('Vendor.css'))
+    .pipe(sourceMaps.write('.'))
+    .pipe(dest(outputDir + '/Shared/Styles/'));
+}
+
+/*==============================================================================================================================
 | TASK: DEPENDENCIES
 >-------------------------------------------------------------------------------------------------------------------------------
 | Copies static dependencies from their source folders and into their appropriate build folders.
@@ -150,7 +194,9 @@ function dependenciesTask() {
 | Exports the above defined tasks for use by gulp.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 exports.scss                    = scssTask;
+exports.cssVendor               = cssVendorTask;
 exports.js                      = jsTask;
+exports.jsVendor                = jsVendorTask;
 exports.dependencies            = dependenciesTask;
 
 /*==============================================================================================================================
@@ -158,7 +204,7 @@ exports.dependencies            = dependenciesTask;
 >-------------------------------------------------------------------------------------------------------------------------------
 | Composite task that will call all build-related tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.build = parallel(dependenciesTask, scssTask, jsTask);
+exports.build = parallel(dependenciesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
 
 /*==============================================================================================================================
 | TASK: DEFAULT
@@ -166,4 +212,4 @@ exports.build = parallel(dependenciesTask, scssTask, jsTask);
 | The default task when Gulp runs, assuming no task is specified. Assuming the environment variable isn't explicitly defined
 | otherwise, will run on development-oriented tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.default = parallel(dependenciesTask, scssTask, jsTask);
+exports.default = parallel(dependenciesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
