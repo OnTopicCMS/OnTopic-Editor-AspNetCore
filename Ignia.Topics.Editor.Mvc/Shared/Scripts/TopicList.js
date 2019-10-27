@@ -25,17 +25,23 @@
 initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
 
   /*----------------------------------------------------------------------------------------------------------------------------
-  | Provide debug data for testing
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  console.log('initEditorModal fired:');
-  console.log('namespace: ' + namespace + ' - title: ' + title + ' - targetUrl: ' + targetUrl + ' - onCloseFunction: ' + onCloseFunction);
-
-  /*----------------------------------------------------------------------------------------------------------------------------
   | Establish variables
   \---------------------------------------------------------------------------------------------------------------------------*/
   var $editorModal              = $('#EditorModal' + namespace);
   var $modalTitle               = $('#ModalTitle' + namespace);
   var $editorFrame              = $('#EditorFrame' + namespace);
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | Provide debug data for testing
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  console.log('initEditorModal fired:');
+  console.log('namespace: ' + namespace);
+  console.log('title: ' + title);
+  console.log('targetUrl: ' + targetUrl);
+  console.log('onCloseFunction: ' + onCloseFunction);
+  console.log('#EditorModal' + namespace + ': ' + $editorModal);
+  console.log('#ModalTitle' + namespace + ': ' + $modalTitle);
+  console.log('#EditorFrame' + namespace + ': ' + $editorFrame);
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Set modal window title
