@@ -27,9 +27,9 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
   /*----------------------------------------------------------------------------------------------------------------------------
   | Establish variables
   \---------------------------------------------------------------------------------------------------------------------------*/
-  var $editorModal              = $('#EditorModal' + namespace);
-  var $modalTitle               = $('#ModalTitle' + namespace);
-  var $editorFrame              = $('#EditorFrame' + namespace);
+  var $editorModal              = $('#EditorModal_' + namespace);
+  var $modalTitle               = $('#ModalTitle_' + namespace);
+  var $editorFrame              = $('#EditorFrame_' + namespace);
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Provide debug data for testing

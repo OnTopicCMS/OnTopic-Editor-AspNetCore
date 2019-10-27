@@ -1,4 +1,4 @@
-﻿@model AttributeViewModel
+﻿@model TopicListAttributeViewModel
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
@@ -26,6 +26,21 @@
       dataUrl                   : '/OnTopic/Json/@Model.WebPath/@Model.AttributeDescriptor.Key?ShowAll=true',
       root                      : new Ext.tree.AsyncTreeNode({}),
       rootVisible               : false,
+      listeners                 : {
+        click: function (n) {
+          var targetUrl = "@(Url.Action("Edit")+Model.AttributeDescriptor.Key)/" + n.attributes.key;
+          @if (Model.Options.TargetPopup?? true) {
+            <text>
+              initEditorModal('@Model.Key', n.attributes.text, targetUrl + '?Modal=true', @($"{Model.AttributeDescriptor.Key}Tree_refresh"));return false;
+            </text>
+          }
+          else {
+            <text>
+              location.href = targetUrl;
+            </text>
+          }
+        }
+      }
     });
 
     @if (!Model.IsNew) {
@@ -34,6 +49,10 @@
       </text>
     }
   });
+
+  function @($"{Model.AttributeDescriptor.Key}Tree")_refresh() {
+    @($"{Model.AttributeDescriptor.Key}Tree").getLoader().load(@($"{Model.AttributeDescriptor.Key}Tree")).root;
+    };
 
   </script>
 
@@ -63,3 +82,24 @@ else {
     Subtopics cannot be created until this topic has been saved. Save the topic, then add nested topics.
   </div>
 }
+
+<div id="@($"EditorModal_{Model.AttributeDescriptor.Key}")" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h1 id="@($"ModalTitle_{Model.AttributeDescriptor.Key}")" class="h3 Page-Title"><!-- determined by modal open script caller --></h1>
+    </div>
+    <div class="modal-content">
+      <iframe id="@($"EditorFrame_{Model.AttributeDescriptor.Key}")" src="" width="100%" marginheight="0" frameborder="0">
+        <!-- iframe source determined by modal open script caller -->
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('[id^="EditorModal"]').on('hide.bs.modal', function (e) {
+      @($"{Model.AttributeDescriptor.Key}Tree_refresh")();
+    });
+  });
+</script>
