@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components.Options;
+using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Editor.Mvc.Models;
 using Ignia.Topics.Querying;
 using Ignia.Topics.Repositories;

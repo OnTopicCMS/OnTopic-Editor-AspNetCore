@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components.Options;
+using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Editor.Mvc.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

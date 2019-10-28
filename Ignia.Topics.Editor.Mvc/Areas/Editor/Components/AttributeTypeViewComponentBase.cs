@@ -12,6 +12,7 @@ using Ignia.Topics.Editor.Models;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Ignia.Topics.Editor.Models.Components.Options;
+using Ignia.Topics.Editor.Models.Metadata;
 
 namespace Ignia.Topics.Editor.Mvc.Components {
 

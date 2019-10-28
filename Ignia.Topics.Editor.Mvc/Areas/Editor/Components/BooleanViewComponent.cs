@@ -8,6 +8,7 @@ using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components;
 using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Components.ViewModels;
+using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

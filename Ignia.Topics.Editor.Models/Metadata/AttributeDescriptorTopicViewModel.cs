@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using Ignia.Topics.Metadata;
 
-namespace Ignia.Topics.Editor.Models {
+namespace Ignia.Topics.Editor.Models.Metadata {
 
   /*============================================================================================================================
   | CLASS: ATTRIBUTE DESCRIPTOR TOPIC VIEW MODEL

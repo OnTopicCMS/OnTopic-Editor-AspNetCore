@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components.Options;
+using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ignia.Topics.Editor.Mvc.Components {

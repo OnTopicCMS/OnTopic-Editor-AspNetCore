@@ -11,6 +11,7 @@ using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Attributes;
 using Ignia.Topics.Editor.Models.Json;
+using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Internal.Diagnostics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Metadata;
