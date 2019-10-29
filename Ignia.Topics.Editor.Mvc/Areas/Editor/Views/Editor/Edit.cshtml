@@ -13,15 +13,14 @@
     <div class="col-md-9">
       @{int index = 0;}
       <div id="DisplayGroupTabsContent" class="tab-content">
-        @foreach (string category in Model.ContentTypeDescriptor.AttributeDescriptors.Select(a => a.DisplayGroup).Distinct().OrderBy(a => a)) {
+        @foreach (string displayGroupName in Model.ContentTypeDescriptor.GetDisplayGroups()) {
 
-          var supportedAttributes = Model.ContentTypeDescriptor.AttributeDescriptors.Where(a => a.DisplayGroup.Equals(category));
           var displayGroup = category.Replace(" ", "");
 
           <div id="Group_@displayGroup" class="tab-pane fade@(index == 0 ? " show active" : "")" role="tabpanel" aria-labelledby="Tab_@displayGroup">
             <section id="@category.Replace(" ", "-")">
 
-              @foreach (var attribute in supportedAttributes.OrderBy(a => a.SortOrder)) {
+              @foreach (var attribute in Model.ContentTypeDescriptor.GetAttributeDescriptors(displayGroupName)) {
 
                 if (attribute.IsHidden || String.IsNullOrEmpty(attribute.EditorType)) {
                   continue;

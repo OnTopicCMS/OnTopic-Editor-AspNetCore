@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Collections.Generic;
+using System.Linq;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Metadata;
 
@@ -68,6 +69,26 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     ///   current <see cref="ContentType"/>.
     /// </summary>
     public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; set; }
+
+    /*==========================================================================================================================
+    | METHOD: GET DISPLAY GROUPS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves an alphabetized list of display groups associated with this <see cref="ContentTypeDescriptor"/>'s <see
+    ///   cref="AttributeDescriptors"/> collection.
+    /// </summary>
+    public List<string> GetDisplayGroups() =>
+      AttributeDescriptors.Select(a => a.DisplayGroup).Distinct().OrderBy(a => a).ToList();
+
+    /*==========================================================================================================================
+    | METHOD: GET ATTRIBUTE DESCRIPTORS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves a prioritized list of <see cref="AttributeDescriptorTopicViewModel"/> based for a given display group,
+    ///   ordered by <see cref="AttributeDescriptorTopicViewModel.SortOrder"/>.
+    /// </summary>
+    public List<AttributeDescriptorTopicViewModel> GetAttributeDescriptors(string displayGroup) =>
+      AttributeDescriptors.Where(a => a.DisplayGroup.Equals(displayGroup)).OrderBy(a => a.SortOrder).ToList();
 
   } // Class
 } // Namespace
