@@ -4,24 +4,33 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.Editor.Mvc.Components {
+namespace Ignia.Topics.Editor.Models.Attributes {
 
   /*============================================================================================================================
-  | CLASS: DATE/TIME SELECTOR (VIEW COMPONENT)
+  | CLASS: NESTED TOPIC LIST EDITOR ATTRIBUTE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a date/time selector attribute type.
+  ///   Represents an instance of a topic list attribute in the Topic Editor.
   /// </summary>
-  public class DateTimeSelectorViewComponent: DefaultAttributeTypeViewComponent {
+  public class NestedTopicListEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="DateTimeSelectorViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
     /// </summary>
-    /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
-    public DateTimeSelectorViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public NestedTopicListEditorAttribute() : base() {
+    }
+
+    /*==========================================================================================================================
+    | GET VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves the value associated with the attribute.
+    /// </summary>
+    public override string GetValue() => Value;
 
   } // Class
+
 } // Namespace

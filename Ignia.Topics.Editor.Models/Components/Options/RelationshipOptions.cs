@@ -11,12 +11,12 @@ using System;
 namespace Ignia.Topics.Editor.Models.Components.Options {
 
   /*============================================================================================================================
-  | CLASS: RELATIONSHIPS (OPTIONS)
+  | CLASS: RELATIONSHIP (OPTIONS)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="RelationshipsViewComponent"/>.
+  ///   Establishes options associated with the <see cref="RelationshipViewComponent"/>.
   /// </summary>
-  public class RelationshipsOptions: DefaultOptions {
+  public class RelationshipOptions: DefaultOptions {
 
     /*==========================================================================================================================
     | PROPERTY: SCOPE

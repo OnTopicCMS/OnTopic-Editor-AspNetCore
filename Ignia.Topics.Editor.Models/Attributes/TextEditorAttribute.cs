@@ -7,20 +7,20 @@
 namespace Ignia.Topics.Editor.Models.Attributes {
 
   /*============================================================================================================================
-  | CLASS: BOOLEAN EDITOR ATTRIBUTE
+  | CLASS: TEXT EDITOR ATTRIBUTE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a boolean attribute in the Topic Editor.
+  ///   Represents an instance of a text attribute in the Topic Editor.
   /// </summary>
-  public class FormFieldEditorAttribute : EditorAttribute {
+  public class TextEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="TextEditorAttribute"/> class, using the specified key/value pair.
     /// </summary>
-    public FormFieldEditorAttribute() : base() {
+    public TextEditorAttribute() : base() {
     }
 
     /*==========================================================================================================================

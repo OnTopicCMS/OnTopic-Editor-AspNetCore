@@ -7,20 +7,21 @@
 namespace Ignia.Topics.Editor.Models.Attributes {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LIST EDITOR ATTRIBUTE
+  | CLASS: TOPIC REFERENCE EDITOR ATTRIBUTE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a topic list attribute in the Topic Editor.
+  ///   Represents an instance of a topic reference attribute in the Topic Editor.
   /// </summary>
-  public class TopicListEditorAttribute : EditorAttribute {
+  public class TopicReferenceEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="TopicReferenceEditorAttribute"/> class, using the specified key/value
+    ///   pair.
     /// </summary>
-    public TopicListEditorAttribute() : base() {
+    public TopicReferenceEditorAttribute() : base() {
     }
 
     /*==========================================================================================================================

@@ -4,42 +4,40 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components.Options;
-using Ignia.Topics.Editor.Models.Components.ViewModels;
 using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LIST (VIEW COMPONENT)
+  | CLASS: RELATIONSHIP (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a topic list attribute type.
+  ///   Delivers a view model for a relationship attribute type.
   /// </summary>
-  public class TopicListViewComponent : AttributeTypeViewComponentBase {
+  public class RelationshipViewComponent : AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TopicListViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="RelationshipViewComponent"/> with necessary dependencies.
     /// </summary>
-    public TopicListViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public RelationshipViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="TopicListViewComponent"/>.
+    ///   Assembles the view model for the <see cref="RelationshipViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
       AttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix,
-      TopicListOptions options = null
+      RelationshipOptions options = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -50,31 +48,43 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new TopicListOptions();
-      options.ContentTypes      ??= attribute.GetConfigurationValue(            "ContentTypes",         "");
-      options.TargetPopup       ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          true);
+      options                   ??= new RelationshipOptions();
+      options.Scope             ??= attribute.GetConfigurationValue(            "Scope",                null);
+      options.ShowRoot          ??= attribute.GetBooleanConfigurationValue(     "ShowRoot",             false);
+      options.CheckAscendants   ??= attribute.GetBooleanConfigurationValue(     "CheckAscendants",      false);
+      options.AttributeName     ??= attribute.GetConfigurationValue(            "AttributeName",        null);
+      options.AttributeValue    ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
+      options.Namespace         ??= attribute.GetConfigurationValue(            "Namespace",            "Related");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new TopicListAttributeViewModel(attribute, options);
+      var model = new AttributeViewModel<RelationshipOptions>(attribute, options);
 
-      GetAttributeViewModel(viewModel);
+      GetAttributeViewModel(model);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (HttpContext.Request.Query.TryGetValue("Action", out var action)) {
-        viewModel.IsNew = action.FirstOrDefault().Equals("Add", StringComparison.InvariantCultureIgnoreCase);
-      }
-      viewModel.UniqueKey = CurrentTopic.GetUniqueKey();
-      viewModel.WebPath   = CurrentTopic.GetWebPath();
+      model.Value = CleanArray(model.Value);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View(viewModel);
+      return View(model);
 
+    }
+
+    /*==========================================================================================================================
+    | METHOD: CLEAN ARRAY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Takes a string array, converts it to an array, strips any blank entries, and returns it to a string array.  Useful for
+    ///   dealing with potential artifacts such as empty array items introduced by JavaScript.
+    /// </summary>
+    string CleanArray(string value) {
+      if (String.IsNullOrWhiteSpace(value)) return "";
+      return String.Join(",", value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
     }
 
   } // Class

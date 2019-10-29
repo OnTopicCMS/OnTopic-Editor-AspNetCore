@@ -143,14 +143,11 @@ namespace OnTopicTest {
       if (type == typeof(BooleanViewComponent)) {
         return new BooleanViewComponent(mvcTopicRoutingService);
       }
-      if (type == typeof(DateTimeSelectorViewComponent)) {
-        return new DateTimeSelectorViewComponent(mvcTopicRoutingService);
+      if (type == typeof(DateTimeViewComponent)) {
+        return new DateTimeViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(DisplayOptionsViewComponent)) {
         return new DisplayOptionsViewComponent(mvcTopicRoutingService);
-      }
-      if (type == typeof(FileViewComponent)) {
-        return new FileViewComponent(mvcTopicRoutingService, _webHostEnvironment);
       }
       if (type == typeof(FileListViewComponent)) {
         return new FileListViewComponent(mvcTopicRoutingService, _webHostEnvironment);
@@ -158,29 +155,26 @@ namespace OnTopicTest {
       if (type == typeof(FilePathViewComponent)) {
         return new FilePathViewComponent(mvcTopicRoutingService);
       }
-      if (type == typeof(FormFieldViewComponent)) {
-        return new FormFieldViewComponent(mvcTopicRoutingService);
-      }
-      if (type == typeof(HtmlViewComponent)) {
-        return new HtmlViewComponent(mvcTopicRoutingService);
+      if (type == typeof(TextViewComponent)) {
+        return new TextViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(LastModifiedByViewComponent)) {
         return new LastModifiedByViewComponent(mvcTopicRoutingService);
       }
-      if (type == typeof(RelationshipsViewComponent)) {
-        return new RelationshipsViewComponent(mvcTopicRoutingService);
+      if (type == typeof(RelationshipViewComponent)) {
+        return new RelationshipViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(TokenizedTopicListViewComponent)) {
         return new TokenizedTopicListViewComponent(mvcTopicRoutingService, _topicRepository);
       }
-      if (type == typeof(TopicListViewComponent)) {
-        return new TopicListViewComponent(mvcTopicRoutingService);
+      if (type == typeof(NestedTopicListViewComponent)) {
+        return new NestedTopicListViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(TopicLookupViewComponent)) {
         return new TopicLookupViewComponent(mvcTopicRoutingService, _topicRepository);
       }
-      if (type == typeof(TopicPointerViewComponent)) {
-        return new TopicPointerViewComponent(mvcTopicRoutingService, _topicRepository);
+      if (type == typeof(TopicReferenceViewComponent)) {
+        return new TopicReferenceViewComponent(mvcTopicRoutingService, _topicRepository);
       }
       if (type == typeof(WysiwygViewComponent)) {
         return new WysiwygViewComponent(mvcTopicRoutingService);

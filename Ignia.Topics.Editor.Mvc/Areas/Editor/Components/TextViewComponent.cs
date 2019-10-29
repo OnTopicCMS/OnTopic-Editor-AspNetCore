@@ -7,20 +7,20 @@
 namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
-  | CLASS: HTML (VIEW COMPONENT)
+  | CLASS: TEXT (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for an HTML attribute type.
+  ///   Delivers a view model for a form field attribute type.
   /// </summary>
-  public class HtmlViewComponent : DefaultAttributeTypeViewComponent {
+  public class TextViewComponent : DefaultAttributeTypeViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="HtmlViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="TextViewComponent"/> with necessary dependencies.
     /// </summary>
-    public HtmlViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public TextViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
 
   } // Class
 } // Namespace

@@ -17,12 +17,12 @@ using System.Threading.Tasks;
 namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
-  | CLASS: TOPIC POINTER (VIEW COMPONENT)
+  | CLASS: TOPIC REFERENCE (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a topic pointer attribute type.
+  ///   Delivers a view model for a topic reference attribute type.
   /// </summary>
-  public class TopicPointerViewComponent : AttributeTypeViewComponentBase {
+  public class TopicReferenceViewComponent : AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -33,9 +33,9 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TopicPointerViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="TopicReferenceViewComponent"/> with necessary dependencies.
     /// </summary>
-    public TopicPointerViewComponent(
+    public TopicReferenceViewComponent(
       ITopicRoutingService topicRoutingService,
       ITopicRepository topicRepository
     ) : base(
@@ -49,12 +49,12 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     | METHOD: INVOKE (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="TopicListViewComponent"/>.
+    ///   Assembles the view model for the <see cref="NestedTopicListViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
       AttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix,
-      TopicPointerOptions options = null
+      TopicReferenceOptions options = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new TopicPointerOptions();
+      options                   ??= new TopicReferenceOptions();
       options.Scope             ??= attribute.GetConfigurationValue(            "Scope",                "Root");
       options.ResultLimit       ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
       options.ContentType       ??= attribute.GetConfigurationValue(            "ContentType",          null);
@@ -77,7 +77,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<TopicPointerOptions>(attribute, options);
+      var viewModel = new AttributeViewModel<TopicReferenceOptions>(attribute, options);
 
       GetAttributeViewModel(viewModel);
 

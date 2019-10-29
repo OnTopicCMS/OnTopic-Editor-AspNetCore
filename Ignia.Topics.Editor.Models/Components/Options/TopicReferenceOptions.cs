@@ -3,40 +3,46 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using Ignia.Topics.Metadata;
+using System;
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+#nullable enable
+
+namespace Ignia.Topics.Editor.Models.Components.Options {
 
   /*============================================================================================================================
-  | CLASS: DATE TIME SELECTOR EDITOR ATTRIBUTE
+  | CLASS: TOPIC REFERENCE (OPTIONS)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of an HTML attribute in the Topic Editor.
+  ///   Establishes options associated with the <see cref="TopicReferenceViewComponent"/>.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
-  public class DateTimeSelectorEditorAttribute : EditorAttribute {
+  public class TopicReferenceOptions: DefaultOptions {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-
-    /*==========================================================================================================================
-    | CONSTRUCTOR
+    | SCOPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Gets or sets the scope of the topic graph within which to search for results. E.g., <c>Root:Web:Configuration</c>.
     /// </summary>
-    public DateTimeSelectorEditorAttribute() : base() {
-    }
+    public string? Scope { get; set; }
 
     /*==========================================================================================================================
-    | GET VALUE
+    | RESULT LIMIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Retrieves the value associated with the attribute.
+    ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
     /// </summary>
-    public override string GetValue() => Value;
+    public int? ResultLimit { get; set; }
+
+    /*==========================================================================================================================
+    | CONTENT TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
+    /// </summary>
+    public string? ContentType { get; set; }
 
   } // Class
-
 } // Namespace
+
+#nullable restore

@@ -7,20 +7,21 @@
 namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
-  | CLASS: FORM FIELD (VIEW COMPONENT)
+  | CLASS: DATE/TIME (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a form field attribute type.
+  ///   Delivers a view model for a date/time attribute type.
   /// </summary>
-  public class FormFieldViewComponent : DefaultAttributeTypeViewComponent {
+  public class DateTimeViewComponent: DefaultAttributeTypeViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="FormFieldViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="DateTimeSelectorViewComponent"/> with necessary dependencies.
     /// </summary>
-    public FormFieldViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
+    public DateTimeViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
 
   } // Class
 } // Namespace

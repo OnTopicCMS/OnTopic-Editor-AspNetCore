@@ -7,12 +7,12 @@
 namespace Ignia.Topics.Editor.Models.Attributes {
 
   /*============================================================================================================================
-  | CLASS: TOPIC POINTER EDITOR ATTRIBUTE
+  | CLASS: RELATIONSHIP EDITOR ATTRIBUTE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a topic pointer attribute in the Topic Editor.
+  ///   Represents an instance of a relationship attribute in the Topic Editor.
   /// </summary>
-  public class TopicPointerEditorAttribute : EditorAttribute {
+  public class RelationshipEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -20,7 +20,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
     /// </summary>
-    public TopicPointerEditorAttribute() : base() {
+    public RelationshipEditorAttribute() : base() {
     }
 
     /*==========================================================================================================================

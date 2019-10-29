@@ -11,12 +11,12 @@ using System;
 namespace Ignia.Topics.Editor.Models.Components.Options {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LIST (OPTIONS)
+  | CLASS: NESTED TOPIC LIST (OPTIONS)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="TopicListViewComponentView"/>.
+  ///   Establishes options associated with the <see cref="NestedTopicListViewComponentView"/>.
   /// </summary>
-  public class TopicListOptions: DefaultOptions {
+  public class NestedTopicListOptions: DefaultOptions {
 
     /*==========================================================================================================================
     | PROPERTY: CONTENT TYPES
@@ -26,8 +26,8 @@ namespace Ignia.Topics.Editor.Models.Components.Options {
     /// </summary>
     /// <remarks>
     ///   As an example, if the <see cref="ContentTypes"/> value is <c>AttributeDescriptor,ContentTypeDescriptor</c> then the
-    ///   <see cref="TopicListViewComponent"/> should only display topics of the types <see cref="AttributeDescriptor"/> or
-    ///   <see cref="ContentTypeDescriptor"/>.
+    ///   <see cref="NestedTopicListViewComponent"/> should only display topics of the types <see cref="AttributeDescriptor"/>
+    ///   or <see cref="ContentTypeDescriptor"/>.
     /// </remarks>
     public string? ContentTypes { get; set; }
 
