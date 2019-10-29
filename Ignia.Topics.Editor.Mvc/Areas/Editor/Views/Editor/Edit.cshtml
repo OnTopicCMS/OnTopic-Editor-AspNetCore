@@ -62,26 +62,29 @@
 @section scripts {
   <script>
 
-    $(function() {
+    $(function () {
 
       /**
-       * Sends AJAX request to Save/Edit Action
+       * Validation rules
        */
-      $('#SavePageButton').click(function() {
-
-        $.ajax({
-          url                   : '@Url.Action("Edit", "Editor", new { path = Model.Topic.WebPath })',
-          type                  : 'POST',
-          data                  : @bindingModel,
-          success: function (result) {
-            if (result == true) {
-            }
-            else {
+      $('#EditorForm').validate({
+        rules: {
+          @{
+            int index = 0;
+            foreach (string displayGroupName in Model.ContentTypeDescriptor.GetDisplayGroups()) {
+              foreach (var attribute in Model.ContentTypeDescriptor.GetAttributeDescriptors(displayGroupName)) {
+                <text>
+                  "Attributes[@(index++)].Value": {
+                    @(attribute.GetValidationRules())
+                  },
+                </text>
+              }
             }
           }
-        });
-
+          ignore: []
+        }
       });
+
 
       /**
        * Sends AJAX request to Delete Action

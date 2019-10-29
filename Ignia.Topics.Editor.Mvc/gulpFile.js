@@ -41,8 +41,9 @@ const files = {
   js                            : 'Shared/Scripts/*.js',
   jsVendor                      : [ 'node_modules/jquery/dist/jquery.min.js',
                                     'node_modules/jquery-ui-dist/jquery-ui.min.js',
-                                    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+                                    'node_modules/jquery-validation/dist/jquery.validate.min.js',
                                     'node_modules/popper.js/dist/umd/popper.min.js',
+                                    'node_modules/bootstrap/dist/js/bootstrap.min.js',
                                     'node_modules/jquery-tokeninput/dist/js/jquery-tokeninput.min.js',
                                     'Shared/Scripts/ExtJS/ext-base.js',
                                     'Shared/Scripts/ExtJS/ext-all.js',
@@ -69,6 +70,7 @@ const dependencies = {
   'Scripts': {
     'jQuery'                    : 'node_modules/jquery/dist/*.*',
     'jQueryUI'                  : 'node_modules/jquery-ui-dist/jquery-ui.*.js',
+    'jQueryValidate'            : 'node_modules/jquery-validation/dist/jquery.validate*.js',
     'Bootstrap'                 : 'node_modules/bootstrap/dist/js/bootstrap.min.*',
     'Popper'                    : 'node_modules/popper.js/dist/umd/popper.min*',
     'TokenInput'                : 'node_modules/jquery-tokeninput/dist/js/*.js',

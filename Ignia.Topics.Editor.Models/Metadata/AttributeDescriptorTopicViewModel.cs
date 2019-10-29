@@ -139,6 +139,14 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// </summary>
     public int SortOrder { get; set; }
 
+    /*==========================================================================================================================
+    | METHOD: GET VALIDATION RULES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves a JSON-formatted string representing a list of rules for the attribute based on jQuery Validate's format.
+    /// </summary>
+    public virtual string GetValidationRules() => "required:" + IsRequired.ToString().ToLowerInvariant();
+
   } // Class
 
 } // Namespace
