@@ -11,12 +11,12 @@ using System;
 namespace Ignia.Topics.Editor.Models.Components.Options {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LOOKUP (OPTIONS)
+  | CLASS: TOPIC LIST (OPTIONS)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="TopicLookupViewComponent"/>.
+  ///   Establishes options associated with the <see cref="TopicListViewComponent"/>.
   /// </summary>
-  public class TopicLookupOptions : DefaultOptions {
+  public class TopicListOptions: DefaultOptions {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

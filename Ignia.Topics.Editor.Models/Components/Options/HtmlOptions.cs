@@ -11,19 +11,18 @@ using System;
 namespace Ignia.Topics.Editor.Models.Components.Options {
 
   /*============================================================================================================================
-  | CLASS: WYSIWYG (OPTIONS)
+  | CLASS: HTML (OPTIONS)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="BooleanViewComponent"/>.
+  ///   Establishes options associated with the <see cref="HtmlViewComponent"/>.
   /// </summary>
-  public class WysiwygOptions: DefaultOptions {
-
+  public class HtmlOptions: DefaultOptions {
 
     /*==========================================================================================================================
     | COLUMNS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the number of columns (width) that the <see cref="WysiwygViewComponent"/> should take up. Defaults to
+    ///   Gets or sets the number of columns (width) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
     ///   <c>70</c>.
     /// </summary>
     public int? Columns { get; set; }
@@ -32,7 +31,7 @@ namespace Ignia.Topics.Editor.Models.Components.Options {
     | ROWS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the number of rows (height) that the <see cref="WysiwygViewComponent"/> should take up. Defaults to
+    ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
     ///   <c>30</c>.
     /// </summary>
     public int? Rows { get; set; }
@@ -41,7 +40,7 @@ namespace Ignia.Topics.Editor.Models.Components.Options {
     | HEIGHT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the number of pixels that the <see cref="WysiwygViewComponent"/> should take up. Defaults to <see
+    ///   Gets or sets the number of pixels that the <see cref="HtmlViewComponent"/> should take up. Defaults to <see
     ///   cref="Rows"/> x 20.
     /// </summary>
     /// <remarks>

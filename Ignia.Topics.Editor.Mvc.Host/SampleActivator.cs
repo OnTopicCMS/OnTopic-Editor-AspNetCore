@@ -170,14 +170,14 @@ namespace OnTopicTest {
       if (type == typeof(NestedTopicListViewComponent)) {
         return new NestedTopicListViewComponent(mvcTopicRoutingService);
       }
-      if (type == typeof(TopicLookupViewComponent)) {
-        return new TopicLookupViewComponent(mvcTopicRoutingService, _topicRepository);
+      if (type == typeof(TopicListViewComponent)) {
+        return new TopicListViewComponent(mvcTopicRoutingService, _topicRepository);
       }
       if (type == typeof(TopicReferenceViewComponent)) {
         return new TopicReferenceViewComponent(mvcTopicRoutingService, _topicRepository);
       }
-      if (type == typeof(WysiwygViewComponent)) {
-        return new WysiwygViewComponent(mvcTopicRoutingService);
+      if (type == typeof(HtmlViewComponent)) {
+        return new HtmlViewComponent(mvcTopicRoutingService);
       }
       else {
         throw new Exception($"Unknown view component {type.Name}");
@@ -203,7 +203,7 @@ namespace OnTopicTest {
       );
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Return TopicController
+      | Return EditorController
       \-----------------------------------------------------------------------------------------------------------------------*/
       return new EditorController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
 

@@ -19,12 +19,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LOOKUP (VIEW COMPONENT)
+  | CLASS: TOPIC LIST (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a topic lookup attribute type.
+  ///   Delivers a view model for a topic list attribute type.
   /// </summary>
-  public class TopicLookupViewComponent : AttributeTypeViewComponentBase {
+  public class TopicListViewComponent : AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -35,9 +35,9 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TopicLookupViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="TopicListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public TopicLookupViewComponent(
+    public TopicListViewComponent(
       ITopicRoutingService      topicRoutingService,
       ITopicRepository          topicRepository
     ) : base(topicRoutingService) {
@@ -48,18 +48,18 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     | METHOD: INVOKE (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="TopicLookupViewComponent"/>.
+    ///   Assembles the view model for the <see cref="TopicListViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
       AttributeDescriptorTopicViewModel attribute,
-      TopicLookupOptions options = null,
+      TopicListOptions options = null,
       string htmlFieldPrefix = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new TopicLookupOptions();
+      options                   ??= new TopicListOptions();
       options.Label             ??= attribute.GetConfigurationValue(            "Label",                "Select a Topic…");
       options.Scope             ??= attribute.GetConfigurationValue(            "Scope",                null);
       options.AttributeName     ??= attribute.GetConfigurationValue(            "AttributeName",        null);
@@ -79,7 +79,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new TopicLookupAttributeViewModel(attribute, options);
+      var viewModel = new TopicListAttributeViewModel(attribute, options);
 
       GetAttributeViewModel(viewModel);
 

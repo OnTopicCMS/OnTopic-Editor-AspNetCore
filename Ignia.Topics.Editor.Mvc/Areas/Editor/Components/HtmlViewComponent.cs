@@ -12,33 +12,32 @@ using System.Threading.Tasks;
 namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
-  | CLASS: WYSIWYG (VIEW COMPONENT)
+  | CLASS: HTML (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a WYSIWYG attribute type.
+  ///   Delivers a view model for a HTML attribute type.
   /// </summary>
-  [ViewComponent(Name = "WYSIWYG")]
-  public class WysiwygViewComponent : AttributeTypeViewComponentBase {
+  public class HtmlViewComponent : AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="WysiwygViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="HtmlViewComponent"/> with necessary dependencies.
     /// </summary>
-    public WysiwygViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public HtmlViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
 
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="TopicListViewComponent"/>.
+    ///   Assembles the view model for the <see cref="HtmlViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
       AttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix,
-      WysiwygOptions options = null
+      HtmlOptions options = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -49,7 +48,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new WysiwygOptions();
+      options                   ??= new HtmlOptions();
       options.Columns           ??= attribute.GetIntegerConfigurationValue(     "Columns",              70);
       options.Rows              ??= attribute.GetIntegerConfigurationValue(     "Rows",                 20);
       options.Height            ??= attribute.GetIntegerConfigurationValue(     "Height",               0);
@@ -62,7 +61,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<WysiwygOptions>(attribute, options);
+      var viewModel = new AttributeViewModel<HtmlOptions>(attribute, options);
 
       GetAttributeViewModel(viewModel);
 

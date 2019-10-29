@@ -36,6 +36,8 @@
                     .Replace("TopicPointer", "TopicReference")
                     .Replace("TopicList", "NestedTopicList")
                     .Replace("TokenizedNestedTopicList", "TokenizedTopicList")
+                    .Replace("TopicLookup", "TopicList")
+                    .Replace("WYSIWYG", "Html")
                     .Replace(".ascx", ""),
                   new { Attribute=attribute, HtmlFieldPrefix=$"Attributes[{index++}]" }
                 )

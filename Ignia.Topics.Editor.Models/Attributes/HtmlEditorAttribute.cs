@@ -7,12 +7,12 @@
 namespace Ignia.Topics.Editor.Models.Attributes {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LOOKUP EDITOR ATTRIBUTE
+  | CLASS: HTML EDITOR ATTRIBUTE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a topic lookup attribute in the Topic Editor.
+  ///   Represents an instance of a HTML attribute in the Topic Editor.
   /// </summary>
-  public class TopicLookupEditorAttribute : EditorAttribute {
+  public class HtmlEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -20,7 +20,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
     /// </summary>
-    public TopicLookupEditorAttribute() : base() {
+    public HtmlEditorAttribute() : base() {
     }
 
     /*==========================================================================================================================

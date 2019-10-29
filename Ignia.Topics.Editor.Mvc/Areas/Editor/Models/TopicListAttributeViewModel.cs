@@ -12,22 +12,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Ignia.Topics.Editor.Mvc.Models {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LOOKUP (ATTRIBUTE VIEW MODEL)
+  | CLASS: TOPIC LIST (ATTRIBUTE VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Extends the <see cref="AttributeViewModel"/> to include properties that are specific to the topic lookup view component.
+  ///   Extends the <see cref="AttributeViewModel"/> to include properties that are specific to the topic list view component.
   /// </summary>
-  public class TopicLookupAttributeViewModel: AttributeViewModel<TopicLookupOptions> {
+  public class TopicListAttributeViewModel: AttributeViewModel<TopicListOptions> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TopicLookupAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="TopicListAttributeViewModel"/> class.
     /// </summary>
-    public TopicLookupAttributeViewModel(
+    public TopicListAttributeViewModel(
       AttributeDescriptorTopicViewModel attributeDescriptor,
-      TopicLookupOptions options,
+      TopicListOptions options,
       string value = null,
       string inheritedValue = null
     ) : base(
@@ -46,7 +46,7 @@ namespace Ignia.Topics.Editor.Mvc.Models {
     /// <remarks>
     ///   The key represents the value that will be persisted to the <see cref="Topic.Attributes"/> collection. The value
     ///   represents the label as it will be displayed in the interface. For instance, for a <see
-    ///   cref="TopicLookupAttributeViewModel"/> representing countries, <c>US</c> might by the key associated with a <c>United
+    ///   cref="TopicListAttributeViewModel"/> representing countries, <c>US</c> might by the key associated with a <c>United
     ///   States</c> value.
     /// </remarks>
     public List<SelectListItem> TopicList { get; } = new List<SelectListItem>();

@@ -7,16 +7,12 @@
 namespace Ignia.Topics.Editor.Models.Attributes {
 
   /*============================================================================================================================
-  | CLASS: WYSIWYG EDITOR ATTRIBUTE
+  | CLASS: TOPIC LIST EDITOR ATTRIBUTE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a WYSIWYG attribute in the Topic Editor.
+  ///   Represents an instance of a topic list attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  ///   This class breaks naming convention standards in order to maintain backward compatibility with data, and ensure it can
-  ///   be dynamically accessessed using the <see cref="EditorAttributeModelBinder"/>.
-  /// </remarks>
-  public class WYSIWYGEditorAttribute : EditorAttribute {
+  public class TopicListEditorAttribute : EditorAttribute {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -24,7 +20,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
     /// </summary>
-    public WYSIWYGEditorAttribute() : base() {
+    public TopicListEditorAttribute() : base() {
     }
 
     /*==========================================================================================================================
