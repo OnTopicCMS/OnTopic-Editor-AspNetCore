@@ -1,7 +1,13 @@
-﻿@model AttributeViewModel
+﻿@model FilePathAttributeViewModel
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 }
 
-@Html.TextBoxFor(m => m.Value)
+<input
+  asp-for=@Model.Value
+  placeholder=@Model.InheritedValue
+  class=@($"form-control {Model.CssClass}")
+  enabled=@Model.IsEnabled
+  type="text"
+/>

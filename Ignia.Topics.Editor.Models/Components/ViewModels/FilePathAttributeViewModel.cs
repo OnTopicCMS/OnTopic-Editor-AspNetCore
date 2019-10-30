@@ -20,6 +20,12 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
   public class FilePathAttributeViewModel: AttributeViewModel<FilePathAttributeTopicViewModel> {
 
     /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private                     string                          _defaultDate                    = null;
+    private                     string                          _defaultTime                    = null;
+
+    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -34,6 +40,16 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
       value,
       inheritedValue
     ) { }
+
+    /*==========================================================================================================================
+    | VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdocs />
+    [RegularExpression(
+      @"^([A-Za-z]+:)?(\/{0,2}|\\{0,2})(?:[0-9a-zA-Z _\-\.]+(\/|\\?))+$",
+      ErrorMessage = "The image path specified is not a valid file path."
+    )]
+    public override string Value { get; set; }
 
   } // Class
 
