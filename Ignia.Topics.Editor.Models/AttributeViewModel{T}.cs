@@ -36,7 +36,6 @@ namespace Ignia.Topics.Editor.Models {
     }
 
     /*==========================================================================================================================
-    | OPTIONS
     | PROPERTY: ATTRIBUTE TYPE DESCRIPTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -44,33 +43,6 @@ namespace Ignia.Topics.Editor.Models {
     ///   cref="ContentType"/>. This differs from the <see cref="AttributeDescriptor"/> in that it provides access to additional
     ///   properties that are specific to the attribute type.
     /// </summary>
-    public T Options { get; set; }
-
-    /*==========================================================================================================================
-    | IS ENABLED
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeValue"/> instance.
-    /// </summary>
-    public override bool IsEnabled {
-      get => Options.IsEnabled?? true;
-      set {
-        Options.IsEnabled = value;
-       }
-    }
-
-    /*==========================================================================================================================
-    | CSS CLASS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Defines the CSS class names to be used, if any are configured.
-    /// </summary>
-    public override string CssClass {
-      get => Options.CssClass;
-      set {
-        Options.CssClass = value;
-      }
-    }
     /// <remarks>
     ///   This implementation of <see cref="AttributeDescriptor"/> hides the underlying implementation of <see
     ///   cref="AttributeViewModel.AttributeDescriptor"/>, replacing it with a strongly typed derivative. This effectively

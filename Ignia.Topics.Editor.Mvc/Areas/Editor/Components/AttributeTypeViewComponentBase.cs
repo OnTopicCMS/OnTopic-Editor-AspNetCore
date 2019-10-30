@@ -92,29 +92,13 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     public AttributeViewModel GetAttributeViewModel(AttributeViewModel viewModel = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set attribute
+      | Set contextual values from current topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       var attribute             = viewModel.AttributeDescriptor;
 
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Set contextual values from current topic
-      \-----------------------------------------------------------------------------------------------------------------------*/
       viewModel.TopicId         = CurrentTopic.Id;
-      viewModel.InheritedValue  = CurrentTopic.Parent.Attributes.GetValue(attribute.Key, true);
-      viewModel.Value           = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Set convenience pass-throughs to configuration
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      viewModel.IsEnabled       = attribute.GetBooleanConfigurationValue(
-        "IsEnabled",
-        attribute.GetBooleanConfigurationValue("Enabled", true)
-      );
-
-      viewModel.CssClass      = attribute.GetConfigurationValue(
-        "CssClass",
-        attribute.GetConfigurationValue("CssClassField", null)
-      );
+      viewModel.InheritedValue  = CurrentTopic.Parent.Attributes.GetValue(viewModel.Key, true);
+      viewModel.Value           = CurrentTopic.Attributes.GetValue(viewModel.Key, attribute.DefaultValue, false, false);
 
       return viewModel;
 

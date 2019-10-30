@@ -107,7 +107,15 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeValue"/> instance.
     /// </summary>
-    public virtual bool IsEnabled { get; set; } = true;
+    public bool IsEnabled {
+      get => AttributeDescriptor.GetBooleanConfigurationValue(
+        "IsEnabled",
+        AttributeDescriptor.GetBooleanConfigurationValue("Enabled", AttributeDescriptor.IsEnabled)
+      );
+      set {
+        AttributeDescriptor.IsEnabled = value;
+      }
+    }
 
     /*==========================================================================================================================
     | CSS CLASS
@@ -115,7 +123,15 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Defines the CSS class names to be used, if any are configured.
     /// </summary>
-    public virtual string CssClass { get; set; }
+    public string CssClass {
+      get => AttributeDescriptor.GetConfigurationValue(
+        "CssClass",
+        AttributeDescriptor.GetConfigurationValue("CssClassField", AttributeDescriptor.CssClass)
+      );
+      set {
+        AttributeDescriptor.CssClass = value;
+      }
+    }
 
   } // Class
 
