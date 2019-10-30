@@ -3,53 +3,52 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using Ignia.Topics.Metadata;
-using System;
 
 #nullable enable
 
-namespace Ignia.Topics.Editor.Models.Components.Options {
+namespace Ignia.Topics.Editor.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: HTML (OPTIONS)
+  | CLASS: FILE LIST ATTRIBUTE (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="HtmlViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="FileListViewComponent"/>.
   /// </summary>
-  public class HtmlOptions: DefaultOptions {
+  public class FileListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | COLUMNS
+    | PROPERTY: PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the number of columns (width) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
-    ///   <c>70</c>.
+    ///   Gets or sets the the directory path in which to find available files.
     /// </summary>
-    public int? Columns { get; set; }
+    public string? Path { get; set; }
 
     /*==========================================================================================================================
-    | ROWS
+    | PROPERTY: EXTENSION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
-    ///   <c>30</c>.
+    ///   Gets or sets which file extension to restrict the list of files.
     /// </summary>
-    public int? Rows { get; set; }
+    public string? Extension { get; set; }
 
     /*==========================================================================================================================
-    | HEIGHT
+    | PROPERTY: FILTER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the number of pixels that the <see cref="HtmlViewComponent"/> should take up. Defaults to <see
-    ///   cref="Rows"/> x 20.
+    ///   Gets or sets the filter criteria by which to restrict the list of files.
     /// </summary>
-    /// <remarks>
-    ///   If set, this value overrides <see cref="Rows"/>.
-    /// </remarks>
-    public int? Height { get; set; }
+    public string? Filter { get; set; }
 
+    /*==========================================================================================================================
+    | PROPERTY: INCLUDE SUBDIRECTORIES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets whether to only include the specified directory, or also include files from all subdirectories.
+    /// </summary>
+    public bool? IncludeSubdirectories { get; set; }
 
-  } // Class
-} // Namespace
+  }
+}
 
 #nullable restore

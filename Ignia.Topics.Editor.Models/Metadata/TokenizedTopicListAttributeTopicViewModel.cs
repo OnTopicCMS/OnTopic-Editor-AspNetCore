@@ -3,25 +3,19 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using Ignia.Topics.Metadata;
 using System;
 
 #nullable enable
 
-namespace Ignia.Topics.Editor.Models.Components.Options {
+namespace Ignia.Topics.Editor.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LIST (OPTIONS)
+  | CLASS: TOKENIZED TOPIC LIST ATTRIBUTE (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="TopicListViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="TokenizedTopicListViewComponent"/>.
   /// </summary>
-  public class TopicListOptions: DefaultOptions {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private string? _valueProperty = null;
+  public class TokenizedTopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | SCOPE
@@ -52,75 +46,74 @@ namespace Ignia.Topics.Editor.Models.Components.Options {
     public string? AttributeValue { get; set; }
 
     /*==========================================================================================================================
-    | TARGET URL
-    >---------------------------------------------------------------------------------------------------------------------------
-    | ### TODO JJC092313: Need to add support for {token} replacements in the TargetUrl.  Also, unclear what the current default
-    | logic is doing; I don't believe this should be necessary.
+    | RESULT LIMIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The TargetUrl allows the dropdown control to trigger the loading of a new page based on the value of the dropdown box.
-    ///   The new page is loaded using the LoadPage event handler, and may optionally be handled as a redirect (default) or a
-    ///   popup (based on the TargetPopup boolean).
+    ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
     /// </summary>
-    public string? TargetUrl { get; set; }
+    public int? ResultLimit { get; set; }
 
     /*==========================================================================================================================
-    | TARGET POPUP
+    | TOKEN LIMIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   If a TargetUrl is supplied, and TargetPopup is set to true, then the TargetUrl will be loaded during the LoadPage
-    ///   event as a popup window.  Otherwise, the TargetUrl will be loaded via a redirect.
+    ///   Gets or sets the maximum number of tokens allowed to be selected by the user. Maps to TokenInput's <c>tokenLimit</c>
+    ///   setting.
     /// </summary>
-    public bool? TargetPopup { get; set; }
+    /// <remarks>
+    ///   This is especially useful if an attribute should be limited to a single entry, such as a topic reference, but it is
+    ///   preferred to display a searchable list rather than a predefined dropdown list using <see
+    ///   cref="TopicLookupViewComponent"/>.
+    /// </remarks>
+    public int? TokenLimit { get; set; }
 
     /*==========================================================================================================================
-    | ON CLIENT CLOSE
+    | IS AUTO POSTBACK?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   If supplied, sets a reference to a callback function to execute on close of the editor popup.
+    ///   Determines if the form should automatically be submitted whenever a new value is selected. This is useful, in
+    ///   particular, for the <see cref="TopicPointerViewComponent"/>, which provides a purpose-built wrapper for the <see
+    ///   cref="TokenizedTopicViewComponent"/>.
     /// </summary>
-    public string? OnClientClose { get; set; }
+    public bool? IsAutoPostBack { get; set; }
 
     /*==========================================================================================================================
-    | LABEL
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    public string? Label { get; set; }
-
-    /*==========================================================================================================================
-    | PROPERTY: USE UNIQUE KEY
+    | AS RELATIONSHIP
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether to use a fully qualified key ("UniqueKey") or just the topic key. A UniqueKey makes it easier to
-    ///   construct or retrieve the corresponding topic object without any knowledge of where that object exists. Further, under
-    ///   certain circumstances, a UniqueKey may be necessary to guarantee uniqueness (for instance, if DataSource is overridden
-    ///   with a collection of topics from multiple locations in the topic tree). That said, the topic key may be a preferred
-    ///   value, particularly when not intended to provide a strongly-typed reference to particular topics (e.g., when the
-    ///   LookupList is being used to simply provide a constrained list of known values, such as tags).
+    ///   Determines whether to utilize the control as a replacement for (or equivalent to) <see
+    ///   cref="RelationshipsViewComponent"/>.
     /// </summary>
-    public bool? UseUniqueKey { get; set; }
+    /// <remarks>
+    ///   Relationships are modeled using <see cref="Topic.Relationships"/> instead of <see cref="Topic.Attributes"/>, and most
+    ///   implementations of <see cref="ITopicRepository"/> will likely store relationships separate from attributes.
+    /// </remarks>
+    public bool? AsRelationship { get; set; }
 
     /*==========================================================================================================================
-    | VALUE PROPERTY
+    | SEARCH PROPERTY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines what property to bind the TopicLookup/TopicList to.
+    ///   Determines what attribute in <see cref="JsonTopicViewModel"/> to search against. This corresponds to TokenInput's
+    ///   <c>propertyToSearch</c> setting.
     /// </summary>
-    public string? ValueProperty {
-      get {
-        if (_valueProperty == null) {
-          _valueProperty = UseUniqueKey is true ? "UniqueKey" : "Key";
-        }
-        return _valueProperty;
-      }
-      set {
-        _valueProperty = value;
-      }
-    }
+    /// <remarks>
+    ///   Keep in mind that this is looking at the serialized object graph of the topic tree, not the actual topic graph
+    ///   itself. As a result, this will not have access to <i>all</i> attributes, only those explicitly included on the
+    ///   <see cref="JsonTopicViewModel"/>. Further, because this is looking at the <c>serialized</c> version, the attribute
+    ///   names may vary from <see cref="JsonTopicViewModel"/>'s property names; for example, they will be camel-cased, and
+    ///   may be modified by serialization annotations.
+    /// </remarks>
+    public string? SearchProperty { get; set; }
 
     /*==========================================================================================================================
-    | ALLOWED KEYS
+    | QUERY PARAMETER
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public string? AllowedKeys { get; set; }
+    /// <summary>
+    ///   Determines the querystring parameter used to query the web service. This corresponds to TokenInput's <c>queryParam</c>
+    ///   setting. Defaults to <c>AttributeValue</c>.
+    /// </summary>
+    public string? QueryParameter { get; set; }
 
   } // Class
 } // Namespace

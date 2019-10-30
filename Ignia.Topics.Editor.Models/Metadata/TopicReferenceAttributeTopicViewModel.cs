@@ -3,52 +3,48 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping;
+using Ignia.Topics.Metadata;
+using System;
 
 #nullable enable
 
-namespace Ignia.Topics.Editor.Models.Components.Options {
+namespace Ignia.Topics.Editor.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: FILE LIST (OPTIONS)
+  | CLASS: TOPIC REFERENCE ATTRIBUTE (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="FileListViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="TopicReferenceViewComponent"/>.
   /// </summary>
-  public class FileListOptions: DefaultOptions {
+  public class TopicReferenceAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | PROPERTY: PATH
+    | SCOPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the the directory path in which to find available files.
+    ///   Gets or sets the scope of the topic graph within which to search for results. E.g., <c>Root:Web:Configuration</c>.
     /// </summary>
-    public string? Path { get; set; }
+    public string? Scope { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: EXTENSION
+    | RESULT LIMIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets which file extension to restrict the list of files.
+    ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
     /// </summary>
-    public string? Extension { get; set; }
+    public int? ResultLimit { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: FILTER
+    | TARGET CONTENT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the filter criteria by which to restrict the list of files.
+    ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
     /// </summary>
-    public string? Filter { get; set; }
+    [AttributeKey("ContentType")]
+    public string? TargetContentType { get; set; }
 
-    /*==========================================================================================================================
-    | PROPERTY: INCLUDE SUBDIRECTORIES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets whether to only include the specified directory, or also include files from all subdirectories.
-    /// </summary>
-    public bool? IncludeSubdirectories { get; set; }
-
-  }
-}
+  } // Class
+} // Namespace
 
 #nullable restore

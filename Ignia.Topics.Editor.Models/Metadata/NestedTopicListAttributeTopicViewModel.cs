@@ -8,15 +8,15 @@ using System;
 
 #nullable enable
 
-namespace Ignia.Topics.Editor.Models.Components.Options {
+namespace Ignia.Topics.Editor.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: NESTED TOPIC LIST (OPTIONS)
+  | CLASS: NESTED TOPIC LIST ATTRIBUTE (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="NestedTopicListViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="NestedTopicListViewComponentView"/>.
   /// </summary>
-  public class NestedTopicListOptions: DefaultOptions {
+  public class NestedTopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: CONTENT TYPES

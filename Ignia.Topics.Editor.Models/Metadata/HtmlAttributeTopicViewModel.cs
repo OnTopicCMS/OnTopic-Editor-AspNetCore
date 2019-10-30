@@ -3,44 +3,50 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using Ignia.Topics.Metadata;
 using System;
 
 #nullable enable
 
-namespace Ignia.Topics.Editor.Models.Components.Options {
+namespace Ignia.Topics.Editor.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: TOPIC REFERENCE (OPTIONS)
+  | CLASS: HTML ATTRIBUTE (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="TopicReferenceViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="HtmlViewComponent"/>.
   /// </summary>
-  public class TopicReferenceOptions: DefaultOptions {
+  public class HtmlAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | SCOPE
+    | COLUMNS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the scope of the topic graph within which to search for results. E.g., <c>Root:Web:Configuration</c>.
+    ///   Gets or sets the number of columns (width) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
+    ///   <c>70</c>.
     /// </summary>
-    public string? Scope { get; set; }
+    public int? Columns { get; set; }
 
     /*==========================================================================================================================
-    | RESULT LIMIT
+    | ROWS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
+    ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
+    ///   <c>30</c>.
     /// </summary>
-    public int? ResultLimit { get; set; }
+    public int? Rows { get; set; }
 
     /*==========================================================================================================================
-    | CONTENT TYPE
+    | HEIGHT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
+    ///   Gets or sets the number of pixels that the <see cref="HtmlViewComponent"/> should take up. Defaults to <see
+    ///   cref="Rows"/> x 20.
     /// </summary>
-    public string? ContentType { get; set; }
+    /// <remarks>
+    ///   If set, this value overrides <see cref="Rows"/>.
+    /// </remarks>
+    public int? Height { get; set; }
+
 
   } // Class
 } // Namespace

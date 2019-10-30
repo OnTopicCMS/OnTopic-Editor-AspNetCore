@@ -3,20 +3,19 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using Ignia.Topics.Metadata;
 using System;
 
 #nullable enable
 
-namespace Ignia.Topics.Editor.Models.Components.Options {
+namespace Ignia.Topics.Editor.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: RELATIONSHIP (OPTIONS)
+  | CLASS: RELATIONSHIP ATTRIBUTE (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="RelationshipViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="RelationshipViewComponent"/>.
   /// </summary>
-  public class RelationshipOptions: DefaultOptions {
+  public class RelationshipAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: SCOPE

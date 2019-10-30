@@ -3,20 +3,21 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using Ignia.Topics.Metadata;
-using System;
 
-namespace Ignia.Topics.Editor.Models.Components.Options {
+#nullable enable
+
+namespace Ignia.Topics.Editor.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: BOOLEAN (OPTIONS)
+  | CLASS: FILE PATH ATTRIBUTE (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Establishes options associated with the <see cref="BooleanViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="FilePathViewComponent"/>.
   /// </summary>
-  public class BooleanOptions: DefaultOptions {
 
+  public class FilePathAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
-  } // Class
+  }
+}
 
-} // Namespace
+#nullable restore
