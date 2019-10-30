@@ -3,10 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Components.ViewModels;
 using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc;
@@ -38,13 +36,11 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="DefaultAttributeTypeViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
-      AttributeDescriptorTopicViewModel attribute,
-      string htmlFieldPrefix,
-      BooleanOptions options = null
+      BooleanAttributeTopicViewModel attribute,
+      string htmlFieldPrefix
     ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      options ??= new BooleanOptions();
-      return View(GetAttributeViewModel(new BooleanAttributeViewModel(attribute, options)));
+      return View(GetAttributeViewModel(new BooleanAttributeViewModel(attribute)));
     }
 
   } // Class

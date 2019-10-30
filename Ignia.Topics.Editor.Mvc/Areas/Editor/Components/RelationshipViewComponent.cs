@@ -6,7 +6,6 @@
 using System;
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,9 +34,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="RelationshipViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
-      AttributeDescriptorTopicViewModel attribute,
-      string htmlFieldPrefix,
-      RelationshipOptions options = null
+      RelationshipAttributeTopicViewModel attribute,
+      string htmlFieldPrefix
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -48,18 +46,17 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new RelationshipOptions();
-      options.Scope             ??= attribute.GetConfigurationValue(            "Scope",                null);
-      options.ShowRoot          ??= attribute.GetBooleanConfigurationValue(     "ShowRoot",             false);
-      options.CheckAscendants   ??= attribute.GetBooleanConfigurationValue(     "CheckAscendants",      false);
-      options.AttributeName     ??= attribute.GetConfigurationValue(            "AttributeName",        null);
-      options.AttributeValue    ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
-      options.Namespace         ??= attribute.GetConfigurationValue(            "Namespace",            "Related");
+      attribute.Scope           ??= attribute.GetConfigurationValue(            "Scope",                null);
+      attribute.ShowRoot        ??= attribute.GetBooleanConfigurationValue(     "ShowRoot",             false);
+      attribute.CheckAscendants ??= attribute.GetBooleanConfigurationValue(     "CheckAscendants",      false);
+      attribute.AttributeName   ??= attribute.GetConfigurationValue(            "AttributeName",        null);
+      attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
+      attribute.Namespace       ??= attribute.GetConfigurationValue(            "Namespace",            "Related");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new AttributeViewModel<RelationshipOptions>(attribute, options);
+      var model = new AttributeViewModel<RelationshipAttributeTopicViewModel>(attribute);
 
       GetAttributeViewModel(model);
 

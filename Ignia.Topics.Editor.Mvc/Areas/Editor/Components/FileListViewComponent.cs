@@ -4,7 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Editor.Mvc.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -54,9 +53,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="DefaultAttributeTypeViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
-      AttributeDescriptorTopicViewModel attribute,
-      string htmlFieldPrefix,
-      FileListOptions options
+      FileListAttributeTopicViewModel attribute,
+      string htmlFieldPrefix
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -67,23 +65,22 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                           ??= new FileListOptions();
-      options.Path                      ??= attribute.GetConfigurationValue("Path", null);
-      options.Extension                 ??= attribute.GetConfigurationValue("Extension", null);
-      options.Filter                    ??= attribute.GetConfigurationValue("Filter", null);
-      options.IncludeSubdirectories     ??= attribute.GetBooleanConfigurationValue("IncludeSubdirectories", false);
+      attribute.Path                    ??= attribute.GetConfigurationValue("Path", null);
+      attribute.Extension               ??= attribute.GetConfigurationValue("Extension", null);
+      attribute.Filter                  ??= attribute.GetConfigurationValue("Filter", null);
+      attribute.IncludeSubdirectories   ??= attribute.GetBooleanConfigurationValue("IncludeSubdirectories", false);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new FileListAttributeViewModel(attribute, options);
+      var model = new FileListAttributeViewModel(attribute);
 
       GetAttributeViewModel(model);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model!.Files              = GetFiles(model.InheritedValue, options);
+      model!.Files              = GetFiles(model.InheritedValue, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
@@ -98,46 +95,46 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Retrieves a collection of files in a directory, given the provided <see cref="Path"/>.
     /// </summary>
-    public List<SelectListItem> GetFiles(string inheritedValue, FileListOptions options) {
+    public List<SelectListItem> GetFiles(string inheritedValue, FileListAttributeTopicViewModel attribute) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | INSTANTIATE OBJECTS
       \-----------------------------------------------------------------------------------------------------------------------*/
       var files                 = new List<SelectListItem>();
       var searchPattern         = "*";
-      var searchOption          = options.IncludeSubdirectories is true? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+      var searchOption          = attribute.IncludeSubdirectories is true? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate input
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (String.IsNullOrEmpty(options.Path)) return files;
+      if (String.IsNullOrEmpty(attribute.Path)) return files;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Filter file list based on extension
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (options.Extension != null) {
-        searchPattern = searchPattern + "." + options.Extension;
+      if (attribute.Extension != null) {
+        searchPattern = searchPattern + "." + attribute.Extension;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Filter file list based on filter criteria
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (options.Filter != null) {
-        searchPattern = options.Filter + searchPattern;
+      if (attribute.Filter != null) {
+        searchPattern = attribute.Filter + searchPattern;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | GET ALL FILES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      string[] foundFiles = Directory.GetFiles(_webHostEnvironment.WebRootPath + options.Path, searchPattern, searchOption);
+      string[] foundFiles = Directory.GetFiles(_webHostEnvironment.WebRootPath + attribute.Path, searchPattern, searchOption);
 
       if (!String.IsNullOrEmpty(inheritedValue)) {
-        string inheritedValueKey = inheritedValue.Replace("." + options.Extension, "");
+        string inheritedValueKey = inheritedValue.Replace("." + attribute.Extension, "");
         files.Add(new SelectListItem("", inheritedValue));
       }
       foreach (string foundFile in foundFiles) {
-        string fileName = foundFile.Replace(_webHostEnvironment.WebRootPath + options.Path, "");
-        string fileNameKey = fileName.Replace("." + options.Extension, "");
+        string fileName = foundFile.Replace(_webHostEnvironment.WebRootPath + attribute.Path, "");
+        string fileNameKey = fileName.Replace("." + attribute.Extension, "");
         files.Add(new SelectListItem(fileNameKey, fileName));
       }
 

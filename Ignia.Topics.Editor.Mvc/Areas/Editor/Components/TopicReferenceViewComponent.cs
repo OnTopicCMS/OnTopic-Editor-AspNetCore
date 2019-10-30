@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Components.ViewModels;
 using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Repositories;
@@ -52,9 +51,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="NestedTopicListViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
-      AttributeDescriptorTopicViewModel attribute,
-      string htmlFieldPrefix,
-      TopicReferenceOptions options = null
+      TopicReferenceAttributeTopicViewModel attribute,
+      string htmlFieldPrefix
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -65,19 +63,19 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new TopicReferenceOptions();
-      options.Scope             ??= attribute.GetConfigurationValue(            "Scope",                "Root");
-      options.ResultLimit       ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
-      options.ContentType       ??= attribute.GetConfigurationValue(            "ContentType",          null);
+      attribute                 ??= new TopicReferenceAttributeTopicViewModel();
+      attribute.Scope           ??= attribute.GetConfigurationValue(            "Scope",                "Root");
+      attribute.ResultLimit     ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
+      attribute.ContentType     ??= attribute.GetConfigurationValue(            "ContentType",          null);
 
-      if (options.ContentType is null) {
-        options.ContentType = CurrentTopic.ContentType;
+      if (attribute.ContentType is null) {
+        attribute.ContentType = CurrentTopic.ContentType;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<TopicReferenceOptions>(attribute, options);
+      var viewModel = new AttributeViewModel<TopicReferenceAttributeTopicViewModel>(attribute);
 
       GetAttributeViewModel(viewModel);
 

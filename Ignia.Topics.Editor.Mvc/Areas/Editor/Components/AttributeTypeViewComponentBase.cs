@@ -11,7 +11,6 @@ using Ignia.Topics.AspNetCore.Mvc.Models;
 using Ignia.Topics.Editor.Models;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Metadata;
 
 namespace Ignia.Topics.Editor.Mvc.Components {
@@ -76,11 +75,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   The <see cref="AttributeDescriptorTopicViewModel"/> to initialize a new <see cref="AttributeViewModel"/> with.
     /// </param>
     /// <returns>The Topic associated with the current request.</returns>
-    public AttributeViewModel<DefaultOptions> GetAttributeViewModel(
-      AttributeDescriptorTopicViewModel attribute,
-      DefaultOptions options
+    public AttributeViewModel<AttributeDescriptorTopicViewModel> GetAttributeViewModel(
+      AttributeDescriptorTopicViewModel attribute
     ) {
-      var viewModel = new AttributeViewModel<DefaultOptions>(attribute, options);
+      var viewModel = new AttributeViewModel<AttributeDescriptorTopicViewModel>(attribute);
       GetAttributeViewModel(viewModel);
       return viewModel;
     }

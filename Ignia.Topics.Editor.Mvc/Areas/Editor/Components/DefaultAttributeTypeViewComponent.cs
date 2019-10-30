@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,12 +43,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
       AttributeDescriptorTopicViewModel attribute,
-      string htmlFieldPrefix,
-      DefaultOptions options = null
+      string htmlFieldPrefix
     ) {
-      options ??= new DefaultOptions();
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      var viewModel = new AttributeViewModel<DefaultOptions>(attribute, options);
+      var viewModel = new AttributeViewModel<AttributeDescriptorTopicViewModel>(attribute);
       return View(GetAttributeViewModel(viewModel));
     }
 

@@ -4,7 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -35,9 +34,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="HtmlViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
-      AttributeDescriptorTopicViewModel attribute,
-      string htmlFieldPrefix,
-      HtmlOptions options = null
+      HtmlAttributeTopicViewModel attribute,
+      string htmlFieldPrefix
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -48,20 +46,19 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new HtmlOptions();
-      options.Columns           ??= attribute.GetIntegerConfigurationValue(     "Columns",              70);
-      options.Rows              ??= attribute.GetIntegerConfigurationValue(     "Rows",                 20);
-      options.Height            ??= attribute.GetIntegerConfigurationValue(     "Height",               0);
-      options.CssClass          ??= attribute.GetConfigurationValue(            "CssClass",             "FormField Field");
+      attribute.Columns         ??= attribute.GetIntegerConfigurationValue(     "Columns",              70);
+      attribute.Rows            ??= attribute.GetIntegerConfigurationValue(     "Rows",                 20);
+      attribute.Height          ??= attribute.GetIntegerConfigurationValue(     "Height",               0);
+      attribute.CssClass        ??= attribute.GetConfigurationValue(            "CssClass",             "FormField Field");
 
-      if (options.Height == null || options.Height == 0 && options.Rows != null) {
-        options.Height = options.Rows * 20;
+      if (attribute.Height == null || attribute.Height == 0 && attribute.Rows != null) {
+        attribute.Height = attribute.Rows * 20;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<HtmlOptions>(attribute, options);
+      var viewModel = new AttributeViewModel<HtmlAttributeTopicViewModel>(attribute);
 
       GetAttributeViewModel(viewModel);
 

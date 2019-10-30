@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Components.ViewModels;
 using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Repositories;
@@ -50,9 +49,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="TokenizedTopicListViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
-      AttributeDescriptorTopicViewModel attribute,
-      string htmlFieldPrefix,
-      TokenizedTopicListOptions options
+      TokenizedTopicListAttributeTopicViewModel attribute,
+      string htmlFieldPrefix
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -63,20 +61,19 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new TokenizedTopicListOptions();
-      options.Scope             ??= attribute.GetConfigurationValue(            "Scope",                "Root");
-      options.AttributeName     ??= attribute.GetConfigurationValue(            "AttributeName",        null);
-      options.AttributeValue    ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
-      options.ResultLimit       ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
-      options.TokenLimit        ??= attribute.GetIntegerConfigurationValue(     "TokenLimit",           100);
-      options.AsRelationship    ??= attribute.GetBooleanConfigurationValue(     "AsRelationship",       false);
-      options.SearchProperty    ??= attribute.GetConfigurationValue(            "SearchProperty",       "key");
-      options.QueryParameter    ??= attribute.GetConfigurationValue(            "QueryParameter",       "AttributeValue");
+      attribute.Scope           ??= attribute.GetConfigurationValue(            "Scope",                "Root");
+      attribute.AttributeName   ??= attribute.GetConfigurationValue(            "AttributeName",        null);
+      attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
+      attribute.ResultLimit     ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
+      attribute.TokenLimit      ??= attribute.GetIntegerConfigurationValue(     "TokenLimit",           100);
+      attribute.AsRelationship  ??= attribute.GetBooleanConfigurationValue(     "AsRelationship",       false);
+      attribute.SearchProperty  ??= attribute.GetConfigurationValue(            "SearchProperty",       "key");
+      attribute.QueryParameter  ??= attribute.GetConfigurationValue(            "QueryParameter",       "AttributeValue");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new TokenizedTopicListAttributeViewModel(attribute, options);
+      var model = new TokenizedTopicListAttributeViewModel(attribute);
 
       GetAttributeViewModel(model);
 

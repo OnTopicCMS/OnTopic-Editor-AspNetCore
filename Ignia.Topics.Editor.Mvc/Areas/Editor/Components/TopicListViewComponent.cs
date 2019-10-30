@@ -8,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Editor.Mvc.Models;
 using Ignia.Topics.Querying;
@@ -51,25 +50,23 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="TopicListViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
-      AttributeDescriptorTopicViewModel attribute,
-      TopicListOptions options = null,
+      TopicListAttributeTopicViewModel attribute,
       string htmlFieldPrefix = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new TopicListOptions();
-      options.Label             ??= attribute.GetConfigurationValue(            "Label",                "Select a Topic…");
-      options.Scope             ??= attribute.GetConfigurationValue(            "Scope",                null);
-      options.AttributeName     ??= attribute.GetConfigurationValue(            "AttributeName",        null);
-      options.AttributeValue    ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
-      options.AllowedKeys       ??= attribute.GetConfigurationValue(            "AllowedKeys",          null);
-      options.UseUniqueKey      ??= attribute.GetBooleanConfigurationValue(     "UseUniqueKey",         false);
-      options.ValueProperty     ??= attribute.GetConfigurationValue(            "ValueProperty",        null);
-      options.TargetPopup       ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          false);
-      options.TargetUrl         ??= attribute.GetConfigurationValue(            "TargetUrl",            null);
-      options.OnClientClose     ??= attribute.GetConfigurationValue(            "OnClientClose",        null);
+      attribute.Label           ??= attribute.GetConfigurationValue(            "Label",                "Select a Topic…");
+      attribute.Scope           ??= attribute.GetConfigurationValue(            "Scope",                null);
+      attribute.AttributeName   ??= attribute.GetConfigurationValue(            "AttributeName",        null);
+      attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
+      attribute.AllowedKeys     ??= attribute.GetConfigurationValue(            "AllowedKeys",          null);
+      attribute.UseUniqueKey    ??= attribute.GetBooleanConfigurationValue(     "UseUniqueKey",         false);
+      attribute.ValueProperty   ??= attribute.GetConfigurationValue(            "ValueProperty",        null);
+      attribute.TargetPopup     ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          false);
+      attribute.TargetUrl       ??= attribute.GetConfigurationValue(            "TargetUrl",            null);
+      attribute.OnClientClose   ??= attribute.GetConfigurationValue(            "OnClientClose",        null);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -79,29 +76,29 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new TopicListAttributeViewModel(attribute, options);
+      var viewModel = new TopicListAttributeViewModel(attribute);
 
       GetAttributeViewModel(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | SET LABEL
+      | Set label
       \-----------------------------------------------------------------------------------------------------------------------*/
       viewModel.TopicList.Add(
         new SelectListItem {
           Value = null,
-          Text = options.Label
+          Text = attribute.Label
         }
       );
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | SET DEFAULT VALUE
+      | Set default value
       \-----------------------------------------------------------------------------------------------------------------------*/
       var defaultValue = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | SET OPTIONS
+      | Set attribute values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topics = GetTopics(options.Scope, options.AttributeName, options.AttributeValue, options.AllowedKeys);
+      var topics = GetTopics(attribute.Scope, attribute.AttributeName, attribute.AttributeValue, attribute.AllowedKeys);
 
       foreach (var topic in topics) {
 
@@ -127,9 +124,9 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Helper functions
       \-----------------------------------------------------------------------------------------------------------------------*/
       string getValue(Topic topic) {
-        if (!String.IsNullOrEmpty(options.TargetUrl)) {
+        if (!String.IsNullOrEmpty(attribute.TargetUrl)) {
           // Add TopicID if not already available
-          var uniqueTargetUrl = options.TargetUrl;
+          var uniqueTargetUrl = attribute.TargetUrl;
           if (
             uniqueTargetUrl.IndexOf("?") >= 0 &&
             uniqueTargetUrl.IndexOf("TopicID", StringComparison.InvariantCultureIgnoreCase) < 0
@@ -138,7 +135,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
           }
           return ReplaceTokens(topic, uniqueTargetUrl);
         }
-        return ReplaceTokens(topic, "{" + options.ValueProperty + "}");
+        return ReplaceTokens(topic, "{" + attribute.ValueProperty + "}");
       }
 
     }

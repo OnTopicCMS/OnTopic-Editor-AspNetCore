@@ -7,7 +7,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Components.ViewModels;
 using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc;
@@ -37,9 +36,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="NestedTopicListViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
-      AttributeDescriptorTopicViewModel attribute,
-      string htmlFieldPrefix,
-      NestedTopicListOptions options = null
+      NestedTopicListAttributeTopicViewModel attribute,
+      string htmlFieldPrefix
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -50,14 +48,13 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      options                   ??= new NestedTopicListOptions();
-      options.ContentTypes      ??= attribute.GetConfigurationValue(            "ContentTypes",         "");
-      options.TargetPopup       ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          true);
+      attribute.ContentTypes    ??= attribute.GetConfigurationValue(            "ContentTypes",         "");
+      attribute.TargetPopup     ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new NestedTopicListAttributeViewModel(attribute, options);
+      var viewModel = new NestedTopicListAttributeViewModel(attribute);
 
       GetAttributeViewModel(viewModel);
 
