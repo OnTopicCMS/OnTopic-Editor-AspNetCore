@@ -8,10 +8,9 @@
   <select asp-for="Value" asp-items="Model.TopicList" class="FormField Field"></select>
 }
 
-@if (Model.TopicList.Count <= 2 && !String.IsNullOrEmpty(Model.Options.TargetUrl)) {
+@if (Model.TopicList.Count <= 2 && !String.IsNullOrEmpty(Model.AttributeDescriptor.TargetUrl)) {
   <div class="ChildTopic">
-    <!-- @Model.Options.Label -->
-    @if (Model.Options.TargetPopup is false) {
+    <!-- @Model.AttributeDescriptor.Label -->
       </a>
     }
   </div>

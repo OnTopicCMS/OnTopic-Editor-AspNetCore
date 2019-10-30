@@ -1,4 +1,4 @@
-﻿@model AttributeViewModel<RelationshipOptions>
+﻿@model AttributeViewModel<RelationshipAttributeTopicViewModel>
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
@@ -22,7 +22,7 @@
       containerScroll   : true,
       border            : false,
       baseCls           : 'RelationshipsTreeView',
-      dataUrl           : '/OnTopic/Json/@(Model.Options.Scope?.Replace(":", "/")?? "Root")?ShowRoot=@Model.Options.ShowRoot&ShowAll=true&RelatedNamespace=@Model.Options.Namespace&RelatedTopicID=@Model.TopicId&AttributeName=@Model.Options.AttributeName&AttributeValue=@Model.Options.AttributeValue',
+      dataUrl           : '/OnTopic/Json/@(Model.AttributeDescriptor.Scope?.Replace(":", "/")?? "Root")?ShowRoot=@Model.AttributeDescriptor.ShowRoot&ShowAll=true&RelatedNamespace=@Model.AttributeDescriptor.Namespace&RelatedTopicID=@Model.TopicId&AttributeName=@Model.AttributeDescriptor.AttributeName&AttributeValue=@Model.AttributeDescriptor.AttributeValue',
       root              : new Ext.tree.AsyncTreeNode({
         checked         : true,
         text            : 'Web',
@@ -45,7 +45,7 @@
             relationships.remove(node.attributes.id);
           }
           Storage.dom.value = relationships.concat(",");
-          @(Model.Options.CheckAscendants is true? "" : "return true")
+          @(Model.AttributeDescriptor.CheckAscendants is true? "" : "return true")
           if (checked && node.parentNode) node.parentNode.getUI().toggleCheck(true);
         }
       }

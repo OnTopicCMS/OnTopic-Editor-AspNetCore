@@ -1,13 +1,17 @@
-﻿@model AttributeViewModel<TopicReferenceOptions>
+﻿@model AttributeViewModel<TopicReferenceAttributeTopicViewModel>
 
 @{
-  var options                   = new TokenizedTopicListOptions() {
-    Scope                       = Model.Options.Scope,
-    AttributeName               = String.IsNullOrEmpty(Model.Options.ContentType)? "": "ContentType",
-    AttributeValue              = Model.Options.ContentType,
+  var attributeDescriptor       = new TokenizedTopicListAttributeTopicViewModel() {
+    Key                         = Model.Key,
+    Description                 = Model.AttributeDescriptor.Description,
+    Title                       = Model.AttributeDescriptor.Title,
+    EditorType                  = "TokenizedTopicList.ascx",
+    Scope                       = Model.AttributeDescriptor.Scope,
+    AttributeName               = String.IsNullOrEmpty(Model.AttributeDescriptor.TargetContentType)? "": "ContentType",
+    AttributeValue              = Model.AttributeDescriptor.TargetContentType,
     SearchProperty              = "text",
     QueryParameter              = "Query",
-    ResultLimit                 = Model.Options.ResultLimit,
+    ResultLimit                 = Model.AttributeDescriptor.ResultLimit,
     TokenLimit                  = 1,
     IsAutoPostBack              = true
   };
@@ -15,6 +19,5 @@
 
 <vc:tokenized-topic-list
   html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
-  attribute=@Model.AttributeDescriptor
-  options=@options>
+  attribute=@attributeDescriptor>
 </vc:tokenized-topic-list>

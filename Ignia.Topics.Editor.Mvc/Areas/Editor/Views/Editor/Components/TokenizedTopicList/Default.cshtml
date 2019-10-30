@@ -14,14 +14,14 @@
   //Create new instance of TokenizedTopics and set relevant properties
     var tokenizedTopics                 = new TokenizedTopics();
     tokenizedTopics.selector            = '#@Html.IdFor(m => m.Value)';
-    tokenizedTopics.scope               = '@Model.Options.Scope.Replace(":", "/")';
-    tokenizedTopics.attributeName       = '@Model.Options.AttributeName';
-    tokenizedTopics.attributeValue      = '@Model.Options.AttributeValue';
-    tokenizedTopics.searchProperty      = '@Model.Options.SearchProperty.ToLower()';
-    tokenizedTopics.queryParameter      = '@Model.Options.QueryParameter';
-    tokenizedTopics.resultLimit         = '@Model.Options.ResultLimit';
-    tokenizedTopics.tokenLimit          = @Model.Options.TokenLimit;
-    tokenizedTopics.isAutoPostBack      = @Model.Options.IsAutoPostBack.ToString().ToLower();
+    tokenizedTopics.scope               = '@Model.AttributeDescriptor.Scope.Replace(":", "/")';
+    tokenizedTopics.attributeName       = '@Model.AttributeDescriptor.AttributeName';
+    tokenizedTopics.attributeValue      = '@Model.AttributeDescriptor.AttributeValue';
+    tokenizedTopics.searchProperty      = '@Model.AttributeDescriptor.SearchProperty.ToLower()';
+    tokenizedTopics.queryParameter      = '@Model.AttributeDescriptor.QueryParameter';
+    tokenizedTopics.resultLimit         = '@Model.AttributeDescriptor.ResultLimit';
+    tokenizedTopics.tokenLimit          = @Model.AttributeDescriptor.TokenLimit;
+    tokenizedTopics.isAutoPostBack      = @Model.AttributeDescriptor.IsAutoPostBack.ToString().ToLower();
     tokenizedTopics.selectedTopics      = @Model.SelectedTopics;
 
   //Fire TokenizedTopics.prototype.getTokenizedTopics() (and $([selector]).tokenInput())

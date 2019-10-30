@@ -29,7 +29,7 @@
       listeners                 : {
         click: function (n) {
           var targetUrl = "@(Url.Action("Edit")+Model.AttributeDescriptor.Key)/" + n.attributes.key;
-          @if (Model.Options.TargetPopup?? true) {
+          @if (Model.AttributeDescriptor.TargetPopup?? true) {
             <text>
               initEditorModal('@Model.Key', n.attributes.text, targetUrl + '?Modal=true', @($"{Model.AttributeDescriptor.Key}Tree_refresh"));return false;
             </text>

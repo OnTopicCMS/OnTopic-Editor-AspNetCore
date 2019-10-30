@@ -1,4 +1,4 @@
-﻿@model AttributeViewModel<HtmlOptions>
+﻿@model AttributeViewModel<HtmlAttributeTopicViewModel>
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
@@ -17,10 +17,10 @@
 
 <textarea
   asp-for                       ="Value"
-  height                        =@Model.Options.Rows
-  columns                       =@Model.Options.Columns
+  height                        =@Model.AttributeDescriptor.Rows
+  columns                       =@Model.AttributeDescriptor.Columns
   enabled                       =@Model.IsEnabled
-  class                         =@Model.Options.CssClass
+  class                         =@Model.AttributeDescriptor.CssClass
 ></textarea>
 
 <script type="text/javascript">
@@ -44,8 +44,8 @@
   function setEditorInstance(textareaId) {
   //console.log(textareaId + ' on setEditorInstance');
     CKEDITOR.replace(textareaId, {
-      height            : '@Model.Options.Height',
-      resize_maxHeight  : '@(Model.Options.Height+300)',
+      height            : '@Model.AttributeDescriptor.Height',
+      resize_maxHeight  : '@(Model.AttributeDescriptor.Height+300)',
       customConfig      : 'customConfig.js'
     });
   }
