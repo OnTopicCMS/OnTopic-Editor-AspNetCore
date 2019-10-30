@@ -67,7 +67,9 @@
             <div id="FixedSidebar">
               <div id="TreeView"></div>
               @{
-                var options       = new TopicListOptions() {
+                var attributeDescriptor = new TopicListAttributeTopicViewModel() {
+                  Key             = "Navigation",
+                  EditorType      = "TopicList.ascx",
                   Scope           = "Configuration:ContentTypes",
                   AttributeName   = "ContentType",
                   AttributeValue  = "ContentType",
@@ -77,11 +79,10 @@
                 };
               }
               <text>
-                <vc:topic-lookup
-                  attribute=@(new AttributeDescriptorTopicViewModel() { Key="Placeholder", EditorType="TopicLookup.ascx" })
-                  html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
-                  options=@options>
-                </vc:topic-lookup>
+                <vc:topic-list
+                  attribute=@attributeDescriptor
+                  html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix>
+                </vc:topic-list>
               </text>
             </div>
           </nav>

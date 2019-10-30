@@ -59,22 +59,23 @@
 <div id="@ViewData.TemplateInfo.GetFullHtmlFieldName("Container")"></div>
 
 @if (!Model.IsNew) {
-  var options                   = new TopicLookupOptions() {
+  var attributeDescriptor       = new TopicListAttributeTopicViewModel() {
+    Key                         = Model.Key,
+    EditorType                  = "TopicList.ascx",
     Scope                       = "Configuration:ContentTypes",
     AttributeName               = "ContentType",
     AttributeValue              = "ContentType",
-    AllowedKeys                 = Model.Options.ContentTypes,
+    AllowedKeys                 = Model.AttributeDescriptor.ContentTypes,
     Label                       = "Add child topic…",
     TargetUrl                   = $"?ContentType{{Topic}}&Path={Model.UniqueKey}:{Model.AttributeDescriptor.Key}&Action=Add",
-    TargetPopup                 = Model.Options.TargetPopup,
+    TargetPopup                 = Model.AttributeDescriptor.TargetPopup,
     OnClientClose               = $"{Model.AttributeDescriptor.Key}Tree_refresh"
   };
   <text>
-    <vc:topic-lookup
-      attribute=@Model.AttributeDescriptor
-      html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
-      options=@options>
-    </vc:topic-lookup>
+    <vc:topic-list
+      attribute=@attributeDescriptor
+      html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix>
+    </vc:topic-list>
   </text>
 }
 else {
