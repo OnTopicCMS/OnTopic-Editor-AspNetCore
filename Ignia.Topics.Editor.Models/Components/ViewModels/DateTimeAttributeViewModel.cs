@@ -3,50 +3,37 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.Generic;
-using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Metadata;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Ignia.Topics.Metadata;
+using System;
 
-namespace Ignia.Topics.Editor.Mvc.Models {
+namespace Ignia.Topics.Editor.Models.Components.ViewModels {
 
   /*============================================================================================================================
-  | CLASS: FILE ATTRIBUTE (VIEW MODEL)
+  | CLASS: DATE/TIME  ATTRIBUTE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents the data model for the <see cref="FileViewComponent"/>. Additionally provides access to the underlying
+  ///   Represents the data model for the <see cref="DateTimeViewComponent"/>. Additionally provides access to the underlying
   ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
   ///   selected <see cref="Topic"/>.
   /// </summary>
-  public class FileListAttributeViewModel: AttributeViewModel<FileListAttributeTopicViewModel> {
+  public class DateTimeAttributeViewModel: AttributeViewModel<DateTimeAttributeTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="FileAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="DateTimeSelectorAttributeViewModel"/> class.
     /// </summary>
-    public FileListAttributeViewModel(
-      FileListAttributeTopicViewModel attributeDescriptor,
+    public DateTimeAttributeViewModel(
+      DateTimeAttributeTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
-    ) : base(
+    ): base(
       attributeDescriptor,
       value,
       inheritedValue
     ) {}
-
-    /*==========================================================================================================================
-    | FILES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a list of files associated with the lookup.
-    /// </summary>
-    /// <remarks>
-    ///   The <see cref="SelectListItem.Value"/>represents the path that will be saved to the database; the <see
-    ///   cref="SelectListItem.Text"/> represents simply the file name itself.
-    /// </remarks>
-    public List<SelectListItem> Files { get; set; } = new List<SelectListItem>();
 
   } // Class
 

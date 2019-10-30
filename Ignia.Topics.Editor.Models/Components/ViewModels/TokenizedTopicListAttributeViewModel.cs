@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Metadata;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -18,7 +17,7 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
   ///   underlying <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the
   ///   currently selected <see cref="Topic"/>.
   /// </summary>
-  public class TokenizedTopicListAttributeViewModel: AttributeViewModel<TokenizedTopicListOptions> {
+  public class TokenizedTopicListAttributeViewModel: AttributeViewModel<TokenizedTopicListAttributeTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -27,13 +26,11 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
     ///   Initializes a new instance of the <see cref="TokenizedTopicListAttributeViewModel"/> class.
     /// </summary>
     public TokenizedTopicListAttributeViewModel(
-      AttributeDescriptorTopicViewModel attributeDescriptor,
-      TokenizedTopicListOptions options,
+      TokenizedTopicListAttributeTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(
       attributeDescriptor,
-      options,
       value,
       inheritedValue
     ) { }

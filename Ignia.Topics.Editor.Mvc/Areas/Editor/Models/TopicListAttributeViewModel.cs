@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using System.Collections.Generic;
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -17,7 +16,7 @@ namespace Ignia.Topics.Editor.Mvc.Models {
   /// <summary>
   ///   Extends the <see cref="AttributeViewModel"/> to include properties that are specific to the topic list view component.
   /// </summary>
-  public class TopicListAttributeViewModel: AttributeViewModel<TopicListOptions> {
+  public class TopicListAttributeViewModel: AttributeViewModel<TopicListAttributeTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -26,13 +25,11 @@ namespace Ignia.Topics.Editor.Mvc.Models {
     ///   Initializes a new instance of the <see cref="TopicListAttributeViewModel"/> class.
     /// </summary>
     public TopicListAttributeViewModel(
-      AttributeDescriptorTopicViewModel attributeDescriptor,
-      TopicListOptions options,
+      TopicListAttributeTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ) : base(
       attributeDescriptor,
-      options,
       value,
       inheritedValue
     ) {}

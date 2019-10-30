@@ -3,9 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using Ignia.Topics.Editor.Models.Components.Options;
 using Ignia.Topics.Editor.Models.Metadata;
-using Ignia.Topics.Metadata;
 using System;
 
 namespace Ignia.Topics.Editor.Models.Components.ViewModels {
@@ -18,7 +16,7 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
   ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
   ///   selected <see cref="Topic"/>.
   /// </summary>
-  public class BooleanAttributeViewModel: AttributeViewModel<BooleanOptions> {
+  public class BooleanAttributeViewModel: AttributeViewModel<BooleanAttributeTopicViewModel> {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -33,13 +31,11 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
     ///   Initializes a new instance of the <see cref="BooleanAttributeViewModel"/> class.
     /// </summary>
     public BooleanAttributeViewModel(
-      AttributeDescriptorTopicViewModel attributeDescriptor,
-      BooleanOptions options,
+      BooleanAttributeTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(
       attributeDescriptor,
-      options,
       value,
       inheritedValue
     ) {}
