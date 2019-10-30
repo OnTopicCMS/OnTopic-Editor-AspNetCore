@@ -29,9 +29,20 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
       /*------------------------------------------------------------------------------------------------------------------------
       | Add Editor-specific view models
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Add(typeof(AttributeDescriptorTopicViewModel));
-      Add(typeof(ContentTypeDescriptorTopicViewModel));
       Add(typeof(EditingTopicViewModel));
+      Add(typeof(ContentTypeDescriptorTopicViewModel));
+      Add(typeof(AttributeDescriptorTopicViewModel));
+      Add(typeof(BooleanAttributeTopicViewModel));
+      Add(typeof(DateTimeAttributeTopicViewModel));
+      Add(typeof(FileListAttributeTopicViewModel));
+      Add(typeof(FilePathAttributeTopicViewModel));
+      Add(typeof(HtmlAttributeTopicViewModel));
+      Add(typeof(NestedTopicListAttributeTopicViewModel));
+      Add(typeof(RelationshipAttributeTopicViewModel));
+      Add(typeof(TextAttributeTopicViewModel));
+      Add(typeof(TokenizedTopicListAttributeTopicViewModel));
+      Add(typeof(TopicListAttributeTopicViewModel));
+      Add(typeof(TopicReferenceAttributeTopicViewModel));
 
     }
 
