@@ -15,7 +15,7 @@
       <div id="DisplayGroupTabsContent" class="tab-content">
         @foreach (string displayGroupName in Model.ContentTypeDescriptor.GetDisplayGroups()) {
 
-          var displayGroupId = displayGroupName.Replace(" ", "");
+          var displayGroupId = displayGroupName.Replace(" ", String.Empty);
 
           <div id="Group_@displayGroupId" class="tab-pane fade@(index == 0 ? " show active" : "")" role="tabpanel" aria-labelledby="Tab_@displayGroupId">
             <section id="Section_@displayGroupId">

@@ -2,7 +2,7 @@
 
 @{
   Layout = null;
-  var displayGroups = Model.ContentTypeDescriptor.AttributeDescriptors.Select(a => a.DisplayGroup).Distinct().ToList();
+  var displayGroups = Model.ContentTypeDescriptor.GetDisplayGroups();
   bool disableDelete = Model.ContentTypeDescriptor.DisableDelete;
 }
 
@@ -47,9 +47,10 @@
 
   <ul id="DisplayGroupNavTabs" class="nav nav-tabs" role="tablist">
     @for (int i = 0; i < @displayGroups.Count(); i++) {
-      var displayGroup = @displayGroups[i].Replace(" ", "");
+      var displayGroupName      = displayGroups[i];
+      var displayGroupId        = displayGroups[i].Replace(" ", String.Empty);
       <li class="nav-item">
-        <a id="Tab_@displayGroups[i]" class="nav-link @(i == 0 ? "active" : "")" href="#Group_@displayGroups[i]" data-toggle="tab" role="tab" aria-controls="#Group_@displayGroups[i]" @(i == 0 ? "aria-expanded=\"true\"" : "")>@displayGroups[i]</a>
+        <a id="Tab_@displayGroupId" class="nav-link @(i == 0 ? "active" : "")" href="#Group_@displayGroupId" data-toggle="tab" role="tab" aria-controls="#Group_@displayGroupId" @(i == 0 ? "aria-expanded=\"true\"" : "")>@displayGroupName</a>
       </li>
     }
   </ul>
