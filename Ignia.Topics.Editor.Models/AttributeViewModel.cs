@@ -44,7 +44,7 @@ namespace Ignia.Topics.Editor.Models {
     /// <summary>
     ///   Provides the global definition for the attribute, as defined on the corresponding <see cref="ContentType"/>.
     /// </summary>
-    public AttributeDescriptorTopicViewModel AttributeDescriptor { get; set; }
+    public AttributeDescriptorTopicViewModel AttributeDescriptor { get; }
 
     /*==========================================================================================================================
     | KEY

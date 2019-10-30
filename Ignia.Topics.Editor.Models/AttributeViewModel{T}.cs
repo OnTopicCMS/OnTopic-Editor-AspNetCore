@@ -32,13 +32,17 @@ namespace Ignia.Topics.Editor.Models {
       value,
       inheritedValue
     ) {
+      AttributeDescriptor = attributeDescriptor;
     }
 
     /*==========================================================================================================================
     | OPTIONS
+    | PROPERTY: ATTRIBUTE TYPE DESCRIPTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Exposes the options associated with the specific attribute view model.
+    ///   Provides the global definition for the specific attribute type, as defined on the corresponding <see
+    ///   cref="ContentType"/>. This differs from the <see cref="AttributeDescriptor"/> in that it provides access to additional
+    ///   properties that are specific to the attribute type.
     /// </summary>
     public T Options { get; set; }
 
@@ -67,6 +71,18 @@ namespace Ignia.Topics.Editor.Models {
         Options.CssClass = value;
       }
     }
+    /// <remarks>
+    ///   This implementation of <see cref="AttributeDescriptor"/> hides the underlying implementation of <see
+    ///   cref="AttributeViewModel.AttributeDescriptor"/>, replacing it with a strongly typed derivative. This effectively
+    ///   mimics return type covariance. To ensure that this is safe, the <see cref="AttributeDescriptor"/> value can only be
+    ///   set via the constructor—which simultaneously sets the underlying <see cref="AttributeViewModel.AttributeDescriptor"/>
+    ///   with the <i>same</i> object. That way, if the object is cast as a <see cref="AttributeViewModel"/> (e.g., in shared
+    ///   views) it will have access to the general <see cref="AttributeDescriptorTopicViewModel"/>, where as if it cast as a
+    ///   <see cref="AttributeViewModel{T}"/>, then it will get the strongly-typed derivative at the same location. In either
+    ///   case, the <see cref="AttributeDescriptor"/> can be explicitly cast to the general or derived version, since it's
+    ///   guaranteed to be an instance of the derived class.
+    /// </remarks>
+    public new T AttributeDescriptor { get; }
 
   } // Class
 
