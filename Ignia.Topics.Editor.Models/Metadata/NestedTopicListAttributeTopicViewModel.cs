@@ -38,7 +38,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     \-----------------------------------------------------------------------------------------------------------------------------*/
     public bool? TargetPopup { get; set; }
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
 
 #nullable restore

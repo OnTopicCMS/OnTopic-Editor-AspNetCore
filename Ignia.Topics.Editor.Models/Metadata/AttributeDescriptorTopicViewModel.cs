@@ -163,6 +163,5 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// </summary>
     public virtual string GetValidationRules() => "required:" + IsRequired.ToString().ToLowerInvariant();
 
-  } // Class
-
-} // Namespace
+  } //Class
+} //Namespace

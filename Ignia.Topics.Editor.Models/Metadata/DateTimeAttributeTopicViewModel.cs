@@ -73,8 +73,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// </summary>
     public string? DateTimeOffsetUnits { get; set; }
 
-  } // Class
-
-} // Namespace
+  } //Class
+} //Namespace
 
 #nullable restore

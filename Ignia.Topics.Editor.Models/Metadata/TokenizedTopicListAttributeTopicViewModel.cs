@@ -115,7 +115,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// </summary>
     public string? QueryParameter { get; set; }
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
 
 #nullable restore

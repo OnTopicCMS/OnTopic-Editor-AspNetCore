@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 
 #nullable enable
 
@@ -16,7 +15,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
   ///   Provides access to attributes associated with the <see cref="TextViewComponentView"/>.
   /// </summary>
   public class TextAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
 
 #nullable restore

@@ -14,7 +14,6 @@ namespace Ignia.Topics.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="FilePathViewComponent"/>.
   /// </summary>
-
   public class FilePathAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
@@ -53,7 +52,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// </summary>
     public bool? RelativeToParent { get; set; }
 
-  }
-}
+  } //Class
+} //Namespace
 
 #nullable restore

@@ -44,7 +44,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     [AttributeKey("ContentType")]
     public string? TargetContentType { get; set; }
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
 
 #nullable restore

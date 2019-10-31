@@ -90,5 +90,5 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     public List<AttributeDescriptorTopicViewModel> GetAttributeDescriptors(string displayGroup) =>
       AttributeDescriptors.Where(a => a.DisplayGroup.Equals(displayGroup)).OrderBy(a => a.SortOrder).ToList();
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace

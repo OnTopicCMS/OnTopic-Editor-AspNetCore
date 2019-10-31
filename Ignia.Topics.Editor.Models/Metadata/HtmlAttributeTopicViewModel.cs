@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 
 #nullable enable
 
@@ -47,8 +46,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// </remarks>
     public int? Height { get; set; }
 
-
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
 
 #nullable restore

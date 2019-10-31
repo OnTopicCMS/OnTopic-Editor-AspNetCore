@@ -48,7 +48,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// </summary>
     public bool? IncludeSubdirectories { get; set; }
 
-  }
-}
+  } //Class
+} //Namespace
 
 #nullable restore

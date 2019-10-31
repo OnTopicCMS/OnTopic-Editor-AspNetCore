@@ -121,7 +121,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     \-------------------------------------------------------------------------------------------------------------------------*/
     public string? AllowedKeys { get; set; }
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
 
 #nullable restore

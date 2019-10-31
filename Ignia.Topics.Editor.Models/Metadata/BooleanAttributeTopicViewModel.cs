@@ -3,7 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
+
+#nullable enable
 
 namespace Ignia.Topics.Editor.Models.Metadata {
 
@@ -16,6 +17,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
   public class BooleanAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
 
-  } // Class
+  } //Class
+} //Namespace
 
-} // Namespace
+#nullable restore
