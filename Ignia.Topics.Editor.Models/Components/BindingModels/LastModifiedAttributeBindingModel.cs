@@ -4,17 +4,15 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: DATE TIME EDITOR ATTRIBUTE
+  | CLASS: LAST MODIFIED ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of an HTML attribute in the Topic Editor.
+  ///   Represents an instance of a last modified attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
-  public class DateTimeEditorAttribute : EditorAttribute {
+  public class LastModifiedAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -24,9 +22,9 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="DateTimeEditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="LastModifiedAttributeBindingModel"/> class.
     /// </summary>
-    public DateTimeEditorAttribute() : base() {
+    public LastModifiedAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

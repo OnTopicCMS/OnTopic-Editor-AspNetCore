@@ -4,29 +4,23 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: BOOLEAN EDITOR ATTRIBUTE
+  | CLASS: TEXT ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a boolean attribute in the Topic Editor.
+  ///   Represents an instance of a text attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
-  public class BooleanEditorAttribute : EditorAttribute {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
+  public class TextAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="TextAttributeBindingModel"/> class.
     /// </summary>
-    public BooleanEditorAttribute() : base() {
+    public TextAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================
@@ -35,10 +29,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Retrieves the value associated with the attribute.
     /// </summary>
-    /// <remarks>
-    ///   Determines whether the value is checked and, if it is, returns "1"; otherwise returns "0".
-    /// </remarks>
-    public override string GetValue() => Value.Equals("True")? "1" : "0";
+    public override string GetValue() => Value;
 
   } // Class
 

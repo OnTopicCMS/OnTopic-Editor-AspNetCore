@@ -4,7 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using Ignia.Topics.Reflection;
-using Ignia.Topics.Editor.Models.Attributes;
+using Ignia.Topics.Editor.Models.Components.BindingModels;
 using System;
 
 namespace Ignia.Topics.Editor.Mvc.Infrastructure {
@@ -26,8 +26,8 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
     /// </summary>
     public EditorAttributeLookupService() : base(
       t => (
-        t.Name.EndsWith("EditorAttribute", StringComparison.InvariantCultureIgnoreCase) &&
-        typeof(EditorAttribute).IsAssignableFrom(t)
+        t.Name.EndsWith("AttributeBindingModel", StringComparison.InvariantCultureIgnoreCase) &&
+        typeof(AttributeBindingModel).IsAssignableFrom(t)
       ),
       typeof(object)
     )

@@ -4,24 +4,29 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: TOPIC REFERENCE EDITOR ATTRIBUTE
+  | CLASS: DATE TIME ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a topic reference attribute in the Topic Editor.
+  ///   Represents an instance of an HTML attribute in the Topic Editor.
   /// </summary>
-  public class TopicReferenceEditorAttribute : EditorAttribute {
+  /// <remarks>
+  /// </remarks>
+  public class DateTimeAttributeBindingModel : AttributeBindingModel {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TopicReferenceEditorAttribute"/> class, using the specified key/value
-    ///   pair.
+    ///   Initializes a new instance of the <see cref="DateTimeAttributeBindingModel"/> class.
     /// </summary>
-    public TopicReferenceEditorAttribute() : base() {
+    public DateTimeAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

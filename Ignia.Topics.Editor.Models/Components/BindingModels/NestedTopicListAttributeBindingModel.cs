@@ -4,23 +4,23 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LIST EDITOR ATTRIBUTE
+  | CLASS: NESTED TOPIC LIST ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Represents an instance of a topic list attribute in the Topic Editor.
   /// </summary>
-  public class TopicListEditorAttribute : EditorAttribute {
+  public class NestedTopicListAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="NestedTopicListAttributeBindingModel"/> class.
     /// </summary>
-    public TopicListEditorAttribute() : base() {
+    public NestedTopicListAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

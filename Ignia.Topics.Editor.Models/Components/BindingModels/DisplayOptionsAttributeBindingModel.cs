@@ -3,24 +3,31 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: NESTED TOPIC LIST EDITOR ATTRIBUTE
+  | CLASS: DISPLAY OPTIONS ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a topic list attribute in the Topic Editor.
+  ///   Represents an instance of an HTML attribute in the Topic Editor.
   /// </summary>
-  public class NestedTopicListEditorAttribute : EditorAttribute {
+  /// <remarks>
+  /// </remarks>
+  public class DisplayOptionsAttributeBindingModel : AttributeBindingModel {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="DisplayOptionsAttributeBindingModel"/> class.
     /// </summary>
-    public NestedTopicListEditorAttribute() : base() {
+    public DisplayOptionsAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

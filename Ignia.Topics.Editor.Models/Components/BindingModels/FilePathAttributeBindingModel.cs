@@ -3,24 +3,29 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: TOKENIZED TOPIC LIST EDITOR ATTRIBUTE
+  | CLASS: FILE PATH ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a tokenized topic list attribute in the Topic Editor.
+  ///   Represents an instance of a file path attribute in the Topic Editor.
   /// </summary>
-  public class TokenizedTopicListEditorAttribute : EditorAttribute {
+  public class FilePathAttributeBindingModel : AttributeBindingModel {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="FilePathAttributeBindingModel"/> class.
     /// </summary>
-    public TokenizedTopicListEditorAttribute() : base() {
+    public FilePathAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

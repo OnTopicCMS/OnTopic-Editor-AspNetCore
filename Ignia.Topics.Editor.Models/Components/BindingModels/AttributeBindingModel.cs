@@ -5,31 +5,31 @@
 \=============================================================================================================================*/
 using System;
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: EDITOR ATTRIBUTE
+  | CLASS: ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Represents an instance of a generic attribute in the Topic Editor.
   /// </summary>
-  public class EditorAttribute {
+  public class AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class.
+    ///   Initializes a new instance of the <see cref="AttributeBindingModel"/> class.
     /// </summary>
-    public EditorAttribute() : this("") {}
+    public AttributeBindingModel() : this("") {}
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class.
+    ///   Initializes a new instance of the <see cref="AttributeBindingModel"/> class.
     /// </summary>
     /// <param name="editorType">Optionally defines the type of attribute.</param>
-    public EditorAttribute(string editorType) {
+    public AttributeBindingModel(string editorType) {
       if (String.IsNullOrWhiteSpace(editorType)) {
-        EditorType = GetType().Name.Replace("EditorAttribute", "");
+        EditorType = GetType().Name.Replace("AttributeBindingModel", "");
       }
       else {
         EditorType = editorType;
@@ -77,7 +77,7 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// </summary>
     /// <remarks>
     ///   Unlike the <see cref="Value"/> property, which simply returns the literal value associated with the attribute, the
-    ///   <see cref="GetValue()"/> method is intended to be overwritten by derived versions of the <see cref="EditorAttribute"/>
+    ///   <see cref="GetValue()"/> method is intended to be overwritten by derived versions of the <see cref="AttributeBindingModel"/>
     ///   class, in order to provide specific serialization instructions.
     /// </remarks>
     public virtual string GetValue() => Value;

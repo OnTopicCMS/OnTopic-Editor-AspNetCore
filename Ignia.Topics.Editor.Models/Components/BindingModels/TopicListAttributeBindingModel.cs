@@ -4,23 +4,23 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED BY EDITOR ATTRIBUTE
+  | CLASS: TOPIC LIST ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a last modified by attribute in the Topic Editor.
+  ///   Represents an instance of a topic list attribute in the Topic Editor.
   /// </summary>
-  public class LastModifiedByEditorAttribute : EditorAttribute {
+  public class TopicListAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="TopicListAttributeBindingModel"/> class.
     /// </summary>
-    public LastModifiedByEditorAttribute() : base() {
+    public TopicListAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

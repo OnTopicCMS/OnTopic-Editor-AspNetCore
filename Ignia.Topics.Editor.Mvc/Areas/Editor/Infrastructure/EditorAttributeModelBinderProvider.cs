@@ -4,7 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using Ignia.Topics.Editor.Models.Attributes;
+using Ignia.Topics.Editor.Models.Components.BindingModels;
 using Ignia.Topics.Internal.Diagnostics;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
@@ -40,7 +40,7 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN BINDER (IF APPROPRIATE)
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (context.Metadata.ModelType == typeof(EditorAttribute)) {
+      if (context.Metadata.ModelType == typeof(AttributeBindingModel)) {
         return new BinderTypeModelBinder(typeof(EditorAttributeModelBinder));
       }
       return null;

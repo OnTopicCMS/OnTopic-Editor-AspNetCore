@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
-using Ignia.Topics.Editor.Models.Attributes;
+using Ignia.Topics.Editor.Models.Components.BindingModels;
 using Ignia.Topics.Editor.Models.Json;
 using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Internal.Diagnostics;
@@ -237,7 +237,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <summary>
     ///   Private helper function that saves relationship values to the topic.
     /// </summary>
-    private void SetRelationships(Topic topic, AttributeDescriptor attribute, EditorAttribute attributeValue) {
+    private void SetRelationships(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
       var relatedTopics = attributeValue.Value.Split(',').ToList();
       topic.Relationships.ClearTopics(attribute.Key);
       foreach (var topicIdString in relatedTopics) {

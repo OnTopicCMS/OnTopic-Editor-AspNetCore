@@ -3,17 +3,18 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: FILE PATH EDITOR ATTRIBUTE
+  | CLASS: BOOLEAN ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a file path attribute in the Topic Editor.
+  ///   Represents an instance of a boolean attribute in the Topic Editor.
   /// </summary>
-  public class FilePathEditorAttribute : EditorAttribute {
+  /// <remarks>
+  /// </remarks>
+  public class BooleanAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -23,9 +24,9 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="BooleanAttributeBindingModel"/> class.
     /// </summary>
-    public FilePathEditorAttribute() : base() {
+    public BooleanAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================
@@ -34,7 +35,10 @@ namespace Ignia.Topics.Editor.Models.Attributes {
     /// <summary>
     ///   Retrieves the value associated with the attribute.
     /// </summary>
-    public override string GetValue() => Value;
+    /// <remarks>
+    ///   Determines whether the value is checked and, if it is, returns "1"; otherwise returns "0".
+    /// </remarks>
+    public override string GetValue() => Value.Equals("True")? "1" : "0";
 
   } // Class
 

@@ -4,27 +4,23 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED EDITOR ATTRIBUTE
+  | CLASS: HTML ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a last modified attribute in the Topic Editor.
+  ///   Represents an instance of a HTML attribute in the Topic Editor.
   /// </summary>
-  public class LastModifiedEditorAttribute : EditorAttribute {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
+  public class HtmlEditorAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="HtmlEditorAttributeBindingModel"/> class.
     /// </summary>
-    public LastModifiedEditorAttribute() : base() {
+    public HtmlEditorAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

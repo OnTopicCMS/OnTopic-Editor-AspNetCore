@@ -3,25 +3,25 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: FILE LIST EDITOR ATTRIBUTE
+  | CLASS: TOPIC REFERENCE ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a file editor attribute in the Topic Editor.
+  ///   Represents an instance of a topic reference attribute in the Topic Editor.
   /// </summary>
-  public class FileListEditorAttribute : EditorAttribute {
+  public class TopicReferenceAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="FileListEdutorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="TopicReferenceAttributeBindingModel"/> class, using the specified key/value
+    ///   pair.
     /// </summary>
-    public FileListEditorAttribute() : base() {
+    public TopicReferenceAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

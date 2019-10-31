@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Threading.Tasks;
-using Ignia.Topics.Editor.Models.Attributes;
+using Ignia.Topics.Editor.Models.Components.BindingModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Ignia.Topics.Editor.Mvc.Infrastructure {
@@ -14,9 +14,9 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
   | CLASS: EDITOR BINDING MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides instructions to the MVC framework on how to bind postback data to a <see cref="EditorAttribute"/> instance.
+  ///   Provides instructions to the MVC framework on how to bind postback data to a <see cref="AttributeBindingModel"/> instance.
   ///   This is necessary to retain strongly typed instances in <see cref="EditorBindingModel.Attributes"/>, which otherwise
-  ///   exposes a collection of <see cref="EditorAttribute"/> instances.
+  ///   exposes a collection of <see cref="AttributeBindingModel"/> instances.
   /// </summary>
   public class EditorAttributeModelBinder : IModelBinder {
 
@@ -68,8 +68,8 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var type                  = TypeLookupService.Lookup($"{editorType}EditorAttribute");
-      var model                 = (EditorAttribute)Activator.CreateInstance(type);
+      var type                  = TypeLookupService.Lookup($"{editorType}AttributeBindingModel");
+      var model                 = (AttributeBindingModel)Activator.CreateInstance(type);
 
       model.Key                 = key;
       model.Value               = value;

@@ -4,23 +4,23 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: HTML EDITOR ATTRIBUTE
+  | CLASS: RELATIONSHIP ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a HTML attribute in the Topic Editor.
+  ///   Represents an instance of a relationship attribute in the Topic Editor.
   /// </summary>
-  public class HtmlEditorAttribute : EditorAttribute {
+  public class RelationshipAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="RelationshipAttributeBindingModel"/> class.
     /// </summary>
-    public HtmlEditorAttribute() : base() {
+    public RelationshipAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

@@ -5,29 +5,23 @@
 \=============================================================================================================================*/
 using System;
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: DISPLAY OPTIONS EDITOR ATTRIBUTE
+  | CLASS: FILE LIST ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of an HTML attribute in the Topic Editor.
+  ///   Represents an instance of a file editor attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
-  public class DisplayOptionsEditorAttribute : EditorAttribute {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
+  public class FileListAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="FileListAttributeBindingModel"/> class.
     /// </summary>
-    public DisplayOptionsEditorAttribute() : base() {
+    public FileListAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

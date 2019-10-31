@@ -4,23 +4,23 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-namespace Ignia.Topics.Editor.Models.Attributes {
+namespace Ignia.Topics.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: TEXT EDITOR ATTRIBUTE
+  | CLASS: LAST MODIFIED BY ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a text attribute in the Topic Editor.
+  ///   Represents an instance of a last modified by attribute in the Topic Editor.
   /// </summary>
-  public class TextEditorAttribute : EditorAttribute {
+  public class LastModifiedByAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TextEditorAttribute"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="LastModifiedByAttributeBindingModel"/> class.
     /// </summary>
-    public TextEditorAttribute() : base() {
+    public LastModifiedByAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

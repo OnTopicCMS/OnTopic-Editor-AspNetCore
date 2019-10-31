@@ -6,7 +6,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
-using Ignia.Topics.Editor.Models.Attributes;
+using Ignia.Topics.Editor.Models.Components.BindingModels;
 
 namespace Ignia.Topics.Editor.Models.Collections {
 
@@ -14,9 +14,9 @@ namespace Ignia.Topics.Editor.Models.Collections {
   | CLASS: EDITOR ATTRIBUTE COLLECTION
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a keyed collection of <see cref="EditorAttribute"/> instances.
+  ///   Provides a keyed collection of <see cref="AttributeBindingModel"/> instances.
   /// </summary>
-  public class EditorAttributeCollection : KeyedCollection<string, EditorAttribute> {
+  public class EditorAttributeCollection : KeyedCollection<string, AttributeBindingModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -35,7 +35,7 @@ namespace Ignia.Topics.Editor.Models.Collections {
     /// </summary>
     /// <param name="item">The <see cref="Topic"/> object from which to extract the key.</param>
     /// <returns>The key for the specified collection item.</returns>
-    protected override string GetKeyForItem(EditorAttribute item) {
+    protected override string GetKeyForItem(AttributeBindingModel item) {
       Contract.Assume(item != null, "Assumes the item is available when deriving its key.");
       return item.Key;
     }
