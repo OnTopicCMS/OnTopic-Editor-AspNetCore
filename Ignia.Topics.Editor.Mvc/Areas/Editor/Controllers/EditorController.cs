@@ -326,14 +326,20 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   hierarchy to another. "true" if succeeded, Returns "false" if failure, as string values. The JS throws a generic
     ///   "failure" error on "false".
     /// </summary>
+    /// <param name="topicId">The <see cref="Topic.Id"/> of the topic to be moved.</param>
+    /// <param name="targetTopicId">The <see cref="Topic.Id"/> of the parent topic. <c>-1</c> implies the same parent.</param>
+    /// <param name="siblingId">
+    ///   The <see cref="Topic.Id"/> of the sibling to place the <paramref name="topicId"/> after. <c>0</c> implies it should be
+    ///   placed at the end.
+    /// </param>
     [HttpPost]
-    public IActionResult Move(int topicId, int targetTopicId, int siblingId) {
+    public IActionResult Move(int topicId, int targetTopicId = -1, int siblingId = -1) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Retrieve the source and destination topics
       \-------------------------------------------------------------------------------------------------------------------------*/
       var topic = TopicRepository.Load(topicId);
-      var target = TopicRepository.Load(targetTopicId);
+      var target = (targetTopicId >= 0)? TopicRepository.Load(targetTopicId) : topic.Parent;
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Reset the source topic's Parent

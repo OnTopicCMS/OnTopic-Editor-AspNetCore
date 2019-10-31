@@ -39,6 +39,32 @@
               location.href = targetUrl;
             </text>
           }
+        },
+        startdrag               : function(tree, node, event) {
+          oldPosition           = node.parentNode.indexOf(node);
+          oldNextSibling        = node.nextSibling;
+        },
+        nodedragover            : function(dragOverEvent) {
+          return dragOverEvent.point !== "append";
+        },
+        movenode                : function(tree, node, oldParent, newParent, position) {
+
+          var params            = {'node':node.id, 'delta':(position-oldPosition)};
+
+        //Determine sibling ID to place node after, based off position
+          var siblingId         = -1;
+          if (position > 0) {
+            siblingId           = newParent.childNodes[position-1].id;
+          }
+
+        //Ext.Msg.alert("Debugging", "Node: " + node.attributes.id + ", OldParent: " + oldParent.attributes.id + ", Parent: " + newParent.attributes.id + ", Sibling: " + siblingId);
+
+          $.ajax({
+            method: "POST",
+            url: "/OnTopic/Move",
+            data: { topicId: node.attributes.id, targetTopicId: -1, siblingId }
+          })
+
         }
       }
     });
