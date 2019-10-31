@@ -43,7 +43,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     | TIME FORMAT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Establishes the time format that the value should be stored in. Defaults to "mm/dd/yy".
+    ///   Establishes the time format that the value should be stored in. Defaults to "yyyy-mm-dd".
     /// </summary>
     public string TimeFormat { get; set; }
 
@@ -55,6 +55,22 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     ///   "hh:mm TT".
     /// </summary>
     public string DateTimeSeparator { get; set; }
+
+    /*==========================================================================================================================
+    | DATE/TIME OFFSET
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines the relative offset that the default value should apply. Defaults to 0.
+    /// </summary>
+    public int DateTimeOffset { get; set; }
+
+    /*==========================================================================================================================
+    | DATE/TIME OFFSET UNITS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines the units that the offset direction is in. Defaults to "Days".
+    /// </summary>
+    public string DateTimeOffsetUnits { get; set; }
 
   } // Class
 

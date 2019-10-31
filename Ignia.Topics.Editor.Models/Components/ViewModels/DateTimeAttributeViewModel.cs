@@ -56,7 +56,7 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
           }
         }
         else {
-          _defaultDate          = DateTime.Now.ToString(AttributeDescriptor.DateFormat);
+          _defaultDate          = CalculateOffset(DateTime.Now).ToString(AttributeDescriptor.DateFormat);
         }
       }
       return _defaultDate;
@@ -77,11 +77,32 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
           }
         }
         else {
-          _defaultTime          = DateTime.Now.ToString(AttributeDescriptor.TimeFormat);
+          _defaultTime          = CalculateOffset(DateTime.Now).ToString(AttributeDescriptor.TimeFormat);
         }
       }
       return _defaultTime;
     }
+
+    /*==========================================================================================================================
+    | METHOD: CALCULATE OFFSET
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given a date, applies any offsets applied to the date and time.
+    /// </summary>
+    public DateTime CalculateOffset(DateTime originalDate) {
+      if (AttributeDescriptor.DateTimeOffset == 0) return originalDate;
+      switch (AttributeDescriptor.DateTimeOffsetUnits ) {
+        case "Minutes"          : return originalDate.AddMinutes(AttributeDescriptor.DateTimeOffset);
+        case "Hours"            : return originalDate.AddHours(AttributeDescriptor.DateTimeOffset);
+        case "Days"             : return originalDate.AddDays(AttributeDescriptor.DateTimeOffset);
+        case "Months"           : return originalDate.AddMonths(AttributeDescriptor.DateTimeOffset);
+        case "Years"            : return originalDate.AddYears(AttributeDescriptor.DateTimeOffset);
+        default                 : return originalDate.AddDays(AttributeDescriptor.DateTimeOffset);
+      };
+      }
+
+    }
+
 
   } // Class
 
