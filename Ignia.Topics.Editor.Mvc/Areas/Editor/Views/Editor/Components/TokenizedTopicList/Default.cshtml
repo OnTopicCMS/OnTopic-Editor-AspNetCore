@@ -21,7 +21,7 @@
     tokenizedTopics.queryParameter      = '@Model.AttributeDescriptor.QueryParameter';
     tokenizedTopics.resultLimit         = '@Model.AttributeDescriptor.ResultLimit';
     tokenizedTopics.tokenLimit          = @Model.AttributeDescriptor.TokenLimit;
-    tokenizedTopics.isAutoPostBack      = @Model.AttributeDescriptor.IsAutoPostBack.ToString().ToLower();
+    tokenizedTopics.isAutoPostBack      = @((Model.AttributeDescriptor.IsAutoPostBack?? false).ToString().ToLower());
     tokenizedTopics.selectedTopics      = @Model.SelectedTopics;
 
   //Fire TokenizedTopics.prototype.getTokenizedTopics() (and $([selector]).tokenInput())
