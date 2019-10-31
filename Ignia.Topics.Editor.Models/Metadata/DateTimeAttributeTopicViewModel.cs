@@ -3,7 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
+
+#nullable enable
 
 namespace Ignia.Topics.Editor.Models.Metadata {
 
@@ -21,7 +22,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// <summary>
     ///   Determines whether or not the date picker should be displayed.
     /// </summary>
-    public bool IncludeDatePicker { get; set; }
+    public bool? IncludeDatePicker { get; set; }
 
     /*==========================================================================================================================
     | INCLUDE TIME PICKER?
@@ -29,7 +30,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// <summary>
     ///   Determines whether or not the time picker should be displayed.
     /// </summary>
-    public bool IncludeTimePicker { get; set; }
+    public bool? IncludeTimePicker { get; set; }
 
     /*==========================================================================================================================
     | DATE FORMAT
@@ -37,7 +38,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// <summary>
     ///   Establishes the date format that the value should be stored in.
     /// </summary>
-    public string DateFormat { get; set; }
+    public string? DateFormat { get; set; }
 
     /*==========================================================================================================================
     | TIME FORMAT
@@ -45,7 +46,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// <summary>
     ///   Establishes the time format that the value should be stored in. Defaults to "yyyy-mm-dd".
     /// </summary>
-    public string TimeFormat { get; set; }
+    public string? TimeFormat { get; set; }
 
     /*==========================================================================================================================
     | DATE/TIME SEPARATOR
@@ -54,7 +55,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     ///   Establishes the delimiter that should be use to separate the date and time format, if both are selected. Defaults to
     ///   "hh:mm TT".
     /// </summary>
-    public string DateTimeSeparator { get; set; }
+    public string? DateTimeSeparator { get; set; }
 
     /*==========================================================================================================================
     | DATE/TIME OFFSET
@@ -62,7 +63,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// <summary>
     ///   Determines the relative offset that the default value should apply. Defaults to 0.
     /// </summary>
-    public int DateTimeOffset { get; set; }
+    public int? DateTimeOffset { get; set; }
 
     /*==========================================================================================================================
     | DATE/TIME OFFSET UNITS
@@ -70,8 +71,10 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// <summary>
     ///   Determines the units that the offset direction is in. Defaults to "Days".
     /// </summary>
-    public string DateTimeOffsetUnits { get; set; }
+    public string? DateTimeOffsetUnits { get; set; }
 
   } // Class
 
 } // Namespace
+
+#nullable restore
