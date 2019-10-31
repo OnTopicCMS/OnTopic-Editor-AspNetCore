@@ -19,6 +19,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     bool                        _markRelated                    = false;
+    bool                        _showCheckboxes                 = false;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -45,6 +46,7 @@ namespace Ignia.Topics.Editor.Models.Json {
       MarkRelated               = false;
       RelatedTopicId            = -1;
       RelatedNamespace          = null;
+      EnableCheckboxes          = false;
 
     }
 
@@ -172,6 +174,21 @@ namespace Ignia.Topics.Editor.Models.Json {
     public string Query {
       get;
       set;
+    }
+
+    /*==========================================================================================================================
+    | ENABLE CHECKBOXES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether or not to display checkboxes by including the <see cref="JsonTopicViewModel.IsChecked"/> value.
+    /// </summary>
+    /// <remarks>
+    ///   This will automatically be set to true is <see cref="MarkRelated"/> is set to <c>true</c>. Otherwise, it defaults to
+    ///   false.
+    /// </remarks>
+    public bool EnableCheckboxes {
+      get => (MarkRelated || _showCheckboxes);
+      set => _showCheckboxes = value;
     }
 
     /*==========================================================================================================================

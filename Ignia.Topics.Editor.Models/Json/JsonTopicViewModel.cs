@@ -41,7 +41,7 @@ namespace Ignia.Topics.Editor.Models.Json {
       options.UseKeyAsText? topic.Key : topic.Title,
       topic.GetUniqueKey(),
       topic.GetWebPath(),
-      options.MarkRelated? related.Contains(topic) : true,
+      options.EnableCheckboxes? (options.MarkRelated? related.Contains(topic) : true) : new bool?(),
       topic.Attributes.GetValue("DisableDelete", "0").Equals("0")
     ) {
 
@@ -79,7 +79,7 @@ namespace Ignia.Topics.Editor.Models.Json {
       string                    title,
       string                    uniqueKey,
       string                    webPath,
-      bool                      isChecked                       = false,
+      bool?                     isChecked                       = null,
       bool                      isDraggable                     = true
     ) {
 
@@ -91,8 +91,11 @@ namespace Ignia.Topics.Editor.Models.Json {
       Title                     = title;
       UniqueKey                 = uniqueKey;
       WebPath                   = webPath;
-      IsChecked                 = isChecked;
       IsDraggable               = isDraggable;
+
+      if (isChecked.HasValue) {
+        IsChecked               = isChecked.Value;
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Initialize collection
@@ -211,7 +214,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     ///   Determines whether the current topic is selected or not.
     /// </summary>
     [JsonPropertyName("checked")]
-    public bool IsChecked {
+    public bool? IsChecked {
       get;
     }
 
