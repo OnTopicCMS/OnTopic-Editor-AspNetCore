@@ -20,6 +20,12 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
   public class DateTimeAttributeViewModel: AttributeViewModel<DateTimeAttributeTopicViewModel> {
 
     /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private                     string                          _defaultDate                    = null;
+    private                     string                          _defaultTime                    = null;
+
+    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -34,6 +40,48 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
       value,
       inheritedValue
     ) {}
+
+    /*==========================================================================================================================
+    | METHOD: GET DEFAULT DATE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time plugin.
+    /// </summary>
+    public string GetDefaultDate() {
+      if (String.IsNullOrEmpty(_defaultDate)) {
+        if (!String.IsNullOrEmpty(Value)) {
+          DateTime dateValue;
+          if (DateTime.TryParse(Value, out dateValue)) {
+            _defaultDate        = dateValue.ToString(AttributeDescriptor.DateFormat);
+          }
+        }
+        else {
+          _defaultDate          = DateTime.Now.ToString(AttributeDescriptor.DateFormat);
+        }
+      }
+      return _defaultDate;
+    }
+
+    /*==========================================================================================================================
+    | METHOD: GET DEFAULT TIME
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time plugin.
+    /// </summary>
+    public string GetDefaultTime() {
+      if (String.IsNullOrEmpty(_defaultTime)) {
+        if (!String.IsNullOrEmpty(Value)) {
+          DateTime timeValue;
+          if (DateTime.TryParse(Value, out timeValue)) {
+            _defaultTime        = timeValue.ToString(AttributeDescriptor.TimeFormat);
+          }
+        }
+        else {
+          _defaultTime          = DateTime.Now.ToString(AttributeDescriptor.TimeFormat);
+        }
+      }
+      return _defaultTime;
+    }
 
   } // Class
 
