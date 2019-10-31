@@ -61,8 +61,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (HttpContext.Request.Query.TryGetValue("Action", out var action)) {
-        viewModel.IsNew = action.FirstOrDefault().Equals("Add", StringComparison.InvariantCultureIgnoreCase);
+      if (HttpContext.Request.Query.TryGetValue("IsNew", out var action)) {
+        viewModel.IsNew = action.FirstOrDefault().Equals("true", StringComparison.InvariantCultureIgnoreCase);
       }
       viewModel.UniqueKey = CurrentTopic.GetUniqueKey();
       viewModel.WebPath   = CurrentTopic.GetWebPath();
