@@ -228,6 +228,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
           .Replace("{FullName}", topic.GetUniqueKey())
           .Replace("{Key}", topic.Key)
           .Replace("{UniqueKey}", topic.GetUniqueKey())
+          .Replace("{WebPath}", topic.GetWebPath())
           .Replace("{Title}", topic.Title)
           .Replace("{Parent}", topic.Parent.GetUniqueKey())
           .Replace("{ParentId}", topic.Parent.Id.ToString())

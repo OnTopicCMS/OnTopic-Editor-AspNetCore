@@ -31,7 +31,7 @@
           var targetUrl = "@(Url.Action("Edit")+Model.AttributeDescriptor.Key)/" + n.attributes.key;
           @if (Model.AttributeDescriptor.TargetPopup?? true) {
             <text>
-              initEditorModal('@Model.Key', n.attributes.text, targetUrl + '?Modal=true', @($"{Model.AttributeDescriptor.Key}Tree_refresh"));return false;
+              initEditorModal('@Model.Key', n.attributes.text, targetUrl + '?IsModal=true', @($"{Model.AttributeDescriptor.Key}Tree_refresh"));return false;
             </text>
           }
           else {
@@ -67,7 +67,7 @@
     AttributeValue              = "ContentType",
     AllowedKeys                 = Model.AttributeDescriptor.ContentTypes,
     Label                       = "Add child topic…",
-    TargetUrl                   = $"?ContentType{{Topic}}&Path={Model.UniqueKey}:{Model.AttributeDescriptor.Key}&Action=Add",
+    TargetUrl                   = $"{Url.Action("Edit")}{Model.AttributeDescriptor.Key}/?ContentType={{Topic}}&IsNew=true&IsModal=true",
     TargetPopup                 = Model.AttributeDescriptor.TargetPopup,
     OnClientClose               = $"{Model.AttributeDescriptor.Key}Tree_refresh"
   };

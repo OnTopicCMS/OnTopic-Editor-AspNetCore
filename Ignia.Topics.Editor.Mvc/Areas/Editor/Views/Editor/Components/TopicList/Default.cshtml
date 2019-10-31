@@ -10,7 +10,14 @@
 
 @if (Model.TopicList.Count <= 2 && !String.IsNullOrEmpty(Model.AttributeDescriptor.TargetUrl)) {
   <div class="ChildTopic">
-    <!-- @Model.AttributeDescriptor.Label -->
+    @if (Model.AttributeDescriptor.TargetPopup == true) {
+      <a onclick="initEditorModal('@Model.AttributeDescriptor.Key', '@Model.TopicList.LastOrDefault().Text', '@Model.TopicList.LastOrDefault().Value', @Model.AttributeDescriptor.OnClientClose); return false;" class="btn btn-info btn-sm">
+        Add @Model.TopicList.LastOrDefault().Text
+      </a>
+    }
+    else {
+      <a href="@Model.TopicList.LastOrDefault().Value" class="btn btn-info btn-sm">
+        Add @Model.TopicList.LastOrDefault().Text
       </a>
     }
   </div>

@@ -75,7 +75,7 @@
                   AttributeValue  = "ContentType",
                   Label           = "Add new topic…",
                   AllowedKeys     = String.Join(",", Model.ContentTypeDescriptor.PermittedContentTypes.Select(m => m.Key).ToArray()),
-                  TargetUrl       = $"?ContentType={{Topic}}&IsAdd=true",
+                  TargetUrl       = $"{Url.Action("Edit")}?ContentType={{Topic}}&IsNew=true",
                 };
               }
               <text>
