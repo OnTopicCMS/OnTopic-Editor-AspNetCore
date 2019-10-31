@@ -51,10 +51,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.TruncatePathAtTopic     ??= attribute.GetConfigurationValue("TruncatePathAtTopic", "");
+      attribute.BaseTopicPath     ??= attribute.GetConfigurationValue("TruncatePathAtTopic", "");
       attribute.InheritValue            ??= attribute.GetBooleanConfigurationValue("InheritValue", true);
-      attribute.RelativeToParent        ??= attribute.GetBooleanConfigurationValue("RelativeToParent", true);
-      attribute.IncludeLeafTopic        ??= attribute.GetBooleanConfigurationValue("IncludeLeafNodes", true);
+      attribute.RelativeToTopicPath        ??= attribute.GetBooleanConfigurationValue("RelativeToTopicPath", true);
+      attribute.IncludeCurrentTopic        ??= attribute.GetBooleanConfigurationValue("IncludeLeafNodes", true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
@@ -85,7 +85,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
 
       var             inheritedValue          = "";
 
-      if (attribute.InheritValue == true && attribute.RelativeToParent == true) {
+      if (attribute.InheritValue == true && attribute.RelativeToTopicPath == true) {
         inheritedValue                        = GetPath(attributeKey, attribute);
       }
       else if (attribute.InheritValue == true) {
@@ -116,8 +116,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       var       filePath                = "";
       var       relativePath            = (string?)null;
       var       startTopic              = CurrentTopic;
-      var       endTopic                = (options.IncludeLeafTopic is null)? CurrentTopic: CurrentTopic.Parent?? CurrentTopic;
-      var       truncatePathAtTopic     = options.TruncatePathAtTopic?.Split(',').ToArray()?? new string[] { };
+      var       endTopic                = (options.IncludeCurrentTopic is null)? CurrentTopic: CurrentTopic.Parent?? CurrentTopic;
+      var       truncatePathAtTopic     = options.BaseTopicPath?.Split(',').ToArray()?? new string[] { };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Only process the path if both topic and attribtueKey are provided
@@ -150,7 +150,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Perform path truncation based on topics included in TruncatePathAtTopic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!String.IsNullOrWhiteSpace(options.TruncatePathAtTopic)) {
+      if (!String.IsNullOrWhiteSpace(options.BaseTopicPath)) {
         foreach (var truncationTopic in truncatePathAtTopic) {
           var truncateTopicLocation     = relativePath?.IndexOf(truncationTopic, StringComparison.InvariantCultureIgnoreCase);
           if (truncateTopicLocation >= 0) {
