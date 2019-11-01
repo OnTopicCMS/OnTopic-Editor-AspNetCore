@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ignia.Topics.Collections;
@@ -12,6 +13,7 @@ using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Editor.Mvc.Models;
 using Ignia.Topics.Querying;
 using Ignia.Topics.Repositories;
+using Ignia.Topics.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -51,7 +53,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
       TopicListAttributeTopicViewModel attribute,
-      string htmlFieldPrefix = null
+      string htmlFieldPrefix = null,
+      IEnumerable<TopicViewModel> values = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -96,10 +99,30 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       var defaultValue = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set attribute values
+      | Get values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topics = GetTopics(attribute.Scope, attribute.AttributeName, attribute.AttributeValue, attribute.AllowedKeys);
+      var topics = (TopicCollection<Topic>)null;
 
+      //### HACK JJC20191031: Since Topic and TopicViewModel aren't intercompatible, and the remaining processing is based on
+      //Topic, we're converting any preconfigured topics from TopicViewModel back to Topic by looking them up in the repository.
+      //This, of course, assumes that the topic view models refer to existing topics in the repository.
+      if (values != null) {
+        topics = new TopicCollection<Topic>();
+        foreach (var topicViewModel in values) {
+          var topic = _topicRepository.Load(topicViewModel.Id);
+          if (topic != null) {
+            topics.Add(topic);
+          }
+        }
+      }
+      else {
+        topics = GetTopics(attribute.Scope, attribute.AttributeName, attribute.AttributeValue, attribute.AllowedKeys);
+      }
+
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Get values from repository
+      \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var topic in topics) {
 
         string title = viewModel.TopicList.Any(t => t.Text == topic.Title)? $"{topic.Title} ({topic.Key})" : topic.Title;
