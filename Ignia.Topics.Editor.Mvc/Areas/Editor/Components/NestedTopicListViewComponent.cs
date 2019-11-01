@@ -49,7 +49,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
       attribute.ContentTypes    ??= attribute.GetConfigurationValue(            "ContentTypes",         "");
-      attribute.TargetPopup     ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          true);
+      attribute.EnableModal     ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model

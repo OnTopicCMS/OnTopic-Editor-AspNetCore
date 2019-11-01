@@ -49,11 +49,19 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new List<ContentTypeDescriptorTopicViewModel>();
 
     /*==============================================================================================================================
-    | TARGET POPUP
-    >-------------------------------------------------------------------------------------------------------------------------------
-    | Toggle to set whether or not to use a popup (modal window) when editing the Topic, rather than a full page.
+    | ENABLE MODAL
     \-----------------------------------------------------------------------------------------------------------------------------*/
-    public bool? TargetPopup { get; set; }
+    /// <summary>
+    ///   By default, nested topics will open in a modal window. Optionally, this functionality can be disabled.
+    /// </summary>
+    /// <remarks>
+    ///   This is useful in the scenario where a <see cref="ContentTypeDescriptor"/> has multiple levels of attributes implementing
+    ///   <see cref="NestedTopicListViewComponent"/>. This is not a recommended configuration, but is occassionally necessary for
+    ///   modeling especially complicated scenarios, such as cases where there are multiple dimensions for each topic (e.g.,
+    ///   language, device type, &c.). In those cases, nested topics may be the best way to model the capabilities, but having
+    ///   multiple levels of modal windows is a poor user experience.
+    /// </remarks>
+    public bool? EnableModal { get; set; }
 
   } //Class
 } //Namespace
