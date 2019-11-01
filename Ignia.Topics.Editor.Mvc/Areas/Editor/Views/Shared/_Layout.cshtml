@@ -70,18 +70,15 @@
                 var attributeDescriptor = new TopicListAttributeTopicViewModel() {
                   Key             = "Navigation",
                   EditorType      = "TopicList.ascx",
-                  Scope           = "Configuration:ContentTypes",
-                  AttributeName   = "ContentType",
-                  AttributeValue  = "ContentType",
                   Label           = "Add new topic…",
-                  AllowedKeys     = String.Join(",", Model.ContentTypeDescriptor.PermittedContentTypes.Select(m => m.Key).ToArray()),
                   TargetUrl       = $"{Url.Action("Edit")}?ContentType={{Topic}}&IsNew=true",
                 };
               }
               <text>
                 <vc:topic-list
                   attribute=@attributeDescriptor
-                  html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix>
+                  html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
+                  values=@Model.ContentTypeDescriptor.PermittedContentTypes>
                 </vc:topic-list>
               </text>
             </div>
