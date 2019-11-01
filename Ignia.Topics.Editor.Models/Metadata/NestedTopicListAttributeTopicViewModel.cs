@@ -3,8 +3,10 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping;
 using Ignia.Topics.Metadata;
 using System;
+using System.Collections.Generic;
 
 #nullable enable
 
@@ -29,7 +31,22 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     ///   <see cref="NestedTopicListViewComponent"/> should only display topics of the types <see cref="AttributeDescriptor"/>
     ///   or <see cref="ContentTypeDescriptor"/>.
     /// </remarks>
+    [Obsolete(
+      "This is maintained exclusively for backward compatibility with the legacy DefaultConfiguration attribute. New attribute " +
+      "definitions should instead use the new PermittedContentTypes attribute.",
+      false)
+    ]
     public string? ContentTypes { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: PERMITTED CONTENT TYPES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created as part of the configured <see
+    ///   cref="NestedTopicListAttributeViewComponent"/>.
+    /// </summary>
+    [Relationship("ContentTypes", Type=RelationshipType.NestedTopics)]
+    public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new List<ContentTypeDescriptorTopicViewModel>();
 
     /*==============================================================================================================================
     | TARGET POPUP
