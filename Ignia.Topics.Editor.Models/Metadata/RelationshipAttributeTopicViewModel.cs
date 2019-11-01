@@ -6,6 +6,11 @@
 
 #nullable enable
 
+using Ignia.Topics.Mapping;
+using Ignia.Topics.ViewModels;
+using System;
+using System.Diagnostics.CodeAnalysis;
+
 namespace Ignia.Topics.Editor.Models.Metadata {
 
   /*============================================================================================================================
@@ -17,13 +22,29 @@ namespace Ignia.Topics.Editor.Models.Metadata {
   public class RelationshipAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | PROPERTY: SCOPE
+    | PROPERTY: ROOT TOPIC KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets a <see cref="Topic.GetUniqueKey"/> path representing the scope of <see cref="Topic"/>s to display to the
+    ///   Gets or sets a <see cref="Topic.GetUniqueKey"/> path representing the <see cref="RootTopic"/> to display to the
     ///   user. This allows relationships to be targeted to particular areas of the topic graph.
     /// </summary>
-    public string? Scope { get; set; }
+    [Obsolete(
+      "This property is exposed exlusively for backward compatibility with the DefaultConfiguration's Scope property. New " +
+      "attributes should instead use the RootTopic property. The RootTopicKey property will be removed in the future.",
+      false
+    )]
+    public string? RootTopicKey { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: ROOT TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets a <see cref="Topic.Id"/> representing the scope of <see cref="Topic"/>s to display to the user. This
+    ///   allows relationships to be targeted to particular areas of the topic graph.
+    /// </summary>
+    [AttributeKey("RootTopicId")]
+    [NotNull]
+    public TopicViewModel? RootTopic { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: SHOW ROOT
@@ -44,41 +65,32 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     public bool? CheckAscendants { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: ATTRIBUTE NAME
+    | PROPERTY: ATTRIBUTE KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Optionally defines an attribute name to filter the list of displayed <see cref="Topic"/>s by. Must be accompanied by
     ///   a <see cref="AttributeValue"/>.
     /// </summary>
     /// <remarks>
-    ///   If the <see cref="AttributeName"/> and <see cref="AttributeValue"/> are defined, then any <see cref="Topic"/>s listed
+    ///   If the <see cref="AttributeKey"/> and <see cref="AttributeValue"/> are defined, then any <see cref="Topic"/>s listed
     ///   under a <see cref="Topic"/> that is excluded by the filter will <i>also</i> be excluded. As such, this option should
     ///   be used with care.
     /// </remarks>
-    public string? AttributeName { get; set; }
+    public string? AttributeKey { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ATTRIBUTE VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Optionally defines an attribute value to filter the list of displayed <see cref="Topic"/>s by. Must be accompanied by
-    ///   a <see cref="AttributeName"/>.
+    ///   a <see cref="AttributeKey"/>.
     /// </summary>
     /// <remarks>
-    ///   If the <see cref="AttributeName"/> and <see cref="AttributeValue"/> are defined, then any <see cref="Topic"/>s listed
+    ///   If the <see cref="AttributeKey"/> and <see cref="AttributeValue"/> are defined, then any <see cref="Topic"/>s listed
     ///   under a <see cref="Topic"/> that is excluded by the filter will <i>also</i> be excluded. As such, this option should
     ///   be used with care.
     /// </remarks>
     public string? AttributeValue { get; set; }
-
-    /*==========================================================================================================================
-    | PROPERTY: NAMESPACE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Determines the name space to save the relationship under. Any topic may have multiple relationships, so the namespace
-    ///   helps distinguish them from one another.
-    /// </summary>
-    public string? Namespace { get; set; }
 
   } //Class
 } //Namespace

@@ -2,6 +2,7 @@
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+  var rootTopicKey = Model.AttributeDescriptor.RootTopicKey?.Replace(":", "/") ?? Model.AttributeDescriptor.RootTopic.UniqueKey ?? "Root";
 }
 
 <input asp-for="Value" type="hidden" />
@@ -22,7 +23,7 @@
       containerScroll   : true,
       border            : false,
       baseCls           : 'RelationshipsTreeView',
-      dataUrl           : '/OnTopic/Json/@(Model.AttributeDescriptor.Scope?.Replace(":", "/")?? "Root")?ShowRoot=@Model.AttributeDescriptor.ShowRoot&ShowAll=true&RelatedNamespace=@Model.AttributeDescriptor.Namespace&RelatedTopicID=@Model.TopicId&AttributeName=@Model.AttributeDescriptor.AttributeName&AttributeValue=@Model.AttributeDescriptor.AttributeValue',
+      dataUrl           : '/OnTopic/Json/@rootTopicKey?ShowRoot=@Model.AttributeDescriptor.ShowRoot&ShowAll=true&RelatedNamespace=@Model.AttributeDescriptor.Key&RelatedTopicID=@Model.TopicId&AttributeName=@Model.AttributeDescriptor.AttributeKey&AttributeValue=@Model.AttributeDescriptor.AttributeValue',
       root              : new Ext.tree.AsyncTreeNode({
         checked         : true,
         text            : 'Web',

@@ -46,12 +46,11 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.Scope           ??= attribute.GetConfigurationValue(            "Scope",                null);
+      attribute.RootTopicKey    ??= attribute.GetConfigurationValue(            "Scope",                null);
       attribute.ShowRoot        ??= attribute.GetBooleanConfigurationValue(     "ShowRoot",             false);
       attribute.CheckAscendants ??= attribute.GetBooleanConfigurationValue(     "CheckAscendants",      false);
-      attribute.AttributeName   ??= attribute.GetConfigurationValue(            "AttributeName",        null);
+      attribute.AttributeKey    ??= attribute.GetConfigurationValue(            "AttributeName",        null);
       attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
-      attribute.Namespace       ??= attribute.GetConfigurationValue(            "Namespace",            "Related");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
