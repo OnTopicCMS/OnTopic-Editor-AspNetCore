@@ -18,53 +18,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="TokenizedTopicListViewComponent"/>.
   /// </summary>
-  public class TokenizedTopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
-
-    /*==========================================================================================================================
-    | PROPERTY: ROOT TOPIC KEY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets a <see cref="Topic.GetUniqueKey"/> path representing the <see cref="RootTopic"/> to display to the
-    ///   user. This allows the <see cref="TokenizedTopicListViewComponent"/> to be limited to particular areas of the topic
-    ///   graph.
-    /// </summary>
-    [Obsolete(
-      "This property is exposed exlusively for backward compatibility with the DefaultConfiguration's Scope property. New " +
-      "attributes should instead use the RootTopic property. The RootTopicKey property will be removed in the future.",
-      false
-    )]
-    public string? RootTopicKey { get; set; }
-
-    /*==========================================================================================================================
-    | PROPERTY: ROOT TOPIC
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets a <see cref="Topic.Id"/> representing the scope of <see cref="Topic"/>s to display to the user. This
-    ///   allows <see cref="TokenizedTopicListViewComponent"/> to be limited to particular areas of the topic graph.
-    /// </summary>
-    [AttributeKey("RootTopicId")]
-    [NotNull]
-    public TopicViewModel? RootTopic { get; set; }
-
-    /*==========================================================================================================================
-    | ATTRIBUTE KEY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the key of an attribute (e.g., <c>ContentType</c>) to filter the selectable token list by. If <see
-    ///   cref="AttributeKey"/> is defined, then <see cref="AttributeValue"/> should also be defined; otherwise, it will filter
-    ///   by topics that have an empty value for the specified <see cref="AttributeKey"/>.
-    /// </summary>
-    public string? AttributeKey { get; set; }
-
-    /*==========================================================================================================================
-    | ATTRIBUTE VALUE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the value of an attribute (e.g., <c>Page</c>) to filter the selectable token list by. If <see
-    ///   cref="AttributeValue"/> is defined, then <see cref="AttributeKey"/> should also be defined; otherwise, the filter
-    ///   will not function.
-    /// </summary>
-    public string? AttributeValue { get; set; }
+  public class TokenizedTopicListAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
 
     /*==========================================================================================================================
     | RESULT LIMIT
