@@ -12,18 +12,18 @@
     //Instantiate date and/or time picker
     $('#@Html.IdFor(m => m.Value)')
       .datetimepicker({
-        @if (Model.AttributeDescriptor.IncludeDatePicker) {
+        @if (Model.AttributeDescriptor.IncludeDatePicker?? true) {
           <text>
             dateFormat          : '@Model.AttributeDescriptor.DateFormat',
             defaultDate         : '@Model.GetDefaultDate()',
           </text>
         }
-        @if (Model.AttributeDescriptor.IncludeDatePicker && Model.AttributeDescriptor.IncludeTimePicker) {
+        @if ((Model.AttributeDescriptor.IncludeDatePicker?? true) && (Model.AttributeDescriptor.IncludeTimePicker?? true)) {
           <text>
             separator           : '@Model.AttributeDescriptor.DateTimeSeparator',
           </text>
         }
-        @if (Model.AttributeDescriptor.IncludeDatePicker) {
+        @if (Model.AttributeDescriptor.IncludeDatePicker?? true) {
           <text>
             timeFormat          : '@Model.AttributeDescriptor.TimeFormat',
             defaultTime         : '@Model.GetDefaultTime()',
