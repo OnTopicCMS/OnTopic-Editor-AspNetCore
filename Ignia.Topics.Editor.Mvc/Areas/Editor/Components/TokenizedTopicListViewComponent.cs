@@ -61,14 +61,13 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.Scope           ??= attribute.GetConfigurationValue(            "Scope",                "Root");
-      attribute.AttributeName   ??= attribute.GetConfigurationValue(            "AttributeName",        null);
+      attribute.RootTopicKey    ??= attribute.GetConfigurationValue(            "Scope",                "Root");
+      attribute.AttributeKey    ??= attribute.GetConfigurationValue(            "AttributeName",        null);
       attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
       attribute.ResultLimit     ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
       attribute.TokenLimit      ??= attribute.GetIntegerConfigurationValue(     "TokenLimit",           100);
       attribute.AsRelationship  ??= attribute.GetBooleanConfigurationValue(     "AsRelationship",       false);
-      attribute.SearchProperty  ??= attribute.GetConfigurationValue(            "SearchProperty",       "key");
-      attribute.QueryParameter  ??= attribute.GetConfigurationValue(            "QueryParameter",       "AttributeValue");
+      attribute.AutoPostBack    ??= attribute.GetBooleanConfigurationValue(     "IsAutoPostBack",       false);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model

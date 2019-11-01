@@ -2,6 +2,7 @@
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+  var rootTopicKey = Model.AttributeDescriptor.RootTopicKey?.Replace(":", "/") ?? Model.AttributeDescriptor.RootTopic.UniqueKey ?? "Root";
 }
 
 <div>
@@ -14,14 +15,12 @@
   //Create new instance of TokenizedTopics and set relevant properties
     var tokenizedTopics                 = new TokenizedTopics();
     tokenizedTopics.selector            = '#@Html.IdFor(m => m.Value)';
-    tokenizedTopics.scope               = '@Model.AttributeDescriptor.Scope.Replace(":", "/")';
-    tokenizedTopics.attributeName       = '@Model.AttributeDescriptor.AttributeName';
+    tokenizedTopics.scope               = '@rootTopicKey';
+    tokenizedTopics.attributeName       = '@Model.AttributeDescriptor.AttributeKey';
     tokenizedTopics.attributeValue      = '@Model.AttributeDescriptor.AttributeValue';
-    tokenizedTopics.searchProperty      = '@Model.AttributeDescriptor.SearchProperty.ToLower()';
-    tokenizedTopics.queryParameter      = '@Model.AttributeDescriptor.QueryParameter';
     tokenizedTopics.resultLimit         = '@Model.AttributeDescriptor.ResultLimit';
     tokenizedTopics.tokenLimit          = @Model.AttributeDescriptor.TokenLimit;
-    tokenizedTopics.isAutoPostBack      = @((Model.AttributeDescriptor.IsAutoPostBack?? false).ToString().ToLower());
+    tokenizedTopics.isAutoPostBack      = @((Model.AttributeDescriptor.AutoPostBack?? false).ToString().ToLower());
     tokenizedTopics.selectedTopics      = @Model.SelectedTopics;
 
   //Fire TokenizedTopics.prototype.getTokenizedTopics() (and $([selector]).tokenInput())

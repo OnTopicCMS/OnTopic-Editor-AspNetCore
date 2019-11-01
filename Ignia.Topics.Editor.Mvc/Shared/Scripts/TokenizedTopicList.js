@@ -29,8 +29,6 @@
     this.scope                  = '';
     this.attributeName          = '';
     this.attributeValue         = '';
-    this.searchProperty         = '';
-    this.queryParameter         = '';
     this.selectedTopics         = '';
     this.resultLimit            = '';
     this.tokenLimit             = 100;
@@ -64,8 +62,8 @@
   | Initialize Token-Input with options set on TokenizedTopics
   \---------------------------------------------------------------------------------------------------------------------------*/
     $(self.selector).tokenInput(topicsUrl, {
-      propertyToSearch          : self.searchProperty,
-      queryParam                : self.queryParameter,
+      propertyToSearch          : 'text',
+      queryParam                : 'Query',
       minChars                  : 3,
       enableHTML                : true,
       tokenLimit                : self.tokenLimit,
