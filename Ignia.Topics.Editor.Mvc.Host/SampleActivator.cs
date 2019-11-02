@@ -143,9 +143,6 @@ namespace OnTopicTest {
       if (type == typeof(BooleanViewComponent)) {
         return new BooleanViewComponent(mvcTopicRoutingService);
       }
-      if (type == typeof(NumberViewComponent)) {
-        return new NumberViewComponent(mvcTopicRoutingService);
-      }
       if (type == typeof(DateTimeViewComponent)) {
         return new DateTimeViewComponent(mvcTopicRoutingService);
       }
@@ -158,29 +155,35 @@ namespace OnTopicTest {
       if (type == typeof(FilePathViewComponent)) {
         return new FilePathViewComponent(mvcTopicRoutingService);
       }
-      if (type == typeof(TextViewComponent)) {
-        return new TextViewComponent(mvcTopicRoutingService);
+      if (type == typeof(HtmlViewComponent)) {
+        return new HtmlViewComponent(mvcTopicRoutingService);
+      }
+      if (type == typeof(LastModifiedViewComponent)) {
+        return new LastModifiedViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(LastModifiedByViewComponent)) {
         return new LastModifiedByViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(NestedTopicListViewComponent)) {
+        return new NestedTopicListViewComponent(mvcTopicRoutingService);
+      }
+      if (type == typeof(NumberViewComponent)) {
+        return new NumberViewComponent(mvcTopicRoutingService);
+      }
       if (type == typeof(RelationshipViewComponent)) {
         return new RelationshipViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(TextViewComponent)) {
+        return new TextViewComponent(mvcTopicRoutingService);
+      }
       if (type == typeof(TokenizedTopicListViewComponent)) {
         return new TokenizedTopicListViewComponent(mvcTopicRoutingService, _topicRepository);
-      }
-      if (type == typeof(NestedTopicListViewComponent)) {
-        return new NestedTopicListViewComponent(mvcTopicRoutingService);
       }
       if (type == typeof(TopicListViewComponent)) {
         return new TopicListViewComponent(mvcTopicRoutingService, _topicRepository);
       }
       if (type == typeof(TopicReferenceViewComponent)) {
         return new TopicReferenceViewComponent(mvcTopicRoutingService, _topicRepository);
-      }
-      if (type == typeof(HtmlViewComponent)) {
-        return new HtmlViewComponent(mvcTopicRoutingService);
       }
       else {
         throw new Exception($"Unknown view component {type.Name}");
