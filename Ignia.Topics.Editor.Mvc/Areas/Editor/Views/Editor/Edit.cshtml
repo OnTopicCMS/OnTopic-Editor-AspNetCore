@@ -27,18 +27,7 @@
                 }
 
                 @await Component.InvokeAsync(
-                  attribute.EditorType
-                    .Replace("DateTimeSelector", "DateTime")
-                    .Replace("FormField", "Text")
-                    .Replace("File", "FileList")
-                    .Replace("FileListPath", "FilePath")
-                    .Replace("Relationships", "Relationship")
-                    .Replace("TopicPointer", "TopicReference")
-                    .Replace("TopicList", "NestedTopicList")
-                    .Replace("TokenizedNestedTopicList", "TokenizedTopicList")
-                    .Replace("TopicLookup", "TopicList")
-                    .Replace("WYSIWYG", "Html")
-                    .Replace(".ascx", ""),
+                  attribute.ContentType.Replace("Attribute", ""),
                   new { Attribute=attribute, HtmlFieldPrefix=$"Attributes[{index++}]" }
                 )
 
