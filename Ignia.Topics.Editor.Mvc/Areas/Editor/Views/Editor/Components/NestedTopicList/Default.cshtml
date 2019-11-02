@@ -88,20 +88,20 @@
   var attributeDescriptor       = new TopicListAttributeTopicViewModel() {
     Key                         = Model.Key,
     EditorType                  = "TopicList.ascx",
-    Scope                       = "Configuration:ContentTypes",
-    AttributeName               = "ContentType",
+    RootTopicKey                = "Configuration:ContentTypes",
+    AttributeKey                = "ContentType",
     AttributeValue              = "ContentType",
     AllowedKeys                 = Model.AttributeDescriptor.ContentTypes,
-    Label                       = "Add child topic…",
-    TargetUrl                   = $"{Url.Action("Edit")}{Model.AttributeDescriptor.Key}/?ContentType={{Topic}}&IsNew=true&IsModal=true",
-    TargetPopup                 = Model.AttributeDescriptor.EnableModal,
-    OnClientClose               = $"{Model.AttributeDescriptor.Key}Tree_refresh"
+    DefaultLabel                       = "Add child topic…"
   };
   <text>
     <vc:topic-list
       attribute=@attributeDescriptor
       html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
-      values=@Model.AttributeDescriptor.PermittedContentTypes>
+      target-url=@($"{Url.Action("Edit")}{Model.AttributeDescriptor.Key}/?ContentType={{Topic}}&IsNew=true&IsModal=true"),
+      enable-modal=@Model.AttributeDescriptor.EnableModal
+      values=@Model.AttributeDescriptor.PermittedContentTypes
+      on-client-close=@($"{Model.AttributeDescriptor.Key}Tree_refresh")>
     </vc:topic-list>
   </text>
 }

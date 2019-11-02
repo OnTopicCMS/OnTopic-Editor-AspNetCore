@@ -9,11 +9,9 @@
     RootTopicKey                = Model.AttributeDescriptor.Scope,
     AttributeKey                = String.IsNullOrEmpty(Model.AttributeDescriptor.TargetContentType)? "": "ContentType",
     AttributeValue              = Model.AttributeDescriptor.TargetContentType,
-    SearchProperty              = "text",
-    QueryParameter              = "Query",
     ResultLimit                 = Model.AttributeDescriptor.ResultLimit,
     TokenLimit                  = 1,
-    IsAutoPostBack              = true
+    AutoPostBack                = true
   };
 }
 

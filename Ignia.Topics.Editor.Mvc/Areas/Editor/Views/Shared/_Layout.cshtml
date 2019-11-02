@@ -70,14 +70,14 @@
                 var attributeDescriptor = new TopicListAttributeTopicViewModel() {
                   Key             = "Navigation",
                   EditorType      = "TopicList.ascx",
-                  Label           = "Add new topic…",
-                  TargetUrl       = $"{Url.Action("Edit")}?ContentType={{Topic}}&IsNew=true",
+                  DefaultLabel           = "Add new topic…"
                 };
               }
               <text>
                 <vc:topic-list
                   attribute=@attributeDescriptor
                   html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
+                  target-url=@($"{Url.Action("Edit")}?ContentType={{Topic}}&IsNew=true")
                   values=@Model.ContentTypeDescriptor.PermittedContentTypes>
                 </vc:topic-list>
               </text>

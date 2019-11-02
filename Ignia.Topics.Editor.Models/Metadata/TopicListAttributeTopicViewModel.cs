@@ -3,7 +3,10 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping;
+using Ignia.Topics.ViewModels;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 
@@ -15,99 +18,67 @@ namespace Ignia.Topics.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="TopicListViewComponent"/>.
   /// </summary>
-  public class TopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public class TopicListAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private string? _valueProperty = null;
+    private                     string?             _valueProperty                  = null;
 
     /*==========================================================================================================================
-    | SCOPE
+    | DEFAULT LABEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the scope of the topic graph within which to search for results. E.g., <c>Root:Web:Configuration</c>.
+    ///   Sets the label name to be used for the placeholder option in the dropdown list, which will have an empty value.
     /// </summary>
-    public string? Scope { get; set; }
+    public string? DefaultLabel { get; set; }
 
     /*==========================================================================================================================
-    | ATTRIBUTE NAME
+    | PROPERTY: STORE UNIQUE KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the name of an attribute (e.g., <c>ContentType</c>) to filter the selectable token list by. If <see
-    ///   cref="AttributeName"/> is defined, then <see cref="AttributeValue"/> should also be defined; otherwise, it will filter
-    ///   by topics that have an empty value for the specified <see cref="AttributeName"/>.
+    ///   Determines whether to use a fully qualified <see cref="TopicViewModel.UniqueKey"/> or just the <see
+    ///   cref="TopicViewModel.Key"/> when saving the value to the database.
     /// </summary>
-    public string? AttributeName { get; set; }
+    /// <remarks>
+    ///   A <see cref="TopicViewModel.UniqueKey"/> makes it easier to construct or retrieve the corresponding topic object
+    ///   without any knowledge of where that object exists. Further, under certain circumstances, a <see
+    ///   cref="TopicViewModel.UniqueKey"/> may be necessary to guarantee uniqueness (for instance, if the <v>values</v> are
+    ///   overridden with a collection of topics from multiple locations in the topic tree). That said, the <see
+    ///   cref="TopicViewModel.Key"/> may be a preferred value, particularly when not intended to provide a strongly-typed
+    ///   reference to particular topics (e.g., when the <see cref="LookupListViewComponent"/> is being used to simply provide a
+    ///   constrained list of known values, such as tags).
+    /// </remarks>
+    public bool? StoreUniqueKey { get; set; }
 
     /*==========================================================================================================================
-    | ATTRIBUTE VALUE
+    | VALUE TOKEN
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the value of an attribute (e.g., <c>Page</c>) to filter the selectable token list by. If <see
-    ///   cref="AttributeValue"/> is defined, then <see cref="AttributeName"/> should also be defined; otherwise, the filter
-    ///   will not function.
+    ///   Determines what token to bind the topic list to. By default, it is <see cref="TopicViewModel.Key"/>, unless <see
+    ///   cref="StoreUniqueKey"/> is selected, in which case it becomes <see cref="TopicViewModel.UniqueKey"/>. These defaults
+    ///   can be overwritten using the <see cref="ValueToken"/>.
     /// </summary>
-    public string? AttributeValue { get; set; }
-
-    /*==========================================================================================================================
-    | TARGET URL
-    >---------------------------------------------------------------------------------------------------------------------------
-    | ### TODO JJC092313: Need to add support for {token} replacements in the TargetUrl.  Also, unclear what the current default
-    | logic is doing; I don't believe this should be necessary.
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   The TargetUrl allows the dropdown control to trigger the loading of a new page based on the value of the dropdown box.
-    ///   The new page is loaded using the LoadPage event handler, and may optionally be handled as a redirect (default) or a
-    ///   popup (based on the TargetPopup boolean).
-    /// </summary>
-    public string? TargetUrl { get; set; }
-
-    /*==========================================================================================================================
-    | TARGET POPUP
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   If a TargetUrl is supplied, and TargetPopup is set to true, then the TargetUrl will be loaded during the LoadPage
-    ///   event as a popup window.  Otherwise, the TargetUrl will be loaded via a redirect.
-    /// </summary>
-    public bool? TargetPopup { get; set; }
-
-    /*==========================================================================================================================
-    | ON CLIENT CLOSE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   If supplied, sets a reference to a callback function to execute on close of the editor popup.
-    /// </summary>
-    public string? OnClientClose { get; set; }
-
-    /*==========================================================================================================================
-    | LABEL
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    public string? Label { get; set; }
-
-    /*==========================================================================================================================
-    | PROPERTY: USE UNIQUE KEY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Determines whether to use a fully qualified key ("UniqueKey") or just the topic key. A UniqueKey makes it easier to
-    ///   construct or retrieve the corresponding topic object without any knowledge of where that object exists. Further, under
-    ///   certain circumstances, a UniqueKey may be necessary to guarantee uniqueness (for instance, if DataSource is overridden
-    ///   with a collection of topics from multiple locations in the topic tree). That said, the topic key may be a preferred
-    ///   value, particularly when not intended to provide a strongly-typed reference to particular topics (e.g., when the
-    ///   LookupList is being used to simply provide a constrained list of known values, such as tags).
-    /// </summary>
-    public bool? UseUniqueKey { get; set; }
-
-    /*==========================================================================================================================
-    | VALUE PROPERTY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Determines what property to bind the TopicLookup/TopicList to.
-    /// </summary>
-    public string? ValueProperty {
+    /// <remarks>
+    ///   Not just any attribute or property may be used. The <see cref="TopicListViewComponent"/> contains a list of tokens
+    ///   that it knows how to replace. These include:
+    ///   <list type="bullet">
+    ///     <item><c>Topic</c> (for <see cref="TopicViewModel.Key"/>)</item>
+    ///     <item><c>TopicId</c> (for <see cref="TopicViewModel.Id"/>)</item>
+    ///     <item><c>Name</c> (for <see cref="TopicViewModel.Key"/>)</item>
+    ///     <item><c>Key</c> (for <see cref="TopicViewModel.Key"/>)</item>
+    ///     <item><c>FullName</c> (for <see cref="TopicViewModel.UniqueKey"/>)</item>
+    ///     <item><c>UniqueKey</c> (for <see cref="TopicViewModel.UniqueKey"/>)</item>
+    ///     <item><c>Title</c> (for <see cref="TopicViewModel.Title"/>)</item>
+    ///     <item><c>Parent</c> (for <see cref="TopicViewModel.Parent.UniqueKey"/>)</item>
+    ///     <item><c>GrandParent</c> (for <see cref="TopicViewModel.Parent.Parent.UniqueKey"/>)</item>
+    ///     <item><c>GrandParentId</c> (for <see cref="TopicViewModel.Parent.Parent.Id"/>)</item>
+    ///   </list>
+    /// </remarks>
+    public string? ValueToken {
       get {
         if (_valueProperty == null) {
-          _valueProperty = UseUniqueKey is true ? "UniqueKey" : "Key";
+          _valueProperty = StoreUniqueKey is true ? "UniqueKey" : "Key";
         }
         return _valueProperty;
       }
