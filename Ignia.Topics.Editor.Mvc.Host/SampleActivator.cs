@@ -143,6 +143,9 @@ namespace OnTopicTest {
       if (type == typeof(BooleanViewComponent)) {
         return new BooleanViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(NumberViewComponent)) {
+        return new NumberViewComponent(mvcTopicRoutingService);
+      }
       if (type == typeof(DateTimeViewComponent)) {
         return new DateTimeViewComponent(mvcTopicRoutingService);
       }

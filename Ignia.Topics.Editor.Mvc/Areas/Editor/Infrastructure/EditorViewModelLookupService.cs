@@ -38,6 +38,7 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
       Add(typeof(FilePathAttributeTopicViewModel));
       Add(typeof(HtmlAttributeTopicViewModel));
       Add(typeof(NestedTopicListAttributeTopicViewModel));
+      Add(typeof(NumberAttributeTopicViewModel));
       Add(typeof(RelationshipAttributeTopicViewModel));
       Add(typeof(TextAttributeTopicViewModel));
       Add(typeof(TokenizedTopicListAttributeTopicViewModel));

@@ -1,0 +1,7 @@
+﻿@model AttributeViewModel<NumberAttributeTopicViewModel>
+
+@{
+  Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+}
+
+<input type="number" min=@Model.AttributeDescriptor.MinimumValue max=@Model.AttributeDescriptor.MaximumValue asp-for=@Model.Value class="form-control" />
