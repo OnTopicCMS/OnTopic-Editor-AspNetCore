@@ -51,10 +51,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.BaseTopicPath     ??= attribute.GetConfigurationValue("TruncatePathAtTopic", "");
-      attribute.InheritValue            ??= attribute.GetBooleanConfigurationValue("InheritValue", true);
-      attribute.RelativeToTopicPath        ??= attribute.GetBooleanConfigurationValue("RelativeToTopicPath", true);
-      attribute.IncludeCurrentTopic        ??= attribute.GetBooleanConfigurationValue("IncludeLeafNodes", true);
+      attribute.BaseTopicPath                   ??= attribute.GetConfigurationValue("TruncatePathAtTopic", "");
+      attribute.InheritValue                    ??= attribute.GetBooleanConfigurationValue("InheritValue", true);
+      attribute.RelativeToTopicPath             ??= attribute.GetBooleanConfigurationValue("RelativeToTopicPath", true);
+      attribute.IncludeCurrentTopic             ??= attribute.GetBooleanConfigurationValue("IncludeLeafNodes", true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
