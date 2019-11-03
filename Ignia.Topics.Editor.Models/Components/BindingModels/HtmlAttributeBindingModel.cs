@@ -12,15 +12,15 @@ namespace Ignia.Topics.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a HTML attribute in the Topic Editor.
   /// </summary>
-  public class HtmlEditorAttributeBindingModel : AttributeBindingModel {
+  public class HtmlAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="HtmlEditorAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="HtmlAttributeBindingModel"/> class.
     /// </summary>
-    public HtmlEditorAttributeBindingModel() : base() {
+    public HtmlAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================
