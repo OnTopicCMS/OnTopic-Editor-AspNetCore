@@ -6,6 +6,7 @@
 using System;
 using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
+using Ignia.Topics.Editor.Models.Components.ViewModels;
 using Ignia.Topics.Editor.Models.Metadata;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,23 +36,39 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="LastModifiedViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
-      AttributeDescriptorTopicViewModel attribute,
+      LastModifiedAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
-      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      var viewModel = new AttributeViewModel<AttributeDescriptorTopicViewModel>(attribute);
-      GetAttributeViewModel(viewModel);
-      if (viewModel.Value == null) {
-        if (CurrentTopic.LastModified != null && CurrentTopic.LastModified != DateTime.MinValue) {
-          viewModel.Value = CurrentTopic.LastModified.ToString();
-        }
-        else {
-          viewModel.Value = DateTime.Now.ToString();
-        }
-      }
-      return View(viewModel);
-    }
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set HTML prefix
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var model = new LastModifiedAttributeViewModel(attribute);
+
+      GetAttributeViewModel(model);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set model values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      model.Value = DateTime.Now.ToString();
+      if (CurrentTopic.LastModified != null && CurrentTopic.LastModified != DateTime.MinValue) {
+        model.CurrentValue = CurrentTopic.LastModified.ToString();
+      }
+      else {
+        model.CurrentValue = model.Value;
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return view with view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View(model);
+
+    }
 
   } // Class
 } // Namespace
