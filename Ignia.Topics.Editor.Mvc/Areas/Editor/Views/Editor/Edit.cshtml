@@ -22,7 +22,7 @@
 
               @foreach (var attribute in Model.ContentTypeDescriptor.GetAttributeDescriptors(displayGroupName)) {
 
-                if (attribute.IsHidden || String.IsNullOrEmpty(attribute.EditorType)) {
+                if (attribute.IsHidden || !attribute.ContentType.EndsWith("Attribute")) {
                   continue;
                 }
 

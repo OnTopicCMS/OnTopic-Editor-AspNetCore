@@ -68,7 +68,7 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var type                  = TypeLookupService.Lookup($"{editorType}AttributeBindingModel");
+      var type                  = TypeLookupService.Lookup($"{editorType}BindingModel");
       var model                 = (AttributeBindingModel)Activator.CreateInstance(type);
 
       model.Key                 = key;

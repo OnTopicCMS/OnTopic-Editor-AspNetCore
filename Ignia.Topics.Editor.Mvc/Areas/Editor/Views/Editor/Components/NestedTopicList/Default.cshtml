@@ -87,12 +87,12 @@
 @if (!Model.IsNew) {
   var attributeDescriptor       = new TopicListAttributeTopicViewModel() {
     Key                         = Model.Key,
-    EditorType                  = "TopicList.ascx",
+    ContentType                 = "TopicListAttribute",
     RootTopicKey                = "Configuration:ContentTypes",
     AttributeKey                = "ContentType",
     AttributeValue              = "ContentType",
     AllowedKeys                 = Model.AttributeDescriptor.ContentTypes,
-    DefaultLabel                       = "Add child topic…"
+    DefaultLabel                = "Add child topic…"
   };
   <text>
     <vc:topic-list

@@ -3,9 +3,9 @@
 @{
   var attributeDescriptor       = new TokenizedTopicListAttributeTopicViewModel() {
     Key                         = Model.Key,
+    ContentType                 = "TokenizedTopicListAttribute",
     Description                 = Model.AttributeDescriptor.Description,
     Title                       = Model.AttributeDescriptor.Title,
-    EditorType                  = "TokenizedTopicList.ascx",
     RootTopicKey                = Model.AttributeDescriptor.Scope,
     AttributeKey                = String.IsNullOrEmpty(Model.AttributeDescriptor.TargetContentType)? "": "ContentType",
     AttributeValue              = Model.AttributeDescriptor.TargetContentType,

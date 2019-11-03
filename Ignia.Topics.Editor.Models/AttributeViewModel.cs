@@ -63,14 +63,10 @@ namespace Ignia.Topics.Editor.Models {
     | EDITOR TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the associated attribute type, as defined on the <see cref="AttributeDescriptor"/> instance.
+    ///   Provides the associated attribute type, as implied by the <see cref="Topic.ContentType"/> of the <see
+    ///   cref="AttributeDescriptor"/>.
     /// </summary>
-    /// <remarks>
-    ///   While this value can be retrieved directly from the <see cref="AttributeDescriptor"/> property, relaying it through
-    ///   the <see cref="AttributeViewModel"/> provides cleaner output in the forms by allowing the generated <c>id</c> and
-    ///   <c>name</c> attributes to map to the target <see cref="EditorBindingModel"/> interface.
-    /// </remarks>
-    public string EditorType => AttributeDescriptor.EditorType.Replace(".ascx", "");
+    public string EditorType => AttributeDescriptor.ContentType;
 
     /*==========================================================================================================================
     | TOPID ID
