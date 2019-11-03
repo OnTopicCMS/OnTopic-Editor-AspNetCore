@@ -11,22 +11,22 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace Ignia.Topics.Editor.Mvc.Infrastructure {
 
   /*============================================================================================================================
-  | CLASS: EDITOR BINDING MODEL
+  | CLASS: ATTRIBUTE BINDING MODEL (BINDER)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides instructions to the MVC framework on how to bind postback data to a <see cref="AttributeBindingModel"/> instance.
   ///   This is necessary to retain strongly typed instances in <see cref="EditorBindingModel.Attributes"/>, which otherwise
   ///   exposes a collection of <see cref="AttributeBindingModel"/> instances.
   /// </summary>
-  public class EditorAttributeModelBinder : IModelBinder {
+  public class AttributeBindingModelBinder : IModelBinder {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="EditorAttributeModelBinder"/>.
+    ///   Initializes a new instance of a <see cref="AttributeBindingModelBinder"/>.
     /// </summary>
-    public EditorAttributeModelBinder() { }
+    public AttributeBindingModelBinder() { }
 
     /*==========================================================================================================================
     | PROPERTY: TYPE LOOKUP SERVICE
@@ -34,7 +34,7 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
     /// <summary>
     ///   Establishes static variables for the <see cref="TopicFactory"/>.
     /// </summary>
-    public static ITypeLookupService TypeLookupService { get; set; } = new EditorAttributeLookupService();
+    public static ITypeLookupService TypeLookupService { get; set; } = new AttributeBindingModelLookupService();
 
     /*==========================================================================================================================
     | OVERRIDE: BIND MODEL (ASYNC)

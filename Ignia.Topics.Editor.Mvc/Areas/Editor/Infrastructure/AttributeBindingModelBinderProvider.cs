@@ -12,13 +12,13 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 namespace Ignia.Topics.Editor.Mvc.Infrastructure {
 
   /*============================================================================================================================
-  | CLASS: EDITOR ATTRIBUTE (MODEL BINDER PROVIDER)
+  | CLASS: ATTRIBUTE BINDING MODEL (BINDER PROVIDER)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Determines whether a binding request should use the <see cref="EditorAttributeModelBinder"/>—and, if so, returns a
-  ///   reference to the <see cref="EditorAttributeModelBinder"/> type in response.
+  ///   Determines whether a binding request should use the <see cref="AttributeBindingModelBinder"/>—and, if so, returns a
+  ///   reference to the <see cref="AttributeBindingModelBinder"/> type in response.
   /// </summary>
-  public class EditorAttributeModelBinderProvider : IModelBinderProvider {
+  public class AttributeBindingModelBinderProvider : IModelBinderProvider {
 
     /*==========================================================================================================================
     | METHOD: GET BINDER
@@ -41,7 +41,7 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
       | RETURN BINDER (IF APPROPRIATE)
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (context.Metadata.ModelType == typeof(AttributeBindingModel)) {
-        return new BinderTypeModelBinder(typeof(EditorAttributeModelBinder));
+        return new BinderTypeModelBinder(typeof(AttributeBindingModelBinder));
       }
       return null;
 

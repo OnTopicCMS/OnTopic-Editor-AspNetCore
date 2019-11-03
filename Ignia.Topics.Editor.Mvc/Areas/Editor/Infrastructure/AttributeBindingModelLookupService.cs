@@ -10,21 +10,21 @@ using System;
 namespace Ignia.Topics.Editor.Mvc.Infrastructure {
 
   /*============================================================================================================================
-  | CLASS: TOPIC VIEW MODEL LOOKUP SERVICE
+  | CLASS: ATTRIBUTE BINDING MODEL (LOOKUP SERVICE)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   The <see cref="DynamicTopicViewModelLookupService"/> will search all assemblies for <see cref="Type"/>s that end with
-  ///   "EditorAttribute".
+  ///   The underlying <see cref="DynamicTypeLookupService"/> will search all assemblies for <see cref="Type"/>s that end with
+  ///   <c>AttributeBindingModel</c>.
   /// </summary>
-  public class EditorAttributeLookupService : DynamicTypeLookupService {
+  public class AttributeBindingModelLookupService : DynamicTypeLookupService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Establishes a new instance of a <see cref="EditorAttributeLookupService"/>.
+    ///   Establishes a new instance of a <see cref="AttributeBindingModelLookupService"/>.
     /// </summary>
-    public EditorAttributeLookupService() : base(
+    public AttributeBindingModelLookupService() : base(
       t => (
         t.Name.EndsWith("AttributeBindingModel", StringComparison.InvariantCultureIgnoreCase) &&
         typeof(AttributeBindingModel).IsAssignableFrom(t)

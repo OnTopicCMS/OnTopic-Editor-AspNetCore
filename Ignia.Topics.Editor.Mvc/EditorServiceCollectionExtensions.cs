@@ -37,7 +37,7 @@ namespace Ignia.Topics.Editor.Mvc {
       | Register services
       \-----------------------------------------------------------------------------------------------------------------------*/
       services.AddMvcOptions(options =>
-        options.ModelBinderProviders.Insert(0, new EditorAttributeModelBinderProvider())
+        options.ModelBinderProviders.Insert(0, new AttributeBindingModelBinderProvider())
       );
 
       /*------------------------------------------------------------------------------------------------------------------------
