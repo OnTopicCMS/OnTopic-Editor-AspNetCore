@@ -14,25 +14,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="HtmlViewComponent"/>.
   /// </summary>
-  public class HtmlAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
-
-    /*==========================================================================================================================
-    | COLUMNS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the number of columns (width) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
-    ///   <c>70</c>.
-    /// </summary>
-    public int? Columns { get; set; }
-
-    /*==========================================================================================================================
-    | ROWS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
-    ///   <c>30</c>.
-    /// </summary>
-    public int? Rows { get; set; }
+  public class HtmlAttributeTopicViewModel: TextAreaAttributeTopicViewModel {
 
     /*==========================================================================================================================
     | HEIGHT
