@@ -176,6 +176,9 @@ namespace OnTopicTest {
       if (type == typeof(TextViewComponent)) {
         return new TextViewComponent(mvcTopicRoutingService);
       }
+      if (type == typeof(TextAreaViewComponent)) {
+        return new TextAreaViewComponent(mvcTopicRoutingService);
+      }
       if (type == typeof(TokenizedTopicListViewComponent)) {
         return new TokenizedTopicListViewComponent(mvcTopicRoutingService, _topicRepository);
       }

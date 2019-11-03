@@ -41,6 +41,7 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
       Add(typeof(NumberAttributeBindingModel));
       Add(typeof(RelationshipAttributeBindingModel));
       Add(typeof(TextAttributeBindingModel));
+      Add(typeof(TextAreaAttributeBindingModel));
       Add(typeof(TokenizedTopicListAttributeBindingModel));
       Add(typeof(TopicListAttributeBindingModel));
       Add(typeof(TopicReferenceAttributeBindingModel));

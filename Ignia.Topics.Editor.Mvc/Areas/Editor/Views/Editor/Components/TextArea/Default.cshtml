@@ -1,0 +1,13 @@
+﻿@model AttributeViewModel<TextAreaAttributeTopicViewModel>
+
+@{
+  Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+}
+
+<textarea
+  asp-for="Value"
+  class="form-control"
+  rows=@Model.AttributeDescriptor.Rows
+  cols=@Model.AttributeDescriptor.Columns
+  maxlength=@Model.AttributeDescriptor.MaximumLength>
+</textarea>
