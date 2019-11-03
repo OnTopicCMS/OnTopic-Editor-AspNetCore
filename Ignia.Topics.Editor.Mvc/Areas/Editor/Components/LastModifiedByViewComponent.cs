@@ -4,6 +4,13 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
+using Ignia.Topics.Editor.Models;
+using Ignia.Topics.Editor.Models.Components.ViewModels;
+using Ignia.Topics.Editor.Models.Metadata;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
+
 namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
@@ -12,7 +19,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a last modified by attribute type.
   /// </summary>
-  public class LastModifiedByViewComponent : DefaultAttributeTypeViewComponent {
+  public class LastModifiedByViewComponent : AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -21,6 +28,43 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Initializes a new instance of a <see cref="LastModifiedByViewComponent"/> with necessary dependencies.
     /// </summary>
     public LastModifiedByViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+
+
+    /*==========================================================================================================================
+    | METHOD: INVOKE (ASYNC)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Assembles the view model for the <see cref="LastModifiedByViewComponent"/>.
+    /// </summary>
+    public async Task<IViewComponentResult> InvokeAsync(
+      LastModifiedByAttributeTopicViewModel attribute,
+      string htmlFieldPrefix
+    ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set HTML prefix
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var model = new LastModifiedByAttributeViewModel(attribute);
+
+      GetAttributeViewModel(model);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set model values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      model.Value = HttpContext.User.Identity.Name ?? "System";
+      model.CurrentValue = CurrentTopic.Attributes.GetValue("LastModifiedBy", model.Value);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return view with view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View(model);
+
+    }
 
   } // Class
 } // Namespace
