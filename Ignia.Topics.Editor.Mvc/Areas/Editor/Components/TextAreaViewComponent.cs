@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Ignia.Topics.Editor.Mvc.Components {
 
   /*============================================================================================================================
-  | CLASS: NUMBER (VIEW COMPONENT)
+  | CLASS: TEXT AREA (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Delivers a view model for a text area attribute type.
