@@ -35,18 +35,6 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     public int? Rows { get; set; }
 
     /*==========================================================================================================================
-    | HEIGHT
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the number of pixels that the <see cref="HtmlViewComponent"/> should take up. Defaults to <see
-    ///   cref="Rows"/> x 20.
-    /// </summary>
-    /// <remarks>
-    ///   If set, this value overrides <see cref="Rows"/>.
-    /// </remarks>
-    public int? Height { get; set; }
-
-    /*==========================================================================================================================
     | MAXIMUM LENGTH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
