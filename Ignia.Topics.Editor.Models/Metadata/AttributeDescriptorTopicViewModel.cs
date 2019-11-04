@@ -124,6 +124,20 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     public string DefaultValue { get; set; }
 
     /*==========================================================================================================================
+    | PROPERTY: IMPLICIT VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Defines the value that the code is expected to assign if an attribute's value is left empty.
+    /// </summary>
+    /// <remarks>
+    ///   The <see cref="ImplicitValue"/> is not actually used by code to set the value. It is simply a way of communicating to
+    ///   editors what value it is <i>expected</i> code will use. In practice, code may set any default it wishes, and may even
+    ///   set different defaults in different contexts (e.g., based on different views). The <see cref="ImplicitValue"/> will be
+    ///   exposed to editors as an HTML placeholder on input fields that support it.
+    /// </remarks>
+    public string ImplicitValue { get; set; }
+
+    /*==========================================================================================================================
     | PROPERTY: SORT ORDER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
