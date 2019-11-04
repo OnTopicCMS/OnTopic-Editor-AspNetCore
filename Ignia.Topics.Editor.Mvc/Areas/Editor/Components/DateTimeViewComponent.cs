@@ -57,7 +57,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       attribute.IncludeDatePicker       ??= attribute.GetBooleanConfigurationValue("IncludeDatePicker", true);
       attribute.IncludeTimePicker       ??= attribute.GetBooleanConfigurationValue("IncludeTimePicker", true);
-      attribute.DateFormat              ??= attribute.GetConfigurationValue("DateFormat", "yyyy-mm-dd");
+      attribute.DateFormat              ??= attribute.GetConfigurationValue("DateFormat", "yy-mm-dd");
       attribute.TimeFormat              ??= attribute.GetConfigurationValue("TimeFormat", "hh:mm tt");
       attribute.DateTimeSeparator       ??= attribute.GetConfigurationValue("DateTimeSeparator", " ");
       attribute.DateTimeOffset          ??= attribute.GetIntegerConfigurationValue("DateTimeOffset", 0);

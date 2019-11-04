@@ -49,14 +49,16 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
     /// </summary>
     public string GetDefaultDate() {
       if (String.IsNullOrEmpty(_defaultDate)) {
+        //Convert from JavaScript date format conventions to C# conventions
+        var dateFormat = AttributeDescriptor.DateFormat.Replace("y", "yy").Replace("mm", "MM");
         if (!String.IsNullOrEmpty(Value)) {
           DateTime dateValue;
           if (DateTime.TryParse(Value, out dateValue)) {
-            _defaultDate        = dateValue.ToString(AttributeDescriptor.DateFormat);
+            _defaultDate        = dateValue.ToString(dateFormat);
           }
         }
         else {
-          _defaultDate          = CalculateOffset(DateTime.Now).ToString(AttributeDescriptor.DateFormat);
+          _defaultDate          = CalculateOffset(DateTime.Now).ToString(dateFormat);
         }
       }
       return _defaultDate;
