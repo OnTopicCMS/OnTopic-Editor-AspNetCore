@@ -78,7 +78,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     ///   cref="AttributeDescriptors"/> collection.
     /// </summary>
     public List<string> GetDisplayGroups() =>
-      AttributeDescriptors.Select(a => a.DisplayGroup).Distinct().OrderBy(a => a).ToList();
+      AttributeDescriptors.Where(a => !a.IsHidden).Select(a => a.DisplayGroup).Distinct().OrderBy(a => a).ToList();
 
     /*==========================================================================================================================
     | METHOD: GET ATTRIBUTE DESCRIPTORS
@@ -88,7 +88,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     ///   ordered by <see cref="AttributeDescriptorTopicViewModel.SortOrder"/>.
     /// </summary>
     public List<AttributeDescriptorTopicViewModel> GetAttributeDescriptors(string displayGroup) =>
-      AttributeDescriptors.Where(a => a.DisplayGroup.Equals(displayGroup)).OrderBy(a => a.SortOrder).ToList();
+      AttributeDescriptors.Where(a => a.DisplayGroup.Equals(displayGroup) && !a.IsHidden).OrderBy(a => a.SortOrder).ToList();
 
   } //Class
 } //Namespace

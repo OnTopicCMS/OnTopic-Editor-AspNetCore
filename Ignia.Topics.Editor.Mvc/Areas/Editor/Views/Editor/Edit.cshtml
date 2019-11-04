@@ -22,10 +22,6 @@
 
               @foreach (var attribute in Model.ContentTypeDescriptor.GetAttributeDescriptors(displayGroupName)) {
 
-                if (attribute.IsHidden || !attribute.ContentType.EndsWith("Attribute")) {
-                  continue;
-                }
-
                 @await Component.InvokeAsync(
                   attribute.ContentType.Replace("Attribute", ""),
                   new { Attribute=attribute, HtmlFieldPrefix=$"Attributes[{index++}]" }
