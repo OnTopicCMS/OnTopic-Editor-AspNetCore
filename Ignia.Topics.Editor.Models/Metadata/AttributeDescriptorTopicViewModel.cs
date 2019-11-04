@@ -119,8 +119,13 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     | PROPERTY: DEFAULT VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Establishes the default value to use if the use doesn't enter a value.
+    ///   Defines a default value for new topics.
     /// </summary>
+    /// <remarks>
+    ///   Assuming a topic is new, and isn't derived from another topic, the <see cref="DefaultValue"/> should be treated as the
+    ///   value. This helps establish a logical default, but also prevents values from being inherited from e.g. parent topics;
+    ///   as such, this should be used with caution. The value used here will be stored locally on a per-topic basis.
+    /// </remarks>
     public string DefaultValue { get; set; }
 
     /*==========================================================================================================================
