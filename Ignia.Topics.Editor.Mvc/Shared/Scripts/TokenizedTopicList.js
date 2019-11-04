@@ -29,6 +29,8 @@
     this.scope                  = '';
     this.attributeName          = '';
     this.attributeValue         = '';
+    this.searchProperty         = 'text';
+    this.queryParameter         = 'Query';
     this.selectedTopics         = '';
     this.resultLimit            = '';
     this.tokenLimit             = 100;
@@ -54,16 +56,16 @@
       '?ShowRoot=true'                                   +
       '&FlattenStructure=true'                           +
       '&UsePartialMatch=true'                            +
-      '&AttributeName='       + self.attributeName       +
-      '&AttributeValue='      + self.attributeValue      +
-      '&ResultLimit='         + self.resultLimit;
+      '&AttributeName='         + self.attributeName     +
+      '&AttributeValue='        + self.attributeValue    +
+      '&ResultLimit='           + self.resultLimit;
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Initialize Token-Input with options set on TokenizedTopics
   \---------------------------------------------------------------------------------------------------------------------------*/
     $(self.selector).tokenInput(topicsUrl, {
-      propertyToSearch          : 'text',
-      queryParam                : 'Query',
+      propertyToSearch          : this.searchProperty,
+      queryParam                : this.queryParameter,
       minChars                  : 3,
       enableHTML                : true,
       tokenLimit                : self.tokenLimit,
