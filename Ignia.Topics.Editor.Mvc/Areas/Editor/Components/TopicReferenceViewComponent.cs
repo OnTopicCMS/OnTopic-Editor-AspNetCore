@@ -66,10 +66,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       attribute                 ??= new TopicReferenceAttributeTopicViewModel();
       attribute.Scope           ??= attribute.GetConfigurationValue(            "Scope",                "Root");
       attribute.ResultLimit     ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
-      attribute.ContentType     ??= attribute.GetConfigurationValue(            "ContentType",          null);
+      attribute.TargetContentType ??= attribute.GetConfigurationValue(          "ContentType",          null);
 
-      if (attribute.ContentType is null) {
-        attribute.ContentType = CurrentTopic.ContentType;
+      if (String.IsNullOrWhiteSpace(attribute.TargetContentType)) {
+        attribute.TargetContentType = CurrentTopic.ContentType;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

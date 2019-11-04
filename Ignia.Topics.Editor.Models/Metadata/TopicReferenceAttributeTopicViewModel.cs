@@ -41,7 +41,6 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
     /// </summary>
-    [AttributeKey("ContentType")]
     public string? TargetContentType { get; set; }
 
   } //Class
