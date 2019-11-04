@@ -4,4 +4,12 @@
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 }
 
-<input type="number" min=@Model.AttributeDescriptor.MinimumValue max=@Model.AttributeDescriptor.MaximumValue asp-for=@Model.Value class="form-control" />
+<input
+  type                          ="number"
+  asp-for                       =@Model.Value
+  min                           =@Model.AttributeDescriptor.MinimumValue
+  max                           =@Model.AttributeDescriptor.MaximumValue
+  class                         ="form-control"
+  disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
+  required                      =@Model.AttributeDescriptor.IsRequired
+/>

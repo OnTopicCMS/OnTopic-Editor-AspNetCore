@@ -2,11 +2,16 @@
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
-  var rootTopicKey = Model.AttributeDescriptor.RootTopicKey?.Replace(":", "/") ?? Model.AttributeDescriptor.RootTopic?.UniqueKey ?? "Root";
+  var rootTopicKey = Model.AttributeDescriptor.RootTopicKey?.Replace(":", "/") ?? Model.AttributeDescriptor.RootTopic?.UniqueKey.Replace(":", "/") ?? "Root";
 }
 
 <div>
-  <input asp-for="Value" class="form-control input-sm" />
+  <input
+    asp-for                             ="Value"
+    class                               ="form-control input-sm"
+    disabled                            =@(!Model.AttributeDescriptor.IsEnabled)
+    required                            =@Model.AttributeDescriptor.IsRequired
+  />
 </div>
 
 <script>

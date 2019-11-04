@@ -8,6 +8,7 @@
   asp-for=@Model.Value
   placeholder=@Model.InheritedValue
   class=@($"form-control {Model.CssClass}")
-  enabled=@Model.IsEnabled
+  disabled=@(!Model.AttributeDescriptor.IsEnabled)
+  required=@Model.AttributeDescriptor.IsRequired
   type="text"
 />

@@ -4,7 +4,13 @@
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 }
 
-@Html.TextBoxFor(m => m.Value, new { @class="form-control input-sm" })
+<input
+  type                          ="text"
+  asp-for                       ="Value"
+  class                         ="form-control input-sm"
+  disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
+  required                      =@Model.AttributeDescriptor.IsRequired
+/>
 
 <script>
   $(function() {

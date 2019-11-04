@@ -19,8 +19,9 @@
   asp-for                       ="Value"
   rows                          =@Model.AttributeDescriptor.Rows
   columns                       =@Model.AttributeDescriptor.Columns
-  enabled                       =@Model.IsEnabled
   class                         =@Model.AttributeDescriptor.CssClass
+  disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
+  required                      =@Model.AttributeDescriptor.IsRequired
 ></textarea>
 
 <script type="text/javascript">

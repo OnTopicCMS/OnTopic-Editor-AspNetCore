@@ -8,4 +8,4 @@
   @Model.CurrentValue
 </div>
 
-@Html.HiddenFor(m => m.Value, new { @value = DateTime.Now.ToString() })
+<input type="hidden" asp-for="Value" />

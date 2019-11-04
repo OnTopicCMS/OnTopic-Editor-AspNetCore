@@ -6,16 +6,16 @@
 
 <div class="form-check form-check-inline @(Model.CssClass?? "FormField")">
   <label class="form-check-label">
-    @Html.RadioButtonFor(m => m.Value, "Default", new { id="DisplayOptions_" + Model.AttributeDescriptor.Key + "_Default", @class="form-check-input" }) Default
+    <input type="radio" asp-for="Value" value="Default" class="form-check-input" disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired /> Default
   </label>
 </div>
 <div class="form-check form-check-inline @(Model.CssClass?? "FormField")">
   <label class="form-check-label">
-    @Html.RadioButtonFor(m => m.Value, "Desktop", new { id="DisplayOptions_" + Model.AttributeDescriptor.Key + "_Desktop", @class="form-check-input" }) Desktop Only
+    <input type="radio" asp-for="Value" value="Desktop" class="form-check-input" disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired /> Desktop
   </label>
 </div>
 <div class="form-check form-check-inline @(Model.CssClass?? "FormField")">
   <label class="form-check-label">
-    @Html.RadioButtonFor(m => m.Value, "Mobile", new { id="DisplayOptions_" + Model.AttributeDescriptor.Key + "_Mobile", @class="form-check-input" }) Mobile Only
+    <input type="radio" asp-for="Value" value="Mobile" class="form-check-input" disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired /> Mobile
   </label>
 </div>

@@ -5,7 +5,14 @@
 }
 
 @if (Model.TopicList.Count > 2) {
-  <select asp-for="Value" asp-items="Model.TopicList" class="FormField Field"></select>
+  <select
+    asp-for                     ="Value"
+    asp-items                   ="Model.TopicList"
+    class                       ="FormField Field"
+    disabled                    =@(!Model.AttributeDescriptor.IsEnabled)
+    required                    =@Model.AttributeDescriptor.IsRequired
+    >
+  </select>
 }
 
 @if (Model.TopicList.Count <= 2 && !String.IsNullOrEmpty(Model.TargetUrl)) {

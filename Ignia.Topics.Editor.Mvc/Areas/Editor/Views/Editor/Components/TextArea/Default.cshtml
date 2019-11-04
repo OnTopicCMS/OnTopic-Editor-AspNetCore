@@ -5,9 +5,12 @@
 }
 
 <textarea
-  asp-for="Value"
-  class="form-control"
-  rows=@Model.AttributeDescriptor.Rows
-  cols=@Model.AttributeDescriptor.Columns
-  maxlength=@Model.AttributeDescriptor.MaximumLength>
+  asp-for                       ="Value"
+  rows                          =@Model.AttributeDescriptor.Rows
+  cols                          =@Model.AttributeDescriptor.Columns
+  maxlength                     =@Model.AttributeDescriptor.MaximumLength
+  class                         ="form-control"
+  disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
+  required                      =@Model.AttributeDescriptor.IsRequired
+  >
 </textarea>
