@@ -65,25 +65,9 @@
     $(function () {
 
       /**
-       * Validation rules
+       * Trigger jQuery validation
        */
-      $('#EditorForm').validate({
-        rules: {
-          @{
-            int index = 0;
-            foreach (string displayGroupName in Model.ContentTypeDescriptor.GetDisplayGroups()) {
-              foreach (var attribute in Model.ContentTypeDescriptor.GetAttributeDescriptors(displayGroupName)) {
-                <text>
-                  "Attributes[@(index++)].Value": {
-                    @(attribute.GetValidationRules())
-                  },
-                </text>
-              }
-            }
-          }
-          ignore: []
-        }
-      });
+      $('#EditorForm').validate();
 
 
       /**
