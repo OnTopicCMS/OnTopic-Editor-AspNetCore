@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using Ignia.Topics.Mapping;
+using Ignia.Topics.Metadata;
 using Ignia.Topics.ViewModels;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -19,6 +20,12 @@ namespace Ignia.Topics.Editor.Models.Metadata {
   ///   Provides access to attributes associated with the <see cref="TokenizedTopicListViewComponent"/>.
   /// </summary>
   public class TokenizedTopicListAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
+
+    /*==========================================================================================================================
+    | PROPERTY: MODEL TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc />
+    public override ModelType ModelType => (AsRelationship?? false)? ModelType.Relationship : ModelType.ScalarValue;
 
     /*==========================================================================================================================
     | RESULT LIMIT

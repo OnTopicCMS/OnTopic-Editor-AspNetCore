@@ -215,11 +215,11 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
         var attributeValue = model.Attributes[attribute.Key];
 
         //Save value
-        if (attribute.EditorType.Equals("Relationship")) {
+        if (attribute.ModelType.Equals(ModelType.Relationship)) {
           SetRelationships(topic, attribute, attributeValue);
         }
         else if (attribute.Key.Equals("Key")) {
-          CurrentTopic.Key = attributeValue.Value.TrimStart(' ').TrimEnd(' ').Replace(" ", "");
+          CurrentTopic.Key = attributeValue.Value.Replace(" ", "");
         }
         else if (String.IsNullOrEmpty(attributeValue.Value)) {
           CurrentTopic.Attributes.Remove(attribute.Key);

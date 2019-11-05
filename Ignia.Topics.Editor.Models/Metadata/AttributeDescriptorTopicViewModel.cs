@@ -40,7 +40,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     /// <summary>
     ///   Determines how the attribute is modeled in terms of the object-oriented code (e.g., as a relationship? An attribute?).
     /// </summary>
-    public ModelType ModelType { get; set; }
+    public virtual ModelType ModelType { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: DISPLAY GROUP
