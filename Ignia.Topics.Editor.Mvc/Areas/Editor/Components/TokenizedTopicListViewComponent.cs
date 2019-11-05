@@ -130,10 +130,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       if (topic != null) {
         topicJson               += $"{{"
           + $"'id'              : '{topic.Id}', "
-          + $"'key'             : '{EncodeJsonValue(topic.Key)}, "
+          + $"'key'             : '{EncodeJsonValue(topic.Key)}', "
           + $"'text'            : '{EncodeJsonValue(topic.Title)}', "
           + $"'path'            : '{EncodeJsonValue(topic.GetUniqueKey())}', "
-          + $"'webPath'         : '{EncodeJsonValue(topic.GetWebPath())} "
+          + $"'webPath'         : '{EncodeJsonValue(topic.GetWebPath())}' "
           + $"}},";
       }
 
