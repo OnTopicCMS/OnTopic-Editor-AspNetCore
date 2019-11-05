@@ -71,10 +71,10 @@
       tokenLimit                : self.tokenLimit,
       preventDuplicates         : true,
       prePopulate               : self.selectedTopics,
-      onAdd                     : function(item) {
-        var eventTarget         = self.selector.substring(1);
-        var eventArgument       = $(self.selector).val();
-        if (self.isAutoPostBack) __doPostBack(eventTarget, eventArgument);
+      onAdd: function (item) {
+        if (!self.isAutoPostBack) return;
+        $("form").validate().cancelSubmit = true;
+        $("form").submit();
       },
       resultsFormatter          : function(item) {
         var   breadcrumbs       = item.path;
