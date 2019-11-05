@@ -107,7 +107,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       //### HACK JJC20191031: Since Topic and TopicViewModel aren't intercompatible, and the remaining processing is based on
       //Topic, we're converting any preconfigured topics from TopicViewModel back to Topic by looking them up in the repository.
       //This, of course, assumes that the topic view models refer to existing topics in the repository.
-      if (values != null) {
+      if (values != null && values.Count() > 0) {
         topics = new TopicCollection<Topic>();
         foreach (var topicViewModel in values) {
           var topic = _topicRepository.Load(topicViewModel.Id);
