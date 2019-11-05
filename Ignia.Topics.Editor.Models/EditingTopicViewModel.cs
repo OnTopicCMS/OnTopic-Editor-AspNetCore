@@ -43,6 +43,22 @@ namespace Ignia.Topics.Editor.Models {
     /// </summary>
     public List<DateTime> VersionHistory { get; set; } = new List<DateTime>();
 
+    /*==========================================================================================================================
+    | PROPERTY: ATTRIBUTES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   A collection of attribute values, as assigned directly to the topic. Does not include inherited or derived values.
+    /// </summary>
+    public Dictionary<string, string> Attributes { get; set; } = new Dictionary<string, string>();
+
+    /*==========================================================================================================================
+    | PROPERTY: INHERITED ATTRIBUTES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   A collection of inherited attribute values, as inferred from derived or upstream topics.
+    /// </summary>
+    public Dictionary<string, string> InheritedAttributes { get; set; } = new Dictionary<string, string>();
+
   } // Class
 
 } // Namespace

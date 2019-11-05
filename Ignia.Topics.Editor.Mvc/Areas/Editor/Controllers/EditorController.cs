@@ -120,26 +120,50 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
       var contentTypeViewModel = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor);
+      var parentTopic = isNew ? CurrentTopic : CurrentTopic.Parent;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       EditorViewModel editorViewModel;
+      EditingTopicViewModel topicViewModel;
       if (isNew) {
-        editorViewModel = new EditorViewModel(
-          new EditingTopicViewModel() { ContentType = contentType },
-          contentTypeViewModel,
-          isModal
-        );
+        topicViewModel = new EditingTopicViewModel() { ContentType = contentType };
       }
       else {
-        editorViewModel = new EditorViewModel(
-          await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic),
-          contentTypeViewModel,
-          isModal
-        );
-        editorViewModel.Topic.VersionHistory = CurrentTopic.VersionHistory;
+        topicViewModel = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic);
       }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ASSIGN ATTRIBUTES
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      //The attribute collections follow special conventions that can't be automatically mapped from the topic
+      foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+
+        //For existing topics, get locally assigned attributes
+        if (!isNew) {
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.Attributes.GetValue(attribute.Key, null, false, false));
+        }
+
+        //For new topics that aren't derived from another topic, assign attribute default, if available
+        else if (CurrentTopic.DerivedTopic == null && !attribute.IsRequired && attribute.DefaultValue != null) {
+          topicViewModel.Attributes.Add(attribute.Key, attribute.DefaultValue);
+        }
+
+        //Otherwise, assign a null value; that way, all attributes are guaranteed to be accounted for
+        else {
+          topicViewModel.Attributes.Add(attribute.Key, null);
+        }
+
+        //Set inherited attribute value, if available
+        topicViewModel.InheritedAttributes.Add(attribute.Key, parentTopic.Attributes.GetValue(attribute.Key, true));
+
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      editorViewModel = new EditorViewModel(topicViewModel, contentTypeViewModel, isModal);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW
