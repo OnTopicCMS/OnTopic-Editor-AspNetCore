@@ -76,7 +76,7 @@
               <text>
                 <vc:topic-list
                   attribute=@attributeDescriptor
-                  html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
+                  html-field-prefix="CreateNewTopic"
                   target-url=@($"{Url.Action("Edit")}?ContentType={{Topic}}&IsNew=true")
                   values=@Model.ContentTypeDescriptor.PermittedContentTypes
                   enable-modal="false"
