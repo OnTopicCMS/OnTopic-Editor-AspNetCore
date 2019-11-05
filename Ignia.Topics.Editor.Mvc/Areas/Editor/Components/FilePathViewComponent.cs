@@ -30,7 +30,30 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="FilePathViewComponent"/> with necessary dependencies.
     /// </summary>
-    public FilePathViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    /// <remarks>
+    ///   As with other attribute view components, the <see cref="FilePathViewComponent"/> receives a <see
+    ///   cref="EditingTopicViewModel"/> via the <see cref="InvokeAsync(EditingTopicViewModel, FilePathAttributeTopicViewModel,
+    ///   string)"/>. That view model, however, is not sufficient to handle the specialized inheritance logic required by the
+    ///   <see cref="FilePathViewComponent"/>. As a result, it <i>also</i> requires an instance of a <see
+    ///   cref="ITopicRoutingService"/> so that it can work directly off the current <see cref="Topic"/> and its parent tree.
+    ///   The <see cref="EditingTopicViewModel"/> is still passed not only for consistency, but also to spare the overhead and
+    ///   redundant logic of mapping it again, since this was already done in <see cref="Controllers.EditorController"/>.
+    /// </remarks>
+    public FilePathViewComponent(ITopicRoutingService topicRoutingService) : base() {
+      if (topicRoutingService == null) {
+        throw new ArgumentNullException(nameof(topicRoutingService));
+      }
+      CurrentTopic = topicRoutingService.GetCurrentTopic() ?? throw new NullReferenceException(nameof(CurrentTopic));
+    }
+
+    /*==========================================================================================================================
+    | CURRENT TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the current topic associated with the request.
+    /// </summary>
+    /// <returns>The Topic associated with the current request.</returns>
+    protected Topic CurrentTopic { get; set; }
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)

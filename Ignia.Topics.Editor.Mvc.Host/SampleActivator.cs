@@ -126,15 +126,6 @@ namespace OnTopicTest {
       Type type = context.ViewComponentDescriptor.TypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Register
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var mvcTopicRoutingService = new MvcTopicRoutingService(
-        _topicRepository,
-        new Uri($"https://{context.ViewContext.HttpContext.Request.Host}/{context.ViewContext.HttpContext.Request.Path}"),
-        context.ViewContext.RouteData
-      );
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Configure and return appropriate view component
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (type == typeof(LastModifiedViewComponent)) {
@@ -153,7 +144,13 @@ namespace OnTopicTest {
         return new FileListViewComponent(_webHostEnvironment);
       }
       if (type == typeof(FilePathViewComponent)) {
-        return new FilePathViewComponent(mvcTopicRoutingService);
+        return new FilePathViewComponent(
+          new MvcTopicRoutingService(
+            _topicRepository,
+            new Uri($"https://{context.ViewContext.HttpContext.Request.Host}/{context.ViewContext.HttpContext.Request.Path}"),
+            context.ViewContext.RouteData
+          )
+        );
       }
       if (type == typeof(HtmlViewComponent)) {
         return new HtmlViewComponent();
