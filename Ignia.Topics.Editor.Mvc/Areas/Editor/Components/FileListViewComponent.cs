@@ -37,12 +37,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="FileViewComponent"/> with necessary dependencies.
     /// </summary>
-    public FileListViewComponent(
-      ITopicRoutingService topicRoutingService,
-      IWebHostEnvironment webHostEnvironment
-    ): base(
-      topicRoutingService
-    ) {
+    public FileListViewComponent(IWebHostEnvironment webHostEnvironment): base() {
       _webHostEnvironment = webHostEnvironment;
     }
 

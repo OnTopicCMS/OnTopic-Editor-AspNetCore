@@ -27,7 +27,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="LastModifiedByViewComponent"/> with necessary dependencies.
     /// </summary>
-    public LastModifiedByViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public LastModifiedByViewComponent() : base() { }
 
 
     /*==========================================================================================================================

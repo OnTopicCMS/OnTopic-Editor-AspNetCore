@@ -20,7 +20,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="DisplayOptionsViewComponent"/> with necessary dependencies.
     /// </summary>
-    public DisplayOptionsViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public DisplayOptionsViewComponent() : base() { }
 
   } // Class
 } // Namespace

@@ -33,7 +33,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="DefaultAttributeTypeViewComponent"/> with necessary dependencies.
     /// </summary>
-    public DefaultAttributeTypeViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public DefaultAttributeTypeViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)

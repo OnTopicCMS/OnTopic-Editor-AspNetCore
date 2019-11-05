@@ -25,7 +25,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="RelationshipViewComponent"/> with necessary dependencies.
     /// </summary>
-    public RelationshipViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public RelationshipViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)

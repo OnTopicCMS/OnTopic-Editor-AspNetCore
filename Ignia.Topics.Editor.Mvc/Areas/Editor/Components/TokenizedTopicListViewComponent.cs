@@ -33,12 +33,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="TokenizedTopicListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public TokenizedTopicListViewComponent(
-      ITopicRoutingService topicRoutingService,
-      ITopicRepository topicRepository
-    ) : base(
-      topicRoutingService
-    ) {
+    public TokenizedTopicListViewComponent(ITopicRepository topicRepository) : base() {
       _topicRepository = topicRepository;
     }
 

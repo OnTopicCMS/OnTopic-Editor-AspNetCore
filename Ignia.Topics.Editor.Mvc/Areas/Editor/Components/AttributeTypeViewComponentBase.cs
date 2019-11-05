@@ -36,27 +36,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Initializes a new instance of a <see cref="AttributeTypeViewComponentBase"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
-    protected AttributeTypeViewComponentBase(
-      ITopicRoutingService topicRoutingService
-    ) {
-      _topicRoutingService = topicRoutingService;
-    }
-
-    /*==========================================================================================================================
-    | CURRENT TOPIC
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a reference to the current topic associated with the request.
-    /// </summary>
-    /// <returns>The Topic associated with the current request.</returns>
-    protected Topic CurrentTopic {
-      get {
-        if (_currentTopic == null) {
-          _currentTopic = _topicRoutingService.GetCurrentTopic();
-        }
-        return _currentTopic;
-      }
-    }
+    protected AttributeTypeViewComponentBase() {}
 
     /*==========================================================================================================================
     | METHOD: GET ATTRIBUTE VIEW MODEL

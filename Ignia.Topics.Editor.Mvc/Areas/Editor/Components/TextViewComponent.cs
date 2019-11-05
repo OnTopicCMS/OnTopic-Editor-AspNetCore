@@ -28,7 +28,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Initializes a new instance of a <see cref="TextViewComponent"/> with necessary dependencies.
     /// </summary>
     /// <returns>A <see cref="TextViewComponent"/>.</returns>
-    public TextViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public TextViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)

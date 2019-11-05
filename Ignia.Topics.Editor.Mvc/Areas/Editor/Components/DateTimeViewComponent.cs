@@ -27,7 +27,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Initializes a new instance of a <see cref="DateTimeViewComponent"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
-    public DateTimeViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public DateTimeViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)

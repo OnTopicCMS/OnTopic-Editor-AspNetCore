@@ -24,7 +24,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="HtmlViewComponent"/> with necessary dependencies.
     /// </summary>
-    public HtmlViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public HtmlViewComponent() : base() { }
 
 
     /*==========================================================================================================================

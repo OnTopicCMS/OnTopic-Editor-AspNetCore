@@ -27,7 +27,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Initializes a new instance of a <see cref="NumberViewComponent"/> with necessary dependencies.
     /// </summary>
     /// <returns>A <see cref="NumberViewComponent"/>.</returns>
-    public NumberViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public NumberViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)

@@ -34,12 +34,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="TopicReferenceViewComponent"/> with necessary dependencies.
     /// </summary>
-    public TopicReferenceViewComponent(
-      ITopicRoutingService topicRoutingService,
-      ITopicRepository topicRepository
-    ) : base(
-      topicRoutingService
-    ) {
+    public TopicReferenceViewComponent(ITopicRepository topicRepository) : base() {
       _topicRepository = topicRepository;
     }
 

@@ -27,7 +27,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="NestedTopicListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public NestedTopicListViewComponent(ITopicRoutingService topicRoutingService) : base(topicRoutingService) { }
+    public NestedTopicListViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)
