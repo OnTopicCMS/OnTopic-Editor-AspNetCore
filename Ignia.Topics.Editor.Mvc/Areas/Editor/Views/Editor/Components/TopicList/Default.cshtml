@@ -5,6 +5,7 @@
 }
 
 @if (Model.TopicList.Count > 2 || String.IsNullOrEmpty(Model.TargetUrl)) {
+
   <select
     asp-for                     ="Value"
     asp-items                   ="Model.TopicList"
@@ -13,6 +14,28 @@
     required                    =@Model.AttributeDescriptor.IsRequired
     >
   </select>
+
+  @if (!String.IsNullOrEmpty(Model.TargetUrl)) {
+    <script>
+      (function ($) {
+        $("#@Html.IdFor(m => m.Value)").change(function () {
+          var option = $('option:selected', this);
+          @if (Model.EnableModal?? false) {
+            <text>
+              initEditorModal('@Model.AttributeDescriptor.Key', option.text(), option.val(), @Model.OnModalClose); return false;
+            </text>
+          }
+          else {
+            <text>
+              window.location.href = option.val();
+            </text>
+          }
+        });
+      })(jQuery);
+    </script>
+  }
+
+
 }
 
 else {
