@@ -78,7 +78,7 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
  * @param {string} namespace - The parent key of the nested topic container.
  */
 window.closeModal = function (action, namespace) {
-  $('#EditorModal' + key).modal('hide');
+  $('[id^="EditorModal"]').modal('hide');
 };
 
 /*==============================================================================================================================
@@ -91,7 +91,7 @@ window.closeModal = function (action, namespace) {
   \---------------------------------------------------------------------------------------------------------------------------*/
   $('#ModalCloseButton').on('click', function (e) {
     window.parent.closeModal('canceled', '');
-    $('[id*="EditorModal"]').modal('hide');
+    $('[id^="EditorModal"]').modal('hide');
   });
 
   /*----------------------------------------------------------------------------------------------------------------------------
