@@ -53,6 +53,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="DefaultAttributeTypeViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
+      EditingTopicViewModel currentTopic,
       FileListAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
@@ -73,7 +74,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new FileListAttributeViewModel(attribute);
+      var model = new FileListAttributeViewModel(currentTopic, attribute);
 
       GetAttributeViewModel(model);
 

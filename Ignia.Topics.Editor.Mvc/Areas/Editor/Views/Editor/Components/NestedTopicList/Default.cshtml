@@ -96,6 +96,7 @@
   };
   <text>
     <vc:topic-list
+      current-topic=@Model.CurrentTopic
       attribute=@attributeDescriptor
       html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
       target-url=@($"{Url.Action("Edit")}{Model.AttributeDescriptor.Key}/?ContentType={{Topic}}&IsNew=true&IsModal=true")

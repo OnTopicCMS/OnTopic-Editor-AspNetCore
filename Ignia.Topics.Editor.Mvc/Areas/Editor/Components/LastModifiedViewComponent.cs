@@ -36,6 +36,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="LastModifiedViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
+      EditingTopicViewModel currentTopic,
       LastModifiedAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
@@ -48,7 +49,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new LastModifiedAttributeViewModel(attribute);
+      var model = new LastModifiedAttributeViewModel(currentTopic, attribute);
 
       GetAttributeViewModel(model);
 

@@ -39,6 +39,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="DefaultAttributeTypeViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
+      EditingTopicViewModel currentTopic,
       FilePathAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
@@ -59,7 +60,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = GetAttributeViewModel(new FilePathAttributeViewModel(attribute)) as FilePathAttributeViewModel;
+      var model = GetAttributeViewModel(new FilePathAttributeViewModel(currentTopic, attribute)) as FilePathAttributeViewModel;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
@@ -83,7 +84,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// </summary>
     public string GetInheritedValue(string attributeKey, FilePathAttributeTopicViewModel attribute) {
 
-      var             inheritedValue          = "";
+      var inheritedValue                      = "";
 
       if (attribute.InheritValue == true && attribute.RelativeToTopicPath == true) {
         inheritedValue                        = GetPath(attributeKey, attribute);

@@ -26,10 +26,12 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
     ///   Initializes a new instance of the <see cref="TopicListAttributeViewModel"/> class.
     /// </summary>
     public NestedTopicListAttributeViewModel(
+      EditingTopicViewModel currentTopic,
       NestedTopicListAttributeTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(
+      currentTopic,
       attributeDescriptor,
       value,
       inheritedValue

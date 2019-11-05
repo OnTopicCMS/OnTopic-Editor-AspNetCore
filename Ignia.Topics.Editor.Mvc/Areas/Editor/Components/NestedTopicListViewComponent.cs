@@ -36,6 +36,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="NestedTopicListViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
+      EditingTopicViewModel currentTopic,
       NestedTopicListAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
@@ -54,7 +55,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new NestedTopicListAttributeViewModel(attribute);
+      var viewModel = new NestedTopicListAttributeViewModel(currentTopic, attribute);
 
       GetAttributeViewModel(viewModel);
 
@@ -64,8 +65,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       if (HttpContext.Request.Query.TryGetValue("IsNew", out var action)) {
         viewModel.IsNew = action.FirstOrDefault().Equals("true", StringComparison.InvariantCultureIgnoreCase);
       }
-      viewModel.UniqueKey = CurrentTopic.GetUniqueKey();
-      viewModel.WebPath   = CurrentTopic.GetWebPath();
+      viewModel.UniqueKey = currentTopic.UniqueKey;
+      viewModel.WebPath   = currentTopic.WebPath;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

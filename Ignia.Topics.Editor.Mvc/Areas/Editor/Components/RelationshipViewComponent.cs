@@ -34,6 +34,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="RelationshipViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
+      EditingTopicViewModel currentTopic,
       RelationshipAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
@@ -55,7 +56,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new AttributeViewModel<RelationshipAttributeTopicViewModel>(attribute);
+      var model = new AttributeViewModel<RelationshipAttributeTopicViewModel>(currentTopic, attribute);
 
       GetAttributeViewModel(model);
 

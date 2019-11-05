@@ -75,6 +75,7 @@
               }
               <text>
                 <vc:topic-list
+                  current-topic=@Model.Topic
                   attribute=@attributeDescriptor
                   html-field-prefix="CreateNewTopic"
                   target-url=@($"{Url.Action("Edit")}?ContentType={{Topic}}&IsNew=true")

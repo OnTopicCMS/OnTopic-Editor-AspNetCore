@@ -30,12 +30,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   public abstract class AttributeTypeViewComponentBase : ViewComponent {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRoutingService            _topicRoutingService            = null;
-    private                     Topic                           _currentTopic                   = null;
-
-    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -76,9 +70,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// </param>
     /// <returns>The Topic associated with the current request.</returns>
     public AttributeViewModel<AttributeDescriptorTopicViewModel> GetAttributeViewModel(
+      EditingTopicViewModel topic,
       AttributeDescriptorTopicViewModel attribute
     ) {
-      var viewModel = new AttributeViewModel<AttributeDescriptorTopicViewModel>(attribute);
+      var viewModel = new AttributeViewModel<AttributeDescriptorTopicViewModel>(topic, attribute);
       GetAttributeViewModel(viewModel);
       return viewModel;
     }

@@ -32,10 +32,12 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
     ///   Initializes a new instance of the <see cref="FilePathAttributeViewModel"/> class.
     /// </summary>
     public FilePathAttributeViewModel(
+      EditingTopicViewModel currentTopic,
       FilePathAttributeTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(
+      currentTopic,
       attributeDescriptor,
       value,
       inheritedValue

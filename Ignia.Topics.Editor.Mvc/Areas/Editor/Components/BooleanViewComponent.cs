@@ -36,11 +36,12 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="DefaultAttributeTypeViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
+      EditingTopicViewModel currentTopic,
       BooleanAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      return View(GetAttributeViewModel(new BooleanAttributeViewModel(attribute)));
+      return View(GetAttributeViewModel(new BooleanAttributeViewModel(currentTopic, attribute)));
     }
 
   } // Class

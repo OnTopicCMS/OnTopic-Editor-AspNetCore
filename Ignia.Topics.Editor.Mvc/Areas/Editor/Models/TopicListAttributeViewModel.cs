@@ -25,10 +25,12 @@ namespace Ignia.Topics.Editor.Mvc.Models {
     ///   Initializes a new instance of the <see cref="TopicListAttributeViewModel"/> class.
     /// </summary>
     public TopicListAttributeViewModel(
+      EditingTopicViewModel currentTopic,
       TopicListAttributeTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ) : base(
+      currentTopic,
       attributeDescriptor,
       value,
       inheritedValue

@@ -38,10 +38,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="TopicListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public TopicListViewComponent(
-      ITopicRoutingService      topicRoutingService,
-      ITopicRepository          topicRepository
-    ) : base(topicRoutingService) {
+    public TopicListViewComponent(ITopicRepository topicRepository): base() {
       _topicRepository          = topicRepository;
     }
 
@@ -52,6 +49,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="TopicListViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
+      EditingTopicViewModel currentTopic,
       TopicListAttributeTopicViewModel attribute,
       string htmlFieldPrefix = null,
       IEnumerable<TopicViewModel> values = null,
@@ -82,7 +80,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new TopicListAttributeViewModel(attribute);
+      var viewModel = new TopicListAttributeViewModel(currentTopic, attribute);
 
       GetAttributeViewModel(viewModel);
 
@@ -99,7 +97,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set default value
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var defaultValue = CurrentTopic.Attributes.GetValue(attribute.Key, attribute.DefaultValue, false, false);
+      var defaultValue = currentTopic.Attributes.ContainsKey(attribute.Key)? currentTopic.Attributes[attribute.Key] : null;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get values

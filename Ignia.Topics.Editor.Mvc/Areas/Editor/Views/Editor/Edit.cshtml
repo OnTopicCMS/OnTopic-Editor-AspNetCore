@@ -24,7 +24,7 @@
 
                 @await Component.InvokeAsync(
                   attribute.ContentType.Replace("Attribute", ""),
-                  new { Attribute=attribute, HtmlFieldPrefix=$"Attributes[{index++}]" }
+                  new { CurrentTopic=Model.Topic, Attribute=attribute, HtmlFieldPrefix=$"Attributes[{index++}]" }
                 )
 
               }

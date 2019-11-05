@@ -36,6 +36,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="DateTimeViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
+      EditingTopicViewModel currentTopic,
       DateTimeAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
@@ -48,7 +49,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new DateTimeAttributeViewModel(attribute);
+      var model = new DateTimeAttributeViewModel(currentTopic, attribute);
 
       GetAttributeViewModel(model);
 

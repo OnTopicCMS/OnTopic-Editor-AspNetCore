@@ -49,6 +49,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Assembles the view model for the <see cref="TokenizedTopicListViewComponent"/>.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync(
+      EditingTopicViewModel currentTopic,
       TokenizedTopicListAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
@@ -72,7 +73,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new TokenizedTopicListAttributeViewModel(attribute);
+      var model = new TokenizedTopicListAttributeViewModel(currentTopic, attribute);
 
       GetAttributeViewModel(model);
 

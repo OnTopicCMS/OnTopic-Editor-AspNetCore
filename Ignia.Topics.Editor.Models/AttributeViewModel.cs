@@ -24,6 +24,7 @@ namespace Ignia.Topics.Editor.Models {
     ///   Initializes a new instance of the <see cref="AttributeViewModel"/> class.
     /// </summary>
     public AttributeViewModel(
+      EditingTopicViewModel currentTopic,
       AttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
@@ -32,6 +33,7 @@ namespace Ignia.Topics.Editor.Models {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
+      CurrentTopic              = currentTopic;
       AttributeDescriptor       = attributeDescriptor;
       Value                     = value;
       InheritedValue            = inheritedValue;
@@ -45,6 +47,14 @@ namespace Ignia.Topics.Editor.Models {
     ///   Provides the global definition for the attribute, as defined on the corresponding <see cref="ContentType"/>.
     /// </summary>
     public AttributeDescriptorTopicViewModel AttributeDescriptor { get; }
+
+    /*==========================================================================================================================
+    | PROPERTY: CURRENT TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the <see cref="EditingTopicViewModel"/> that the user is currently editing.
+    /// </summary>
+    public EditingTopicViewModel CurrentTopic { get; }
 
     /*==========================================================================================================================
     | KEY
