@@ -119,19 +119,20 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
-      var contentTypeViewModel = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor);
-      var parentTopic = isNew ? CurrentTopic : CurrentTopic.Parent;
+      var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor);
+      var parentTopic           = isNew ? CurrentTopic : CurrentTopic.Parent;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      EditorViewModel editorViewModel;
-      EditingTopicViewModel topicViewModel;
+      var topicViewModel        = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic);
+
       if (isNew) {
-        topicViewModel = new EditingTopicViewModel() { ContentType = contentType };
-      }
-      else {
-        topicViewModel = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic);
+        topicViewModel          = new EditingTopicViewModel() {
+          ContentType           = contentType,
+          UniqueKey             = CurrentTopic.GetUniqueKey(),
+          Parent                = topicViewModel
+        };
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -163,10 +164,10 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      editorViewModel = new EditorViewModel(topicViewModel, contentTypeViewModel, isModal);
+      var editorViewModel = new EditorViewModel(topicViewModel, contentTypeViewModel, isModal);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | RETURN VIEW
+      | RETURN VIEW (MODEL)
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(editorViewModel);
 
