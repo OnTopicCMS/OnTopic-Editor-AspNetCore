@@ -30,9 +30,8 @@
     }
 
     <!-- Cancel -->
-    <button id="ModalCloseButton" type="button" visible="IsModal" class="btn btn-ancillary btn-sm hidden" data-dismiss="modal">Cancel</button>
-    @if (Model.Topic.Parent != null && Model.Topic.Parent.ContentType.Equals("List")) {
-      <a href="Default.aspx?Path=<%# ((IsNew)? Topic.Parent.GetUniqueKey() : ((Topic.Parent.Parent != null)? Topic.Parent.Parent.GetUniqueKey() : "#")) %>"class="btn btn-ancillary btn-sm">Cancel</a>
+    @if (Model.IsModal) {
+      <button id="ModalCloseButton" type="button" class="btn btn-ancillary btn-sm" data-dismiss="modal">Cancel</button>
     }
     <!-- /Cancel -->
 
