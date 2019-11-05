@@ -4,7 +4,7 @@
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 }
 
-@if (Model.TopicList.Count > 2) {
+@if (Model.TopicList.Count > 2 || String.IsNullOrEmpty(Model.TargetUrl)) {
   <select
     asp-for                     ="Value"
     asp-items                   ="Model.TopicList"
@@ -15,7 +15,7 @@
   </select>
 }
 
-@if (Model.TopicList.Count <= 2 && !String.IsNullOrEmpty(Model.TargetUrl)) {
+else {
   <div class="ChildTopic">
     @if (Model.EnableModal == true) {
       <a onclick="initEditorModal('@Model.AttributeDescriptor.Key', '@Model.TopicList.LastOrDefault().Text', '@Model.TopicList.LastOrDefault().Value', @Model.OnModalClose); return false;" class="btn btn-info btn-sm">
