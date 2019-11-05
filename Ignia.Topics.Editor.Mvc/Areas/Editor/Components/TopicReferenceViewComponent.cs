@@ -69,7 +69,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       attribute.TargetContentType ??= attribute.GetConfigurationValue(          "ContentType",          null);
 
       if (String.IsNullOrWhiteSpace(attribute.TargetContentType)) {
-        attribute.TargetContentType = CurrentTopic.ContentType;
+        attribute.TargetContentType = currentTopic.ContentType;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

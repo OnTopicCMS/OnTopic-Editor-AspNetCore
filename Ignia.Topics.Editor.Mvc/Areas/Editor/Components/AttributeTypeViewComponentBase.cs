@@ -84,19 +84,24 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <param name="viewModel">The <see cref="AttributeViewModel"/> to populate with values.</param>
     /// <returns>The Topic associated with the current request.</returns>
     [return: NotNullIfNotNull("viewModel")]
-    public AttributeViewModel GetAttributeViewModel(AttributeViewModel viewModel = null) {
+    public AttributeViewModel GetAttributeViewModel(AttributeViewModel viewModel) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var topic                = viewModel.CurrentTopic;
+      var key                  = viewModel.AttributeDescriptor.Key;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set contextual values from current topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var attribute             = viewModel.AttributeDescriptor;
-      var defaultValue          = CurrentTopic.Id < 0 && CurrentTopic.DerivedTopic == null? attribute.DefaultValue : "";
-      var implicitValue         = !attribute.IsRequired? attribute.ImplicitValue : "";
+      viewModel.TopicId         = topic.Id;
+      viewModel.InheritedValue  = topic.InheritedAttributes.ContainsKey(key)? topic.InheritedAttributes[key] : null;
+      viewModel.Value           = topic.Attributes.ContainsKey(key)? topic.Attributes[key] : null;
 
-      viewModel.TopicId         = CurrentTopic.Id;
-      viewModel.InheritedValue  = implicitValue?? CurrentTopic.Parent.Attributes.GetValue(viewModel.Key, true);
-      viewModel.Value           = CurrentTopic.Attributes.GetValue(viewModel.Key, defaultValue, false, false);
-
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return value
+      \-----------------------------------------------------------------------------------------------------------------------*/
       return viewModel;
 
     }

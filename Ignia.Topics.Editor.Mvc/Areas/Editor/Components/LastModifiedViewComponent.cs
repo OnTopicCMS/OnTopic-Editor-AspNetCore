@@ -57,8 +57,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
       model.Value = DateTime.Now.ToString();
-      if (CurrentTopic.LastModified != null && CurrentTopic.LastModified != DateTime.MinValue) {
-        model.CurrentValue = CurrentTopic.LastModified.ToString();
+      if (currentTopic.LastModified != null && currentTopic.LastModified != DateTime.MinValue) {
+        model.CurrentValue = currentTopic.LastModified.ToString();
       }
       else {
         model.CurrentValue = model.Value;

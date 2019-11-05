@@ -58,7 +58,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
       model.Value = HttpContext.User.Identity.Name ?? "System";
-      model.CurrentValue = CurrentTopic.Attributes.GetValue("LastModifiedBy", model.Value);
+      model.CurrentValue = currentTopic.Attributes["LastModifiedBy"]?? model.Value;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
