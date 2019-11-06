@@ -5,7 +5,9 @@
 \=============================================================================================================================*/
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Metadata;
+using Ignia.Topics.ViewModels;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 
@@ -20,12 +22,29 @@ namespace Ignia.Topics.Editor.Models.Metadata {
   public class TopicReferenceAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | SCOPE
+    | PROPERTY: ROOT TOPIC KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the scope of the topic graph within which to search for results. E.g., <c>Root:Web:Configuration</c>.
+    ///   Gets or sets a <see cref="Topic.GetUniqueKey"/> path representing the <see cref="RootTopic"/> to display to the
+    ///   user. This allows relationships to be targeted to particular areas of the topic graph.
     /// </summary>
-    public string? Scope { get; set; }
+    [Obsolete(
+      "This property is exposed exlusively for backward compatibility with the DefaultConfiguration's Scope property. New " +
+      "attributes should instead use the RootTopic property. The RootTopicKey property will be removed in the future.",
+      false
+    )]
+    public string? RootTopicKey { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: ROOT TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets a <see cref="Topic.Id"/> representing the scope of <see cref="Topic"/>s to display to the user. This
+    ///   allows relationships to be targeted to particular areas of the topic graph.
+    /// </summary>
+    [AttributeKey("RootTopicId")]
+    [NotNull]
+    public TopicViewModel? RootTopic { get; set; }
 
     /*==========================================================================================================================
     | RESULT LIMIT

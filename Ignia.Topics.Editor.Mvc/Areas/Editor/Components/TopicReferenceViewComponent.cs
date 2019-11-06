@@ -58,8 +58,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute                 ??= new TopicReferenceAttributeTopicViewModel();
-      attribute.Scope           ??= attribute.GetConfigurationValue(            "Scope",                "Root");
+      attribute.RootTopicKey    ??= attribute.GetConfigurationValue(            "Scope",                "Root");
       attribute.ResultLimit     ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
       attribute.TargetContentType ??= attribute.GetConfigurationValue(          "ContentType",          null);
 
