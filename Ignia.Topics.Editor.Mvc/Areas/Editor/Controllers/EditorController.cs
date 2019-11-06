@@ -423,28 +423,13 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Assemble view model
       \-------------------------------------------------------------------------------------------------------------------------*/
-      var jsonTopicViewModel = new JsonTopicViewModel(CurrentTopic, relatedTopics, options);
+      var jsonTopicMappingService = new JsonTopicMappingService();
+      var jsonTopicViewModel = jsonTopicMappingService.MapGraph(CurrentTopic, options, relatedTopics);
 
       /*--------------------------------------------------------------------------------------------------------------------------
-      | Return flat view model, if requested
+      | Return hierarchical view
       \-------------------------------------------------------------------------------------------------------------------------*/
-      if (options.FlattenStructure) {
-        var flatJsonTopicViewModel = jsonTopicViewModel.AsFlatStructure();
-        if (!options.ShowRoot) {
-          flatJsonTopicViewModel.RemoveAt(0);
-        }
-        return new JsonResult(flatJsonTopicViewModel);
-      }
-
-      /*--------------------------------------------------------------------------------------------------------------------------
-      | Otherwise, return hierarchical view model
-      \-------------------------------------------------------------------------------------------------------------------------*/
-      if (options.ShowRoot) {
-        return new JsonResult(jsonTopicViewModel);
-      }
-      else {
-        return new JsonResult(jsonTopicViewModel.Children);
-      }
+      return new JsonResult(jsonTopicViewModel);
 
     }
 

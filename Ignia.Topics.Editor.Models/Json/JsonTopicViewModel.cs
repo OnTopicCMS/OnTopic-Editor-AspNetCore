@@ -26,51 +26,6 @@ namespace Ignia.Topics.Editor.Models.Json {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="JsonTopicViewModel"/> class using a <see cref="Topic"/> to seed the
-    ///   values.
-    /// </summary>
-    public JsonTopicViewModel(Topic topic, JsonTopicViewModelOptions options) : this(topic, null, options) { }
-
-    public JsonTopicViewModel(
-      Topic topic,
-      ReadOnlyTopicCollection<Topic> related,
-      JsonTopicViewModelOptions options
-    ) : this(
-      topic.Id,
-      topic.Key,
-      options.UseKeyAsText? topic.Key : topic.Title,
-      topic.GetUniqueKey(),
-      topic.GetWebPath(),
-      options.EnableCheckboxes? (options.MarkRelated? related.Contains(topic) : true) : new bool?(),
-      topic.Attributes.GetValue("DisableDelete", "0").Equals("0")
-    ) {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Handle options
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (options.ResultLimit > 0) {
-        options.ResultLimit--;
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Initialize collection
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      Children = new List<JsonTopicViewModel>();
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Populate children
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (options.IsRecursive) {
-        foreach (var child in topic.Children) {
-          if (JsonTopicViewModel.IsValidTopic(child, options)) {
-            Children.Add(new JsonTopicViewModel(child, related, options));
-          }
-        }
-      }
-
-    }
-
-    /// <summary>
     ///   Initializes a new instance of the <see cref="JsonTopicViewModel"/> class by specifying each of the property values.
     /// </summary>
     public JsonTopicViewModel(
@@ -96,62 +51,6 @@ namespace Ignia.Topics.Editor.Models.Json {
       if (isChecked.HasValue) {
         IsChecked               = isChecked.Value;
       }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Initialize collection
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      Children = new List<JsonTopicViewModel>();
-
-    }
-
-    /*==========================================================================================================================
-    | IS VALID TOPIC
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Static method confirms whether a topic is valid based on the <see cref="JsonTopicViewModelOptions"/>.
-    /// </summary>
-    public static bool IsValidTopic(Topic topic, JsonTopicViewModelOptions options) {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var searchTerms = (options.Query ?? "").Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Validate basic properties
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!options.ShowAll && !topic.IsVisible()) return false;
-      if (!options.ShowNestedTopics && topic.ContentType.Equals("List")) return false;
-      if (options.ResultLimit.Equals(0)) return false;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Validate filtered attribute
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!String.IsNullOrEmpty(options.AttributeName) && !String.IsNullOrEmpty(options.AttributeName)) {
-        if (options.UsePartialMatch) {
-          if (topic.Attributes.GetValue(options.AttributeName, "").IndexOf(options.AttributeValue) == -1) {
-            return false;
-          }
-        }
-        if (!topic.Attributes.GetValue(options.AttributeName, "").Equals(options.AttributeValue)) {
-          return false;
-        }
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Validate search results
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (searchTerms.Count > 0) {
-        if (!searchTerms.All(
-          searchTerm => topic.Attributes.Any(
-            a => a.Value.IndexOf(searchTerm, 0, StringComparison.InvariantCultureIgnoreCase) >= 0
-          )
-        )) {
-          return false;
-        }
-      }
-
-      return true;
 
     }
 
@@ -247,26 +146,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     /// <summary>
     ///   Provides a collection of child objects.
     /// </summary>
-    public List<JsonTopicViewModel> Children {
-      get;
-    }
-
-    /*==========================================================================================================================
-    | AS FLAT STRUCTURE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a flat list of the current <see cref="JsonTopicViewModel"/>.
-    /// </summary>
-    public List<JsonTopicViewModel> AsFlatStructure(List<JsonTopicViewModel> output = null) {
-      output = output?? new List<JsonTopicViewModel>();
-      output.Add(this);
-      foreach (var topic in Children) {
-        output = topic.AsFlatStructure(output);
-      }
-      Children.Clear();
-      return output;
-    }
+    public List<JsonTopicViewModel> Children { get; } = new List<JsonTopicViewModel>();
 
   } // Class
-
 } // Namespace
