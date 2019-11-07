@@ -37,7 +37,7 @@ var     environment             = 'development',
 | be conditional based on the outputDir. As a result, they will likely be hardcoded into each task's dest() method.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const files = {
-  scss                          : 'Shared/Styles/Style.scss',
+  scss                          : 'Shared/Styles/**/[!_]*.scss',
   js                            : 'Shared/Scripts/*.js',
   jsVendor                      : [ 'node_modules/jquery/dist/jquery.min.js',
                                     'node_modules/jquery-ui-dist/jquery-ui.min.js',

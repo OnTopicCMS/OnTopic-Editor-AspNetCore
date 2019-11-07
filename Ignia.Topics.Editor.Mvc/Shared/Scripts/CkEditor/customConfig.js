@@ -18,7 +18,7 @@ CKEDITOR.editorConfig = function( config ) {
   config.resize_maxWidth        = '800';
   config.fillEmptyBlocks        = false;
   config.shiftEnterMode         = CKEDITOR.ENTER_BR;
-  config.contentsCss            = '/_content/Ignia.Topics.Editor.Mvc/Shared/Styles/CKEditor.min.css';
+  config.contentsCss            = '/_content/Ignia.Topics.Editor.Mvc/Shared/Styles/CKEditor.css';
   config.toolbar                = [
     { name: 'document', items: [ 'Source' ] },
     { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste',  '-', 'Undo', 'Redo' ] },
