@@ -29,7 +29,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            IWebHostEnvironment             _webHostEnvironment             = null;
+    private readonly            IWebHostEnvironment             _webHostEnvironment;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
