@@ -23,7 +23,7 @@
       containerScroll   : true,
       border            : false,
       baseCls           : 'RelationshipsTreeView',
-      dataUrl           : '/OnTopic/Json/@rootTopicKey?ShowRoot=@Model.AttributeDescriptor.ShowRoot&ShowAll=true&RelatedNamespace=@Model.AttributeDescriptor.Key&RelatedTopicID=@Model.TopicId&AttributeName=@Model.AttributeDescriptor.AttributeKey&AttributeValue=@Model.AttributeDescriptor.AttributeValue',
+      dataUrl           : '/OnTopic/Json/@rootTopicKey?ShowRoot=@Model.AttributeDescriptor.ShowRoot&ShowAll=true&RelatedNamespace=@Model.AttributeDescriptor.Key&RelatedTopicID=@Model.CurrentTopic.Id&AttributeName=@Model.AttributeDescriptor.AttributeKey&AttributeValue=@Model.AttributeDescriptor.AttributeValue',
       root              : new Ext.tree.AsyncTreeNode({
         checked         : true,
         text            : 'Web',

@@ -31,7 +31,7 @@
           var targetUrl = "@(Url.Action("Edit")+Model.AttributeDescriptor.Key)/" + n.attributes.key;
           @if (Model.AttributeDescriptor.EnableModal?? true) {
             <text>
-              initEditorModal('@Model.Key', n.attributes.text, targetUrl + '?IsModal=true', @($"{Model.AttributeDescriptor.Key}Tree_refresh"));return false;
+              initEditorModal('@Model.AttributeDescriptor.Key', n.attributes.text, targetUrl + '?IsModal=true', @($"{Model.AttributeDescriptor.Key}Tree_refresh"));return false;
             </text>
           }
           else {
@@ -86,7 +86,7 @@
 
 @if (!Model.IsNew) {
   var attributeDescriptor       = new TopicListAttributeTopicViewModel() {
-    Key                         = Model.Key,
+    Key                         = Model.AttributeDescriptor.Key,
     ContentType                 = "TopicListAttribute",
     RootTopicKey                = "Configuration:ContentTypes",
     AttributeKey                = "ContentType",

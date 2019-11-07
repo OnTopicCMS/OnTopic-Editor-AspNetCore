@@ -57,37 +57,6 @@ namespace Ignia.Topics.Editor.Models {
     public EditingTopicViewModel CurrentTopic { get; }
 
     /*==========================================================================================================================
-    | KEY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the associated attribute key, as defined on the <see cref="AttributeDescriptor"/> instance.
-    /// </summary>
-    /// <remarks>
-    ///   While this value can be retrieved directly from the <see cref="AttributeDescriptor"/> property, relaying it through
-    ///   the <see cref="AttributeViewModel"/> provides cleaner output in the forms by allowing the generated <c>id</c> and
-    ///   <c>name</c> attributes to map to the target <see cref="EditorBindingModel"/> interface.
-    /// </remarks>
-    public string Key => AttributeDescriptor.Key;
-
-    /*==========================================================================================================================
-    | EDITOR TYPE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the associated attribute type, as implied by the <see cref="Topic.ContentType"/> of the <see
-    ///   cref="AttributeDescriptor"/>.
-    /// </summary>
-    public string EditorType => AttributeDescriptor.ContentType;
-
-    /*==========================================================================================================================
-    | TOPID ID
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the <see cref="Topic.Id"/>, assuming the <see cref="Topic"/> has already been saved; otherwise will return
-    ///   <c>-1</c>.
-    /// </summary>
-    public int TopicId { get; set; }
-
-    /*==========================================================================================================================
     | VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -106,38 +75,6 @@ namespace Ignia.Topics.Editor.Models {
     ///   <see cref="Value"/>.
     /// </remarks>
     public virtual string InheritedValue { get; set; }
-
-    /*==========================================================================================================================
-    | IS ENABLED
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeValue"/> instance.
-    /// </summary>
-    public bool IsEnabled {
-      get => AttributeDescriptor.GetBooleanConfigurationValue(
-        "IsEnabled",
-        AttributeDescriptor.GetBooleanConfigurationValue("Enabled", AttributeDescriptor.IsEnabled)
-      );
-      set {
-        AttributeDescriptor.IsEnabled = value;
-      }
-    }
-
-    /*==========================================================================================================================
-    | CSS CLASS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Defines the CSS class names to be used, if any are configured.
-    /// </summary>
-    public string CssClass {
-      get => AttributeDescriptor.GetConfigurationValue(
-        "CssClass",
-        AttributeDescriptor.GetConfigurationValue("CssClassField", AttributeDescriptor.CssClass)
-      );
-      set {
-        AttributeDescriptor.CssClass = value;
-      }
-    }
 
   } // Class
 

@@ -2,14 +2,14 @@
 
 <!-- Begin: @(((RazorView)ViewContext.View).Path) -->
 
-<section id="@Model.Key" class="attribute @Model.Key">
+<section id="@Model.AttributeDescriptor.Key" class="attribute @Model.AttributeDescriptor.Key">
 
   @Html.LabelFor(m => m.Value, Model.AttributeDescriptor.Title)
   <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="@Model.AttributeDescriptor.Description"></i>
-  <div class="fields @Model.CssClass">
+  <div class="fields @Model.AttributeDescriptor.CssClass">
 
-    @Html.HiddenFor(m => m.EditorType)
-    @Html.HiddenFor(m => m.Key)
+    @Html.HiddenFor(m => m.AttributeDescriptor.ContentType)
+    @Html.HiddenFor(m => m.AttributeDescriptor.Key)
 
     @RenderBody()
 
