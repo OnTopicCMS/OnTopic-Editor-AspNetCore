@@ -95,10 +95,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Split value into Topic.Ids; retrieve JSON for each topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      string selectedTopics = "[";
+      var selectedTopics = "[";
       if (!String.IsNullOrEmpty(value)) {
-          string[] topicValues = value.Split(',');
-          foreach (string topicId in topicValues) {
+          var topicValues = value.Split(',');
+          foreach (var topicId in topicValues) {
             selectedTopics += GetTopicJson(topicId);
           }
         }
@@ -121,8 +121,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /*----------------------------------------------------------------------------------------------------------------------------
     | Set initial variables
     \---------------------------------------------------------------------------------------------------------------------------*/
-      string      topicJson       = "";
-      Topic       topic           = _topicRepository.Load(Int32.Parse(topicId));
+      var topicJson               = "";
+      var topic                   = _topicRepository.Load(Int32.Parse(topicId));
 
     /*----------------------------------------------------------------------------------------------------------------------------
     | Write out JSON for existing topic, if available

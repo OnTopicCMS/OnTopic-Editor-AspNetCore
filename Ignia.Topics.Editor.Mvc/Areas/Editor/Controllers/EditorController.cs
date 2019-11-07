@@ -267,7 +267,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       topic.Relationships.ClearTopics(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
         Topic relatedTopic = null;
-        var isTopicId = Int32.TryParse(topicIdString, out int topicIdInt);
+        var isTopicId = Int32.TryParse(topicIdString, out var topicIdInt);
         if (isTopicId && topicIdInt > 0) {
           relatedTopic = TopicRepository.Load(topicIdInt);
         }

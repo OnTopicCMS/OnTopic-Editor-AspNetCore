@@ -54,8 +54,7 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
         //Convert from JavaScript date format conventions to C# conventions
         var dateFormat = AttributeDescriptor.DateFormat.Replace("y", "yy").Replace("mm", "MM");
         if (!String.IsNullOrEmpty(Value)) {
-          DateTime dateValue;
-          if (DateTime.TryParse(Value, out dateValue)) {
+          if (DateTime.TryParse(Value, out var dateValue)) {
             _defaultDate        = dateValue.ToString(dateFormat);
           }
         }
@@ -75,8 +74,7 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
     public string GetDefaultTime() {
       if (String.IsNullOrEmpty(_defaultTime)) {
         if (!String.IsNullOrEmpty(Value)) {
-          DateTime timeValue;
-          if (DateTime.TryParse(Value, out timeValue)) {
+          if (DateTime.TryParse(Value, out var timeValue)) {
             _defaultTime        = timeValue.ToString(AttributeDescriptor.TimeFormat);
           }
         }

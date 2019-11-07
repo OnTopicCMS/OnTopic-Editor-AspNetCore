@@ -122,15 +122,15 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | GET ALL FILES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      string[] foundFiles = Directory.GetFiles(_webHostEnvironment.WebRootPath + attribute.Path, searchPattern, searchOption);
+      var foundFiles = Directory.GetFiles(_webHostEnvironment.WebRootPath + attribute.Path, searchPattern, searchOption);
 
       if (!String.IsNullOrEmpty(inheritedValue)) {
         string inheritedValueKey = inheritedValue.Replace("." + attribute.Extension, "");
         files.Add(new SelectListItem("", inheritedValue));
       }
-      foreach (string foundFile in foundFiles) {
-        string fileName = foundFile.Replace(_webHostEnvironment.WebRootPath + attribute.Path, "");
-        string fileNameKey = fileName.Replace("." + attribute.Extension, "");
+      foreach (var foundFile in foundFiles) {
+        var fileName = foundFile.Replace(_webHostEnvironment.WebRootPath + attribute.Path, "");
+        var fileNameKey = fileName.Replace("." + attribute.Extension, "");
         files.Add(new SelectListItem(fileNameKey, fileName));
       }
 

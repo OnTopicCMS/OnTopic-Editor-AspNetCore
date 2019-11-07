@@ -130,8 +130,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var topic in topics) {
 
-        string title = viewModel.TopicList.Any(t => t.Text == topic.Title)? $"{topic.Title} ({topic.Key})" : topic.Title;
-        string value = getValue(topic);
+        var title = viewModel.TopicList.Any(t => t.Text == topic.Title)? $"{topic.Title} ({topic.Key})" : topic.Title;
+        var value = getValue(topic);
 
         viewModel.TopicList.Add(
           new SelectListItem {
@@ -181,17 +181,17 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     | Retrieves a collection of topics with optional control call filter properties Scope, AttributeName and AttributeValue.
     \-------------------------------------------------------------------------------------------------------------------------*/
     public TopicCollection<Topic> GetTopics(
-      string scope = null,
-      string attributeKey = null,
-      string attributeValue = null,
-      string allowedKeys = ""
+      string scope              = null,
+      string attributeKey       = null,
+      string attributeValue     = null,
+      string allowedKeys        = ""
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate object
       \-----------------------------------------------------------------------------------------------------------------------*/
-      TopicCollection<Topic> topics = new TopicCollection<Topic>();
-      Topic topic = null;
+      var topics                = new TopicCollection<Topic>();
+      var topic                 = (Topic)null;
 
       if (scope != null) {
         topic = _topicRepository.Load(scope);
@@ -208,7 +208,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       if (attributeKey != null && attributeValue != null) {
 
         var readOnlyTopics = topic.FindAllByAttribute(attributeKey, attributeValue);
-        foreach (Topics.Topic readOnlyTopic in readOnlyTopics) {
+        foreach (var readOnlyTopic in readOnlyTopics) {
           if (!topics.Contains(readOnlyTopic.Key)) {
             topics.Add(readOnlyTopic);
           }
@@ -220,7 +220,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Get all Topics under RootTopic
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (topics.Count == 0) {
-        foreach (Topic childTopic in topic.Children) {
+        foreach (var childTopic in topic.Children) {
           if (!topics.Contains(childTopic)) {
             topics.Add(childTopic);
           }
@@ -233,8 +233,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       string[] allowedKeyList = null;
       if (!String.IsNullOrEmpty(allowedKeys)) {
         allowedKeyList = allowedKeys.Split(',');
-        for (int i = 0; i < topics.Count; i++) {
-          Topic childTopic = topics[i];
+        for (var i = 0; i < topics.Count; i++) {
+          var childTopic = topics[i];
           if (Array.IndexOf(allowedKeyList, childTopic.Key) < 0) {
             topics.RemoveAt(i);
             i--;

@@ -100,7 +100,7 @@ namespace OnTopicTest {
       /*------------------------------------------------------------------------------------------------------------------------
       | Determine controller type
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Type type = context.ActionDescriptor.ControllerTypeInfo.AsType();
+      var type = context.ActionDescriptor.ControllerTypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure and return appropriate controller
@@ -123,7 +123,7 @@ namespace OnTopicTest {
       /*------------------------------------------------------------------------------------------------------------------------
       | Determine view component type
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Type type = context.ViewComponentDescriptor.TypeInfo.AsType();
+      var type = context.ViewComponentDescriptor.TypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure and return appropriate view component
