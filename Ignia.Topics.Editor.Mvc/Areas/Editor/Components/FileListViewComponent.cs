@@ -125,7 +125,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       var foundFiles = Directory.GetFiles(_webHostEnvironment.WebRootPath + attribute.Path, searchPattern, searchOption);
 
       if (!String.IsNullOrEmpty(inheritedValue)) {
-        string inheritedValueKey = inheritedValue.Replace("." + attribute.Extension, "");
         files.Add(new SelectListItem("", inheritedValue));
       }
       foreach (var foundFile in foundFiles) {

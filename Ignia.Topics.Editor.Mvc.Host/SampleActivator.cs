@@ -34,7 +34,6 @@ namespace OnTopicTest {
     /*==========================================================================================================================
     | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            string                          _connectionString               = null;
     private readonly            ITypeLookupService              _typeLookupService              = null;
     private readonly            ITopicMappingService            _topicMappingService            = null;
     private readonly            ITopicRepository                _topicRepository                = null;
@@ -44,7 +43,6 @@ namespace OnTopicTest {
     /*==========================================================================================================================
     | HIERARCHICAL TOPIC MAPPING SERVICE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel> _hierarchicalMappingService = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -62,11 +60,9 @@ namespace OnTopicTest {
       /*------------------------------------------------------------------------------------------------------------------------
       | Initialize Topic Repository
       \-----------------------------------------------------------------------------------------------------------------------*/
-                                _connectionString               = connectionString;
                                 _webHostEnvironment             = webHostEnvironment;
       var                       sqlTopicRepository              = new SqlTopicRepository(connectionString);
       var                       cachedTopicRepository           = new CachedTopicRepository(sqlTopicRepository);
-      var                       topicViewModel                  = new PageTopicViewModel();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Preload repository
@@ -75,16 +71,6 @@ namespace OnTopicTest {
       _typeLookupService                                        = new EditorViewModelLookupService();
       _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
       _rootTopic                                                = _topicRepository.Load();
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish hierarchical topic mapping service
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      _hierarchicalMappingService = new CachedHierarchicalTopicMappingService<NavigationTopicViewModel>(
-        new HierarchicalTopicMappingService<NavigationTopicViewModel>(
-          _topicRepository,
-          _topicMappingService
-        )
-      );
 
     }
 
