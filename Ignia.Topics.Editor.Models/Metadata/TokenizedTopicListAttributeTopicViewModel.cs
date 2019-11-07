@@ -25,7 +25,10 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     | PROPERTY: MODEL TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
-    public override ModelType ModelType => (AsRelationship?? false)? ModelType.Relationship : ModelType.ScalarValue;
+    public override ModelType ModelType {
+      get => (AsRelationship ?? false) ? ModelType.Relationship : ModelType.ScalarValue;
+      set {}
+    }
 
     /*==========================================================================================================================
     | RESULT LIMIT
