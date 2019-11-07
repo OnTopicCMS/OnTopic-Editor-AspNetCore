@@ -45,7 +45,8 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created as part of the configured <see
     ///   cref="NestedTopicListAttributeViewComponent"/>.
     /// </summary>
-    [Relationship("ContentTypes", Type=RelationshipType.NestedTopics)]
+    [Follow(Relationships.None)]
+    [Relationship("ContentTypes", Type=RelationshipType.Relationship)]
     public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new List<ContentTypeDescriptorTopicViewModel>();
 
     /*==============================================================================================================================
