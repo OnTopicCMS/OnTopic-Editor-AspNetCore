@@ -119,7 +119,7 @@ namespace Ignia.Topics.Editor.Models.Json {
       /*------------------------------------------------------------------------------------------------------------------------
       | Loop through children (asynchronously)
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (options.IsRecursive || options.FlattenStructure ) {
+      if (isValid && options.IsRecursive || options.FlattenStructure ) {
         foreach (var childTopic in topic.Children) {
           MapTopic(
             topicList,
