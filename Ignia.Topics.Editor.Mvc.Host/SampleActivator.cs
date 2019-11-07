@@ -34,15 +34,11 @@ namespace OnTopicTest {
     /*==========================================================================================================================
     | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITypeLookupService              _typeLookupService              = null;
-    private readonly            ITopicMappingService            _topicMappingService            = null;
-    private readonly            ITopicRepository                _topicRepository                = null;
-    private readonly            IWebHostEnvironment             _webHostEnvironment             = null;
-    private readonly            Topic                           _rootTopic                      = null;
-
-    /*==========================================================================================================================
-    | HIERARCHICAL TOPIC MAPPING SERVICE
-    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITypeLookupService              _typeLookupService;
+    private readonly            ITopicMappingService            _topicMappingService;
+    private readonly            ITopicRepository                _topicRepository;
+    private readonly            IWebHostEnvironment             _webHostEnvironment;
+    private readonly            Topic                           _rootTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR

@@ -32,9 +32,9 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     ITopicRepository                _topicRepository                = null;
-    private                     ITopicRoutingService            _topicRoutingService            = null;
-    private                     ITopicMappingService            _topicMappingService            = null;
+    private readonly            ITopicRepository                _topicRepository;
+    private readonly            ITopicRoutingService            _topicRoutingService;
+    private readonly            ITopicMappingService            _topicMappingService;
     private                     Topic                           _currentTopic                   = null;
 
     /*==========================================================================================================================
