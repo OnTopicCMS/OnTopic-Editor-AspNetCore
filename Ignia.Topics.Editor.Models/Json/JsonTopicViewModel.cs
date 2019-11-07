@@ -136,9 +136,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     ///   Determines whether the current topic is a leaf node or not.
     /// </summary>
     [JsonPropertyName("leaf")]
-    public bool IsLeaf {
-      get => Children.Count.Equals(0);
-    }
+    public bool IsLeaf => Children.Count.Equals(0);
 
     /*==========================================================================================================================
     | CHILDREN

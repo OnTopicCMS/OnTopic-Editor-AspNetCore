@@ -82,9 +82,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
         }
         return _valueProperty;
       }
-      set {
-        _valueProperty = value;
-      }
+      set => _valueProperty = value;
     }
 
     /*==========================================================================================================================
