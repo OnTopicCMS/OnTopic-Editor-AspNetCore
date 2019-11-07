@@ -183,7 +183,7 @@ namespace OnTopicTest {
         return new TopicListViewComponent(_topicRepository);
       }
       if (type == typeof(TopicReferenceViewComponent)) {
-        return new TopicReferenceViewComponent(_topicRepository);
+        return new TopicReferenceViewComponent();
       }
       else {
         throw new Exception($"Unknown view component {type.Name}");

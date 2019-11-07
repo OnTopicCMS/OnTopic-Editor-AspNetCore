@@ -24,18 +24,12 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   public class TopicReferenceViewComponent : AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository                = null;
-
-    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Initializes a new instance of a <see cref="TopicReferenceViewComponent"/> with necessary dependencies.
     /// </summary>
-    public TopicReferenceViewComponent(ITopicRepository topicRepository) : base() {
-      _topicRepository = topicRepository;
+    public TopicReferenceViewComponent() : base() {
     }
 
     /*==========================================================================================================================
