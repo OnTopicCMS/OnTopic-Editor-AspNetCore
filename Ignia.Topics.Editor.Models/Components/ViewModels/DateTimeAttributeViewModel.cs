@@ -94,14 +94,15 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
     public DateTime CalculateOffset(DateTime originalDate) {
       var offset = AttributeDescriptor.DateTimeOffset?? 0;
       if (AttributeDescriptor.DateTimeOffset == 0) return originalDate;
-      switch (AttributeDescriptor.DateTimeOffsetUnits) {
-        case "Minutes"          : return originalDate.AddMinutes(offset);
-        case "Hours"            : return originalDate.AddHours(offset);
-        case "Days"             : return originalDate.AddDays(offset);
-        case "Months"           : return originalDate.AddMonths(offset);
-        case "Years"            : return originalDate.AddYears(offset);
-        default                 : return originalDate.AddDays(offset);
+      return AttributeDescriptor.DateTimeOffsetUnits switch {
+        "Minutes"               => originalDate.AddMinutes(offset),
+        "Hours"                 => originalDate.AddHours(offset),
+        "Days"                  => originalDate.AddDays(offset),
+        "Months"                => originalDate.AddMonths(offset),
+        "Years"                 => originalDate.AddYears(offset),
+        _                       => originalDate.AddDays(offset),
       };
+      ;
 
     }
 
