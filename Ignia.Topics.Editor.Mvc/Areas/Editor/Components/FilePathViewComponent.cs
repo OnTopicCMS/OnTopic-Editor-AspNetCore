@@ -33,7 +33,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <remarks>
     ///   As with other attribute view components, the <see cref="FilePathViewComponent"/> receives a <see
     ///   cref="EditingTopicViewModel"/> via the <see cref="InvokeAsync(EditingTopicViewModel, FilePathAttributeTopicViewModel,
-    ///   string)"/>. That view model, however, is not sufficient to handle the specialized inheritance logic required by the
+    ///   String)"/>. That view model, however, is not sufficient to handle the specialized inheritance logic required by the
     ///   <see cref="FilePathViewComponent"/>. As a result, it <i>also</i> requires an instance of a <see
     ///   cref="ITopicRoutingService"/> so that it can work directly off the current <see cref="Topic"/> and its parent tree.
     ///   The <see cref="EditingTopicViewModel"/> is still passed not only for consistency, but also to spare the overhead and
@@ -141,7 +141,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       var       relativePath            = (string?)null;
       var       startTopic              = CurrentTopic;
       var       endTopic                = (options.IncludeCurrentTopic is null)? CurrentTopic: CurrentTopic.Parent?? CurrentTopic;
-      var       truncatePathAtTopic     = options.BaseTopicPath?.Split(',').ToArray()?? new string[] { };
+      var       truncatePathAtTopic     = options.BaseTopicPath?.Split(',').ToArray()?? Array.Empty<string>();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Only process the path if both topic and attribtueKey are provided
