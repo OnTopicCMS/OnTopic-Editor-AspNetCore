@@ -230,7 +230,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Filter Topics selection list based on Content Types
       \-----------------------------------------------------------------------------------------------------------------------*/
-      string[] allowedKeyList = null;
+      string[] allowedKeyList;
       if (!String.IsNullOrEmpty(allowedKeys)) {
         allowedKeyList = allowedKeys.Split(',');
         for (var i = 0; i < topics.Count; i++) {
