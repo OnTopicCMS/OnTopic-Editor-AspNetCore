@@ -28,12 +28,12 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     public RelationshipViewComponent() : base() { }
 
     /*==========================================================================================================================
-    | METHOD: INVOKE (ASYNC)
+    | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Assembles the view model for the <see cref="RelationshipViewComponent"/>.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(
+    public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
       RelationshipAttributeTopicViewModel attribute,
       string htmlFieldPrefix

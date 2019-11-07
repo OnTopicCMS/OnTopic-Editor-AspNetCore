@@ -30,12 +30,12 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     public DateTimeViewComponent() : base() { }
 
     /*==========================================================================================================================
-    | METHOD: INVOKE (ASYNC)
+    | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Assembles the view model for the <see cref="DateTimeViewComponent"/>.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(
+    public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
       DateTimeAttributeTopicViewModel attribute,
       string htmlFieldPrefix

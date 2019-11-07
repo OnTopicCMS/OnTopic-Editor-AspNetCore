@@ -31,12 +31,12 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     public TextAreaViewComponent() : base() { }
 
     /*==========================================================================================================================
-    | METHOD: INVOKE (ASYNC)
+    | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Assembles the view model for the <see cref="DefaultAttributeTypeViewComponent"/>.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(
+    public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
       TextAreaAttributeTopicViewModel attribute,
       string htmlFieldPrefix

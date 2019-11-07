@@ -33,12 +33,12 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     }
 
     /*==========================================================================================================================
-    | METHOD: INVOKE (ASYNC)
+    | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Assembles the view model for the <see cref="NestedTopicListViewComponent"/>.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(
+    public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
       TopicReferenceAttributeTopicViewModel attribute,
       string htmlFieldPrefix

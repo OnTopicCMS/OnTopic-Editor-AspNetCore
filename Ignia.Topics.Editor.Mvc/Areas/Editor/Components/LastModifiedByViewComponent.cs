@@ -30,12 +30,12 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     public LastModifiedByViewComponent() : base() { }
 
     /*==========================================================================================================================
-    | METHOD: INVOKE (ASYNC)
+    | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Assembles the view model for the <see cref="LastModifiedByViewComponent"/>.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(
+    public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
       LastModifiedByAttributeTopicViewModel attribute,
       string htmlFieldPrefix
