@@ -150,7 +150,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Encodes a JSON value by escaping any quotes.
     /// </summary>
-    private string EncodeJsonValue(string value) => value.Replace("'", "\\'");
+    private static string EncodeJsonValue(string value) => value.Replace("'", "\\'");
 
 
 } // Class

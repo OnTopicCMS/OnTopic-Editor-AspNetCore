@@ -254,7 +254,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     >---------------------------------------------------------------------------------------------------------------------------
     | Replaces tokenized parameters (e.g., {Key}) in the source string based on the source Topic's properties.
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private string ReplaceTokens(Topic topic, string source, string defaultValue = null) {
+    private static string ReplaceTokens(Topic topic, string source) {
       if (topic != null && !String.IsNullOrEmpty(source)) {
         source = source
           .Replace("{Topic}", topic.Key)
