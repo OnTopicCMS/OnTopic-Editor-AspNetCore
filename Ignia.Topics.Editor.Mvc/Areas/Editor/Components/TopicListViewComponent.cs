@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Metadata;
+using Ignia.Topics.Editor.Models.Queryable;
 using Ignia.Topics.Editor.Mvc.Models;
 using Ignia.Topics.Querying;
 using Ignia.Topics.Repositories;
@@ -102,23 +103,28 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Get values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topics = (TopicCollection<Topic>)null;
+      var topics = (List<QueryResultTopicViewModel>)null;
 
       //### HACK JJC20191031: Since Topic and TopicViewModel aren't intercompatible, and the remaining processing is based on
       //Topic, we're converting any preconfigured topics from TopicViewModel back to Topic by looking them up in the repository.
       //This, of course, assumes that the topic view models refer to existing topics in the repository.
       if (values != null && values.Count() > 0) {
-        topics = new TopicCollection<Topic>();
+        topics = new List<QueryResultTopicViewModel>();
         foreach (var topicViewModel in values) {
-          var topic = _topicRepository.Load(topicViewModel.Id);
-          if (topic != null) {
-            topics.Add(topic);
-          }
+          topics.Add(
+            new QueryResultTopicViewModel(
+              topicViewModel.Id,
+              topicViewModel.Key,
+              topicViewModel.Title,
+              topicViewModel.UniqueKey,
+              topicViewModel.UniqueKey?.Replace("Root", "").Replace(":", "/")
+            )
+          );
         }
       }
       else {
         topics = GetTopics(
-          attribute.RootTopic?.UniqueKey?? attribute.RootTopicKey,
+          _topicRepository.Load(attribute.RootTopic?.UniqueKey?? attribute.RootTopicKey),
           attribute.AttributeKey,
           attribute.AttributeValue,
           attribute.AllowedKeys
@@ -158,7 +164,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Helper functions
       \-----------------------------------------------------------------------------------------------------------------------*/
-      string getValue(Topic topic) {
+      string getValue(QueryResultTopicViewModel topic) {
         if (!String.IsNullOrEmpty(targetUrl)) {
           // Add TopicID if not already available
           var uniqueTargetUrl = targetUrl;
@@ -180,52 +186,30 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     >---------------------------------------------------------------------------------------------------------------------------
     | Retrieves a collection of topics with optional control call filter properties Scope, AttributeName and AttributeValue.
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public TopicCollection<Topic> GetTopics(
-      string scope              = null,
+    public List<QueryResultTopicViewModel> GetTopics(
+      Topic  topic              = null,
       string attributeKey       = null,
       string attributeValue     = null,
       string allowedKeys        = ""
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Instantiate object
+      | Establish query options
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topics                = new TopicCollection<Topic>();
-      var topic                 = (Topic)null;
-
-      if (scope != null) {
-        topic = _topicRepository.Load(scope);
-      }
-
-      // Use RootTopic if Scope is available but does not return a topic object
-      if (topic == null) {
-        topic = _topicRepository.Load();
-      }
+      var options               = new TopicQueryOptions() {
+        AttributeName           = attributeKey,
+        AttributeValue          = attributeValue,
+        FlattenStructure        = false,
+        IsRecursive             = false,
+        ResultLimit             = 100,
+        ShowRoot                = false
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Filter Topics selection list by AttributeName/AttributeValue
+      | Get query results
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (attributeKey != null && attributeValue != null) {
-
-        var readOnlyTopics = topic.FindAllByAttribute(attributeKey, attributeValue);
-        foreach (var readOnlyTopic in readOnlyTopics) {
-          if (!topics.Contains(readOnlyTopic.Key)) {
-            topics.Add(readOnlyTopic);
-          }
-        }
-
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Get all Topics under RootTopic
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (topics.Count == 0) {
-        foreach (var childTopic in topic.Children) {
-          if (!topics.Contains(childTopic)) {
-            topics.Add(childTopic);
-          }
-        }
-      }
+      var topicQueryService     = new TopicQueryService();
+      var topicQueryResults     = topicQueryService.Query(topic, options);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Filter Topics selection list based on Content Types
@@ -233,10 +217,10 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       string[] allowedKeyList;
       if (!String.IsNullOrEmpty(allowedKeys)) {
         allowedKeyList = allowedKeys.Split(',');
-        for (var i = 0; i < topics.Count; i++) {
-          var childTopic = topics[i];
+        for (var i = 0; i < topicQueryResults.Count; i++) {
+          var childTopic = topicQueryResults[i];
           if (Array.IndexOf(allowedKeyList, childTopic.Key) < 0) {
-            topics.RemoveAt(i);
+            topicQueryResults.RemoveAt(i);
             i--;
           }
         }
@@ -245,7 +229,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return Topics list
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return topics;
+      return topicQueryResults;
 
     }
 
@@ -254,21 +238,15 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     >---------------------------------------------------------------------------------------------------------------------------
     | Replaces tokenized parameters (e.g., {Key}) in the source string based on the source Topic's properties.
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private static string ReplaceTokens(Topic topic, string source) {
+    private static string ReplaceTokens(QueryResultTopicViewModel topic, string source) {
       if (topic != null && !String.IsNullOrEmpty(source)) {
         source = source
-          .Replace("{Topic}", topic.Key)
-          .Replace("{TopicId}", topic.Id.ToString())
-          .Replace("{Name}", topic.Key)
-          .Replace("{FullName}", topic.GetUniqueKey())
-          .Replace("{Key}", topic.Key)
-          .Replace("{UniqueKey}", topic.GetUniqueKey())
-          .Replace("{WebPath}", topic.GetWebPath())
-          .Replace("{Title}", topic.Title)
-          .Replace("{Parent}", topic.Parent.GetUniqueKey())
-          .Replace("{ParentId}", topic.Parent.Id.ToString())
-          .Replace("{GrandParent}", topic.Parent?.Parent?.GetUniqueKey())
-          .Replace("{GrandParentId}", topic.Parent?.Parent?.Id.ToString());
+          .Replace("{Topic}", topic.Key, StringComparison.InvariantCultureIgnoreCase)
+          .Replace("{TopicId}", topic.Id.ToString(), StringComparison.InvariantCultureIgnoreCase)
+          .Replace("{Key}", topic.Key, StringComparison.InvariantCultureIgnoreCase)
+          .Replace("{UniqueKey}", topic.UniqueKey, StringComparison.InvariantCultureIgnoreCase)
+          .Replace("{WebPath}", topic.UniqueKey.Replace("Root", "").Replace(":", "/"), StringComparison.InvariantCultureIgnoreCase)
+          .Replace("{Title}", topic.Title, StringComparison.InvariantCultureIgnoreCase);
       }
       return source;
     }
