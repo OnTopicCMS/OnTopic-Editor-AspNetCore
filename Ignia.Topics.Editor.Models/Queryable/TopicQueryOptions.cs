@@ -5,15 +5,15 @@
 \=============================================================================================================================*/
 using System;
 
-namespace Ignia.Topics.Editor.Models.Json {
+namespace Ignia.Topics.Editor.Models.Queryable {
 
   /*============================================================================================================================
-  | CLASS: JSON VIEW MODEL OPTIONS
+  | CLASS: TOPIC QUERY OPTIONS
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Tracks options for the <see cref="JsonTopicViewModel"/> class.
+  ///   Establishes options for the <see cref="TopicQueryService"/> class.
   /// </summary>
-  public class JsonTopicViewModelOptions {
+  public class TopicQueryOptions {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -25,9 +25,9 @@ namespace Ignia.Topics.Editor.Models.Json {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="JsonTopicViewModelOptions"/> class.
+    ///   Initializes a new instance of the <see cref="TopicQueryOptions"/> class.
     /// </summary>
-    public JsonTopicViewModelOptions() {
+    public TopicQueryOptions() {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Set default values
@@ -180,7 +180,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     | ENABLE CHECKBOXES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether or not to display checkboxes by including the <see cref="JsonTopicViewModel.IsChecked"/> value.
+    ///   Determines whether or not to display checkboxes by including the <see cref="QueryResultTopicViewModel.IsChecked"/> value.
     /// </summary>
     /// <remarks>
     ///   This will automatically be set to true is <see cref="MarkRelated"/> is set to <c>true</c>. Otherwise, it defaults to
@@ -195,7 +195,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     | MARK RELATED
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether <see cref="JsonTopicViewModel"/>s should be marked as <see cref="JsonTopicViewModel.IsChecked"/>
+    ///   Determines whether <see cref="QueryResultTopicViewModel"/>s should be marked as <see cref="QueryResultTopicViewModel.IsChecked"/>
     ///   based on their presence in related topics.
     /// </summary>
     /// <remarks>

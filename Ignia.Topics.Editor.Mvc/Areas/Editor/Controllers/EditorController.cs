@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Ignia.Topics.Collections;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components.BindingModels;
-using Ignia.Topics.Editor.Models.Json;
+using Ignia.Topics.Editor.Models.Queryable;
 using Ignia.Topics.Editor.Models.Metadata;
 using Ignia.Topics.Internal.Diagnostics;
 using Ignia.Topics.Mapping;
@@ -393,7 +393,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <summary>
     ///   Retrieves JSON the specified topic, and all of its children.
     /// </summary>
-    public JsonResult Json(JsonTopicViewModelOptions options) {
+    public JsonResult Json(TopicQueryOptions options) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Get related topics
@@ -419,8 +419,8 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Assemble view model
       \-------------------------------------------------------------------------------------------------------------------------*/
-      var jsonTopicMappingService = new JsonTopicMappingService();
-      var jsonTopicViewModel = jsonTopicMappingService.MapGraph(CurrentTopic, options, relatedTopics);
+      var jsonTopicMappingService = new TopicQueryService();
+      var jsonTopicViewModel = jsonTopicMappingService.Query(CurrentTopic, options, relatedTopics);
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Return hierarchical view

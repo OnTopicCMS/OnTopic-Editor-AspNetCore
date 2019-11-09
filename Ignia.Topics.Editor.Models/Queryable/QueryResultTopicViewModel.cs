@@ -10,25 +10,28 @@ using Ignia.Topics.Collections;
 using System.Text.Json.Serialization;
 using System.ComponentModel;
 
-namespace Ignia.Topics.Editor.Models.Json {
+namespace Ignia.Topics.Editor.Models.Queryable {
 
   /*============================================================================================================================
-  | CLASS: JSON VIEW MODEL
+  | CLASS: QUERY RESULT (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents a <see cref="Topic"/> in a format optimized for JSON serialization.
+  ///   Provides a view model for query results returned from the <see cref="TopicQueryService"/>.
   /// </summary>
+  ///   The <see cref="QueryResultTopicViewModel"/> includes annotations that allow it to be serialized as JSON in compliance
+  ///   with the expectations of the <see cref="EditorController.Json(TopicQueryOptions)"/> action.
   /// <remarks>
   /// </remarks>
-  public class JsonTopicViewModel {
+  public class QueryResultTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="JsonTopicViewModel"/> class by specifying each of the property values.
+    ///   Initializes a new instance of the <see cref="QueryResultTopicViewModel"/> class by specifying each of the property
+    ///   values.
     /// </summary>
-    public JsonTopicViewModel(
+    public QueryResultTopicViewModel(
       int                       id,
       string                    key,
       string                    title,
@@ -144,7 +147,7 @@ namespace Ignia.Topics.Editor.Models.Json {
     /// <summary>
     ///   Provides a collection of child objects.
     /// </summary>
-    public List<JsonTopicViewModel> Children { get; } = new List<JsonTopicViewModel>();
+    public List<QueryResultTopicViewModel> Children { get; } = new List<QueryResultTopicViewModel>();
 
   } // Class
 } // Namespace

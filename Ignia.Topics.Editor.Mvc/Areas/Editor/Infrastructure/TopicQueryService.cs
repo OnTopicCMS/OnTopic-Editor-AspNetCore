@@ -12,54 +12,52 @@ using System.ComponentModel;
 using Ignia.Topics.Mapping;
 using System.Threading.Tasks;
 
-namespace Ignia.Topics.Editor.Models.Json {
+namespace Ignia.Topics.Editor.Models.Queryable {
 
   /*============================================================================================================================
-  | CLASS: JSON TOPIC MAPPING SERVICE
+  | CLASS: TOPIC QUERY SERVICE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Constructs a hierarchy of <see cref="JsonTopicViewModel"/> instances based on a root <see cref="Topic"/> and a set of
-  ///   <see cref="JsonTopicViewModelOptions"/>.
+  ///   Constructs a hierarchy of <see cref="QueryResultTopicViewModel"/> objects based on a root <see cref="Topic"/> and a set
+  ///   of options as specified in a <see cref="TopicQueryOptions"/> object.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
-  public class JsonTopicMappingService {
+  public class TopicQueryService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="JsonTopicMappingService"/> class.
+    ///   Initializes a new instance of the <see cref="TopicQueryService"/> class.
     /// </summary>
-    public JsonTopicMappingService() { }
+    public TopicQueryService() { }
 
     /*==========================================================================================================================
-    | MAP GRAPH
+    | QUERY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Generates and returns a list of <see cref="JsonTopicViewModel"/> objects based on a root <see cref="Topic"/> as well
-    ///   as a set of <see cref="JsonTopicViewModelOptions"/>.
+    ///   Generates and returns a list of <see cref="QueryResultTopicViewModel"/> objects based on a root <see cref="Topic"/> as
+    ///   well as a set of options as specified in a <see cref="TopicQueryOptions"/> object.
     /// </summary>
-    public List<JsonTopicViewModel> MapGraph(
+    public List<QueryResultTopicViewModel> Query(
       Topic rootTopic,
-      JsonTopicViewModelOptions options,
+      TopicQueryOptions options,
       ReadOnlyTopicCollection<Topic> related = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish containers for mapped objects, tasks
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModels = new List<JsonTopicViewModel>();
+      var topicViewModels = new List<QueryResultTopicViewModel>();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Bootstrap mapping process
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (options.ShowRoot) {
-        MapTopic(topicViewModels, rootTopic, options, related);
+        MapQueryResult(topicViewModels, rootTopic, options, related);
       }
       else {
         foreach (var topic in rootTopic.Children) {
-          MapTopic(topicViewModels, topic, options, related);
+          MapQueryResult(topicViewModels, topic, options, related);
         }
       }
 
@@ -71,15 +69,16 @@ namespace Ignia.Topics.Editor.Models.Json {
     }
 
     /*==========================================================================================================================
-    | MAP TOPIC
+    | MAP QUERY RESULT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Private helper function that
+    ///   Private helper function that maps a successfully validated <see cref="Topic"/> to a <see
+    ///   cref="QueryResultTopicViewModel"/>.
     /// </summary>
-    private void MapTopic(
-      List<JsonTopicViewModel> topicList,
+    private void MapQueryResult(
+      List<QueryResultTopicViewModel> topicList,
       Topic topic,
-      JsonTopicViewModelOptions options,
+      TopicQueryOptions options,
       ReadOnlyTopicCollection<Topic> related = null
     )
     {
@@ -98,7 +97,7 @@ namespace Ignia.Topics.Editor.Models.Json {
         options.ResultLimit--;
 
         //Map topic
-        var mappedTopic = new JsonTopicViewModel(
+        var mappedTopic = new QueryResultTopicViewModel(
           topic.Id,
           topic.Key,
           options.UseKeyAsText ? topic.Key : topic.Title,
@@ -121,7 +120,7 @@ namespace Ignia.Topics.Editor.Models.Json {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (isValid && options.IsRecursive || options.FlattenStructure ) {
         foreach (var childTopic in topic.Children) {
-          MapTopic(
+          MapQueryResult(
             topicList,
             childTopic,
             options,
@@ -136,9 +135,9 @@ namespace Ignia.Topics.Editor.Models.Json {
     | IS VALID TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Static method confirms whether a topic is valid based on the <see cref="JsonTopicViewModelOptions"/>.
+    ///   Static method confirms whether a topic is valid based on the <see cref="TopicQueryOptions"/>.
     /// </summary>
-    public static bool IsValidTopic(Topic topic, JsonTopicViewModelOptions options) {
+    public static bool IsValidTopic(Topic topic, TopicQueryOptions options) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
