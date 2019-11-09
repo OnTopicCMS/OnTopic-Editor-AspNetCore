@@ -122,6 +122,22 @@ namespace Ignia.Topics.Editor.Mvc.Components {
           );
         }
       }
+      else if (attribute.RelativeTopicBase != null) {
+        var baseTopic             = _topicRepository.Load(currentTopic.UniqueKey);
+        var rootTopic             = attribute.RelativeTopicBase switch {
+          "CurrentTopic"          => baseTopic,
+          "ParentTopic"           => baseTopic.Parent,
+          "GrandparentTopic"      => (Topic)baseTopic.Parent?.Parent,
+          "ContentTypeDescriptor" => (Topic)_topicRepository.GetContentTypeDescriptors().Where(t => t.Key.Equals(baseTopic.ContentType)),
+          _ => baseTopic
+        };
+        topics = GetTopics(
+          rootTopic,
+          attribute.AttributeKey,
+          attribute.AttributeValue,
+          attribute.AllowedKeys
+        );
+      }
       else {
         topics = GetTopics(
           _topicRepository.Load(attribute.RootTopic?.UniqueKey?? attribute.RootTopicKey),
