@@ -66,9 +66,9 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       attribute.RootTopicKey    ??= attribute.GetConfigurationValue(            "Scope",                null);
       attribute.AttributeKey    ??= attribute.GetConfigurationValue(            "AttributeName",        null);
       attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
-      attribute.AllowedKeys     ??= attribute.GetConfigurationValue(            "AllowedKeys",          null);
       attribute.StoreUniqueKey  ??= attribute.GetBooleanConfigurationValue(     "UseUniqueKey",         false);
       attribute.ValueToken      ??= attribute.GetConfigurationValue(            "ValueProperty",        null);
+      var       allowedKeys       = attribute.GetConfigurationValue(            "AllowedKeys",          null);
                 enableModal     ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          false);
                 targetUrl       ??= attribute.GetConfigurationValue(            "TargetUrl",            null);
                 onClientClose   ??= attribute.GetConfigurationValue(            "OnClientClose",        null);
@@ -135,7 +135,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
           rootTopic,
           attribute.AttributeKey,
           attribute.AttributeValue,
-          attribute.AllowedKeys
+          allowedKeys
         );
       }
       else {
@@ -143,7 +143,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
           _topicRepository.Load(attribute.RootTopic?.UniqueKey?? attribute.RootTopicKey),
           attribute.AttributeKey,
           attribute.AttributeValue,
-          attribute.AllowedKeys
+          allowedKeys
         );
       }
 
