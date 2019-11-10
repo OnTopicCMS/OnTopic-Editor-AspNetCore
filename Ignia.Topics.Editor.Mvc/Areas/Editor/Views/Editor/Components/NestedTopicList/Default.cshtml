@@ -98,7 +98,7 @@
       current-topic=@Model.CurrentTopic
       attribute=@attributeDescriptor
       html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix
-      target-url=@($"{Url.Action("Edit")}{Model.AttributeDescriptor.Key}/?ContentType={{Topic}}&IsNew=true&IsModal=true")
+      target-url=@($"{Url.Action("Edit")}{Model.AttributeDescriptor.Key}/?ContentType={{Key}}&IsNew=true&IsModal=true")
       enable-modal=@Model.AttributeDescriptor.EnableModal
       values=@Model.AttributeDescriptor.PermittedContentTypes
       on-client-close=@($"{Model.AttributeDescriptor.Key}Tree_refresh")>

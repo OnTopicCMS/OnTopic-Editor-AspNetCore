@@ -256,7 +256,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     private static string ReplaceTokens(QueryResultTopicViewModel topic, string source) {
       if (topic != null && !String.IsNullOrEmpty(source)) {
         source = source
-          .Replace("{Topic}", topic.Key, StringComparison.InvariantCultureIgnoreCase)
           .Replace("{TopicId}", topic.Id.ToString(), StringComparison.InvariantCultureIgnoreCase)
           .Replace("{Key}", topic.Key, StringComparison.InvariantCultureIgnoreCase)
           .Replace("{UniqueKey}", topic.UniqueKey, StringComparison.InvariantCultureIgnoreCase)
