@@ -116,7 +116,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
               topicViewModel.Key,
               topicViewModel.Title,
               topicViewModel.UniqueKey,
-              topicViewModel.UniqueKey?.Replace("Root", "").Replace(":", "/")
+              topicViewModel.WebPath
             )
           );
         }
@@ -259,7 +259,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
           .Replace("{TopicId}", topic.Id.ToString(), StringComparison.InvariantCultureIgnoreCase)
           .Replace("{Key}", topic.Key, StringComparison.InvariantCultureIgnoreCase)
           .Replace("{UniqueKey}", topic.UniqueKey, StringComparison.InvariantCultureIgnoreCase)
-          .Replace("{WebPath}", topic.UniqueKey.Replace("Root", "").Replace(":", "/"), StringComparison.InvariantCultureIgnoreCase)
+          .Replace("{WebPath}", topic.WebPath, StringComparison.InvariantCultureIgnoreCase)
           .Replace("{Title}", topic.Title, StringComparison.InvariantCultureIgnoreCase);
       }
       return source;
