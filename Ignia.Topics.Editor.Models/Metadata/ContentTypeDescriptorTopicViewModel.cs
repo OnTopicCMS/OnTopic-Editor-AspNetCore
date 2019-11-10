@@ -34,7 +34,7 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     ///   A list of <see cref="AttributeDescriptorTopicViewModel"/> instances representing each of the <see
     ///   cref="AttributeDescriptor"/> permitted by the underlying <see cref="ContentTypeDescriptor"/>.
     /// </summary>
-    [Follow(Relationships.Relationships)]
+    [Follow(Relationships.Relationships|Relationships.References)]
     public List<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new List<AttributeDescriptorTopicViewModel>();
 
     /*==========================================================================================================================

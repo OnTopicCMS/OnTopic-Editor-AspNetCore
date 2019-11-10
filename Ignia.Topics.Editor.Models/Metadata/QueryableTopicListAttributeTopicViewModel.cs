@@ -44,7 +44,6 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     ///   Gets or sets a <see cref="Topic.Id"/> representing the scope of <see cref="Topic"/>s to display to the user. This
     ///   allows relationships to be targeted to particular areas of the topic graph.
     /// </summary>
-    [AttributeKey("RootTopicId")]
     [NotNull]
     public TopicViewModel? RootTopic { get; set; }
 
