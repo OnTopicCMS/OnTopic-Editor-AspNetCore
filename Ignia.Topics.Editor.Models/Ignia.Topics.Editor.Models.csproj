@@ -24,8 +24,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.5" />
-    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.5" />
+    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.8" />
+    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.8" />
     <PackageReference Include="System.Text.Json" Version="4.6.0" />
   </ItemGroup>
 
