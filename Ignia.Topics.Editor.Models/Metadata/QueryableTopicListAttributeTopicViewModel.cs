@@ -49,36 +49,6 @@ namespace Ignia.Topics.Editor.Models.Metadata {
     public TopicViewModel? RootTopic { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: RELATIVE TOPIC BASE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the token representing where the base path should be evaluated from.
-    /// </summary>
-    /// <remarks>
-    ///   Generally, the preferred way of setting the scope is to use the <see cref="RootTopic"/>. There are times, however,
-    ///   that the target list is not fixed in the topic graph, but is instead relative to either the specific <see
-    ///   cref="Topic"/> or its <see cref="ContentTypeDescriptor"/>. In these cases, the editor may be configured to use a
-    ///   relative key (e.g., <c>CurrentTopic</c>, <c>ParentTopic</c>, <c>ContentTypeDescriptor</c>) as the base. This can then
-    ///   be used in conjunction with <see cref="RelativeTopicPath"/> to set the place to look within that base, if appropriate.
-    ///   For example, a <see cref="RelativeTopicBase"/> setting of <c>ContentTypeDescriptor</c> may be combined with a <see
-    ///   cref="RelativeTopicPath"/> of <c>Views</c> to look within a <see cref="NestedTopicListViewComponent"/> named "Views"
-    ///   for the list of target topics.
-    /// </remarks>
-    public string? RelativeTopicBase { get; set; }
-
-    /*==========================================================================================================================
-    | PROPERTY: RELATIVE TOPIC PATH
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the token representing where within the <see cref="RelativeTopicBase"/> the topics should be retrieved.
-    /// </summary>
-    /// <remarks>
-    ///   The <see cref="RelativeTopicPath"/> is used in conjunction with the <see cref="RelativeTopicBase"/>. If set, these
-    ///   two properties will supercede any value that <see cref="RootTopic"/> is set to.
-    /// </remarks>
-    public string? RelativeTopicPath { get; set; }
-
-    /*==========================================================================================================================
     | PROPERTY: ATTRIBUTE KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
