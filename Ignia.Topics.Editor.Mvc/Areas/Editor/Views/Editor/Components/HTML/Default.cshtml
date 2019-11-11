@@ -26,7 +26,7 @@
 ></textarea>
 
 <script type="text/javascript">
-  (function($) {
+  (function ($) {
 
     var textareaId      = '@Html.IdFor(m => m.Value)';
 
@@ -48,7 +48,7 @@
     CKEDITOR.replace(textareaId, {
       height            : '@Model.AttributeDescriptor.Height',
       resize_maxHeight  : '@(Model.AttributeDescriptor.Height+300)',
-      customConfig      : 'customConfig.js'
+      customConfig      : '/_content/Ignia.Topics.Editor.Mvc/Shared/Scripts/Vendor/CkEditor/customConfig.js'
     });
   }
 </script>

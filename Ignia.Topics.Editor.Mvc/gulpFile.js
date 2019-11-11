@@ -75,9 +75,7 @@ const dependencies = {
     'Popper'                    : 'node_modules/popper.js/dist/umd/popper.min*',
     'TokenInput'                : 'node_modules/jquery-tokeninput/dist/js/*.js',
     'ExtJS'                     : 'Shared/Scripts/ExtJS/*.js',
-    'CkEditor'                  : [ 'node_modules/ckeditor/**/*',
-                                    'Shared/Scripts/CkEditor/**/*.js'
-                                  ],
+    'CkEditor'                  : 'Shared/Scripts/CkEditor/**/*.js',
     'TrentRichardson'           : 'node_modules/jquery-ui-timepicker-addon/dist/*.js',
     'PaperCut'                  : 'node_modules/jquery.are-you-sure/*.js'
   },
