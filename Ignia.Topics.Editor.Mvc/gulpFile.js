@@ -87,7 +87,6 @@ const dependencies = {
     'TrentRichardson'           : 'node_modules/jquery-ui-timepicker-addon/dist/*.css'
   },
   'Fonts': {
-   'FontAwesome'                : 'node_modules/@fortawesome/fontawesome-free/webfonts/*'
   }
 };
 
