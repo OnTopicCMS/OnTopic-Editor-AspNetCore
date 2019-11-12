@@ -39,55 +39,38 @@ var     environment             = 'development',
 const files = {
   scss                          : 'Shared/Styles/**/[!_]*.scss',
   js                            : 'Shared/Scripts/*.js',
-  jsVendor                      : [ 'node_modules/jquery/dist/jquery.min.js',
-                                    'node_modules/jquery-ui-dist/jquery-ui.min.js',
-                                    'node_modules/jquery-validation/dist/jquery.validate.min.js',
-                                    'node_modules/popper.js/dist/umd/popper.min.js',
-                                    'node_modules/bootstrap/dist/js/bootstrap.min.js',
-                                    'node_modules/jquery-tokeninput/dist/js/jquery-tokeninput.min.js',
-                                    'Shared/Scripts/ExtJS/ext-base.js',
-                                    'Shared/Scripts/ExtJS/ext-all.js',
-                                    'Shared/Scripts/ExtJS/ext-ExtendTextField.js',
-                                    'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js',
-                                    'node_modules/jquery.are-you-sure/jquery.are-you-sure.js'
-                                  ],
-  cssVendor                     : [ 'node_modules/bootstrap/dist/css/bootstrap.min.css',
-                                    'node_modules/jquery-ui-dist/jquery-ui.min.css',
-                                    'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
-                                    'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css'
-                                  ]
-};
-
-
-
-/*==============================================================================================================================
-| DEPENDENCIES
->-------------------------------------------------------------------------------------------------------------------------------
-| Paths to third-party dependencies that need to be copied into the project. This is exclusively for pre-compiled client-side
-| files, such as JavaScript (excluding TypeScript), CSS (excluding SCSS), images, and the occasional font.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-const dependencies = {
-  'Scripts': {
-    'jQuery'                    : 'node_modules/jquery/dist/*.*',
-    'jQueryUI'                  : 'node_modules/jquery-ui-dist/jquery-ui.*.js',
-    'jQueryValidate'            : 'node_modules/jquery-validation/dist/jquery.validate*.js',
-    'Bootstrap'                 : 'node_modules/bootstrap/dist/js/bootstrap.min.*',
-    'Popper'                    : 'node_modules/popper.js/dist/umd/popper.min*',
-    'TokenInput'                : 'node_modules/jquery-tokeninput/dist/js/*.js',
-    'ExtJS'                     : 'Shared/Scripts/ExtJS/*.js',
-    'CkEditor'                  : 'Shared/Scripts/CkEditor/**/*.js',
-    'TrentRichardson'           : 'node_modules/jquery-ui-timepicker-addon/dist/*.js',
-    'PaperCut'                  : 'node_modules/jquery.are-you-sure/*.js'
-  },
-  'Styles': {
-    'Bootstrap'                 : 'node_modules/bootstrap/dist/css/bootstrap.min.*',
-    'jQueryUI'                  : 'node_modules/jquery-ui-dist/jquery-ui.*.css',
-    'ExtJS'                     : 'Shared/Scripts/ExtJS/Resources/**/*',
-    'TokenInput'                : 'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
-    'TrentRichardson'           : 'node_modules/jquery-ui-timepicker-addon/dist/*.css'
-  },
-  'Fonts': {
-  }
+  vendor                        : {
+    js                          :   [ 'node_modules/jquery/dist/jquery.min.js',
+                                      'node_modules/jquery-ui-dist/jquery-ui.min.js',
+                                      'node_modules/jquery-validation/dist/jquery.validate.min.js',
+                                      'node_modules/popper.js/dist/umd/popper.min.js',
+                                      'node_modules/bootstrap/dist/js/bootstrap.min.js',
+                                      'node_modules/jquery-tokeninput/dist/js/jquery-tokeninput.min.js',
+                                      'Shared/Scripts/ExtJS/ext-base.js',
+                                      'Shared/Scripts/ExtJS/ext-all.js',
+                                      'Shared/Scripts/ExtJS/ext-ExtendTextField.js',
+                                      'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js',
+                                      'node_modules/jquery.are-you-sure/jquery.are-you-sure.js'
+                                    ],
+  css                           :   [ 'node_modules/bootstrap/dist/css/bootstrap.min.css',
+                                      'node_modules/jquery-ui-dist/jquery-ui.min.css',
+                                      'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
+                                      'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css'
+                                    ]
+                                  },
+  standalone                    : {
+    'Scripts'                   :   {
+      'CkEditor'                :     'Shared/Scripts/CkEditor/*.js'
+                                    }
+                                  },
+  precompiled                   : {
+    'Scripts'                   :   {
+      'ExtJS'                   :     'Shared/Scripts/ExtJS/*.js'
+                                    },
+    'Styles': {
+      'ExtJS'                   :     'Shared/Scripts/ExtJS/Resources/**/*'
+                                    }
+                                  }
 };
 
 /*==============================================================================================================================
@@ -108,102 +91,157 @@ else {
 }
 
 /*==============================================================================================================================
-| TASK: SCSS
+| METHOD: GET OUTPUT DIR
+\-----------------------------------------------------------------------------------------------------------------------------*/
+var     getOutputDir            = (contentType) => outputDir.concat("/Shared/", contentType, "/");
+
+/*==============================================================================================================================
+| FACTORY: SCSS
 >-------------------------------------------------------------------------------------------------------------------------------
 | Compiles the SCSS files, including views, and moves them to the build directory.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-function scssTask() {
-  return src(files.scss, {base: 'Shared/Styles'})
-    //.pipe(autoPrefixer({ browsers: ['last 2 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'] }))
-    //.pipe(sassUnicode())
-    .pipe(sourceMaps.init())
-    .pipe(sass())
-    .on("error", sass.logError)
-    .pipe(postCss([
-      cssNano()
-    ]))
-    .pipe(sourceMaps.write('.'))
-    .pipe(dest(outputDir + '/Shared/Styles/'));
-}
+var scssFactory = (source, destination) =>
+  src(source, { base: 'Shared/Styles' })
+  //.pipe(autoPrefixer({ browsers: ['last 2 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'] }))
+  //.pipe(sassUnicode())
+  .pipe(sourceMaps.init())
+  .pipe(sass())
+  .on("error", sass.logError)
+  .pipe(postCss([
+    cssNano()
+  ]))
+  .pipe(sourceMaps.write('.'))
+  .pipe(dest(destination || getOutputDir('Styles')));
+
+var condition = "";
 
 /*==============================================================================================================================
-| TASK: JAVASCRIPT FILES
+| FACTORY: JAVASCRIPT FILES
 >-------------------------------------------------------------------------------------------------------------------------------
 | Minimizes JavaScript files as part of production process.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-function jsTask() {
-  return src(files.js, { base: 'Shared/Scripts' })
+var jsFactory = (source, destination, filename) =>
+  src(source)
     //.pipe(jshint('.jshintrc'))
     .pipe(sourceMaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
-    .pipe(concat('Scripts.js'))
+    .pipe(gulpif(!!filename, concat(filename || 'Ghost.js')))
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
-    .pipe(dest(outputDir + '/Shared/Scripts/'));
-}
+    .pipe(dest(destination));
 
 /*==============================================================================================================================
-| TASK: JAVASCRIPT VENDOR FILES
+| FACTORY: VENDOR FILES
 >-------------------------------------------------------------------------------------------------------------------------------
-| Consolidates third-party JavaScript files sourced from npm as part of production process.
+| Consolidates third-party files sourced from npm as part of production process.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-function jsVendorTask() {
-  return src(files.jsVendor)
+var vendorFilesFactory = (source, destination, filename) =>
+  src(source)
     .pipe(sourceMaps.init())
-    .pipe(concat('Vendor.js'))
+    .pipe(concat(filename))
     .pipe(sourceMaps.write('.'))
-    .pipe(dest(outputDir + '/Shared/Scripts/'));
-}
+    .pipe(dest(destination));
 
 /*==============================================================================================================================
-| TASK: STYLESHEET VENDOR FILES
+| FACTORY: COPY FILES
 >-------------------------------------------------------------------------------------------------------------------------------
-| Consolidates third-party Stylesheet files sourced from npm as part of production process.
+| Consolidates third-party files sourced from npm as part of production process.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-function cssVendorTask() {
-  return src(files.cssVendor)
-    .pipe(sourceMaps.init())
-    .pipe(concat('Vendor.css'))
-    .pipe(sourceMaps.write('.'))
-    .pipe(dest(outputDir + '/Shared/Styles/'));
-}
+var copyFilesFactory = (source, destination) => src(source).pipe(dest(destination));
 
 /*==============================================================================================================================
-| TASK: DEPENDENCIES
+| FACTORY: BATCH SET
+>-------------------------------------------------------------------------------------------------------------------------------
+| Produces a task based on a given source, destinction, and factory method. Intended to handle files that need to be handled as
+| batches. Expects an source argument broken down by named collections, where the name will be the target folder.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+var batchSetFactory = (source, destination, factory) => {
+  var streams = [];
+  for (var target in source) {
+    streams.push(
+      factory(
+        source[target],
+        destination.concat(target)
+      )
+    );
+  }
+  return merge(streams);
+};
+
+/*==============================================================================================================================
+| TASK: STANDALONE FILES
 >-------------------------------------------------------------------------------------------------------------------------------
 | Copies static dependencies from their source folders and into their appropriate build folders.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-function dependenciesTask() {
+var standaloneFilesTask = () => {
   var streams = [];
-  for (var contentType in dependencies) {
-    for (var dependency in dependencies[contentType]) {
-      streams.push(
-        src(dependencies[contentType][dependency])
-          .pipe(dest(outputDir.concat('/Shared/', contentType, '/Vendor/', dependency)))
-      );
-    }
+  for (var contentType in files.standalone) {
+    var factory = (function (contentType) {
+      switch (contentType) {
+        case 'Scripts'          : return jsFactory;
+        case 'Styles'           : return scssFactory;
+        case 'Fonts'            : return copyFilesFactory;
+      }
+    })(contentType);
+    streams.push(
+      batchSetFactory(
+        files.standalone[contentType],
+        getOutputDir(contentType),
+        factory
+      )
+    );
   }
   return merge(streams);
-}
+};
+
+/*==============================================================================================================================
+| TASK: PRECOMPILED FILES
+>-------------------------------------------------------------------------------------------------------------------------------
+| Copies precompiled dependencies from their source folders and into their appropriate build folders.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+var precompiledFilesTask = () => {
+  var streams = [];
+  for (var contentType in files.precompiled) {
+    streams.push(
+      batchSetFactory(
+        files.precompiled[contentType],
+        getOutputDir(contentType),
+        copyFilesFactory
+      )
+    );
+  }
+  return merge(streams);
+};
+
+/*==============================================================================================================================
+| DEFINE TASKS
+>-------------------------------------------------------------------------------------------------------------------------------
+| Using the above factory methods, define available tasks
+\-----------------------------------------------------------------------------------------------------------------------------*/
+var scssTask                    = () => scssFactory(files.scss);
+var jsTask                      = () => jsFactory(files.js, getOutputDir('Scripts'), 'Scripts.js');
+var jsVendorTask                = () => vendorFilesFactory(files.vendor.js, getOutputDir('Scripts'), 'Vendor.js');
+var cssVendorTask               = () => vendorFilesFactory(files.vendor.css, getOutputDir('Styles'), 'Vendor.css');
 
 /*==============================================================================================================================
 | EXPORT TASKS
 >-------------------------------------------------------------------------------------------------------------------------------
 | Exports the above defined tasks for use by gulp.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.scss                    = scssTask;
-exports.cssVendor               = cssVendorTask;
 exports.js                      = jsTask;
+exports.scss                    = scssTask;
 exports.jsVendor                = jsVendorTask;
-exports.dependencies            = dependenciesTask;
+exports.cssVendor               = cssVendorTask;
+exports.standaloneFiles         = standaloneFilesTask;
+exports.precompiledFiles        = precompiledFilesTask;
 
 /*==============================================================================================================================
 | TASK: BUILD
 >-------------------------------------------------------------------------------------------------------------------------------
 | Composite task that will call all build-related tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.build = parallel(dependenciesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
+exports.build = parallel(standaloneFilesTask, precompiledFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
 
 /*==============================================================================================================================
 | TASK: DEFAULT
@@ -211,4 +249,4 @@ exports.build = parallel(dependenciesTask, scssTask, cssVendorTask, jsTask, jsVe
 | The default task when Gulp runs, assuming no task is specified. Assuming the environment variable isn't explicitly defined
 | otherwise, will run on development-oriented tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.default = parallel(dependenciesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
+exports.default = parallel(standaloneFilesTask, precompiledFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
