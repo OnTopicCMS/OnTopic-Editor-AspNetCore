@@ -25,9 +25,7 @@ namespace Ignia.Topics.Editor.Models {
     /// </summary>
     public AttributeViewModel(
       EditingTopicViewModel currentTopic,
-      AttributeDescriptorTopicViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      AttributeDescriptorTopicViewModel attributeDescriptor
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -35,8 +33,15 @@ namespace Ignia.Topics.Editor.Models {
       \-----------------------------------------------------------------------------------------------------------------------*/
       CurrentTopic              = currentTopic;
       AttributeDescriptor       = attributeDescriptor;
-      Value                     = value;
-      InheritedValue            = inheritedValue;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var key                   = AttributeDescriptor.Key;
+      var topic                 = CurrentTopic;
+
+      Value                     = topic.Attributes.ContainsKey(key) ? topic.Attributes[key] : null;
+      InheritedValue            = topic.InheritedAttributes.ContainsKey(key) ? topic.InheritedAttributes[key] : null;
 
     }
 

@@ -30,9 +30,7 @@ namespace Ignia.Topics.Editor.Models {
       string inheritedValue = null
     ): base(
       currentTopic,
-      attributeDescriptor,
-      value,
-      inheritedValue
+      attributeDescriptor
     ) {
       AttributeDescriptor = attributeDescriptor;
     }

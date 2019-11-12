@@ -19,7 +19,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a text area attribute type.
   /// </summary>
-  public class TextViewComponent: AttributeTypeViewComponentBase {
+  public class TextViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -51,8 +51,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var viewModel = new AttributeViewModel<TextAttributeTopicViewModel>(currentTopic, attribute);
-
-      GetAttributeViewModel(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values

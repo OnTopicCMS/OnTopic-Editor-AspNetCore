@@ -17,7 +17,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a relationship attribute type.
   /// </summary>
-  public class RelationshipViewComponent : AttributeTypeViewComponentBase {
+  public class RelationshipViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -57,8 +57,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var model = new AttributeViewModel<RelationshipAttributeTopicViewModel>(currentTopic, attribute);
-
-      GetAttributeViewModel(model);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values

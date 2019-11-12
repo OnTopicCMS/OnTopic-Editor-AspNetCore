@@ -18,7 +18,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a numeric attribute type.
   /// </summary>
-  public class NumberViewComponent: AttributeTypeViewComponentBase {
+  public class NumberViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -50,8 +50,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var viewModel = new AttributeViewModel<NumberAttributeTopicViewModel>(currentTopic, attribute);
-
-      GetAttributeViewModel(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

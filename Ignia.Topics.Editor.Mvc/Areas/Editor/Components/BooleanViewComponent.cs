@@ -18,7 +18,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a boolean attribute type.
   /// </summary>
-  public class BooleanViewComponent: AttributeTypeViewComponentBase {
+  public class BooleanViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -41,7 +41,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       string htmlFieldPrefix
     ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      return View(GetAttributeViewModel(new BooleanAttributeViewModel(currentTopic, attribute)));
+      return View(new BooleanAttributeViewModel(currentTopic, attribute));
     }
 
   } // Class

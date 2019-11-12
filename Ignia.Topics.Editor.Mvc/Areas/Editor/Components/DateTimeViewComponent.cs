@@ -18,7 +18,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a date/time attribute type.
   /// </summary>
-  public class DateTimeViewComponent: AttributeTypeViewComponentBase {
+  public class DateTimeViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -50,8 +50,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var model = new DateTimeAttributeViewModel(currentTopic, attribute);
-
-      GetAttributeViewModel(model);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values

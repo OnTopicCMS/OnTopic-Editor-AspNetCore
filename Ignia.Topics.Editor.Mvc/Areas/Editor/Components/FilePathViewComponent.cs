@@ -22,7 +22,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a file path attribute type.
   /// </summary>
-  public class FilePathViewComponent: AttributeTypeViewComponentBase {
+  public class FilePathViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -83,7 +83,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = GetAttributeViewModel(new FilePathAttributeViewModel(currentTopic, attribute)) as FilePathAttributeViewModel;
+      var model = new FilePathAttributeViewModel(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values

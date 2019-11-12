@@ -20,7 +20,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a tokenized topic list attribute type.
   /// </summary>
-  public class TokenizedTopicListViewComponent : AttributeTypeViewComponentBase {
+  public class TokenizedTopicListViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -69,8 +69,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var model = new TokenizedTopicListAttributeViewModel(currentTopic, attribute);
-
-      GetAttributeViewModel(model);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values

@@ -19,7 +19,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a last modified by attribute type.
   /// </summary>
-  public class LastModifiedByViewComponent : AttributeTypeViewComponentBase {
+  public class LastModifiedByViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -50,8 +50,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var model = new LastModifiedByAttributeViewModel(currentTopic, attribute);
-
-      GetAttributeViewModel(model);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values

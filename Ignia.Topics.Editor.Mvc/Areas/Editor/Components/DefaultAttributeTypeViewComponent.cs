@@ -25,7 +25,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   ///   still expected that derived classes be created, but by deriving from <see cref="DefaultAttributeTypeViewComponent"/>,
   ///   they do not need to implement their own <see cref="InvokeAsync(AttributeDescriptorTopicViewModel, string)"/> method.
   /// </remarks>
-  public class DefaultAttributeTypeViewComponent : AttributeTypeViewComponentBase {
+  public class DefaultAttributeTypeViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -48,7 +48,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
       var viewModel = new AttributeViewModel<AttributeDescriptorTopicViewModel>(currentTopic, attribute);
-      return View(GetAttributeViewModel(viewModel));
+      return View(viewModel);
     }
 
   } // Class

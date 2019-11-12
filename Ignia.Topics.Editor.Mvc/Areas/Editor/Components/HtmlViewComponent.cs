@@ -16,7 +16,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a HTML attribute type.
   /// </summary>
-  public class HtmlViewComponent : AttributeTypeViewComponentBase {
+  public class HtmlViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -59,8 +59,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var viewModel = new AttributeViewModel<HtmlAttributeTopicViewModel>(currentTopic, attribute);
-
-      GetAttributeViewModel(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

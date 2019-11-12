@@ -20,7 +20,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a topic list attribute type.
   /// </summary>
-  public class NestedTopicListViewComponent : AttributeTypeViewComponentBase {
+  public class NestedTopicListViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -64,8 +64,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var viewModel = new NestedTopicListAttributeViewModel(currentTopic, attribute);
-
-      GetAttributeViewModel(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values

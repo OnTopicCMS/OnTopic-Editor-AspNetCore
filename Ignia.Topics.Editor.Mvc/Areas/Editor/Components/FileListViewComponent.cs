@@ -24,7 +24,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a file attribute type.
   /// </summary>
-  public class FileListViewComponent: AttributeTypeViewComponentBase {
+  public class FileListViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -70,8 +70,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var model = new FileListAttributeViewModel(currentTopic, attribute);
-
-      GetAttributeViewModel(model);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values

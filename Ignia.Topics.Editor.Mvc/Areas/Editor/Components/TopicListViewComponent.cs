@@ -26,7 +26,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a topic list attribute type.
   /// </summary>
-  public class TopicListViewComponent : AttributeTypeViewComponentBase {
+  public class TopicListViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -81,8 +81,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var viewModel = new TopicListAttributeViewModel(currentTopic, attribute);
-
-      GetAttributeViewModel(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set label

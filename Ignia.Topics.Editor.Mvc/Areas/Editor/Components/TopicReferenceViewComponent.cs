@@ -21,7 +21,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   /// <summary>
   ///   Delivers a view model for a topic reference attribute type.
   /// </summary>
-  public class TopicReferenceViewComponent : AttributeTypeViewComponentBase {
+  public class TopicReferenceViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -64,8 +64,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var viewModel = new AttributeViewModel<TopicReferenceAttributeTopicViewModel>(currentTopic, attribute);
-
-      GetAttributeViewModel(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
