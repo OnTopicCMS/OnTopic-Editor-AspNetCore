@@ -26,6 +26,7 @@ namespace Ignia.Topics.Editor.Models {
     public EditorViewModel(
       EditingTopicViewModel topic,
       ContentTypeDescriptorTopicViewModel contentTypeDescriptor,
+      bool isNew,
       bool isModal
     ) {
 
@@ -34,6 +35,7 @@ namespace Ignia.Topics.Editor.Models {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Topic                     = topic;
       ContentTypeDescriptor     = contentTypeDescriptor;
+      IsNew                     = isNew;
       IsModal                   = isModal;
 
     }
@@ -61,12 +63,22 @@ namespace Ignia.Topics.Editor.Models {
     }
 
     /*==========================================================================================================================
-    | IS MODAL
+    | IS MODAL?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Determines whether or not the page should be rendered as a modal (e.g., including the chrome or not).
     /// </summary>
     public bool IsModal {
+      get;
+    }
+
+    /*==========================================================================================================================
+    | IS NEW?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether or not the page is being newly created.
+    /// </summary>
+    public bool IsNew {
       get;
     }
 

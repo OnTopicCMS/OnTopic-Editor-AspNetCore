@@ -160,7 +160,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = new EditorViewModel(topicViewModel, contentTypeViewModel, isModal);
+      var editorViewModel = new EditorViewModel(topicViewModel, contentTypeViewModel, isNew, isModal);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
