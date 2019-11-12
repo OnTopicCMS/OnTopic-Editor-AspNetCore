@@ -109,7 +109,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       //This, of course, assumes that the topic view models refer to existing topics in the repository.
       if (values != null && values.Count() > 0) {
         topics = new List<QueryResultTopicViewModel>();
-        foreach (var topicViewModel in values) {
+        foreach (var topicViewModel in values.Where(t => !t.IsHidden)) {
           topics.Add(
             new QueryResultTopicViewModel(
               topicViewModel.Id,
