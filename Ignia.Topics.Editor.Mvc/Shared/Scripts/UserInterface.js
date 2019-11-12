@@ -20,7 +20,7 @@
  * @returns {string} A valid key to use for the topic
  */
 function getKeyValue(title) {
-  return input.replace(/[^A-Za-z0-9]+/g, "");
+  return title.replace(/[^A-Za-z0-9]+/g, "");
 }
 
 /*==============================================================================================================================
@@ -51,6 +51,20 @@ function confirmRollback(versionText) {
   $('#VersionsDropdown ul li a').on('click', function (e) {
     var selectedVersion = $(this).text();
     if (!confirmRollback(selectedVersion)) return false;
+  });
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | Event Handler: Auto-populate key with default value based on title, but only for new topics
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  $('body.js-new #Title input:text').keydown(function (e) {
+    var source = $(this);
+    var target = $('#Key input:text');
+    source.originalValue = source.val();
+    if (target.val() === getKeyValue(source.originalValue)) {
+      setTimeout(function () {
+        target.val(getKeyValue(source.val()));
+      }, 50);
+    }
   });
 
   /*----------------------------------------------------------------------------------------------------------------------------

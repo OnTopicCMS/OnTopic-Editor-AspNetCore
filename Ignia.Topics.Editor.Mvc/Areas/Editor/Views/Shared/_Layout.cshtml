@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="~/_content/Ignia.Topics.Editor.Mvc/Shared/Styles/Style.css" asp-append-version="true" />
 
   </head>
-  <body vocab="http://schema.org" typeof="WebPage" class="@(Model.IsModal? "Modal" : "")">
+  <body vocab="http://schema.org" typeof="WebPage" class="@(Model.IsModal? "Modal" : "") @(Model.IsNew? "js-new" : "")">
 
     @if (!Model.IsModal) {
       <header id="SiteHeader" class="navbar fixed-top" role="banner" vocab="http://schema.org" typeof="WPHeader">
