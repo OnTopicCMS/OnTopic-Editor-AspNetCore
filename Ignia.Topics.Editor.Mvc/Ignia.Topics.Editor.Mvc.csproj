@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>3.0.0-AspNetCore.1</Version>
     <Authors>Ignia</Authors>
     <Company>Ignia</Company>
     <Product>Ignia OnTopic Editor</Product>
@@ -17,12 +16,15 @@
     <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
     <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia</PackageTags>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Complete rearchitecture of OnTopic Editor to support ASP.NET Core 3.0 MVC with controls implemented as view components. Implemented as a Razor Class Library for easy redistribution.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="GitVersionTask" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.8" />
     <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-csharp8-update.8" />
     <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.8" />
