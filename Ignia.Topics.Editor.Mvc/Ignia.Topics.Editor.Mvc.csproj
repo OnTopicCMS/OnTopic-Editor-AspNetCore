@@ -30,6 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\shared\**\*.map" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ignia.Topics.Editor.Models\Ignia.Topics.Editor.Models.csproj" />
   </ItemGroup>
 
