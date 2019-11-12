@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components.ViewModels;
 using Ignia.Topics.Editor.Models.Metadata;
+using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ignia.Topics.Editor.Mvc.Components {
@@ -22,12 +23,19 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   public class NestedTopicListViewComponent : AttributeTypeViewComponentBase {
 
     /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITopicRepository                _topicRepository;
+
+    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Initializes a new instance of a <see cref="NestedTopicListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public NestedTopicListViewComponent() : base() { }
+    public NestedTopicListViewComponent(ITopicRepository topicRepository) : base() {
+      _topicRepository = topicRepository;
+    }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
@@ -67,6 +75,17 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       }
       viewModel.UniqueKey = currentTopic.UniqueKey;
       viewModel.WebPath   = currentTopic.WebPath;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish nested topic container, if needed
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!viewModel.IsNew) {
+        var topic = _topicRepository.Load(viewModel.UniqueKey);
+        if (!topic.Children.Contains(attribute.Key)) {
+          var topicContainer = TopicFactory.Create(attribute.Key, "List", topic);
+          //_topicRepository.Save(topicContainer);
+        }
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

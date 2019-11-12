@@ -144,7 +144,7 @@ namespace OnTopicTest {
         return new LastModifiedByViewComponent();
       }
       if (type == typeof(NestedTopicListViewComponent)) {
-        return new NestedTopicListViewComponent();
+        return new NestedTopicListViewComponent(_topicRepository);
       }
       if (type == typeof(NumberViewComponent)) {
         return new NumberViewComponent();
