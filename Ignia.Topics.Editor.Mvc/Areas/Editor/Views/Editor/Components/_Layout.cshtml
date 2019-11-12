@@ -8,8 +8,8 @@
   <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="@Model.AttributeDescriptor.Description"></i>
   <div class="fields @Model.AttributeDescriptor.CssClass">
 
-    @Html.HiddenFor(m => m.AttributeDescriptor.ContentType)
-    @Html.HiddenFor(m => m.AttributeDescriptor.Key)
+    <input type="hidden" asp-for="AttributeDescriptor.Key" />
+    <input type="hidden" asp-for="AttributeDescriptor.ContentType" />
 
     @RenderBody()
 

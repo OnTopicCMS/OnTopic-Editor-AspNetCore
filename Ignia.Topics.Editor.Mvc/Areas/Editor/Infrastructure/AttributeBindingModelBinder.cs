@@ -52,8 +52,8 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
       | LOOKUP FIELD
       \-----------------------------------------------------------------------------------------------------------------------*/
       var modelName             = bindingContext.ModelName;
-      var key                   = bindingContext.ValueProvider.GetValue(modelName + ".Key").FirstValue;
-      var editorType            = bindingContext.ValueProvider.GetValue(modelName + ".EditorType").FirstValue;
+      var key                   = bindingContext.ValueProvider.GetValue(modelName + ".AttributeDescriptor.Key").FirstValue;
+      var editorType            = bindingContext.ValueProvider.GetValue(modelName + ".AttributeDescriptor.ContentType").FirstValue;
       var value                 = bindingContext.ValueProvider.GetValue(modelName + ".Value").FirstValue;
 
       /*------------------------------------------------------------------------------------------------------------------------
