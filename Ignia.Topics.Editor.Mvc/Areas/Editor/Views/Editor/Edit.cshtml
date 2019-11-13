@@ -5,7 +5,15 @@
   var bindingModel = new EditorBindingModel();
 }
 
-<form asp-controller="Editor" asp-action="Edit" method="post" id="EditorForm">
+<form
+  id                            ="EditorForm"
+  method                        ="post"
+  asp-controller                ="Editor"
+  asp-action                    ="Edit"
+  asp-route-IsNew               =@Model.IsNew
+  asp-route-IsModal             =@Model.IsModal
+  asp-route-ContentType         =@Model.ContentTypeDescriptor.Key
+>
 
   <partial name="_Toolbar" />
 
