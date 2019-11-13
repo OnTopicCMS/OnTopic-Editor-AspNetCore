@@ -230,6 +230,19 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       else if (String.IsNullOrEmpty(newKey)) {
         newKey = derivedTopic.Key;
       }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE KEY
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (isNew || !CurrentTopic.Key.Equals(newKey, StringComparison.InvariantCultureIgnoreCase)) {
+        if (parentTopic.Children.Contains(newKey)) {
+          ModelState.AddModelError(
+            "Key",
+            $"The folder name {newKey} already exists under '{parentTopic.Title}'. Please choose a unique folder name."
+          );
+        }
+      }
+
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN ERROR STATE
       \-----------------------------------------------------------------------------------------------------------------------*/
