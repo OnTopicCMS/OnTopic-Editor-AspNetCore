@@ -219,10 +219,12 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
-        var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
-        if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue?.Value)) {
-          ModelState.AddModelError(attribute.Key, $"The {attribute.Title} field is required.");
+      if (model.Attributes.Contains("TopicID")? String.IsNullOrEmpty(model.Attributes["TopicID"].Value) : true) {
+        foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+          var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
+          if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue?.Value)) {
+            ModelState.AddModelError(attribute.Key, $"The {attribute.Title} field is required.");
+          }
         }
       }
 
