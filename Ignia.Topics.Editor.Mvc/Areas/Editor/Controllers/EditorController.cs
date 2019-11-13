@@ -103,18 +103,15 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       .Where(t => t.Key.Equals(contentType))
       .First();
 
-    /*==========================================================================================================================
-    | [GET] EDIT
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Present an editor view bound to a specific topic.
-    /// </summary>
-    public async Task<IActionResult> Edit(bool isNew = false, string contentType = null, bool isModal = false) {
+    protected async Task<EditorViewModel> GetEditorViewModel(
+      ContentTypeDescriptor contentTypeDescriptor,
+      bool isNew,
+      bool isModal
+    ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
       var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor);
       var parentTopic           = isNew ? CurrentTopic : CurrentTopic.Parent;
 
@@ -125,7 +122,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
       if (isNew) {
         topicViewModel          = new EditingTopicViewModel() {
-          ContentType           = contentType,
+          ContentType           = contentTypeDescriptor.Key,
           UniqueKey             = CurrentTopic.GetUniqueKey(),
           Parent                = topicViewModel
         };
@@ -158,9 +155,31 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH AND RETURN VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return new EditorViewModel(topicViewModel, contentTypeViewModel, isNew, isModal);
+
+    }
+
+
+
+    /*==========================================================================================================================
+    | [GET] EDIT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Present an editor view bound to a specific topic.
+    /// </summary>
+    public async Task<IActionResult> Edit(bool isNew = false, string contentType = null, bool isModal = false) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH CONTENT TYPE VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = new EditorViewModel(topicViewModel, contentTypeViewModel, isNew, isModal);
+      var editorViewModel = await GetEditorViewModel(contentTypeDescriptor, isNew, isModal);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -177,18 +196,51 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// </summary>
     /// <param name="model">An instance of the <see cref="EditorBindingModel"/> constructed from the HTTP Post.</param>
     [HttpPost]
-    public async Task<IActionResult> Edit(EditorBindingModel model, bool isNew = false, string contentType = null, bool isModal = false) {
+    public async Task<IActionResult> Edit(
+      EditorBindingModel model,
+      bool isNew = false,
+      string contentType = null,
+      bool isModal = false
+    ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SET TOPIC
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topic = CurrentTopic;
+      var topic                 = CurrentTopic;
+      var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
 
       if (isNew) {
         topic = TopicFactory.Create("NewTopic", contentType);
       }
       else {
         contentType = CurrentTopic.ContentType;
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE REQUIRED FIELDS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+        var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
+        if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue?.Value)) {
+          ModelState.AddModelError(attribute.Key, $"The {attribute.Title} field is required.");
+        }
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN ERROR STATE
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (ModelState.Values.Count() > 0) {
+
+        //Establish view model
+        var editorViewModel = await GetEditorViewModel(contentTypeDescriptor, isNew, isModal);
+
+        foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+          var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
+          editorViewModel.Topic.Attributes[attribute.Key] = submittedValue?.Value;
+        }
+
+        return View(editorViewModel);
+
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
