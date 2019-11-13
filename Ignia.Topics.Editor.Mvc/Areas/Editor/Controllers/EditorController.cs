@@ -204,22 +204,18 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | SET TOPIC
+      | SET VARIABLES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topic                 = CurrentTopic;
+      var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
-
-      if (isNew) {
-        topic = TopicFactory.Create("NewTopic", contentType);
-      }
-      else {
-        contentType = CurrentTopic.ContentType;
-      }
+      var derivedTopicId        = Int32.Parse(model.Attributes.Contains("TopicID")? model.Attributes["TopicID"].Value : "-1");
+      var derivedTopic          = (derivedTopicId >= 0)? TopicRepository.Load(derivedTopicId) : null;
+      var newKey                = model.Attributes.Contains("Key")? model.Attributes["Key"].Value : null;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (model.Attributes.Contains("TopicID")? String.IsNullOrEmpty(model.Attributes["TopicID"].Value) : true) {
+      if (derivedTopic == null) {
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
           if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue?.Value)) {
@@ -229,9 +225,15 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | INHERIT KEY VALUE, IF PRESENT
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      else if (String.IsNullOrEmpty(newKey)) {
+        newKey = derivedTopic.Key;
+      }
+      /*------------------------------------------------------------------------------------------------------------------------
       | RETURN ERROR STATE
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (ModelState.Values.Count() > 0) {
+      if (!ModelState.IsValid) {
 
         //Establish view model
         var editorViewModel = await GetEditorViewModel(contentTypeDescriptor, isNew, isModal);
@@ -243,6 +245,18 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
         return View(editorViewModel);
 
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH TOPIC
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var topic                 = CurrentTopic;
+
+      if (isNew) {
+        topic = TopicFactory.Create(newKey, contentType);
+      }
+      else {
+        contentType = CurrentTopic.ContentType;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
