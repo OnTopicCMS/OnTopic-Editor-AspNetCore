@@ -208,7 +208,8 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
-      var derivedTopicId        = Int32.Parse(model.Attributes.Contains("TopicID")? model.Attributes["TopicID"].Value : "-1");
+      var derivedTopicValue     = model.Attributes.Contains("TopicID")? model.Attributes["TopicID"].Value : "-1";
+      var derivedTopicId        = String.IsNullOrWhiteSpace(derivedTopicValue)? -1 : Int32.Parse(derivedTopicValue);
       var derivedTopic          = (derivedTopicId >= 0)? TopicRepository.Load(derivedTopicId) : null;
       var newKey                = model.Attributes.Contains("Key")? model.Attributes["Key"].Value : null;
 
