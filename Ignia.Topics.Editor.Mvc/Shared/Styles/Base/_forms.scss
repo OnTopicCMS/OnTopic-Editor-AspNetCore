@@ -125,19 +125,42 @@ span.radio {
 //----------------------------------------------------------------------------------------------
 // VALIDATION
 //----------------------------------------------------------------------------------------------
-label {
+
+//Tabs
+a.nav-link.error {
+  border-bottom-color           : $red !important;
+  small.required {
+    color                       : $red;
+  }
 }
-.alert {
+
+//Summary
+.validation-summary-errors {
+  padding                       : 20px 0px;
+  color                         : $red;
+}
+
+//Labels
+section.attribute label.error {
+  color                         : $red;
+  font-style                    : italic;
+}
+
+//Form fields
+section.attribute input.error {
+  border-color                  : $red;
+  background-color              : tint($red, 10%);
 }
 
 //----------------------------------------------------------------------------------------------
 // SUPPORTING STYLES
 //----------------------------------------------------------------------------------------------
 .instructions {
-  font-size                     : rem-calc(16);
-  font-style                    : italic;
-  color                         : $grey-medium;
+  font-size: rem-calc(16);
+  font-style: italic;
+  color: $grey-medium;
+
   &.error {
-    color                       : $red;
+    color: $red;
   }
 }
