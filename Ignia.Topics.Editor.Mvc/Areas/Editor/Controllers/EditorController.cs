@@ -284,7 +284,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
         //Handle missing attributes
         if (!model.Attributes.Contains(attribute.Key)) {
-          CurrentTopic.Attributes.Remove(attribute.Key);
+          topic.Attributes.Remove(attribute.Key);
           continue;
         }
 
@@ -296,13 +296,13 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
           SetRelationships(topic, attribute, attributeValue);
         }
         else if (attribute.Key.Equals("Key")) {
-          CurrentTopic.Key = attributeValue.Value.Replace(" ", "");
+          topic.Key = attributeValue.Value.Replace(" ", "");
         }
         else if (String.IsNullOrEmpty(attributeValue.Value)) {
-          CurrentTopic.Attributes.Remove(attribute.Key);
+          topic.Attributes.Remove(attribute.Key);
         }
         else {
-          CurrentTopic.Attributes.SetValue(attribute.Key, attributeValue.Value);
+          topic.Attributes.SetValue(attribute.Key, attributeValue.Value);
         }
 
       }
