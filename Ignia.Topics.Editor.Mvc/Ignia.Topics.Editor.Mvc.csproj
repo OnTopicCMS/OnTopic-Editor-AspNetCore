@@ -25,9 +25,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.8" />
-    <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-csharp8-update.8" />
-    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.8" />
+    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.10" />
+    <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-csharp8-update.10" />
+    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.10" />
     <PackageReference Include="Newtonsoft.Json" version="12.0.2" />
   </ItemGroup>
 
