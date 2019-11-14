@@ -103,6 +103,21 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       .Where(t => t.Key.Equals(contentType))
       .First();
 
+    /*==========================================================================================================================
+    | GET EDITOR VIEW MODEL
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given a <see cref="ContentTypeDescriptor"/> and any arguments from the corresponding action, constructs a new
+    ///   <see cref="EditorViewModel"/>, including a mapped <see cref="EditingTopicViewModel"/>.
+    /// </summary>
+    /// <remarks>
+    ///   This helps centralize the logic between e.g. <see cref="Edit(EditorBindingModel, Boolean, String, Boolean)"/> and <see
+    ///   cref="Edit(Boolean, String, Boolean)"/>.
+    /// </remarks>
+    /// <param name="contentTypeDescriptor">The strongly-typed <see cref="ContentTypeDescriptor"/> of the topic.</param>
+    /// <param name="isNew">Determines whether the topic represents a new or existing object.</param>
+    /// <param name="isModal">Determines whether whether the view is being displayed within a modal window.</param>
+    /// <returns>The Content Type associated with the current request.</returns>
     protected async Task<EditorViewModel> GetEditorViewModel(
       ContentTypeDescriptor contentTypeDescriptor,
       bool isNew,
@@ -161,14 +176,15 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
 
     }
 
-
-
     /*==========================================================================================================================
     | [GET] EDIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Present an editor view bound to a specific topic.
     /// </summary>
+    /// <param name="isNew">Determines whether the topic represents a new or existing object.</param>
+    /// <param name="contentType">The key name of the <see cref="ContentTypeDescriptor"/> representing the topic.</param>
+    /// <param name="isModal">Determines whether whether the view is being displayed within a modal window.</param>
     public async Task<IActionResult> Edit(bool isNew = false, string contentType = null, bool isModal = false) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -195,6 +211,9 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   Handles postback from the editor, based on an <see cref="EditorBindingModel"/>.
     /// </summary>
     /// <param name="model">An instance of the <see cref="EditorBindingModel"/> constructed from the HTTP Post.</param>
+    /// <param name="isNew">Determines whether the topic represents a new or existing object.</param>
+    /// <param name="contentType">The key name of the <see cref="ContentTypeDescriptor"/> representing the topic.</param>
+    /// <param name="isModal">Determines whether whether the view is being displayed within a modal window.</param>
     [HttpPost]
     public async Task<IActionResult> Edit(
       EditorBindingModel model,
