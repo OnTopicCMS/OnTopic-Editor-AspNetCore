@@ -120,6 +120,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | GET ALL FILES
       \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!Directory.Exists(_webHostEnvironment.WebRootPath + attribute.Path)) return files;
+
       var foundFiles = Directory.GetFiles(_webHostEnvironment.WebRootPath + attribute.Path, searchPattern, searchOption);
 
       if (!String.IsNullOrEmpty(inheritedValue)) {
