@@ -50,6 +50,18 @@ namespace Ignia.Topics.Editor.Mvc.Models {
     /// </remarks>
     public List<SelectListItem> Files { get; set; } = new List<SelectListItem>();
 
+    /*==========================================================================================================================
+    | ABSOLUTE PATH
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the absolute path where files are being displayed from.
+    /// </summary>
+    /// <remarks>
+    ///   While the <i>relative</i> file path can be retrieved from <see cref="FileListAttributeTopicViewModel.Path"/>, that
+    ///   doesn't include the base path of the web application. The <see cref="AbsolutePath"/> addresses this.
+    /// </remarks>
+    public string AbsolutePath { get; set; }
+
   } // Class
 
 } // Namespace

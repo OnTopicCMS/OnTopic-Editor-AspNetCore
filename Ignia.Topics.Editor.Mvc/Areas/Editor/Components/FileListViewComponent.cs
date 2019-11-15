@@ -74,7 +74,8 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model!.Files              = GetFiles(model.InheritedValue, attribute);
+      model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
+      model.Files               = GetFiles(model.InheritedValue, attribute, model.AbsolutePath);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
@@ -89,7 +90,11 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     /// <summary>
     ///   Retrieves a collection of files in a directory, given the provided <see cref="Path"/>.
     /// </summary>
-    public List<SelectListItem> GetFiles(string inheritedValue, FileListAttributeTopicViewModel attribute) {
+    public List<SelectListItem> GetFiles(
+      string inheritedValue,
+      FileListAttributeTopicViewModel attribute,
+      string absolutePath
+    ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | INSTANTIATE OBJECTS
@@ -102,6 +107,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       | Validate input
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (String.IsNullOrEmpty(attribute.Path)) return files;
+      if (!Directory.Exists(absolutePath)) return files;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Filter file list based on extension
@@ -120,8 +126,6 @@ namespace Ignia.Topics.Editor.Mvc.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | GET ALL FILES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!Directory.Exists(_webHostEnvironment.WebRootPath + attribute.Path)) return files;
-
       var foundFiles = Directory.GetFiles(_webHostEnvironment.WebRootPath + attribute.Path, searchPattern, searchOption);
 
       if (!String.IsNullOrEmpty(inheritedValue)) {
