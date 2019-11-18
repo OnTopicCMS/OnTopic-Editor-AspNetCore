@@ -6,6 +6,8 @@
 using System;
 using Ignia.Topics.Editor.Mvc.Infrastructure;
 using Ignia.Topics.Internal.Diagnostics;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -45,6 +47,22 @@ namespace Ignia.Topics.Editor.Mvc {
       \-----------------------------------------------------------------------------------------------------------------------*/
       return services;
     }
+
+    /*==========================================================================================================================
+    | EXTENSION: MAP TOPIC ROUTE (IENDPOINTROUTEBUILDER)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Adds an MVC route for handling OnTopic related requests, and maps it to the <see cref="EditorController"/> by default.
+    /// </summary>
+    public static ControllerActionEndpointConventionBuilder MapTopicEditorRoute(
+      this IEndpointRouteBuilder routes
+    ) =>
+      routes.MapAreaControllerRoute(
+        name: "TopicEditor",
+        areaName: "Editor",
+        pattern: "OnTopic/{action}/{**path}",
+        defaults: new { controller = "Editor" }
+      );
 
   } // Class
 } // Namespace

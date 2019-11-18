@@ -136,12 +136,7 @@ namespace OnTopicTest {
       \-----------------------------------------------------------------------------------------------------------------------*/
       app.UseEndpoints(endpoints => {
         endpoints.MapControllers();
-        endpoints.MapAreaControllerRoute(
-          name: "TopicEditor",
-          areaName: "Editor",
-          pattern: "Ontopic/{action}/{**path}",
-          defaults: new { controller = "Editor" }
-        );
+        endpoints.MapTopicEditorRoute();
       });
 
     }
