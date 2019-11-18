@@ -26,8 +26,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.10" />
-    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.10" />
+    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.11" />
+    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.11" />
     <PackageReference Include="System.Text.Json" Version="4.6.0" />
   </ItemGroup>
 

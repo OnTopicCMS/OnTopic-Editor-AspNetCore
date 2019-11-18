@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System.Collections.Generic;
 using System.Linq;
-using Ignia.Topics.Mapping;
+using Ignia.Topics.Mapping.Annotations;
 using Ignia.Topics.Metadata;
 
 namespace Ignia.Topics.Editor.Models.Metadata {
