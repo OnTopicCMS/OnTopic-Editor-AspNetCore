@@ -9,9 +9,11 @@ using Ignia.Topics.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Components;
 using Ignia.Topics.Data.Caching;
 using Ignia.Topics.Data.Sql;
+using Ignia.Topics.Editor.Mvc;
 using Ignia.Topics.Editor.Mvc.Components;
 using Ignia.Topics.Editor.Mvc.Controllers;
 using Ignia.Topics.Editor.Mvc.Infrastructure;
+using Ignia.Topics.Internal.Diagnostics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
 using Ignia.Topics.ViewModels;
@@ -38,6 +40,7 @@ namespace OnTopicTest {
     private readonly            ITopicMappingService            _topicMappingService;
     private readonly            ITopicRepository                _topicRepository;
     private readonly            IWebHostEnvironment             _webHostEnvironment;
+    private readonly            StandardEditorComposer          _standardEditorComposer;
     private readonly            Topic                           _rootTopic;
 
     /*==========================================================================================================================
@@ -54,19 +57,31 @@ namespace OnTopicTest {
     public SampleActivator(string connectionString, IWebHostEnvironment webHostEnvironment) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Verify dependencies
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(connectionString, nameof(connectionString));
+      Contract.Requires(webHostEnvironment, nameof(webHostEnvironment));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Initialize Topic Repository
       \-----------------------------------------------------------------------------------------------------------------------*/
-                                _webHostEnvironment             = webHostEnvironment;
-      var                       sqlTopicRepository              = new SqlTopicRepository(connectionString);
-      var                       cachedTopicRepository           = new CachedTopicRepository(sqlTopicRepository);
+      var sqlTopicRepository    = new SqlTopicRepository(connectionString);
+      var cachedTopicRepository = new CachedTopicRepository(sqlTopicRepository);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Preload repository
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _topicRepository                                          = cachedTopicRepository;
-      _typeLookupService                                        = new EditorViewModelLookupService();
-      _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
-      _rootTopic                                                = _topicRepository.Load();
+      _topicRepository          = cachedTopicRepository;
+      _typeLookupService        = new EditorViewModelLookupService();
+      _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
+      _rootTopic                = _topicRepository.Load();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish standard editor composer
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      _webHostEnvironment       = webHostEnvironment;
+      _standardEditorComposer   = new StandardEditorComposer(_topicRepository, _webHostEnvironment);
+
 
     }
 
@@ -110,23 +125,9 @@ namespace OnTopicTest {
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure and return appropriate view component
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (type == typeof(LastModifiedViewComponent)) {
-        return new LastModifiedViewComponent();
-      }
-      if (type == typeof(BooleanViewComponent)) {
-        return new BooleanViewComponent();
-      }
-      if (type == typeof(DateTimeViewComponent)) {
-        return new DateTimeViewComponent();
-      }
-      if (type == typeof(DisplayOptionsViewComponent)) {
-        return new DisplayOptionsViewComponent();
-      }
-      if (type == typeof(FileListViewComponent)) {
-        return new FileListViewComponent(_webHostEnvironment);
-      }
-      if (type == typeof(FilePathViewComponent)) {
-        return new FilePathViewComponent(
+      if (_standardEditorComposer.IsEditorComponent(type)) {
+        return _standardEditorComposer.ActivateEditorComponent(
+          type,
           new MvcTopicRoutingService(
             _topicRepository,
             new Uri($"https://{context.ViewContext.HttpContext.Request.Host}/{context.ViewContext.HttpContext.Request.Path}"),
@@ -134,42 +135,8 @@ namespace OnTopicTest {
           )
         );
       }
-      if (type == typeof(HtmlViewComponent)) {
-        return new HtmlViewComponent();
-      }
-      if (type == typeof(LastModifiedViewComponent)) {
-        return new LastModifiedViewComponent();
-      }
-      if (type == typeof(LastModifiedByViewComponent)) {
-        return new LastModifiedByViewComponent();
-      }
-      if (type == typeof(NestedTopicListViewComponent)) {
-        return new NestedTopicListViewComponent(_topicRepository);
-      }
-      if (type == typeof(NumberViewComponent)) {
-        return new NumberViewComponent();
-      }
-      if (type == typeof(RelationshipViewComponent)) {
-        return new RelationshipViewComponent();
-      }
-      if (type == typeof(TextViewComponent)) {
-        return new TextViewComponent();
-      }
-      if (type == typeof(TextAreaViewComponent)) {
-        return new TextAreaViewComponent();
-      }
-      if (type == typeof(TokenizedTopicListViewComponent)) {
-        return new TokenizedTopicListViewComponent(_topicRepository);
-      }
-      if (type == typeof(TopicListViewComponent)) {
-        return new TopicListViewComponent(_topicRepository);
-      }
-      if (type == typeof(TopicReferenceViewComponent)) {
-        return new TopicReferenceViewComponent();
-      }
-      else {
-        throw new Exception($"Unknown view component {type.Name}");
-      }
+
+      throw new Exception($"Unknown view component {type.Name}");
 
     }
 
