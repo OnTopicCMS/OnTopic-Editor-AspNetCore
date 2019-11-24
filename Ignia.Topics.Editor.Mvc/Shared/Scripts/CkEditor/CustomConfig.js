@@ -70,7 +70,7 @@ CKEDITOR.editorConfig = function( config ) {
     'Times New Roman/Times New Roman, Times, serif;'    +
     'Verdana';
 //Call external styles set definition for Styles dropdown menu
-  config.stylesCombo_stylesSet  = 'OnTopicStyleSet:/_content/Ignia.Topics.Editor.Mvc/Shared/Scripts/Vendor/CkEditor/StylesSet.js';
+  config.stylesCombo_stylesSet  = 'OnTopicStyleSet:/_content/Ignia.Topics.Editor.Mvc/Shared/Scripts/CkEditor/StylesSet.js';
 //Set classes for styles defined in styles set
   config.bodyClass              = 'CKEPanel';
 
