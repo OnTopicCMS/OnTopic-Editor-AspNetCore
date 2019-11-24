@@ -25,7 +25,7 @@
     <link rel="shortcut icon" href="~/_content/Ignia.Topics.Editor.Mvc/favicon.ico">
 
   </head>
-  <body vocab="http://schema.org" typeof="WebPage" class="@(Model.IsModal? "Modal" : "") @(Model.IsNew? "js-new" : "")">
+  <body vocab="http://schema.org" typeof="WebPage" class="@(Model.IsModal? "modal-window" : "") @(Model.IsNew? "js-new" : "")">
 
     @if (!Model.IsModal) {
       <header id="SiteHeader" class="navbar fixed-top" role="banner" vocab="http://schema.org" typeof="WPHeader">
@@ -86,7 +86,7 @@
         <!-- /Primary (Treeview) Sidebar -->
 
         <!-- Primary Page Content -->
-        <div id="PageContentArea" class="@(Model.IsModal? "col-sm-12 Modal" : "col-md-10 col-sm-9") page content">
+        <div id="PageContentArea" class="@(Model.IsModal? "col-sm-12" : "col-md-10 col-sm-9") page content">
           @RenderBody()
         </div>
         <!-- /Primary Page Content -->
