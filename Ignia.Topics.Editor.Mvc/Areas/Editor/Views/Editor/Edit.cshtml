@@ -34,7 +34,7 @@
       <div asp-validation-summary="All"></div>
     </div>
 
-    <div class="col-md-9">
+    <div class="@(Model.IsModal? "col-sm-10" : "col-md-9")">
       @{int index = 0;}
       <div id="DisplayGroupTabsContent" class="tab-content tab-validate">
         @foreach (string displayGroupName in Model.ContentTypeDescriptor.GetDisplayGroups()) {
