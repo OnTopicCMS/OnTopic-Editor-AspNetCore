@@ -2,6 +2,8 @@
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+  var includeDatePicker = Model.AttributeDescriptor.IncludeDatePicker?? true;
+  var includeTimePicker = Model.AttributeDescriptor.IncludeTimePicker?? true;
 }
 
 <input
@@ -15,22 +17,22 @@
 
 <script>
   $(function() {
-
+    
     //Instantiate date and/or time picker
     $('#@Html.IdFor(m => m.Value)')
-      .datetimepicker({
-        @if (Model.AttributeDescriptor.IncludeDatePicker?? true) {
+      .@(includeDatePicker? "date" : "")@(includeTimePicker? "time" : "")picker({
+        @if (includeDatePicker) {
           <text>
             dateFormat          : '@Model.AttributeDescriptor.DateFormat',
             defaultDate         : '@Model.GetDefaultDate()',
           </text>
         }
-        @if ((Model.AttributeDescriptor.IncludeDatePicker?? true) && (Model.AttributeDescriptor.IncludeTimePicker?? true)) {
+        @if (includeDatePicker && includeTimePicker) {
           <text>
             separator           : '@Model.AttributeDescriptor.DateTimeSeparator',
           </text>
         }
-        @if (Model.AttributeDescriptor.IncludeTimePicker?? true) {
+        @if (includeTimePicker) {
           <text>
             timeFormat          : '@Model.AttributeDescriptor.TimeFormat',
             defaultTime         : '@Model.GetDefaultTime()',
