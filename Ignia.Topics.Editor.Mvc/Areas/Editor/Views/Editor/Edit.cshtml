@@ -58,21 +58,25 @@
       </div>
 
     </div>
-    <div class="col-md-3 callouts">
-      <div class="callout topic-info">
 
-        <h3 class="h5">Topic Information</h3>
-        <dl>
-          <dt><i class="fa fa-cogs"></i> Content Type</dt>
-          <dd><a href="/Configuration/ContentTypes/@Model.Topic.ContentType">@Model.Topic.ContentType</a></dd>
-          <dt><i class="fa fa-database"></i> Topic ID</dt>
-          <dd><a href="/Topic/@Model.Topic.Id/">@Model.Topic.Id</a></dd>
-          <dt><i class="fa fa-eye"></i> Current</dt>
-          <dd><a href="@Model.Topic.WebPath">View Page</a></dd>
-        </dl>
+    @if (!Model.IsModal) {
+      <div class="col-md-3 callouts">
+        <div class="callout topic-info">
 
+          <h3 class="h5">Topic Information</h3>
+          <dl>
+            <dt><i class="fa fa-cogs"></i> Content Type</dt>
+            <dd><a href="/Configuration/ContentTypes/@Model.Topic.ContentType">@Model.Topic.ContentType</a></dd>
+            <dt><i class="fa fa-database"></i> Topic ID</dt>
+            <dd><a href="/Topic/@Model.Topic.Id/">@Model.Topic.Id</a></dd>
+            <dt><i class="fa fa-eye"></i> Current</dt>
+            <dd><a href="@Model.Topic.WebPath">View Page</a></dd>
+          </dl>
+
+        </div>
       </div>
-    </div>
+    }
+
   </div>
 
 </form>
