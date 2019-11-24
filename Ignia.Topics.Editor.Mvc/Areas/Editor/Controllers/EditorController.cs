@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ignia.Topics.Collections;
+using Ignia.Topics.AspNetCore.Mvc;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components.BindingModels;
 using Ignia.Topics.Editor.Models.Queryable;
@@ -33,7 +34,6 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
-    private readonly            ITopicRoutingService            _topicRoutingService;
     private readonly            ITopicMappingService            _topicMappingService;
     private                     Topic                           _currentTopic                   = null;
 
@@ -46,7 +46,6 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public EditorController(
       ITopicRepository topicRepository,
-      ITopicRoutingService topicRoutingService,
       ITopicMappingService topicMappingService
     ) {
 
@@ -54,14 +53,12 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       | Validate input
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(topicRepository != null, "A concrete implementation of an ITopicRepository is required.");
-      Contract.Requires(topicRoutingService != null, "A concrete implementation of an ITopicRoutingService is required.");
       Contract.Requires(topicMappingService != null, "A concrete implementation of an ITopicMappingService is required.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set values locally
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository = topicRepository;
-      _topicRoutingService = topicRoutingService;
       _topicMappingService = topicMappingService;
 
     }
@@ -85,7 +82,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     protected Topic CurrentTopic {
       get {
         if (_currentTopic == null) {
-          _currentTopic = _topicRoutingService.GetCurrentTopic();
+          _currentTopic = TopicRepository.Load(RouteData);
         }
         return _currentTopic;
       }

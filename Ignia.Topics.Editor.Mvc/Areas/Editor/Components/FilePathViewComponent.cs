@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc;
+using Ignia.Topics.AspNetCore.Mvc;
 using Ignia.Topics.Editor.Models;
 using Ignia.Topics.Editor.Models.Components;
 using Ignia.Topics.Editor.Models.Metadata;
@@ -11,6 +12,8 @@ using Ignia.Topics.Editor.Models.Components.ViewModels;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Ignia.Topics.Repositories;
+using Ignia.Topics.Internal.Diagnostics;
 
 #nullable enable
 
@@ -23,6 +26,11 @@ namespace Ignia.Topics.Editor.Mvc.Components {
   ///   Delivers a view model for a file path attribute type.
   /// </summary>
   public class FilePathViewComponent: ViewComponent {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private                     Topic?                          _currentTopic                   = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -39,12 +47,22 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   The <see cref="EditingTopicViewModel"/> is still passed not only for consistency, but also to spare the overhead and
     ///   redundant logic of mapping it again, since this was already done in <see cref="Controllers.EditorController"/>.
     /// </remarks>
-    public FilePathViewComponent(ITopicRoutingService topicRoutingService) : base() {
-      if (topicRoutingService == null) {
-        throw new ArgumentNullException(nameof(topicRoutingService));
-      }
-      CurrentTopic = topicRoutingService.GetCurrentTopic() ?? throw new NullReferenceException(nameof(CurrentTopic));
+    public FilePathViewComponent(ITopicRepository topicRepository) : base() {
+      Contract.Requires(topicRepository, nameof(topicRepository));
+      TopicRepository = topicRepository;
     }
+
+    /*==========================================================================================================================
+    | TOPIC REPOSITORY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the <see cref="ITopicRepository"/> in order to allow the current topic to be identified based
+    ///   on the route data.
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="ITopicRepository"/> associated with the <see cref="TopicViewComponentBase{T}"/>.
+    /// </returns>
+    protected ITopicRepository TopicRepository { get; }
 
     /*==========================================================================================================================
     | CURRENT TOPIC
@@ -53,7 +71,15 @@ namespace Ignia.Topics.Editor.Mvc.Components {
     ///   Provides a reference to the current topic associated with the request.
     /// </summary>
     /// <returns>The Topic associated with the current request.</returns>
-    protected Topic CurrentTopic { get; set; }
+    protected Topic? CurrentTopic {
+      get {
+        if (_currentTopic == null) {
+          _currentTopic = TopicRepository.Load(RouteData);
+        }
+        Contract.Assume(_currentTopic, nameof(_currentTopic));
+        return _currentTopic;
+      }
+    }
 
     /*==========================================================================================================================
     | METHOD: INVOKE

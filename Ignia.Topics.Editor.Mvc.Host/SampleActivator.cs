@@ -82,7 +82,6 @@ namespace OnTopicTest {
       _webHostEnvironment       = webHostEnvironment;
       _standardEditorComposer   = new StandardEditorComposer(_topicRepository, _webHostEnvironment);
 
-
     }
 
     /*==========================================================================================================================
@@ -103,7 +102,7 @@ namespace OnTopicTest {
       | Configure and return appropriate controller
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (type == typeof(EditorController)) {
-        return CreateEditorController(context);
+        return new EditorController(_topicRepository, _topicMappingService);
       }
       else {
         throw new Exception($"Unknown controller {type.Name}");
@@ -126,41 +125,10 @@ namespace OnTopicTest {
       | Configure and return appropriate view component
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (_standardEditorComposer.IsEditorComponent(type)) {
-        return _standardEditorComposer.ActivateEditorComponent(
-          type,
-          new MvcTopicRoutingService(
-            _topicRepository,
-            new Uri($"https://{context.ViewContext.HttpContext.Request.Host}/{context.ViewContext.HttpContext.Request.Path}"),
-            context.ViewContext.RouteData
-          )
-        );
+        return _standardEditorComposer.ActivateEditorComponent(type, _topicRepository);
       }
 
       throw new Exception($"Unknown view component {type.Name}");
-
-    }
-
-    /*==========================================================================================================================
-    | METHOD: CREATE EDITOR CONTROLLER
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Responds to a request to create a <see cref="EditorController"/> instance, the default controller for the editor area.
-    /// </summary>
-    private EditorController CreateEditorController(ControllerContext context) {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Register
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var mvcTopicRoutingService = new MvcTopicRoutingService(
-        _topicRepository,
-        new Uri($"https://{context.HttpContext.Request.Host}/{context.HttpContext.Request.Path}"),
-        context.RouteData
-      );
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Return EditorController
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      return new EditorController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
 
     }
 
