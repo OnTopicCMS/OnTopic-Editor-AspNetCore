@@ -112,10 +112,9 @@ else {
 }
 
 <div id="@($"EditorModal_{Model.AttributeDescriptor.Key}")" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-header">
-      <h1 id="@($"ModalTitle_{Model.AttributeDescriptor.Key}")" class="h3 Page-Title"><!-- determined by modal open script caller --></h1>
   <div class="modal-dialog modal-lg">
+    <div class="modal-header page title">
+      <h2 id="@($"ModalTitle_{Model.AttributeDescriptor.Key}")"><!-- determined by modal open script caller --></h2>
     </div>
     <div class="modal-content">
       <iframe id="@($"EditorFrame_{Model.AttributeDescriptor.Key}")" src="" width="100%" marginheight="0" frameborder="0">
