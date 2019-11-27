@@ -61,7 +61,7 @@ namespace Ignia.Topics.Editor.Mvc {
         name: "TopicEditor",
         areaName: "Editor",
         pattern: "OnTopic/{action}/{**path}",
-        defaults: new { controller = "Editor" }
+        defaults: new { controller = "Editor", action="Edit", path = "Root/Web/" }
       );
 
   } // Class
