@@ -21,7 +21,7 @@ namespace Ignia.Topics.Editor.Models.Queryable {
   ///   Constructs a hierarchy of <see cref="QueryResultTopicViewModel"/> objects based on a root <see cref="Topic"/> and a set
   ///   of options as specified in a <see cref="TopicQueryOptions"/> object.
   /// </summary>
-  public class TopicQueryService {
+  internal class TopicQueryService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

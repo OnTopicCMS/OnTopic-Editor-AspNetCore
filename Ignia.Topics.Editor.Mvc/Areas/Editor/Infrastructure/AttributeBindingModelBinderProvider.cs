@@ -18,7 +18,7 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
   ///   Determines whether a binding request should use the <see cref="AttributeBindingModelBinder"/>—and, if so, returns a
   ///   reference to the <see cref="AttributeBindingModelBinder"/> type in response.
   /// </summary>
-  public class AttributeBindingModelBinderProvider : IModelBinderProvider {
+  internal class AttributeBindingModelBinderProvider : IModelBinderProvider {
 
     /*==========================================================================================================================
     | METHOD: GET BINDER

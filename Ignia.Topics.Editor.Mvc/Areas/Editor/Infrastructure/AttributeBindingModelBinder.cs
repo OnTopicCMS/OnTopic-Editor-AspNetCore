@@ -18,7 +18,7 @@ namespace Ignia.Topics.Editor.Mvc.Infrastructure {
   ///   This is necessary to retain strongly typed instances in <see cref="EditorBindingModel.Attributes"/>, which otherwise
   ///   exposes a collection of <see cref="AttributeBindingModel"/> instances.
   /// </summary>
-  public class AttributeBindingModelBinder : IModelBinder {
+  internal class AttributeBindingModelBinder : IModelBinder {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
