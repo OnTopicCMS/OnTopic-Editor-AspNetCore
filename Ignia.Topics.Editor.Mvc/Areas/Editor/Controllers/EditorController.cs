@@ -289,6 +289,10 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
         contentType = CurrentTopic.ContentType;
       }
 
+      if (derivedTopic != null && topic.DerivedTopic != derivedTopic) {
+        topic.DerivedTopic = derivedTopic;
+      }
+
       /*------------------------------------------------------------------------------------------------------------------------
       | SET ATTRIBUTES
       \-----------------------------------------------------------------------------------------------------------------------*/
