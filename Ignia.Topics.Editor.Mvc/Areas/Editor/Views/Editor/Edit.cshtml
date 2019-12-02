@@ -26,9 +26,14 @@
           <strong>Warning:</strong> This topic is part of the OnTopic internal organizational structure and is not intended to be modified. Deletion of this Topic has been disabled.
         </div>
       }
-      else if (!String.IsNullOrWhiteSpace(Model.ContentTypeDescriptor.Description)) {
-        <div class="alert alert-light" role="alert">
+      @if (!String.IsNullOrWhiteSpace(Model.ContentTypeDescriptor.Description)) {
+        <div class="alert alert-primary" role="alert">
           @Model.ContentTypeDescriptor.Description
+        </div>
+      }
+      @if (Model.Topic.DerivedTopic != null) {
+        <div class="alert alert-primary" role="alert">
+          <strong>Note:</strong> This topic derives from <a href="@Url.Action("Edit", new { path = Model.Topic.DerivedTopic.WebPath })">@Model.Topic.DerivedTopic.Title</a>. Any values not explicitly defined here will be inherited from that topic.
         </div>
       }
       <div asp-validation-summary="All"></div>

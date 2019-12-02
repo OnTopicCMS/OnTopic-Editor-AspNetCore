@@ -3,6 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
+using Ignia.Topics.ViewModels;
 using System;
 using System.Collections.Generic;
 
@@ -34,6 +36,15 @@ namespace Ignia.Topics.Editor.Models {
     ///   modified.
     /// </summary>
     public List<DateTime> VersionHistory { get; set; } = new List<DateTime>();
+
+    /*==========================================================================================================================
+    | PROPERTY: DERIVED TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to a derived topic, if one exists.
+    /// </summary>
+    [AttributeKey("TopicID")]
+    public TopicViewModel DerivedTopic { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ATTRIBUTES
