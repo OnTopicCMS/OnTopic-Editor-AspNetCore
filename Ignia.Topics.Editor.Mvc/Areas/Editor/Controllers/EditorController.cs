@@ -168,7 +168,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
         }
 
         //Set inherited attribute value, if available
-        topicViewModel.InheritedAttributes.Add(attribute.Key, parentTopic.Attributes.GetValue(attribute.Key, true));
+        topicViewModel.InheritedAttributes.Add(attribute.Key, isNew? null : CurrentTopic.Attributes.GetValue(attribute.Key));
 
       }
 
