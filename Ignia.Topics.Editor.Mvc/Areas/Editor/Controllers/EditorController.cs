@@ -309,6 +309,11 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
           continue;
         }
 
+        //Handle new keys
+        if (isNew && attribute.Key.Equals("Key", StringComparison.InvariantCultureIgnoreCase)) {
+          continue;
+        }
+
         //Handle missing attributes
         if (!model.Attributes.Contains(attribute.Key)) {
           topic.Attributes.Remove(attribute.Key);
