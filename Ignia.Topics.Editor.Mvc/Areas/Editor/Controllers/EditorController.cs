@@ -283,7 +283,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       var topic                 = CurrentTopic;
 
       if (isNew) {
-        topic = TopicFactory.Create(newKey, contentType);
+        topic = TopicFactory.Create(newKey, contentType, CurrentTopic);
       }
       else {
         contentType = CurrentTopic.ContentType;
@@ -326,13 +326,6 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
           topic.Attributes.SetValue(attribute.Key, attributeValue.Value);
         }
 
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | SET PARENT
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (isNew) {
-        topic.Parent = CurrentTopic;
       }
 
       /*--------------------------------------------------------------------------------------------------------------------------
