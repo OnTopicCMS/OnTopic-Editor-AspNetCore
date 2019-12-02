@@ -146,8 +146,14 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       //The attribute collections follow special conventions that can't be automatically mapped from the topic
       foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
 
+        //Serialize relationships, if it's a relationship type
+        if (!isNew && attribute.ModelType == ModelType.Relationship) {
+          var relatedTopicIds = CurrentTopic.Relationships.GetTopics(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
+          topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
+        }
+
         //For existing topics, get locally assigned attributes
-        if (!isNew) {
+        else if (!isNew) {
           topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.Attributes.GetValue(attribute.Key, null, false, false));
         }
 
