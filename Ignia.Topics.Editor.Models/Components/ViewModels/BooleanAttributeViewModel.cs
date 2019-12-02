@@ -37,15 +37,37 @@ namespace Ignia.Topics.Editor.Models.Components.ViewModels {
     ) {}
 
     /*==========================================================================================================================
-    | IS SELECTED?
+    | IS TRUE?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether or not the value is selected.
+    ///   Determines whether the value is explicitly set to true.
     /// </summary>
-    public bool IsSelected() => (
-      (Value?.Equals("1", StringComparison.OrdinalIgnoreCase)?? false) ||
-      (Value?.Equals("true", StringComparison.InvariantCultureIgnoreCase)?? false)
-    );
+    public bool? IsTrue() {
+      if (
+        (Value?.Equals("1", StringComparison.OrdinalIgnoreCase)?? false) ||
+        (Value?.Equals("true", StringComparison.InvariantCultureIgnoreCase)?? false)
+      ) {
+        return true;
+      }
+      return null;
+    }
+
+    /*==========================================================================================================================
+    | IS FALSE?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether value is explicitly set to false.
+    /// </summary>
+    public bool? IsFalse() {
+      if (
+        (Value?.Equals("0", StringComparison.OrdinalIgnoreCase) ?? false) ||
+        (Value?.Equals("false", StringComparison.InvariantCultureIgnoreCase) ?? false)
+      ) {
+        return false;
+      }
+      return null;
+    }
+
 
   } // Class
 
