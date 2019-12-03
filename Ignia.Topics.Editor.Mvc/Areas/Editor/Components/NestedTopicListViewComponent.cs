@@ -81,7 +81,7 @@ namespace Ignia.Topics.Editor.Mvc.Components {
         var topic = _topicRepository.Load(viewModel.UniqueKey);
         if (!topic.Children.Contains(attribute.Key)) {
           var topicContainer = TopicFactory.Create(attribute.Key, "List", topic);
-          //_topicRepository.Save(topicContainer);
+          _topicRepository.Save(topicContainer);
         }
       }
 
