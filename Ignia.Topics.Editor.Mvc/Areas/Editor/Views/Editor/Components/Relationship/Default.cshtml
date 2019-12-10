@@ -40,10 +40,10 @@
         },
         checkchange     : function(node, checked) {
           if (checked) {
-            relationships.push(node.attributes.id);
+            relationships.push(node.attributes.id.toString());
           }
           else {
-            relationships.remove(node.attributes.id);
+            relationships.remove(node.attributes.id.toString());
           }
           Storage.dom.value = relationships.concat(",");
           @(Model.AttributeDescriptor.CheckAscendants is true? "" : "return true")
