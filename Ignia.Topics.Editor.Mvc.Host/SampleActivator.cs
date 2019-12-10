@@ -3,24 +3,20 @@
 | Client        Ignia, LLC
 | Project       Sample OnTopic Site
 \=============================================================================================================================*/
-using System;
 using Ignia.Topics;
-using Ignia.Topics.AspNetCore.Mvc;
-using Ignia.Topics.AspNetCore.Mvc.Components;
 using Ignia.Topics.Data.Caching;
 using Ignia.Topics.Data.Sql;
 using Ignia.Topics.Editor.Mvc;
-using Ignia.Topics.Editor.Mvc.Components;
 using Ignia.Topics.Editor.Mvc.Controllers;
 using Ignia.Topics.Editor.Mvc.Infrastructure;
 using Ignia.Topics.Internal.Diagnostics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
-using Ignia.Topics.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
+using System;
 
 namespace OnTopicTest {
 
