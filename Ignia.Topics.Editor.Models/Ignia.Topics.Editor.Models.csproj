@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net48;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
     <AssemblyTitle>Ignia.Topics.Editor.Models</AssemblyTitle>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -26,8 +26,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.32" />
-    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.32" />
+    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.34" />
+    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.34" />
     <PackageReference Include="System.Text.Json" Version="4.6.0" />
   </ItemGroup>
 
