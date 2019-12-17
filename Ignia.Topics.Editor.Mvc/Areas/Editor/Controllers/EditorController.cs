@@ -429,17 +429,25 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       }
 
       /*--------------------------------------------------------------------------------------------------------------------------
-      | If the content type is a nested list, display parent.
+      | If the content type is a nested list, display grandparent.
       \-------------------------------------------------------------------------------------------------------------------------*/
       else if (parent.Attributes.GetValue("ContentType", "") == "List") {
-        return Redirect("/OnTopic/Edit" + parent.Parent.GetWebPath() + "?DeletedTopic=" + deletedTopic + "&DeletedFrom=" + parent.Title + "&Action=Deleted");
+        return RedirectToAction(
+          "Edit",
+          new {
+            path                = parent.Parent.GetWebPath(),
+            DeletedTopic        = deletedTopic,
+            DeletedFrom         = parent.Title,
+            Action              = "Deleted"
+          }
+        );
       }
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Redirect to parent
       \-------------------------------------------------------------------------------------------------------------------------*/
       else {
-        return Redirect("/OnTopic/Edit" + parent.GetWebPath());
+        return RedirectToAction("Edit", new { path = parent.GetWebPath() });
       }
 
     }
