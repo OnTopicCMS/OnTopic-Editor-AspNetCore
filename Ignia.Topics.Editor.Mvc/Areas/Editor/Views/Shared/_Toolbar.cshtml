@@ -21,7 +21,7 @@
         <ul class="dropdown-menu" role="menu" aria-labelledby="VersionsButton" style="left: 3px; top: 98%;">
           @foreach (DateTime version in Model.Topic.VersionHistory) {
             <li role="presentation" class="small">
-              <a tabindex="-1" role="menuitem" href="@Url.Action("SetVersion", "Editor", new { path=Model.Topic.WebPath, version=version.ToString("MM/dd/yyyy hh:mm:ss.fff tt") })">@version.ToString()</a>
+              <a tabindex="-1" role="menuitem" href="@Url.Action("SetVersion", "Editor", new { path=Model.Topic.WebPath, version=version.ToString("MM/dd/yyyy hh:mm:ss.fff tt"), isModal=Model.IsModal })">@version.ToString()</a>
             </li>
           }
         </ul>

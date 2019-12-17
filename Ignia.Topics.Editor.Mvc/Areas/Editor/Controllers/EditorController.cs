@@ -385,7 +385,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
     ///   Calls Topic.Rollback() with the selected version datetime to set the data to that version and re-save the Topic.
     /// </summary>
     [HttpGet]
-    public IActionResult SetVersion(DateTime version) {
+    public IActionResult SetVersion(DateTime version, bool isModal = false) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Initiate rollback
@@ -395,7 +395,7 @@ namespace Ignia.Topics.Editor.Mvc.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Render index
       \-------------------------------------------------------------------------------------------------------------------------*/
-      return RedirectToAction("Edit", new { path = CurrentTopic.GetWebPath() });
+      return RedirectToAction("Edit", new { path = CurrentTopic.GetWebPath(), IsModal = isModal });
 
     }
 
