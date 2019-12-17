@@ -24,17 +24,32 @@ function getKeyValue(title) {
 }
 
 /*==============================================================================================================================
-| METHOD: Confirm rollback
+| METHOD: CONFIRM ROLLBACK
 \-----------------------------------------------------------------------------------------------------------------------------*/
 /**
  * Confirms the user's intent to rollback the current topic to the selected version
- * @param {string} version - The specific value of the version to be rolled back to. This represents the version date.
+ * @param {string} versionText - The specific value of the version to be rolled back to. This represents the version date.
+ * @returns {confirm} A prompt confirming the user's decision.
  */
-// Confirm version rollback
 function confirmRollback(versionText) {
   return confirm(
     'Are you sure you roll back this Topic to its ' + versionText + ' version? All data entered for this Topic will be ' +
     'reverted to their state as of this version.'
+  );
+}
+
+/*==============================================================================================================================
+| METHOD: CONFIRM DELETE
+\-----------------------------------------------------------------------------------------------------------------------------*/
+/**
+ * Confirms the user's intent to delete the current topic and all descendents
+ * @param {string} title - The title of the page, to help validate the user's intent.
+ * @returns {confirm} A prompt confirming the user's decision.
+ */
+function confirmDelete(title) {
+  return confirm(
+    'Are you sure you want to delete the "' + title + '" topic? Both the topic any any descendants will be ' +
+    'permanently deleted.'
   );
 }
 
@@ -51,6 +66,14 @@ function confirmRollback(versionText) {
   $('#VersionsDropdown ul li a').on('click', function (e) {
     var selectedVersion = $(this).text();
     if (!confirmRollback(selectedVersion)) return false;
+  });
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | Event Handler: Delete Topic
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  $('#DeletePageButton').on('click', function (e) {
+    var title = $(this).data("title");
+    if (!confirmDelete(title)) return false;
   });
 
   /*----------------------------------------------------------------------------------------------------------------------------
