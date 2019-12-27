@@ -41,7 +41,7 @@
     <!-- Delete -->
     <a
       id                        ="DeletePageButton"
-      data-title                ="@Model.Topic.Title.Replace("\"", "&quot;")"
+      data-title                ="@Model.Topic.Title?.Replace("\"", "&quot;")"
       href                      =@Url.Action("Delete", "Editor", new { path=Model.Topic.WebPath, isModal=Model.IsModal })
       disabled                  =@disableDelete
       class                     ="btn btn-default btn-sm"
