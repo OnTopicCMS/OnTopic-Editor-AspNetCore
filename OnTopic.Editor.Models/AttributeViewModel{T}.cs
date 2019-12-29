@@ -4,7 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Editor.Models.Metadata;
-using OnTopic.Metadata;
 
 namespace OnTopic.Editor.Models {
 

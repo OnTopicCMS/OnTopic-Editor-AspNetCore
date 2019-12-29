@@ -3,8 +3,6 @@
 | Client        Ignia, LLC
 | Project       Sample OnTopic Site
 \=============================================================================================================================*/
-using OnTopic.AspNetCore.Mvc;
-using OnTopic.Editor.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +11,8 @@ using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OnTopic.AspNetCore.Mvc;
+using OnTopic.Editor.AspNetCore;
 
 namespace OnTopicTest {
 

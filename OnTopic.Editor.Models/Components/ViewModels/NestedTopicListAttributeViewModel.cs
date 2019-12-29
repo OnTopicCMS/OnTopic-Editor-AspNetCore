@@ -4,8 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Editor.Models.Metadata;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace OnTopic.Editor.Models.Components.ViewModels {
 

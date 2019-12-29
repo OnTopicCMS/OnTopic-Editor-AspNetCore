@@ -3,17 +3,15 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Components;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Editor.Models.Components.ViewModels;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using OnTopic.Repositories;
+using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Repositories;
 
 #nullable enable
 

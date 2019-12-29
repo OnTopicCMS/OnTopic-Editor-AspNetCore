@@ -4,20 +4,19 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OnTopic.Collections;
+using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc;
+using OnTopic.Collections;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.BindingModels;
-using OnTopic.Editor.Models.Queryable;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Editor.Models.Queryable;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 using OnTopic.Metadata;
 using OnTopic.Repositories;
-using Microsoft.AspNetCore.Mvc;
 
 namespace OnTopic.Editor.AspNetCore.Controllers {
 

@@ -6,11 +6,6 @@
 
 #nullable enable
 
-using OnTopic.Mapping;
-using OnTopic.ViewModels;
-using System;
-using System.Diagnostics.CodeAnalysis;
-
 namespace OnTopic.Editor.Models.Metadata {
 
   /*============================================================================================================================

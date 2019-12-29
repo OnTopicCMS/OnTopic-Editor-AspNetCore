@@ -5,8 +5,8 @@
 \=============================================================================================================================*/
 using System;
 using System.Threading.Tasks;
-using OnTopic.Editor.Models.Components.BindingModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using OnTopic.Editor.Models.Components.BindingModels;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
 

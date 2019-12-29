@@ -4,16 +4,11 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using OnTopic.Editor.AspNetCore.Components;
-using OnTopic.Editor.AspNetCore.Infrastructure;
-using OnTopic.Internal.Diagnostics;
-using OnTopic.Repositories;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using OnTopic.Editor.AspNetCore.Components;
+using OnTopic.Internal.Diagnostics;
+using OnTopic.Repositories;
 
 namespace OnTopic.Editor.AspNetCore {
 

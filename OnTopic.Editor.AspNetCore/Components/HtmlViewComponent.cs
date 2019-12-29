@@ -3,10 +3,9 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace OnTopic.Editor.AspNetCore.Components {
 

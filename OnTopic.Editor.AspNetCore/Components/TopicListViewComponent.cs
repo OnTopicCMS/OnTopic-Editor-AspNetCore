@@ -6,17 +6,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using OnTopic.Collections;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
 using OnTopic.Editor.Models.Queryable;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Querying;
 using OnTopic.Repositories;
 using OnTopic.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace OnTopic.Editor.AspNetCore.Components {
 

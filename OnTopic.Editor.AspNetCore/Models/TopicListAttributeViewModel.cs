@@ -4,9 +4,9 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 

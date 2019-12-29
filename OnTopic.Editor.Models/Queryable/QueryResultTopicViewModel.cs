@@ -3,12 +3,9 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using OnTopic.Collections;
-using System.Text.Json.Serialization;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace OnTopic.Editor.Models.Queryable {
 

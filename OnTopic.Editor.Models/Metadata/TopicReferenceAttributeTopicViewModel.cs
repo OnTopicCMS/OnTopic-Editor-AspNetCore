@@ -3,11 +3,11 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
+using System.Diagnostics.CodeAnalysis;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
 using OnTopic.ViewModels;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 

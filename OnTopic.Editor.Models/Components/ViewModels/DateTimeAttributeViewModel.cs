@@ -3,9 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.Models.Metadata;
-using OnTopic.Metadata;
 using System;
+using OnTopic.Editor.Models.Metadata;
 
 namespace OnTopic.Editor.Models.Components.ViewModels {
 

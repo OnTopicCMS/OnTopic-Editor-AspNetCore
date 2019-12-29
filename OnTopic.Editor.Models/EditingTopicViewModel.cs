@@ -3,10 +3,10 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 using System;
 using System.Collections.Generic;
+using OnTopic.Mapping.Annotations;
+using OnTopic.ViewModels;
 
 namespace OnTopic.Editor.Models {
 
