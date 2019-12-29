@@ -18,7 +18,7 @@ CKEDITOR.editorConfig = function( config ) {
   config.resize_maxWidth        = '800';
   config.fillEmptyBlocks        = false;
   config.shiftEnterMode         = CKEDITOR.ENTER_BR;
-  config.contentsCss            = '/_content/Ignia.Topics.Editor.Mvc/Shared/Styles/CKEditor.css';
+  config.contentsCss            = '/_content/OnTopic.Editor.AspNetCore/Shared/Styles/CKEditor.css';
   config.toolbar                = [
     { name: 'document', items: [ 'Source' ] },
     { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste',  '-', 'Undo', 'Redo' ] },
@@ -32,7 +32,7 @@ CKEDITOR.editorConfig = function( config ) {
     { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Blockquote' ] },
     '/',
     { name: 'styles', items: ['Styles', 'Format'] },
-	  { name: 'tools', items: [ 'Find', 'Replace', 'SelectAll', 'Maximize' ] }
+    { name: 'tools', items: [ 'Find', 'Replace', 'SelectAll', 'Maximize' ] }
   ];
   config.toolbarCanCollapse     = true;
   config.toolbar_Full           = [
@@ -70,7 +70,7 @@ CKEDITOR.editorConfig = function( config ) {
     'Times New Roman/Times New Roman, Times, serif;'    +
     'Verdana';
 //Call external styles set definition for Styles dropdown menu
-  config.stylesCombo_stylesSet  = 'OnTopicStyleSet:/_content/Ignia.Topics.Editor.Mvc/Shared/Scripts/CkEditor/StylesSet.js';
+  config.stylesCombo_stylesSet  = 'OnTopicStyleSet:/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/CkEditor/StylesSet.js';
 //Set classes for styles defined in styles set
   config.bodyClass              = 'CKEPanel';
 
