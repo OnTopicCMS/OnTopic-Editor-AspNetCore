@@ -1,0 +1,11 @@
+﻿@model LastModifiedByAttributeViewModel
+
+@{
+  Layout = "~/Views/Editor/Components/_Layout.cshtml";
+}
+
+<div class="label">
+  @Model.CurrentValue
+</div>
+
+<input type="hidden" asp-for="Value" />

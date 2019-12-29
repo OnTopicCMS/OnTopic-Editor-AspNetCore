@@ -1,0 +1,15 @@
+﻿@model AttributeViewModel<TextAttributeTopicViewModel>
+
+@{
+  Layout = "~/Views/Editor/Components/_Layout.cshtml";
+}
+
+<input
+  type                          =@Model.AttributeDescriptor.InputType
+  asp-for                       =@Model.Value
+  maxlength                     =@Model.AttributeDescriptor.MaximumLength
+  class                         ="form-control"
+  placeholder                   =@Model.InheritedValue
+  disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
+  required                      =@Model.AttributeDescriptor.IsRequired
+/>
