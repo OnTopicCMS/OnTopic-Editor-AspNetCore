@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using OnTopic.Metadata;
 
 namespace OnTopic.Editor.Models.Metadata {
@@ -18,12 +19,19 @@ namespace OnTopic.Editor.Models.Metadata {
   public class AttributeDescriptorTopicViewModel: ViewModels.TopicViewModel {
 
     /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private                     Dictionary<string, string>      _configuration;
+
+    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Initializes a new instance of the <see cref="AttributeDescriptorTopicViewModel"/> class.
     /// </summary>
-    public AttributeDescriptorTopicViewModel() {}
+    public AttributeDescriptorTopicViewModel() {
+      _configuration            = new Dictionary<string, string>();
+    }
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -56,16 +64,42 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Provides the raw string representation of any optional values needed to configure the attribute editor.
     /// </summary>
+    [Obsolete(
+      "This property is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
+      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
+      "AttributeDescriptor."
+    )]
     public string DefaultConfiguration { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: CONFIGURATION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a parsed version of the <see cref="DefaultConfiguration"/>, with key/value pairs being represented in a
-    ///   dictionary for easy reference.
+    ///   Retrieves a dictionary representing a parsed collection of key/value pairs from the <see
+    ///   cref="DefaultConfiguration"/>.
     /// </summary>
-    public IDictionary<string, string> Configuration { get; set; }
+    [Obsolete(
+      "This property is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
+      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
+      "AttributeDescriptor."
+    )]
+    public IDictionary<string, string> Configuration {
+      get {
+        if (_configuration.Count.Equals(0) && DefaultConfiguration?.Length > 0) {
+          _configuration = DefaultConfiguration
+            .Split(' ')
+            .Select(value => value.Split('='))
+            .ToDictionary(
+              pair => pair[0],
+              pair => pair.Count().Equals(2) ? pair[1]?.Replace("\"", "") : null
+            );
+        }
+        return _configuration;
+      }
+    }
+
+    #region LegacyConfiguration
+    #pragma warning disable CS0618 // Type or member is obsolete
 
     /*==========================================================================================================================
     | METHOD: GET CONFIGURATION VALUE
@@ -74,6 +108,11 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Retrieves a configuration value from the <see cref="Configuration"/> dictionary; if the value doesn't exist, then
     ///   optionally returns a default value.
     /// </summary>
+    [Obsolete(
+      "This property is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
+      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
+      "AttributeDescriptor."
+    )]
     public string GetConfigurationValue(string key, string defaultValue = null) {
       if (Configuration != null && Configuration.ContainsKey(key) && Configuration[key] != null) {
         return Configuration[key].ToString();
@@ -106,6 +145,9 @@ namespace OnTopic.Editor.Models.Metadata {
       }
       return defaultValue;
     }
+
+    #pragma warning restore CS0618 // Type or member is obsolete
+    #endregion LegacyConfiguration
 
     /*==========================================================================================================================
     | PROPERTY: IS REQUIRED?
