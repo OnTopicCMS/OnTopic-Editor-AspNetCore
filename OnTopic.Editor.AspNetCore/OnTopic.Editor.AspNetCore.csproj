@@ -11,7 +11,7 @@
     <Company>Ignia</Company>
     <Product>Ignia OnTopic Editor</Product>
     <Description>The OnTopic Editor provides a content management interface to Ignia's OnTopic Library, thus allowing users to modify semi-structured, device-independent data. This distribution provides a .NET Core 3 support.</Description>
-    <Copyright>Copyright © 2019 Ignia, LLC</Copyright>
+    <Copyright>©2020 Ignia, LLC</Copyright>
     <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
     <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia</PackageTags>
