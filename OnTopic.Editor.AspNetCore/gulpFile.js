@@ -55,6 +55,7 @@ const files = {
   css                           :   [ 'node_modules/bootstrap/dist/css/bootstrap.min.css',
                                       'node_modules/jquery-ui-dist/jquery-ui.min.css',
                                       'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
+                                      'node_modules/jquery-tokeninput/dist/css/token-input-facebook.min.css',
                                       'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css'
                                     ]
                                   },

@@ -71,6 +71,7 @@
       tokenLimit                : self.tokenLimit,
       preventDuplicates         : true,
       prePopulate               : self.selectedTopics,
+      theme                     : 'facebook',
       onAdd: function (item) {
         if (!self.isAutoPostBack) return;
         $("form").validate().cancelSubmit = true;
