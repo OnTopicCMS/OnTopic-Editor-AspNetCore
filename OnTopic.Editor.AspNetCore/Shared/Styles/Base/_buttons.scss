@@ -15,35 +15,40 @@
 .btn {
   border-radius                 : 1px;
   color                         : $white;
+  &:hover,
+  &focus,
+  &:active {
+    color                       : $white;
+  }
 }
 .btn-default {
-  border-color                  : $grey-light;
   background-color              : $grey-light;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color            : $grey-medium;
+  }
+
 }
 .btn-primary {
-  border-color                  : $button-primary;
   background-color              : $button-primary;
   &:hover,
   &:focus,
   &:active {
-    border-color                : rgb(7, 107, 154);             // #076B9A
     background-color            : rgb(8, 114, 163);             // #0872A3
   }
 }
 .btn-ancillary {
-  border-color                  : rgb(77, 77, 77);              // #4D4D4D
   background-color              : rgb(77, 77, 77);              // #4D4D4D
   &:hover,
   &:focus,
   &:active {
-    border-color                : rgb(46, 46, 46);              // #2E2E2E
-    background-color            : $grey-dark;
+    background-color            : rgb(60, 60, 60);
   }
 }
 .open {
   > .dropdown-toggle {
-    border-color                : rgb(46, 46, 46);              // #2E2E2E
-    background-color            : $grey-dark;
+    background-color            : rgb(60, 60, 60);
   }
 }
 
