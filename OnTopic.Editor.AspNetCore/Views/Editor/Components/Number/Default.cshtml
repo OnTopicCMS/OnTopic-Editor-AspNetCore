@@ -9,7 +9,7 @@
   asp-for                       =@Model.Value
   min                           =@Model.AttributeDescriptor.MinimumValue
   max                           =@Model.AttributeDescriptor.MaximumValue
-  class                         ="form-control"
+  class                         ="@Model.AttributeDescriptor.CssClass form-control"
   placeholder                   =@Model.InheritedValue
   disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
   required                      =@Model.AttributeDescriptor.IsRequired

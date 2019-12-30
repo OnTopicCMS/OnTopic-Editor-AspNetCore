@@ -8,7 +8,7 @@
 <div>
   <input
     asp-for                             ="Value"
-    class                               ="form-control input-sm"
+    class                               ="@Model.AttributeDescriptor.CssClass form-control input-sm"
     disabled                            =@(!Model.AttributeDescriptor.IsEnabled)
     required                            =@Model.AttributeDescriptor.IsRequired
   />

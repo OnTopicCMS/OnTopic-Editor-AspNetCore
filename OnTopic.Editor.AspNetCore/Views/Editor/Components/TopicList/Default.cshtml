@@ -9,7 +9,7 @@
   <select
     asp-for                     ="Value"
     asp-items                   ="Model.TopicList"
-    class                       ="FormField Field"
+    class                       ="@Model.AttributeDescriptor.CssClass form-control form-inline"
     disabled                    =@(!Model.AttributeDescriptor.IsEnabled)
     required                    =@Model.AttributeDescriptor.IsRequired
     >

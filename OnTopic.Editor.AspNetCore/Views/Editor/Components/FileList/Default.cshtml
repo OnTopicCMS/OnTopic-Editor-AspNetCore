@@ -6,10 +6,11 @@
 
 @if (Model.Files.Count > 0) {
   <select
-    asp-for                       ="Value"
-    asp-items                     =@Model.Files
-    disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
-    required                      =@Model.AttributeDescriptor.IsRequired
+    asp-for                     ="Value"
+    asp-items                   =@Model.Files
+    class                       ="@Model.AttributeDescriptor.CssClass form-control"
+    disabled                    =@(!Model.AttributeDescriptor.IsEnabled)
+    required                    =@Model.AttributeDescriptor.IsRequired
   >
   </select>
 }
