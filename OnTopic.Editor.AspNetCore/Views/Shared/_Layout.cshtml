@@ -61,23 +61,23 @@
               <div id="TreeView"></div>
               @{
                 var attributeDescriptor = new TopicListAttributeTopicViewModel() {
-                  Key             = "Navigation",
-                  ContentType     = "TopicListAttribute",
-                  RootTopicKey    = "Configuration:ContentTypes",
-                  AttributeKey    = "ContentType",
-                  AttributeValue  = "ContentTypeDescriptor",
-                  DefaultLabel    = "Add new topic…"
+                  Key                                           = "Navigation",
+                  ContentType                                   = "TopicListAttribute",
+                  RootTopicKey                                  = "Configuration:ContentTypes",
+                  AttributeKey                                  = "ContentType",
+                  AttributeValue                                = "ContentTypeDescriptor",
+                  DefaultLabel                                  = "Add new topic…",
                 };
               }
               <text>
                 <vc:topic-list
-                  current-topic=@Model.Topic
-                  attribute=@attributeDescriptor
-                  html-field-prefix="CreateNewTopic"
-                  target-url=@($"{Url.Action("Edit")}?ContentType={{Key}}&IsNew=true")
-                  values=@Model.ContentTypeDescriptor.PermittedContentTypes
-                  enable-modal="false"
-                  on-client-close="">
+                  current-topic                                 =@Model.Topic
+                  attribute                                     =@attributeDescriptor
+                  html-field-prefix                             ="CreateNewTopic"
+                  target-url                                    =@($"{Url.Action("Edit")}?ContentType={{Key}}&IsNew=true")
+                  values                                        =@Model.ContentTypeDescriptor.PermittedContentTypes
+                  enable-modal                                  ="false"
+                  on-client-close                               ="">
                 </vc:topic-list>
               </text>
             </div>
