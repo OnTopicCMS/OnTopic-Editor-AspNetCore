@@ -1,7 +1,9 @@
 ﻿@model TopicListAttributeViewModel
 
 @{
-  Layout = "~/Views/Editor/Components/_Layout.cshtml";
+  if (Model.TargetUrl == null) {
+    Layout = "~/Views/Editor/Components/_Layout.cshtml";
+  }
 }
 
 @if (Model.TopicList.Count > 2 || String.IsNullOrEmpty(Model.TargetUrl)) {
