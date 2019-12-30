@@ -28,7 +28,7 @@
       rootVisible               : false,
       listeners                 : {
         click: function (n) {
-          var targetUrl = "@(Url.Action("Edit")+Model.AttributeDescriptor.Key)/" + n.attributes.key;
+          var targetUrl = "@($"{Url.Action("Edit")}/{Model.AttributeDescriptor.Key}/")" + n.attributes.key;
           @if (Model.AttributeDescriptor.EnableModal?? true) {
             <text>
               initEditorModal('@Model.AttributeDescriptor.Key', n.attributes.text, targetUrl + '?IsModal=true', @($"{Model.AttributeDescriptor.Key}Tree_refresh"));return false;
