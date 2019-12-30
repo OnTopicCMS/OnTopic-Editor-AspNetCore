@@ -17,6 +17,7 @@
     <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
     <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia Models Library</PackageTags>
+    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
