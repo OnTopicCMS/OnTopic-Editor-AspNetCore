@@ -52,7 +52,7 @@
     }
 
     <main id="MainContentArea" class="@(Model.IsModal? "container-fluid" : "container")" role="main">
-      <div class="row">
+      <div class="row @(Model.IsModal? "no-gutters" : "")">
 
         <!-- Primary (Treeview) Sidebar -->
         @if (!Model.IsModal) {
