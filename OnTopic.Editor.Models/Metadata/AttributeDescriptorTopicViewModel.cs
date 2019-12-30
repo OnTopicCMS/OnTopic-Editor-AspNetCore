@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using OnTopic.Metadata;
+using OnTopic.Metadata.AttributeTypes;
 
 namespace OnTopic.Editor.Models.Metadata {
 
@@ -49,6 +50,19 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Determines how the attribute is modeled in terms of the object-oriented code (e.g., as a relationship? An attribute?).
     /// </summary>
     public virtual ModelType ModelType { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: EDITOR TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines the editor type to display for the attribute.
+    /// </summary>
+    /// <remarks>
+    ///   In OnTopic 4.0.0+, the <see cref="EditorType"/> corresponds to the <see cref="AttributeTypeDescriptor"/> subtype name,
+    ///   such as <see cref="BooleanAttribute"/>. This can be used by the editor to determine the appropriate view component to
+    ///   display.
+    /// </remarks>
+    public virtual string EditorType { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: DISPLAY GROUP
