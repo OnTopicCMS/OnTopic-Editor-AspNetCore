@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -90,16 +91,45 @@ namespace OnTopic.Editor.AspNetCore.Components {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Get implicit values
+      | Get permitted content types for container
+      >-------------------------------------------------------------------------------------------------------------------------
+      | Containers provide special rules allowing the permitted content types to be defined—or even expanded—on the topic
+      | instance itself, instead of exclusively on the content type descriptor. This is useful since often containers are meant
+      | to organize a specific type of content. For example, a Container called "Forms" might be used exclusively to organized
+      | Form topics.
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypes          = _topicRepository.GetContentTypeDescriptors();
-      var currentContentType    = contentTypes.GetTopic(currentTopic.ContentType);
+      var actualTopic           = _topicRepository.Load(currentTopic.Id);
+      var actualContentType     = contentTypes.GetTopic(currentTopic.ContentType);
 
-      //If no permitted content types are explicitly set, then implicitly
-      if (viewModel.TopicList.Count.Equals(1) && !currentContentType.DisableChildTopics) {
+      if (actualContentType.Key.Equals("Container", StringComparison.InvariantCultureIgnoreCase)) {
+        viewModel.TopicList.AddRange(
+          actualTopic
+            .Relationships
+            .GetTopics("ContentTypes")
+            .Select(c =>
+              new SelectListItem {
+                Value           = getValue(c.Key),
+                Text            = c.Title
+              }
+            )
+        );
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Get implicit values
+      >-------------------------------------------------------------------------------------------------------------------------
+      | If no permitted content types are explicitly defined on the content type—or the topic, in the case of a container—then
+      | we instead load a generic list of content types. We don't want to display all content types, however, as many make
+      | little sense outside of specific contexts. For instance, most content types that derive from Items only make sense as
+      | nested topics. Similarly, specialized types like Home might only make sense in one location. To facilitate this, only
+      | content types explicitly annotated as "implicitly permitted", and which are not marked as hidden are displayed. This
+      | typically include the Page content type, and popular derivatives of it, such as Content List.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (viewModel.TopicList.Count.Equals(1) && !actualContentType.DisableChildTopics) {
         viewModel.TopicList.AddRange(
           contentTypes
-            .Where(c => currentContentType.Equals("Container") || c.Attributes.GetBoolean("ImplicitlyPermitted", false))
+            .Where(c => actualContentType.Equals("Container") || c.Attributes.GetBoolean("ImplicitlyPermitted", false))
             .Where(c => !c.IsHidden)
             .OrderBy(c => c.Title)
             .Select(c =>
