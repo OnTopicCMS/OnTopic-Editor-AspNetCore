@@ -1,0 +1,14 @@
+﻿@model TopicListAttributeViewModel
+
+@{
+    Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+}
+
+<select
+  asp-for                       ="Value"
+  asp-items                     ="Model.TopicList"
+  class                         ="@Model.AttributeDescriptor.CssClass form-control form-inline"
+  disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
+  required                      =@Model.AttributeDescriptor.IsRequired
+  >
+</select>

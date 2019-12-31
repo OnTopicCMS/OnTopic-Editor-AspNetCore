@@ -1,0 +1,49 @@
+﻿@model ContentTypeListViewModel
+
+@if (Model.TopicList.Count == 1) {
+  <!-- New topics are not permitted in this context -->
+}
+
+else if (Model.TopicList.Count > 2) {
+
+  <select
+    id                          =@($"ContentTypesFor_{Model.AttributeKey}")
+    class                       ="form-control form-inline"
+    asp-items                   ="Model.TopicList"
+    >
+  </select>
+
+  <script>
+    (function ($) {
+      $("#@($"ContentTypesFor_{Model.AttributeKey}")").change(function () {
+        var option = $('option:selected', this);
+        @if (Model.EnableModal?? false) {
+          <text>
+            initEditorModal('@Model.AttributeKey', option.text(), option.val(), @Model.OnModalClose); return false;
+          </text>
+        }
+        else {
+          <text>
+            window.location.href = option.val();
+          </text>
+        }
+      });
+    })(jQuery);
+  </script>
+
+}
+
+else {
+  <div class="ChildTopic">
+    @if (Model.EnableModal == true) {
+      <a onclick="initEditorModal('@Model.AttributeKey', '@Model.TopicList.LastOrDefault().Text', '@Model.TopicList.LastOrDefault().Value', @Model.OnModalClose); return false;" class="btn btn-info btn-sm">
+        Add @Model.TopicList.LastOrDefault().Text
+      </a>
+    }
+    else {
+      <a href="@Model.TopicList.LastOrDefault().Value" class="btn btn-info btn-sm">
+        Add @Model.TopicList.LastOrDefault().Text
+      </a>
+    }
+  </div>
+}

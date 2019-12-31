@@ -1,0 +1,21 @@
+﻿@model FileListAttributeViewModel
+
+@{
+  Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+}
+
+@if (Model.Files.Count > 0) {
+  <select
+    asp-for                     ="Value"
+    asp-items                   =@Model.Files
+    class                       ="@Model.AttributeDescriptor.CssClass form-control"
+    disabled                    =@(!Model.AttributeDescriptor.IsEnabled)
+    required                    =@Model.AttributeDescriptor.IsRequired
+  >
+  </select>
+}
+
+else {
+  <input type="hidden" asp-for="Value" />
+  <span class="instructions error">The file location '@Model.AbsolutePath' could not be located, so the file list is not being displayed.</span>
+}

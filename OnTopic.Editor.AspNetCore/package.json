@@ -1,0 +1,30 @@
+{
+  "name": "Ignia.Topics.Editor.Mvc",
+  "description": "Loads client-side dependencies for the Topic Editor.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ignia/topic-editor-mvc.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "bootstrap": "^4.3.1",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^3.0.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "jquery": "^3.4.1",
+    "jquery-tokeninput": "^1.6.0",
+    "jquery-ui-dist": "^1.12.1",
+    "jquery-ui-timepicker-addon": "^1.6.3",
+    "jquery-validation": "^1.19.1",
+    "jquery.are-you-sure": "^1.9.0",
+    "jshint": "^2.10.2",
+    "merge2": "^1.3.0",
+    "popper.js": "^1.16.0"
+  }
+}

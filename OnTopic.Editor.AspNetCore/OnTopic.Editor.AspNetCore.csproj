@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Ignia</Authors>
+    <Company>Ignia</Company>
+    <Product>Ignia OnTopic Editor</Product>
+    <Description>The OnTopic Editor provides a content management interface to Ignia's OnTopic Library, thus allowing users to modify semi-structured, device-independent data. This distribution provides a .NET Core 3 support.</Description>
+    <Copyright>©2020 Ignia, LLC</Copyright>
+    <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
+    <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia</PackageTags>
+    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CS0618</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="GitVersionTask" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OnTopic" Version="4.0.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.0.0" />
+    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.0.0" />
+    <PackageReference Include="Newtonsoft.Json" version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\shared\**\*.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnTopic.Editor.Models\OnTopic.Editor.Models.csproj" />
+  </ItemGroup>
+
+</Project>

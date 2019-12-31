@@ -1,0 +1,25 @@
+﻿@model AttributeViewModel
+
+<!-- Begin: @(((RazorView)ViewContext.View).Path) -->
+
+<section id="@Model.AttributeDescriptor.Key" class="attribute @Model.AttributeDescriptor.Key">
+
+  @Html.LabelFor(m => m.Value, Model.AttributeDescriptor.Title)
+  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="@Model.AttributeDescriptor.Description"></i>
+  <div class="fields @Model.AttributeDescriptor.CssClass">
+
+    <input type="hidden" asp-for="AttributeDescriptor.Key" />
+    <input type="hidden" asp-for="AttributeDescriptor.ContentType" />
+
+    @RenderBody()
+
+  </div>
+
+  <div style="display: none;">
+    _value: @Model.Value
+    <br />InheritedValue: @Model.InheritedValue
+  </div>
+
+</section>
+
+<!-- End: @(((RazorView)ViewContext.View).Path) -->

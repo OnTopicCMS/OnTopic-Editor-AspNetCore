@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <LangVersion>8.0</LangVersion>
+    <AssemblyTitle>OnTopic.Editor.Models</AssemblyTitle>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Ignia</Authors>
+    <Company>Ignia</Company>
+    <Product>Ignia OnTopic Editor Models</Product>
+    <Description>Provides view and binding models in support for the OnTopic Editor.</Description>
+    <Copyright>©2020 Ignia, LLC</Copyright>
+    <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
+    <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia Models Library</PackageTags>
+    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OnTopic" Version="4.0.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.0.0" />
+    <PackageReference Include="System.Text.Json" Version="4.6.0" />
+  </ItemGroup>
+
+</Project>

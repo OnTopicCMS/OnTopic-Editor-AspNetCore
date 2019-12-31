@@ -1,0 +1,166 @@
+﻿//==============================================================================================
+// FORMS
+//----------------------------------------------------------------------------------------------
+// Defines global styles for form related elements, such as inputs.
+//----------------------------------------------------------------------------------------------
+// NOTE: Font styles should be defined in _typography.scss.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+// @import "../Vendor/RedCastor/awesome-foundation6-checkbox";
+@import '../variables';
+
+//----------------------------------------------------------------------------------------------
+// GLOBAL
+//----------------------------------------------------------------------------------------------
+.form {
+  background-color              : $white;
+}
+
+//----------------------------------------------------------------------------------------------
+// FIELDSET
+//----------------------------------------------------------------------------------------------
+fieldset {
+  legend {
+    margin-bottom               : rem-calc(18);
+    padding-top                 : rem-calc(34);
+    font-family                 : $heading-font-family;
+    font-size                   : rem-calc(20);
+    font-weight                 : 600;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// LABELS
+//----------------------------------------------------------------------------------------------
+label, .label {
+}
+
+//----------------------------------------------------------------------------------------------
+// INPUT
+//----------------------------------------------------------------------------------------------
+input {
+  &.submit {
+    margin-bottom               : 0;
+  }
+}
+textarea {
+  max-width                     : 100%;
+  min-height                    : 128px;
+}
+.form-control {
+  border-radius                 : 1px;
+  &:focus,
+  &:active {
+    border-color                : $blue;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// FANCY INPUTS (radio buttons, checkboxes)
+//----------------------------------------------------------------------------------------------
+.radio,
+.checkbox {
+  label {
+    height                      : auto;
+    line-height                 : 20px;
+    &:before {
+    }
+  }
+  input[type="radio"],
+  input[type="checkbox"] {
+    &:checked {
+      + label {
+        &:before {
+        }
+      }
+    }
+  }
+}
+.radio {
+  label {
+    &:after {
+      top                       : 2px !important;
+      left                      : 2px !important;
+      width                     : 17px !important;
+      height                    : 17px !important;
+    }
+  }
+  input[type="radio"] {
+    &:checked {
+      + label:after {
+        background-color        : $blue;
+      }
+    }
+  }
+}
+span.radio {
+  display                       : block;
+}
+.checkbox {
+  padding-bottom                : rem-calc(20);
+  label {
+    &:after {
+      line-height               : 1.8;
+      color                     : $black;
+    }
+  }
+  input[type="checkbox"] {
+    &:checked {
+      + label {
+        &:before {
+          background-color      : $blue;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// BUTTONS
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// VALIDATION
+//----------------------------------------------------------------------------------------------
+
+//Tabs
+a.nav-link.error {
+  border-bottom-color           : $red !important;
+  small.required {
+    color                       : $red;
+  }
+}
+
+//Summary
+.validation-summary-errors {
+  padding                       : 20px 0px;
+  color                         : $red;
+}
+
+//Labels
+section.attribute label.error {
+  color                         : $red;
+  font-style                    : italic;
+}
+
+//Form fields
+section.attribute input.error {
+  border-color                  : $red;
+  background-color              : tint($red, 10%);
+}
+
+//----------------------------------------------------------------------------------------------
+// SUPPORTING STYLES
+//----------------------------------------------------------------------------------------------
+.instructions {
+  font-size: rem-calc(16);
+  font-style: italic;
+  color: $grey-medium;
+
+  &.error {
+    color: $red;
+  }
+}

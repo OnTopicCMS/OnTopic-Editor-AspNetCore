@@ -1,0 +1,62 @@
+﻿@model OnTopic.Editor.Models.EditorViewModel
+
+@{
+  Layout = null;
+  var displayGroups = Model.ContentTypeDescriptor.GetDisplayGroups();
+}
+
+<div id="Toolbar" class="toolbar">
+  <!-- Action Buttons -->
+  <div class="action buttons">
+
+    @if (Model.Topic.VersionHistory.Count > 1) {
+      <!-- Versions -->
+      <div id="VersionsDropdown" class="dropdown" style="display:inline-block;">
+        <button class="btn btn-sm btn-ancillary dropdown-toggle" type="button" id="VersionsButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="fa fa-history"></span>
+          Versions
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="VersionsButton" style="left: 3px; top: 98%;">
+          @foreach (DateTime version in Model.Topic.VersionHistory) {
+            <li role="presentation" class="small">
+              <a tabindex="-1" role="menuitem" href="@Url.Action("SetVersion", "Editor", new { path=Model.Topic.WebPath, version=version.ToString("MM/dd/yyyy hh:mm:ss.fff tt"), isModal=Model.IsModal })">@version.ToString()</a>
+            </li>
+          }
+        </ul>
+      </div>
+      <!-- /Versions -->
+    }
+
+    <!-- Cancel -->
+    @if (Model.IsModal) {
+      <button id="ModalCloseButton" type="button" class="btn btn-ancillary btn-sm" data-dismiss="modal">Cancel</button>
+    }
+    <!-- /Cancel -->
+
+    <!-- Delete -->
+    @if (!Model.IsNew && !Model.ContentTypeDescriptor.DisableDelete) {
+      <a
+        id                        ="DeletePageButton"
+        data-title                ="@Model.Topic.Title?.Replace("\"", "&quot;")"
+        href                      =@Url.Action("Delete", "Editor", new { path=Model.Topic.WebPath, isModal=Model.IsModal })
+        class                     ="btn btn-default btn-sm"
+      >Delete</a>
+    }
+
+    <!-- Save -->
+    <button id="SavePageButton" type="submit" class="btn btn-primary btn-sm">Save</button>
+
+  </div>
+  <!-- /Action Buttons -->
+
+  <ul id="DisplayGroupNavTabs" class="nav nav-tabs" role="tablist">
+    @for (int i = 0; i < @displayGroups.Count(); i++) {
+      var displayGroupName      = displayGroups[i];
+      var displayGroupId        = displayGroups[i].Replace(" ", String.Empty);
+      <li class="nav-item">
+        <a id="Tab_@displayGroupId" class="nav-link @(i == 0 ? "active" : "")" href="#Group_@displayGroupId" data-toggle="tab" role="tab" aria-controls="#Group_@displayGroupId" @(i == 0 ? "aria-expanded=\"true\"" : "")>@displayGroupName</a>
+      </li>
+    }
+  </ul>
+</div>

@@ -1,0 +1,181 @@
+﻿//==============================================================================================
+// TREE VIEW
+//----------------------------------------------------------------------------------------------
+// Defines styles associated with the ExtJS treeview / navigation panel.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+@import '../../variables';
+
+//----------------------------------------------------------------------------------------------
+// LAYOUT
+//----------------------------------------------------------------------------------------------
+.sidebar {
+  padding-top                   : 50px;
+  padding-left                  : 0px;
+  .treeview {
+    margin-left                 : -16px; //Compensates .x-tree-node-indent
+    margin-bottom               : 25px;
+    input[type="checkbox"] {
+      display                   : none;
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// CORE
+//----------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------
+// OVERRIDES
+//----------------------------------------------------------------------------------------------
+.x-tree-arrows {
+  .x-tree-elbow-minus,
+  .x-tree-elbow-plus,
+  .x-tree-elbow-end-minus,
+  .x-tree-elbow-end-plus,
+  .x-tree-elbow,
+  .x-tree-elbow-end {
+    background-repeat           : no-repeat;
+  }
+  .x-tree-elbow-minus,
+  .x-tree-elbow-plus,
+  .x-tree-elbow-end-minus,
+  .x-tree-elbow-end-plus {
+    background-image            : url('../../Images/Navigation/Arrows.png');
+    background-position         : 4px 0;
+  }
+  .x-tree-elbow,
+  .x-tree-elbow-end {
+    background-image            : url('../../Images/Navigation/Dashes.png');
+    background-position         : 3px 4px;
+  }
+}
+.x-tree-node-collapsed,
+.x-tree-node-expanded,
+.x-tree-node-leaf {
+  .x-tree-node-icon {
+    display                     : none;
+    background-image            : none;
+  }
+}
+.x-tree-root-node {
+  > .x-tree-node {
+    padding-left                : 3px;
+  }
+}
+.x-tree-node {
+  padding                       : 1px 0;
+  font-size                     : 14px;
+  white-space                   : normal;
+  .x-tree-selected,
+  .x-tree-node-over {
+    background-color            : transparent;
+  }
+  .x-tree-node-el {
+    overflow                    : hidden;
+    border                      : 1px solid transparent;
+    padding                     : 0 5px 0 3px;
+    line-height                 : normal;
+    color                       : $grey-lighter;
+    white-space                 : nowrap;
+    text-overflow               : ellipsis;
+    &.x-tree-node-expanded {
+      .x-tree-elbow-minus,
+      .x-tree-elbow-end-minus {
+        margin-right            : -2px;
+        margin-left             : 1px;
+        background-position     : -50px 0;
+      }
+    }
+    &.x-tree-selected,
+    &.x-tree-node-over {
+      background-color          : transparent;
+      .x-tree-elbow,
+      .x-tree-elbow-end {
+        background-position     : -11px 4px;
+      }
+      .x-tree-elbow-plus {
+        background-position     : -31px 0;
+      }
+      .x-tree-elbow-minus,
+      .x-tree-elbow-end-minus {
+        background-position     : -16px 0;
+      }
+      a {
+        text-decoration         : none !important;
+        span {
+          color                 : $white;
+        }
+      }
+    }
+    a {
+      &.x-tree-node-anchor {
+        padding-right           : 5px;
+        padding-left            : 5px;
+      }
+      span {
+        font-family             : $base-font-family;
+        font-size               : 13px;
+        letter-spacing          : 0.02em;
+        color                   : $grey-lighter;
+      }
+    }
+    .x-tree-node-indent {
+      display                   : inline-block;
+      margin-right              : 5px;
+      margin-left               : 0;
+    }
+    .x-tree-node-ct {
+      display                   : block;
+      overflow                  : visible;
+      margin-left               : 0;
+      padding                   : 1px 0;
+      .x-tree-ec-icon {
+        .x-tree-elbow-plus {
+          background-position   : 4px 0;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// RELATIONSHIPS TREEVIEW OVERRIDES
+//----------------------------------------------------------------------------------------------
+.tab-content {
+  .x-tree-root-ct {
+    margin                      : 0 0 5px;
+    .x-tree-node-indent {
+      &:before {
+        color                   : $grey-lighter;
+      }
+    }
+    .x-tree-node {
+      .x-tree-node-el {
+        padding                 : 0 0 5px;
+        &.x-tree-selected,
+        &.x-tree-node-over {
+          border-color          : transparent;
+          background-color      : transparent;
+          .tree-node-indent {
+            &:before {
+              color             : $red;
+            }
+          }
+        }
+        a {
+          span {
+            color               : $grey-dark;
+          }
+        }
+        input[type="checkbox"] {
+          margin                : 0 0 0 3px;
+        }
+      }
+    }
+  }
+}
