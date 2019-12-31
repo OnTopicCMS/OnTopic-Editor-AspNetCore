@@ -102,6 +102,7 @@ namespace OnTopic.Editor.AspNetCore {
         nameof(TokenizedTopicListViewComponent)                 => new TokenizedTopicListViewComponent(_topicRepository),
         nameof(TopicListViewComponent)                          => new TopicListViewComponent(_topicRepository),
         nameof(TopicReferenceViewComponent)                     => new TopicReferenceViewComponent(),
+        nameof(ContentTypeListViewComponent)                    => new ContentTypeListViewComponent(_topicRepository),
         _                                                       => throw new Exception($"Unknown view component {type.Name}")
       };
 

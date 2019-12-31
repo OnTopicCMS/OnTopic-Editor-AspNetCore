@@ -72,6 +72,15 @@ namespace OnTopic.Editor.Models.Metadata {
     public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; set; }
 
     /*==========================================================================================================================
+    | PROPERTY: IMPLICITLY PERMITTED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Content types that are marked as implicitly permitted can be created anywhere. Implicitly permitted content types are
+    ///   always superceded by explicitly defined <see cref="PermittedContentTypes"/>.
+    /// </summary>
+    public bool ImplicitlyPermitted { get; set; }
+
+    /*==========================================================================================================================
     | METHOD: GET DISPLAY GROUPS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

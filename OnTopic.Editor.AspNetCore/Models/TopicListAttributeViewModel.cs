@@ -50,33 +50,5 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// </remarks>
     public List<SelectListItem> TopicList { get; } = new List<SelectListItem>();
 
-    /*==========================================================================================================================
-    | ENABLE MODAL
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   If a <see cref="TargetUrl"/> is supplied, and <see cref="EnableModal"/> is set to <c>true</c>, then the <see
-    ///   cref="TargetUrl"/> will be loaded in a modal window. Otherwise, the <see cref="TargetUrl"/> will be loaded via a
-    ///   redirect. The default is <c>false</c>.
-    /// </summary>
-    public bool? EnableModal { get; set; }
-
-    /*==========================================================================================================================
-    | TARGET URL
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   The <see cref="TargetUrl"/> allows the dropdown control to trigger the loading of a new page based on the value of
-    ///   the dropdown box. The new page is loaded using the LoadPage event handler, and may optionally be handled as a redirect
-    ///   (default) or a modal (based on the <see cref="TopicListAttributeTopicViewModel.EnableModal"/> boolean).
-    /// </summary>
-    public string TargetUrl { get; set; }
-
-    /*==========================================================================================================================
-    | ON MODAL CLOSE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   If supplied, sets a reference to a callback function to execute on close of the editor modal window.
-    /// </summary>
-    public string OnModalClose { get; set; }
-
   } // Class
 } // Namespace

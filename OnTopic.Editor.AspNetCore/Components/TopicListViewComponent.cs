@@ -13,7 +13,6 @@ using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
 using OnTopic.Editor.Models.Queryable;
 using OnTopic.Repositories;
-using OnTopic.ViewModels;
 
 namespace OnTopic.Editor.AspNetCore.Components {
 
@@ -49,11 +48,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
       TopicListAttributeTopicViewModel attribute,
-      string htmlFieldPrefix = null,
-      IEnumerable<TopicViewModel> values = null,
-      string targetUrl = null,
-      bool? enableModal = null,
-      string onClientClose = null
+      string htmlFieldPrefix = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -65,9 +60,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
       attribute.ValueProperty   ??= attribute.GetConfigurationValue(            "ValueProperty",        null);
       var       allowedKeys       = attribute.GetConfigurationValue(            "AllowedKeys",          null);
-                enableModal     ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          false);
-                targetUrl       ??= attribute.GetConfigurationValue(            "TargetUrl",            null);
-                onClientClose   ??= attribute.GetConfigurationValue(            "OnClientClose",        null);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -99,24 +91,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topics = (List<QueryResultTopicViewModel>)null;
 
-      //### HACK JJC20191031: Since Topic and TopicViewModel aren't intercompatible, and the remaining processing is based on
-      //Topic, we're converting any preconfigured topics from TopicViewModel back to Topic by looking them up in the repository.
-      //This, of course, assumes that the topic view models refer to existing topics in the repository.
-      if (values != null && values.Count() > 0) {
-        topics = new List<QueryResultTopicViewModel>();
-        foreach (var topicViewModel in values.Where(t => !t.IsHidden)) {
-          topics.Add(
-            new QueryResultTopicViewModel(
-              topicViewModel.Id,
-              topicViewModel.Key,
-              topicViewModel.Title,
-              topicViewModel.UniqueKey,
-              topicViewModel.WebPath
-            )
-          );
-        }
-      }
-      else if (attribute.RelativeTopicBase != null) {
+      if (attribute.RelativeTopicBase != null) {
         var baseTopic             = _topicRepository.Load(currentTopic.UniqueKey);
         var rootTopic             = attribute.RelativeTopicBase switch {
           "CurrentTopic"          => baseTopic,
@@ -160,13 +135,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set navigation related properties
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      viewModel.TargetUrl       = targetUrl;
-      viewModel.EnableModal     = enableModal;
-      viewModel.OnModalClose    = onClientClose;
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(viewModel);
@@ -174,20 +142,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Helper functions
       \-----------------------------------------------------------------------------------------------------------------------*/
-      string getValue(QueryResultTopicViewModel topic) {
-        if (!String.IsNullOrEmpty(targetUrl)) {
-          // Add TopicID if not already available
-          var uniqueTargetUrl = targetUrl;
-          if (
-            uniqueTargetUrl.IndexOf("?") >= 0 &&
-            uniqueTargetUrl.IndexOf("TopicID", StringComparison.InvariantCultureIgnoreCase) < 0
-          ) {
-            uniqueTargetUrl     += "&TopicID=" + topic.Id.ToString();
-          }
-          return ReplaceTokens(topic, uniqueTargetUrl);
-        }
-        return ReplaceTokens(topic, "{" + attribute.ValueProperty + "}");
-      }
+      string getValue(QueryResultTopicViewModel topic) => ReplaceTokens(topic, "{" + attribute.ValueProperty + "}");
 
     }
 

@@ -85,24 +85,13 @@
 <div id="@ViewData.TemplateInfo.GetFullHtmlFieldName("Container")"></div>
 
 @if (!Model.IsNew) {
-  var attributeDescriptor       = new TopicListAttributeTopicViewModel() {
-    Key                         = Model.AttributeDescriptor.Key,
-    ContentType                 = "TopicListAttribute",
-    RootTopicKey                = "Configuration:ContentTypes",
-    AttributeKey                = "ContentType",
-    AttributeValue              = "ContentType",
-    DefaultLabel                = "Add child topic…"
-  };
   <text>
-    <vc:topic-list
+    <vc:content-type-list
       current-topic             =@Model.CurrentTopic
-      attribute                 =@attributeDescriptor
-      html-field-prefix         =@ViewData.TemplateInfo.HtmlFieldPrefix
-      target-url                =@($"{Url.Action("Edit")}{Model.AttributeDescriptor.Key}/?ContentType={{Key}}&IsNew=true&IsModal=true")
-      enable-modal              =@Model.AttributeDescriptor.EnableModal
-      values                    =@Model.AttributeDescriptor.PermittedContentTypes
-      on-client-close           =@($"{Model.AttributeDescriptor.Key}Tree_refresh")>
-    </vc:topic-list>
+      attribute-descriptor      =@Model.AttributeDescriptor
+      on-modal-close            =@($"{Model.AttributeDescriptor.Key}Tree_refresh")
+      values                    =@Model.AttributeDescriptor.PermittedContentTypes>
+    </vc:content-type-list>
   </text>
 }
 else {
