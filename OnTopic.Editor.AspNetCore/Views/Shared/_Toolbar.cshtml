@@ -3,10 +3,6 @@
 @{
   Layout = null;
   var displayGroups = Model.ContentTypeDescriptor.GetDisplayGroups();
-  bool? disableDelete = null;
-  if (Model.ContentTypeDescriptor.DisableDelete) {
-    disableDelete = true;
-  }
 }
 
 <div id="Toolbar" class="toolbar">
@@ -39,12 +35,11 @@
     <!-- /Cancel -->
 
     <!-- Delete -->
-    @if (!Model.IsNew) {
+    @if (!Model.IsNew && !Model.ContentTypeDescriptor.DisableDelete) {
       <a
         id                        ="DeletePageButton"
         data-title                ="@Model.Topic.Title?.Replace("\"", "&quot;")"
         href                      =@Url.Action("Delete", "Editor", new { path=Model.Topic.WebPath, isModal=Model.IsModal })
-        disabled                  =@disableDelete
         class                     ="btn btn-default btn-sm"
       >Delete</a>
     }
