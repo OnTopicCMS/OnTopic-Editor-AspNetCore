@@ -39,13 +39,15 @@
     <!-- /Cancel -->
 
     <!-- Delete -->
-    <a
-      id                        ="DeletePageButton"
-      data-title                ="@Model.Topic.Title?.Replace("\"", "&quot;")"
-      href                      =@Url.Action("Delete", "Editor", new { path=Model.Topic.WebPath, isModal=Model.IsModal })
-      disabled                  =@disableDelete
-      class                     ="btn btn-default btn-sm"
-    >Delete</a>
+    @if (!Model.IsNew) {
+      <a
+        id                        ="DeletePageButton"
+        data-title                ="@Model.Topic.Title?.Replace("\"", "&quot;")"
+        href                      =@Url.Action("Delete", "Editor", new { path=Model.Topic.WebPath, isModal=Model.IsModal })
+        disabled                  =@disableDelete
+        class                     ="btn btn-default btn-sm"
+      >Delete</a>
+    }
 
     <!-- Save -->
     <button id="SavePageButton" type="submit" class="btn btn-primary btn-sm">Save</button>
