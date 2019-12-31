@@ -58,7 +58,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       attribute.RootTopicKey    ??= attribute.GetConfigurationValue(            "Scope",                null);
       attribute.AttributeKey    ??= attribute.GetConfigurationValue(            "AttributeName",        null);
       attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
-      attribute.ValueProperty   ??= attribute.GetConfigurationValue(            "ValueProperty",        null);
+      attribute.ValueProperty   ??= attribute.GetConfigurationValue(            "ValueProperty",        "Key");
       var       allowedKeys       = attribute.GetConfigurationValue(            "AllowedKeys",          null);
 
       /*------------------------------------------------------------------------------------------------------------------------
