@@ -5,14 +5,20 @@
 \=============================================================================================================================*/
 using System;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Collections;
+using OnTopic.Data.Transfer;
+using OnTopic.Data.Transfer.Interchange;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.BindingModels;
 using OnTopic.Editor.Models.Metadata;
 using OnTopic.Editor.Models.Queryable;
+using OnTopic.Editor.Models.Transfer;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 using OnTopic.Metadata;
@@ -546,6 +552,54 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
     }
 
-  } // Class
+    /*==========================================================================================================================
+    | [GET] EXPORT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Presents options for exporting the current topic.
+    /// </summary>
+    public async Task<IActionResult> Export() {
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH CONTENT TYPE VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentTypeDescriptor = GetContentType(CurrentTopic.ContentType);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var editorViewModel = await GetEditorViewModel<ExportViewModel>(contentTypeDescriptor, false, false);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN VIEW (MODEL)
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View(editorViewModel);
+
+    }
+
+    /*==========================================================================================================================
+    | [POST] EXPORT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Exports the current topic, based on any specified <see cref="ExportOptions"/>.
+    /// </summary>
+    /// <param name="options">The <see cref="ExportOptions"/> for determing what values should be exported.</param>
+    [HttpPost]
+    public IActionResult Export([Bind(Prefix="ExportOptions")]ExportOptions options) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | EXPORT TO JSON
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var topicData             = CurrentTopic.Export(options);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN JSON
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return Json(topicData);
+
+    }
+
+
+
+  } // Class
 } // Namespace
