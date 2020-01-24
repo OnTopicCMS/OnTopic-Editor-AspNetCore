@@ -38,13 +38,13 @@ else {
     @if (Model.EnableModal == true) {
       <a onclick="initEditorModal('@Model.AttributeKey', '@Model.TopicList.LastOrDefault().Text', '@Model.TopicList.LastOrDefault().Value', @Model.OnModalClose); return false;" class="btn btn-info btn-sm">
         <span class="fa fa-plus"></span>
-        Add @Model.TopicList.LastOrDefault().Text
+        @Model.TopicList.LastOrDefault().Text
       </a>
     }
     else {
       <a href="@Model.TopicList.LastOrDefault().Value" class="btn btn-info btn-sm">
         <span class="fa fa-plus"></span>
-        Add @Model.TopicList.LastOrDefault().Text
+        @Model.TopicList.LastOrDefault().Text
       </a>
     }
   </div>
