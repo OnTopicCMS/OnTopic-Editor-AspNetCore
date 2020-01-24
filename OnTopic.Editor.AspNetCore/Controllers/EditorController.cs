@@ -592,11 +592,15 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | EXPORT TO JSON
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicData             = CurrentTopic.Export(options);
+      var json                  = JsonSerializer.Serialize(topicData);
+      var jsonStream            =  new MemoryStream(Encoding.UTF8.GetBytes(json));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN JSON
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return Json(topicData);
+      return new FileStreamResult(jsonStream, "application/json") {
+        FileDownloadName        = CurrentTopic.GetUniqueKey().Replace(":", ".", StringComparison.Ordinal) + ".json"
+      };
 
     }
 
