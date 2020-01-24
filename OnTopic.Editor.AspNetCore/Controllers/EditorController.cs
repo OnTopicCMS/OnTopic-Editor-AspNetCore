@@ -114,11 +114,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <param name="isNew">Determines whether the topic represents a new or existing object.</param>
     /// <param name="isModal">Determines whether whether the view is being displayed within a modal window.</param>
     /// <returns>The Content Type associated with the current request.</returns>
-    protected async Task<EditorViewModel> GetEditorViewModel(
+    protected async Task<T> GetEditorViewModel<T>(
       ContentTypeDescriptor contentTypeDescriptor,
       bool isNew,
       bool isModal
-    ) {
+    ) where T: EditorViewModel, new() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
@@ -174,7 +174,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH AND RETURN VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return new EditorViewModel(topicViewModel, contentTypeViewModel, isNew, isModal);
+      return new T() {
+        Topic                   = topicViewModel,
+        ContentTypeDescriptor   = contentTypeViewModel,
+        IsNew                   = isNew,
+        IsModal                 = isModal
+      };
 
     }
 
@@ -197,7 +202,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel(contentTypeDescriptor, isNew, isModal);
+      var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -271,7 +276,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       if (!ModelState.IsValid) {
 
         //Establish view model
-        var editorViewModel = await GetEditorViewModel(contentTypeDescriptor, isNew, isModal);
+        var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
 
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
