@@ -1,0 +1,62 @@
+﻿@model ExportViewModel
+
+@{
+  ViewBag.Title = "Export Topic";
+}
+
+<form method="post">
+
+  <div id="Toolbar" class="toolbar">
+    <!-- Action Buttons -->
+    <div class="action buttons">
+      <button type="submit" class="btn btn-primary btn-sm">Export</button>
+    </div>
+  </div>
+
+  <div id="FormArea" class="row form area">
+
+    <div class="col-lg-9 col-sm-12">
+
+      <h2>Export Options</h2>
+
+      <section class="attribute">
+        <input type="checkbox" asp-for="ExportOptions.IncludeChildTopics" />
+        <label asp-for="ExportOptions.IncludeChildTopics">Include Child Topics?</label>
+        <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Recursively includes all child topics—including nested topics—in the export."></i>
+      </section>
+
+      <section class="attribute">
+        <input type="checkbox" asp-for="ExportOptions.IncludeNestedTopics" />
+        <label asp-for="ExportOptions.IncludeNestedTopics">Include Nested Topics?</label>
+        <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Includes nested topics that are part of the current topic to be included in the export."></i>
+      </section>
+
+      <section class="attribute">
+        <input type="checkbox" asp-for="ExportOptions.IncludeExternalReferences" />
+        <label asp-for="ExportOptions.IncludeExternalReferences">Include External References?</label>
+        <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Includes relationships even if the topic they are referencing falls outside the scope of the export."></i>
+      </section>
+
+    </div>
+
+    @if (!Model.IsModal) {
+      <div class="col-lg-3 callouts">
+        <div class="callout topic-info">
+
+          <h3 class="h5">Topic Information</h3>
+          <dl>
+            <dt><i class="fa fa-cogs"></i> Content Type</dt>
+            <dd><a href="/Configuration/ContentTypes/@Model.Topic.ContentType">@Model.Topic.ContentType</a></dd>
+            <dt><i class="fa fa-database"></i> Topic ID</dt>
+            <dd><a href="/Topic/@Model.Topic.Id/">@Model.Topic.Id</a></dd>
+            <dt><i class="fa fa-eye"></i> Current</dt>
+            <dd><a href="@Model.Topic.WebPath">View Page</a></dd>
+          </dl>
+
+        </div>
+      </div>
+    }
+
+  </div>
+
+</form>
