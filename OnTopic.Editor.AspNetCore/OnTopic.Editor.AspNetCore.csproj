@@ -33,7 +33,6 @@
     <PackageReference Include="OnTopic" Version="4.0.0" />
     <PackageReference Include="OnTopic.ViewModels" Version="4.0.0" />
     <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.0.0" />
-    <PackageReference Include="Newtonsoft.Json" version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>
