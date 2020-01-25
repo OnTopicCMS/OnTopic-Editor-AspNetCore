@@ -593,7 +593,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicData             = CurrentTopic.Export(options);
       var json                  = JsonSerializer.Serialize(topicData);
-      var jsonStream            =  new MemoryStream(Encoding.UTF8.GetBytes(json));
+      var jsonStream            =  new MemoryStream(Encoding.UTF8.GetBytes(json), false);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN JSON
