@@ -12,7 +12,6 @@
     <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.0.0" />
     <PackageReference Include="OnTopic.Data.Caching" Version="4.0.0" />
     <PackageReference Include="OnTopic.Data.Sql" Version="4.0.0" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
