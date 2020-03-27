@@ -649,10 +649,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var editorViewModel       = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false);
 
+      options.CurrentUser       = HttpContext.User.Identity.Name?? "System";
+
       editorViewModel.ImportOptions = options;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Validate parameters
+      | VALIDATE PARAMETERS
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (jsonFile == null) {
         ModelState.AddModelError("jsonFile", "The JSON file is required to import data.");
