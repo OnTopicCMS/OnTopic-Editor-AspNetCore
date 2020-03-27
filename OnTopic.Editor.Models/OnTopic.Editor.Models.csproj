@@ -27,9 +27,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OnTopic" Version="4.0.0" />
     <PackageReference Include="OnTopic.Data.Transfer" Version="1.0.0" />
-    <PackageReference Include="OnTopic.ViewModels" Version="4.0.0" />
+    <PackageReference Include="OnTopic" Version="4.1.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.1.0" />
     <PackageReference Include="System.Text.Json" Version="4.6.0" />
   </ItemGroup>
 
