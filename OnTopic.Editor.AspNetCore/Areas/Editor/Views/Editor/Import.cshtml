@@ -16,6 +16,9 @@
         <a id="Tab_Options" class="nav-link active" href="#Group_Options" data-toggle="tab" role="tab" aria-controls="#Group_Options" aria-expanded="true">Options</a>
       </li>
       <li class="nav-item">
+        <a id="Tab_LastModified" class="nav-link" href="#Group_LastModified" data-toggle="tab" role="tab" aria-controls="#Group_LastModified" aria-expanded="true">Attribution</a>
+      </li>
+      <li class="nav-item">
         <a id="Tab_Advanced" class="nav-link" href="#Group_Advanced" data-toggle="tab" role="tab" aria-controls="#Group_Advanced" aria-expanded="true">Advanced</a>
       </li>
     </ul>
@@ -34,6 +37,7 @@
 
     <div class="col-lg-9 col-sm-12">
       <div id="DisplayGroupTabsContent" class="tab-content tab-validate">
+
         <div id="Group_Options" class="tab-pane fade show active" role="tabpanel" aria-labelledby="Tab_Options">
           <section id="Section_Options">
 
@@ -72,6 +76,60 @@
 
           </section>
         </div>
+
+        <div id="Group_LastModified" class="tab-pane fade" role="tabpanel" aria-labelledby="Tab_LastModified">
+          <section id="Section_LastModified">
+
+            <h2>Attribution</h2>
+            <p>
+              Offers granular control over how the byline ("Last Modified By") and dateline ("Last Modified") are updated as part of the import process.
+            </p>
+
+            <h3>Byline</h3>
+            <section class="attribute">
+              <label>
+                <input type="radio" asp-for="ImportOptions.LastModifiedByStrategy" value="@LastModifiedImportStrategy.Inherit" /> Use Import Strategy
+                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Will treat the byline just like any other attribute, merging it according to the import strategy."></i>
+              </label>
+              <br />
+              <label>
+                <input type="radio" asp-for="ImportOptions.LastModifiedByStrategy" value="@LastModifiedImportStrategy.TargetValue" /> Previous Value
+                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Will always retain the existing byline, if present."></i>
+              </label>
+              <br />
+              <label>
+                <input type="radio" asp-for="ImportOptions.LastModifiedByStrategy" value="@LastModifiedImportStrategy.Current" /> Current User (@(Context.User.Identity.Name?? "System"))
+                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Updates the byline to the current user, just like it would when manually updating a topic via the editor."></i>
+              </label>
+              <br />
+              <label>
+                <input type="radio" asp-for="ImportOptions.LastModifiedByStrategy" value="@LastModifiedImportStrategy.System" /> System
+                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Updates the byline to 'System', which indicates that this was part of a system update and shouldn't be assigned to a specific contributor."></i>
+              </label>
+            </section>
+
+            <h3>Dateline</h3>
+            <section class="attribute">
+              <label>
+                <input type="radio" asp-for="ImportOptions.LastModifiedStrategy" value="@LastModifiedImportStrategy.Inherit" /> Use Import Strategy
+                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Will treat the dateline just like any other attribute, merging it according to the import strategy."></i>
+              </label>
+              <br />
+              <label>
+                <input type="radio" asp-for="ImportOptions.LastModifiedStrategy" value="@LastModifiedImportStrategy.TargetValue" /> Previous Value
+                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Will always retain the existing last modified date, if present."></i>
+              </label>
+              <br />
+              <label>
+                <input type="radio" asp-for="ImportOptions.LastModifiedStrategy" value="@LastModifiedImportStrategy.Current" /> Current Time (@DateTime.Now.ToString("g"))
+                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Updates the dateline to the current time, just like it would when manually updating a topic via the editor."></i>
+              </label>
+              <br />
+            </section>
+
+          </section>
+        </div>
+
         <div id="Group_Advanced" class="tab-pane fade" role="tabpanel" aria-labelledby="Tab_Advanced">
           <section id="Section_Advanced">
 
@@ -111,6 +169,7 @@
 
           </section>
         </div>
+
       </div>
     </div>
 
