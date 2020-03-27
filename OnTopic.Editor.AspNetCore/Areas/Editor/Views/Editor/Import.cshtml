@@ -147,22 +147,22 @@
             <h3>Delete Unmatched…?</h3>
             <section class="attribute">
               <label>
-                <input type="checkbox" asp-for="ImportOptions.DeleteUnmatchedAttributes" /> Attributes
+                <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedAttributes)" value="true" /> Attributes
                 <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing attributes if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
               <br />
               <label>
-                <input type="checkbox" asp-for="ImportOptions.DeleteUnmatchedRelationships" /> Relationships
+                <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedRelationships)" value="true" /> Relationships
                 <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing relationships if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
               <br />
               <label>
-                <input type="checkbox" asp-for="ImportOptions.DeleteUnmatchedNestedTopics" /> Nested Topics
+                <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedNestedTopics)" value="true" /> Nested Topics
                 <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing nested topics if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
               <br />
               <label>
-                <input type="checkbox" asp-for="ImportOptions.DeleteUnmatchedChildren" /> Children
+                <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedChildren)" value="true" /> Children
                 <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing children—including nested topics—if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
             </section>
