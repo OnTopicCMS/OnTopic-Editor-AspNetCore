@@ -34,6 +34,15 @@
     }
     <!-- /Cancel -->
 
+    <!-- Export -->
+    @if (!Model.IsModal) {
+      <a href="@Url.Action("Export", "Editor", new { path=Model.Topic.WebPath })" class="btn btn-ancillary btn-sm">
+        <span class="fa fa-arrow-down"></span>
+        Export
+      </a>
+    }
+    <!-- /Export -->
+
     <!-- Delete -->
     @if (!Model.IsNew && !Model.ContentTypeDescriptor.DisableDelete) {
       <a

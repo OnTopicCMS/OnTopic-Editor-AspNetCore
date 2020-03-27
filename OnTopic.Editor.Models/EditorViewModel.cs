@@ -16,38 +16,13 @@ namespace OnTopic.Editor.Models {
   public class EditorViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="EditorViewModel"/> class.
-    /// </summary>
-    public EditorViewModel(
-      EditingTopicViewModel topic,
-      ContentTypeDescriptorTopicViewModel contentTypeDescriptor,
-      bool isNew,
-      bool isModal
-    ) {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Set properties
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic                     = topic;
-      ContentTypeDescriptor     = contentTypeDescriptor;
-      IsNew                     = isNew;
-      IsModal                   = isModal;
-
-    }
-
-    /*==========================================================================================================================
     | TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   The <see cref="EditingTopicViewModel"/> representing the core properties of the currently selected <see
     ///   cref="Topic"/>.
     /// </summary>
-    public EditingTopicViewModel Topic {
-      get;
-    }
+    public EditingTopicViewModel Topic { get; set; }
 
     /*==========================================================================================================================
     | CONTENT TYPE DESCRIPTOR
@@ -56,9 +31,7 @@ namespace OnTopic.Editor.Models {
     ///   The <see cref="ContentTypeDescriptorTopicViewModel"/> representing the core properties of the <see cref="Topic"/>'s
     ///   <see cref="ContentTypeDescriptor"/>.
     /// </summary>
-    public ContentTypeDescriptorTopicViewModel ContentTypeDescriptor {
-      get;
-    }
+    public ContentTypeDescriptorTopicViewModel ContentTypeDescriptor { get; set; }
 
     /*==========================================================================================================================
     | IS MODAL?
@@ -66,9 +39,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Determines whether or not the page should be rendered as a modal (e.g., including the chrome or not).
     /// </summary>
-    public bool IsModal {
-      get;
-    }
+    public bool IsModal { get; set; } = false;
 
     /*==========================================================================================================================
     | IS NEW?
@@ -76,9 +47,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Determines whether or not the page is being newly created.
     /// </summary>
-    public bool IsNew {
-      get;
-    }
+    public bool IsNew { get; set; } = false;
 
   } // Class
 } // Namespace
