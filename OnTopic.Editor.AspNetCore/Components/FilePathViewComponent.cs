@@ -137,7 +137,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
         inheritedValue                        = GetPath(attributeKey, attribute);
       }
       else if (attribute.InheritValue == true) {
-        inheritedValue                        = CurrentTopic.Attributes.GetValue(attributeKey, true);
+        inheritedValue                        = CurrentTopic?.Attributes.GetValue(attributeKey, true)?? "";
       }
 
       return inheritedValue;
@@ -164,7 +164,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       var       filePath                = "";
       var       relativePath            = (string?)null;
       var       startTopic              = CurrentTopic;
-      var       endTopic                = (options.IncludeCurrentTopic is null)? CurrentTopic: CurrentTopic.Parent?? CurrentTopic;
+      var       endTopic                = (options.IncludeCurrentTopic is null)? CurrentTopic: CurrentTopic?.Parent?? CurrentTopic;
       var       truncatePathAtTopic     = options.BaseTopicPath?.Split(',').ToArray()?? Array.Empty<string>();
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -186,13 +186,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Add topic keys (directory names) between the start topic and the end topic based on the topic's WebPath property
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (startTopic != null) {
-        if (startTopic.GetWebPath().Length > endTopic.GetWebPath().Length) {
+        if (startTopic.GetWebPath().Length > endTopic?.GetWebPath().Length) {
           throw new InvalidOperationException(
             $"The path of {startTopic.GetWebPath()} should be shorter than the length of {endTopic.GetWebPath()}."
           );
         }
         var startTopicWebPath           = startTopic.GetWebPath().Replace("/Root/", "/");
-        relativePath                    = endTopic.GetWebPath().Substring(Math.Max(startTopicWebPath.Length-1,0));
+        relativePath                    = endTopic?.GetWebPath().Substring(Math.Max(startTopicWebPath.Length-1,0));
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
