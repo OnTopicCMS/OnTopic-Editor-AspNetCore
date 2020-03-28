@@ -6,11 +6,11 @@
 
 <div class="@Model.AttributeDescriptor.CssClass form-check form-check-inline">
   <label class="form-check-label">
-    <input type="radio" asp-for="Value" value="1" class="form-check-input" checked=@Model.IsTrue() disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired /> Yes
+    <input type="radio" asp-for="Value" value="1" id="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("Yes"), "_")" class="form-check-input" checked=@Model.IsTrue() disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired /> Yes
   </label>
 </div>
 <div class="form-check form-check-inline">
   <label class="form-check-label">
-    <input type="radio" asp-for="Value" value="0" class="form-check-input" checked=@Model.IsFalse() disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired /> No
+    <input type="radio" asp-for="Value" value="0" id="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("No"), "_")" class="form-check-input" checked=@Model.IsFalse() disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired /> No
   </label>
 </div>
