@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Data.Transfer.Interchange;
 
 namespace OnTopic.Editor.Models.Transfer {
