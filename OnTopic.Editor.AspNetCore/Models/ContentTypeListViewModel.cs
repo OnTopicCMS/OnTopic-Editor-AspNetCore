@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.Models;
 
+#nullable enable
+
 namespace OnTopic.Editor.AspNetCore.Models {
 
   /*============================================================================================================================
@@ -31,7 +33,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Provides a reference to the <see cref="EditingTopicViewModel"/> that the user is currently editing.
     /// </summary>
-    public EditingTopicViewModel CurrentTopic { get; set; }
+    public EditingTopicViewModel? CurrentTopic { get; set; }
 
     /*==========================================================================================================================
     | TOPIC LIST
@@ -72,7 +74,9 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   If supplied, sets a reference to a callback function to execute on close of the editor modal window.
     /// </summary>
-    public string OnModalClose { get; set; }
+    public string? OnModalClose { get; set; }
 
   } // Class
 } // Namespace
+
+#nullable disable
