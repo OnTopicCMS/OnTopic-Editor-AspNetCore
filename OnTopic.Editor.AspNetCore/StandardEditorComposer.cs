@@ -66,7 +66,7 @@ namespace OnTopic.Editor.AspNetCore {
     /// <summary>
     ///   Determines whether a given type is capable of being activated by the <see cref="Activate"/> method.
     /// </summary>
-    public bool IsEditorComponent(Type type) =>
+    public static bool IsEditorComponent(Type type) =>
       typeof(StandardEditorComposer).Assembly.Equals(type.Assembly) &&
       typeof(ViewComponent).IsAssignableFrom(type);
 

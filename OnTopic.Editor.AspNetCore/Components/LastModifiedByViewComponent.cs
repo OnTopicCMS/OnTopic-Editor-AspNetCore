@@ -46,13 +46,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new LastModifiedByAttributeViewModel(currentTopic, attribute);
+      var model                 = new LastModifiedByAttributeViewModel(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model.Value = HttpContext.User.Identity.Name ?? "System";
-      model.CurrentValue = currentTopic.Attributes["LastModifiedBy"]?? model.Value;
+      model.CurrentValue        = currentTopic.Attributes["LastModifiedBy"]?? model.Value;
+      model.Value               = HttpContext.User.Identity.Name?? "System";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

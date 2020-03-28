@@ -16,7 +16,7 @@ namespace OnTopicTest {
   ///   The <see cref="Program"/> class—and it's <see cref="Program.Main(String[])"/> method—represent the entry point into the
   ///   ASP.NET Core web application.
   /// </summary>
-  public class Program {
+  public static class Program {
 
     /*==========================================================================================================================
     | METHOD: MAIN
@@ -37,7 +37,7 @@ namespace OnTopicTest {
         .CreateDefaultBuilder(args)
         .ConfigureWebHostDefaults(webBuilder => {
           webBuilder.UseStartup<Startup>();
-          });
+        });
 
   } //Class
 } //Namespace

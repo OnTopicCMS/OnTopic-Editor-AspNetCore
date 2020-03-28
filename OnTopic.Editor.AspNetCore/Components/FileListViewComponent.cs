@@ -73,8 +73,8 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
       model.Files               = GetFiles(model.InheritedValue, attribute, model.AbsolutePath);
+      model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
@@ -89,7 +89,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// <summary>
     ///   Retrieves a collection of files in a directory, given the provided <see cref="Path"/>.
     /// </summary>
-    public List<SelectListItem> GetFiles(
+    public static List<SelectListItem> GetFiles(
       string inheritedValue,
       FileListAttributeTopicViewModel attribute,
       string absolutePath

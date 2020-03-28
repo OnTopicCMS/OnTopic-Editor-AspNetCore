@@ -31,7 +31,9 @@ namespace OnTopic.Editor.Models {
       currentTopic,
       attributeDescriptor
     ) {
-      AttributeDescriptor = attributeDescriptor;
+      AttributeDescriptor       = attributeDescriptor;
+      Value                     = value;
+      InheritedValue            = inheritedValue;
     }
 
     /*==========================================================================================================================

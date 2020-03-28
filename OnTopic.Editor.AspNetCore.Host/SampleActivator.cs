@@ -37,7 +37,6 @@ namespace OnTopicTest {
     private readonly            ITopicRepository                _topicRepository;
     private readonly            IWebHostEnvironment             _webHostEnvironment;
     private readonly            StandardEditorComposer          _standardEditorComposer;
-    private readonly            Topic                           _rootTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -70,7 +69,7 @@ namespace OnTopicTest {
       _topicRepository          = cachedTopicRepository;
       _typeLookupService        = new EditorViewModelLookupService();
       _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
-      _rootTopic                = _topicRepository.Load();
+      _                         = _topicRepository.Load();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish standard editor composer
@@ -120,7 +119,7 @@ namespace OnTopicTest {
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure and return appropriate view component
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (_standardEditorComposer.IsEditorComponent(type)) {
+      if (StandardEditorComposer.IsEditorComponent(type)) {
         return _standardEditorComposer.ActivateEditorComponent(type, _topicRepository);
       }
 
