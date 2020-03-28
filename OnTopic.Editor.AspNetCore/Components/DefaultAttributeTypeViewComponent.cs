@@ -20,9 +20,9 @@ namespace OnTopic.Editor.AspNetCore.Components {
   ///   The <see cref="AttributeTypeViewComponentBase"/> class provides a foundation for all attribute editors. That said, most
   ///   attribute editors won't need to deliver a custom <see cref="AttributeViewModel"/> or provide any customized logic. For
   ///   those, the <see cref="DefaultAttributeTypeViewComponent"/> provides a default implementation of the <see
-  ///   cref="InvokeAsync(AttributeDescriptorTopicViewModel, string)"/> method that should satisfy most requirements. It is
+  ///   cref="InvokeAsync(AttributeDescriptorTopicViewModel, String)"/> method that should satisfy most requirements. It is
   ///   still expected that derived classes be created, but by deriving from <see cref="DefaultAttributeTypeViewComponent"/>,
-  ///   they do not need to implement their own <see cref="InvokeAsync(AttributeDescriptorTopicViewModel, string)"/> method.
+  ///   they do not need to implement their own <see cref="InvokeAsync(AttributeDescriptorTopicViewModel, String)"/> method.
   /// </remarks>
   public class DefaultAttributeTypeViewComponent : ViewComponent {
 
