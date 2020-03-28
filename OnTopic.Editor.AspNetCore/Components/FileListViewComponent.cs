@@ -73,8 +73,8 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
       model.Files               = GetFiles(model.InheritedValue, attribute, model.AbsolutePath);
+      model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
