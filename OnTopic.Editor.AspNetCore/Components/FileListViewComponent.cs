@@ -89,7 +89,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// <summary>
     ///   Retrieves a collection of files in a directory, given the provided <see cref="Path"/>.
     /// </summary>
-    public List<SelectListItem> GetFiles(
+    public static List<SelectListItem> GetFiles(
       string inheritedValue,
       FileListAttributeTopicViewModel attribute,
       string absolutePath

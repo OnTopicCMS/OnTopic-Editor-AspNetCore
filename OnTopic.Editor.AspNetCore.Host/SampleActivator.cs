@@ -119,7 +119,7 @@ namespace OnTopicTest {
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure and return appropriate view component
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (_standardEditorComposer.IsEditorComponent(type)) {
+      if (StandardEditorComposer.IsEditorComponent(type)) {
         return _standardEditorComposer.ActivateEditorComponent(type, _topicRepository);
       }
 

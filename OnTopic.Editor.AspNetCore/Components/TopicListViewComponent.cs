@@ -151,7 +151,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     >---------------------------------------------------------------------------------------------------------------------------
     | Retrieves a collection of topics with optional control call filter properties Scope, AttributeName and AttributeValue.
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public List<QueryResultTopicViewModel> GetTopics(
+    public static List<QueryResultTopicViewModel> GetTopics(
       Topic  topic              = null,
       string attributeKey       = null,
       string attributeValue     = null,
