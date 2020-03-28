@@ -1,43 +1,35 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
 | Client        Ignia, LLC
-| Project       Sample OnTopic Site
+| Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+using OnTopic.Data.Transfer.Interchange;
 
-namespace OnTopicTest {
+namespace OnTopic.Editor.Models.Transfer {
 
   /*============================================================================================================================
-  | CLASS: PROGRAM
+  | CLASS: IMPORT VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   The <see cref="Program"/> class—and it's <see cref="Program.Main(String[])"/> method—represent the entry point into the
-  ///   ASP.NET Core web application.
+  ///   Represents a model for soliciting import options from the user.
   /// </summary>
-  public static class Program {
+  public class ImportViewModel: EditorViewModel {
 
     /*==========================================================================================================================
-    | METHOD: MAIN
+    | IMPORT OPTIONS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Responsible for bootstrapping the web application.
+    ///   The <see cref="ImportOptions"/> represent the user's preference for how to import a serialized JSON file.
     /// </summary>
-    public static void Main(string[] args) => CreateHostBuilder(args).Build().Run();
+    public ImportOptions ImportOptions { get; set; } = new ImportOptions();
 
     /*==========================================================================================================================
-    | METHOD: CREATE WEB HOST BUILDER
+    | IS IMPORTED?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Configures a new <see cref="IWebHostBuilder"/> with the default options.
+    ///   The <see cref="IsImported"/> property is set after the file is successfully imported.
     /// </summary>
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-      Host
-        .CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder => {
-          webBuilder.UseStartup<Startup>();
-        });
+    public bool IsImported { get; set; } = false;
 
-  } //Class
-} //Namespace
+  } // Class
+} // Namespace

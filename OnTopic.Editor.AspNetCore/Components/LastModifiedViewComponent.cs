@@ -53,13 +53,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model.Value = DateTime.Now.ToString();
       if (currentTopic.LastModified != null && currentTopic.LastModified != DateTime.MinValue) {
-        model.CurrentValue = currentTopic.LastModified.ToString();
+        model.CurrentValue      = currentTopic.LastModified.ToString();
       }
       else {
-        model.CurrentValue = model.Value;
+        model.CurrentValue      = model.Value;
       }
+      model.Value               = DateTime.Now.ToString();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

@@ -23,12 +23,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="5.0.1">
+    <PackageReference Include="GitVersionTask" Version="5.2.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OnTopic" Version="4.0.0" />
-    <PackageReference Include="OnTopic.ViewModels" Version="4.0.0" />
+    <PackageReference Include="OnTopic" Version="4.1.0" />
+    <PackageReference Include="OnTopic.Data.Transfer" Version="1.1.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.1.0" />
     <PackageReference Include="System.Text.Json" Version="4.6.0" />
   </ItemGroup>
 

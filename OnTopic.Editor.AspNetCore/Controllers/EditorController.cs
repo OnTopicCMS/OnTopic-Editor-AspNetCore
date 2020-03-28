@@ -4,18 +4,26 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Collections;
+using OnTopic.Data.Transfer;
+using OnTopic.Data.Transfer.Interchange;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.BindingModels;
 using OnTopic.Editor.Models.Metadata;
 using OnTopic.Editor.Models.Queryable;
+using OnTopic.Editor.Models.Transfer;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 using OnTopic.Metadata;
+using OnTopic.Querying;
 using OnTopic.Repositories;
 
 namespace OnTopic.Editor.AspNetCore.Controllers {
@@ -114,11 +122,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <param name="isNew">Determines whether the topic represents a new or existing object.</param>
     /// <param name="isModal">Determines whether whether the view is being displayed within a modal window.</param>
     /// <returns>The Content Type associated with the current request.</returns>
-    protected async Task<EditorViewModel> GetEditorViewModel(
+    protected async Task<T> GetEditorViewModel<T>(
       ContentTypeDescriptor contentTypeDescriptor,
       bool isNew,
       bool isModal
-    ) {
+    ) where T: EditorViewModel, new() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
@@ -174,7 +182,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH AND RETURN VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return new EditorViewModel(topicViewModel, contentTypeViewModel, isNew, isModal);
+      return new T() {
+        Topic                   = topicViewModel,
+        ContentTypeDescriptor   = contentTypeViewModel,
+        IsNew                   = isNew,
+        IsModal                 = isModal
+      };
 
     }
 
@@ -197,7 +210,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel(contentTypeDescriptor, isNew, isModal);
+      var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -271,7 +284,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       if (!ModelState.IsValid) {
 
         //Establish view model
-        var editorViewModel = await GetEditorViewModel(contentTypeDescriptor, isNew, isModal);
+        var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
 
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
@@ -541,6 +554,193 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
     }
 
-  } // Class
+    /*==========================================================================================================================
+    | [GET] EXPORT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Presents options for exporting the current topic.
+    /// </summary>
+    public async Task<IActionResult> Export() {
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH CONTENT TYPE VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentTypeDescriptor = GetContentType(CurrentTopic.ContentType);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var editorViewModel = await GetEditorViewModel<ExportViewModel>(contentTypeDescriptor, false, false);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN VIEW (MODEL)
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View(editorViewModel);
+
+    }
+
+    /*==========================================================================================================================
+    | [POST] EXPORT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Exports the current topic, based on any specified <see cref="ExportOptions"/>.
+    /// </summary>
+    /// <param name="options">The <see cref="ExportOptions"/> for determing what values should be exported.</param>
+    [HttpPost]
+    public IActionResult Export([Bind(Prefix="ExportOptions")]ExportOptions options) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | EXPORT TO JSON
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var topicData             = CurrentTopic.Export(options);
+      var json                  = JsonSerializer.Serialize(topicData);
+      var jsonStream            =  new MemoryStream(Encoding.UTF8.GetBytes(json), false);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN JSON
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return new FileStreamResult(jsonStream, "application/json") {
+        FileDownloadName        = CurrentTopic.GetUniqueKey().Replace(":", ".", StringComparison.Ordinal) + ".json"
+      };
+
+    }
+
+    /*==========================================================================================================================
+    | [GET] IMPORT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Presents options for importing the current topic.
+    /// </summary>
+    public async Task<IActionResult> Import() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH CONTENT TYPE VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentTypeDescriptor = GetContentType(CurrentTopic.ContentType);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var editorViewModel = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN VIEW (MODEL)
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View(editorViewModel);
+
+    }
+
+    /*==========================================================================================================================
+    | [POST] IMPORT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Imports the current topic, based on any specified <see cref="ImportOptions"/>.
+    /// </summary>
+    /// <param name="options">The <see cref="ImportOptions"/> for determing how the file should be imported.</param>
+    [HttpPost]
+    public async Task<IActionResult> Import(IFormFile jsonFile, [Bind(Prefix = "ImportOptions")]ImportOptions options) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH CONTENT TYPE VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentTypeDescriptor = GetContentType(CurrentTopic.ContentType);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | ESTABLISH VIEW MODEL
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var editorViewModel       = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false);
+
+      options.CurrentUser       = HttpContext.User.Identity.Name?? "System";
+
+      editorViewModel.ImportOptions = options;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE PARAMETERS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (jsonFile == null) {
+        ModelState.AddModelError("jsonFile", "The JSON file is required to import data.");
+        return View(editorViewModel);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | READ JSON
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var json                  = new StringBuilder();
+      using (var reader = new StreamReader(jsonFile.OpenReadStream())) {
+        while (reader.Peek() >= 0) {
+          json.AppendLine(await reader.ReadLineAsync());
+        }
+      }
+      var jsonString            = json.ToString();
+      var jsonOptions           = new JsonSerializerOptions() {
+        PropertyNameCaseInsensitive = true
+      };
+      var topicData             = JsonSerializer.Deserialize<TopicData>(jsonString, jsonOptions);
+
+      if (topicData == null) {
+        ModelState.AddModelError("jsonFile", "The JSON file could not be read correctly.");
+        return View(editorViewModel);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | IDENTIFY TARGET TOPIC
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var target                = TopicRepository.Load(topicData.UniqueKey);
+
+      if (target == null) {
+        ModelState.AddModelError(
+          "jsonFile",
+          $"The root namespace, '{topicData.UniqueKey}', is not available in the topic graph"
+        );
+        return View(editorViewModel);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | INDEX TOPICS IN SCOPE
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var topics                = target.FindAll(t => t.Id >= 0).ToList();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | IMPORT INTO TOPIC GRAPH
+      >-------------------------------------------------------------------------------------------------------------------------
+      | ### HACK JJC20200123: Because the graph may include references to objects that won't be created until later in the
+      | import, we need to import the topic data twice. The first will ensure all objects are created. The second will ensure
+      | all references are restored.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      target.Import(topicData, options);
+      target.Import(topicData, options);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | DELETE UNMATCHED TOPICS
+      >-------------------------------------------------------------------------------------------------------------------------
+      | ### HACK JJC20200327: The Data Transfer library doesnt have access to the ITopicRepository, so it can't delete topics.
+      | Instead, it removes them from the topic graph. But the ITopicRepository implementations don't have a means of detecting
+      | removed topics during a recursive save and, therefore, the deletions aren't persited to the database. To mitigate this,
+      | we evaluate the topic graph after the save, and then delete any orphans.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var unmatchedTopics       = topics.Except(target.FindAll(t => t.Id >= 0));
+
+      foreach (var unmatchedTopic in unmatchedTopics) {
+        TopicRepository.Delete(unmatchedTopic);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SAVE
+      >-------------------------------------------------------------------------------------------------------------------------
+      | ### HACK JJC20200123: Because the graph may include references to objects that won't be saved until later in the import,
+      | we need to save the topic tree twice. The first will ensure all objects have an TopicId. The second will ensure all
+      | saved references refer to the correct TopicId.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      TopicRepository.Save(target, topicData.Children.Count > 0);
+      TopicRepository.Save(target, topicData.Children.Count > 0);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | RETURN JSON
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      editorViewModel.IsImported = true;
+      return View(editorViewModel);
+
+    }
+
+  } // Class
 } // Namespace
