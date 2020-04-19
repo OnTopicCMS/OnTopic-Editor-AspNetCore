@@ -104,6 +104,12 @@
               location.href = location.href.replace(oldParent.attributes.webPath, newParent.attributes.webPath);
             }
 
+            //Otherwise, refresh the tree to ensure the new webPaths are reflected
+            else {
+              currentPosition = currentTopic.indexOf(':', 5);
+              tree.getRootNode().reload();
+            }
+
           });
 
         }
