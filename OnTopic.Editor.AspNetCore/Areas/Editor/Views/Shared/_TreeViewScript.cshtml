@@ -97,6 +97,20 @@
             url: "/OnTopic/Move",
             data: { topicId: node.attributes.id, targetTopicId: newParent.attributes.id, siblingId }
           })
+          .done(function() {
+
+            //If current or ascendent topic, redirect to new location since the current URL is no longer valid
+            if (currentTopic.startsWith(node.attributes.path)) {
+              location.href = location.href.replace(oldParent.attributes.webPath, newParent.attributes.webPath);
+            }
+
+            //Otherwise, refresh the tree to ensure the new webPaths are reflected
+            else {
+              currentPosition = currentTopic.indexOf(':', 5);
+              tree.getRootNode().reload();
+            }
+
+          });
 
         }
       }
