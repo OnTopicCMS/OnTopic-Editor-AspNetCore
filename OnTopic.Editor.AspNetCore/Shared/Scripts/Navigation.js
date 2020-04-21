@@ -124,7 +124,6 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
   /*============================================================================================================================
   | CONSTRUCTOR
   \---------------------------------------------------------------------------------------------------------------------------*/
-    var me                      = this;
   constructor : function(currentTopic, options) {
 
     /*--------------------------------------------------------------------------------------------------------------------------
@@ -133,12 +132,6 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
     var defaultOptions          = {
       currentTopic              : currentTopic,
       currentPosition           : currentTopic.indexOf(':', 5),
-      listeners: {
-        click                   : me.navigate,
-        load                    : me.openTopic,
-        startdrag               : me.dragTopic,
-        movenode                : me.moveTopic
-      }
       root                      : new Ext.tree.AsyncTreeNode({})
     };
 
@@ -147,6 +140,28 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
 
     //Call parent class
     OnTopic.Navigation.superclass.constructor.call(this, defaultOptions);
+
+  },
+
+  /*============================================================================================================================
+  | INITIALIZE COMPONENT
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  initComponent: function () {
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | Call parent initializer
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    OnTopic.Navigation.superclass.initComponent.call(this);
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | Set default listeners
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    var me = this;
+
+    me.on('click',              me.navigate,                    this);
+    me.on('load',               me.openTopic,                   this);
+    me.on('startdrag',          me.dragTopic,                   this);
+    me.on('movenode',           me.moveTopic,                   this);
 
   }
 
