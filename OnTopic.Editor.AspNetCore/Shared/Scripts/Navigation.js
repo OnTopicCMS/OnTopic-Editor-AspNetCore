@@ -146,7 +146,7 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
     Ext.apply(defaultOptions, options, OnTopic.Navigation.defaults);
 
     //Call parent class
-    Ext.tree.TreePanel.superclass.constructor.call(this, defaultOptions);
+    OnTopic.Navigation.superclass.constructor.call(this, defaultOptions);
 
   }
 
