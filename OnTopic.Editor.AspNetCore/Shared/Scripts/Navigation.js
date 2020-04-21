@@ -25,12 +25,7 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
   | DEFINE LOCAL FIELDS
   \---------------------------------------------------------------------------------------------------------------------------*/
   currentTopic                  : null,
-  rootTopicId                   : null,
   currentPosition               : null,
-
-  // Track what nodes are moved
-  oldPosition                   : null,
-  oldNextSibling                : null,
 
   /*============================================================================================================================
   | METHOD: NAVIGATE
@@ -78,8 +73,6 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
   \---------------------------------------------------------------------------------------------------------------------------*/
   dragTopic                     : function(tree, node, event) {
     node.draggable              = (node.attributes.draggable == 'false');
-    oldPosition                 = node.parentNode.indexOf(node);
-    oldNextSibling              = node.nextSibling;
   },
 
   /*============================================================================================================================
@@ -131,25 +124,20 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
   /*============================================================================================================================
   | CONSTRUCTOR
   \---------------------------------------------------------------------------------------------------------------------------*/
-  constructor : function(currentTopic, rootTopicId, options) {
     var me                      = this;
+  constructor : function(currentTopic, options) {
 
     //Define defaults based on variables
     var defaultOptions           = {
-      rootTopicId               : rootTopicId,
       currentTopic              : currentTopic,
       currentPosition           : currentTopic.indexOf(':', 5),
-      root                      : new Ext.tree.AsyncTreeNode({
-        text                    : 'Web',
-        draggable               : false,
-        id                      : rootTopicId
-      }),
       listeners: {
         click                   : me.navigate,
         load                    : me.openTopic,
         startdrag               : me.dragTopic,
         movenode                : me.moveTopic
       }
+      root                      : new Ext.tree.AsyncTreeNode({})
     };
 
     //Merge local defaults with static defaults and user-defined preferences
