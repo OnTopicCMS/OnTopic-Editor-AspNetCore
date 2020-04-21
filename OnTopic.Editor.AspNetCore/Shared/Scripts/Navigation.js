@@ -10,22 +10,15 @@ Ext.namespace('OnTopic');
 \-----------------------------------------------------------------------------------------------------------------------------*/
 /**
  * @class OnTopic.Navigation
- * @extends Ext.tree.TreePanel
- * Provides a default implementation of a tree view to expose the topic hierarchy based on data from the OnTopic Editor's JSON
- * service. Includes event handlers for navigating to topics when clicked, expanding the hierarchy to the currently selected
- * topic, and moving topics within the hierarchy.
+ * @extends OnTopic.DraggableTreeView
+ * Provides an implementation of the {@link OnTopic.TreeView} for use as a navigation component. Includes event handlers for
+ * navigating to topics when clicked and expanding the hierarchy to the currently selected topic.
  * @constructor
  * Create new Navigation object directly.
- * @param {object} options (optional) Any options to overwrite from either the {@link OnTopic.Navigation} or the underlying
- * {@link Ext.tree.TreePanel}.
+ * @param {object} options (optional) Options to overwrite the {@link OnTopic.Navigation}, the parent {@link
+ * OnTopic.DraggableTreeView}, or the root {@link Ext.tree.TreePanel}.
  */
-OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
-
-  /*============================================================================================================================
-  | DEFINE LOCAL FIELDS
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  currentTopic                  : null,
-  currentPosition               : null,
+OnTopic.Navigation = Ext.extend(OnTopic.DraggableTreeView, {
 
   /*============================================================================================================================
   | METHOD: NAVIGATE
@@ -69,85 +62,21 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
   },
 
   /*============================================================================================================================
-  | METHOD: VALIDATE SOURCE TOPIC
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  validateSourceTopic           : function(tree, node, event) {
-    node.draggable              = (node.attributes.draggable == 'false');
-  },
-
-  /*============================================================================================================================
-  | METHOD: MOVE TOPIC
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  moveTopic                     : function(tree, node, oldParent, newParent, position) {
-
-    /*--------------------------------------------------------------------------------------------------------------------------
-    | Define variables
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    var me                      = this;
-
-    // Determine sibling ID to place node after, based off position
-    var siblingId               = position > 0? newParent.childNodes[position - 1].id : -1;
-
-    /*--------------------------------------------------------------------------------------------------------------------------
-    | Move on server
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    $.ajax({
-      method: "POST",
-      url: "/OnTopic/Move",
-      data: {
-        topicId                 : node.attributes.id,
-        targetTopicId           : newParent.attributes.id,
-        siblingId               : siblingId
-      }
-    })
-
-    /*--------------------------------------------------------------------------------------------------------------------------
-    | Refresh tree or page
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    .done(function () {
-
-      //If current or ascendent topic, redirect to new location since the current URL is no longer valid
-      if (me.currentTopic.startsWith(node.attributes.path)) {
-        location.href = location.href.replace(oldParent.attributes.webPath, newParent.attributes.webPath);
-      }
-
-      //Otherwise, refresh the tree to ensure the new webPaths are reflected
-      else {
-        me.currentPosition = me.currentTopic.indexOf(':', 5);
-        tree.getRootNode().reload();
-      }
-
-    });
-
-  },
-
-  /*============================================================================================================================
   | CONSTRUCTOR
   \---------------------------------------------------------------------------------------------------------------------------*/
-  constructor : function(currentTopic, options) {
-
-    /*--------------------------------------------------------------------------------------------------------------------------
-    | Set default options based on parameters
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    var defaultOptions          = {
-      currentTopic              : currentTopic,
-      currentPosition           : currentTopic.indexOf(':', 5),
-      root                      : new Ext.tree.AsyncTreeNode({})
-    };
-
-    Ext.apply(defaultOptions, options, OnTopic.Navigation.defaults);
+  constructor                   : function(currentTopic, options) {
 
     /*--------------------------------------------------------------------------------------------------------------------------
     | Call parent constructor
     \-------------------------------------------------------------------------------------------------------------------------*/
-    OnTopic.Navigation.superclass.constructor.call(this, defaultOptions);
+    OnTopic.Navigation.superclass.constructor.call(this, currentTopic, options);
 
   },
 
   /*============================================================================================================================
   | INITIALIZE COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
-  initComponent: function () {
+  initComponent                 : function () {
 
     /*--------------------------------------------------------------------------------------------------------------------------
     | Call parent initializer
@@ -161,25 +90,7 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
 
     me.on('click',              me.navigate,                    this);
     me.on('load',               me.openTopic,                   this);
-    me.on('startdrag',          me.validateSourceTopic,         this);
-    me.on('movenode',           me.moveTopic,                   this);
 
   }
 
 });
-
-
-/*==============================================================================================================================
-| DEFAULTS
-\-----------------------------------------------------------------------------------------------------------------------------*/
-OnTopic.Navigation.defaults     = {
-  useArrows                     : true,
-  autoScroll                    : true,
-  animate                       : true,
-  enableDD                      : true,
-  containerScroll               : true,
-  border                        : false,
-  baseCls                       : 'treeview',
-  dataUrl                       : '/OnTopic/JSON/Root/?ShowAll=true&UseKeyAsText=true',
-  rootVisible                   : false
-};

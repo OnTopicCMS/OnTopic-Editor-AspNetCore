@@ -10,7 +10,7 @@
 
 <script>
   Ext.onReady(function () {
-    var tree = new OnTopic.Navigation('@Model.Topic.UniqueKey', @rootTopic.Id);
+    var tree = new OnTopic.Navigation('@Model.Topic.UniqueKey');
     tree.render('TreeView');
   });
 </script>
