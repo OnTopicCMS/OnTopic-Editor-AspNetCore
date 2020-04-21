@@ -2,11 +2,15 @@
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
-  var rootTopicKey = Model.AttributeDescriptor.RootTopic?.UniqueKey.Replace(":", "/") ?? Model.AttributeDescriptor.RootTopicKey?.Replace(":", "/") ?? "Root";
+
+  var descriptor                = Model.AttributeDescriptor;
+  var rootTopicKey              = descriptor.RootTopic?.UniqueKey.Replace(":", "/")?? descriptor.RootTopicKey?.Replace(":", "/")?? "Root";
+  var containerName             = ViewData.TemplateInfo.GetFullHtmlFieldName("TreeView");
+
 }
 
 <input asp-for="Value" type="hidden" />
-<div id="@ViewData.TemplateInfo.GetFullHtmlFieldName("TreeView")"></div>
+<div id="@containerName"></div>
 
 <script type="text/javascript">
   Ext.onReady(function(){
@@ -23,7 +27,7 @@
       containerScroll   : true,
       border            : false,
       baseCls           : 'RelationshipsTreeView',
-      dataUrl           : '/OnTopic/Json/@rootTopicKey?ShowRoot=@Model.AttributeDescriptor.ShowRoot&ShowAll=true&RelatedNamespace=@Model.AttributeDescriptor.Key&RelatedTopicID=@Model.CurrentTopic.Id&AttributeName=@Model.AttributeDescriptor.AttributeKey&AttributeValue=@Model.AttributeDescriptor.AttributeValue',
+      dataUrl           : '/OnTopic/Json/@rootTopicKey?ShowRoot=@descriptor.ShowRoot&ShowAll=true&RelatedNamespace=@descriptor.Key&RelatedTopicID=@Model.CurrentTopic.Id&AttributeName=@descriptor.AttributeKey&AttributeValue=@descriptor.AttributeValue',
       root              : new Ext.tree.AsyncTreeNode({
         checked         : true,
         text            : 'Web',
@@ -46,12 +50,12 @@
             relationships.remove(node.attributes.id.toString());
           }
           Storage.dom.value = relationships.concat(",");
-          @(Model.AttributeDescriptor.CheckAscendants is true? "" : "return true")
+          @(descriptor.CheckAscendants is true? "" : "return true")
           if (checked && node.parentNode) node.parentNode.getUI().toggleCheck(true);
         }
       }
     });
-    tree.render('@ViewData.TemplateInfo.GetFullHtmlFieldName("TreeView")');
+    tree.render('@containerName');
 
   });
 </script>
