@@ -127,8 +127,10 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
     var me                      = this;
   constructor : function(currentTopic, options) {
 
-    //Define defaults based on variables
-    var defaultOptions           = {
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | Set default options based on parameters
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    var defaultOptions          = {
       currentTopic              : currentTopic,
       currentPosition           : currentTopic.indexOf(':', 5),
       listeners: {
@@ -141,7 +143,7 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
     };
 
     //Merge local defaults with static defaults and user-defined preferences
-    Ext.apply(defaultOptions, OnTopic.Navigation.defaults, options);
+    Ext.apply(defaultOptions, options, OnTopic.Navigation.defaults);
 
     //Call parent class
     Ext.tree.TreePanel.superclass.constructor.call(this, defaultOptions);
