@@ -88,7 +88,12 @@
     <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Scripts.js" asp-append-version="true"></script>
 
     @if (!Model.IsModal) {
-      <partial name="_TreeviewScript" />
+      <script>
+        Ext.onReady(function () {
+          var tree = new OnTopic.Navigation('@Model.Topic.UniqueKey');
+          tree.render('TreeView');
+        });
+      </script>
     }
 
     @RenderSection("scripts", required: false)
