@@ -69,9 +69,9 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
   },
 
   /*============================================================================================================================
-  | METHOD: DRAG TOPIC
+  | METHOD: VALIDATE SOURCE TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
-  dragTopic                     : function(tree, node, event) {
+  validateSourceTopic           : function(tree, node, event) {
     node.draggable              = (node.attributes.draggable == 'false');
   },
 
@@ -135,10 +135,11 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
       root                      : new Ext.tree.AsyncTreeNode({})
     };
 
-    //Merge local defaults with static defaults and user-defined preferences
     Ext.apply(defaultOptions, options, OnTopic.Navigation.defaults);
 
-    //Call parent class
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | Call parent constructor
+    \-------------------------------------------------------------------------------------------------------------------------*/
     OnTopic.Navigation.superclass.constructor.call(this, defaultOptions);
 
   },
@@ -160,7 +161,7 @@ OnTopic.Navigation = Ext.extend(Ext.tree.TreePanel, {
 
     me.on('click',              me.navigate,                    this);
     me.on('load',               me.openTopic,                   this);
-    me.on('startdrag',          me.dragTopic,                   this);
+    me.on('startdrag',          me.validateSourceTopic,         this);
     me.on('movenode',           me.moveTopic,                   this);
 
   }
