@@ -6,12 +6,12 @@
 
 <style type="text/css">
   .Content div.x-tab-panel {
-    margin-top: 30px;
+    margin-top                  : 30px;
   }
 
   .Content ul.x-tab-strip {
-    list-style-image: none;
-    padding-left: 0px;
+    list-style-image            : none;
+    padding-left                : 0px;
   }
 </style>
 
@@ -28,7 +28,7 @@
 <script type="text/javascript">
   (function ($) {
 
-    var textareaId      = '@Html.IdFor(m => m.Value)';
+    var textareaId              = '@Html.IdFor(m => m.Value)';
 
     $('[id*="EditorModal"]').on('shown.bs.modal', function(e) {
       $('.Modal [id*="@Html.IdFor(m => m.Value)"]').attr('id', '@Html.IdFor(m => m.Value)_Modal');
@@ -44,11 +44,10 @@
   })(jQuery);
 
   function setEditorInstance(textareaId) {
-  //console.log(textareaId + ' on setEditorInstance');
     CKEDITOR.replace(textareaId, {
-      height            : '@Model.AttributeDescriptor.Height',
-      resize_maxHeight  : '@(Model.AttributeDescriptor.Height+300)',
-      customConfig      : '/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/CkEditor/customConfig.js'
+      height                    : '@Model.AttributeDescriptor.Height',
+      resize_maxHeight          : '@(Model.AttributeDescriptor.Height+300)',
+      customConfig              : '/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/CkEditor/customConfig.js'
     });
   }
 </script>
