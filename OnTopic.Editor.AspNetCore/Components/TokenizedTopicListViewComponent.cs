@@ -148,6 +148,5 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     private static string EncodeJsonValue(string value) => value.Replace("'", "\\'");
 
-
-} // Class
+  } // Class
 } // Namespace

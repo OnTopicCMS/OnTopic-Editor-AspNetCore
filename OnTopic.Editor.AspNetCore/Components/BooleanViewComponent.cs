@@ -43,5 +43,4 @@ namespace OnTopic.Editor.AspNetCore.Components {
     }
 
   } // Class
-
 } // Namespace

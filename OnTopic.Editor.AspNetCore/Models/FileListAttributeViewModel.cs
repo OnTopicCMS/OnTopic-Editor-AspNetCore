@@ -63,5 +63,4 @@ namespace OnTopic.Editor.AspNetCore.Models {
     public string AbsolutePath { get; set; }
 
   } // Class
-
 } // Namespace

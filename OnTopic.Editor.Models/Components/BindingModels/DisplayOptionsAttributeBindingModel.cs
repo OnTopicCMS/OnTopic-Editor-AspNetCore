@@ -38,5 +38,4 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
     public override string GetValue() => Value;
 
   } // Class
-
 } // Namespace

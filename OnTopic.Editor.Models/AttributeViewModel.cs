@@ -81,5 +81,4 @@ namespace OnTopic.Editor.Models {
     public virtual string InheritedValue { get; set; }
 
   } // Class
-
 } // Namespace

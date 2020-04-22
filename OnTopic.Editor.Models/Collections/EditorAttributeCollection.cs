@@ -41,5 +41,4 @@ namespace OnTopic.Editor.Models.Collections {
     }
 
   } // Class
-
 } // Namespace
