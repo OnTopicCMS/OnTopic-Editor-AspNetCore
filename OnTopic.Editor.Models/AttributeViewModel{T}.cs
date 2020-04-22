@@ -58,5 +58,4 @@ namespace OnTopic.Editor.Models {
     public new T AttributeDescriptor { get; }
 
   } // Class
-
 } // Namespace

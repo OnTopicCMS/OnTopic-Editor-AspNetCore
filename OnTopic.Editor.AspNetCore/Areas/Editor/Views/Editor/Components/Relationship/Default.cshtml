@@ -2,56 +2,24 @@
 
 @{
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
-  var rootTopicKey = Model.AttributeDescriptor.RootTopic?.UniqueKey.Replace(":", "/") ?? Model.AttributeDescriptor.RootTopicKey?.Replace(":", "/") ?? "Root";
+
+  var descriptor                = Model.AttributeDescriptor;
+  var rootTopicKey              = descriptor.RootTopic?.UniqueKey.Replace(":", "/")?? descriptor.RootTopicKey?.Replace(":", "/")?? "Root";
+  var containerName             = ViewData.TemplateInfo.GetFullHtmlFieldName("TreeView");
+
 }
 
 <input asp-for="Value" type="hidden" />
-<div id="@ViewData.TemplateInfo.GetFullHtmlFieldName("TreeView")"></div>
+
+<div id="@containerName"></div>
 
 <script type="text/javascript">
   Ext.onReady(function(){
-    var Tree            = Ext.tree;
-    var Storage         = Ext.get("@Html.IdFor(m => m.Value)");
-    var relationships   = Storage.dom.value.split(",");
-
-    tree = new Tree.TreePanel({
-      id                : 'relatedTree',
-      useArrows         : true,
-      autoScroll        : true,
-      animate           : true,
-      enableDD          : false,
-      containerScroll   : true,
-      border            : false,
-      baseCls           : 'RelationshipsTreeView',
-      dataUrl           : '/OnTopic/Json/@rootTopicKey?ShowRoot=@Model.AttributeDescriptor.ShowRoot&ShowAll=true&RelatedNamespace=@Model.AttributeDescriptor.Key&RelatedTopicID=@Model.CurrentTopic.Id&AttributeName=@Model.AttributeDescriptor.AttributeKey&AttributeValue=@Model.AttributeDescriptor.AttributeValue',
-      root              : new Ext.tree.AsyncTreeNode({
-        checked         : true,
-        text            : 'Web',
-        draggable       : false,
-        id              : 'related',
-        leaf            : false
-      }),
-      rootVisible       : false,
-      listeners         : {
-        click           : function(node) {
-          node.checked  = true;
-          node.select();
-          return true;
-        },
-        checkchange     : function(node, checked) {
-          if (checked) {
-            relationships.push(node.attributes.id.toString());
-          }
-          else {
-            relationships.remove(node.attributes.id.toString());
-          }
-          Storage.dom.value = relationships.concat(",");
-          @(Model.AttributeDescriptor.CheckAscendants is true? "" : "return true")
-          if (checked && node.parentNode) node.parentNode.getUI().toggleCheck(true);
-        }
-      }
+    var tree                    = new OnTopic.SelectableTreeView({
+      dataUrl                   : '/OnTopic/Json/@rootTopicKey?ShowRoot=@descriptor.ShowRoot&ShowAll=true&RelatedNamespace=@descriptor.Key&RelatedTopicID=@Model.CurrentTopic.Id&AttributeName=@descriptor.AttributeKey&AttributeValue=@descriptor.AttributeValue',
+      checkAscendants           : @((descriptor.CheckAscendants is true).ToString().ToLower()),
+      backingField              : '@Html.IdFor(m => m.Value)'
     });
-    tree.render('@ViewData.TemplateInfo.GetFullHtmlFieldName("TreeView")');
-
+    tree.render('@containerName');
   });
 </script>

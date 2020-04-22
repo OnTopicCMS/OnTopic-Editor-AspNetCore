@@ -85,5 +85,4 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     }
 
   } // Class
-
 } // Namespace

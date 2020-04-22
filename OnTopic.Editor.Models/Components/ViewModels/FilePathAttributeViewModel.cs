@@ -47,5 +47,4 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     public override string Value { get; set; }
 
   } // Class
-
 } // Namespace

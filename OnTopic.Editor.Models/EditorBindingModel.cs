@@ -38,5 +38,4 @@ namespace OnTopic.Editor.Models {
     }
 
   } // Class
-
 } // Namespace

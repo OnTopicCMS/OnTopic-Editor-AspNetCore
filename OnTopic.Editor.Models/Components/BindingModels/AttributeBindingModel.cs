@@ -83,5 +83,4 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
     public virtual string GetValue() => Value;
 
   } // Class
-
 } // Namespace
