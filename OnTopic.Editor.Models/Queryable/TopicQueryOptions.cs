@@ -230,5 +230,4 @@ namespace OnTopic.Editor.Models.Queryable {
     }
 
   } // Class
-
 } // Namespace

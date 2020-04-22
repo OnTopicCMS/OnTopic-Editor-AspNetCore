@@ -63,5 +63,4 @@ namespace OnTopic.Editor.Models {
     public Dictionary<string, string> InheritedAttributes { get; set; } = new Dictionary<string, string>();
 
   } // Class
-
 } // Namespace

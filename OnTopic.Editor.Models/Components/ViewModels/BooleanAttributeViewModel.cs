@@ -70,5 +70,4 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
 
 
   } // Class
-
 } // Namespace

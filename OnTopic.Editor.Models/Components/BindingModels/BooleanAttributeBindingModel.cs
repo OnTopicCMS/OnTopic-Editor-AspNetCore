@@ -41,5 +41,4 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
     public override string GetValue() => Value.Equals("True")? "1" : "0";
 
   } // Class
-
 } // Namespace
