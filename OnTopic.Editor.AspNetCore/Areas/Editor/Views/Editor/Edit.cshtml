@@ -108,6 +108,18 @@
         }
       });
 
+      @if (Model.Topic.DerivedTopic != null) {
+        <text>
+          /**
+           * Disable required fields if derived topic, as missing values will be inherited
+           */
+          $('section input, section textarea, section select')
+            .not("section.Key input")
+            .removeAttr('required')
+            .rules('remove', 'required');
+        </text>
+      }
+
     });
 
   </script>
