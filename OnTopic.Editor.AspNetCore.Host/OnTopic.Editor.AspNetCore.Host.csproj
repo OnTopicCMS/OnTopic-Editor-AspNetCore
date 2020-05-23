@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OnTopic" Version="4.3.0-empty-repository-support.52" />
-    <PackageReference Include="OnTopic.ViewModels" Version="4.3.0-empty-repository-support.52" />
-    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.3.0-empty-repository-support.52" />
-    <PackageReference Include="OnTopic.Data.Caching" Version="4.3.0-empty-repository-support.52" />
-    <PackageReference Include="OnTopic.Data.Sql" Version="4.3.0-empty-repository-support.52" />
+    <PackageReference Include="OnTopic" Version="4.3.0-empty-repository-support.54" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.3.0-empty-repository-support.54" />
+    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.3.0-empty-repository-support.54" />
+    <PackageReference Include="OnTopic.Data.Caching" Version="4.3.0-empty-repository-support.54" />
+    <PackageReference Include="OnTopic.Data.Sql" Version="4.3.0-empty-repository-support.54" />
   </ItemGroup>
 
   <ItemGroup>
