@@ -60,7 +60,7 @@ namespace OnTopic.Editor.AspNetCore {
         name: "TopicEditor",
         areaName: "Editor",
         pattern: "OnTopic/{action}/{**path}",
-        defaults: new { controller = "Editor", action="Edit", path = "Root/Web/" }
+        defaults: new { controller = "Editor", action="Edit", path = "Root" }
       );
 
   } // Class
