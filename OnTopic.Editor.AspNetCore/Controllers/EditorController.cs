@@ -104,8 +104,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <returns>The Content Type associated with the current request.</returns>
     protected ContentTypeDescriptor GetContentType(string contentType) => _topicRepository
       .GetContentTypeDescriptors()
-      .Where(t => t.Key.Equals(contentType))
-      .First();
+      .Where(t => t.Key.Equals(contentType?? ""))
+      .FirstOrDefault()??
+      (ContentTypeDescriptor)TopicFactory.Create(contentType, "ContentTypeDescriptor");
 
     /*==========================================================================================================================
     | GET EDITOR VIEW MODEL
