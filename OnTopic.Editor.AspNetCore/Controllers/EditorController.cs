@@ -710,7 +710,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | INDEX TOPICS IN SCOPE
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topics                = target.FindAll(t => t.Id >= 0).ToList();
+      var topics                = target.FindAll(t => !t.IsNew).ToList();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | INITIAL IMPORT
@@ -725,7 +725,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | removed topics during a recursive save and, therefore, the deletions aren't persited to the database. To mitigate this,
       | we evaluate the topic graph after the save, and then delete any orphans.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var unmatchedTopics       = topics.Except(target.FindAll(t => t.Id >= 0));
+      var unmatchedTopics       = topics.Except(target.FindAll(t => !t.IsNew));
 
       foreach (var unmatchedTopic in unmatchedTopics) {
         TopicRepository.Delete(unmatchedTopic);
@@ -739,7 +739,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | Otherwise, Save() will generate an error since the parent ID won't be found.
       \-----------------------------------------------------------------------------------------------------------------------*/
       var saveRoot              = target;
-      if (target.Parent.Id < 0) {
+      if (target.Parent.IsNew) {
         saveRoot = target.Parent;
       }
 
