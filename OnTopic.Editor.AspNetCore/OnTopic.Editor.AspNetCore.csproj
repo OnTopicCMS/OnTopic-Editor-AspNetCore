@@ -31,7 +31,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="OnTopic" Version="4.3.0-empty-repository-support.60" />
-    <PackageReference Include="OnTopic.Data.Transfer" Version="1.2.0-alpha.20" />
+    <PackageReference Include="OnTopic.Data.Transfer" Version="1.2.0-maintenance-pre-release-cleanup.33" />
     <PackageReference Include="OnTopic.ViewModels" Version="4.3.0-empty-repository-support.60" />
     <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.3.0-empty-repository-support.60" />
   </ItemGroup>
