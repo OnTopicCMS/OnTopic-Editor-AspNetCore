@@ -37,6 +37,12 @@
         <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Includes relationships even if the topic they are referencing falls outside the scope of the export."></i>
       </section>
 
+      <section class="attribute">
+        <input type="checkbox" asp-for="ExportOptions.TranslateTopicPointers" />
+        <label asp-for="ExportOptions.TranslateTopicPointers">Translate Topic Pointers?</label>
+        <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Attributes which end in 'Id' and have a numeric value mapping to an existing topic will be translated to their unique key (e.g., 'Root:Web:Contact') on export, and then translated back to topic identifiers on import. This is enabled by default, but can optionally be disabled."></i>
+      </section>
+
     </div>
 
     @if (!Model.IsModal) {
