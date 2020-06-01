@@ -76,7 +76,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       viewModel.TopicList.Add(
         new SelectListItem {
-          Value = null,
+          Value = "",
           Text = attribute.DefaultLabel
         }
       );
