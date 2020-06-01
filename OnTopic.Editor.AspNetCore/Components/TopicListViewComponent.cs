@@ -12,6 +12,7 @@ using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
 using OnTopic.Editor.Models.Queryable;
+using OnTopic.Querying;
 using OnTopic.Repositories;
 
 namespace OnTopic.Editor.AspNetCore.Components {
@@ -87,38 +88,41 @@ namespace OnTopic.Editor.AspNetCore.Components {
       var defaultValue = currentTopic.Attributes.ContainsKey(attribute.Key)? currentTopic.Attributes[attribute.Key] : null;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Get values
+      | Get root topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topics = (List<QueryResultTopicViewModel>)null;
+      var rootTopic             = (Topic)null;
 
       if (attribute.RelativeTopicBase != null) {
         var baseTopic             = _topicRepository.Load(currentTopic.UniqueKey);
-        var rootTopic             = attribute.RelativeTopicBase switch {
         if (String.IsNullOrEmpty(currentTopic.Key)) {
           baseTopic               = TopicFactory.Create("NewTopic", currentTopic.ContentType, baseTopic);
           baseTopic.Parent.Children.Remove(baseTopic);
         }
+        rootTopic                 = attribute.RelativeTopicBase switch {
           "CurrentTopic"          => baseTopic,
           "ParentTopic"           => baseTopic.Parent,
           "GrandparentTopic"      => (Topic)baseTopic.Parent?.Parent,
           "ContentTypeDescriptor" => (Topic)_topicRepository.GetContentTypeDescriptors().FirstOrDefault(t => t.Key.Equals(baseTopic.ContentType)),
           _ => baseTopic
         };
-        topics = GetTopics(
-          rootTopic,
-          attribute.AttributeKey,
-          attribute.AttributeValue,
-          allowedKeys
-        );
       }
       else {
-        topics = GetTopics(
-          _topicRepository.Load(attribute.RootTopic?.UniqueKey?? attribute.RootTopicKey),
-          attribute.AttributeKey,
-          attribute.AttributeValue,
-          allowedKeys
-        );
+        rootTopic = _topicRepository.Load(attribute.RootTopic?.UniqueKey?? attribute.RootTopicKey);
       }
+
+      if (rootTopic != null && !String.IsNullOrEmpty(attribute.RelativeTopicPath)) {
+        rootTopic = rootTopic.GetByUniqueKey(rootTopic.GetUniqueKey() + ":" + attribute.RelativeTopicPath);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Get values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var topics = GetTopics(
+        rootTopic,
+        attribute.AttributeKey,
+        attribute.AttributeValue,
+        allowedKeys
+      );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get values from repository
