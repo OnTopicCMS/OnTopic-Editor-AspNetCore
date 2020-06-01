@@ -94,6 +94,10 @@ namespace OnTopic.Editor.AspNetCore.Components {
       if (attribute.RelativeTopicBase != null) {
         var baseTopic             = _topicRepository.Load(currentTopic.UniqueKey);
         var rootTopic             = attribute.RelativeTopicBase switch {
+        if (String.IsNullOrEmpty(currentTopic.Key)) {
+          baseTopic               = TopicFactory.Create("NewTopic", currentTopic.ContentType, baseTopic);
+          baseTopic.Parent.Children.Remove(baseTopic);
+        }
           "CurrentTopic"          => baseTopic,
           "ParentTopic"           => baseTopic.Parent,
           "GrandparentTopic"      => (Topic)baseTopic.Parent?.Parent,
