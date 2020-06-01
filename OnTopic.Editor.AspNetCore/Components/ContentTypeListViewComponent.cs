@@ -91,6 +91,20 @@ namespace OnTopic.Editor.AspNetCore.Components {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Get content type
+      >-------------------------------------------------------------------------------------------------------------------------
+      | If the database is uninitialized, the content type won't be found. In that case, return an empty view, which will
+      | effectively hide the component.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentTypes          = _topicRepository.GetContentTypeDescriptors();
+      var actualTopic           = _topicRepository.Load(currentTopic.Id);
+      var actualContentType     = contentTypes.GetTopic(currentTopic.ContentType);
+
+      if (actualContentType == null) {
+        return View(viewModel);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Get permitted content types for container
       >-------------------------------------------------------------------------------------------------------------------------
       | Containers provide special rules allowing the permitted content types to be defined—or even expanded—on the topic
@@ -98,10 +112,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | to organize a specific type of content. For example, a Container called "Forms" might be used exclusively to organized
       | Form topics.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var contentTypes          = _topicRepository.GetContentTypeDescriptors();
-      var actualTopic           = _topicRepository.Load(currentTopic.Id);
-      var actualContentType     = contentTypes.GetTopic(currentTopic.ContentType);
-
       if (actualContentType.Key.Equals("Container", StringComparison.InvariantCultureIgnoreCase)) {
         viewModel.TopicList.AddRange(
           actualTopic
