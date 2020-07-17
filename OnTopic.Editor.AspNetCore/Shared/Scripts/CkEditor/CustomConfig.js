@@ -19,11 +19,11 @@ CKEDITOR.editorConfig = function( config ) {
   config.fillEmptyBlocks        = false;
   config.shiftEnterMode         = CKEDITOR.ENTER_BR;
   config.contentsCss            = '/_content/OnTopic.Editor.AspNetCore/Shared/Styles/CKEditor.css';
+  config.disableNativeSpellChecker = false;
   config.toolbar                = [
     { name: 'document', items: [ 'Source' ] },
     { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste',  '-', 'Undo', 'Redo' ] },
     { name: 'blocks', items: [ 'ShowBlocks', 'RemoveFormat' ] },
-    { name: 'editing', items: [ 'Scayt' ] },
     { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
     { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] },
     '/',
