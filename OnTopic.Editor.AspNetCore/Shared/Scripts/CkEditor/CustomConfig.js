@@ -28,8 +28,8 @@ CKEDITOR.editorConfig = function( config ) {
     { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] },
     '/',
     { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike', 'Subscript', 'Superscript' ] },
-    { name: 'position', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', '-', 'Outdent', 'Indent' ] },
-    { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Blockquote' ] },
+    { name: 'position', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight' ] },
+    { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'Outdent', 'Indent', '-', 'Blockquote' ] },
     '/',
     { name: 'styles', items: ['Styles', 'Format'] },
     { name: 'tools', items: [ 'Find', 'Replace', 'SelectAll', 'Maximize' ] }
