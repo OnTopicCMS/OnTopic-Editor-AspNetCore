@@ -27,11 +27,10 @@ CKEDITOR.editorConfig = function( config ) {
     { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
     { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] },
     '/',
+    { name: 'styles', items: ['Styles', 'Format'] },
     { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike', 'Subscript', 'Superscript' ] },
     { name: 'position', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight' ] },
     { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-    '/',
-    { name: 'styles', items: ['Styles', 'Format'] },
     { name: 'tools', items: [ 'Find', 'Replace', 'SelectAll', 'Maximize' ] }
   ];
   config.toolbarCanCollapse     = true;
