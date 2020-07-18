@@ -20,14 +20,12 @@ CKEDITOR.stylesSet.add( 'OnTopicStyleSet', [
 //Restored from above to remove Format combo
   { name                : 'Heading 2',
     element             : 'h2'
-  //attributes          : { 'class' : 'h2 Heading' }
   },
   { name                : 'Heading 3',
     element             : 'h3'
   },
   { name                : 'Body',
     element             : 'p'
-  //attributes          : { 'class' : 'Body-Text' }
   },
 
 /* Inline Styles */
