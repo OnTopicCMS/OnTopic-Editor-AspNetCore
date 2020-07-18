@@ -22,7 +22,7 @@ CKEDITOR.editorConfig = function( config ) {
   config.disableNativeSpellChecker = false;
   config.toolbar                = [
     { name: 'document', items: [ 'Source' ] },
-    { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste',  '-', 'Undo', 'Redo' ] },
+    { name: 'clipboard', items: ['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste' ] },
     { name: 'blocks', items: [ 'ShowBlocks', 'RemoveFormat' ] },
     { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
     { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] },
