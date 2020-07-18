@@ -35,25 +35,6 @@ CKEDITOR.editorConfig = function( config ) {
     { name: 'tools', items: [ 'Find', 'Replace', 'SelectAll', 'Maximize' ] }
   ];
   config.toolbarCanCollapse     = true;
-  config.toolbar_Full           = [
-    ['Source','-','Save','NewPage','Preview','-','Templates'],
-    ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print', 'SpellChecker', 'Scayt'],
-    ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-    ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
-    '/',
-    ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
-    ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv'],
-    ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-    ['Link','Unlink','Anchor'],
-    ['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
-    '/',
-    ['Styles','Format','Font','FontSize'],
-    ['TextColor','BGColor'],
-    ['Maximize', 'ShowBlocks','-','About']
-    ];
-  config.toolbar_Basic          = [
-    ['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink','-','About']
-    ];
   config.toolbar_OnTopic        = [
     ['Preview','Source','Undo','Redo','ShowBlocks','RemoveFormat'],
     ['Bold','Italic','Cut','Copy','Paste','PasteText','Scayt'],
