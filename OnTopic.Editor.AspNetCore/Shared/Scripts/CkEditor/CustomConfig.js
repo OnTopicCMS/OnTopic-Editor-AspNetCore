@@ -48,7 +48,7 @@ CKEDITOR.editorConfig = function( config ) {
     '/',
     {
       name                      : 'styles',
-      items                     : ['Format', 'Styles']
+      items                     : ['Format']
     },
     {
       name                      : 'basicstyles',
@@ -73,8 +73,6 @@ CKEDITOR.editorConfig = function( config ) {
     'Tahoma/Tahoma, Arial/Arial, sans-serif;'           +
     'Times New Roman/Times New Roman, Times, serif;'    +
     'Verdana';
-//Call external styles set definition for Styles dropdown menu
-  config.stylesCombo_stylesSet  = 'OnTopicStyleSet:/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/CkEditor/StylesSet.js';
 //Set classes for styles defined in styles set
   config.bodyClass              = 'CKEPanel';
 
