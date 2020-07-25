@@ -156,11 +156,18 @@ section.attribute input.error {
 // SUPPORTING STYLES
 //----------------------------------------------------------------------------------------------
 .instructions {
-  font-size: rem-calc(16);
-  font-style: italic;
-  color: $grey-medium;
-
+  font-size                     : rem-calc(16);
+  font-style                    : italic;
+  color                         : $grey-medium;
   &.error {
-    color: $red;
+    color                       : $red;
   }
+}
+
+//----------------------------------------------------------------------------------------------
+// PLACEHOLDERS
+//----------------------------------------------------------------------------------------------
+::placeholder,
+::-webkit-input-placeholder {
+  color                         : $grey-lighter !important;
 }
