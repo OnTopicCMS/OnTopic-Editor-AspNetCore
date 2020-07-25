@@ -15,7 +15,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
  * Provides configuration settings for CKEditor.
  */
 CKEDITOR.editorConfig = function( config ) {
-  config.removePlugins          = 'autosave';
+  config.removePlugins          = 'autosave,scayt';
   config.allowedContent         = true;
   config.baseHref               = '/';
   config.skin                   = 'moono-lisa';
