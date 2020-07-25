@@ -38,16 +38,6 @@ CKEDITOR.editorConfig = function( config ) {
     { name: 'tools', items: [ 'Find', 'Replace', 'SelectAll', 'Maximize' ] }
   ];
   config.toolbarCanCollapse     = true;
-  config.toolbar_OnTopic        = [
-    ['Preview','Source','Undo','Redo','ShowBlocks','RemoveFormat'],
-    ['Bold','Italic','Cut','Copy','Paste','PasteText','Scayt'],
-    ['Styles'], //,'Format'
-    '/',
-    ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','Outdent','Indent'],
-    ['NumberedList','BulletedList','Link','Unlink','Anchor'],
-    ['CreateDiv','Image','Table','HorizontalRule','SpecialChar'],
-    ['Find','Replace','SelectAll','Maximize'],
-    ];
 //Set font names
   config.font_names             =
     'Tahoma/Tahoma, Arial/Arial, sans-serif;'           +
