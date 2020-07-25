@@ -68,14 +68,7 @@ CKEDITOR.editorConfig = function( config ) {
     }
   ];
   config.toolbarCanCollapse     = true;
-//Set font names
-  config.font_names             =
-    'Tahoma/Tahoma, Arial/Arial, sans-serif;'           +
-    'Times New Roman/Times New Roman, Times, serif;'    +
-    'Verdana';
-//Set classes for styles defined in styles set
   config.bodyClass              = 'CKEPanel';
-
 };
 
 /*==============================================================================================================================
