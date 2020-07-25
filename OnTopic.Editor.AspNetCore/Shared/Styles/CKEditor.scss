@@ -1,30 +1,50 @@
+//==============================================================================================
+// CKEDITOR
+//----------------------------------------------------------------------------------------------
+// Custom stylesheet to be used within the CKEditor. As this implementation should be
+// implementation agnostic, this defines a very basic set of style preferences. In practice, we
+// expect most implementions will want to establish a custom configuration, style set, and style
+// sheet for CKEditor, thus overriding this implementation.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// FONTS
+//----------------------------------------------------------------------------------------------
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+//----------------------------------------------------------------------------------------------
+// BODY
+//----------------------------------------------------------------------------------------------
 body {
-  background-color: #FFF;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
+  background-color              : #FFF;
+  font-family                   : "Lato", Helvetica, Arial, sans-serif;
+  font-size                     : 16px;
+  color                         : #333;
 }
+
+//----------------------------------------------------------------------------------------------
+// HEADINGS
+//----------------------------------------------------------------------------------------------
 h1,
 h2,
 h3 {
-  font-weight: 300;
+  font-weight                   : 300;
 }
 h1 {
-  font-size: 32px;
+  font-size                     : 32px;
 }
 h2 {
-  font-size: 28px;
+  font-size                     : 28px;
 }
 h3 {
-  font-size: 24px;
+  font-size                     : 24px;
 }
 h4 {
-  font-size: 18px;
+  font-size                     : 18px;
 }
 h5 {
-  font-size: 16px;
+  font-size                     : 16px;
 }
 h6 {
-  font-size: 14px;
+  font-size                     : 14px;
 }
