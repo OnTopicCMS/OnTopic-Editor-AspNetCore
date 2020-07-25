@@ -1,8 +1,19 @@
+/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        Ignia, LLC
+| Project       OnTopic Editor
+\=============================================================================================================================*/
 /*
 Copyright (c) 2003-2010, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 
+/*==============================================================================================================================
+| METHOD: EDITOR CONFIG
+\-----------------------------------------------------------------------------------------------------------------------------*/
+/**
+ * Provides configuration settings for CKEditor.
+ */
 CKEDITOR.editorConfig = function( config ) {
 //Define changes to default configuration here. For example:
 //config.language = 'fr';
@@ -56,6 +67,12 @@ CKEDITOR.editorConfig = function( config ) {
 
 };
 
+/*==============================================================================================================================
+| METHOD: INSTANCE READY
+\-----------------------------------------------------------------------------------------------------------------------------*/
+/**
+ * Provides late binding rules to initialize once the editor instance is ready.
+ */
 CKEDITOR.on('instanceReady', function (ev) {
   var blockTags = ['div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'ul', 'ol', 'li', 'br'];
   var rules = {
