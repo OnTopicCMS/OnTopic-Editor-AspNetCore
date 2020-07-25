@@ -74,10 +74,6 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Provides the inherited value, as defined on either parent or derived topics.
     /// </summary>
-    /// <remarks>
-    ///   If the <see cref="Value"/> is set, then the <see cref="InhertedValue"/> will always be equal to the
-    ///   <see cref="Value"/>.
-    /// </remarks>
     public virtual string InheritedValue { get; set; }
 
   } // Class

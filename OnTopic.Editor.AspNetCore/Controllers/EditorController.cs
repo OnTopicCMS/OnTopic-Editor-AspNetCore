@@ -176,7 +176,10 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         //Set inherited attribute value, if available
-        topicViewModel.InheritedAttributes.Add(attribute.Key, isNew? null : CurrentTopic.Attributes.GetValue(attribute.Key));
+        topicViewModel.InheritedAttributes.Add(
+          attribute.Key,
+          isNew? null : CurrentTopic.DerivedTopic?.Attributes.GetValue(attribute.Key)
+        );
 
       }
 
