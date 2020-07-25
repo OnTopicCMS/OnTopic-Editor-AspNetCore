@@ -8,11 +8,15 @@
 
 @if (Model.TopicList.Count > 1) {
   <select
-    asp-for                       ="Value"
-    asp-items                     ="Model.TopicList"
-    class                         ="@Model.AttributeDescriptor.CssClass form-control form-inline"
-    disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
-    required                      =@Model.AttributeDescriptor.IsRequired
-    >
+    asp-for                     ="Value"
+    asp-items                   ="Model.TopicList"
+    class                       ="@Model.AttributeDescriptor.CssClass form-control form-inline"
+    disabled                    =@(!Model.AttributeDescriptor.IsEnabled)
+    required                    =@Model.AttributeDescriptor.IsRequired>
   </select>
+}
+else {
+  <input type="hidden" asp-for="AttributeDescriptor.Key" />
+  <input type="hidden" asp-for="AttributeDescriptor.ContentType" />
+  <input type="hidden" asp-for="Value" />
 }
