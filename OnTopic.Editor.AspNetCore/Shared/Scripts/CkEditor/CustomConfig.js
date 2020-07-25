@@ -15,17 +15,10 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
  * Provides configuration settings for CKEditor.
  */
 CKEDITOR.editorConfig = function( config ) {
-//Define changes to default configuration here. For example:
-//config.language = 'fr';
-//config.uiColor = '#AADC6E';
-//config.extraPlugins           = 'a11ychecker';
   config.removePlugins          = 'autosave';
   config.allowedContent         = true;
   config.baseHref               = '/';
   config.skin                   = 'moono-lisa';
-//config.uiColor                = '#CFCFCF';
-//config.height                 = '515px';
-//config.resize_maxHeight       = '800';
   config.resize_maxWidth        = '800';
   config.fillEmptyBlocks        = false;
   config.shiftEnterMode         = CKEDITOR.ENTER_BR;
