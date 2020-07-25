@@ -16,3 +16,8 @@
     >
   </select>
 }
+else {
+  <input type="hidden" asp-for="AttributeDescriptor.Key" />
+  <input type="hidden" asp-for="AttributeDescriptor.ContentType" />
+  <input type="hidden" asp-for="Value" />
+}
