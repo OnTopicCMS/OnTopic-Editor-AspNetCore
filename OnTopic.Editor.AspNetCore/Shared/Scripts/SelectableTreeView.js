@@ -100,7 +100,6 @@ OnTopic.SelectableTreeView = Ext.extend(Ext.tree.TreePanel, {
 | DEFAULTS
 \-----------------------------------------------------------------------------------------------------------------------------*/
 OnTopic.SelectableTreeView.defaults = {
-  id                            : 'relatedTree',
   useArrows                     : true,
   autoScroll                    : true,
   animate                       : true,
