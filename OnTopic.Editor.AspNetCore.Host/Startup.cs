@@ -90,6 +90,10 @@ namespace OnTopicTest {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (HostingEnvironment.IsDevelopment()) {
         mvcBuilder.AddRazorRuntimeCompilation();
+        services.Configure<MvcRazorRuntimeCompilationOptions>(options => {
+          var libraryPath = Path.GetFullPath(Path.Combine(HostingEnvironment.ContentRootPath, "..", "OnTopic.Editor.AspNetCore"));
+          options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
+        });
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
