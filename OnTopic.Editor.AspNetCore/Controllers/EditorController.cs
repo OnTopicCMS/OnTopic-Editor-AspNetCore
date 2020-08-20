@@ -492,11 +492,6 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var target = (targetTopicId >= 0)? TopicRepository.Load(targetTopicId) : topic.Parent;
 
       /*--------------------------------------------------------------------------------------------------------------------------
-      | Reset the source topic's Parent
-      \-------------------------------------------------------------------------------------------------------------------------*/
-      topic.Parent = target;
-
-      /*--------------------------------------------------------------------------------------------------------------------------
       | Move the topic and/or reorder it with its siblings; lock the Topic repository prior to execution
       \-------------------------------------------------------------------------------------------------------------------------*/
       lock (TopicRepository) {
