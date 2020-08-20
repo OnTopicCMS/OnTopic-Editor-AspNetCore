@@ -62,6 +62,16 @@ OnTopic.SelectableTreeView = Ext.extend(Ext.tree.TreePanel, {
     Ext.apply(this, options, OnTopic.SelectableTreeView.defaults);
 
     /*--------------------------------------------------------------------------------------------------------------------------
+    | Initialize root
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    this.root = new Ext.tree.AsyncTreeNode({
+      checked                   : true,
+      text                      : 'Web',
+      draggable                 : false,
+      leaf                      : false
+    });
+
+    /*--------------------------------------------------------------------------------------------------------------------------
     | Initialize variables
     \-------------------------------------------------------------------------------------------------------------------------*/
     this.backingField           = Ext.get(options.backingField);
@@ -107,12 +117,5 @@ OnTopic.SelectableTreeView.defaults = {
   containerScroll               : true,
   border                        : false,
   baseCls                       : 'RelationshipsTreeView',
-  root                          : new Ext.tree.AsyncTreeNode({
-    checked                     : true,
-    text                        : 'Web',
-    draggable                   : false,
-    id                          : 'related',
-    leaf                        : false
-  }),
   rootVisible                   : false
 };
