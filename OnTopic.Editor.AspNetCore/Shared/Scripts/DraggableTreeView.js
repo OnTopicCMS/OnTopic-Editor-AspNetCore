@@ -50,8 +50,8 @@ OnTopic.DraggableTreeView = Ext.extend(Ext.tree.TreePanel, {
     | Move on server
     \-------------------------------------------------------------------------------------------------------------------------*/
     $.ajax({
-      method: "POST",
-      url: "/OnTopic/Move",
+      method                    : "POST",
+      url                       : "/OnTopic/Move",
       data: {
         topicId                 : node.attributes.id,
         targetTopicId           : newParent.attributes.id,

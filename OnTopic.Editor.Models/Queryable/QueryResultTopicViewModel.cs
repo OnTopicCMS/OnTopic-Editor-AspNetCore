@@ -35,7 +35,8 @@ namespace OnTopic.Editor.Models.Queryable {
       string                    uniqueKey,
       string                    webPath,
       bool?                     isChecked                       = null,
-      bool                      isDraggable                     = true
+      bool                      isDraggable                     = true,
+      bool                      isExpanded                      = false
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -47,6 +48,7 @@ namespace OnTopic.Editor.Models.Queryable {
       UniqueKey                 = uniqueKey;
       WebPath                   = webPath;
       IsDraggable               = isDraggable;
+      IsExpanded                = isExpanded;
 
       if (isChecked.HasValue) {
         IsChecked               = isChecked.Value;
@@ -137,6 +139,24 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     [JsonPropertyName("leaf")]
     public bool IsLeaf => Children.Count.Equals(0);
+
+    /*==========================================================================================================================
+    | IS EXPANDED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether the current node should be expanded, assuming it's not a <see cref="IsLead"/> node.
+    /// </summary>
+    /// <remarks>
+    ///   The <c>TopicQueryService</c> will set this value based if a <see cref="TopicQueryOptions.RelatedTopicId"/> is
+    ///   specified, and <see cref="TopicQueryOptions.MarkRelated"/> is set to <c>true</c>. Specifically, it will mark any item
+    ///   whose <see cref="Topic.GetUniqueKey()"/> starts with the <see cref="Topic.GetUniqueKey()"/> of any <see cref="Topic.
+    ///   Relationships"/> associated with the <see cref="TopicQueryOptions.RelatedTopicId"/>, thus ensuring that all selected
+    ///   items are expanded.
+    /// </remarks>
+    [JsonPropertyName("expanded")]
+    public bool IsExpanded {
+      get;
+    }
 
     /*==========================================================================================================================
     | CHILDREN
