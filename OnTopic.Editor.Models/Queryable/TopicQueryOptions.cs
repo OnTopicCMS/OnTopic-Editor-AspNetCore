@@ -19,6 +19,7 @@ namespace OnTopic.Editor.Models.Queryable {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     bool                        _markRelated                    = false;
+    bool                        _expandRelated                  = true;
     bool                        _showCheckboxes                 = false;
 
     /*==========================================================================================================================
@@ -44,6 +45,7 @@ namespace OnTopic.Editor.Models.Queryable {
       AttributeValue            = null;
       Query                     = null;
       MarkRelated               = false;
+      ExpandRelated             = true;
       RelatedTopicId            = -1;
       RelatedNamespace          = null;
       EnableCheckboxes          = false;
@@ -195,16 +197,31 @@ namespace OnTopic.Editor.Models.Queryable {
     | MARK RELATED
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether <see cref="QueryResultTopicViewModel"/>s should be marked as <see cref="QueryResultTopicViewModel.IsChecked"/>
-    ///   based on their presence in related topics.
+    ///   Determines whether <see cref="QueryResultTopicViewModel"/>s should be marked as <see cref="QueryResultTopicViewModel.
+    ///   IsChecked"/> based on their presence in related topics.
     /// </summary>
     /// <remarks>
-    ///   This will automatically be set to true is <see cref="RelatedTopicId"/> or <see cref="RelatedNamespace"/> are set. If
+    ///   This will automatically be set to true if <see cref="RelatedTopicId"/> or <see cref="RelatedNamespace"/> are set. If
     ///   <see cref="RelatedTopicId"/> is <i>not</i> set, then the current <see cref="Topic"/> should be assumed.
     /// </remarks>
     public bool MarkRelated {
       get => (RelatedTopicId > 0 || !String.IsNullOrEmpty(RelatedNamespace) || _markRelated);
       set => _markRelated = value;
+    }
+
+    /*==========================================================================================================================
+    | EXPAND RELATED
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether <see cref="QueryResultTopicViewModel"/>s should be marked ascendants as nodes marked as <see
+    ///   cref="QueryResultTopicViewModel.IsChecked"/> as <see cref="QueryResultTopicViewModel.IsExpanded"/>.
+    /// </summary>
+    /// <remarks>
+    ///   This will automatically be set to true if <see cref="MarkRelated"/> is set to true.
+    /// </remarks>
+    public bool ExpandRelated {
+      get => (MarkRelated && _expandRelated);
+      set => _expandRelated = value;
     }
 
     /*==========================================================================================================================

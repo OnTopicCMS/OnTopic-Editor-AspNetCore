@@ -26,6 +26,15 @@ namespace OnTopic.Editor.Models.Metadata {
     public bool? ShowRoot { get; set; }
 
     /*==========================================================================================================================
+    | PROPERTY: EXPAND RELATED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether or not the tree panel should be expanded to ensure visibility of any related (checked)
+    ///   relationships upon load. Defaults to <c>true</c>.
+    /// </summary>
+    public bool? ExpandRelated { get; set; }
+
+    /*==========================================================================================================================
     | PROPERTY: CHECK ASCENDANTS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
