@@ -101,7 +101,7 @@ namespace OnTopic.Editor.Models.Queryable {
           topic.GetWebPath(),
           options.EnableCheckboxes ? (options.MarkRelated ? related.Contains(topic) : true) : new bool?(),
           topic.Attributes.GetValue("DisableDelete", "0").Equals("0"),
-          options.MarkRelated && related.Any(r => r.GetUniqueKey().StartsWith(topic.GetUniqueKey(), StringComparison.Ordinal))
+          options.ExpandRelated && related.Any(r => r.GetUniqueKey().StartsWith(topic.GetUniqueKey(), StringComparison.Ordinal))
         );
 
         //Add topic to topic list
