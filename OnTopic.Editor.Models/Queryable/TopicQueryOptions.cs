@@ -45,7 +45,7 @@ namespace OnTopic.Editor.Models.Queryable {
       AttributeValue            = null;
       Query                     = null;
       MarkRelated               = false;
-      ExpandRelated             = false;
+      ExpandRelated             = true;
       RelatedTopicId            = -1;
       RelatedNamespace          = null;
       EnableCheckboxes          = false;
