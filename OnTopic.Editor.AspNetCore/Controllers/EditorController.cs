@@ -346,9 +346,6 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         else if (attribute.Key.Equals("Key")) {
           topic.Key = attributeValue.Value.Replace(" ", "");
         }
-        else if (String.IsNullOrEmpty(attributeValue.Value)) {
-          topic.Attributes.Remove(attribute.Key);
-        }
         else {
           topic.Attributes.SetValue(attribute.Key, attributeValue.Value);
         }
