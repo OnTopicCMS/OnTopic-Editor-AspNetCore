@@ -35,13 +35,13 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
   | Provide debug data for testing
   \---------------------------------------------------------------------------------------------------------------------------*/
   console.log('initEditorModal fired:');
-  console.log('namespace: ' + namespace);
-  console.log('title: ' + title);
-  console.log('targetUrl: ' + targetUrl);
+  console.log('namespace: '     + namespace);
+  console.log('title: '         + title);
+  console.log('targetUrl: '     + targetUrl);
   console.log('onCloseFunction: ' + onCloseFunction);
-  console.log('#EditorModal' + namespace + ': ' + $editorModal);
-  console.log('#ModalTitle' + namespace + ': ' + $modalTitle);
-  console.log('#EditorFrame' + namespace + ': ' + $editorFrame);
+  console.log('#EditorModal'    + namespace + ': ' + $editorModal);
+  console.log('#ModalTitle'     + namespace  + ': ' + $modalTitle);
+  console.log('#EditorFrame'    + namespace + ': ' + $editorFrame);
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Set modal window title
@@ -61,10 +61,8 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
   | Open modal window
   \---------------------------------------------------------------------------------------------------------------------------*/
   if ($editorModal) {
-    $editorModal.modal({
-      backdrop: 'static',
-      keyboard: false
-    });
+    $editorModal.modal();
+    $(".nav-tabs a.active").tab("show");
   }
 
 };
@@ -74,10 +72,8 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
 \-----------------------------------------------------------------------------------------------------------------------------*/
 /**
  * Closes the current modal window
- * @param {string} action - Default parameter supplied by JavaScript event (unused).
- * @param {string} namespace - The parent key of the nested topic container.
  */
-window.closeModal = function (action, namespace) {
+window.closeModal = function () {
   $('[id^="EditorModal"]').modal('hide');
 };
 
@@ -90,8 +86,7 @@ window.closeModal = function (action, namespace) {
   | Event Handler: Close Button
   \---------------------------------------------------------------------------------------------------------------------------*/
   $('#ModalCloseButton').on('click', function (e) {
-    window.parent.closeModal('canceled', '');
-    $('[id^="EditorModal"]').modal('hide');
+    window.parent.closeModal();
   });
 
   /*----------------------------------------------------------------------------------------------------------------------------

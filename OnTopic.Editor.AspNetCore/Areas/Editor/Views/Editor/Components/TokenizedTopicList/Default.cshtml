@@ -18,21 +18,24 @@
 </div>
 
 <script>
-  $(function() {
+  window.addEventListener('DOMContentLoaded', function () {
+    (function($) {
 
-  //Create new instance of TokenizedTopics and set relevant properties
-    var topics                  = new TokenizedTopics();
-    topics.selector             = '#@Html.IdFor(m => m.Value)';
-    topics.scope                = '@rootTopicKey';
-    topics.attributeName        = '@descriptor.AttributeKey';
-    topics.attributeValue       = '@descriptor.AttributeValue';
-    topics.resultLimit          = '@descriptor.ResultLimit';
-    topics.tokenLimit           = @descriptor.TokenLimit;
-    topics.isAutoPostBack       = @((descriptor.AutoPostBack?? false).ToString().ToLower());
-    topics.selectedTopics       = @Html.Raw(Model.SelectedTopics);
+      //Create new instance of TokenizedTopics and set relevant properties
+      var topics                = new TokenizedTopics();
+      topics.selector           = '#@Html.IdFor(m => m.Value)';
+      topics.scope              = '@rootTopicKey';
+      topics.attributeName      = '@descriptor.AttributeKey';
+      topics.attributeValue     = '@descriptor.AttributeValue';
+      topics.resultLimit        = '@descriptor.ResultLimit';
+      topics.tokenLimit         = @descriptor.TokenLimit;
+      topics.isAutoPostBack     = @((descriptor.AutoPostBack?? false).ToString().ToLower());
+      topics.selectedTopics     = @Html.Raw(Model.SelectedTopics);
 
-  //Fire TokenizedTopics.prototype.getTokenizedTopics() (and $([selector]).tokenInput())
-    topics.getTokenizedTopics();
+      //Fire TokenizedTopics.prototype.getTokenizedTopics() (and $([selector]).tokenInput())
+      topics.getTokenizedTopics();
+
+    })(jQuery);
 
   });
 

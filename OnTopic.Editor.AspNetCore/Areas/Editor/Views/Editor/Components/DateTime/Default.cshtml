@@ -16,30 +16,32 @@
 />
 
 <script>
-  $(function() {
+  window.addEventListener('DOMContentLoaded', function() {
+    (function($) {
 
-    //Instantiate date and/or time picker
-    $('#@Html.IdFor(m => m.Value)')
-      .@(includeDatePicker? "date" : "")@(includeTimePicker? "time" : "")picker({
-        @if (includeDatePicker) {
-          <text>
-            dateFormat          : '@Model.AttributeDescriptor.DateFormat',
-            defaultDate         : '@Model.GetDefaultDate()',
-          </text>
-        }
-        @if (includeDatePicker && includeTimePicker) {
-          <text>
-            separator           : '@Model.AttributeDescriptor.DateTimeSeparator',
-          </text>
-        }
-        @if (includeTimePicker) {
-          <text>
-            timeFormat          : '@Model.AttributeDescriptor.TimeFormat',
-            defaultTime         : '@Model.GetDefaultTime()',
-          </text>
-        }
-        defaultValue            : '@Model.GetDefaultDate() @Model.GetDefaultTime()'
-      });
+      //Instantiate date and/or time picker
+      $('#@Html.IdFor(m => m.Value)')
+        .@(includeDatePicker? "date" : "")@(includeTimePicker? "time" : "")picker({
+          @if (includeDatePicker) {
+            <text>
+              dateFormat        : '@Model.AttributeDescriptor.DateFormat',
+              defaultDate       : '@Model.GetDefaultDate()',
+            </text>
+          }
+          @if (includeDatePicker && includeTimePicker) {
+            <text>
+              separator         : '@Model.AttributeDescriptor.DateTimeSeparator',
+            </text>
+          }
+          @if (includeTimePicker) {
+            <text>
+              timeFormat        : '@Model.AttributeDescriptor.TimeFormat',
+              defaultTime       : '@Model.GetDefaultTime()',
+            </text>
+          }
+          defaultValue          : '@Model.GetDefaultDate() @Model.GetDefaultTime()'
+        });
 
+    })(jQuery);
   });
 </script>

@@ -9,9 +9,9 @@
     <title>@Model.Topic.Title (OnTopic)</title>
 
     <!-- Vendor Scripts -->
-    <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Vendor.js"></script>
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-    <script src="https://use.fontawesome.com/fd4f92cdd7.js"></script>
+    <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Vendor.js" defer></script>
+    <script src="https://use.fontawesome.com/fd4f92cdd7.js" defer></script>
 
     <!-- Vendor Styles -->
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/Vendor.css" />
@@ -85,18 +85,31 @@
       </div>
     </main>
 
-    <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Scripts.js" asp-append-version="true"></script>
+    <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Scripts.js" asp-append-version="true" defer></script>
 
-    @if (!Model.IsModal) {
-      <script>
-        Ext.onReady(function () {
-          var tree = new OnTopic.Navigation('@Model.Topic.UniqueKey');
-          tree.render('TreeView');
-        });
-      </script>
-    }
+    @RenderSection("Scripts", required: false)
 
-    @RenderSection("scripts", required: false)
+    <script>
+      /**
+        * Initialize Foundation and inline scripts
+        */
+      window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+
+          @if (!Model.IsModal) {
+            <text>
+              Ext.onReady(function () {
+                var tree = new OnTopic.Navigation('@Model.Topic.UniqueKey');
+                tree.render('TreeView');
+              });
+            </text>
+          }
+
+          @RenderSection("InlineScript", false)
+
+        })(jQuery);
+      });
+    </script>
 
   </body>
 </html>
