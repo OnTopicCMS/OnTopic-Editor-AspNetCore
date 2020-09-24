@@ -72,10 +72,8 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
 \-----------------------------------------------------------------------------------------------------------------------------*/
 /**
  * Closes the current modal window
- * @param {string} action - Default parameter supplied by JavaScript event (unused).
- * @param {string} namespace - The parent key of the nested topic container.
  */
-window.closeModal = function (action, namespace) {
+window.closeModal = function () {
   $('[id^="EditorModal"]').modal('hide');
 };
 
@@ -88,8 +86,7 @@ window.closeModal = function (action, namespace) {
   | Event Handler: Close Button
   \---------------------------------------------------------------------------------------------------------------------------*/
   $('#ModalCloseButton').on('click', function (e) {
-    window.parent.closeModal('canceled', '');
-    $('[id^="EditorModal"]').modal('hide');
+    window.parent.closeModal();
   });
 
   /*----------------------------------------------------------------------------------------------------------------------------
