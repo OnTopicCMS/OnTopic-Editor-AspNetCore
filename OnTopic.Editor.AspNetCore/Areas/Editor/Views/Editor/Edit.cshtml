@@ -86,41 +86,35 @@
 
 </form>
 
-@section scripts {
-  <script>
+@section InlineScript {
 
-    $(function () {
-
-      /**
-       * Trigger jQuery validation
-       */
-      $('#EditorForm').validate({
-        ignore: [],
-        invalidHandler: function () {
-          setTimeout(function () {
-            $('.nav-tabs a small.required').remove();
-            $('.nav-tabs a.error').removeClass("error");
-            $('.tab-content.tab-validate .tab-pane:has(input.error)').each(function () {
-              var id = $(this).attr('id');
-              $('.nav-tabs').find('a[href^="#' + id + '"]').addClass("error").append(' <small class="required">*</small>');
-            });
-          });
-        }
+  /**
+  * Trigger jQuery validation
+  */
+  $('#EditorForm').validate({
+    ignore: [],
+    invalidHandler: function () {
+      setTimeout(function () {
+        $('.nav-tabs a small.required').remove();
+        $('.nav-tabs a.error').removeClass("error");
+        $('.tab-content.tab-validate .tab-pane:has(input.error)').each(function () {
+          var id = $(this).attr('id');
+          $('.nav-tabs').find('a[href^="#' + id + '"]').addClass("error").append(' <small class="required">*</small>');
+        });
       });
+    }
+  });
 
-      @if (Model.Topic.DerivedTopic != null) {
-        <text>
-          /**
-           * Disable required fields if derived topic, as missing values will be inherited
-           */
-          $('section input, section textarea, section select')
-            .not("section.Key input")
-            .removeAttr('required')
-            .rules('remove', 'required');
-        </text>
-      }
+  @if (Model.Topic.DerivedTopic != null) {
+    <text>
+      /**
+      * Disable required fields if derived topic, as missing values will be inherited
+      */
+      $('section input, section textarea, section select')
+        .not("section.Key input")
+        .removeAttr('required')
+        .rules('remove', 'required');
+    </text>
+  }
 
-    });
-
-  </script>
 }

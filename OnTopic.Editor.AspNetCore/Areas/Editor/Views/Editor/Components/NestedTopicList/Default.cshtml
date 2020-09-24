@@ -14,31 +14,39 @@
   <div id="@containerName"></div>
 
   <script type="text/javascript">
+
     var @($"{treeName}");
 
-    Ext.onReady(function () {
+    window.addEventListener('DOMContentLoaded', function () {
+      (function($) {
 
-      @($"{treeName}")          = new OnTopic.NestedTopics('@Model.UniqueKey', {
-        dataUrl                 : '/OnTopic/Json/@Model.WebPath/@attributeKey?ShowAll=true',
-        listeners               : {
-          click                 : function (n) {
-            var targetUrl       = "@($"{Url.Action("Edit")}/{attributeKey}/")" + n.attributes.key;
-            @if (Model.AttributeDescriptor.EnableModal?? true) {
-              <text>
-                initEditorModal('@attributeKey', n.attributes.text, targetUrl + '?IsModal=true', @($"{treeName}.refresh"));return false;
-              </text>
+        Ext.onReady(function () {
+
+          @($"{treeName}")      = new OnTopic.NestedTopics('@Model.UniqueKey', {
+            dataUrl             : '/OnTopic/Json/@Model.WebPath/@attributeKey?ShowAll=true',
+            listeners           : {
+              click             : function (n) {
+                var targetUrl   = "@($"{Url.Action("Edit")}/{attributeKey}/")" + n.attributes.key;
+                @if (Model.AttributeDescriptor.EnableModal?? true) {
+                  <text>
+                    initEditorModal('@attributeKey', n.attributes.text, targetUrl + '?IsModal=true', @($"{treeName}.refresh"));
+                    return false;
+                  </text>
+                }
+                else {
+                  <text>
+                    location.href = targetUrl;
+                  </text>
+                }
+              }
             }
-            else {
-              <text>
-                location.href   = targetUrl;
-              </text>
-            }
-          }
-        }
-      });
+          });
 
-      @($"{treeName}").render('@containerName');
+          @($"{treeName}").render('@containerName');
 
+        });
+
+      })(jQuery);
     });
 
   </script>
@@ -64,10 +72,12 @@
   </div>
 
   <script>
-    $(function() {
-      $('[id^="EditorModal"]').on('hide.bs.modal', function (e) {
-        @($"{treeName}.refresh")();
-      });
+    window.addEventListener('DOMContentLoaded', function () {
+      (function($) {
+        $('[id^="EditorModal"]').on('hide.bs.modal', function(e) {
+          @($"{treeName}.refresh")();
+        });
+      })(jQuery);
     });
   </script>
 
