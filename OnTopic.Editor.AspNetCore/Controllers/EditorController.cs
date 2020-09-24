@@ -715,9 +715,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | DELETE UNMATCHED TOPICS
       >-------------------------------------------------------------------------------------------------------------------------
-      | ### HACK JJC20200327: The Data Transfer library doesnt have access to the ITopicRepository, so it can't delete topics.
+      | ### HACK JJC20200327: The Data Transfer library doesn't have access to the ITopicRepository, so it can't delete topics.
       | Instead, it removes them from the topic graph. But the ITopicRepository implementations don't have a means of detecting
-      | removed topics during a recursive save and, therefore, the deletions aren't persited to the database. To mitigate this,
+      | removed topics during a recursive save and, therefore, the deletions aren't persisted to the database. To mitigate this,
       | we evaluate the topic graph after the save, and then delete any orphans.
       \-----------------------------------------------------------------------------------------------------------------------*/
       var unmatchedTopics       = topics.Except(target.FindAll(t => !t.IsNew));
