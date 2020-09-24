@@ -64,7 +64,7 @@
       var displayGroupName      = displayGroups[i];
       var displayGroupId        = displayGroups[i].Replace(" ", String.Empty);
       <li class="nav-item">
-        <a id="Tab_@displayGroupId" class="nav-link @(i == 0 ? "active" : "")" href="#Group_@displayGroupId" data-toggle="tab" role="tab" aria-controls="#Group_@displayGroupId" @(i == 0 ? "aria-expanded=\"true\"" : "")>@displayGroupName</a>
+        <a id="Tab_@displayGroupId" class="nav-link @(i == 0 ? "active" : "")" href="#Group_@displayGroupId" data-toggle="tab" role="tab" aria-controls="#Group_@displayGroupId" aria-expanded="@(i == 0 ? "true" : "false")">@displayGroupName</a>
       </li>
     }
   </ul>

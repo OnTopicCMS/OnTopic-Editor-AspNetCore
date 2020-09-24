@@ -61,10 +61,8 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
   | Open modal window
   \---------------------------------------------------------------------------------------------------------------------------*/
   if ($editorModal) {
-    $editorModal.modal({
-      backdrop: 'static',
-      keyboard: false
-    });
+    $editorModal.modal();
+    $(".nav-tabs a.active").tab("show");
   }
 
 };
