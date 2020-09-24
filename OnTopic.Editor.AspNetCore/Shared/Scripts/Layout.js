@@ -18,8 +18,8 @@ $(function () {
   /*----------------------------------------------------------------------------------------------------------------------------
   | Establish initial variables
   \---------------------------------------------------------------------------------------------------------------------------*/
-  var $windowHeight     = $(window).height();
-  var $topBarHeight     = $('#HeaderContainer').height();
+  var $windowHeight             = $(window).height();
+  var $topBarHeight             = $('#HeaderContainer').height();
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Compensate for height of the header and toolbar
@@ -27,7 +27,7 @@ $(function () {
   $('body').css('padding-top', $topBarHeight + 'px');
   $(window).resize(function() {
     setTimeout(function() {
-      $topBarHeight     = $('#HeaderContainer').height();
+      $topBarHeight             = $('#HeaderContainer').height();
       $('body').css('padding-top', $topBarHeight + 'px');
     }, 50);
   });
@@ -35,8 +35,8 @@ $(function () {
   /*----------------------------------------------------------------------------------------------------------------------------
   | Set size and location of toolbar
   \---------------------------------------------------------------------------------------------------------------------------*/
-  var $dynamicFormWidth = $('#PageContentArea').width();
-  var $editorNavBar     = $('#Toolbar');
+  var $dynamicFormWidth         = $('#PageContentArea').width();
+  var $editorNavBar             = $('#Toolbar');
   if ($editorNavBar) {
     $editorNavBar.css('width', $dynamicFormWidth + 'px').css('top', $topBarHeight+1 + 'px');
   }
@@ -46,7 +46,7 @@ $(function () {
   \---------------------------------------------------------------------------------------------------------------------------*/
   $(window).resize(function() {
     setTimeout(function() {
-      $dynamicFormWidth = $('#PageContentArea').width();
+      $dynamicFormWidth         = $('#PageContentArea').width();
       $editorNavBar.css('width', $dynamicFormWidth + 'px').css('top', $topBarHeight+1 + 'px');
     }, 50);
   });
