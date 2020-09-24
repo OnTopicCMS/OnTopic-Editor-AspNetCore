@@ -431,7 +431,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | Lock the Topic repository before executing the delete
       \-------------------------------------------------------------------------------------------------------------------------*/
       lock (TopicRepository) {
-        TopicRepository.Delete(CurrentTopic);
+        TopicRepository.Delete(CurrentTopic, true);
       }
 
       /*--------------------------------------------------------------------------------------------------------------------------
@@ -723,7 +723,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var unmatchedTopics       = topics.Except(target.FindAll(t => !t.IsNew));
 
       foreach (var unmatchedTopic in unmatchedTopics) {
-        TopicRepository.Delete(unmatchedTopic);
+        TopicRepository.Delete(unmatchedTopic, true);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
