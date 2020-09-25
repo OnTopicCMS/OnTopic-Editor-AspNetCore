@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
@@ -24,6 +25,10 @@ namespace OnTopic.Editor.AspNetCore.Components {
   ///   still expected that derived classes be created, but by deriving from <see cref="DefaultAttributeTypeViewComponent"/>,
   ///   they do not need to implement their own <see cref="InvokeAsync(AttributeDescriptorTopicViewModel, String)"/> method.
   /// </remarks>
+  [Obsolete(
+    "While the DefaultAttributeType view component was originally implemented as a base class for other view components, it " +
+    "is no longer used and will be removed in the next major release of OnTopic."
+  )]
   public class DefaultAttributeTypeViewComponent : ViewComponent {
 
     /*==========================================================================================================================
