@@ -9,6 +9,7 @@
   asp-for                       =@Model.Value
   maxlength                     =@Model.AttributeDescriptor.MaximumLength
   class                         ="@Model.AttributeDescriptor.CssClass form-control"
+  pattern                       =@Model.AttributeDescriptor.Pattern
   placeholder                   =@Model.InheritedValue
   disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
   required                      =@Model.AttributeDescriptor.IsRequired

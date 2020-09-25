@@ -32,6 +32,14 @@ namespace OnTopic.Editor.Models.Metadata {
     /// </summary>
     public string? InputType { get; set; }
 
+    /*==========================================================================================================================
+    | PATTERN
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets a regular expression which should be used to validate the input.
+    /// </summary>
+    public string? Pattern { get; set; }
+
   } //Class
 } //Namespace
 
