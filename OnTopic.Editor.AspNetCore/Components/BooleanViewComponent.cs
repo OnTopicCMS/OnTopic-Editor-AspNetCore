@@ -22,7 +22,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="LastModifiedViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="BooleanViewComponent"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
     public BooleanViewComponent() : base() { }
