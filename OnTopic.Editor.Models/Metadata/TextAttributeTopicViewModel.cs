@@ -40,6 +40,14 @@ namespace OnTopic.Editor.Models.Metadata {
     /// </summary>
     public string? Pattern { get; set; }
 
+    /*==========================================================================================================================
+    | VALIDATION MESSAGE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets a hint to provide if validation fails.
+    /// </summary>
+    public string? ValidationMessage { get; set; }
+
   } //Class
 } //Namespace
 
