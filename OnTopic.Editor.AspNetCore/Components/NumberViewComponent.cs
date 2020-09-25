@@ -30,7 +30,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="DefaultAttributeTypeViewComponent"/>.
+    ///   Assembles the view model for the <see cref="NumberViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
