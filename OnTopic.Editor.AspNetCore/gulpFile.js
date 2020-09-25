@@ -43,6 +43,7 @@ const files = {
     js                          :   [ 'node_modules/jquery/dist/jquery.min.js',
                                       'node_modules/jquery-ui-dist/jquery-ui.min.js',
                                       'node_modules/jquery-validation/dist/jquery.validate.min.js',
+                                      'node_modules/jquery-validation/dist/additional-methods.min.js',
                                       'node_modules/popper.js/dist/umd/popper.min.js',
                                       'node_modules/bootstrap/dist/js/bootstrap.min.js',
                                       'node_modules/jquery-tokeninput/dist/js/jquery-tokeninput.min.js',
