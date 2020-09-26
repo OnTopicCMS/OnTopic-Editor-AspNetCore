@@ -34,7 +34,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="FileViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="FileListViewComponent"/> with necessary dependencies.
     /// </summary>
     public FileListViewComponent(IWebHostEnvironment webHostEnvironment): base() {
       _webHostEnvironment = webHostEnvironment;

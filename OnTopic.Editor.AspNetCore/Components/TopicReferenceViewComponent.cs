@@ -31,7 +31,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="NestedTopicListViewComponent"/>.
+    ///   Assembles the view model for the <see cref="TopicReferenceViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,

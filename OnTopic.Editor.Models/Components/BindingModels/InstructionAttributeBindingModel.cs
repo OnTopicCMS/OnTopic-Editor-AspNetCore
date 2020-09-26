@@ -3,44 +3,33 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using Microsoft.AspNetCore.Mvc;
-using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Components.ViewModels;
-using OnTopic.Editor.Models.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.Models.Components.BindingModels {
 
   /*============================================================================================================================
-  | CLASS: BOOLEAN (VIEW COMPONENT)
+  | CLASS: INSTRUCTION ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a boolean attribute type.
+  ///   Represents an instance of an instruction attribute in the Topic Editor.
   /// </summary>
-  public class BooleanViewComponent: ViewComponent {
+  public class InstructionAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="BooleanViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of the <see cref="TextAttributeBindingModel"/> class.
     /// </summary>
-    /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
-    public BooleanViewComponent() : base() { }
+    public InstructionAttributeBindingModel() : base() {
+    }
 
     /*==========================================================================================================================
-    | METHOD: INVOKE
+    | GET VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="BooleanViewComponent"/>.
+    ///   Retrieves the value associated with the attribute.
     /// </summary>
-    public IViewComponentResult Invoke(
-      EditingTopicViewModel currentTopic,
-      BooleanAttributeTopicViewModel attribute,
-      string htmlFieldPrefix
-    ) {
-      ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      return View(new BooleanAttributeViewModel(currentTopic, attribute));
-    }
+    public override string GetValue() => Value;
 
   } // Class
 } // Namespace

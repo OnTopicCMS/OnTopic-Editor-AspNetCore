@@ -37,6 +37,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       Add(typeof(FileListAttributeTopicViewModel));
       Add(typeof(FilePathAttributeTopicViewModel));
       Add(typeof(HtmlAttributeTopicViewModel));
+      Add(typeof(InstructionAttributeTopicViewModel));
       Add(typeof(LastModifiedAttributeTopicViewModel));
       Add(typeof(LastModifiedByAttributeTopicViewModel));
       Add(typeof(NestedTopicListAttributeTopicViewModel));

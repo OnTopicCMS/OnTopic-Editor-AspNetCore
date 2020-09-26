@@ -5,41 +5,40 @@
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Components.ViewModels;
 using OnTopic.Editor.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Components {
 
   /*============================================================================================================================
-  | CLASS: BOOLEAN (VIEW COMPONENT)
+  | CLASS: INSTRUCTION (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a boolean attribute type.
+  ///   Delivers a view model for an instruction attribute type.
   /// </summary>
-  public class BooleanViewComponent: ViewComponent {
+  public class InstructionViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="BooleanViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="InstructionViewComponent"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
-    public BooleanViewComponent() : base() { }
+    public InstructionViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="BooleanViewComponent"/>.
+    ///   Assembles the view model for the <see cref="InstructionViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      BooleanAttributeTopicViewModel attribute,
+      InstructionAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      return View(new BooleanAttributeViewModel(currentTopic, attribute));
+      return View(new AttributeViewModel<InstructionAttributeTopicViewModel>(currentTopic, attribute));
     }
 
   } // Class
