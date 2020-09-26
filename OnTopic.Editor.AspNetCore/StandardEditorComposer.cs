@@ -92,6 +92,7 @@ namespace OnTopic.Editor.AspNetCore {
         nameof(FileListViewComponent)                           => new FileListViewComponent(_webHostEnvironment),
         nameof(FilePathViewComponent)                           => new FilePathViewComponent(topicRepository),
         nameof(HtmlViewComponent)                               => new HtmlViewComponent(),
+        nameof(InstructionViewComponent)                        => new InstructionViewComponent(),
         nameof(LastModifiedViewComponent)                       => new LastModifiedViewComponent(),
         nameof(LastModifiedByViewComponent)                     => new LastModifiedByViewComponent(),
         nameof(NestedTopicListViewComponent)                    => new NestedTopicListViewComponent(_topicRepository),
