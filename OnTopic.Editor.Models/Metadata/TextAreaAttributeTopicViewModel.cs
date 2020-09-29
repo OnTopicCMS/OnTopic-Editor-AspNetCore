@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 
 #nullable enable
 
@@ -23,6 +24,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Gets or sets the number of columns (width) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
     ///   <c>70</c>.
     /// </summary>
+    [Obsolete("The Columns attribute will be removed in OnTopic Editor 5.0.0.")]
     public int? Columns { get; set; }
 
     /*==========================================================================================================================
@@ -33,6 +35,14 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   <c>30</c>.
     /// </summary>
     public int? Rows { get; set; }
+
+    /*==========================================================================================================================
+    | MINIMUM LENGTH
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the length length of the field. Defaults to <c>0</c> if undefined.
+    /// </summary>
+    public int? MinimumLength { get; set; } = 10;
 
     /*==========================================================================================================================
     | MAXIMUM LENGTH
