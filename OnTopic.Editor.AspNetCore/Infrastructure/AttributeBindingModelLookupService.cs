@@ -33,6 +33,8 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       Add(typeof(FileListAttributeBindingModel));
       Add(typeof(FilePathAttributeBindingModel));
       Add(typeof(HtmlAttributeBindingModel));
+      Add(typeof(IncomingRelationshipAttributeBindingModel));
+      Add(typeof(InstructionAttributeBindingModel));
       Add(typeof(LastModifiedAttributeBindingModel));
       Add(typeof(LastModifiedByAttributeBindingModel));
       Add(typeof(NestedTopicListAttributeBindingModel));
