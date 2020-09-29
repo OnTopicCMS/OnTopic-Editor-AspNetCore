@@ -72,6 +72,9 @@ namespace OnTopic.Editor.Models.Metadata {
     /// </summary>
     public string DisplayGroup { get; set; }
 
+    #region LegacyConfiguration
+    #pragma warning disable CS0618 // Type or member is obsolete
+
     /*==========================================================================================================================
     | PROPERTY: DEFAULT CONFIGURATION
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -112,9 +115,6 @@ namespace OnTopic.Editor.Models.Metadata {
       }
     }
 
-    #region LegacyConfiguration
-    #pragma warning disable CS0618 // Type or member is obsolete
-
     /*==========================================================================================================================
     | METHOD: GET CONFIGURATION VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -123,7 +123,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   optionally returns a default value.
     /// </summary>
     [Obsolete(
-      "This property is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
+      "This method is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
       "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
       "AttributeDescriptor."
     )]
@@ -140,6 +140,11 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Retrieves a configuration value from the <see cref="Configuration"/> dictionary as a boolean value.
     /// </summary>
+    [Obsolete(
+      "This method is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
+      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
+      "AttributeDescriptor."
+    )]
     public bool GetBooleanConfigurationValue(string key, bool defaultValue = false) {
       if (Boolean.TryParse(GetConfigurationValue(key, defaultValue.ToString()), out var value)) {
         return value;
@@ -153,6 +158,11 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Retrieves a configuration value from the <see cref="Configuration"/> dictionary as an integer value.
     /// </summary>
+    [Obsolete(
+      "This method is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
+      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
+      "AttributeDescriptor."
+    )]
     public int GetIntegerConfigurationValue(string key, int defaultValue = 0) {
       if (Int32.TryParse(GetConfigurationValue(key, defaultValue.ToString()), out var value)) {
         return value;
