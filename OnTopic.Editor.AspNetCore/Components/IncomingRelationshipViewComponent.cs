@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.ViewModels;
@@ -66,7 +67,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topic                 = _topicRepository.Load(currentTopic.UniqueKey);
 
-      foreach(var relatedTopic in topic.IncomingRelationships.GetTopics(attribute.Key)) {
+      foreach(var relatedTopic in topic.IncomingRelationships.GetTopics(attribute.RelationshipKey?? attribute.Key)) {
+        if (
+          !String.IsNullOrWhiteSpace(attribute.AttributeKey) &&
+          relatedTopic.Attributes.GetValue(attribute.AttributeKey) != attribute.AttributeValue
+        ) {
+          continue;
+        }
         var relatedViewModel    = new TopicViewModel {
           Id                    = relatedTopic.Id,
           Key                   = relatedTopic.Key,
