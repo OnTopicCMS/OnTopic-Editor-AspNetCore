@@ -24,6 +24,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Gets or sets the number of columns (width) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
     ///   <c>70</c>.
     /// </summary>
+    [Obsolete("The Columns attribute will be removed in OnTopic Editor 5.0.0.")]
     public int? Columns { get; set; }
 
     /*==========================================================================================================================
