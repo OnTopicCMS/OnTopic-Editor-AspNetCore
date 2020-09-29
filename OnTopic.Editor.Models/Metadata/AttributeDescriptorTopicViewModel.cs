@@ -230,6 +230,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Defines the CSS class names to be used, if any are configured.
     /// </summary>
+    [Obsolete("The CssClass attribute will be removed in OnTopic Editor 5.0.0.")]
     public string CssClass { get; set; }
 
   } //Class
