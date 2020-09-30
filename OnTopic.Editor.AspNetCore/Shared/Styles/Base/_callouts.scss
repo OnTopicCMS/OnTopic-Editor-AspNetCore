@@ -22,11 +22,11 @@
 //----------------------------------------------------------------------------------------------
 .callout {
   &.topic-info {
-    position                    : fixed;
+    @extend                     .sticky-top;
+    top                         : 136px+15px;
     border                      : 1px solid $grey-lighter;
     padding                     : 15px;
-    width                       : 15%;
-    max-width                   : 200px;
+    width                       : 100%;
     h3,
     dt,
     dd {
