@@ -12,7 +12,7 @@
     <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.5.0-alpha.106" />
     <PackageReference Include="OnTopic.Data.Caching" Version="4.5.0-alpha.106" />
     <PackageReference Include="OnTopic.Data.Sql" Version="4.5.0-alpha.106" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
   </ItemGroup>
 
   <ItemGroup>
