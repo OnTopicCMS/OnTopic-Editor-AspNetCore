@@ -92,6 +92,8 @@ body {
 }
 
 #FixedSidebar {
+  @extend                       .sticky-top;
+  top                           : 136px;
   .btn, select {
     margin-bottom               : 20px;
     width                       : 100%;
