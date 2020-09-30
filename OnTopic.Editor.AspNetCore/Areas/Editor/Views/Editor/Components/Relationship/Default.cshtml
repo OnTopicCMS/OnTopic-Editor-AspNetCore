@@ -14,12 +14,16 @@
 <div id="@containerName"></div>
 
 <script type="text/javascript">
-  Ext.onReady(function(){
-    var tree                    = new OnTopic.SelectableTreeView({
-      dataUrl                   : '/OnTopic/Json/@rootTopicKey?ShowRoot=@descriptor.ShowRoot&ShowAll=true&RelatedNamespace=@descriptor.Key&RelatedTopicID=@Model.CurrentTopic.Id&AttributeName=@descriptor.AttributeKey&AttributeValue=@descriptor.AttributeValue&ExpandRelated=@descriptor.ExpandRelated',
-      checkAscendants           : @((descriptor.CheckAscendants is true).ToString().ToLower()),
-      backingField              : '@Html.IdFor(m => m.Value)'
-    });
-    tree.render('@containerName');
+  window.addEventListener('DOMContentLoaded', function () {
+    (function($) {
+      Ext.onReady(function () {
+        var tree = new OnTopic.SelectableTreeView({
+          dataUrl: '/OnTopic/Json/@rootTopicKey?ShowRoot=@descriptor.ShowRoot&ShowAll=true&RelatedNamespace=@descriptor.Key&RelatedTopicID=@Model.CurrentTopic.Id&AttributeName=@descriptor.AttributeKey&AttributeValue=@descriptor.AttributeValue&ExpandRelated=@descriptor.ExpandRelated',
+          checkAscendants: @((descriptor.CheckAscendants is true).ToString().ToLower()),
+          backingField: '@Html.IdFor(m => m.Value)'
+        });
+        tree.render('@containerName');
+      });
+    })(jQuery);
   });
 </script>

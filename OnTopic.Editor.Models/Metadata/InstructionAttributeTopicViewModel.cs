@@ -3,29 +3,28 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+#nullable enable
+
+namespace OnTopic.Editor.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: DISPLAY OPTIONS (VIEW COMPONENT)
+  | CLASS: INSTRUCTION ATTRIBUTE (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a display options attribute type.
+  ///   Provides access to attributes associated with the <see cref="InstructionViewComponent"/>.
   /// </summary>
-  [Obsolete(
-    "The DisplayOptions view component is no longer supported and will be removed in the next major version of OnTopic. Use " +
-    "the TopicList view component instead, which can be bound to a LookupList content type to provide a list of options."
-  )]
-  public class DisplayOptionsViewComponent: DefaultAttributeTypeViewComponent {
+  public class InstructionAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | INSTRUCTIONS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="DisplayOptionsViewComponent"/> with necessary dependencies.
+    ///   Instructional text to embed in the OnTopic Editor.
     /// </summary>
-    public DisplayOptionsViewComponent() : base() { }
+    public string? Instructions { get; set; }
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
+
+#nullable restore

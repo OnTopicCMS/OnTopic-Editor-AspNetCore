@@ -34,7 +34,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="FileViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="FileListViewComponent"/> with necessary dependencies.
     /// </summary>
     public FileListViewComponent(IWebHostEnvironment webHostEnvironment): base() {
       _webHostEnvironment = webHostEnvironment;
@@ -44,7 +44,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="DefaultAttributeTypeViewComponent"/>.
+    ///   Assembles the view model for the <see cref="FileListViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,

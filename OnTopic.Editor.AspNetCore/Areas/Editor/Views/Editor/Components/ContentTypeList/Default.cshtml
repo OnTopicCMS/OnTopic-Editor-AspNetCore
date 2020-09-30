@@ -14,21 +14,23 @@ else if (Model.TopicList.Count > 2) {
   </select>
 
   <script>
-    (function ($) {
-      $("#@($"ContentTypesFor_{Model.AttributeKey}")").change(function () {
-        var option = $('option:selected', this);
-        @if (Model.EnableModal?? false) {
-          <text>
-            initEditorModal('@Model.AttributeKey', option.text(), option.val(), @Model.OnModalClose); return false;
-          </text>
-        }
-        else {
-          <text>
-            window.location.href = option.val();
-          </text>
-        }
-      });
-    })(jQuery);
+    window.addEventListener('DOMContentLoaded', function () {
+      (function($) {
+        $("#@($"ContentTypesFor_{Model.AttributeKey}")").change(function () {
+          var option = $('option:selected', this);
+          @if (Model.EnableModal?? false) {
+            <text>
+              initEditorModal('@Model.AttributeKey', option.text(), option.val(), @Model.OnModalClose); return false;
+            </text>
+          }
+          else {
+            <text>
+              window.location.href = option.val();
+            </text>
+          }
+        });
+      })(jQuery);
+    });
   </script>
 
 }

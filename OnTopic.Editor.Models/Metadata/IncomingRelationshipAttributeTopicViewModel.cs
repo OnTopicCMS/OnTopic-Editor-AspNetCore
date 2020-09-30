@@ -3,29 +3,31 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
+using OnTopic.Collections;
+using OnTopic.ViewModels;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+#nullable enable
+
+namespace OnTopic.Editor.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: DISPLAY OPTIONS (VIEW COMPONENT)
+  | CLASS: INCOMING RELATIONSHIP ATTRIBUTE (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a display options attribute type.
+  ///   Provides access to attributes associated with the <see cref="IncomingRelationshipViewComponent"/>.
   /// </summary>
-  [Obsolete(
-    "The DisplayOptions view component is no longer supported and will be removed in the next major version of OnTopic. Use " +
-    "the TopicList view component instead, which can be bound to a LookupList content type to provide a list of options."
-  )]
-  public class DisplayOptionsViewComponent: DefaultAttributeTypeViewComponent {
+  public class IncomingRelationshipAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | RELATIONSHIP KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="DisplayOptionsViewComponent"/> with necessary dependencies.
+    ///   Optionally provides the relationship key, which mapes to the <see cref="NamedTopicCollection.Name"/> property.
+    ///   Defaults to the <see cref="TopicViewModel.Key"/> if undefined.
     /// </summary>
-    public DisplayOptionsViewComponent() : base() { }
+    public string? RelationshipKey { get; set; }
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
+
+#nullable restore

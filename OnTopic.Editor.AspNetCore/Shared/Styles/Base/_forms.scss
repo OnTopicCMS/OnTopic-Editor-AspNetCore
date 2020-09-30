@@ -48,7 +48,6 @@ input {
 }
 textarea {
   max-width                     : 100%;
-  min-height                    : 128px;
 }
 .form-control {
   border-radius                 : 1px;
@@ -119,8 +118,15 @@ span.radio {
 }
 
 //----------------------------------------------------------------------------------------------
-// BUTTONS
+// TOKEN INPUT
 //----------------------------------------------------------------------------------------------
+.token-input-list-facebook {
+  @extend .form-control;
+  border                        : 1px solid #ced4da !important;
+  width                         : 100% !important;
+  font-size                     : 1rem !important;
+  padding                       : .1rem !important;
+}
 
 //----------------------------------------------------------------------------------------------
 // VALIDATION
