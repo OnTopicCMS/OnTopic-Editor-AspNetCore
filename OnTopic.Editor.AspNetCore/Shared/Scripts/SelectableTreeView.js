@@ -30,10 +30,12 @@ OnTopic.SelectableTreeView = Ext.extend(Ext.tree.TreePanel, {
   /*============================================================================================================================
   | METHOD: SELECT TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
-  selectTopic                   : function(node) {
-    node.checked                = true;
-    node.select();
-    return true;
+  selectTopic                   : function(node, rec) {
+    node.getUI().toggleCheck();
+    if (node.isExpanded() != node.getUI().isChecked()) {
+      node.toggle();
+    }
+    return false;
   },
 
   /*============================================================================================================================
@@ -99,7 +101,7 @@ OnTopic.SelectableTreeView = Ext.extend(Ext.tree.TreePanel, {
     \-------------------------------------------------------------------------------------------------------------------------*/
     var me = this;
 
-    me.on('click',              me.selectTopic,                 this);
+    me.on('beforeclick',        me.selectTopic,                 this);
     me.on('checkchange',        me.updateBackingField,          this);
 
   }
