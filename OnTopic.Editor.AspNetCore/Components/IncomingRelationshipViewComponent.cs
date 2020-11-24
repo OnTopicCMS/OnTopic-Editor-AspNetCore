@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.ViewModels;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 using OnTopic.ViewModels;
 
@@ -47,6 +48,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       IncomingRelationshipAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix

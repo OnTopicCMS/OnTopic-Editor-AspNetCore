@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 
 #nullable enable
 
@@ -51,6 +52,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       FileListAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -94,6 +101,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
       FileListAttributeTopicViewModel attribute,
       string absolutePath
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | INSTANTIATE OBJECTS

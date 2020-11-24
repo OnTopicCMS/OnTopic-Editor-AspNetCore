@@ -92,6 +92,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
       \-----------------------------------------------------------------------------------------------------------------------*/
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
@@ -157,6 +163,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// <param name="truncatePathAtTopic">The assembled topic keys at which to end the path string.</param>
     /// <returns>A constructed file path.</returns>
     public string GetPath(string attributeKey, FilePathAttributeTopicViewModel options) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(options, nameof(options));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Build configured file path string base on values and settings parameters passed to the method

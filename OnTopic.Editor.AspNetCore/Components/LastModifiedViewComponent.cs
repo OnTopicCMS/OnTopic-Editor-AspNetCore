@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.ViewModels;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Components {
 
@@ -39,6 +40,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       LastModifiedAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix

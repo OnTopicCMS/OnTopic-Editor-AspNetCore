@@ -130,6 +130,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ) where T: EditorViewModel, new() {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(contentTypeDescriptor, nameof(contentTypeDescriptor));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor).ConfigureAwait(true);
@@ -240,6 +245,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       string contentType = null,
       bool isModal = false
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(model, nameof(model));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SET VARIABLES
@@ -516,6 +526,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// </summary>
     public JsonResult Json(TopicQueryOptions options) {
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(options, nameof(options));
+
       /*--------------------------------------------------------------------------------------------------------------------------
       | Get related topics
       \-------------------------------------------------------------------------------------------------------------------------*/
@@ -635,6 +650,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <param name="options">The <see cref="ImportOptions"/> for determing how the file should be imported.</param>
     [HttpPost]
     public async Task<IActionResult> Import(IFormFile jsonFile, [Bind(Prefix = "ImportOptions")]ImportOptions options) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(jsonFile, nameof(jsonFile));
+      Contract.Requires(options, nameof(options));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL

@@ -12,6 +12,7 @@ using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
 using OnTopic.Editor.Models.Queryable;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Querying;
 using OnTopic.Repositories;
 
@@ -51,6 +52,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       TopicListAttributeTopicViewModel attribute,
       string htmlFieldPrefix = null
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
