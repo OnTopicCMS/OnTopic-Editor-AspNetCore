@@ -203,7 +203,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
           );
         }
         var startTopicWebPath           = startTopic.GetWebPath().Replace("/Root/", "/");
-        relativePath                    = endTopic?.GetWebPath().Substring(Math.Max(startTopicWebPath.Length-1,0));
+        relativePath                    = endTopic?.GetWebPath()[Math.Max(startTopicWebPath.Length-1, 0)..];
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
