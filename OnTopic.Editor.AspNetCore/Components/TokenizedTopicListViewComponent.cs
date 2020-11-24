@@ -4,10 +4,12 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.ViewModels;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
 namespace OnTopic.Editor.AspNetCore.Components {
@@ -46,6 +48,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       TokenizedTopicListAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -118,7 +126,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     | Set initial variables
     \---------------------------------------------------------------------------------------------------------------------------*/
       var topicJson               = "";
-      var topic                   = _topicRepository.Load(Int32.Parse(topicId));
+      var topic                   = _topicRepository.Load(Int32.Parse(topicId, CultureInfo.InvariantCulture));
 
     /*----------------------------------------------------------------------------------------------------------------------------
     | Write out JSON for existing topic, if available

@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using OnTopic.Metadata;
 using OnTopic.Metadata.AttributeTypes;
@@ -63,7 +64,6 @@ namespace OnTopic.Editor.Models.Metadata {
     public string DisplayGroup { get; set; }
 
     #region LegacyConfiguration
-    #pragma warning disable CS0618 // Type or member is obsolete
 
     /*==========================================================================================================================
     | PROPERTY: DEFAULT CONFIGURATION
@@ -98,7 +98,7 @@ namespace OnTopic.Editor.Models.Metadata {
             .Select(value => value.Split('='))
             .ToDictionary(
               pair => pair[0],
-              pair => pair.Count() is 2? pair[1]?.Replace("\"", "") : null
+              pair => pair.Length is 2? pair[1]?.Replace("\"", "") : null
             );
         }
         return _configuration;
@@ -154,13 +154,12 @@ namespace OnTopic.Editor.Models.Metadata {
       "AttributeDescriptor."
     )]
     public int GetIntegerConfigurationValue(string key, int defaultValue = 0) {
-      if (Int32.TryParse(GetConfigurationValue(key, defaultValue.ToString()), out var value)) {
+      if (Int32.TryParse(GetConfigurationValue(key, defaultValue.ToString(CultureInfo.InvariantCulture)), out var value)) {
         return value;
       }
       return defaultValue;
     }
 
-    #pragma warning restore CS0618 // Type or member is obsolete
     #endregion LegacyConfiguration
 
     /*==========================================================================================================================

@@ -66,9 +66,10 @@ namespace OnTopic.Editor.AspNetCore {
     /// <summary>
     ///   Determines whether a given type is capable of being activated by the <see cref="Activate"/> method.
     /// </summary>
-    public static bool IsEditorComponent(Type type) =>
-      typeof(StandardEditorComposer).Assembly.Equals(type.Assembly) &&
-      typeof(ViewComponent).IsAssignableFrom(type);
+    public static bool IsEditorComponent(Type type) {
+      Contract.Requires(type, nameof(type));
+      return typeof(StandardEditorComposer).Assembly.Equals(type.Assembly) && typeof(ViewComponent).IsAssignableFrom(type);
+    }
 
     /*==========================================================================================================================
     | METHOD: ACTIVATE EDITOR COMPONENT
@@ -85,7 +86,7 @@ namespace OnTopic.Editor.AspNetCore {
       Type                      type,
       ITopicRepository          topicRepository
     ) =>
-      type.Name switch {
+      type?.Name switch {
         nameof(BooleanViewComponent)                            => new BooleanViewComponent(),
         nameof(DateTimeViewComponent)                           => new DateTimeViewComponent(),
         nameof(DisplayOptionsViewComponent)                     => new DisplayOptionsViewComponent(),

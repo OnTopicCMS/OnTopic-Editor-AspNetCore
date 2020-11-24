@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ITopicMappingService            _topicMappingService;
-    private                     Topic                           _currentTopic                   = null;
+    private                     Topic                           _currentTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -130,15 +131,20 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ) where T: EditorViewModel, new() {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(contentTypeDescriptor, nameof(contentTypeDescriptor));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor);
+      var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor).ConfigureAwait(true);
       var parentTopic           = isNew ? CurrentTopic : CurrentTopic.Parent;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic);
+      var topicViewModel        = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic).ConfigureAwait(true);
 
       if (isNew) {
         topicViewModel          = new() {
@@ -214,7 +220,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
+      var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -242,12 +248,17 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(model, nameof(model));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | SET VARIABLES
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
       var derivedTopicValue     = model.Attributes.Contains("TopicID")? model.Attributes["TopicID"].Value : "-1";
-      var derivedTopicId        = String.IsNullOrWhiteSpace(derivedTopicValue)? -1 : Int32.Parse(derivedTopicValue);
+      var derivedTopicId        = String.IsNullOrWhiteSpace(derivedTopicValue)? -1 : Int32.Parse(derivedTopicValue, CultureInfo.InvariantCulture);
       var derivedTopic          = (derivedTopicId >= 0)? TopicRepository.Load(derivedTopicId) : null;
       var newKey                = model.Attributes.Contains("Key")? model.Attributes["Key"].Value : null;
 
@@ -288,7 +299,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       if (!ModelState.IsValid) {
 
         //Establish view model
-        var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
+        var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
@@ -366,7 +377,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       else if (isNew) {
         return RedirectToAction("Edit", new { path = topic.GetWebPath() });
       }
-      return await Edit();
+      return await Edit().ConfigureAwait(true);
 
     }
 
@@ -516,6 +527,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// </summary>
     public JsonResult Json(TopicQueryOptions options) {
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(options, nameof(options));
+
       /*--------------------------------------------------------------------------------------------------------------------------
       | Get related topics
       \-------------------------------------------------------------------------------------------------------------------------*/
@@ -566,7 +582,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel<ExportViewModel>(contentTypeDescriptor, false, false);
+      var editorViewModel = await GetEditorViewModel<ExportViewModel>(contentTypeDescriptor, false, false).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -617,7 +633,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false);
+      var editorViewModel = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -637,6 +653,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     public async Task<IActionResult> Import(IFormFile jsonFile, [Bind(Prefix = "ImportOptions")]ImportOptions options) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(jsonFile, nameof(jsonFile));
+      Contract.Requires(options, nameof(options));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypeDescriptor = GetContentType(CurrentTopic.ContentType);
@@ -644,7 +666,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel       = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false);
+      var editorViewModel       = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false).ConfigureAwait(true);
 
       options.CurrentUser       = HttpContext.User.Identity.Name?? "System";
 
@@ -664,7 +686,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var json                  = new StringBuilder();
       using (var reader = new StreamReader(jsonFile.OpenReadStream())) {
         while (reader.Peek() >= 0) {
-          json.AppendLine(await reader.ReadLineAsync());
+          json.AppendLine(await reader.ReadLineAsync().ConfigureAwait(true));
         }
       }
       var jsonString            = json.ToString();

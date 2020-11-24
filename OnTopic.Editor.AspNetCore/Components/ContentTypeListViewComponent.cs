@@ -12,6 +12,7 @@ using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
 namespace OnTopic.Editor.AspNetCore.Components {
@@ -57,6 +58,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
       IEnumerable<ContentTypeDescriptorTopicViewModel> values = null,
       string onModalClose = null
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model

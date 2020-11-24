@@ -45,7 +45,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     ///   Provides a list of <see cref="Topic"/>s which are related to the current <see cref="Topic"/> based on the specified
     ///   <see cref="NamedTopicCollection.Name"/>.
     /// </summary>
-    public List<TopicViewModel> RelatedTopics { get; set; } = new();
+    public List<TopicViewModel> RelatedTopics { get; } = new();
 
   } // Class
 } // Namespace

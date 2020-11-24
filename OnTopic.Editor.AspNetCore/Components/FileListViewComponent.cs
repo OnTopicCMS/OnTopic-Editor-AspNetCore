@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 
 #nullable enable
 
@@ -53,6 +54,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
       \-----------------------------------------------------------------------------------------------------------------------*/
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
@@ -73,7 +80,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model.Files               = GetFiles(model.InheritedValue, attribute, model.AbsolutePath);
+      model.Files.AddRange(GetFiles(model.InheritedValue, attribute, model.AbsolutePath));
       model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -94,6 +101,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
       FileListAttributeTopicViewModel attribute,
       string absolutePath
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | INSTANTIATE OBJECTS

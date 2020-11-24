@@ -28,7 +28,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     Topic?                          _currentTopic                   = null;
+    private                     Topic?                          _currentTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -90,6 +90,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       FilePathAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -159,6 +165,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
     public string GetPath(string attributeKey, FilePathAttributeTopicViewModel options) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(options, nameof(options));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Build configured file path string base on values and settings parameters passed to the method
       \-----------------------------------------------------------------------------------------------------------------------*/
       var       filePath                = "";
@@ -192,7 +203,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
           );
         }
         var startTopicWebPath           = startTopic.GetWebPath().Replace("/Root/", "/");
-        relativePath                    = endTopic?.GetWebPath().Substring(Math.Max(startTopicWebPath.Length-1,0));
+        relativePath                    = endTopic?.GetWebPath()[Math.Max(startTopicWebPath.Length-1, 0)..];
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -215,7 +226,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Replace path slashes with backslashes if the resulting file path value uses a UNC or basic file path format
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (filePath.IndexOf("\\", StringComparison.InvariantCulture) >= 0) {
+      if (filePath.Contains("\\", StringComparison.InvariantCulture)) {
         filePath                        = filePath.Replace("/", "\\");
       }
 
