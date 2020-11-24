@@ -133,10 +133,10 @@ namespace OnTopic.Editor.AspNetCore.Components {
 
       var inheritedValue                      = "";
 
-      if (attribute.InheritValue == true && attribute.RelativeToTopicPath == true) {
+      if (attribute is { InheritValue: true, RelativeToTopicPath: true }) {
         inheritedValue                        = GetPath(attributeKey, attribute);
       }
-      else if (attribute.InheritValue == true) {
+      else if (attribute is { InheritValue: true }) {
         inheritedValue                        = CurrentTopic?.Attributes.GetValue(attributeKey, true)?? "";
       }
 
@@ -170,7 +170,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Only process the path if both topic and attribtueKey are provided
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (startTopic is null || attributeKey is null || attributeKey.Length is 0) return "";
+      if (startTopic is null || attributeKey is null or { Length: 0 }) return "";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Crawl up the topics tree to find file path values set at a higher level
