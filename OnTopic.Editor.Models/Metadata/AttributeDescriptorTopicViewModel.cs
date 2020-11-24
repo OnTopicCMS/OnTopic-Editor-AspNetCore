@@ -63,7 +63,6 @@ namespace OnTopic.Editor.Models.Metadata {
     public string DisplayGroup { get; set; }
 
     #region LegacyConfiguration
-    #pragma warning disable CS0618 // Type or member is obsolete
 
     /*==========================================================================================================================
     | PROPERTY: DEFAULT CONFIGURATION
@@ -160,7 +159,6 @@ namespace OnTopic.Editor.Models.Metadata {
       return defaultValue;
     }
 
-    #pragma warning restore CS0618 // Type or member is obsolete
     #endregion LegacyConfiguration
 
     /*==========================================================================================================================
