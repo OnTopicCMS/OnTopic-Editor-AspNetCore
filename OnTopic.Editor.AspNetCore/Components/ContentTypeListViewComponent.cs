@@ -100,7 +100,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       var actualTopic           = _topicRepository.Load(currentTopic.Id);
       var actualContentType     = contentTypes.GetTopic(currentTopic.ContentType);
 
-      if (actualContentType == null) {
+      if (actualContentType is null) {
         return View(viewModel);
       }
 
@@ -136,7 +136,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | content types explicitly annotated as "implicitly permitted", and which are not marked as hidden are displayed. This
       | typically include the Page content type, and popular derivatives of it, such as Content List.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (viewModel.TopicList.Count.Equals(1) && !actualContentType.DisableChildTopics) {
+      if (viewModel.TopicList.Count is 1 && !actualContentType.DisableChildTopics) {
         viewModel.TopicList.AddRange(
           contentTypes
             .Where(c => actualContentType.Equals("Container") || c.Attributes.GetBoolean("ImplicitlyPermitted", false))

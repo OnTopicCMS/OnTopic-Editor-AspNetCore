@@ -111,14 +111,14 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Filter file list based on extension
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (attribute.Extension != null) {
+      if (attribute.Extension is not null) {
         searchPattern = searchPattern + "." + attribute.Extension;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Filter file list based on filter criteria
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (attribute.Filter != null) {
+      if (attribute.Filter is not null) {
         searchPattern = attribute.Filter + searchPattern;
       }
 

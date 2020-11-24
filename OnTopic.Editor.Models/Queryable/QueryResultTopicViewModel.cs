@@ -138,7 +138,7 @@ namespace OnTopic.Editor.Models.Queryable {
     ///   Determines whether the current topic is a leaf node or not.
     /// </summary>
     [JsonPropertyName("leaf")]
-    public bool IsLeaf => Children.Count.Equals(0);
+    public bool IsLeaf => Children.Count is 0;
 
     /*==========================================================================================================================
     | IS EXPANDED?

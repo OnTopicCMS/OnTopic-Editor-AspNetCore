@@ -88,7 +88,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <returns>The Topic associated with the current request.</returns>
     protected Topic CurrentTopic {
       get {
-        if (_currentTopic == null) {
+        if (_currentTopic is null) {
           _currentTopic = TopicRepository.Load(RouteData);
         }
         return _currentTopic;
@@ -155,7 +155,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
 
         //Serialize relationships, if it's a relationship type
-        if (!isNew && attribute.ModelType == ModelType.Relationship) {
+        if (!isNew && attribute.ModelType is ModelType.Relationship) {
           var relatedTopicIds = CurrentTopic.Relationships.GetTopics(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
           topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
         }
@@ -166,7 +166,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         //For new topics that aren't derived from another topic, assign attribute default, if available
-        else if (CurrentTopic.DerivedTopic == null && !attribute.IsRequired && attribute.DefaultValue != null) {
+        else if (CurrentTopic.DerivedTopic is null && !attribute.IsRequired && attribute.DefaultValue is not null) {
           topicViewModel.Attributes.Add(attribute.Key, attribute.DefaultValue);
         }
 
@@ -254,7 +254,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (derivedTopic == null) {
+      if (derivedTopic is null) {
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
           if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue?.Value)) {
@@ -311,7 +311,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         contentType = CurrentTopic.ContentType;
       }
 
-      if (derivedTopic != null && topic.DerivedTopic != derivedTopic) {
+      if (derivedTopic is not null && topic.DerivedTopic != derivedTopic) {
         topic.DerivedTopic = derivedTopic;
       }
 
@@ -340,10 +340,10 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         var attributeValue = model.Attributes[attribute.Key];
 
         //Save value
-        if (attribute.ModelType.Equals(ModelType.Relationship)) {
+        if (attribute.ModelType is ModelType.Relationship) {
           SetRelationships(topic, attribute, attributeValue);
         }
-        else if (attribute.Key.Equals("Key")) {
+        else if (attribute.Key is "Key") {
           topic.Key = attributeValue.Value.Replace(" ", "");
         }
         else {
@@ -385,7 +385,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         if (isTopicId && topicIdInt > 0) {
           relatedTopic = TopicRepository.Load(topicIdInt);
         }
-        if (relatedTopic != null) {
+        if (relatedTopic is not null) {
           topic.Relationships.SetTopic(attribute.Key, relatedTopic);
         }
       }
@@ -444,7 +444,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | If the content type is a nested list, display grandparent.
       \-------------------------------------------------------------------------------------------------------------------------*/
-      else if (parent.Attributes.GetValue("ContentType", "") == "List") {
+      else if (parent.Attributes.GetValue("ContentType", "") is "List") {
         return RedirectToAction(
           "Edit",
           new {
@@ -653,7 +653,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE PARAMETERS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (jsonFile == null) {
+      if (jsonFile is null) {
         ModelState.AddModelError("jsonFile", "The JSON file is required to import data.");
         return View(editorViewModel);
       }
@@ -673,7 +673,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       };
       var topicData             = JsonSerializer.Deserialize<TopicData>(jsonString, jsonOptions);
 
-      if (topicData == null) {
+      if (topicData is null) {
         ModelState.AddModelError("jsonFile", "The JSON file could not be read correctly.");
         return View(editorViewModel);
       }
@@ -685,16 +685,16 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var target                = TopicRepository.Load(uniqueKey);
 
       //Create target if it doesn't exist
-      if (target == null) {
+      if (target is null) {
         var parentKey           = uniqueKey.Substring(0, uniqueKey.LastIndexOf(":", StringComparison.InvariantCulture));
         var parent              = TopicRepository.Load(parentKey);
 
-        if (parent != null) {
+        if (parent is not null) {
           target                = TopicFactory.Create(topicData.Key, topicData.ContentType, parent);
         }
       }
 
-      if (target == null) {
+      if (target is null) {
         ModelState.AddModelError(
           "jsonFile",
           $"The root namespace, '{topicData.UniqueKey}', is not available in the topic graph"

@@ -92,7 +92,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     /// </summary>
     public DateTime CalculateOffset(DateTime originalDate) {
       var offset = AttributeDescriptor.DateTimeOffset?? 0;
-      if (AttributeDescriptor.DateTimeOffset == 0) return originalDate;
+      if (AttributeDescriptor.DateTimeOffset is 0) return originalDate;
       return AttributeDescriptor.DateTimeOffsetUnits switch {
         "Minutes"               => originalDate.AddMinutes(offset),
         "Hours"                 => originalDate.AddHours(offset),

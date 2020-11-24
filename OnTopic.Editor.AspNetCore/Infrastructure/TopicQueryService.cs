@@ -100,7 +100,7 @@ namespace OnTopic.Editor.Models.Queryable {
           topic.GetUniqueKey(),
           topic.GetWebPath(),
           options.EnableCheckboxes ? (options.MarkRelated ? related.Contains(topic) : true) : new bool?(),
-          topic.Attributes.GetValue("DisableDelete", "0").Equals("0"),
+          topic.Attributes.GetValue("DisableDelete", "0") is "0",
           options.ExpandRelated && related.Any(r => r.GetUniqueKey().StartsWith(topic.GetUniqueKey(), StringComparison.Ordinal))
         );
 
@@ -145,15 +145,15 @@ namespace OnTopic.Editor.Models.Queryable {
       | Validate basic properties
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!options.ShowAll && !topic.IsVisible()) return false;
-      if (!options.ShowNestedTopics && topic.ContentType.Equals("List")) return false;
-      if (options.ResultLimit.Equals(0)) return false;
+      if (!options.ShowNestedTopics && topic.ContentType is "List") return false;
+      if (options.ResultLimit is 0) return false;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate filtered attribute
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrEmpty(options.AttributeName) && !String.IsNullOrEmpty(options.AttributeName)) {
         if (options.UsePartialMatch) {
-          if (topic.Attributes.GetValue(options.AttributeName, "").IndexOf(options.AttributeValue) == -1) {
+          if (topic.Attributes.GetValue(options.AttributeName, "").IndexOf(options.AttributeValue) is -1) {
             return false;
           }
         }

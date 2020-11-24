@@ -102,13 +102,13 @@ namespace OnTopic.Editor.Models.Metadata {
     )]
     public IDictionary<string, string> Configuration {
       get {
-        if (_configuration.Count.Equals(0) && DefaultConfiguration?.Length > 0) {
+        if (_configuration.Count is 0 && DefaultConfiguration?.Length > 0) {
           _configuration = DefaultConfiguration
             .Split(' ')
             .Select(value => value.Split('='))
             .ToDictionary(
               pair => pair[0],
-              pair => pair.Count().Equals(2) ? pair[1]?.Replace("\"", "") : null
+              pair => pair.Count() is 2? pair[1]?.Replace("\"", "") : null
             );
         }
         return _configuration;
@@ -128,7 +128,7 @@ namespace OnTopic.Editor.Models.Metadata {
       "AttributeDescriptor."
     )]
     public string GetConfigurationValue(string key, string defaultValue = null) {
-      if (Configuration != null && Configuration.ContainsKey(key) && Configuration[key] != null) {
+      if (Configuration is not null && Configuration.ContainsKey(key) && Configuration[key] is not null) {
         return Configuration[key].ToString();
       }
       return defaultValue;

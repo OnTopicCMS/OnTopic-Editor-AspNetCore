@@ -92,7 +92,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var rootTopic             = (Topic)null;
 
-      if (attribute.RelativeTopicBase != null) {
+      if (attribute.RelativeTopicBase is not null) {
         var baseTopic             = _topicRepository.Load(currentTopic.UniqueKey);
         if (String.IsNullOrEmpty(currentTopic.Key)) {
           baseTopic               = TopicFactory.Create("NewTopic", currentTopic.ContentType, baseTopic);
@@ -110,7 +110,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
         rootTopic = _topicRepository.Load(attribute.RootTopic?.UniqueKey?? attribute.RootTopicKey);
       }
 
-      if (rootTopic != null && !String.IsNullOrEmpty(attribute.RelativeTopicPath)) {
+      if (rootTopic is not null && !String.IsNullOrEmpty(attribute.RelativeTopicPath)) {
         rootTopic = rootTopic.GetByUniqueKey(rootTopic.GetUniqueKey() + ":" + attribute.RelativeTopicPath);
       }
 
@@ -169,7 +169,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Swallow missing topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (topic == null) {
+      if (topic is null) {
         return new List<QueryResultTopicViewModel>();
       }
 
@@ -219,7 +219,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     | Replaces tokenized parameters (e.g., {Key}) in the source string based on the source Topic's properties.
     \-------------------------------------------------------------------------------------------------------------------------*/
     private static string ReplaceTokens(QueryResultTopicViewModel topic, string source) {
-      if (topic != null && !String.IsNullOrEmpty(source)) {
+      if (topic is not null && !String.IsNullOrEmpty(source)) {
         source = source
           .Replace("{TopicId}", topic.Id.ToString(), StringComparison.InvariantCultureIgnoreCase)
           .Replace("{Key}", topic.Key, StringComparison.InvariantCultureIgnoreCase)

@@ -61,7 +61,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       \-----------------------------------------------------------------------------------------------------------------------*/
       //The ASP.NET Core binder will keep iterating over the index until no result is returned. Assume failure to located
       //dependency fields means this point has been reached.
-      if (key == null || editorType == null) {
+      if (key is null || editorType is null) {
         return Task.CompletedTask;
       }
 
