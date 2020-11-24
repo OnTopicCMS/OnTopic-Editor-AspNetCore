@@ -59,8 +59,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate input
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Contract.Requires(topicRepository != null, "A concrete implementation of an ITopicRepository is required.");
-      Contract.Requires(topicMappingService != null, "A concrete implementation of an ITopicMappingService is required.");
+      Contract.Requires(topicRepository, "A concrete implementation of an ITopicRepository is required.");
+      Contract.Requires(topicMappingService, "A concrete implementation of an ITopicMappingService is required.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set values locally
