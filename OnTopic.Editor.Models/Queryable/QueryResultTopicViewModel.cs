@@ -164,7 +164,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// <summary>
     ///   Provides a collection of child objects.
     /// </summary>
-    public List<QueryResultTopicViewModel> Children { get; } = new List<QueryResultTopicViewModel>();
+    public List<QueryResultTopicViewModel> Children { get; } = new();
 
   } // Class
 } // Namespace

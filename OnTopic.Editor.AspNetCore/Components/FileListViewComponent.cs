@@ -128,12 +128,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       var foundFiles = Directory.GetFiles(absolutePath, searchPattern, searchOption);
 
       if (!String.IsNullOrEmpty(inheritedValue)) {
-        files.Add(new SelectListItem("", inheritedValue));
+        files.Add(new("", inheritedValue));
       }
       foreach (var foundFile in foundFiles) {
         var fileName = foundFile.Replace(absolutePath, "");
         var fileNameKey = fileName.Replace("." + attribute.Extension, "");
-        files.Add(new SelectListItem(fileNameKey, fileName));
+        files.Add(new(fileNameKey, fileName));
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

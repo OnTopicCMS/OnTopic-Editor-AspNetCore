@@ -21,7 +21,7 @@ namespace OnTopic.Editor.Models.Transfer {
     /// <summary>
     ///   The <see cref="ExportOptions"/> represent the user's preference for how to export the current topic.
     /// </summary>
-    public ExportOptions ExportOptions { get; set; } = new ExportOptions();
+    public ExportOptions ExportOptions { get; set; } = new();
 
   } // Class
 } // Namespace

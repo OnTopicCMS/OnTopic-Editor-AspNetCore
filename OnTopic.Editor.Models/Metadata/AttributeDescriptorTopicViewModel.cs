@@ -22,17 +22,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     Dictionary<string, string>      _configuration;
-
-    /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeDescriptorTopicViewModel"/> class.
-    /// </summary>
-    public AttributeDescriptorTopicViewModel() {
-      _configuration            = new Dictionary<string, string>();
-    }
+    private                     Dictionary<string, string>      _configuration                  = new();
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION

@@ -76,7 +76,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Set label
       \-----------------------------------------------------------------------------------------------------------------------*/
       viewModel.TopicList.Add(
-        new SelectListItem {
+        new() {
           Value = "",
           Text = attribute.DefaultLabel
         }
@@ -133,7 +133,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
         var value = getValue(topic);
 
         viewModel.TopicList.Add(
-          new SelectListItem {
+          new() {
             Value = value,
             Text = title,
             Selected = value == defaultValue
@@ -170,7 +170,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Swallow missing topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (topic is null) {
-        return new List<QueryResultTopicViewModel>();
+        return new();
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

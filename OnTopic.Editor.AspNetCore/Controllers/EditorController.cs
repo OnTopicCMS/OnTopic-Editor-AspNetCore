@@ -141,7 +141,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var topicViewModel        = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic);
 
       if (isNew) {
-        topicViewModel          = new EditingTopicViewModel() {
+        topicViewModel          = new() {
           ContentType           = contentTypeDescriptor.Key,
           UniqueKey             = CurrentTopic.GetUniqueKey(),
           Parent                = topicViewModel
@@ -529,7 +529,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         if (!String.IsNullOrWhiteSpace(options.RelatedNamespace)) {
-          relatedTopics = new ReadOnlyTopicCollection<Topic>(relatedTopic.Relationships.GetTopics(options.RelatedNamespace));
+          relatedTopics = new(relatedTopic.Relationships.GetTopics(options.RelatedNamespace));
         }
         else {
           relatedTopics = relatedTopic.Relationships.GetAllTopics();
@@ -546,7 +546,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Return hierarchical view
       \-------------------------------------------------------------------------------------------------------------------------*/
-      return new JsonResult(jsonTopicViewModel);
+      return new(jsonTopicViewModel);
 
     }
 

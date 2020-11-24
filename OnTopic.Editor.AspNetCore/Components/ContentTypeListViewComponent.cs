@@ -72,7 +72,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Set label
       \-----------------------------------------------------------------------------------------------------------------------*/
       viewModel.TopicList.Add(
-        new SelectListItem {
+        new() {
           Value = null,
           Text = "Add a child topic…"
         }
@@ -83,7 +83,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var contentType in values.OrderBy(c => c.Title)) {
         viewModel.TopicList.Add(
-          new SelectListItem {
+          new() {
             Value               = getValue(contentType.Key),
             Text                = contentType.Title
           }
@@ -118,7 +118,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
             .Relationships
             .GetTopics("ContentTypes")
             .Select(c =>
-              new SelectListItem {
+              new SelectListItem() {
                 Value           = getValue(c.Key),
                 Text            = c.Title
               }

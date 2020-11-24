@@ -17,16 +17,6 @@ namespace OnTopic.Editor.Models {
   public class EditorBindingModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
-    /// </summary>
-    public EditorBindingModel() {
-      Attributes = new EditorAttributeCollection();
-    }
-
-    /*==========================================================================================================================
     | ATTRIBUTES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -35,7 +25,7 @@ namespace OnTopic.Editor.Models {
     public EditorAttributeCollection Attributes {
       get;
       set;
-    }
+    } = new();
 
   } // Class
 } // Namespace
