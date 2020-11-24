@@ -132,13 +132,13 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor);
+      var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor).ConfigureAwait(true);
       var parentTopic           = isNew ? CurrentTopic : CurrentTopic.Parent;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic);
+      var topicViewModel        = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic).ConfigureAwait(true);
 
       if (isNew) {
         topicViewModel          = new() {
@@ -214,7 +214,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
+      var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -288,7 +288,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       if (!ModelState.IsValid) {
 
         //Establish view model
-        var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
+        var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
@@ -366,7 +366,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       else if (isNew) {
         return RedirectToAction("Edit", new { path = topic.GetWebPath() });
       }
-      return await Edit();
+      return await Edit().ConfigureAwait(true);
 
     }
 
@@ -566,7 +566,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel<ExportViewModel>(contentTypeDescriptor, false, false);
+      var editorViewModel = await GetEditorViewModel<ExportViewModel>(contentTypeDescriptor, false, false).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -617,7 +617,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false);
+      var editorViewModel = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -644,7 +644,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel       = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false);
+      var editorViewModel       = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false).ConfigureAwait(true);
 
       options.CurrentUser       = HttpContext.User.Identity.Name?? "System";
 
@@ -664,7 +664,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var json                  = new StringBuilder();
       using (var reader = new StreamReader(jsonFile.OpenReadStream())) {
         while (reader.Peek() >= 0) {
-          json.AppendLine(await reader.ReadLineAsync());
+          json.AppendLine(await reader.ReadLineAsync().ConfigureAwait(true));
         }
       }
       var jsonString            = json.ToString();
