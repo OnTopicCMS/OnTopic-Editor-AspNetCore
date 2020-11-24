@@ -80,7 +80,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model.Files               = GetFiles(model.InheritedValue, attribute, model.AbsolutePath);
+      model.Files.AddRange(GetFiles(model.InheritedValue, attribute, model.AbsolutePath));
       model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
 
       /*------------------------------------------------------------------------------------------------------------------------
