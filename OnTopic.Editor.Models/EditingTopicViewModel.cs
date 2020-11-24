@@ -35,7 +35,9 @@ namespace OnTopic.Editor.Models {
     ///   Provides a collection of <see cref="DateTime"/> instances during which the represented <see cref="Topic"/> was
     ///   modified.
     /// </summary>
-    public List<DateTime> VersionHistory { get; } = new();
+    #pragma warning disable CA2227 // Collection properties should be read only
+    public List<DateTime> VersionHistory { get; set; } = new();
+    #pragma warning restore CA2227 // Collection properties should be read only
 
     /*==========================================================================================================================
     | PROPERTY: DERIVED TOPIC
