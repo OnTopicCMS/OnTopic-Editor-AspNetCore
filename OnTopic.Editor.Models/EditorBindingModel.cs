@@ -22,10 +22,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Collection of attribute values extracted from the post.
     /// </summary>
-    public EditorAttributeCollection Attributes {
-      get;
-      set;
-    } = new();
+    public EditorAttributeCollection Attributes { get; } = new();
 
   } // Class
 } // Namespace

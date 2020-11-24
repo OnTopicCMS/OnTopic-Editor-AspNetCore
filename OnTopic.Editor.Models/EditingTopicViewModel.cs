@@ -35,7 +35,7 @@ namespace OnTopic.Editor.Models {
     ///   Provides a collection of <see cref="DateTime"/> instances during which the represented <see cref="Topic"/> was
     ///   modified.
     /// </summary>
-    public List<DateTime> VersionHistory { get; set; } = new();
+    public List<DateTime> VersionHistory { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: DERIVED TOPIC
@@ -52,7 +52,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   A collection of attribute values, as assigned directly to the topic. Does not include inherited or derived values.
     /// </summary>
-    public Dictionary<string, string> Attributes { get; set; } = new();
+    public Dictionary<string, string> Attributes { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: INHERITED ATTRIBUTES
@@ -60,7 +60,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   A collection of inherited attribute values, as inferred from derived or upstream topics.
     /// </summary>
-    public Dictionary<string, string> InheritedAttributes { get; set; } = new();
+    public Dictionary<string, string> InheritedAttributes { get; } = new();
 
   } // Class
 } // Namespace

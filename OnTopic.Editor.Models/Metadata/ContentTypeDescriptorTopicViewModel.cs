@@ -69,7 +69,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created under <see cref="Topic"/>s of the
     ///   current <see cref="ContentType"/>.
     /// </summary>
-    public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; set; }
+    public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: IMPLICITLY PERMITTED?
