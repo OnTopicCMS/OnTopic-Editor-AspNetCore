@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.ViewModels;
@@ -125,7 +126,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     | Set initial variables
     \---------------------------------------------------------------------------------------------------------------------------*/
       var topicJson               = "";
-      var topic                   = _topicRepository.Load(Int32.Parse(topicId));
+      var topic                   = _topicRepository.Load(Int32.Parse(topicId, CultureInfo.InvariantCulture));
 
     /*----------------------------------------------------------------------------------------------------------------------------
     | Write out JSON for existing topic, if available

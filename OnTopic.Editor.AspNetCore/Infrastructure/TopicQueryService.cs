@@ -152,12 +152,13 @@ namespace OnTopic.Editor.Models.Queryable {
       | Validate filtered attribute
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrEmpty(options.AttributeName) && !String.IsNullOrEmpty(options.AttributeName)) {
+        var attributeValue = topic.Attributes.GetValue(options.AttributeName, "");
         if (options.UsePartialMatch) {
-          if (topic.Attributes.GetValue(options.AttributeName, "").IndexOf(options.AttributeValue) is -1) {
+          if (attributeValue.IndexOf(options.AttributeValue, StringComparison.Ordinal) is -1) {
             return false;
           }
         }
-        if (!topic.Attributes.GetValue(options.AttributeName, "").Equals(options.AttributeValue)) {
+        if (!attributeValue.Equals(options.AttributeValue)) {
           return false;
         }
       }

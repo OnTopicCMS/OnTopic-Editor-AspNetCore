@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -257,7 +258,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
       var derivedTopicValue     = model.Attributes.Contains("TopicID")? model.Attributes["TopicID"].Value : "-1";
-      var derivedTopicId        = String.IsNullOrWhiteSpace(derivedTopicValue)? -1 : Int32.Parse(derivedTopicValue);
+      var derivedTopicId        = String.IsNullOrWhiteSpace(derivedTopicValue)? -1 : Int32.Parse(derivedTopicValue, CultureInfo.InvariantCulture);
       var derivedTopic          = (derivedTopicId >= 0)? TopicRepository.Load(derivedTopicId) : null;
       var newKey                = model.Attributes.Contains("Key")? model.Attributes["Key"].Value : null;
 

@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.ViewModels;
@@ -61,12 +62,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (currentTopic.LastModified != DateTime.MinValue) {
-        model.CurrentValue      = currentTopic.LastModified.ToString();
+        model.CurrentValue      = currentTopic.LastModified.ToString(CultureInfo.InvariantCulture);
       }
       else {
         model.CurrentValue      = model.Value;
       }
-      model.Value               = DateTime.Now.ToString();
+      model.Value               = DateTime.Now.ToString(CultureInfo.InvariantCulture);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

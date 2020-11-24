@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using OnTopic.Metadata;
 using OnTopic.Metadata.AttributeTypes;
@@ -153,7 +154,7 @@ namespace OnTopic.Editor.Models.Metadata {
       "AttributeDescriptor."
     )]
     public int GetIntegerConfigurationValue(string key, int defaultValue = 0) {
-      if (Int32.TryParse(GetConfigurationValue(key, defaultValue.ToString()), out var value)) {
+      if (Int32.TryParse(GetConfigurationValue(key, defaultValue.ToString(CultureInfo.InvariantCulture)), out var value)) {
         return value;
       }
       return defaultValue;
