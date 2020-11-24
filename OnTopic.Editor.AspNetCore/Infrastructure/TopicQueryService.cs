@@ -99,7 +99,7 @@ namespace OnTopic.Editor.Models.Queryable {
           options.UseKeyAsText ? topic.Key : topic.Title,
           topic.GetUniqueKey(),
           topic.GetWebPath(),
-          options.EnableCheckboxes ? (options.MarkRelated ? related.Contains(topic) : true) : new bool?(),
+          options.EnableCheckboxes ? (!options.MarkRelated || related.Contains(topic)) : new bool?(),
           topic.Attributes.GetValue("DisableDelete", "0") is "0",
           options.ExpandRelated && related.Any(r => r.GetUniqueKey().StartsWith(topic.GetUniqueKey(), StringComparison.Ordinal))
         );
