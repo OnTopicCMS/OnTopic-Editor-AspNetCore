@@ -123,7 +123,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /*----------------------------------------------------------------------------------------------------------------------------
     | Write out JSON for existing topic, if available
     \---------------------------------------------------------------------------------------------------------------------------*/
-      if (topic != null) {
+      if (topic is not null) {
         topicJson               += $"{{"
           + $"'id'              : '{topic.Id}', "
           + $"'key'             : '{EncodeJsonValue(topic.Key)}', "

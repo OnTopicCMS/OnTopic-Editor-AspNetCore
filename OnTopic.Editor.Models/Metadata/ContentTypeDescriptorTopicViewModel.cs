@@ -35,7 +35,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   cref="AttributeDescriptor"/> permitted by the underlying <see cref="ContentTypeDescriptor"/>.
     /// </summary>
     [Follow(Relationships.Relationships|Relationships.References)]
-    public List<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new List<AttributeDescriptorTopicViewModel>();
+    public List<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION

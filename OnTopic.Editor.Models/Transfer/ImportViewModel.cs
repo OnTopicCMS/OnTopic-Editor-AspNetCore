@@ -21,7 +21,7 @@ namespace OnTopic.Editor.Models.Transfer {
     /// <summary>
     ///   The <see cref="ImportOptions"/> represent the user's preference for how to import a serialized JSON file.
     /// </summary>
-    public ImportOptions ImportOptions { get; set; } = new ImportOptions();
+    public ImportOptions ImportOptions { get; set; } = new();
 
     /*==========================================================================================================================
     | IS IMPORTED?

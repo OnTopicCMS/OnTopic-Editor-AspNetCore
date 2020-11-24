@@ -111,14 +111,14 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Filter file list based on extension
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (attribute.Extension != null) {
+      if (attribute.Extension is not null) {
         searchPattern = searchPattern + "." + attribute.Extension;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Filter file list based on filter criteria
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (attribute.Filter != null) {
+      if (attribute.Filter is not null) {
         searchPattern = attribute.Filter + searchPattern;
       }
 
@@ -128,12 +128,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       var foundFiles = Directory.GetFiles(absolutePath, searchPattern, searchOption);
 
       if (!String.IsNullOrEmpty(inheritedValue)) {
-        files.Add(new SelectListItem("", inheritedValue));
+        files.Add(new("", inheritedValue));
       }
       foreach (var foundFile in foundFiles) {
         var fileName = foundFile.Replace(absolutePath, "");
         var fileNameKey = fileName.Replace("." + attribute.Extension, "");
-        files.Add(new SelectListItem(fileNameKey, fileName));
+        files.Add(new(fileNameKey, fileName));
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

@@ -48,7 +48,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   cref="TopicListAttributeViewModel"/> representing countries, <c>US</c> might by the key associated with a <c>United
     ///   States</c> value.
     /// </remarks>
-    public List<SelectListItem> TopicList { get; } = new List<SelectListItem>();
+    public List<SelectListItem> TopicList { get; } = new();
 
   } // Class
 } // Namespace
