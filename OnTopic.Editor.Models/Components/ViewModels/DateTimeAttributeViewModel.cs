@@ -21,8 +21,8 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     string                          _defaultDate                    = null;
-    private                     string                          _defaultTime                    = null;
+    private                     string                          _defaultDate;
+    private                     string                          _defaultTime;
 
     /*==========================================================================================================================
     | CONSTRUCTOR

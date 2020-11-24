@@ -42,7 +42,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ITopicMappingService            _topicMappingService;
-    private                     Topic                           _currentTopic                   = null;
+    private                     Topic                           _currentTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR

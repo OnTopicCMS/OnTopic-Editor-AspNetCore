@@ -23,7 +23,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines the lower bound for acceptable values. Defaults to 0.
     /// </summary>
-    public int MinimumValue { get; set; } = 0;
+    public int MinimumValue { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: MAXIMUM VALUE

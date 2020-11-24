@@ -29,7 +29,7 @@ namespace OnTopic.Editor.Models.Transfer {
     /// <summary>
     ///   The <see cref="IsImported"/> property is set after the file is successfully imported.
     /// </summary>
-    public bool IsImported { get; set; } = false;
+    public bool IsImported { get; set; }
 
   } // Class
 } // Namespace
