@@ -100,13 +100,14 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Get content type
       >-------------------------------------------------------------------------------------------------------------------------
       | If the database is uninitialized, the content type won't be found. In that case, return an empty view, which will
-      | effectively hide the component.
+      | effectively hide the component. If the topic cannot be found, assume it is a new topic and attempt to load the parent
+      | for context.
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypes          = _topicRepository.GetContentTypeDescriptors();
-      var actualTopic           = _topicRepository.Load(currentTopic.Id);
+      var actualTopic           = _topicRepository.Load(currentTopic.Id)?? _topicRepository.Load(currentTopic.Parent.Id);
       var actualContentType     = contentTypes.GetTopic(currentTopic.ContentType);
 
-      if (actualContentType is null) {
+      if (actualContentType is null || actualTopic is null) {
         return View(viewModel);
       }
 

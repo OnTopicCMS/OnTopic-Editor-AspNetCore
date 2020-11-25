@@ -11,13 +11,13 @@
 
     @if (Model.Topic.VersionHistory.Count > 1) {
       <!-- Versions -->
-      <div id="VersionsDropdown" class="dropdown d-none d-lg-inline-block" style="display:inline-block;">
+      <div id="VersionsDropdown" class="dropdown d-none d-md-inline-block" style="display:inline-block;">
         <button class="btn btn-sm btn-ancillary dropdown-toggle" type="button" id="VersionsButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="fa fa-history"></span>
           Versions
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="VersionsButton" style="left: 3px; top: 98%;">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="VersionsButton">
           @foreach (DateTime version in Model.Topic.VersionHistory) {
             <li role="presentation" class="small">
               <a tabindex="-1" role="menuitem" href="@Url.Action("SetVersion", "Editor", new { path=Model.Topic.WebPath, version=version.ToString("MM/dd/yyyy hh:mm:ss.fff tt"), isModal=Model.IsModal })">@version.ToString()</a>

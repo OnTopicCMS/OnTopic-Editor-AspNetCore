@@ -20,7 +20,9 @@ else if (Model.TopicList.Count > 2) {
           var option = $('option:selected', this);
           @if (Model.EnableModal?? false) {
             <text>
-              initEditorModal('@Model.AttributeKey', option.text(), option.val(), @Model.OnModalClose); return false;
+              initEditorModal('@Model.AttributeKey', option.text(), option.val(), @Model.OnModalClose);
+              $(this).prop('selectedIndex', 0);
+              return false;
             </text>
           }
           else {
