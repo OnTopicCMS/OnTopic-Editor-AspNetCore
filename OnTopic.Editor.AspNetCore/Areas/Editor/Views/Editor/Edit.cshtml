@@ -20,7 +20,7 @@
   <div id="FormArea" class="row form area">
 
     <div class="col-md-12">
-      @if (Model.ContentTypeDescriptor.DisableDelete) {
+      @if (Model.ContentTypeDescriptor.DisableDelete && !Model.IsNew) {
         <div class="alert alert-warning" role="alert">
           <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Warning:</strong> This topic is part of the OnTopic internal organizational structure and is not intended to be modified. Deletion of this Topic has been disabled.
@@ -31,7 +31,7 @@
           @Model.ContentTypeDescriptor.Description
         </div>
       }
-      @if (Model.Topic.DerivedTopic != null) {
+      @if (Model.Topic.DerivedTopic is not null) {
         <div class="alert alert-primary" role="alert">
           <strong>Note:</strong> This topic derives from <a href="@Url.Action("Edit", new { path = Model.Topic.DerivedTopic.WebPath })">@Model.Topic.DerivedTopic.Title</a>. Any values not explicitly defined here will be inherited from that topic.
         </div>
@@ -46,7 +46,7 @@
 
           var displayGroupId = displayGroupName.Replace(" ", String.Empty);
 
-          <div id="Group_@displayGroupId" class="tab-pane fade@(index == 0 ? " show active" : "")" role="tabpanel" aria-labelledby="Tab_@displayGroupId">
+          <div id="Group_@displayGroupId" class="tab-pane fade@(index is 0 ? " show active" : "")" role="tabpanel" aria-labelledby="Tab_@displayGroupId">
             <section id="Section_@displayGroupId">
 
               @foreach (var attribute in Model.ContentTypeDescriptor.GetAttributeDescriptors(displayGroupName)) {
@@ -105,7 +105,7 @@
     }
   });
 
-  @if (Model.Topic.DerivedTopic != null) {
+  @if (Model.Topic.DerivedTopic is not null) {
     <text>
       /**
       * Disable required fields if derived topic, as missing values will be inherited

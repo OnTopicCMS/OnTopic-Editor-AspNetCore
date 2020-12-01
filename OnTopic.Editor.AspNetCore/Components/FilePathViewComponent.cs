@@ -28,7 +28,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     Topic?                          _currentTopic                   = null;
+    private                     Topic?                          _currentTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -71,7 +71,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// <returns>The Topic associated with the current request.</returns>
     protected Topic? CurrentTopic {
       get {
-        if (_currentTopic == null) {
+        if (_currentTopic is null) {
           _currentTopic = TopicRepository.Load(RouteData);
         }
         Contract.Assume(_currentTopic, nameof(_currentTopic));
@@ -90,6 +90,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       FilePathAttributeTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -133,10 +139,10 @@ namespace OnTopic.Editor.AspNetCore.Components {
 
       var inheritedValue                      = "";
 
-      if (attribute.InheritValue == true && attribute.RelativeToTopicPath == true) {
+      if (attribute is { InheritValue: true, RelativeToTopicPath: true }) {
         inheritedValue                        = GetPath(attributeKey, attribute);
       }
-      else if (attribute.InheritValue == true) {
+      else if (attribute is { InheritValue: true }) {
         inheritedValue                        = CurrentTopic?.Attributes.GetValue(attributeKey, true)?? "";
       }
 
@@ -159,6 +165,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
     public string GetPath(string attributeKey, FilePathAttributeTopicViewModel options) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(options, nameof(options));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Build configured file path string base on values and settings parameters passed to the method
       \-----------------------------------------------------------------------------------------------------------------------*/
       var       filePath                = "";
@@ -170,14 +181,14 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Only process the path if both topic and attribtueKey are provided
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (startTopic is null || attributeKey is null || attributeKey.Length.Equals(0)) return "";
+      if (startTopic is null || attributeKey is null or { Length: 0 }) return "";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Crawl up the topics tree to find file path values set at a higher level
       \-----------------------------------------------------------------------------------------------------------------------*/
-      while (String.IsNullOrEmpty(filePath) && startTopic != null && startTopic.Parent != null) {
+      while (String.IsNullOrEmpty(filePath) && startTopic is not null && startTopic.Parent is not null) {
         startTopic                      = startTopic.Parent;
-        if (startTopic != null && !String.IsNullOrEmpty(attributeKey)) {
+        if (startTopic is not null && !String.IsNullOrEmpty(attributeKey)) {
           filePath                      = startTopic.Attributes.GetValue(attributeKey);
         }
       }
@@ -185,14 +196,14 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Add topic keys (directory names) between the start topic and the end topic based on the topic's WebPath property
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (startTopic != null) {
+      if (startTopic is not null) {
         if (startTopic.GetWebPath().Length > endTopic?.GetWebPath().Length) {
           throw new InvalidOperationException(
             $"The path of {startTopic.GetWebPath()} should be shorter than the length of {endTopic.GetWebPath()}."
           );
         }
         var startTopicWebPath           = startTopic.GetWebPath().Replace("/Root/", "/");
-        relativePath                    = endTopic?.GetWebPath().Substring(Math.Max(startTopicWebPath.Length-1,0));
+        relativePath                    = endTopic?.GetWebPath()[Math.Max(startTopicWebPath.Length-1, 0)..];
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -215,7 +226,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Replace path slashes with backslashes if the resulting file path value uses a UNC or basic file path format
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (filePath.IndexOf("\\", StringComparison.InvariantCulture) >= 0) {
+      if (filePath.Contains("\\", StringComparison.InvariantCulture)) {
         filePath                        = filePath.Replace("/", "\\");
       }
 

@@ -48,7 +48,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   The <see cref="SelectListItem.Value"/>represents the path that will be saved to the database; the <see
     ///   cref="SelectListItem.Text"/> represents simply the file name itself.
     /// </remarks>
-    public List<SelectListItem> Files { get; set; } = new List<SelectListItem>();
+    public List<SelectListItem> Files { get; } = new();
 
     /*==========================================================================================================================
     | ABSOLUTE PATH

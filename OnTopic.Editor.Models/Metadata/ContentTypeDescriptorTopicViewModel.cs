@@ -35,7 +35,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   cref="AttributeDescriptor"/> permitted by the underlying <see cref="ContentTypeDescriptor"/>.
     /// </summary>
     [Follow(Relationships.Relationships|Relationships.References)]
-    public List<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new List<AttributeDescriptorTopicViewModel>();
+    public List<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -69,7 +69,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created under <see cref="Topic"/>s of the
     ///   current <see cref="ContentType"/>.
     /// </summary>
-    public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; set; }
+    public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: IMPLICITLY PERMITTED?

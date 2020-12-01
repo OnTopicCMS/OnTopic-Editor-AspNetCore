@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using OnTopic.Metadata;
 using OnTopic.Metadata.AttributeTypes;
@@ -22,17 +23,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     Dictionary<string, string>      _configuration;
-
-    /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeDescriptorTopicViewModel"/> class.
-    /// </summary>
-    public AttributeDescriptorTopicViewModel() {
-      _configuration            = new Dictionary<string, string>();
-    }
+    private                     Dictionary<string, string>      _configuration                  = new();
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -73,7 +64,6 @@ namespace OnTopic.Editor.Models.Metadata {
     public string DisplayGroup { get; set; }
 
     #region LegacyConfiguration
-    #pragma warning disable CS0618 // Type or member is obsolete
 
     /*==========================================================================================================================
     | PROPERTY: DEFAULT CONFIGURATION
@@ -102,13 +92,13 @@ namespace OnTopic.Editor.Models.Metadata {
     )]
     public IDictionary<string, string> Configuration {
       get {
-        if (_configuration.Count.Equals(0) && DefaultConfiguration?.Length > 0) {
+        if (_configuration.Count is 0 && DefaultConfiguration?.Length > 0) {
           _configuration = DefaultConfiguration
             .Split(' ')
             .Select(value => value.Split('='))
             .ToDictionary(
               pair => pair[0],
-              pair => pair.Count().Equals(2) ? pair[1]?.Replace("\"", "") : null
+              pair => pair.Length is 2? pair[1]?.Replace("\"", "") : null
             );
         }
         return _configuration;
@@ -128,7 +118,7 @@ namespace OnTopic.Editor.Models.Metadata {
       "AttributeDescriptor."
     )]
     public string GetConfigurationValue(string key, string defaultValue = null) {
-      if (Configuration != null && Configuration.ContainsKey(key) && Configuration[key] != null) {
+      if (Configuration is not null && Configuration.ContainsKey(key) && Configuration[key] is not null) {
         return Configuration[key].ToString();
       }
       return defaultValue;
@@ -164,13 +154,12 @@ namespace OnTopic.Editor.Models.Metadata {
       "AttributeDescriptor."
     )]
     public int GetIntegerConfigurationValue(string key, int defaultValue = 0) {
-      if (Int32.TryParse(GetConfigurationValue(key, defaultValue.ToString()), out var value)) {
+      if (Int32.TryParse(GetConfigurationValue(key, defaultValue.ToString(CultureInfo.InvariantCulture)), out var value)) {
         return value;
       }
       return defaultValue;
     }
 
-    #pragma warning restore CS0618 // Type or member is obsolete
     #endregion LegacyConfiguration
 
     /*==========================================================================================================================

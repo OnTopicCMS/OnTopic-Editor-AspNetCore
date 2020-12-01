@@ -6,6 +6,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Components {
 
@@ -38,6 +39,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
       \-----------------------------------------------------------------------------------------------------------------------*/
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
@@ -50,7 +57,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       attribute.Height          ??= attribute.GetIntegerConfigurationValue(     "Height",               0);
       attribute.CssClass        ??= attribute.GetConfigurationValue(            "CssClass",             "FormField Field");
 
-      if (attribute.Height == null || attribute.Height == 0 && attribute.Rows != null) {
+      if (attribute.Height is null || attribute.Height is 0 && attribute.Rows is not null) {
         attribute.Height = attribute.Rows * 20;
       }
 

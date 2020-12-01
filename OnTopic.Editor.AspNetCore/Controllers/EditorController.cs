@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ITopicMappingService            _topicMappingService;
-    private                     Topic                           _currentTopic                   = null;
+    private                     Topic                           _currentTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -59,8 +60,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate input
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Contract.Requires(topicRepository != null, "A concrete implementation of an ITopicRepository is required.");
-      Contract.Requires(topicMappingService != null, "A concrete implementation of an ITopicMappingService is required.");
+      Contract.Requires(topicRepository, "A concrete implementation of an ITopicRepository is required.");
+      Contract.Requires(topicMappingService, "A concrete implementation of an ITopicMappingService is required.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set values locally
@@ -88,7 +89,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <returns>The Topic associated with the current request.</returns>
     protected Topic CurrentTopic {
       get {
-        if (_currentTopic == null) {
+        if (_currentTopic is null) {
           _currentTopic = TopicRepository.Load(RouteData);
         }
         return _currentTopic;
@@ -130,18 +131,23 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ) where T: EditorViewModel, new() {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(contentTypeDescriptor, nameof(contentTypeDescriptor));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor);
+      var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor).ConfigureAwait(true);
       var parentTopic           = isNew ? CurrentTopic : CurrentTopic.Parent;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic);
+      var topicViewModel        = await _topicMappingService.MapAsync<EditingTopicViewModel>(CurrentTopic).ConfigureAwait(true);
 
       if (isNew) {
-        topicViewModel          = new EditingTopicViewModel() {
+        topicViewModel          = new() {
           ContentType           = contentTypeDescriptor.Key,
           UniqueKey             = CurrentTopic.GetUniqueKey(),
           Parent                = topicViewModel
@@ -155,7 +161,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
 
         //Serialize relationships, if it's a relationship type
-        if (!isNew && attribute.ModelType == ModelType.Relationship) {
+        if (!isNew && attribute.ModelType is ModelType.Relationship) {
           var relatedTopicIds = CurrentTopic.Relationships.GetTopics(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
           topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
         }
@@ -166,7 +172,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         //For new topics that aren't derived from another topic, assign attribute default, if available
-        else if (CurrentTopic.DerivedTopic == null && !attribute.IsRequired && attribute.DefaultValue != null) {
+        else if (CurrentTopic.DerivedTopic is null && !attribute.IsRequired && attribute.DefaultValue is not null) {
           topicViewModel.Attributes.Add(attribute.Key, attribute.DefaultValue);
         }
 
@@ -214,7 +220,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
+      var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -242,19 +248,24 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(model, nameof(model));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | SET VARIABLES
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
       var derivedTopicValue     = model.Attributes.Contains("TopicID")? model.Attributes["TopicID"].Value : "-1";
-      var derivedTopicId        = String.IsNullOrWhiteSpace(derivedTopicValue)? -1 : Int32.Parse(derivedTopicValue);
+      var derivedTopicId        = String.IsNullOrWhiteSpace(derivedTopicValue)? -1 : Int32.Parse(derivedTopicValue, CultureInfo.InvariantCulture);
       var derivedTopic          = (derivedTopicId >= 0)? TopicRepository.Load(derivedTopicId) : null;
       var newKey                = model.Attributes.Contains("Key")? model.Attributes["Key"].Value : null;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (derivedTopic == null) {
+      if (derivedTopic is null) {
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
           if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue?.Value)) {
@@ -288,7 +299,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       if (!ModelState.IsValid) {
 
         //Establish view model
-        var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal);
+        var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
@@ -311,7 +322,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         contentType = CurrentTopic.ContentType;
       }
 
-      if (derivedTopic != null && topic.DerivedTopic != derivedTopic) {
+      if (derivedTopic is not null && topic.DerivedTopic != derivedTopic) {
         topic.DerivedTopic = derivedTopic;
       }
 
@@ -340,10 +351,10 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         var attributeValue = model.Attributes[attribute.Key];
 
         //Save value
-        if (attribute.ModelType.Equals(ModelType.Relationship)) {
+        if (attribute.ModelType is ModelType.Relationship) {
           SetRelationships(topic, attribute, attributeValue);
         }
-        else if (attribute.Key.Equals("Key")) {
+        else if (attribute.Key is "Key") {
           topic.Key = attributeValue.Value.Replace(" ", "");
         }
         else {
@@ -366,7 +377,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       else if (isNew) {
         return RedirectToAction("Edit", new { path = topic.GetWebPath() });
       }
-      return await Edit();
+      return await Edit().ConfigureAwait(true);
 
     }
 
@@ -385,7 +396,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         if (isTopicId && topicIdInt > 0) {
           relatedTopic = TopicRepository.Load(topicIdInt);
         }
-        if (relatedTopic != null) {
+        if (relatedTopic is not null) {
           topic.Relationships.SetTopic(attribute.Key, relatedTopic);
         }
       }
@@ -444,7 +455,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | If the content type is a nested list, display grandparent.
       \-------------------------------------------------------------------------------------------------------------------------*/
-      else if (parent.Attributes.GetValue("ContentType", "") == "List") {
+      else if (parent.Attributes.GetValue("ContentType", "") is "List") {
         return RedirectToAction(
           "Edit",
           new {
@@ -516,6 +527,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// </summary>
     public JsonResult Json(TopicQueryOptions options) {
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(options, nameof(options));
+
       /*--------------------------------------------------------------------------------------------------------------------------
       | Get related topics
       \-------------------------------------------------------------------------------------------------------------------------*/
@@ -529,7 +545,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         if (!String.IsNullOrWhiteSpace(options.RelatedNamespace)) {
-          relatedTopics = new ReadOnlyTopicCollection<Topic>(relatedTopic.Relationships.GetTopics(options.RelatedNamespace));
+          relatedTopics = new(relatedTopic.Relationships.GetTopics(options.RelatedNamespace));
         }
         else {
           relatedTopics = relatedTopic.Relationships.GetAllTopics();
@@ -546,7 +562,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Return hierarchical view
       \-------------------------------------------------------------------------------------------------------------------------*/
-      return new JsonResult(jsonTopicViewModel);
+      return new(jsonTopicViewModel);
 
     }
 
@@ -566,7 +582,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel<ExportViewModel>(contentTypeDescriptor, false, false);
+      var editorViewModel = await GetEditorViewModel<ExportViewModel>(contentTypeDescriptor, false, false).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -617,7 +633,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false);
+      var editorViewModel = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN VIEW (MODEL)
@@ -637,6 +653,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     public async Task<IActionResult> Import(IFormFile jsonFile, [Bind(Prefix = "ImportOptions")]ImportOptions options) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(jsonFile, nameof(jsonFile));
+      Contract.Requires(options, nameof(options));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypeDescriptor = GetContentType(CurrentTopic.ContentType);
@@ -644,7 +666,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var editorViewModel       = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false);
+      var editorViewModel       = await GetEditorViewModel<ImportViewModel>(contentTypeDescriptor, false, false).ConfigureAwait(true);
 
       options.CurrentUser       = HttpContext.User.Identity.Name?? "System";
 
@@ -653,7 +675,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE PARAMETERS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (jsonFile == null) {
+      if (jsonFile is null) {
         ModelState.AddModelError("jsonFile", "The JSON file is required to import data.");
         return View(editorViewModel);
       }
@@ -664,7 +686,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var json                  = new StringBuilder();
       using (var reader = new StreamReader(jsonFile.OpenReadStream())) {
         while (reader.Peek() >= 0) {
-          json.AppendLine(await reader.ReadLineAsync());
+          json.AppendLine(await reader.ReadLineAsync().ConfigureAwait(true));
         }
       }
       var jsonString            = json.ToString();
@@ -673,7 +695,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       };
       var topicData             = JsonSerializer.Deserialize<TopicData>(jsonString, jsonOptions);
 
-      if (topicData == null) {
+      if (topicData is null) {
         ModelState.AddModelError("jsonFile", "The JSON file could not be read correctly.");
         return View(editorViewModel);
       }
@@ -685,16 +707,16 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var target                = TopicRepository.Load(uniqueKey);
 
       //Create target if it doesn't exist
-      if (target == null) {
+      if (target is null) {
         var parentKey           = uniqueKey.Substring(0, uniqueKey.LastIndexOf(":", StringComparison.InvariantCulture));
         var parent              = TopicRepository.Load(parentKey);
 
-        if (parent != null) {
+        if (parent is not null) {
           target                = TopicFactory.Create(topicData.Key, topicData.ContentType, parent);
         }
       }
 
-      if (target == null) {
+      if (target is null) {
         ModelState.AddModelError(
           "jsonFile",
           $"The root namespace, '{topicData.UniqueKey}', is not available in the topic graph"

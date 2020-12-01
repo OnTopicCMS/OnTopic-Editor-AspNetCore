@@ -2,16 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <UserSecretsId>aff0d52c-eab2-4c07-88b2-5af34649f874</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OnTopic" Version="4.5.0" />
-    <PackageReference Include="OnTopic.ViewModels" Version="4.5.0" />
-    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.5.0" />
-    <PackageReference Include="OnTopic.Data.Caching" Version="4.5.0" />
-    <PackageReference Include="OnTopic.Data.Sql" Version="4.5.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OnTopic" Version="4.6.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.6.0" />
+    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.6.0" />
+    <PackageReference Include="OnTopic.Data.Caching" Version="4.6.0" />
+    <PackageReference Include="OnTopic.Data.Sql" Version="4.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
   </ItemGroup>
 

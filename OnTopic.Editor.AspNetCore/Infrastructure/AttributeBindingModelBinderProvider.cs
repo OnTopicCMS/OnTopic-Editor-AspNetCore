@@ -35,7 +35,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE INPUT
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Contract.Requires<ArgumentNullException>(context != null, $"A {nameof(ModelBinderProviderContext)} reference is required.");
+      Contract.Requires(context, $"A {nameof(ModelBinderProviderContext)} reference is required.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN BINDER (IF APPROPRIATE)

@@ -17,25 +17,12 @@ namespace OnTopic.Editor.Models {
   public class EditorBindingModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
-    /// </summary>
-    public EditorBindingModel() {
-      Attributes = new EditorAttributeCollection();
-    }
-
-    /*==========================================================================================================================
     | ATTRIBUTES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Collection of attribute values extracted from the post.
     /// </summary>
-    public EditorAttributeCollection Attributes {
-      get;
-      set;
-    }
+    public EditorAttributeCollection Attributes { get; } = new();
 
   } // Class
 } // Namespace

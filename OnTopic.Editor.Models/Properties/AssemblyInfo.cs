@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -9,3 +8,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("02a3d98a-bf8a-4150-8fec-45a0d9c322e4")]
+
+// Handle suppressions
+[assembly: SuppressMessage("Naming", "CA1721:Property names should not match get methods", Justification = "By design", Scope = "member", Target = "~P:OnTopic.Editor.Models.Metadata.ContentTypeDescriptorTopicViewModel.AttributeDescriptors")]
+[assembly: SuppressMessage("Naming", "CA1721:Property names should not match get methods", Justification = "By design", Scope = "member", Target = "~P:OnTopic.Editor.Models.Components.BindingModels.AttributeBindingModel.Value")]

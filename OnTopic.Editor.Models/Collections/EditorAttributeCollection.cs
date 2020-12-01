@@ -5,8 +5,8 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
 using OnTopic.Editor.Models.Components.BindingModels;
+using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.Models.Collections {
 
@@ -36,7 +36,7 @@ namespace OnTopic.Editor.Models.Collections {
     /// <param name="item">The <see cref="Topic"/> object from which to extract the key.</param>
     /// <returns>The key for the specified collection item.</returns>
     protected override string GetKeyForItem(AttributeBindingModel item) {
-      Contract.Assume(item != null, "Assumes the item is available when deriving its key.");
+      Contract.Assume(item, "Assumes the item is available when deriving its key.");
       return item.Key;
     }
 

@@ -1,6 +1,6 @@
 ﻿@model ContentTypeListViewModel
 
-@if (Model.TopicList.Count == 1) {
+@if (Model.TopicList.Count is 1) {
   <!-- New topics are not permitted in this context -->
 }
 
@@ -20,7 +20,9 @@ else if (Model.TopicList.Count > 2) {
           var option = $('option:selected', this);
           @if (Model.EnableModal?? false) {
             <text>
-              initEditorModal('@Model.AttributeKey', option.text(), option.val(), @Model.OnModalClose); return false;
+              initEditorModal('@Model.AttributeKey', option.text(), option.val(), @Model.OnModalClose);
+              $(this).prop('selectedIndex', 0);
+              return false;
             </text>
           }
           else {
@@ -37,7 +39,7 @@ else if (Model.TopicList.Count > 2) {
 
 else {
   <div class="ChildTopic">
-    @if (Model.EnableModal == true) {
+    @if (Model.EnableModal is true) {
       <a onclick="initEditorModal('@Model.AttributeKey', '@Model.TopicList.LastOrDefault().Text', '@Model.TopicList.LastOrDefault().Value', @Model.OnModalClose); return false;" class="btn btn-info btn-sm">
         <span class="fa fa-plus"></span>
         @Model.TopicList.LastOrDefault().Text

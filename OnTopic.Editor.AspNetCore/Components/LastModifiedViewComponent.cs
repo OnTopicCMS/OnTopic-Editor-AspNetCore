@@ -4,10 +4,12 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Components.ViewModels;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Components {
 
@@ -41,6 +43,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
       \-----------------------------------------------------------------------------------------------------------------------*/
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
@@ -53,13 +61,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (currentTopic.LastModified != null && currentTopic.LastModified != DateTime.MinValue) {
-        model.CurrentValue      = currentTopic.LastModified.ToString();
+      if (currentTopic.LastModified != DateTime.MinValue) {
+        model.CurrentValue      = currentTopic.LastModified.ToString(CultureInfo.InvariantCulture);
       }
       else {
         model.CurrentValue      = model.Value;
       }
-      model.Value               = DateTime.Now.ToString();
+      model.Value               = DateTime.Now.ToString(CultureInfo.InvariantCulture);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

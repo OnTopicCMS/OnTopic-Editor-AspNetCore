@@ -47,7 +47,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// </summary>
     [Follow(Relationships.None)]
     [Relationship("ContentTypes", Type=RelationshipType.Relationship)]
-    public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new List<ContentTypeDescriptorTopicViewModel>();
+    public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
 
     /*==============================================================================================================================
     | ENABLE MODAL

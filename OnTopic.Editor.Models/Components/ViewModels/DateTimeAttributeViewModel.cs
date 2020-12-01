@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using OnTopic.Editor.Models.Metadata;
 
 namespace OnTopic.Editor.Models.Components.ViewModels {
@@ -21,8 +22,9 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     string                          _defaultDate                    = null;
-    private                     string                          _defaultTime                    = null;
+    private                     string                          _defaultDate;
+    private                     string                          _defaultTime;
+    private readonly            IFormatProvider                 _format                         = CultureInfo.InvariantCulture;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -54,11 +56,11 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
         var dateFormat = AttributeDescriptor.DateFormat.Replace("y", "yy").Replace("mm", "MM");
         if (!String.IsNullOrEmpty(Value)) {
           if (DateTime.TryParse(Value, out var dateValue)) {
-            _defaultDate        = dateValue.ToString(dateFormat);
+            _defaultDate        = dateValue.ToString(dateFormat, _format);
           }
         }
         else {
-          _defaultDate          = CalculateOffset(DateTime.Now).ToString(dateFormat);
+          _defaultDate          = CalculateOffset(DateTime.Now).ToString(dateFormat, _format);
         }
       }
       return _defaultDate;
@@ -74,11 +76,11 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
       if (String.IsNullOrEmpty(_defaultTime)) {
         if (!String.IsNullOrEmpty(Value)) {
           if (DateTime.TryParse(Value, out var timeValue)) {
-            _defaultTime        = timeValue.ToString(AttributeDescriptor.TimeFormat);
+            _defaultTime        = timeValue.ToString(AttributeDescriptor.TimeFormat, _format);
           }
         }
         else {
-          _defaultTime          = CalculateOffset(DateTime.Now).ToString(AttributeDescriptor.TimeFormat);
+          _defaultTime          = CalculateOffset(DateTime.Now).ToString(AttributeDescriptor.TimeFormat, _format);
         }
       }
       return _defaultTime;
@@ -92,7 +94,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     /// </summary>
     public DateTime CalculateOffset(DateTime originalDate) {
       var offset = AttributeDescriptor.DateTimeOffset?? 0;
-      if (AttributeDescriptor.DateTimeOffset == 0) return originalDate;
+      if (AttributeDescriptor.DateTimeOffset is 0) return originalDate;
       return AttributeDescriptor.DateTimeOffsetUnits switch {
         "Minutes"               => originalDate.AddMinutes(offset),
         "Hours"                 => originalDate.AddHours(offset),

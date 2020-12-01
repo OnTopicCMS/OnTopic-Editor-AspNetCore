@@ -39,7 +39,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Determines whether or not the page should be rendered as a modal (e.g., including the chrome or not).
     /// </summary>
-    public bool IsModal { get; set; } = false;
+    public bool IsModal { get; set; }
 
     /*==========================================================================================================================
     | IS NEW?
@@ -47,7 +47,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Determines whether or not the page is being newly created.
     /// </summary>
-    public bool IsNew { get; set; } = false;
+    public bool IsNew { get; set; }
 
   } // Class
 } // Namespace
