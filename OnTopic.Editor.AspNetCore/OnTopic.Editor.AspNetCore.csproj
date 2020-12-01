@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="GitVersionTask" Version="5.3.7">
+    <PackageReference Include="GitVersionTask" Version="5.5.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -35,10 +35,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OnTopic" Version="4.5.0" />
+    <PackageReference Include="OnTopic" Version="4.6.0" />
     <PackageReference Include="OnTopic.Data.Transfer" Version="1.2.0" />
-    <PackageReference Include="OnTopic.ViewModels" Version="4.5.0" />
-    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.5.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.6.0" />
+    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>
