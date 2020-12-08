@@ -3,7 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.Generic;
+using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
@@ -35,7 +36,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   cref="AttributeDescriptor"/> permitted by the underlying <see cref="ContentTypeDescriptor"/>.
     /// </summary>
     [Follow(Relationships.Relationships|Relationships.References)]
-    public List<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new();
+    public Collection<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -69,7 +70,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created under <see cref="Topic"/>s of the
     ///   current <see cref="ContentType"/>.
     /// </summary>
-    public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
+    public Collection<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: IMPLICITLY PERMITTED?
@@ -87,8 +88,8 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Retrieves an alphabetized list of display groups associated with this <see cref="ContentTypeDescriptor"/>'s <see
     ///   cref="AttributeDescriptors"/> collection.
     /// </summary>
-    public List<string> GetDisplayGroups() =>
-      AttributeDescriptors.Where(a => !a.IsHidden).Select(a => a.DisplayGroup).Distinct().OrderBy(a => a).ToList();
+    public Collection<string> GetDisplayGroups() =>
+      new(AttributeDescriptors.Where(a => !a.IsHidden).Select(a => a.DisplayGroup).Distinct().OrderBy(a => a).ToList());
 
     /*==========================================================================================================================
     | METHOD: GET ATTRIBUTE DESCRIPTORS
@@ -97,8 +98,10 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Retrieves a prioritized list of <see cref="AttributeDescriptorTopicViewModel"/> based for a given display group,
     ///   ordered by <see cref="AttributeDescriptorTopicViewModel.SortOrder"/>.
     /// </summary>
-    public List<AttributeDescriptorTopicViewModel> GetAttributeDescriptors(string displayGroup) =>
-      AttributeDescriptors.Where(a => a.DisplayGroup.Equals(displayGroup) && !a.IsHidden).OrderBy(a => a.SortOrder).ToList();
+    public Collection<AttributeDescriptorTopicViewModel> GetAttributeDescriptors(string displayGroup) =>
+      new(AttributeDescriptors
+        .Where(a => a.DisplayGroup.Equals(displayGroup, StringComparison.OrdinalIgnoreCase) && !a.IsHidden)
+        .OrderBy(a => a.SortOrder).ToList());
 
   } //Class
 } //Namespace

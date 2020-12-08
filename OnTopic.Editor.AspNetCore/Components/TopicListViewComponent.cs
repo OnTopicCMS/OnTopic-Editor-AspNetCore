@@ -4,11 +4,10 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
@@ -167,7 +166,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     >---------------------------------------------------------------------------------------------------------------------------
     | Retrieves a collection of topics with optional control call filter properties Scope, AttributeName and AttributeValue.
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public static List<QueryResultTopicViewModel> GetTopics(
+    public static Collection<QueryResultTopicViewModel> GetTopics(
       Topic  topic              = null,
       string attributeKey       = null,
       string attributeValue     = null,

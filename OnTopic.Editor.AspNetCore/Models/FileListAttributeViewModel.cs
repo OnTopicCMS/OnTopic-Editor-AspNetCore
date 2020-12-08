@@ -3,7 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
@@ -48,7 +48,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   The <see cref="SelectListItem.Value"/>represents the path that will be saved to the database; the <see
     ///   cref="SelectListItem.Text"/> represents simply the file name itself.
     /// </remarks>
-    public List<SelectListItem> Files { get; } = new();
+    public Collection<SelectListItem> Files { get; } = new();
 
     /*==========================================================================================================================
     | ABSOLUTE PATH

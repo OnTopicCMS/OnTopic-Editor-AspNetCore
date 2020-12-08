@@ -119,18 +119,19 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | to organize a specific type of content. For example, a Container called "Forms" might be used exclusively to organized
       | Form topics.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (actualContentType.Key.Equals("Container", StringComparison.InvariantCultureIgnoreCase)) {
-        viewModel.TopicList.AddRange(
-          actualTopic
-            .Relationships
-            .GetTopics("ContentTypes")
-            .Select(c =>
-              new SelectListItem() {
-                Value           = getValue(c.Key),
-                Text            = c.Title
-              }
-            )
-        );
+      if (actualContentType.Key.Equals("Container", StringComparison.OrdinalIgnoreCase)) {
+        var permittedContentTypes = actualTopic
+          .Relationships
+          .GetTopics("ContentTypes")
+          .Select(c =>
+            new SelectListItem() {
+              Value             = getValue(c.Key),
+              Text              = c.Title
+            }
+          );
+        foreach (var contentType in permittedContentTypes) {
+          viewModel.TopicList.Add(contentType);
+        }
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -144,18 +145,20 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | typically include the Page content type, and popular derivatives of it, such as Content List.
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (viewModel.TopicList.Count is 1 && !actualContentType.DisableChildTopics) {
-        viewModel.TopicList.AddRange(
-          contentTypes
-            .Where(c => actualContentType.Equals("Container") || c.Attributes.GetBoolean("ImplicitlyPermitted", false))
-            .Where(c => !c.IsHidden)
-            .OrderBy(c => c.Title)
-            .Select(c =>
-              new SelectListItem {
-                Value           = getValue(c.Key),
-                Text            = c.Title
-              }
-            )
-        );
+
+        var implicitValues = contentTypes
+          .Where(c => actualContentType.Equals("Container") || c.Attributes.GetBoolean("ImplicitlyPermitted", false))
+          .Where(c => !c.IsHidden)
+          .OrderBy(c => c.Title)
+          .Select(c =>
+            new SelectListItem {
+              Value             = getValue(c.Key),
+              Text              = c.Title
+            }
+          );
+        foreach (var contentType in implicitValues) {
+          viewModel.TopicList.Add(contentType);
+        }
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
