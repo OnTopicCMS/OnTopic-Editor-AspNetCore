@@ -158,7 +158,7 @@ namespace OnTopic.Editor.Models.Queryable {
             return false;
           }
         }
-        if (!attributeValue.Equals(options.AttributeValue)) {
+        if (!attributeValue.Equals(options.AttributeValue, StringComparison.Ordinal)) {
           return false;
         }
       }

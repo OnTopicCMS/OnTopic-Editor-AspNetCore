@@ -108,7 +108,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
         }
 
         selectedTopics += "]";
-        selectedTopics = selectedTopics.Replace(",]", "]");
+        selectedTopics = selectedTopics.Replace(",]", "]", StringComparison.Ordinal);
 
         return selectedTopics;
       }
@@ -154,7 +154,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// <summary>
     ///   Encodes a JSON value by escaping any quotes.
     /// </summary>
-    private static string EncodeJsonValue(string value) => value.Replace("'", "\\'");
+    private static string EncodeJsonValue(string value) => value.Replace("'", "\\'", StringComparison.Ordinal);
 
   } // Class
 } // Namespace

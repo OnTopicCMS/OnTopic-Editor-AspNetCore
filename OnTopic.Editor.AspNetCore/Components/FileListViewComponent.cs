@@ -143,8 +143,8 @@ namespace OnTopic.Editor.AspNetCore.Components {
         files.Add(new("", inheritedValue));
       }
       foreach (var foundFile in foundFiles) {
-        var fileName = foundFile.Replace(absolutePath, "");
-        var fileNameKey = fileName.Replace("." + attribute.Extension, "");
+        var fileName = foundFile.Replace(absolutePath, "", StringComparison.OrdinalIgnoreCase);
+        var fileNameKey = fileName.Replace("." + attribute.Extension, "", StringComparison.OrdinalIgnoreCase);
         files.Add(new(fileNameKey, fileName));
       }
 

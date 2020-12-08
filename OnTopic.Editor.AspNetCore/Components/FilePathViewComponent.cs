@@ -202,8 +202,8 @@ namespace OnTopic.Editor.AspNetCore.Components {
             $"The path of {startTopic.GetWebPath()} should be shorter than the length of {endTopic.GetWebPath()}."
           );
         }
-        var startTopicWebPath           = startTopic.GetWebPath().Replace("/Root/", "/");
-        relativePath                    = endTopic?.GetWebPath()[Math.Max(startTopicWebPath.Length-1, 0)..];
+        var startTopicWebPath   = startTopic.GetWebPath().Replace("/Root/", "/", StringComparison.OrdinalIgnoreCase);
+        relativePath            = endTopic?.GetWebPath()[Math.Max(startTopicWebPath.Length-1, 0)..];
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -227,7 +227,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Replace path slashes with backslashes if the resulting file path value uses a UNC or basic file path format
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (filePath.Contains("\\", StringComparison.InvariantCulture)) {
-        filePath                        = filePath.Replace("/", "\\");
+        filePath                = filePath.Replace("/", "\\", StringComparison.Ordinal);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

@@ -98,7 +98,7 @@ namespace OnTopic.Editor.Models.Metadata {
             .Select(value => value.Split('='))
             .ToDictionary(
               pair => pair[0],
-              pair => pair.Length is 2? pair[1]?.Replace("\"", "") : null
+              pair => pair.Length is 2? pair[1]?.Replace("\"", "", StringComparison.Ordinal) : null
             );
         }
         return _configuration;

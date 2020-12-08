@@ -110,7 +110,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
           "CurrentTopic"          => baseTopic,
           "ParentTopic"           => baseTopic.Parent,
           "GrandparentTopic"      => (Topic)baseTopic.Parent?.Parent,
-          "ContentTypeDescriptor" => (Topic)_topicRepository.GetContentTypeDescriptors().FirstOrDefault(t => t.Key.Equals(baseTopic.ContentType)),
+          "ContentTypeDescriptor" => (Topic)_topicRepository.GetContentTypeDescriptors().FirstOrDefault(t => t.Key.Equals(baseTopic.ContentType, StringComparison.Ordinal)),
           _ => baseTopic
         };
       }

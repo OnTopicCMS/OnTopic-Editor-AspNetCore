@@ -105,7 +105,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <returns>The Content Type associated with the current request.</returns>
     protected ContentTypeDescriptor GetContentType(string contentType) => _topicRepository
       .GetContentTypeDescriptors()
-      .Where(t => t.Key.Equals(contentType?? ""))
+      .Where(t => t.Key.Equals(contentType?? "", StringComparison.Ordinal))
       .FirstOrDefault()??
       (ContentTypeDescriptor)TopicFactory.Create(contentType, "ContentTypeDescriptor");
 
@@ -355,7 +355,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           SetRelationships(topic, attribute, attributeValue);
         }
         else if (attribute.Key is "Key") {
-          topic.Key = attributeValue.Value.Replace(" ", "");
+          topic.Key = attributeValue.Value.Replace(" ", "", StringComparison.Ordinal);
         }
         else {
           topic.Attributes.SetValue(attribute.Key, attributeValue.Value);

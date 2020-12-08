@@ -29,7 +29,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
     /// <param name="editorType">Optionally defines the type of attribute.</param>
     public AttributeBindingModel(string editorType) {
       if (String.IsNullOrWhiteSpace(editorType)) {
-        EditorType = GetType().Name.Replace("AttributeBindingModel", "");
+        EditorType = GetType().Name.Replace("AttributeBindingModel", "", StringComparison.Ordinal);
       }
       else {
         EditorType = editorType;
