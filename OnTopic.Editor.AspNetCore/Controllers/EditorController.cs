@@ -284,7 +284,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE KEY
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (isNew || !CurrentTopic.Key.Equals(newKey, StringComparison.InvariantCultureIgnoreCase)) {
+      if (isNew || !CurrentTopic.Key.Equals(newKey, StringComparison.OrdinalIgnoreCase)) {
         if (parentTopic.Children.Contains(newKey)) {
           ModelState.AddModelError(
             "Key",
@@ -337,7 +337,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         //Handle new keys
-        if (isNew && attribute.Key.Equals("Key", StringComparison.InvariantCultureIgnoreCase)) {
+        if (isNew && attribute.Key.Equals("Key", StringComparison.OrdinalIgnoreCase)) {
           continue;
         }
 
@@ -708,7 +708,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
       //Create target if it doesn't exist
       if (target is null) {
-        var parentKey           = uniqueKey.Substring(0, uniqueKey.LastIndexOf(":", StringComparison.InvariantCulture));
+        var parentKey           = uniqueKey.Substring(0, uniqueKey.LastIndexOf(":", StringComparison.Ordinal));
         var parent              = TopicRepository.Load(parentKey);
 
         if (parent is not null) {

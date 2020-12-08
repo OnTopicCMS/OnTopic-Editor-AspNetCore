@@ -211,7 +211,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrWhiteSpace(options.BaseTopicPath)) {
         foreach (var truncationTopic in truncatePathAtTopic) {
-          var truncateTopicLocation = relativePath?.IndexOf(truncationTopic, StringComparison.InvariantCultureIgnoreCase);
+          var truncateTopicLocation = relativePath?.IndexOf(truncationTopic, StringComparison.OrdinalIgnoreCase);
           if (truncateTopicLocation >= 0) {
             relativePath        = relativePath?.Substring(0, truncateTopicLocation.Value + truncationTopic.Length + 1);
           }
@@ -226,7 +226,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Replace path slashes with backslashes if the resulting file path value uses a UNC or basic file path format
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (filePath.Contains("\\", StringComparison.InvariantCulture)) {
+      if (filePath.Contains("\\", StringComparison.Ordinal)) {
         filePath                = filePath.Replace("/", "\\", StringComparison.Ordinal);
       }
 

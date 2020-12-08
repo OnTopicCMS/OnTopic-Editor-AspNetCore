@@ -229,11 +229,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
     private static string ReplaceTokens(QueryResultTopicViewModel topic, string source) {
       if (topic is not null && !String.IsNullOrEmpty(source)) {
         source = source
-          .Replace("{TopicId}", topic.Id.ToString(CultureInfo.InvariantCulture), StringComparison.InvariantCultureIgnoreCase)
-          .Replace("{Key}", topic.Key, StringComparison.InvariantCultureIgnoreCase)
-          .Replace("{UniqueKey}", topic.UniqueKey, StringComparison.InvariantCultureIgnoreCase)
-          .Replace("{WebPath}", topic.WebPath, StringComparison.InvariantCultureIgnoreCase)
-          .Replace("{Title}", topic.Title, StringComparison.InvariantCultureIgnoreCase);
+          .Replace("{TopicId}", topic.Id.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase)
+          .Replace("{Key}", topic.Key, StringComparison.OrdinalIgnoreCase)
+          .Replace("{UniqueKey}", topic.UniqueKey, StringComparison.OrdinalIgnoreCase)
+          .Replace("{WebPath}", topic.WebPath, StringComparison.OrdinalIgnoreCase)
+          .Replace("{Title}", topic.Title, StringComparison.OrdinalIgnoreCase);
       }
       return source;
     }

@@ -169,7 +169,7 @@ namespace OnTopic.Editor.Models.Queryable {
       if (searchTerms.Count > 0) {
         if (!searchTerms.All(
           searchTerm => topic.Attributes.Any(
-            a => a.Value.IndexOf(searchTerm, 0, StringComparison.InvariantCultureIgnoreCase) >= 0
+            a => a.Value.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
           )
         )) {
           return false;
