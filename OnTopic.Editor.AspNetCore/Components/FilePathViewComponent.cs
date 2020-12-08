@@ -105,10 +105,10 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.BaseTopicPath                   ??= attribute.GetConfigurationValue("TruncatePathAtTopic", "");
-      attribute.InheritValue                    ??= attribute.GetBooleanConfigurationValue("InheritValue", true);
-      attribute.RelativeToTopicPath             ??= attribute.GetBooleanConfigurationValue("RelativeToTopicPath", true);
-      attribute.IncludeCurrentTopic             ??= attribute.GetBooleanConfigurationValue("IncludeLeafNodes", true);
+      attribute.BaseTopicPath           ??= attribute.GetConfigurationValue("TruncatePathAtTopic", "");
+      attribute.InheritValue            ??= attribute.GetBooleanConfigurationValue("InheritValue", true);
+      attribute.RelativeToTopicPath     ??= attribute.GetBooleanConfigurationValue("RelativeToTopicPath", true);
+      attribute.IncludeCurrentTopic     ??= attribute.GetBooleanConfigurationValue("IncludeLeafNodes", true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
@@ -137,13 +137,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public string GetInheritedValue(string attributeKey, FilePathAttributeTopicViewModel attribute) {
 
-      var inheritedValue                      = "";
+      var inheritedValue        = "";
 
       if (attribute is { InheritValue: true, RelativeToTopicPath: true }) {
-        inheritedValue                        = GetPath(attributeKey, attribute);
+        inheritedValue          = GetPath(attributeKey, attribute);
       }
       else if (attribute is { InheritValue: true }) {
-        inheritedValue                        = CurrentTopic?.Attributes.GetValue(attributeKey, true)?? "";
+        inheritedValue          = CurrentTopic?.Attributes.GetValue(attributeKey, true)?? "";
       }
 
       return inheritedValue;
@@ -172,11 +172,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Build configured file path string base on values and settings parameters passed to the method
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var       filePath                = "";
-      var       relativePath            = (string?)null;
-      var       startTopic              = CurrentTopic;
-      var       endTopic                = (options.IncludeCurrentTopic is null)? CurrentTopic: CurrentTopic?.Parent?? CurrentTopic;
-      var       truncatePathAtTopic     = options.BaseTopicPath?.Split(',').ToArray()?? Array.Empty<string>();
+      var filePath              = "";
+      var relativePath          = (string?)null;
+      var startTopic            = CurrentTopic;
+      var endTopic              = (options.IncludeCurrentTopic is null)? CurrentTopic: CurrentTopic?.Parent?? CurrentTopic;
+      var truncatePathAtTopic   = options.BaseTopicPath?.Split(',').ToArray()?? Array.Empty<string>();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Only process the path if both topic and attribtueKey are provided
@@ -187,9 +187,9 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Crawl up the topics tree to find file path values set at a higher level
       \-----------------------------------------------------------------------------------------------------------------------*/
       while (String.IsNullOrEmpty(filePath) && startTopic is not null && startTopic.Parent is not null) {
-        startTopic                      = startTopic.Parent;
+        startTopic              = startTopic.Parent;
         if (startTopic is not null && !String.IsNullOrEmpty(attributeKey)) {
-          filePath                      = startTopic.Attributes.GetValue(attributeKey);
+          filePath              = startTopic.Attributes.GetValue(attributeKey);
         }
       }
 
@@ -211,9 +211,9 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrWhiteSpace(options.BaseTopicPath)) {
         foreach (var truncationTopic in truncatePathAtTopic) {
-          var truncateTopicLocation     = relativePath?.IndexOf(truncationTopic, StringComparison.InvariantCultureIgnoreCase);
+          var truncateTopicLocation = relativePath?.IndexOf(truncationTopic, StringComparison.InvariantCultureIgnoreCase);
           if (truncateTopicLocation >= 0) {
-            relativePath                = relativePath?.Substring(0, truncateTopicLocation.Value + truncationTopic.Length + 1);
+            relativePath        = relativePath?.Substring(0, truncateTopicLocation.Value + truncationTopic.Length + 1);
           }
         }
       }
@@ -221,7 +221,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Add resulting relative path to the original file path (based on starting topic)
       \-----------------------------------------------------------------------------------------------------------------------*/
-      filePath                         += relativePath;
+      filePath                  += relativePath;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Replace path slashes with backslashes if the resulting file path value uses a UNC or basic file path format
