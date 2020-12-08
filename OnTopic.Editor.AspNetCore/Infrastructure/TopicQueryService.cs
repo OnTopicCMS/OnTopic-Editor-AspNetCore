@@ -151,7 +151,7 @@ namespace OnTopic.Editor.Models.Queryable {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate filtered attribute
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!String.IsNullOrEmpty(options.AttributeName) && !String.IsNullOrEmpty(options.AttributeName)) {
+      if (!String.IsNullOrEmpty(options.AttributeName)) {
         var attributeValue = topic.Attributes.GetValue(options.AttributeName, "");
         if (options.UsePartialMatch) {
           if (attributeValue.IndexOf(options.AttributeValue, StringComparison.Ordinal) is -1) {
