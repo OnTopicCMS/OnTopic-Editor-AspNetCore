@@ -6,6 +6,8 @@
     <AssemblyTitle>OnTopic.Editor.Models</AssemblyTitle>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -24,10 +26,6 @@
 
   <ItemGroup>
     <PackageReference Include="GitVersionTask" Version="5.5.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
