@@ -105,7 +105,7 @@ namespace OnTopicTest {
         return new EditorController(_topicRepository, _topicMappingService);
       }
       else {
-        throw new Exception($"Unknown controller {type.Name}");
+        throw new InvalidOperationException($"Unknown controller {type.Name}");
       }
 
     }
@@ -133,7 +133,7 @@ namespace OnTopicTest {
         return _standardEditorComposer.ActivateEditorComponent(type, _topicRepository);
       }
 
-      throw new Exception($"Unknown view component {type.Name}");
+      throw new InvalidOperationException($"Unknown view component {type.Name}");
 
     }
 

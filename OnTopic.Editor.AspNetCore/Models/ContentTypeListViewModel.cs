@@ -3,7 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.Models;
 
@@ -47,7 +47,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   cref="TopicListAttributeViewModel"/> representing countries, <c>US</c> might by the key associated with a <c>United
     ///   States</c> value.
     /// </remarks>
-    public List<SelectListItem> TopicList { get; } = new();
+    public Collection<SelectListItem> TopicList { get; } = new();
 
     /*==========================================================================================================================
     | ATTRIBUTE KEY

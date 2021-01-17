@@ -45,7 +45,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     public bool? IsTrue() {
       if (
         (Value?.Equals("1", StringComparison.OrdinalIgnoreCase)?? false) ||
-        (Value?.Equals("true", StringComparison.InvariantCultureIgnoreCase)?? false)
+        (Value?.Equals("true", StringComparison.OrdinalIgnoreCase)?? false)
       ) {
         return true;
       }
@@ -61,7 +61,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     public bool? IsFalse() {
       if (
         (Value?.Equals("0", StringComparison.OrdinalIgnoreCase) ?? false) ||
-        (Value?.Equals("false", StringComparison.InvariantCultureIgnoreCase) ?? false)
+        (Value?.Equals("false", StringComparison.OrdinalIgnoreCase) ?? false)
       ) {
         return false;
       }

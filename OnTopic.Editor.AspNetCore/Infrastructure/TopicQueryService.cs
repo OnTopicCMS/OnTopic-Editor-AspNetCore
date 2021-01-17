@@ -4,7 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using OnTopic.Collections;
 
@@ -34,7 +34,7 @@ namespace OnTopic.Editor.Models.Queryable {
     ///   Generates and returns a list of <see cref="QueryResultTopicViewModel"/> objects based on a root <see cref="Topic"/> as
     ///   well as a set of options as specified in a <see cref="TopicQueryOptions"/> object.
     /// </summary>
-    public List<QueryResultTopicViewModel> Query(
+    public Collection<QueryResultTopicViewModel> Query(
       Topic rootTopic,
       TopicQueryOptions options,
       ReadOnlyTopicCollection<Topic> related = null
@@ -43,7 +43,7 @@ namespace OnTopic.Editor.Models.Queryable {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish containers for mapped objects, tasks
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModels = new List<QueryResultTopicViewModel>();
+      var topicViewModels = new Collection<QueryResultTopicViewModel>();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Bootstrap mapping process
@@ -72,7 +72,7 @@ namespace OnTopic.Editor.Models.Queryable {
     ///   cref="QueryResultTopicViewModel"/>.
     /// </summary>
     private void MapQueryResult(
-      List<QueryResultTopicViewModel> topicList,
+      Collection<QueryResultTopicViewModel> topicList,
       Topic topic,
       TopicQueryOptions options,
       ReadOnlyTopicCollection<Topic> related = null
@@ -151,14 +151,14 @@ namespace OnTopic.Editor.Models.Queryable {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate filtered attribute
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!String.IsNullOrEmpty(options.AttributeName) && !String.IsNullOrEmpty(options.AttributeName)) {
+      if (!String.IsNullOrEmpty(options.AttributeName)) {
         var attributeValue = topic.Attributes.GetValue(options.AttributeName, "");
         if (options.UsePartialMatch) {
           if (attributeValue.IndexOf(options.AttributeValue, StringComparison.Ordinal) is -1) {
             return false;
           }
         }
-        if (!attributeValue.Equals(options.AttributeValue)) {
+        if (!attributeValue.Equals(options.AttributeValue, StringComparison.Ordinal)) {
           return false;
         }
       }
@@ -169,7 +169,7 @@ namespace OnTopic.Editor.Models.Queryable {
       if (searchTerms.Count > 0) {
         if (!searchTerms.All(
           searchTerm => topic.Attributes.Any(
-            a => a.Value.IndexOf(searchTerm, 0, StringComparison.InvariantCultureIgnoreCase) >= 0
+            a => a.Value.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
           )
         )) {
           return false;

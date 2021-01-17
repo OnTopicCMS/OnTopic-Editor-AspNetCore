@@ -53,7 +53,9 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     public string GetDefaultDate() {
       if (String.IsNullOrEmpty(_defaultDate)) {
         //Convert from JavaScript date format conventions to C# conventions
-        var dateFormat = AttributeDescriptor.DateFormat.Replace("y", "yy").Replace("mm", "MM");
+        var dateFormat          = AttributeDescriptor.DateFormat
+          .Replace("y", "yy", StringComparison.Ordinal)
+          .Replace("mm", "MM", StringComparison.Ordinal);
         if (!String.IsNullOrEmpty(Value)) {
           if (DateTime.TryParse(Value, out var dateValue)) {
             _defaultDate        = dateValue.ToString(dateFormat, _format);

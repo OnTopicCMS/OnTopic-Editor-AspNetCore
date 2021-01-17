@@ -5,6 +5,8 @@
     <LangVersion>9.0</LangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -31,12 +33,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="OnTopic" Version="4.6.0" />
-    <PackageReference Include="OnTopic.Data.Transfer" Version="1.2.0" />
+    <PackageReference Include="OnTopic.Data.Transfer" Version="1.2.1" />
     <PackageReference Include="OnTopic.ViewModels" Version="4.6.0" />
     <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.6.0" />
   </ItemGroup>

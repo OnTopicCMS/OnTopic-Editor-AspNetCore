@@ -3,7 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using OnTopic.Collections;
 using OnTopic.Editor.Models.Metadata;
 using OnTopic.ViewModels;
@@ -45,7 +45,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     ///   Provides a list of <see cref="Topic"/>s which are related to the current <see cref="Topic"/> based on the specified
     ///   <see cref="NamedTopicCollection.Name"/>.
     /// </summary>
-    public List<TopicViewModel> RelatedTopics { get; } = new();
+    public Collection<TopicViewModel> RelatedTopics { get; } = new();
 
   } // Class
 } // Namespace

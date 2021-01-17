@@ -4,7 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
 
@@ -47,7 +47,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// </summary>
     [Follow(Relationships.None)]
     [Relationship("ContentTypes", Type=RelationshipType.Relationship)]
-    public List<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
+    public Collection<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
 
     /*==============================================================================================================================
     | ENABLE MODAL

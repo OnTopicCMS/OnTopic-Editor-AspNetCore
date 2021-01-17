@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -80,7 +81,9 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model.Files.AddRange(GetFiles(model.InheritedValue, attribute, model.AbsolutePath));
+      foreach (var file in GetFiles(model.InheritedValue, attribute, model.AbsolutePath)) {
+        model.Files.Add(file);
+      };
       model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -96,7 +99,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// <summary>
     ///   Retrieves a collection of files in a directory, given the provided <see cref="Path"/>.
     /// </summary>
-    public static List<SelectListItem> GetFiles(
+    public static Collection<SelectListItem> GetFiles(
       string inheritedValue,
       FileListAttributeTopicViewModel attribute,
       string absolutePath
@@ -110,7 +113,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | INSTANTIATE OBJECTS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var files                 = new List<SelectListItem>();
+      var files                 = new Collection<SelectListItem>();
       var searchPattern         = "*";
       var searchOption          = attribute.IncludeSubdirectories is true? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
 
@@ -143,8 +146,8 @@ namespace OnTopic.Editor.AspNetCore.Components {
         files.Add(new("", inheritedValue));
       }
       foreach (var foundFile in foundFiles) {
-        var fileName = foundFile.Replace(absolutePath, "");
-        var fileNameKey = fileName.Replace("." + attribute.Extension, "");
+        var fileName = foundFile.Replace(absolutePath, "", StringComparison.OrdinalIgnoreCase);
+        var fileNameKey = fileName.Replace("." + attribute.Extension, "", StringComparison.OrdinalIgnoreCase);
         files.Add(new(fileNameKey, fileName));
       }
 

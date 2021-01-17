@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 
@@ -36,7 +37,7 @@ namespace OnTopic.Editor.Models {
     ///   modified.
     /// </summary>
     #pragma warning disable CA2227 // Collection properties should be read only
-    public List<DateTime> VersionHistory { get; set; } = new();
+    public Collection<DateTime> VersionHistory { get; set; } = new();
     #pragma warning restore CA2227 // Collection properties should be read only
 
     /*==========================================================================================================================

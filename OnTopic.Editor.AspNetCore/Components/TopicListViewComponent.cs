@@ -4,11 +4,10 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
@@ -110,7 +109,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
           "CurrentTopic"          => baseTopic,
           "ParentTopic"           => baseTopic.Parent,
           "GrandparentTopic"      => (Topic)baseTopic.Parent?.Parent,
-          "ContentTypeDescriptor" => (Topic)_topicRepository.GetContentTypeDescriptors().FirstOrDefault(t => t.Key.Equals(baseTopic.ContentType)),
+          "ContentTypeDescriptor" => (Topic)_topicRepository.GetContentTypeDescriptors().FirstOrDefault(t => t.Key.Equals(baseTopic.ContentType, StringComparison.Ordinal)),
           _ => baseTopic
         };
       }
@@ -167,7 +166,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     >---------------------------------------------------------------------------------------------------------------------------
     | Retrieves a collection of topics with optional control call filter properties Scope, AttributeName and AttributeValue.
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public static List<QueryResultTopicViewModel> GetTopics(
+    public static Collection<QueryResultTopicViewModel> GetTopics(
       Topic  topic              = null,
       string attributeKey       = null,
       string attributeValue     = null,
@@ -229,11 +228,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
     private static string ReplaceTokens(QueryResultTopicViewModel topic, string source) {
       if (topic is not null && !String.IsNullOrEmpty(source)) {
         source = source
-          .Replace("{TopicId}", topic.Id.ToString(CultureInfo.InvariantCulture), StringComparison.InvariantCultureIgnoreCase)
-          .Replace("{Key}", topic.Key, StringComparison.InvariantCultureIgnoreCase)
-          .Replace("{UniqueKey}", topic.UniqueKey, StringComparison.InvariantCultureIgnoreCase)
-          .Replace("{WebPath}", topic.WebPath, StringComparison.InvariantCultureIgnoreCase)
-          .Replace("{Title}", topic.Title, StringComparison.InvariantCultureIgnoreCase);
+          .Replace("{TopicId}", topic.Id.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase)
+          .Replace("{Key}", topic.Key, StringComparison.OrdinalIgnoreCase)
+          .Replace("{UniqueKey}", topic.UniqueKey, StringComparison.OrdinalIgnoreCase)
+          .Replace("{WebPath}", topic.WebPath, StringComparison.OrdinalIgnoreCase)
+          .Replace("{Title}", topic.Title, StringComparison.OrdinalIgnoreCase);
       }
       return source;
     }

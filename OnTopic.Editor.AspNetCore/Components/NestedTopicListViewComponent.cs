@@ -75,10 +75,10 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (HttpContext.Request.Query.TryGetValue("IsNew", out var action)) {
-        viewModel.IsNew = action.FirstOrDefault().Equals("true", StringComparison.InvariantCultureIgnoreCase);
+        viewModel.IsNew         = action.FirstOrDefault().Equals("true", StringComparison.OrdinalIgnoreCase);
       }
-      viewModel.UniqueKey = currentTopic.UniqueKey;
-      viewModel.WebPath   = currentTopic.WebPath;
+      viewModel.UniqueKey       = currentTopic.UniqueKey;
+      viewModel.WebPath         = currentTopic.WebPath;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish nested topic container, if needed

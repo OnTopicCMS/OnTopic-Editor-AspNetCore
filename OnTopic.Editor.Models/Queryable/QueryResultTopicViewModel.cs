@@ -3,7 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
@@ -164,7 +164,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// <summary>
     ///   Provides a collection of child objects.
     /// </summary>
-    public List<QueryResultTopicViewModel> Children { get; } = new();
+    public Collection<QueryResultTopicViewModel> Children { get; } = new();
 
   } // Class
 } // Namespace
