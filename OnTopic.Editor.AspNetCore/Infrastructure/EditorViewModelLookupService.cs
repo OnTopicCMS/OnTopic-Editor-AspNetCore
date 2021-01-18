@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Lookup;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
 

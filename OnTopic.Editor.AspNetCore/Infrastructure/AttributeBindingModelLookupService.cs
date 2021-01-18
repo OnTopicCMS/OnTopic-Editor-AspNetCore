@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Editor.Models.Components.BindingModels;
+using OnTopic.Lookup;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
 

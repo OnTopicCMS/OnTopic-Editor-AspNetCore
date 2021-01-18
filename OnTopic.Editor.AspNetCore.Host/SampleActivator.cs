@@ -15,6 +15,7 @@ using OnTopic.Editor.AspNetCore;
 using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Editor.AspNetCore.Infrastructure;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
 
