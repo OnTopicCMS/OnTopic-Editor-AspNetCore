@@ -166,6 +166,16 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
         }
 
+        //Serialize references, if it's a topic reference
+        else if (!isNew && attribute.ModelType is ModelType.Reference) {
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetTopic(attribute.Key)?.Id.ToString(CultureInfo.InvariantCulture));
+        }
+
+        //Provide special handling for Key, since it's not stored as an attribute
+        else if (attribute.Key is "Key") {
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.Key);
+        }
+
         //For existing topics, get locally assigned attributes
         else if (!isNew) {
           topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.Attributes.GetValue(attribute.Key, null, false, false));
@@ -354,6 +364,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         if (attribute.ModelType is ModelType.Relationship) {
           SetRelationships(topic, attribute, attributeValue);
         }
+        else if (attribute.ModelType is ModelType.Reference) {
+          SetReference(topic, attribute, attributeValue);
+        }
         else if (attribute.Key is "Key") {
           topic.Key = attributeValue.Value.Replace(" ", "", StringComparison.Ordinal);
         }
@@ -382,7 +395,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     }
 
     /*==========================================================================================================================
-    | SET RELATIONSHIP VALUE
+    | SET RELATIONSHIPS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Private helper function that saves relationship values to the topic.
@@ -400,6 +413,21 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           topic.Relationships.SetTopic(attribute.Key, relatedTopic);
         }
       }
+    }
+
+    /*==========================================================================================================================
+    | SET REFERENCE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Private helper function that saves a topic reference to the topic.
+    /// </summary>
+    private void SetReference(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
+      Topic referencedTopic = null;
+      var isTopicId = Int32.TryParse(attributeValue.Value, out var topicIdInt);
+      if (isTopicId && topicIdInt > 0) {
+        referencedTopic = TopicRepository.Load(topicIdInt);
+      }
+      topic.References.SetTopic(attribute.Key, referencedTopic);
     }
 
     /*============================================================================================================================
@@ -535,7 +563,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Get related topics
       \-------------------------------------------------------------------------------------------------------------------------*/
-      var relatedTopics = (ReadOnlyTopicCollection<Topic>)null;
+      var relatedTopics = (ReadOnlyTopicCollection)null;
 
       if (options.MarkRelated) {
 

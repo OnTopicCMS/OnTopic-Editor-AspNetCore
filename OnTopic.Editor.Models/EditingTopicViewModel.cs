@@ -46,7 +46,6 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Provides a reference to a derived topic, if one exists.
     /// </summary>
-    [AttributeKey("TopicID")]
     public TopicViewModel DerivedTopic { get; set; }
 
     /*==========================================================================================================================

@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.Lookup;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
 
@@ -15,7 +16,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
   ///   Provides a mapping between string and class names to be used when mapping <see cref="Topic"/> to a <see
   ///   cref="TopicViewModel"/> or derived class.
   /// </summary>
-  public class EditorViewModelLookupService : ViewModels.TopicViewModelLookupService {
+  public class EditorViewModelLookupService : StaticTypeLookupService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

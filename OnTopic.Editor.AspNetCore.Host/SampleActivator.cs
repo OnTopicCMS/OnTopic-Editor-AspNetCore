@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
-using OnTopic;
 using OnTopic.Data.Caching;
 using OnTopic.Data.Sql;
 using OnTopic.Editor.AspNetCore;
 using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Editor.AspNetCore.Infrastructure;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
 

@@ -37,7 +37,7 @@ namespace OnTopic.Editor.Models.Queryable {
     public Collection<QueryResultTopicViewModel> Query(
       Topic rootTopic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection<Topic> related = null
+      ReadOnlyTopicCollection related = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ namespace OnTopic.Editor.Models.Queryable {
       Collection<QueryResultTopicViewModel> topicList,
       Topic topic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection<Topic> related = null
+      ReadOnlyTopicCollection related = null
     )
     {
 
@@ -153,6 +153,9 @@ namespace OnTopic.Editor.Models.Queryable {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrEmpty(options.AttributeName)) {
         var attributeValue = topic.Attributes.GetValue(options.AttributeName, "");
+        if (options.AttributeName is "ContentType") {
+          attributeValue = topic.ContentType;
+        }
         if (options.UsePartialMatch) {
           if (attributeValue.IndexOf(options.AttributeValue, StringComparison.Ordinal) is -1) {
             return false;
