@@ -535,7 +535,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Get related topics
       \-------------------------------------------------------------------------------------------------------------------------*/
-      var relatedTopics = (ReadOnlyTopicCollection<Topic>)null;
+      var relatedTopics = (ReadOnlyTopicCollection)null;
 
       if (options.MarkRelated) {
 

@@ -37,7 +37,7 @@ namespace OnTopic.Editor.Models.Queryable {
     public Collection<QueryResultTopicViewModel> Query(
       Topic rootTopic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection<Topic> related = null
+      ReadOnlyTopicCollection related = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ namespace OnTopic.Editor.Models.Queryable {
       Collection<QueryResultTopicViewModel> topicList,
       Topic topic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection<Topic> related = null
+      ReadOnlyTopicCollection related = null
     )
     {
 
