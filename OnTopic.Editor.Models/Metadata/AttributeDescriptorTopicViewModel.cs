@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using OnTopic.Metadata;
-using OnTopic.Metadata.AttributeTypes;
 
 namespace OnTopic.Editor.Models.Metadata {
 
