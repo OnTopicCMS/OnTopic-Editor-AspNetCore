@@ -166,6 +166,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
         }
 
+        //Provide special handling for Key, since it's not stored as an attribute
+        else if (attribute.Key is "Key") {
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.Key);
+        }
+
         //For existing topics, get locally assigned attributes
         else if (!isNew) {
           topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.Attributes.GetValue(attribute.Key, null, false, false));
