@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 /*==============================================================================================================================
@@ -14,3 +15,10 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(false)]
 [assembly: Guid("18159da7-b44e-4681-98c9-f81a2007196b")]
+
+/*==============================================================================================================================
+| HANDLE SUPPRESSIONS
+>===============================================================================================================================
+| Suppress warnings from code analysis that are either false positives or not relevant for this assembly.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+[assembly: SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix", Justification = "Expected by convention for OnTopic Editor", Scope = "namespaceanddescendants", Target = "~N:OnTopic.Editor.AspNetCore")]
