@@ -153,6 +153,9 @@ namespace OnTopic.Editor.Models.Queryable {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrEmpty(options.AttributeName)) {
         var attributeValue = topic.Attributes.GetValue(options.AttributeName, "");
+        if (options.AttributeName is "ContentType") {
+          attributeValue = topic.ContentType;
+        }
         if (options.UsePartialMatch) {
           if (attributeValue.IndexOf(options.AttributeValue, StringComparison.Ordinal) is -1) {
             return false;
