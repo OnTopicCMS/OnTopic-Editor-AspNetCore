@@ -15,10 +15,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="OnTopic" Version="4.7.0-alpha.368" />
-    <PackageReference Include="OnTopic.ViewModels" Version="4.6.0" />
-    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.6.0" />
-    <PackageReference Include="OnTopic.Data.Caching" Version="4.6.0" />
-    <PackageReference Include="OnTopic.Data.Sql" Version="4.6.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.7.0-alpha.368" />
+    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.7.0-alpha.368" />
+    <PackageReference Include="OnTopic.Data.Caching" Version="4.7.0-alpha.368" />
+    <PackageReference Include="OnTopic.Data.Sql" Version="4.7.0-alpha.368" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
   </ItemGroup>
 
