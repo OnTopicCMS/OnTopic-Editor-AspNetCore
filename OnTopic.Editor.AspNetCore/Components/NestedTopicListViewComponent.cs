@@ -61,12 +61,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set configuration values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.ContentTypes    ??= attribute.GetConfigurationValue(            "ContentTypes",         "");
-      attribute.EnableModal     ??= attribute.GetBooleanConfigurationValue(     "TargetPopup",          true);
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var viewModel = new NestedTopicListAttributeViewModel(currentTopic, attribute);

@@ -57,14 +57,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       var viewModel = new AttributeViewModel<TextAreaAttributeTopicViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set configuration values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.Columns         ??= attribute.GetIntegerConfigurationValue(     "Columns",              70);
-      attribute.Rows            ??= attribute.GetIntegerConfigurationValue(     "Rows",                 5);
-      attribute.MaximumLength   ??= attribute.GetIntegerConfigurationValue(     "MaximumLength",        Int32.MaxValue);
-      attribute.CssClass        ??= attribute.GetConfigurationValue(            "CssClass",             "FormField Field");
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(viewModel);

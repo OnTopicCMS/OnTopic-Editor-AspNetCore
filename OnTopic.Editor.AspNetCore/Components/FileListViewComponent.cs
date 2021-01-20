@@ -66,14 +66,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set configuration values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.Path                    ??= attribute.GetConfigurationValue("Path", null);
-      attribute.Extension               ??= attribute.GetConfigurationValue("Extension", null);
-      attribute.Filter                  ??= attribute.GetConfigurationValue("Filter", null);
-      attribute.IncludeSubdirectories   ??= attribute.GetBooleanConfigurationValue("IncludeSubdirectories", false);
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var model = new FileListAttributeViewModel(currentTopic, attribute);

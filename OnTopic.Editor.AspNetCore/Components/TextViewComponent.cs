@@ -57,16 +57,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       var viewModel = new AttributeViewModel<TextAttributeTopicViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set configuration values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.MaximumLength   ??= attribute.GetIntegerConfigurationValue(     "MaximumLength",        Int32.MaxValue);
-      attribute.CssClass        ??= attribute.GetConfigurationValue(            "CssClass",             "FormField Field");
-
-      attribute.InputType       ??= attribute.GetBooleanConfigurationValue("ValidateEmail", false)? "email" : null;
-      attribute.InputType       ??= attribute.GetBooleanConfigurationValue("ValidatePhone", false)? "tel" : null;
-      attribute.InputType       ??= "text";
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(viewModel);

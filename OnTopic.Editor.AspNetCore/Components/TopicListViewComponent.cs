@@ -60,16 +60,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set configuration values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.DefaultLabel    ??= attribute.GetConfigurationValue(            "Label",                "Select a Topic…");
-      attribute.RootTopicKey    ??= attribute.GetConfigurationValue(            "Scope",                null);
-      attribute.AttributeKey    ??= attribute.GetConfigurationValue(            "AttributeName",        null);
-      attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
-      attribute.ValueProperty   ??= attribute.GetConfigurationValue(            "ValueProperty",        "Key");
-      var       allowedKeys       = attribute.GetConfigurationValue(            "AllowedKeys",          null);
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
       \-----------------------------------------------------------------------------------------------------------------------*/
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
@@ -127,8 +117,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       var topics = GetTopics(
         rootTopic,
         attribute.AttributeKey,
-        attribute.AttributeValue,
-        allowedKeys
+        attribute.AttributeValue
       );
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -169,8 +158,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     public static Collection<QueryResultTopicViewModel> GetTopics(
       Topic  topic              = null,
       string attributeKey       = null,
-      string attributeValue     = null,
-      string allowedKeys        = ""
+      string attributeValue     = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -197,21 +185,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicQueryService     = new TopicQueryService();
       var topicQueryResults     = topicQueryService.Query(topic, options);
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Filter Topics selection list based on Content Types
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      string[] allowedKeyList;
-      if (!String.IsNullOrEmpty(allowedKeys)) {
-        allowedKeyList = allowedKeys.Split(',');
-        for (var i = 0; i < topicQueryResults.Count; i++) {
-          var childTopic = topicQueryResults[i];
-          if (Array.IndexOf(allowedKeyList, childTopic.Key) < 0) {
-            topicQueryResults.RemoveAt(i);
-            i--;
-          }
-        }
-      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return Topics list

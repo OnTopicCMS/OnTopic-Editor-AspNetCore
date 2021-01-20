@@ -51,15 +51,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set configuration values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.RootTopicKey    ??= attribute.GetConfigurationValue(            "Scope",                null);
-      attribute.ShowRoot        ??= attribute.GetBooleanConfigurationValue(     "ShowRoot",             false);
-      attribute.CheckAscendants ??= attribute.GetBooleanConfigurationValue(     "CheckAscendants",      false);
-      attribute.AttributeKey    ??= attribute.GetConfigurationValue(            "AttributeName",        null);
-      attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var model = new AttributeViewModel<RelationshipAttributeTopicViewModel>(currentTopic, attribute);

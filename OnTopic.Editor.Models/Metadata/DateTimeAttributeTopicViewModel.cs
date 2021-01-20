@@ -38,7 +38,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Establishes the date format that the value should be stored in.
     /// </summary>
-    public string? DateFormat { get; set; }
+    public string? DateFormat { get; set; } = "yy-mm-dd";
 
     /*==========================================================================================================================
     | TIME FORMAT
@@ -46,7 +46,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Establishes the time format that the value should be stored in. Defaults to "yyyy-mm-dd".
     /// </summary>
-    public string? TimeFormat { get; set; }
+    public string? TimeFormat { get; set; } = "hh:mm tt";
 
     /*==========================================================================================================================
     | DATE/TIME SEPARATOR
@@ -55,7 +55,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Establishes the delimiter that should be use to separate the date and time format, if both are selected. Defaults to
     ///   "hh:mm TT".
     /// </summary>
-    public string? DateTimeSeparator { get; set; }
+    public string? DateTimeSeparator { get; set; } = " ";
 
     /*==========================================================================================================================
     | DATE/TIME OFFSET
@@ -71,7 +71,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines the units that the offset direction is in. Defaults to "Days".
     /// </summary>
-    public string? DateTimeOffsetUnits { get; set; }
+    public string? DateTimeOffsetUnits { get; set; } = "Days";
 
   } //Class
 } //Namespace

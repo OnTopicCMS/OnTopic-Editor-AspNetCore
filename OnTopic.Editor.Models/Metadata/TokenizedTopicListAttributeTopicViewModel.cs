@@ -32,7 +32,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
     /// </summary>
-    public int? ResultLimit { get; set; }
+    public int? ResultLimit { get; set; } = 100;
 
     /*==========================================================================================================================
     | TOKEN LIMIT
@@ -46,7 +46,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   preferred to display a searchable list rather than a predefined dropdown list using <see
     ///   cref="TopicLookupViewComponent"/>.
     /// </remarks>
-    public int? TokenLimit { get; set; }
+    public int? TokenLimit { get; set; } = 100;
 
     /*==========================================================================================================================
     | AUTO POST BACK?
