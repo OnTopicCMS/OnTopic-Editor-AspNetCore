@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="DateTimeViewComponent"/>.
   /// </summary>
-  public class DateTimeAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record DateTimeAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | INCLUDE DATE PICKER?
@@ -22,7 +22,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines whether or not the date picker should be displayed.
     /// </summary>
-    public bool? IncludeDatePicker { get; set; }
+    public bool? IncludeDatePicker { get; init; }
 
     /*==========================================================================================================================
     | INCLUDE TIME PICKER?
@@ -30,7 +30,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines whether or not the time picker should be displayed.
     /// </summary>
-    public bool? IncludeTimePicker { get; set; }
+    public bool? IncludeTimePicker { get; init; }
 
     /*==========================================================================================================================
     | DATE FORMAT
@@ -38,7 +38,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Establishes the date format that the value should be stored in.
     /// </summary>
-    public string? DateFormat { get; set; } = "yy-mm-dd";
+    public string? DateFormat { get; init; } = "yy-mm-dd";
 
     /*==========================================================================================================================
     | TIME FORMAT
@@ -46,7 +46,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Establishes the time format that the value should be stored in. Defaults to "yyyy-mm-dd".
     /// </summary>
-    public string? TimeFormat { get; set; } = "hh:mm tt";
+    public string? TimeFormat { get; init; } = "hh:mm tt";
 
     /*==========================================================================================================================
     | DATE/TIME SEPARATOR
@@ -55,7 +55,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Establishes the delimiter that should be use to separate the date and time format, if both are selected. Defaults to
     ///   "hh:mm TT".
     /// </summary>
-    public string? DateTimeSeparator { get; set; } = " ";
+    public string? DateTimeSeparator { get; init; } = " ";
 
     /*==========================================================================================================================
     | DATE/TIME OFFSET
@@ -63,7 +63,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines the relative offset that the default value should apply. Defaults to 0.
     /// </summary>
-    public int? DateTimeOffset { get; set; }
+    public int? DateTimeOffset { get; init; }
 
     /*==========================================================================================================================
     | DATE/TIME OFFSET UNITS
@@ -71,7 +71,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines the units that the offset direction is in. Defaults to "Days".
     /// </summary>
-    public string? DateTimeOffsetUnits { get; set; } = "Days";
+    public string? DateTimeOffsetUnits { get; init; } = "Days";
 
   } //Class
 } //Namespace

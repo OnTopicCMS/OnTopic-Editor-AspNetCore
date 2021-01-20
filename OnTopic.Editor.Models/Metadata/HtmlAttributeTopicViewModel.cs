@@ -14,13 +14,13 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="HtmlViewComponent"/>.
   /// </summary>
-  public class HtmlAttributeTopicViewModel: TextAreaAttributeTopicViewModel {
+  public record HtmlAttributeTopicViewModel: TextAreaAttributeTopicViewModel {
 
     /*==========================================================================================================================
     | ROWS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc/>
-    public override int? Rows { get; set; } = 20;
+    public override int? Rows { get; init; } = 20;
 
     /*==========================================================================================================================
     | HEIGHT
@@ -32,7 +32,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <remarks>
     ///   If set, this value overrides <see cref="Rows"/>.
     /// </remarks>
-    public int? Height { get; set; }
+    public int? Height { get; init; }
 
   } //Class
 } //Namespace

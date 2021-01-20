@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="FileListViewComponent"/>.
   /// </summary>
-  public class FileListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record FileListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: PATH
@@ -22,7 +22,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the the directory path in which to find available files.
     /// </summary>
-    public string? Path { get; set; }
+    public string? Path { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: EXTENSION
@@ -30,7 +30,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets which file extension to restrict the list of files.
     /// </summary>
-    public string? Extension { get; set; }
+    public string? Extension { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: FILTER
@@ -38,7 +38,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the filter criteria by which to restrict the list of files.
     /// </summary>
-    public string? Filter { get; set; }
+    public string? Filter { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: INCLUDE SUBDIRECTORIES
@@ -46,7 +46,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets whether to only include the specified directory, or also include files from all subdirectories.
     /// </summary>
-    public bool? IncludeSubdirectories { get; set; }
+    public bool? IncludeSubdirectories { get; init; }
 
   } //Class
 } //Namespace

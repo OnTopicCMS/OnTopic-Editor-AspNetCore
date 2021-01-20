@@ -53,7 +53,9 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (attribute.Height is null || attribute.Height is 0 && attribute.Rows is not null) {
-        attribute.Height = attribute.Rows * 20;
+        attribute = attribute with {
+          Height = attribute.Rows * 20
+        };
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

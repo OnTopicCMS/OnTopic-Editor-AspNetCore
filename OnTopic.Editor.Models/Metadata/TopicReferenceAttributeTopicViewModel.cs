@@ -19,7 +19,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="TopicReferenceViewComponent"/>.
   /// </summary>
-  public class TopicReferenceAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record TopicReferenceAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC KEY
@@ -33,7 +33,7 @@ namespace OnTopic.Editor.Models.Metadata {
       "attributes should instead use the RootTopic property. The RootTopicKey property will be removed in the future.",
       false
     )]
-    public string? RootTopicKey { get; set; } = "Root";
+    public string? RootTopicKey { get; init; } = "Root";
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC
@@ -44,7 +44,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// </summary>
     [AttributeKey("RootTopicId")]
     [NotNull]
-    public TopicViewModel? RootTopic { get; set; }
+    public TopicViewModel? RootTopic { get; init; }
 
     /*==========================================================================================================================
     | RESULT LIMIT
@@ -52,7 +52,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
     /// </summary>
-    public int? ResultLimit { get; set; } = 100;
+    public int? ResultLimit { get; init; } = 100;
 
     /*==========================================================================================================================
     | TARGET CONTENT TYPE
@@ -60,7 +60,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
     /// </summary>
-    public string? TargetContentType { get; set; }
+    public string? TargetContentType { get; init; }
 
   } //Class
 } //Namespace

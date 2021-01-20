@@ -16,7 +16,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="IncomingRelationshipViewComponent"/>.
   /// </summary>
-  public class IncomingRelationshipAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
+  public record IncomingRelationshipAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
 
     /*==========================================================================================================================
     | RELATIONSHIP KEY
@@ -25,7 +25,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Optionally provides the relationship key, which mapes to the <see cref="NamedTopicCollection.Name"/> property.
     ///   Defaults to the <see cref="TopicViewModel.Key"/> if undefined.
     /// </summary>
-    public string? RelationshipKey { get; set; }
+    public string? RelationshipKey { get; init; }
 
   } //Class
 } //Namespace

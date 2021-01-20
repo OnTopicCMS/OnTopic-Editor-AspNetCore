@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="FilePathViewComponent"/>.
   /// </summary>
-  public class FilePathAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record FilePathAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: INHERIT VALUE
@@ -22,7 +22,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines whether the <see cref="Value"/> is expected to be inherited from parent topics if left blank.
     /// </summary>
-    public bool? InheritValue { get; set; } = true;
+    public bool? InheritValue { get; init; } = true;
 
     /*==========================================================================================================================
     | PROPERTY: RELATIVE TO TOPIC PATH
@@ -32,7 +32,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   value will be set to the inherited value (if present) along with the path between the level at which that value is set
     ///   and the current topic.
     /// </summary>
-    public bool? RelativeToTopicPath { get; set; } = true;
+    public bool? RelativeToTopicPath { get; init; } = true;
 
     /*==========================================================================================================================
     | PROPERTY: BASE TOPIC PATH
@@ -42,7 +42,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   logic for <see cref="AttributeViewModel.InheritedValue"/>. If set, the <see cref="AttributeViewModel.InheritedValue"/>
     ///   will  ignore children under the specified <see cref="Topic"/> when formulating the full file path.
     /// </summary>
-    public string? BaseTopicPath { get; set; } = "";
+    public string? BaseTopicPath { get; init; } = "";
 
     /*==========================================================================================================================
     | PROPERTY: INCLUDE CURRENT TOPIC
@@ -50,7 +50,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines whether the current <see cref="Topic"/> should be included in the <see cref="InheritedValue"/>.
     /// </summary>
-    public bool? IncludeCurrentTopic { get; set; } = true;
+    public bool? IncludeCurrentTopic { get; init; } = true;
 
   } //Class
 } //Namespace
