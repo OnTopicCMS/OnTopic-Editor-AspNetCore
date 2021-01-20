@@ -12,7 +12,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a HTML attribute in the Topic Editor.
   /// </summary>
-  public class HtmlAttributeBindingModel : AttributeBindingModel {
+  public record HtmlAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

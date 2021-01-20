@@ -12,7 +12,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a last modified by attribute in the Topic Editor.
   /// </summary>
-  public class LastModifiedByAttributeBindingModel : AttributeBindingModel {
+  public record LastModifiedByAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

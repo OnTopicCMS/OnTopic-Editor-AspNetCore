@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// </summary>
   /// <remarks>
   /// </remarks>
-  public class DisplayOptionsAttributeBindingModel : AttributeBindingModel {
+  public record DisplayOptionsAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

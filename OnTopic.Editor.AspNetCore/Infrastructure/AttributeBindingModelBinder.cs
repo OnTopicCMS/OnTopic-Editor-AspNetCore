@@ -72,9 +72,11 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       var type                  = TypeLookupService.Lookup($"{editorType}BindingModel");
       var model                 = (AttributeBindingModel)Activator.CreateInstance(type);
 
-      model.Key                 = key;
-      model.Value               = value;
-      model.EditorType          = editorType;
+      model                     = model with {
+        Key                     = key,
+        Value                   = value,
+        EditorType              = editorType
+      };
 
       bindingContext.Result     = ModelBindingResult.Success(model);
 

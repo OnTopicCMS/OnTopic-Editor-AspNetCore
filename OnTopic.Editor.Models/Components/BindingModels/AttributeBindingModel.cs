@@ -13,7 +13,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a generic attribute in the Topic Editor.
   /// </summary>
-  public class AttributeBindingModel {
+  public record AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -44,7 +44,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
     /// </summary>
     public string Key {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -55,7 +55,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
     /// </summary>
     public string EditorType {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -66,7 +66,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
     /// </summary>
     public string Value {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================

@@ -12,7 +12,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a topic list attribute in the Topic Editor.
   /// </summary>
-  public class NestedTopicListAttributeBindingModel : AttributeBindingModel {
+  public record NestedTopicListAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

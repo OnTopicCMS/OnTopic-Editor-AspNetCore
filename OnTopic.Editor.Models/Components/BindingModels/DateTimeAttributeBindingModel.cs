@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// </summary>
   /// <remarks>
   /// </remarks>
-  public class DateTimeAttributeBindingModel : AttributeBindingModel {
+  public record DateTimeAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

@@ -12,7 +12,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of an instruction attribute in the Topic Editor.
   /// </summary>
-  public class InstructionAttributeBindingModel : AttributeBindingModel {
+  public record InstructionAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

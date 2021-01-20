@@ -12,7 +12,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a text attribute in the Topic Editor.
   /// </summary>
-  public class TextAreaAttributeBindingModel : AttributeBindingModel {
+  public record TextAreaAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

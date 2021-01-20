@@ -12,7 +12,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a file editor attribute in the Topic Editor.
   /// </summary>
-  public class FileListAttributeBindingModel : AttributeBindingModel {
+  public record FileListAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
