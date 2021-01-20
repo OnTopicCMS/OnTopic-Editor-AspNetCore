@@ -33,7 +33,7 @@ namespace OnTopic.Editor.Models.Metadata {
       "attributes should instead use the RootTopic property. The RootTopicKey property will be removed in the future.",
       false
     )]
-    public string? RootTopicKey { get; set; }
+    public string? RootTopicKey { get; set; } = "Root";
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC
@@ -52,7 +52,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
     /// </summary>
-    public int? ResultLimit { get; set; }
+    public int? ResultLimit { get; set; } = 100;
 
     /*==========================================================================================================================
     | TARGET CONTENT TYPE

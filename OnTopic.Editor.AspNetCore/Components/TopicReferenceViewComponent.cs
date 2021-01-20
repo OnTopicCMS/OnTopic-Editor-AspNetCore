@@ -54,10 +54,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.RootTopicKey    ??= attribute.GetConfigurationValue(            "Scope",                "Root");
-      attribute.ResultLimit     ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
-      attribute.TargetContentType ??= attribute.GetConfigurationValue(          "ContentType",          null);
-
       if (String.IsNullOrWhiteSpace(attribute.TargetContentType)) {
         attribute.TargetContentType = currentTopic.ContentType;
       }
