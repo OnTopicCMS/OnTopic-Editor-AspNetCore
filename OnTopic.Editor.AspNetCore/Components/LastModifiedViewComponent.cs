@@ -54,20 +54,21 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish view model
+      | Set model defaults
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new LastModifiedAttributeViewModel(currentTopic, attribute);
+      currentTopic.Attributes.TryGetValue(attribute.Key, out var currentValue);
+      if (currentTopic.LastModified != DateTime.MinValue) {
+        currentValue            = currentTopic.LastModified.ToString(CultureInfo.InvariantCulture);
+      }
+      var value                 = DateTime.Now.ToString(CultureInfo.InvariantCulture);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set model values
+      | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (currentTopic.LastModified != DateTime.MinValue) {
-        model.CurrentValue      = currentTopic.LastModified.ToString(CultureInfo.InvariantCulture);
-      }
-      else {
-        model.CurrentValue      = model.Value;
-      }
-      model.Value               = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+      var model = new LastModifiedAttributeViewModel(currentTopic, attribute) {
+        CurrentValue            = currentValue,
+        Value                   = value
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

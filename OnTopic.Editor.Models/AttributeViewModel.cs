@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models {
   ///   Provides access to both a <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that
   ///   attribute from the currently selected <see cref="Topic"/>.
   /// </summary>
-  public class AttributeViewModel {
+  public record AttributeViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -66,7 +66,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Provides the current value, as defined on the <see cref="AttributeValue"/> instance.
     /// </summary>
-    public virtual string Value { get; set; }
+    public virtual string Value { get; init; }
 
     /*==========================================================================================================================
     | INHERITED VALUE
@@ -74,7 +74,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Provides the inherited value, as defined on either parent or derived topics.
     /// </summary>
-    public virtual string InheritedValue { get; set; }
+    public virtual string InheritedValue { get; init; }
 
   } // Class
 } // Namespace

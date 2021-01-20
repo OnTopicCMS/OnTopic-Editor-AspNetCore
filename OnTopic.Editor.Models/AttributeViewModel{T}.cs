@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models {
   ///   Provides access to both a <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that
   ///   attribute from the currently selected <see cref="Topic"/>.
   /// </summary>
-  public class AttributeViewModel<T>: AttributeViewModel where T: AttributeDescriptorTopicViewModel {
+  public record AttributeViewModel<T>: AttributeViewModel where T: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

@@ -105,12 +105,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new FilePathAttributeViewModel(currentTopic, attribute);
+      var model = new FilePathAttributeViewModel(currentTopic, attribute) {
+        InheritedValue = GetInheritedValue(attribute.Key!, attribute)
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      model!.InheritedValue = GetInheritedValue(attribute.Key!, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
