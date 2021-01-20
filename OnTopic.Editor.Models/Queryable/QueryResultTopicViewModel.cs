@@ -19,7 +19,7 @@ namespace OnTopic.Editor.Models.Queryable {
   ///   with the expectations of the <see cref="EditorController.Json(TopicQueryOptions)"/> action.
   /// <remarks>
   /// </remarks>
-  public class QueryResultTopicViewModel {
+  public record QueryResultTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
