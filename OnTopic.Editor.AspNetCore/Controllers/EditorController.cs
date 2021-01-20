@@ -698,7 +698,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
       options.CurrentUser       = HttpContext.User.Identity.Name?? "System";
 
-      editorViewModel.ImportOptions = options;
+      editorViewModel           = editorViewModel with {
+        ImportOptions           = options
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE PARAMETERS
@@ -809,7 +811,10 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | RETURN JSON
       \-----------------------------------------------------------------------------------------------------------------------*/
-      editorViewModel.IsImported = true;
+      editorViewModel           = editorViewModel with {
+        IsImported              = true
+      };
+
       return View(editorViewModel);
 
     }

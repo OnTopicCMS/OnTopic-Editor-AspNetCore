@@ -13,7 +13,7 @@ namespace OnTopic.Editor.Models {
   /// <summary>
   ///   Represents a model for interacting with the editor interface.
   /// </summary>
-  public class EditorViewModel {
+  public record EditorViewModel {
 
     /*==========================================================================================================================
     | TOPIC
@@ -22,7 +22,7 @@ namespace OnTopic.Editor.Models {
     ///   The <see cref="EditingTopicViewModel"/> representing the core properties of the currently selected <see
     ///   cref="Topic"/>.
     /// </summary>
-    public EditingTopicViewModel Topic { get; set; }
+    public EditingTopicViewModel Topic { get; init; }
 
     /*==========================================================================================================================
     | CONTENT TYPE DESCRIPTOR
@@ -31,7 +31,7 @@ namespace OnTopic.Editor.Models {
     ///   The <see cref="ContentTypeDescriptorTopicViewModel"/> representing the core properties of the <see cref="Topic"/>'s
     ///   <see cref="ContentTypeDescriptor"/>.
     /// </summary>
-    public ContentTypeDescriptorTopicViewModel ContentTypeDescriptor { get; set; }
+    public ContentTypeDescriptorTopicViewModel ContentTypeDescriptor { get; init; }
 
     /*==========================================================================================================================
     | IS MODAL?
@@ -39,7 +39,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Determines whether or not the page should be rendered as a modal (e.g., including the chrome or not).
     /// </summary>
-    public bool IsModal { get; set; }
+    public bool IsModal { get; init; }
 
     /*==========================================================================================================================
     | IS NEW?
@@ -47,7 +47,7 @@ namespace OnTopic.Editor.Models {
     /// <summary>
     ///   Determines whether or not the page is being newly created.
     /// </summary>
-    public bool IsNew { get; set; }
+    public bool IsNew { get; init; }
 
   } // Class
 } // Namespace

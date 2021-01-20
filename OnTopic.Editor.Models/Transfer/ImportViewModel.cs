@@ -13,7 +13,7 @@ namespace OnTopic.Editor.Models.Transfer {
   /// <summary>
   ///   Represents a model for soliciting import options from the user.
   /// </summary>
-  public class ImportViewModel: EditorViewModel {
+  public record ImportViewModel: EditorViewModel {
 
     /*==========================================================================================================================
     | IMPORT OPTIONS
@@ -21,7 +21,7 @@ namespace OnTopic.Editor.Models.Transfer {
     /// <summary>
     ///   The <see cref="ImportOptions"/> represent the user's preference for how to import a serialized JSON file.
     /// </summary>
-    public ImportOptions ImportOptions { get; set; } = new();
+    public ImportOptions ImportOptions { get; init; } = new();
 
     /*==========================================================================================================================
     | IS IMPORTED?
@@ -29,7 +29,7 @@ namespace OnTopic.Editor.Models.Transfer {
     /// <summary>
     ///   The <see cref="IsImported"/> property is set after the file is successfully imported.
     /// </summary>
-    public bool IsImported { get; set; }
+    public bool IsImported { get; init; }
 
   } // Class
 } // Namespace
