@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 
 #nullable enable
 
@@ -30,7 +31,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the maximimum length of the field. Defaults to <c>500</c> if undefined.
     /// </summary>
-    public int? MaximumLength { get; set; }
+    public int? MaximumLength { get; set; } = Int32.MaxValue;
 
     /*==========================================================================================================================
     | INPUT TYPE
@@ -38,7 +39,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the HTML input type of the field. Defaults to <c>text</c> if undefined.
     /// </summary>
-    public string? InputType { get; set; }
+    public string? InputType { get; set; } = "text";
 
     /*==========================================================================================================================
     | PATTERN
