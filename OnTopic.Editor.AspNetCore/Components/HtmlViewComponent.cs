@@ -52,11 +52,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.Columns         ??= attribute.GetIntegerConfigurationValue(     "Columns",              70);
-      attribute.Rows            ??= attribute.GetIntegerConfigurationValue(     "Rows",                 20);
-      attribute.Height          ??= attribute.GetIntegerConfigurationValue(     "Height",               0);
-      attribute.CssClass        ??= attribute.GetConfigurationValue(            "CssClass",             "FormField Field");
-
       if (attribute.Height is null || attribute.Height is 0 && attribute.Rows is not null) {
         attribute.Height = attribute.Rows * 20;
       }

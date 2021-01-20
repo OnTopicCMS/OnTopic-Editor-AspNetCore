@@ -25,16 +25,16 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   <c>70</c>.
     /// </summary>
     [Obsolete("The Columns attribute will be removed in OnTopic Editor 5.0.0.")]
-    public int? Columns { get; set; }
+    public int? Columns { get; set; } = 70;
 
     /*==========================================================================================================================
     | ROWS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
-    ///   <c>30</c>.
+    ///   <c>20</c>.
     /// </summary>
-    public int? Rows { get; set; }
+    public int? Rows { get; set; } = 20;
 
     /*==========================================================================================================================
     | MINIMUM LENGTH
