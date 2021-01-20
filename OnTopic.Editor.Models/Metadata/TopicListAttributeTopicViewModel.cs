@@ -23,7 +23,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Sets the label name to be used for the placeholder option in the dropdown list, which will have an empty value.
     /// </summary>
-    public string? DefaultLabel { get; set; }
+    public string? DefaultLabel { get; set; } = "Select a Topic…";
 
     /*==========================================================================================================================
     | PROPERTY: RELATIVE TOPIC BASE
@@ -71,7 +71,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///     <item><c>Title</c> (for <see cref="TopicViewModel.Title"/>)</item>
     ///   </list>
     /// </remarks>
-    public string? ValueProperty { get; set; }
+    public string? ValueProperty { get; set; } = "Key";
 
   } //Class
 } //Namespace
