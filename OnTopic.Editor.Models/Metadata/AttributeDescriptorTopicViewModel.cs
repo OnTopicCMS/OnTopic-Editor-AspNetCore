@@ -4,9 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using OnTopic.Metadata;
 
 namespace OnTopic.Editor.Models.Metadata {
@@ -18,11 +15,6 @@ namespace OnTopic.Editor.Models.Metadata {
   ///   Provides core properties from a <see cref="AttributeDescriptor"/> to a view component.
   /// </summary>
   public class AttributeDescriptorTopicViewModel: ViewModels.TopicViewModel {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     Dictionary<string, string>      _configuration                  = new();
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -61,105 +53,6 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Determines what group of attributes to associate the current attribute with.
     /// </summary>
     public string DisplayGroup { get; set; }
-
-    #region LegacyConfiguration
-
-    /*==========================================================================================================================
-    | PROPERTY: DEFAULT CONFIGURATION
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the raw string representation of any optional values needed to configure the attribute editor.
-    /// </summary>
-    [Obsolete(
-      "This property is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
-      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
-      "AttributeDescriptor."
-    )]
-    public string DefaultConfiguration { get; set; }
-
-    /*==========================================================================================================================
-    | PROPERTY: CONFIGURATION
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Retrieves a dictionary representing a parsed collection of key/value pairs from the <see
-    ///   cref="DefaultConfiguration"/>.
-    /// </summary>
-    [Obsolete(
-      "This property is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
-      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
-      "AttributeDescriptor."
-    )]
-    public IDictionary<string, string> Configuration {
-      get {
-        if (_configuration.Count is 0 && DefaultConfiguration?.Length > 0) {
-          _configuration = DefaultConfiguration
-            .Split(' ')
-            .Select(value => value.Split('='))
-            .ToDictionary(
-              pair => pair[0],
-              pair => pair.Length is 2? pair[1]?.Replace("\"", "", StringComparison.Ordinal) : null
-            );
-        }
-        return _configuration;
-      }
-    }
-
-    /*==========================================================================================================================
-    | METHOD: GET CONFIGURATION VALUE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Retrieves a configuration value from the <see cref="Configuration"/> dictionary; if the value doesn't exist, then
-    ///   optionally returns a default value.
-    /// </summary>
-    [Obsolete(
-      "This method is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
-      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
-      "AttributeDescriptor."
-    )]
-    public string GetConfigurationValue(string key, string defaultValue = null) {
-      if (Configuration is not null && Configuration.ContainsKey(key) && Configuration[key] is not null) {
-        return Configuration[key].ToString();
-      }
-      return defaultValue;
-    }
-
-    /*==========================================================================================================================
-    | METHOD: GET BOOLEAN CONFIGURATION VALUE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Retrieves a configuration value from the <see cref="Configuration"/> dictionary as a boolean value.
-    /// </summary>
-    [Obsolete(
-      "This method is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
-      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
-      "AttributeDescriptor."
-    )]
-    public bool GetBooleanConfigurationValue(string key, bool defaultValue = false) {
-      if (Boolean.TryParse(GetConfigurationValue(key, defaultValue.ToString()), out var value)) {
-        return value;
-      }
-      return defaultValue;
-    }
-
-    /*==========================================================================================================================
-    | METHOD: GET INTEGER CONFIGURATION VALUE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Retrieves a configuration value from the <see cref="Configuration"/> dictionary as an integer value.
-    /// </summary>
-    [Obsolete(
-      "This method is exposed exclusively for backward compatibility during migration from the legacy editor. It will be " +
-      "removed in a future update. Values in DefaultConfiguration should be migrated to attributes on derivaties of the " +
-      "AttributeDescriptor."
-    )]
-    public int GetIntegerConfigurationValue(string key, int defaultValue = 0) {
-      if (Int32.TryParse(GetConfigurationValue(key, defaultValue.ToString(CultureInfo.InvariantCulture)), out var value)) {
-        return value;
-      }
-      return defaultValue;
-    }
-
-    #endregion LegacyConfiguration
 
     /*==========================================================================================================================
     | PROPERTY: IS REQUIRED?
