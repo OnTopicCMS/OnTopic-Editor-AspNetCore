@@ -34,7 +34,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
     ///   <c>20</c>.
     /// </summary>
-    public int? Rows { get; set; } = 20;
+    public virtual int? Rows { get; set; } = 5;
 
     /*==========================================================================================================================
     | MINIMUM LENGTH
@@ -50,7 +50,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the maximimum length of the field.
     /// </summary>
-    public int? MaximumLength { get; set; }
+    public int? MaximumLength { get; set; } = Int32.MaxValue;
 
   } //Class
 } //Namespace
