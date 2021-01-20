@@ -61,17 +61,6 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set configuration values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      attribute.RootTopicKey    ??= attribute.GetConfigurationValue(            "Scope",                "Root");
-      attribute.AttributeKey    ??= attribute.GetConfigurationValue(            "AttributeName",        null);
-      attribute.AttributeValue  ??= attribute.GetConfigurationValue(            "AttributeValue",       null);
-      attribute.ResultLimit     ??= attribute.GetIntegerConfigurationValue(     "ResultLimit",          100);
-      attribute.TokenLimit      ??= attribute.GetIntegerConfigurationValue(     "TokenLimit",           100);
-      attribute.AsRelationship  ??= attribute.GetBooleanConfigurationValue(     "AsRelationship",       false);
-      attribute.AutoPostBack    ??= attribute.GetBooleanConfigurationValue(     "IsAutoPostBack",       false);
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var model = new TokenizedTopicListAttributeViewModel(currentTopic, attribute);

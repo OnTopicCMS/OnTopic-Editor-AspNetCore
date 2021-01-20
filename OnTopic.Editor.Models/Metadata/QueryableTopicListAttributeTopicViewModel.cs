@@ -33,7 +33,7 @@ namespace OnTopic.Editor.Models.Metadata {
       "attributes should instead use the RootTopic property. The RootTopicKey property will be removed in the future.",
       false
     )]
-    public string? RootTopicKey { get; set; }
+    public string? RootTopicKey { get; set; } = "Root";
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC
