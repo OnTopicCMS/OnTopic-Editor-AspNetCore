@@ -36,7 +36,7 @@ namespace OnTopic.Editor.Models.Metadata {
       "definitions should instead use the new PermittedContentTypes attribute.",
       false)
     ]
-    public string? ContentTypes { get; set; }
+    public string? ContentTypes { get; set; } = "";
 
     /*==========================================================================================================================
     | PROPERTY: PERMITTED CONTENT TYPES
@@ -62,7 +62,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   language, device type, &c.). In those cases, nested topics may be the best way to model the capabilities, but having
     ///   multiple levels of modal windows is a poor user experience.
     /// </remarks>
-    public bool? EnableModal { get; set; }
+    public bool? EnableModal { get; set; } = true;
 
   } //Class
 } //Namespace
