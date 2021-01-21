@@ -49,11 +49,11 @@ namespace OnTopic.Editor.Models.Queryable {
       | Bootstrap mapping process
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (options.ShowRoot) {
-        MapQueryResult(topicViewModels, rootTopic, options, related);
+        MapQueryResult(topicViewModels, rootTopic, options, related, options.ResultLimit);
       }
       else {
         foreach (var topic in rootTopic.Children) {
-          MapQueryResult(topicViewModels, topic, options, related);
+          MapQueryResult(topicViewModels, topic, options, related, options.ResultLimit);
         }
       }
 
@@ -75,7 +75,8 @@ namespace OnTopic.Editor.Models.Queryable {
       Collection<QueryResultTopicViewModel> topicList,
       Topic topic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection related = null
+      ReadOnlyTopicCollection related = null,
+      int remainingResults = Int32.MaxValue
     )
     {
 
@@ -90,7 +91,7 @@ namespace OnTopic.Editor.Models.Queryable {
       if (isValid) {
 
         //Decrement counter
-        options.ResultLimit--;
+        remainingResults--;
 
         //Map topic
         var mappedTopic = new QueryResultTopicViewModel(
@@ -121,7 +122,8 @@ namespace OnTopic.Editor.Models.Queryable {
             topicList,
             childTopic,
             options,
-            related
+            related,
+            remainingResults
           );
         }
       }

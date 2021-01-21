@@ -13,7 +13,7 @@ namespace OnTopic.Editor.Models.Queryable {
   /// <summary>
   ///   Establishes options for the <see cref="TopicQueryService"/> class.
   /// </summary>
-  public class TopicQueryOptions {
+  public record TopicQueryOptions {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -60,7 +60,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public bool ShowRoot {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -71,7 +71,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public bool ShowAll {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -82,7 +82,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public bool UseKeyAsText {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -94,7 +94,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public bool IsRecursive {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -106,7 +106,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public bool FlattenStructure {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -118,7 +118,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public bool ShowNestedTopics {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -130,7 +130,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public bool UsePartialMatch {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -142,7 +142,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public int ResultLimit {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -153,7 +153,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public string AttributeName {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -164,7 +164,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public string AttributeValue {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -175,7 +175,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public string Query {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -232,7 +232,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public int RelatedTopicId {
       get;
-      set;
+      init;
     }
 
     /*==========================================================================================================================
@@ -243,7 +243,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// </summary>
     public string RelatedNamespace {
       get;
-      set;
+      init;
     }
 
   } // Class
