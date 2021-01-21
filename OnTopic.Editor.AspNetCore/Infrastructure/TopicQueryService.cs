@@ -46,14 +46,19 @@ namespace OnTopic.Editor.Models.Queryable {
       var topicViewModels = new Collection<QueryResultTopicViewModel>();
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Establish counter
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var remainingResults = options.ResultLimit;
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Bootstrap mapping process
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (options.ShowRoot) {
-        MapQueryResult(topicViewModels, rootTopic, options, related, options.ResultLimit);
+        MapQueryResult(topicViewModels, rootTopic, options, ref remainingResults, related);
       }
       else {
         foreach (var topic in rootTopic.Children) {
-          MapQueryResult(topicViewModels, topic, options, related, options.ResultLimit);
+          MapQueryResult(topicViewModels, topic, options, ref remainingResults, related);
         }
       }
 
@@ -75,15 +80,15 @@ namespace OnTopic.Editor.Models.Queryable {
       Collection<QueryResultTopicViewModel> topicList,
       Topic topic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection related = null,
-      int remainingResults = Int32.MaxValue
+      ref int remainingResults,
+      ReadOnlyTopicCollection related = null
     )
     {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Loop through children
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var isValid = IsValidTopic(topic, options);
+      var isValid = IsValidTopic(topic, options, remainingResults);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Map topic
@@ -122,8 +127,8 @@ namespace OnTopic.Editor.Models.Queryable {
             topicList,
             childTopic,
             options,
-            related,
-            remainingResults
+            ref remainingResults,
+            related
           );
         }
       }
@@ -136,7 +141,7 @@ namespace OnTopic.Editor.Models.Queryable {
     /// <summary>
     ///   Static method confirms whether a topic is valid based on the <see cref="TopicQueryOptions"/>.
     /// </summary>
-    public static bool IsValidTopic(Topic topic, TopicQueryOptions options) {
+    public static bool IsValidTopic(Topic topic, TopicQueryOptions options, int remainingResults) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -148,7 +153,7 @@ namespace OnTopic.Editor.Models.Queryable {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!options.ShowAll && !topic.IsVisible()) return false;
       if (!options.ShowNestedTopics && topic.ContentType is "List") return false;
-      if (options.ResultLimit is 0) return false;
+      if (remainingResults is 0) return false;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate filtered attribute
