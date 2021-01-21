@@ -12,7 +12,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a tokenized topic list attribute in the Topic Editor.
   /// </summary>
-  public class TokenizedTopicListAttributeBindingModel : AttributeBindingModel {
+  public record TokenizedTopicListAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

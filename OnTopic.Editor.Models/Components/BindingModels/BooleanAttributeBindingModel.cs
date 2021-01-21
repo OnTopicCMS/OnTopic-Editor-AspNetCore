@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// </summary>
   /// <remarks>
   /// </remarks>
-  public class BooleanAttributeBindingModel : AttributeBindingModel {
+  public record BooleanAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

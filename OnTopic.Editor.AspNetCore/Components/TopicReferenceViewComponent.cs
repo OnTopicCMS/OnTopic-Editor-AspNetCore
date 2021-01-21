@@ -55,7 +55,9 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (String.IsNullOrWhiteSpace(attribute.TargetContentType)) {
-        attribute.TargetContentType = currentTopic.ContentType;
+        attribute = attribute with {
+          TargetContentType = currentTopic.ContentType
+        };
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

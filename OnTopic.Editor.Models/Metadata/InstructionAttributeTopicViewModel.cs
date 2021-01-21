@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="InstructionViewComponent"/>.
   /// </summary>
-  public class InstructionAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record InstructionAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | INSTRUCTIONS
@@ -22,7 +22,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Instructional text to embed in the OnTopic Editor.
     /// </summary>
-    public string? Instructions { get; set; }
+    public string? Instructions { get; init; }
 
   } //Class
 } //Namespace

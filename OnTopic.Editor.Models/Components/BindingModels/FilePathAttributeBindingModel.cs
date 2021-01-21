@@ -12,7 +12,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a file path attribute in the Topic Editor.
   /// </summary>
-  public class FilePathAttributeBindingModel : AttributeBindingModel {
+  public record FilePathAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="BooleanViewComponent"/>.
   /// </summary>
-  public class BooleanAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record BooleanAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
 
   } //Class

@@ -18,7 +18,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
   ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
   ///   selected <see cref="Topic"/>.
   /// </summary>
-  public class FileListAttributeViewModel: AttributeViewModel<FileListAttributeTopicViewModel> {
+  public record FileListAttributeViewModel: AttributeViewModel<FileListAttributeTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

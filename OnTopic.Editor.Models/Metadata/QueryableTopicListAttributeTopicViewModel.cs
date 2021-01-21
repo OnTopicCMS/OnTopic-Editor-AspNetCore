@@ -19,7 +19,7 @@ namespace OnTopic.Editor.Models.Metadata {
   ///   cref="TopicListAttributeTopicViewModel"/>, <see cref="TokenizedTopicListAttributeTopicViewModel"/>, and any other view
   ///   components that allow querying of topics via the search API, or similar techniques.
   /// </summary>
-  public class QueryableTopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record QueryableTopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC KEY
@@ -33,7 +33,7 @@ namespace OnTopic.Editor.Models.Metadata {
       "attributes should instead use the RootTopic property. The RootTopicKey property will be removed in the future.",
       false
     )]
-    public string? RootTopicKey { get; set; } = "Root";
+    public string? RootTopicKey { get; init; } = "Root";
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC
@@ -43,7 +43,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   allows relationships to be targeted to particular areas of the topic graph.
     /// </summary>
     [NotNull]
-    public TopicViewModel? RootTopic { get; set; }
+    public TopicViewModel? RootTopic { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ATTRIBUTE KEY
@@ -57,7 +57,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   under a <see cref="Topic"/> that is excluded by the filter will <i>also</i> be excluded. As such, this option should
     ///   be used with care.
     /// </remarks>
-    public string? AttributeKey { get; set; }
+    public string? AttributeKey { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ATTRIBUTE VALUE
@@ -71,7 +71,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   under a <see cref="Topic"/> that is excluded by the filter will <i>also</i> be excluded. As such, this option should
     ///   be used with care.
     /// </remarks>
-    public string? AttributeValue { get; set; }
+    public string? AttributeValue { get; init; }
 
   } //Class
 } //Namespace

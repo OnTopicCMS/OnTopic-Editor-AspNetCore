@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides core properties from a <see cref="AttributeDescriptor"/> to a view component.
   /// </summary>
-  public class AttributeDescriptorTopicViewModel: ViewModels.TopicViewModel {
+  public record AttributeDescriptorTopicViewModel: ViewModels.TopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -23,7 +23,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Provides a friendly description for the <see cref="AttributeDescriptor"/>, intended as documentation for users of the
     ///   editor.
     /// </summary>
-    public string Description { get; set; }
+    public string Description { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: MODEL TYPE
@@ -31,7 +31,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines how the attribute is modeled in terms of the object-oriented code (e.g., as a relationship? An attribute?).
     /// </summary>
-    public virtual ModelType ModelType { get; set; }
+    public virtual ModelType ModelType { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: EDITOR TYPE
@@ -44,7 +44,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   such as <see cref="BooleanAttribute"/>. This can be used by the editor to determine the appropriate view component to
     ///   display.
     /// </remarks>
-    public virtual string EditorType { get; set; }
+    public virtual string EditorType { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: DISPLAY GROUP
@@ -52,7 +52,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines what group of attributes to associate the current attribute with.
     /// </summary>
-    public string DisplayGroup { get; set; }
+    public string DisplayGroup { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: IS REQUIRED?
@@ -60,7 +60,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines whether the attribute should be considered required or not.
     /// </summary>
-    public bool IsRequired { get; set; }
+    public bool IsRequired { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: DEFAULT VALUE
@@ -73,7 +73,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   value. This helps establish a logical default, but also prevents values from being inherited from e.g. parent topics;
     ///   as such, this should be used with caution. The value used here will be stored locally on a per-topic basis.
     /// </remarks>
-    public string DefaultValue { get; set; }
+    public string DefaultValue { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: IMPLICIT VALUE
@@ -87,7 +87,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   set different defaults in different contexts (e.g., based on different views). The <see cref="ImplicitValue"/> will be
     ///   exposed to editors as an HTML placeholder on input fields that support it.
     /// </remarks>
-    public string ImplicitValue { get; set; }
+    public string ImplicitValue { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: SORT ORDER
@@ -95,7 +95,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines the attribute's prioritization in the page order.
     /// </summary>
-    public int SortOrder { get; set; }
+    public int SortOrder { get; init; }
 
     /*==========================================================================================================================
     | IS ENABLED
@@ -103,7 +103,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeValue"/> instance.
     /// </summary>
-    public bool IsEnabled { get; set; } = true;
+    public bool IsEnabled { get; init; } = true;
 
     /*==========================================================================================================================
     | CSS CLASS
@@ -112,7 +112,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Defines the CSS class names to be used, if any are configured.
     /// </summary>
     [Obsolete("The CssClass attribute will be removed in OnTopic Editor 5.0.0.")]
-    public string CssClass { get; set; } = "FormField Field";
+    public string CssClass { get; init; } = "FormField Field";
 
   } //Class
 } //Namespace

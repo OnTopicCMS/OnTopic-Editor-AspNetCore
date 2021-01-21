@@ -15,7 +15,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="TextAreaViewComponentView"/>.
   /// </summary>
-  public class TextAreaAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record TextAreaAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | COLUMNS
@@ -25,7 +25,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   <c>70</c>.
     /// </summary>
     [Obsolete("The Columns attribute will be removed in OnTopic Editor 5.0.0.")]
-    public int? Columns { get; set; } = 70;
+    public int? Columns { get; init; } = 70;
 
     /*==========================================================================================================================
     | ROWS
@@ -34,7 +34,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
     ///   <c>20</c>.
     /// </summary>
-    public virtual int? Rows { get; set; } = 5;
+    public virtual int? Rows { get; init; } = 5;
 
     /*==========================================================================================================================
     | MINIMUM LENGTH
@@ -42,7 +42,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the length length of the field. Defaults to <c>0</c> if undefined.
     /// </summary>
-    public int? MinimumLength { get; set; } = 10;
+    public int? MinimumLength { get; init; } = 10;
 
     /*==========================================================================================================================
     | MAXIMUM LENGTH
@@ -50,7 +50,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the maximimum length of the field.
     /// </summary>
-    public int? MaximumLength { get; set; } = Int32.MaxValue;
+    public int? MaximumLength { get; init; } = Int32.MaxValue;
 
   } //Class
 } //Namespace

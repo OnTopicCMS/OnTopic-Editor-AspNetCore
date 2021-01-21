@@ -13,7 +13,7 @@ namespace OnTopic.Editor.Models.Transfer {
   /// <summary>
   ///   Represents a model for soliciting export options from the user.
   /// </summary>
-  public class ExportViewModel: EditorViewModel {
+  public record ExportViewModel: EditorViewModel {
 
     /*==========================================================================================================================
     | EXPORT OPTIONS
@@ -21,7 +21,7 @@ namespace OnTopic.Editor.Models.Transfer {
     /// <summary>
     ///   The <see cref="ExportOptions"/> represent the user's preference for how to export the current topic.
     /// </summary>
-    public ExportOptions ExportOptions { get; set; } = new();
+    public ExportOptions ExportOptions { get; init; } = new();
 
   } // Class
 } // Namespace

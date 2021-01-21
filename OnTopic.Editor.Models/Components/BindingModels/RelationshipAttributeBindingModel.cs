@@ -12,7 +12,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
   /// <summary>
   ///   Represents an instance of a relationship attribute in the Topic Editor.
   /// </summary>
-  public class RelationshipAttributeBindingModel : AttributeBindingModel {
+  public record RelationshipAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

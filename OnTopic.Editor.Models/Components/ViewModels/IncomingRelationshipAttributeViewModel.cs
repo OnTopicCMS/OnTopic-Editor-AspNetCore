@@ -18,7 +18,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
   ///   underlying <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the
   ///   currently selected <see cref="Topic"/>.
   /// </summary>
-  public class IncomingRelationshipAttributeViewModel: AttributeViewModel<IncomingRelationshipAttributeTopicViewModel> {
+  public record IncomingRelationshipAttributeViewModel: AttributeViewModel<IncomingRelationshipAttributeTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

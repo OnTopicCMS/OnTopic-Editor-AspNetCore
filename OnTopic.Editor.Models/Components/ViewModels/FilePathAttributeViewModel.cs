@@ -16,7 +16,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
   ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
   ///   selected <see cref="Topic"/>.
   /// </summary>
-  public class FilePathAttributeViewModel: AttributeViewModel<FilePathAttributeTopicViewModel> {
+  public record FilePathAttributeViewModel: AttributeViewModel<FilePathAttributeTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -44,7 +44,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
       @"^([A-Za-z]+:)?(\/{0,2}|\\{0,2})(?:[0-9a-zA-Z _\-\.]+(\/|\\?))+$",
       ErrorMessage = "The image path specified is not a valid file path."
     )]
-    public override string Value { get; set; }
+    public override string Value { get; init; }
 
   } // Class
 } // Namespace

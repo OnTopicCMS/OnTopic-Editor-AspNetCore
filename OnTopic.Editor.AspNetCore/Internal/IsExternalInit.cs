@@ -4,20 +4,16 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 
-#nullable enable
-
-namespace OnTopic.Editor.Models.Metadata {
+namespace System.Runtime.CompilerServices {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED BY ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: IS EXTERNAL INIT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="LastModifiedByViewComponentView"/>.
+  ///   The <see cref="IsExternalInit"/> class is made available as part of the .NET 5.0 CLR in order to enable init accessors.
+  ///   As this is not available in .NET Standard, however, we must maintain this separate copy until we migrate to .NET 5.0.
   /// </summary>
-  public record LastModifiedByAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
-
+  internal static class IsExternalInit {
 
   } //Class
 } //Namespace
-
-#nullable restore

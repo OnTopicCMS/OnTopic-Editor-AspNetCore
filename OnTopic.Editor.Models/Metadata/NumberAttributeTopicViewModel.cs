@@ -15,7 +15,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="NumberViewComponentView"/>.
   /// </summary>
-  public class NumberAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record NumberAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: MINIMUM VALUE
@@ -23,7 +23,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines the lower bound for acceptable values. Defaults to 0.
     /// </summary>
-    public int MinimumValue { get; set; }
+    public int MinimumValue { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: MAXIMUM VALUE
@@ -31,7 +31,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines the upper bound for acceptable values. Defaults to <see cref="Int32.Max"/>.
     /// </summary>
-    public int MaximumValue { get; set; } = Int32.MaxValue;
+    public int MaximumValue { get; init; } = Int32.MaxValue;
 
   } //Class
 } //Namespace

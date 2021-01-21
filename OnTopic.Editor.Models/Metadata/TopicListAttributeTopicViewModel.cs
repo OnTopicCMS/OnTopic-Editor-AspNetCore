@@ -15,7 +15,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="TopicListViewComponent"/>.
   /// </summary>
-  public class TopicListAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
+  public record TopicListAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
 
     /*==========================================================================================================================
     | DEFAULT LABEL
@@ -23,7 +23,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Sets the label name to be used for the placeholder option in the dropdown list, which will have an empty value.
     /// </summary>
-    public string? DefaultLabel { get; set; } = "Select a Topic…";
+    public string? DefaultLabel { get; init; } = "Select a Topic…";
 
     /*==========================================================================================================================
     | PROPERTY: RELATIVE TOPIC BASE
@@ -41,7 +41,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   cref="RelativeTopicPath"/> of <c>Views</c> to look within a <see cref="NestedTopicListViewComponent"/> named "Views"
     ///   for the list of target topics.
     /// </remarks>
-    public string? RelativeTopicBase { get; set; }
+    public string? RelativeTopicBase { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: RELATIVE TOPIC PATH
@@ -53,7 +53,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   The <see cref="RelativeTopicPath"/> is used in conjunction with the <see cref="RelativeTopicBase"/>. If set, these
     ///   two properties will supercede any value that <see cref="RootTopic"/> is set to.
     /// </remarks>
-    public string? RelativeTopicPath { get; set; }
+    public string? RelativeTopicPath { get; init; }
 
     /*==========================================================================================================================
     | VALUE PROPERTY
@@ -71,7 +71,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///     <item><c>Title</c> (for <see cref="TopicViewModel.Title"/>)</item>
     ///   </list>
     /// </remarks>
-    public string? ValueProperty { get; set; } = "Key";
+    public string? ValueProperty { get; init; } = "Key";
 
   } //Class
 } //Namespace

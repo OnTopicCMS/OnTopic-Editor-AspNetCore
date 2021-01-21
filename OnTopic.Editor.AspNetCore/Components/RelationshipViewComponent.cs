@@ -53,12 +53,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new AttributeViewModel<RelationshipAttributeTopicViewModel>(currentTopic, attribute);
+      currentTopic.Attributes.TryGetValue(attribute.Key, out var value);
 
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Set model values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      model.Value = CleanArray(model.Value);
+      var model = new AttributeViewModel<RelationshipAttributeTopicViewModel>(currentTopic, attribute) {
+        Value                   = CleanArray(value)
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

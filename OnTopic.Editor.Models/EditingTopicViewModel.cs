@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 
 namespace OnTopic.Editor.Models {
@@ -19,7 +18,7 @@ namespace OnTopic.Editor.Models {
   ///   <see cref="EditingTopicViewModel"/> needn't account for them. It only accounts for items that will be exposed to the
   ///   general interface of the Topic Editor.
   /// </summary>
-  public class EditingTopicViewModel: ViewModels.TopicViewModel {
+  public record EditingTopicViewModel: ViewModels.TopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

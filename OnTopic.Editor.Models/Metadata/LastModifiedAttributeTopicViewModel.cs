@@ -14,7 +14,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="LastModifiedViewComponentView"/>.
   /// </summary>
-  public class LastModifiedAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record LastModifiedAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
 
   } //Class

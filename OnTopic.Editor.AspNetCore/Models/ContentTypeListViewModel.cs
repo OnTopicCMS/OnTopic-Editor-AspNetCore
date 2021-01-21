@@ -17,7 +17,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
   /// <summary>
   ///   Provides a view model for displaying a navigable list of content types.
   /// </summary>
-  public class ContentTypeListViewModel {
+  public record ContentTypeListViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -33,7 +33,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Provides a reference to the <see cref="EditingTopicViewModel"/> that the user is currently editing.
     /// </summary>
-    public EditingTopicViewModel? CurrentTopic { get; set; }
+    public EditingTopicViewModel? CurrentTopic { get; init; }
 
     /*==========================================================================================================================
     | TOPIC LIST
@@ -56,7 +56,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   Denotes the attribute associated with the content type list, if any. This is used to access the modal window and
     ///   ensure any elements are uniquely identified.
     /// </summary>
-    public string? AttributeKey { get; set; }
+    public string? AttributeKey { get; init; }
 
     /*==========================================================================================================================
     | ENABLE MODAL
@@ -66,7 +66,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   cref="TargetUrl"/> will be loaded in a modal window. Otherwise, the <see cref="TargetUrl"/> will be loaded via a
     ///   redirect. The default is <c>false</c>.
     /// </summary>
-    public bool? EnableModal { get; set; }
+    public bool? EnableModal { get; init; }
 
     /*==========================================================================================================================
     | ON MODAL CLOSE
@@ -74,7 +74,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   If supplied, sets a reference to a callback function to execute on close of the editor modal window.
     /// </summary>
-    public string? OnModalClose { get; set; }
+    public string? OnModalClose { get; init; }
 
   } // Class
 } // Namespace

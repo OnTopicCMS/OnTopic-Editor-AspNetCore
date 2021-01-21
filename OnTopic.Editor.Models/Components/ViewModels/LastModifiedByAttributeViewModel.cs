@@ -15,7 +15,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
   ///   underlying <see cref="LastModifiedByAttributeTopicViewModel"/> as well as the instance values for that attribute from
   ///   the currently selected <see cref="Topic"/>.
   /// </summary>
-  public class LastModifiedByAttributeViewModel: AttributeViewModel<LastModifiedByAttributeTopicViewModel> {
+  public record LastModifiedByAttributeViewModel: AttributeViewModel<LastModifiedByAttributeTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

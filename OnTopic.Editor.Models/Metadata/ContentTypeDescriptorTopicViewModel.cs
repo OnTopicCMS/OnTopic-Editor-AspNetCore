@@ -18,7 +18,7 @@ namespace OnTopic.Editor.Models.Metadata {
   ///   Provides core properties from a <see cref="ContentTypeDescriptor"/> to provide to the editor interface. Specifically,
   ///   the <see cref="ContentTypeDescriptorTopicViewModel"/> is critical in providing the schema of attributes to be presented.
   /// </summary>
-  public class ContentTypeDescriptorTopicViewModel: EditingTopicViewModel {
+  public record ContentTypeDescriptorTopicViewModel: EditingTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -44,7 +44,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Provides a friendly description for the <see cref="ContentType"/>, intended as documentation for users of the editor.
     /// </summary>
-    public string Description { get; set; }
+    public string Description { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: DISABLE CHILD TOPICS
@@ -52,7 +52,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Determines whether child topics are permitted to be created under the scope of the represented <see cref="Topic"/>.
     /// </summary>
-    public bool DisableChildTopics { get; set; }
+    public bool DisableChildTopics { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: DISABLE DELETE
@@ -61,7 +61,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Determines whether a topic is permitted to be deleted via the user interface. This is disabled for certain out-of-the-
     ///   box topics, such as <c>Root</c> and <c>Configuration</c>.
     /// </summary>
-    public bool DisableDelete { get; set; }
+    public bool DisableDelete { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: PERMITTED CONTENT TYPES
@@ -79,7 +79,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Content types that are marked as implicitly permitted can be created anywhere. Implicitly permitted content types are
     ///   always superceded by explicitly defined <see cref="PermittedContentTypes"/>.
     /// </summary>
-    public bool ImplicitlyPermitted { get; set; }
+    public bool ImplicitlyPermitted { get; init; }
 
     /*==========================================================================================================================
     | METHOD: GET DISPLAY GROUPS

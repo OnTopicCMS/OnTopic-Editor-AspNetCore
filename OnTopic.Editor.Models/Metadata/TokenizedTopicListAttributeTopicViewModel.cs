@@ -15,7 +15,7 @@ namespace OnTopic.Editor.Models.Metadata {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="TokenizedTopicListViewComponent"/>.
   /// </summary>
-  public class TokenizedTopicListAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
+  public record TokenizedTopicListAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: MODEL TYPE
@@ -23,7 +23,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <inheritdoc />
     public override ModelType ModelType {
       get => (AsRelationship ?? false) ? ModelType.Relationship : ModelType.ScalarValue;
-      set {}
+      init {}
     }
 
     /*==========================================================================================================================
@@ -32,7 +32,7 @@ namespace OnTopic.Editor.Models.Metadata {
     /// <summary>
     ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
     /// </summary>
-    public int? ResultLimit { get; set; } = 100;
+    public int? ResultLimit { get; init; } = 100;
 
     /*==========================================================================================================================
     | TOKEN LIMIT
@@ -46,7 +46,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   preferred to display a searchable list rather than a predefined dropdown list using <see
     ///   cref="TopicLookupViewComponent"/>.
     /// </remarks>
-    public int? TokenLimit { get; set; } = 100;
+    public int? TokenLimit { get; init; } = 100;
 
     /*==========================================================================================================================
     | AUTO POST BACK?
@@ -56,7 +56,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   particular, for the <see cref="TopicPointerViewComponent"/>, which provides a purpose-built wrapper for the <see
     ///   cref="TokenizedTopicViewComponent"/>.
     /// </summary>
-    public bool? AutoPostBack { get; set; }
+    public bool? AutoPostBack { get; init; }
 
     /*==========================================================================================================================
     | AS RELATIONSHIP
@@ -69,7 +69,7 @@ namespace OnTopic.Editor.Models.Metadata {
     ///   Relationships are modeled using <see cref="Topic.Relationships"/> instead of <see cref="Topic.Attributes"/>, and most
     ///   implementations of <see cref="ITopicRepository"/> will likely store relationships separate from attributes.
     /// </remarks>
-    public bool? AsRelationship { get; set; }
+    public bool? AsRelationship { get; init; }
 
   } //Class
 } //Namespace
