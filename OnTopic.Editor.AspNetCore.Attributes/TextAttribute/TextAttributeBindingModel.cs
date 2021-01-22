@@ -3,24 +3,25 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.TextAttribute {
 
   /*============================================================================================================================
-  | CLASS: NESTED TOPIC LIST ATTRIBUTE (BINDING MODEL)
+  | CLASS: TEXT ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a topic list attribute in the Topic Editor.
+  ///   Represents an instance of a text attribute in the Topic Editor.
   /// </summary>
-  public record NestedTopicListAttributeBindingModel : AttributeBindingModel {
+  public record TextAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="NestedTopicListAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="TextAttributeBindingModel"/> class.
     /// </summary>
-    public NestedTopicListAttributeBindingModel() : base() {
+    public TextAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

@@ -3,30 +3,25 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
 
   /*============================================================================================================================
-  | CLASS: DATE TIME ATTRIBUTE (BINDING MODEL)
+  | CLASS: TEXT AREA ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of an HTML attribute in the Topic Editor.
+  ///   Represents an instance of a text attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
-  public record DateTimeAttributeBindingModel : AttributeBindingModel {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
+  public record TextAreaAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="DateTimeAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="TextAreaAttributeBindingModel"/> class.
     /// </summary>
-    public DateTimeAttributeBindingModel() : base() {
+    public TextAreaAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

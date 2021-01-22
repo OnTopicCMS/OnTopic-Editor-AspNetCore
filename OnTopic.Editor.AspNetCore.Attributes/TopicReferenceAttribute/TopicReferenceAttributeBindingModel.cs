@@ -3,24 +3,26 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED BY ATTRIBUTE (BINDING MODEL)
+  | CLASS: TOPIC REFERENCE ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a last modified by attribute in the Topic Editor.
+  ///   Represents an instance of a topic reference attribute in the Topic Editor.
   /// </summary>
-  public record LastModifiedByAttributeBindingModel : AttributeBindingModel {
+  public record TopicReferenceAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="LastModifiedByAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="TopicReferenceAttributeBindingModel"/> class, using the specified key/value
+    ///   pair.
     /// </summary>
-    public LastModifiedByAttributeBindingModel() : base() {
+    public TopicReferenceAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

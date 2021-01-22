@@ -3,24 +3,25 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
 
   /*============================================================================================================================
-  | CLASS: TEXT AREA ATTRIBUTE (BINDING MODEL)
+  | CLASS: RELATIONSHIP ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a text attribute in the Topic Editor.
+  ///   Represents an instance of a relationship attribute in the Topic Editor.
   /// </summary>
-  public record TextAreaAttributeBindingModel : AttributeBindingModel {
+  public record RelationshipAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TextAreaAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="RelationshipAttributeBindingModel"/> class.
     /// </summary>
-    public TextAreaAttributeBindingModel() : base() {
+    public RelationshipAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

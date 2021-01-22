@@ -3,24 +3,31 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
 
   /*============================================================================================================================
-  | CLASS: INCOMING RELATIONSHIP ATTRIBUTE (BINDING MODEL)
+  | CLASS: DATE TIME ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of an incoming relationship attribute in the Topic Editor.
+  ///   Represents an instance of an HTML attribute in the Topic Editor.
   /// </summary>
-  public record IncomingRelationshipAttributeBindingModel : AttributeBindingModel {
+  /// <remarks>
+  /// </remarks>
+  public record DateTimeAttributeBindingModel : AttributeBindingModel {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="RelationshipAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="DateTimeAttributeBindingModel"/> class.
     /// </summary>
-    public IncomingRelationshipAttributeBindingModel() : base() {
+    public DateTimeAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

@@ -3,24 +3,29 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {
 
   /*============================================================================================================================
-  | CLASS: FILE LIST ATTRIBUTE (BINDING MODEL)
+  | CLASS: LAST MODIFIED ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a file editor attribute in the Topic Editor.
+  ///   Represents an instance of a last modified attribute in the Topic Editor.
   /// </summary>
-  public record FileListAttributeBindingModel : AttributeBindingModel {
+  public record LastModifiedAttributeBindingModel : AttributeBindingModel {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="FileListAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="LastModifiedAttributeBindingModel"/> class.
     /// </summary>
-    public FileListAttributeBindingModel() : base() {
+    public LastModifiedAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

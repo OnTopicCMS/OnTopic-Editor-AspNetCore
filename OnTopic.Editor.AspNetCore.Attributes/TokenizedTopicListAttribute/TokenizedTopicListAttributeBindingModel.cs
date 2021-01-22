@@ -3,24 +3,25 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
 
   /*============================================================================================================================
-  | CLASS: INSTRUCTION ATTRIBUTE (BINDING MODEL)
+  | CLASS: TOKENIZED TOPIC LIST ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of an instruction attribute in the Topic Editor.
+  ///   Represents an instance of a tokenized topic list attribute in the Topic Editor.
   /// </summary>
-  public record InstructionAttributeBindingModel : AttributeBindingModel {
+  public record TokenizedTopicListAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TextAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="TokenizedTopicListAttributeBindingModel"/> class.
     /// </summary>
-    public InstructionAttributeBindingModel() : base() {
+    public TokenizedTopicListAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

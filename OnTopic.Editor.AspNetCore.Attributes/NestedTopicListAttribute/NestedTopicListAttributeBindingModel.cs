@@ -3,25 +3,25 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
 
   /*============================================================================================================================
-  | CLASS: TOPIC REFERENCE ATTRIBUTE (BINDING MODEL)
+  | CLASS: NESTED TOPIC LIST ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a topic reference attribute in the Topic Editor.
+  ///   Represents an instance of a topic list attribute in the Topic Editor.
   /// </summary>
-  public record TopicReferenceAttributeBindingModel : AttributeBindingModel {
+  public record NestedTopicListAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TopicReferenceAttributeBindingModel"/> class, using the specified key/value
-    ///   pair.
+    ///   Initializes a new instance of the <see cref="NestedTopicListAttributeBindingModel"/> class.
     /// </summary>
-    public TopicReferenceAttributeBindingModel() : base() {
+    public NestedTopicListAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

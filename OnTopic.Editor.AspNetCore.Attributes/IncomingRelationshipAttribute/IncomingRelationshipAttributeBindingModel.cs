@@ -3,16 +3,17 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
 
   /*============================================================================================================================
-  | CLASS: RELATIONSHIP ATTRIBUTE (BINDING MODEL)
+  | CLASS: INCOMING RELATIONSHIP ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a relationship attribute in the Topic Editor.
+  ///   Represents an instance of an incoming relationship attribute in the Topic Editor.
   /// </summary>
-  public record RelationshipAttributeBindingModel : AttributeBindingModel {
+  public record IncomingRelationshipAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -20,7 +21,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
     /// <summary>
     ///   Initializes a new instance of the <see cref="RelationshipAttributeBindingModel"/> class.
     /// </summary>
-    public RelationshipAttributeBindingModel() : base() {
+    public IncomingRelationshipAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================

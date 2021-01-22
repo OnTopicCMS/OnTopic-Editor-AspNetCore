@@ -3,30 +3,25 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
 
   /*============================================================================================================================
-  | CLASS: BOOLEAN ATTRIBUTE (BINDING MODEL)
+  | CLASS: HTML ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a boolean attribute in the Topic Editor.
+  ///   Represents an instance of a HTML attribute in the Topic Editor.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
-  public record BooleanAttributeBindingModel : AttributeBindingModel {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
+  public record HtmlAttributeBindingModel : AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="BooleanAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="HtmlAttributeBindingModel"/> class.
     /// </summary>
-    public BooleanAttributeBindingModel() : base() {
+    public HtmlAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================
@@ -35,10 +30,7 @@ namespace OnTopic.Editor.Models.Components.BindingModels {
     /// <summary>
     ///   Retrieves the value associated with the attribute.
     /// </summary>
-    /// <remarks>
-    ///   Determines whether the value is checked and, if it is, returns "1"; otherwise returns "0".
-    /// </remarks>
-    public override string GetValue() => Value is "True"? "1" : "0";
+    public override string GetValue() => Value;
 
   } // Class
 } // Namespace

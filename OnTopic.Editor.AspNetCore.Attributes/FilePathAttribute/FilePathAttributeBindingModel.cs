@@ -3,24 +3,29 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
 
   /*============================================================================================================================
-  | CLASS: TEXT ATTRIBUTE (BINDING MODEL)
+  | CLASS: FILE PATH ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a text attribute in the Topic Editor.
+  ///   Represents an instance of a file path attribute in the Topic Editor.
   /// </summary>
-  public record TextAttributeBindingModel : AttributeBindingModel {
+  public record FilePathAttributeBindingModel : AttributeBindingModel {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TextAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="FilePathAttributeBindingModel"/> class.
     /// </summary>
-    public TextAttributeBindingModel() : base() {
+    public FilePathAttributeBindingModel() : base() {
     }
 
     /*==========================================================================================================================
