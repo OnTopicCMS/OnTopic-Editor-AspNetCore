@@ -3,10 +3,11 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
 
   /*============================================================================================================================
   | CLASS: BOOLEAN ATTRIBUTE (TOPIC VIEW MODEL)
