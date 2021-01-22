@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Ignia</Authors>
+    <Company>Ignia</Company>
+    <Product>Ignia OnTopic Editor (Meta Package)</Product>
+    <Description>The OnTopic Editor provides a content management interface to Ignia's OnTopic Library, thus allowing users to modify semi-structured, device-independent data. This distribution provides a .NET Core 3 support and includes all standard, first-party attributes.</Description>
+    <Copyright>©2021 Ignia, LLC</Copyright>
+    <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
+    <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia</PackageTags>
+    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="GitVersionTask" Version="5.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnTopic.Editor.AspNetCore\OnTopic.Editor.AspNetCore.csproj" />
+    <ProjectReference Include="..\OnTopic.Editor.Models\OnTopic.Editor.Models.csproj" />
+  </ItemGroup>
+
+</Project>
