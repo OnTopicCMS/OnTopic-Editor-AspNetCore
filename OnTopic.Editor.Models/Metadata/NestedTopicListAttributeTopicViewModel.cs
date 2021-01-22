@@ -21,24 +21,6 @@ namespace OnTopic.Editor.Models.Metadata {
   public record NestedTopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | PROPERTY: CONTENT TYPES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets a list of comma-delimited list of content types that should be displayed in this list.
-    /// </summary>
-    /// <remarks>
-    ///   As an example, if the <see cref="ContentTypes"/> value is <c>AttributeDescriptor,ContentTypeDescriptor</c> then the
-    ///   <see cref="NestedTopicListViewComponent"/> should only display topics of the types <see cref="AttributeDescriptor"/>
-    ///   or <see cref="ContentTypeDescriptor"/>.
-    /// </remarks>
-    [Obsolete(
-      "This is maintained exclusively for backward compatibility with the legacy DefaultConfiguration attribute. New attribute " +
-      "definitions should instead use the new PermittedContentTypes attribute.",
-      false)
-    ]
-    public string? ContentTypes { get; init; } = "";
-
-    /*==========================================================================================================================
     | PROPERTY: PERMITTED CONTENT TYPES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

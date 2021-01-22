@@ -22,20 +22,6 @@ namespace OnTopic.Editor.Models.Metadata {
   public record QueryableTopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | PROPERTY: ROOT TOPIC KEY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets a <see cref="Topic.GetUniqueKey"/> path representing the <see cref="RootTopic"/> to display to the
-    ///   user. This allows relationships to be targeted to particular areas of the topic graph.
-    /// </summary>
-    [Obsolete(
-      "This property is exposed exlusively for backward compatibility with the DefaultConfiguration's Scope property. New " +
-      "attributes should instead use the RootTopic property. The RootTopicKey property will be removed in the future.",
-      false
-    )]
-    public string? RootTopicKey { get; init; } = "Root";
-
-    /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

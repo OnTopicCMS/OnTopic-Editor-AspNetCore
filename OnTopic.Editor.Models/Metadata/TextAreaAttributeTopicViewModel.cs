@@ -18,16 +18,6 @@ namespace OnTopic.Editor.Models.Metadata {
   public record TextAreaAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | COLUMNS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the number of columns (width) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
-    ///   <c>70</c>.
-    /// </summary>
-    [Obsolete("The Columns attribute will be removed in OnTopic Editor 5.0.0.")]
-    public int? Columns { get; init; } = 70;
-
-    /*==========================================================================================================================
     | ROWS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
