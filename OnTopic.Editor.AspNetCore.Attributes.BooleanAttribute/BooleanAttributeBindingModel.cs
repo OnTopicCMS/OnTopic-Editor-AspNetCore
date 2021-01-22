@@ -3,8 +3,9 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Components.BindingModels;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
 
   /*============================================================================================================================
   | CLASS: BOOLEAN ATTRIBUTE (BINDING MODEL)
