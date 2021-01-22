@@ -49,5 +49,14 @@ namespace OnTopic.Editor.Models {
     /// </summary>
     public bool IsNew { get; init; }
 
+    /*==========================================================================================================================
+    | IS FULLY LOADED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the <see cref="Topic.References"/> and <see cref="Topic.Relationships"/> are both <c>IsFullyLoaded</c>.
+    ///   If not, a warning should be presented.
+    /// </summary>
+    public bool IsFullyLoaded { get; init; } = true;
+
   } // Class
 } // Namespace
