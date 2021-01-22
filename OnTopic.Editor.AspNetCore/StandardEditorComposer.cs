@@ -89,7 +89,6 @@ namespace OnTopic.Editor.AspNetCore {
       type?.Name switch {
         nameof(BooleanViewComponent)                            => new BooleanViewComponent(),
         nameof(DateTimeViewComponent)                           => new DateTimeViewComponent(),
-        nameof(DisplayOptionsViewComponent)                     => new DisplayOptionsViewComponent(),
         nameof(FileListViewComponent)                           => new FileListViewComponent(_webHostEnvironment),
         nameof(FilePathViewComponent)                           => new FilePathViewComponent(topicRepository),
         nameof(HtmlViewComponent)                               => new HtmlViewComponent(),
