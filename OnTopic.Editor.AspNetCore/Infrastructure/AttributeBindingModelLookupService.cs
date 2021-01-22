@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.Models.Components.BindingModels;
 using OnTopic.Lookup;
-using OnTopic.Models;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
 

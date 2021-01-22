@@ -10,7 +10,7 @@ using OnTopic.Editor.AspNetCore.Components;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
-namespace OnTopic.Editor.AspNetCore {
+namespace OnTopic.Editor.AspNetCore.Attributes {
 
   /*============================================================================================================================
   | CLASS: STANDARD EDITOR COMPOSER
@@ -68,7 +68,7 @@ namespace OnTopic.Editor.AspNetCore {
     /// </summary>
     public static bool IsEditorComponent(Type type) {
       Contract.Requires(type, nameof(type));
-      return typeof(StandardEditorComposer).Assembly.Equals(type.Assembly) && typeof(ViewComponent).IsAssignableFrom(type);
+      return typeof(ViewComponent).IsAssignableFrom(type);
     }
 
     /*==========================================================================================================================
