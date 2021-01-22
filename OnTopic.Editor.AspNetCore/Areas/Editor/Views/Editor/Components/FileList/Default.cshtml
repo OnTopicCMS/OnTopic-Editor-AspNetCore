@@ -8,7 +8,7 @@
   <select
     asp-for                     ="Value"
     asp-items                   =@Model.Files
-    class                       ="@Model.AttributeDescriptor.CssClass form-control"
+    class                       ="FormField Field form-control"
     disabled                    =@(!Model.AttributeDescriptor.IsEnabled)
     required                    =@Model.AttributeDescriptor.IsRequired
   >
