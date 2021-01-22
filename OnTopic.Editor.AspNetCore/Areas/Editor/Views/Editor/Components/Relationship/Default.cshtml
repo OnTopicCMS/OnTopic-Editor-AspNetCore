@@ -4,7 +4,7 @@
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 
   var descriptor                = Model.AttributeDescriptor;
-  var rootTopicKey              = descriptor.RootTopic?.UniqueKey.Replace(":", "/")?? descriptor.RootTopicKey?.Replace(":", "/")?? "Root";
+  var rootTopicKey              = descriptor.RootTopic?.UniqueKey.Replace(":", "/")?? "Root";
   var containerName             = ViewData.TemplateInfo.GetFullHtmlFieldName("TreeView");
 
 }
