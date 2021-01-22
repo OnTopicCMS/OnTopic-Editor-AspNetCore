@@ -7,7 +7,7 @@ using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
 using OnTopic.Lookup;
 
-namespace OnTopic.Editor.AspNetCore.Infrastructure {
+namespace OnTopic.Editor.AspNetCore.All {
 
   /*============================================================================================================================
   | CLASS: EDITOR TOPIC VIEW MODEL LOOKUP SERVICE
