@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using OnTopic.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
 
   /*============================================================================================================================
   | CLASS: BOOLEAN ATTRIBUTE (DESCRIPTOR)
