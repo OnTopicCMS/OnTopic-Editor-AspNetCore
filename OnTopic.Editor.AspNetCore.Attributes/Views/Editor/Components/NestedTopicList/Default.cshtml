@@ -1,0 +1,90 @@
+﻿@using OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute
+@model NestedTopicListAttributeViewModel
+
+@{
+  Layout                        = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+
+  var attributeKey              = Model.AttributeDescriptor.Key;
+  var containerName             = ViewData.TemplateInfo.GetFullHtmlFieldName("Container");
+  var treeName                  = attributeKey + "Tree";
+
+}
+
+@if (!Model.IsNew) {
+
+  <div id="@containerName"></div>
+
+  <script type="text/javascript">
+
+    var @($"{treeName}");
+
+    window.addEventListener('DOMContentLoaded', function () {
+      (function($) {
+
+        Ext.onReady(function () {
+
+          @($"{treeName}")      = new OnTopic.NestedTopics('@Model.UniqueKey', {
+            dataUrl             : '/OnTopic/Json/@Model.WebPath/@attributeKey?ShowAll=true',
+            listeners           : {
+              click             : function (n) {
+                var targetUrl   = "@($"{Url.Action("Edit")}/{attributeKey}/")" + n.attributes.key;
+                @if (Model.AttributeDescriptor.EnableModal?? true) {
+                  <text>
+                    initEditorModal('@attributeKey', n.attributes.text, targetUrl + '?IsModal=true', @($"{treeName}.refresh"));
+                    return false;
+                  </text>
+                }
+                else {
+                  <text>
+                    location.href = targetUrl;
+                  </text>
+                }
+              }
+            }
+          });
+
+          @($"{treeName}").render('@containerName');
+
+        });
+
+      })(jQuery);
+    });
+
+  </script>
+
+  <vc:content-type-list
+    current-topic               =@Model.CurrentTopic
+    attribute-descriptor        =@Model.AttributeDescriptor
+    on-modal-close              =@($"{treeName}.refresh")
+    values                      =@Model.AttributeDescriptor.PermittedContentTypes>
+  </vc:content-type-list>
+
+  <div id="@($"EditorModal_{attributeKey}")" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1"  role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-header page title">
+        <h2 id="@($"ModalTitle_{attributeKey}")" class="modal-title"><!-- determined by modal open script caller --></h2>
+      </div>
+      <div class="modal-content">
+        <iframe id="@($"EditorFrame_{attributeKey}")" src="" width="100%" marginheight="0" frameborder="0">
+          <!-- iframe source determined by modal open script caller -->
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      (function($) {
+        $('[id^="EditorModal"]').on('hide.bs.modal', function(e) {
+          @($"{treeName}.refresh")();
+        });
+      })(jQuery);
+    });
+  </script>
+
+}
+else {
+  <div class="alert alert-warning">
+    Subtopics cannot be created until this topic has been saved. Save the topic, then add nested topics.
+  </div>
+}

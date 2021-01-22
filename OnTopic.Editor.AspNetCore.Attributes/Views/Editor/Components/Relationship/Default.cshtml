@@ -1,0 +1,30 @@
+﻿@using OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute
+@model AttributeViewModel<RelationshipAttributeTopicViewModel>
+
+@{
+  Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+
+  var descriptor                = Model.AttributeDescriptor;
+  var rootTopicKey              = descriptor.RootTopic?.UniqueKey.Replace(":", "/")?? "Root";
+  var containerName             = ViewData.TemplateInfo.GetFullHtmlFieldName("TreeView");
+
+}
+
+<input asp-for="Value" type="hidden" />
+
+<div id="@containerName"></div>
+
+<script type="text/javascript">
+  window.addEventListener('DOMContentLoaded', function () {
+    (function($) {
+      Ext.onReady(function () {
+        var tree = new OnTopic.SelectableTreeView({
+          dataUrl: '/OnTopic/Json/@rootTopicKey?ShowRoot=@descriptor.ShowRoot&ShowAll=true&RelatedNamespace=@descriptor.Key&RelatedTopicID=@Model.CurrentTopic.Id&AttributeName=@descriptor.AttributeKey&AttributeValue=@descriptor.AttributeValue&ExpandRelated=@descriptor.ExpandRelated',
+          checkAscendants: @((descriptor.CheckAscendants is true).ToString().ToLower()),
+          backingField: '@Html.IdFor(m => m.Value)'
+        });
+        tree.render('@containerName');
+      });
+    })(jQuery);
+  });
+</script>
