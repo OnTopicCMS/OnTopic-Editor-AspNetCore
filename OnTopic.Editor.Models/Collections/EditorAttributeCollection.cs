@@ -45,6 +45,26 @@ namespace OnTopic.Editor.Models.Collections {
       }
       return defaultValue;
     }
+
+    /*==========================================================================================================================
+    | METHOD: GET INTEGER VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves the attribute with a given <paramref name="attributeKey"/>, if present; otherwise returns the <paramref name
+    ///   ="defaultValue"/>.
+    /// </summary>
+    /// <param name="attributeKey">The <see cref="AttributeBindingModel.Key"/> to retrieve.</param>
+    /// <param name="defaultValue">
+    ///   The default value to return if the <see cref="AttributeBindingModel"/> cannot be found.
+    /// </param>
+    public int? GetInteger(string attributeKey, int? defaultValue = null) {
+      var stringValue = GetValue(attributeKey);
+      if (!String.IsNullOrEmpty(stringValue) && Int32.TryParse(stringValue, out int result)) {
+        return result;
+      }
+      return defaultValue;
+    }
+
     /*==========================================================================================================================
     | OVERRIDE: GET KEY FOR ITEM
     \-------------------------------------------------------------------------------------------------------------------------*/
