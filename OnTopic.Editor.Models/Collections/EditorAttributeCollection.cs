@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using OnTopic.Editor.Models.Components.BindingModels;
 using OnTopic.Internal.Diagnostics;
 
@@ -27,6 +28,23 @@ namespace OnTopic.Editor.Models.Collections {
     public EditorAttributeCollection() : base(StringComparer.InvariantCultureIgnoreCase) {
     }
 
+    /*==========================================================================================================================
+    | METHOD: GET VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves the attribute with a given <paramref name="attributeKey"/>, if present; otherwise returns the <paramref name
+    ///   ="defaultValue"/>.
+    /// </summary>
+    /// <param name="attributeKey">The <see cref="AttributeBindingModel.Key"/> to retrieve.</param>
+    /// <param name="defaultValue">
+    ///   The default value to return if the <see cref="AttributeBindingModel"/> cannot be found.
+    /// </param>
+    public string GetValue(string attributeKey, string defaultValue = null) {
+      if (Contains(attributeKey)) {
+        return this[attributeKey].Value;
+      }
+      return defaultValue;
+    }
     /*==========================================================================================================================
     | OVERRIDE: GET KEY FOR ITEM
     \-------------------------------------------------------------------------------------------------------------------------*/
