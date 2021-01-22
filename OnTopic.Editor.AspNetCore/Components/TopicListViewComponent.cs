@@ -104,7 +104,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
         };
       }
       else {
-        rootTopic = _topicRepository.Load(attribute.RootTopic?.UniqueKey?? attribute.RootTopicKey);
+        rootTopic = _topicRepository.Load(attribute.RootTopic?.UniqueKey);
       }
 
       if (rootTopic is not null && !String.IsNullOrEmpty(attribute.RelativeTopicPath)) {
