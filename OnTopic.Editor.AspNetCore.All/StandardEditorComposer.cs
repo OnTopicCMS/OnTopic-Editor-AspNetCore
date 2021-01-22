@@ -6,6 +6,7 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute;
 using OnTopic.Editor.AspNetCore.Components;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
