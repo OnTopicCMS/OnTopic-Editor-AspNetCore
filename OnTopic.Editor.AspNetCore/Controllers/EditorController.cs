@@ -267,18 +267,17 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
-      var derivedTopicValue     = model.Attributes.Contains("TopicID")? model.Attributes["TopicID"].Value : "-1";
-      var derivedTopicId        = String.IsNullOrWhiteSpace(derivedTopicValue)? -1 : Int32.Parse(derivedTopicValue, CultureInfo.InvariantCulture);
-      var derivedTopic          = (derivedTopicId >= 0)? TopicRepository.Load(derivedTopicId) : null;
-      var newKey                = model.Attributes.Contains("Key")? model.Attributes["Key"].Value : null;
+      var derivedTopicId        = model.Attributes.GetInteger("DerivedTopic");
+      var derivedTopic          = derivedTopicId.HasValue? TopicRepository.Load(derivedTopicId.Value) : null;
+      var newKey                = model.Attributes.GetValue("Key");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (derivedTopic is null) {
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
-          var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
-          if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue?.Value)) {
+          var submittedValue = model.Attributes.GetValue(attribute.Key);
+          if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue)) {
             ModelState.AddModelError(attribute.Key, $"The {attribute.Title} field is required.");
           }
         }
@@ -312,8 +311,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
-          var submittedValue = model.Attributes.Contains(attribute.Key)? model.Attributes[attribute.Key] : null;
-          editorViewModel.Topic.Attributes[attribute.Key] = submittedValue?.Value;
+          editorViewModel.Topic.Attributes[attribute.Key] = model.Attributes.GetValue(attribute.Key);
         }
 
         return View(editorViewModel);
