@@ -11,12 +11,12 @@
   <PropertyGroup>
     <Authors>Ignia</Authors>
     <Company>Ignia</Company>
-    <Product>Ignia OnTopic Editor (Meta Package)</Product>
-    <Description>The OnTopic Editor provides a content management interface to Ignia's OnTopic Library, thus allowing users to modify semi-structured, device-independent data. This distribution provides a .NET Core 3 support and includes all standard, first-party attributes.</Description>
+    <Product>Ignia OnTopic Editor Boolean Attribute Type</Product>
+    <Description>Provides support for a boolean (yes, no) attribute type in the OnTopic Editor interface.</Description>
     <Copyright>©2021 Ignia, LLC</Copyright>
     <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
-    <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia</PackageTags>
+    <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia Plugins AttributeType</PackageTags>
     <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
@@ -35,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute\OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute.csproj" />
     <ProjectReference Include="..\OnTopic.Editor.AspNetCore\OnTopic.Editor.AspNetCore.csproj" />
     <ProjectReference Include="..\OnTopic.Editor.Models\OnTopic.Editor.Models.csproj" />
   </ItemGroup>
