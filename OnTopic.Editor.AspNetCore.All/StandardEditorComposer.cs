@@ -68,7 +68,7 @@ namespace OnTopic.Editor.AspNetCore.All {
     /// </summary>
     public static bool IsEditorComponent(Type type) {
       Contract.Requires(type, nameof(type));
-      return typeof(StandardEditorComposer).Assembly.Equals(type.Assembly) && typeof(ViewComponent).IsAssignableFrom(type);
+      return typeof(ViewComponent).IsAssignableFrom(type);
     }
 
     /*==========================================================================================================================
