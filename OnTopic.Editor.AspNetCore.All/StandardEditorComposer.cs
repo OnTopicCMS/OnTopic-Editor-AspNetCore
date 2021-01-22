@@ -10,7 +10,7 @@ using OnTopic.Editor.AspNetCore.Components;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
-namespace OnTopic.Editor.AspNetCore {
+namespace OnTopic.Editor.AspNetCore.All {
 
   /*============================================================================================================================
   | CLASS: STANDARD EDITOR COMPOSER
