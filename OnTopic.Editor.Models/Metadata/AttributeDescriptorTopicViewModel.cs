@@ -105,14 +105,5 @@ namespace OnTopic.Editor.Models.Metadata {
     /// </summary>
     public bool IsEnabled { get; init; } = true;
 
-    /*==========================================================================================================================
-    | CSS CLASS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Defines the CSS class names to be used, if any are configured.
-    /// </summary>
-    [Obsolete("The CssClass attribute will be removed in OnTopic Editor 5.0.0.")]
-    public string CssClass { get; init; } = "FormField Field";
-
   } //Class
 } //Namespace
