@@ -6,7 +6,7 @@
 
   @Html.LabelFor(m => m.Value, Model.AttributeDescriptor.Title)
   <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="@Model.AttributeDescriptor.Description"></i>
-  <div class="fields @Model.AttributeDescriptor.CssClass">
+  <div class="fields FormField Field">
 
     <input type="hidden" asp-for="AttributeDescriptor.Key" />
     <input type="hidden" asp-for="AttributeDescriptor.ContentType" />
