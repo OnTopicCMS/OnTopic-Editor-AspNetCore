@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OnTopic.Editor.AspNetCore\OnTopic.Editor.AspNetCore.csproj" />
     <ProjectReference Include="..\OnTopic.Editor.Models\OnTopic.Editor.Models.csproj" />
+    <ProjectReference Include="..\OnTopic.Editor.AspNetCore.Attributes\OnTopic.Editor.AspNetCore.Attributes.csproj" />
   </ItemGroup>
 
 </Project>
