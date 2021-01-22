@@ -206,7 +206,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         Topic                   = topicViewModel,
         ContentTypeDescriptor   = contentTypeViewModel,
         IsNew                   = isNew,
-        IsModal                 = isModal
+        IsModal                 = isModal,
+        IsFullyLoaded           = CurrentTopic.Relationships.IsFullyLoaded && CurrentTopic.References.IsFullyLoaded
       };
 
     }

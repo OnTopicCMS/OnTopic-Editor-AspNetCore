@@ -26,6 +26,12 @@
           <strong>Warning:</strong> This topic is part of the OnTopic internal organizational structure and is not intended to be modified. Deletion of this Topic has been disabled.
         </div>
       }
+      @if (!Model.IsFullyLoaded) {
+        <div class="alert alert-warning" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <strong>Warning:</strong> Not all relationships were successfully loaded from the database. To prevent inadvertent deletion of relationships, any relationships that are removed won't be persisted to the database. You can still add new relationships.
+        </div>
+      }
       @if (!String.IsNullOrWhiteSpace(Model.ContentTypeDescriptor.Description)) {
         <div class="alert alert-primary" role="alert">
           @Model.ContentTypeDescriptor.Description
