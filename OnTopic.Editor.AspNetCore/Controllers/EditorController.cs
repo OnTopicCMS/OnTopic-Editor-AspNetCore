@@ -267,9 +267,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
-      var derivedTopicValue     = model.Attributes.Contains("TopicID")? model.Attributes["TopicID"].Value : "-1";
-      var derivedTopicId        = String.IsNullOrWhiteSpace(derivedTopicValue)? -1 : Int32.Parse(derivedTopicValue, CultureInfo.InvariantCulture);
-      var derivedTopic          = (derivedTopicId >= 0)? TopicRepository.Load(derivedTopicId) : null;
+      var derivedTopicId        = model.Attributes.GetInteger("TopicID");
+      var derivedTopic          = derivedTopicId.HasValue? TopicRepository.Load(derivedTopicId.Value) : null;
       var newKey                = model.Attributes.GetValue("Key");
 
       /*------------------------------------------------------------------------------------------------------------------------
