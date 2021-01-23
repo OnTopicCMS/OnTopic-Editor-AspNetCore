@@ -57,7 +57,7 @@
 
               @foreach (var attribute in Model.ContentTypeDescriptor.GetAttributeDescriptors(displayGroupName)) {
                 @await Component.InvokeAsync(
-                  attribute.EditorType.Replace("Attribute", ""),
+                  attribute.EditorType.Replace("AttributeDescriptor", ""),
                   new { CurrentTopic=Model.Topic, Attribute=attribute, HtmlFieldPrefix=$"Attributes[{index++}]" }
                 )
               }
