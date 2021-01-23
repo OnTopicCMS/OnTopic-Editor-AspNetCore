@@ -3,7 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.AspNetCore.Models;
+using OnTopic.Editor.AspNetCore.Models.Components;
 
 #nullable enable
 

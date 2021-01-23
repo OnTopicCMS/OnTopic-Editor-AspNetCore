@@ -11,7 +11,7 @@ using OnTopic.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Models {
+namespace OnTopic.Editor.AspNetCore.Models.Components {
 
   /*============================================================================================================================
   | CLASS: CONTENT TYPE LIST ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)

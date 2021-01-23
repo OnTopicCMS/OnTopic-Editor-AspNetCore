@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Models {
+namespace OnTopic.Editor.AspNetCore.Models.Components {
 
   /*============================================================================================================================
   | CLASS: CONTENT TYPE LIST (VIEW MODEL)
