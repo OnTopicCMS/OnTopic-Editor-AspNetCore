@@ -68,7 +68,7 @@ namespace OnTopicTest {
       | Preload repository
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository          = cachedTopicRepository;
-      _typeLookupService        = new EditorViewModelLookupService();
+      _typeLookupService        = new DynamicTopicViewModelLookupService();
       _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
       _                         = _topicRepository.Load();
 
