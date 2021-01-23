@@ -1,8 +1,9 @@
 ﻿@using OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute
-@model AttributeViewModel<TopicReferenceAttributeTopicViewModel>
+@using OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute
+@model AttributeViewModel<TopicReferenceAttributeDescriptorTopicViewModel>
 
 @{
-  var attributeDescriptor       = new TokenizedTopicListAttributeTopicViewModel() {
+  var attributeDescriptor       = new TokenizedTopicListAttributeDescriptorTopicViewModel() {
     Key                         = Model.AttributeDescriptor.Key,
     ContentType                 = "TokenizedTopicListAttribute",
     Description                 = Model.AttributeDescriptor.Description,
@@ -16,8 +17,6 @@
   };
 }
 
-<vc:tokenized-topic-list
-  current-topic                 =@Model.CurrentTopic
-  html-field-prefix             =@ViewData.TemplateInfo.HtmlFieldPrefix
-  >
+<vc:tokenized-topic-list current-topic=@Model.CurrentTopic
+                         html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix>
 </vc:tokenized-topic-list>
