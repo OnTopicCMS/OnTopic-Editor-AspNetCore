@@ -6,7 +6,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using OnTopic.Editor.Models.Components.BindingModels;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Lookup;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
@@ -65,6 +65,11 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       if (key is null || editorType is null) {
         return Task.CompletedTask;
       }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | HANDLE ATTRIBUTE DESCRIPTOR NAMING CONVENTION
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      editorType                = editorType.Replace("AttributeDescriptor", "Attribute", StringComparison.Ordinal);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH MODEL

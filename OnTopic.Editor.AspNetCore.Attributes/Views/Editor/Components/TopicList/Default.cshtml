@@ -1,0 +1,23 @@
+﻿@using OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute
+@model TopicListAttributeViewModel
+
+@{
+  if (Model.TopicList.Count > 1) {
+    Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+  }
+}
+
+@if (Model.TopicList.Count > 1) {
+  <select
+    asp-for                     ="Value"
+    asp-items                   ="Model.TopicList"
+    class                       ="FormField Field form-control form-inline"
+    disabled                    =@(!Model.AttributeDescriptor.IsEnabled)
+    required                    =@Model.AttributeDescriptor.IsRequired>
+  </select>
+}
+else {
+  <input type="hidden" asp-for="AttributeDescriptor.Key" />
+  <input type="hidden" asp-for="AttributeDescriptor.ContentType" />
+  <input type="hidden" asp-for="Value" />
+}

@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnTopic.Editor.Models\OnTopic.Editor.Models.csproj" />
+    <Folder Include="Models\Components\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,24 @@
+﻿@using OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute
+@using OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute
+@model AttributeViewModel<TopicReferenceAttributeDescriptorTopicViewModel>
+
+@{
+  var attributeDescriptor       = new TokenizedTopicListAttributeDescriptorTopicViewModel() {
+    Key                         = Model.AttributeDescriptor.Key,
+    ContentType                 = "TokenizedTopicListAttribute",
+    Description                 = Model.AttributeDescriptor.Description,
+    Title                       = Model.AttributeDescriptor.Title,
+    RootTopic                   = Model.AttributeDescriptor.RootTopic,
+    AttributeKey                = String.IsNullOrEmpty(Model.AttributeDescriptor.TargetContentType)? "": "ContentType",
+    AttributeValue              = Model.AttributeDescriptor.TargetContentType,
+    ResultLimit                 = Model.AttributeDescriptor.ResultLimit,
+    TokenLimit                  = 1,
+    AutoPostBack                = true
+  };
+}
+
+<vc:tokenized-topic-list
+  current-topic                 =@Model.CurrentTopic
+  attribute                     =@attributeDescriptor
+  html-field-prefix             =@ViewData.TemplateInfo.HtmlFieldPrefix>
+</vc:tokenized-topic-list>

@@ -7,8 +7,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using OnTopic.Collections;
+using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.Models.Queryable {
+namespace OnTopic.Editor.AspNetCore.Models.Queryable {
 
   /*============================================================================================================================
   | CLASS: TOPIC QUERY SERVICE
@@ -17,7 +18,7 @@ namespace OnTopic.Editor.Models.Queryable {
   ///   Constructs a hierarchy of <see cref="QueryResultTopicViewModel"/> objects based on a root <see cref="Topic"/> and a set
   ///   of options as specified in a <see cref="TopicQueryOptions"/> object.
   /// </summary>
-  internal class TopicQueryService {
+  public class TopicQueryService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -39,6 +40,12 @@ namespace OnTopic.Editor.Models.Queryable {
       TopicQueryOptions options,
       ReadOnlyTopicCollection related = null
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(rootTopic, nameof(rootTopic));
+      Contract.Requires(options, nameof(options));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish containers for mapped objects, tasks
@@ -142,6 +149,12 @@ namespace OnTopic.Editor.Models.Queryable {
     ///   Static method confirms whether a topic is valid based on the <see cref="TopicQueryOptions"/>.
     /// </summary>
     public static bool IsValidTopic(Topic topic, TopicQueryOptions options, int remainingResults) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(topic, nameof(topic));
+      Contract.Requires(options, nameof(options));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables

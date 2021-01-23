@@ -1,0 +1,34 @@
+﻿@using OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute
+@model AttributeViewModel<HtmlAttributeDescriptorTopicViewModel>
+
+@{
+  Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+}
+
+<style type="text/css">
+  .Content div.x-tab-panel {
+    margin-top                  : 30px;
+  }
+
+  .Content ul.x-tab-strip {
+    list-style-image            : none;
+    padding-left                : 0px;
+  }
+</style>
+
+<textarea
+  asp-for                       ="Value"
+  rows                          =@Model.AttributeDescriptor.Rows
+  class                         ="FormField Field form-control"
+  placeholder                   =@Model.InheritedValue
+  disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
+  required                      =@Model.AttributeDescriptor.IsRequired
+></textarea>
+
+<script type="text/javascript">
+  CKEDITOR.replace(@Html.IdFor(m => m.Value), {
+    height                      : '@Model.AttributeDescriptor.Height',
+    resize_maxHeight            : '@(Model.AttributeDescriptor.Height+300)',
+    customConfig                : '/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/CkEditor/customConfig.js'
+  });
+</script>
