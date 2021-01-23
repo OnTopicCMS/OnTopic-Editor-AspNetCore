@@ -5,26 +5,26 @@
 \=============================================================================================================================*/
 using OnTopic.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
 
   /*============================================================================================================================
-  | CLASS: TEXT ATTRIBUTE (DESCRIPTOR)
+  | CLASS: BOOLEAN ATTRIBUTE (DESCRIPTOR)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents metadata for describing a text attribute type, including information on how it will be presented and
+  ///   Represents metadata for describing an boolean attribute type, including information on how it will be presented and
   ///   validated in the editor.
   /// </summary>
   /// <remarks>
   ///   This class is primarily used by the Topic Editor interface to determine how attributes are displayed as part of the
   ///   CMS; except in very specific scenarios, it is not typically used elsewhere in the Topic Library itself.
   /// </remarks>
-  public class TextAttribute : AttributeDescriptor {
+  public class BooleanAttributeDescriptor : AttributeDescriptor {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
-    public TextAttribute(
+    public BooleanAttributeDescriptor(
       string key,
       string contentType,
       Topic parent,

@@ -5,26 +5,25 @@
 \=============================================================================================================================*/
 using OnTopic.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
 
   /*============================================================================================================================
-  | CLASS: NUMBER ATTRIBUTE (DESCRIPTOR)
+  | CLASS: INSTRUCTION ATTRIBUTE (DESCRIPTOR)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents metadata for describing a number attribute type, including information on how it will be presented and
-  ///   validated in the editor.
+  ///   Represents metadata for describing an instruction attribute type.
   /// </summary>
   /// <remarks>
   ///   This class is primarily used by the Topic Editor interface to determine how attributes are displayed as part of the
   ///   CMS; except in very specific scenarios, it is not typically used elsewhere in the Topic Library itself.
   /// </remarks>
-  public class NumberAttribute : AttributeDescriptor {
+  public class InstructionAttributeDescriptor : AttributeDescriptor {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
-    public NumberAttribute(
+    public InstructionAttributeDescriptor(
       string key,
       string contentType,
       Topic parent,

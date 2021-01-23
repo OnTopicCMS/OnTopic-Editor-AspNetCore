@@ -5,26 +5,26 @@
 \=============================================================================================================================*/
 using OnTopic.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
 
   /*============================================================================================================================
-  | CLASS: DATE/TIME ATTRIBUTE (DESCRIPTOR)
+  | CLASS: HTML ATTRIBUTE (DESCRIPTOR)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents metadata for describing a Date/Time attribute type, including information on how it will be presented and
+  ///   Represents metadata for describing an HTML attribute type, including information on how it will be presented and
   ///   validated in the editor.
   /// </summary>
   /// <remarks>
   ///   This class is primarily used by the Topic Editor interface to determine how attributes are displayed as part of the
   ///   CMS; except in very specific scenarios, it is not typically used elsewhere in the Topic Library itself.
   /// </remarks>
-  public class DateTimeAttribute : AttributeDescriptor {
+  public class HtmlAttributeDescriptor : AttributeDescriptor {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
-    public DateTimeAttribute(
+    public HtmlAttributeDescriptor(
       string key,
       string contentType,
       Topic parent,
@@ -36,6 +36,12 @@ namespace OnTopic.Editor.AspNetCore.Metadata {
       id
     ) {
     }
+
+    /*==========================================================================================================================
+    | PROPERTY: IS EXTENDED ATTRIBUTE?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc />
+    public override bool IsExtendedAttribute => true;
 
   } //Class
 } //Namespace

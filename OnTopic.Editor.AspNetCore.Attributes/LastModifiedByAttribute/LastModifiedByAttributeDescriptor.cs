@@ -5,25 +5,26 @@
 \=============================================================================================================================*/
 using OnTopic.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
 
   /*============================================================================================================================
-  | CLASS: INSTRUCTION ATTRIBUTE (DESCRIPTOR)
+  | CLASS: LAST MODIFIED BY ATTRIBUTE (DESCRIPTOR)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents metadata for describing an instruction attribute type.
+  ///   Represents metadata for descripting the last modified by attribute type, including information on how it will be
+  ///   presented and validated in the editor.
   /// </summary>
   /// <remarks>
   ///   This class is primarily used by the Topic Editor interface to determine how attributes are displayed as part of the
   ///   CMS; except in very specific scenarios, it is not typically used elsewhere in the Topic Library itself.
   /// </remarks>
-  public class InstructionAttribute : AttributeDescriptor {
+  public class LastModifiedByAttributeDescriptor : AttributeDescriptor {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
-    public InstructionAttribute(
+    public LastModifiedByAttributeDescriptor(
       string key,
       string contentType,
       Topic parent,

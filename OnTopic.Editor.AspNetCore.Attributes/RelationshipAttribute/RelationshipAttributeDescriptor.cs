@@ -3,28 +3,29 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 using OnTopic.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
 
   /*============================================================================================================================
-  | CLASS: HTML ATTRIBUTE (DESCRIPTOR)
+  | CLASS: RELATIONSHIP ATTRIBUTE (DESCRIPTOR)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents metadata for describing an HTML attribute type, including information on how it will be presented and
+  ///   Represents metadata for describing a relationship attribute type, including information on how it will be presented and
   ///   validated in the editor.
   /// </summary>
   /// <remarks>
   ///   This class is primarily used by the Topic Editor interface to determine how attributes are displayed as part of the
   ///   CMS; except in very specific scenarios, it is not typically used elsewhere in the Topic Library itself.
   /// </remarks>
-  public class HtmlAttribute : AttributeDescriptor {
+  public class RelationshipAttributeDescriptor : QueryableTopicListAttributeDescriptor {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
-    public HtmlAttribute(
+    public RelationshipAttributeDescriptor(
       string key,
       string contentType,
       Topic parent,
@@ -38,10 +39,10 @@ namespace OnTopic.Editor.AspNetCore.Metadata {
     }
 
     /*==========================================================================================================================
-    | PROPERTY: IS EXTENDED ATTRIBUTE?
+    | PROPERTY: MODEL TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
-    public override bool IsExtendedAttribute => true;
+    public override ModelType ModelType => ModelType.Relationship;
 
   } //Class
 } //Namespace

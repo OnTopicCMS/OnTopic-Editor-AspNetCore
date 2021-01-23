@@ -5,26 +5,26 @@
 \=============================================================================================================================*/
 using OnTopic.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.TextAttribute {
 
   /*============================================================================================================================
-  | CLASS: QUERYABLE TOPIC LIST ATTRIBUTE (DESCRIPTOR)
+  | CLASS: TEXT ATTRIBUTE (DESCRIPTOR)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents metadata for describing a queryable topic list attribute types, including information on how they will be
-  ///   presented and validated in the editor. Acts as a base class for other topic list attribute types.
+  ///   Represents metadata for describing a text attribute type, including information on how it will be presented and
+  ///   validated in the editor.
   /// </summary>
   /// <remarks>
   ///   This class is primarily used by the Topic Editor interface to determine how attributes are displayed as part of the
   ///   CMS; except in very specific scenarios, it is not typically used elsewhere in the Topic Library itself.
   /// </remarks>
-  public class QueryableTopicListAttribute : AttributeDescriptor {
+  public class TextAttributeDescriptor : AttributeDescriptor {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
-    public QueryableTopicListAttribute(
+    public TextAttributeDescriptor(
       string key,
       string contentType,
       Topic parent,
