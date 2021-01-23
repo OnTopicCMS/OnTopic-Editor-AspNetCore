@@ -57,7 +57,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Collections {
     /// </param>
     public int? GetInteger(string attributeKey, int? defaultValue = null) {
       var stringValue = GetValue(attributeKey);
-      if (!String.IsNullOrEmpty(stringValue) && Int32.TryParse(stringValue, out int result)) {
+      if (!String.IsNullOrEmpty(stringValue) && Int32.TryParse(stringValue, out var result)) {
         return result;
       }
       return defaultValue;
