@@ -7,12 +7,10 @@ using System;
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Components.ViewModels;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
 
   /*============================================================================================================================
   | CLASS: TOKENIZED TOPIC LIST (VIEW COMPONENT)

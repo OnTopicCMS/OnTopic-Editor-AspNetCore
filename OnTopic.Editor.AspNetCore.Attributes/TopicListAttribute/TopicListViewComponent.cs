@@ -8,15 +8,13 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Editor.Models.Queryable;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Querying;
 using OnTopic.Repositories;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 
   /*============================================================================================================================
   | CLASS: TOPIC LIST (VIEW COMPONENT)

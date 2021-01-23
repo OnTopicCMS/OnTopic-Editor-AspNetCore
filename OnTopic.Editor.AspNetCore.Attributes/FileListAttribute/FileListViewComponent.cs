@@ -4,20 +4,17 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
 
   /*============================================================================================================================
   | CLASS: FILE (VIEW COMPONENT)

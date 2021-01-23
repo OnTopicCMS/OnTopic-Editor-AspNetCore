@@ -4,39 +4,39 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {
 
   /*============================================================================================================================
-  | CLASS: TEXT AREA (VIEW COMPONENT)
+  | CLASS: LAST MODIFIED (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a text area attribute type.
+  ///   Delivers a view model for a last modified attribute type.
   /// </summary>
-  public class TextAreaViewComponent: ViewComponent {
+  public class LastModifiedViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TextAreaViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="LastModifiedViewComponent"/> with necessary dependencies.
     /// </summary>
-    /// <returns>A <see cref="TextAreaViewComponent"/>.</returns>
-    public TextAreaViewComponent() : base() { }
+    /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
+    public LastModifiedViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="TextAreaViewComponent"/>.
+    ///   Assembles the view model for the <see cref="LastModifiedViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      TextAreaAttributeDescriptorTopicViewModel attribute,
+      LastModifiedAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -52,14 +52,26 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Set model defaults
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      currentTopic.Attributes.TryGetValue(attribute.Key, out var currentValue);
+      if (currentTopic.LastModified != DateTime.MinValue) {
+        currentValue            = currentTopic.LastModified.ToString(CultureInfo.InvariantCulture);
+      }
+      var value                 = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<TextAreaAttributeDescriptorTopicViewModel>(currentTopic, attribute);
+      var model = new LastModifiedAttributeViewModel(currentTopic, attribute) {
+        CurrentValue            = currentValue,
+        Value                   = value
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View(viewModel);
+      return View(model);
 
     }
 

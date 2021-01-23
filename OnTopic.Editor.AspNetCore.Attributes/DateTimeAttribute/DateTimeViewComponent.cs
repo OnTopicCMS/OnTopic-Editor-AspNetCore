@@ -5,36 +5,36 @@
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
 
   /*============================================================================================================================
-  | CLASS: HTML (VIEW COMPONENT)
+  | CLASS: DATE/TIME (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a HTML attribute type.
+  ///   Delivers a view model for a date/time attribute type.
   /// </summary>
-  public class HtmlViewComponent : ViewComponent {
+  public class DateTimeViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="HtmlViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="DateTimeViewComponent"/> with necessary dependencies.
     /// </summary>
-    public HtmlViewComponent() : base() { }
+    /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
+    public DateTimeViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="HtmlViewComponent"/>.
+    ///   Assembles the view model for the <see cref="DateTimeViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      HtmlAttributeDescriptorTopicViewModel attribute,
+      DateTimeAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -50,23 +50,14 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set configuration values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (attribute.Height is null || attribute.Height is 0 && attribute.Rows is not null) {
-        attribute = attribute with {
-          Height = attribute.Rows * 20
-        };
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<HtmlAttributeDescriptorTopicViewModel>(currentTopic, attribute);
+      var model = new DateTimeAttributeViewModel(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View(viewModel);
+      return View(model);
 
     }
 

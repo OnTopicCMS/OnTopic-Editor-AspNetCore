@@ -6,46 +6,36 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Components.ViewModels;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
-using OnTopic.Repositories;
-using OnTopic.ViewModels;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
   /*============================================================================================================================
-  | CLASS: INCOMING RELATIONSHIP (VIEW COMPONENT)
+  | CLASS: TOPIC REFERENCE (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for an incoming relationship attribute type.
+  ///   Delivers a view model for a topic reference attribute type.
   /// </summary>
-  public class IncomingRelationshipViewComponent : ViewComponent {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository;
+  public class TopicReferenceViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="IncomingRelationshipViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="TopicReferenceViewComponent"/> with necessary dependencies.
     /// </summary>
-    public IncomingRelationshipViewComponent(ITopicRepository topicRepository) : base() {
-      _topicRepository          = topicRepository;
+    public TopicReferenceViewComponent() : base() {
     }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="IncomingRelationshipViewComponent"/>.
+    ///   Assembles the view model for the <see cref="TopicReferenceViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      IncomingRelationshipAttributeDescriptorTopicViewModel attribute,
+      TopicReferenceAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -61,44 +51,23 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish view model
+      | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new IncomingRelationshipAttributeViewModel(currentTopic, attribute);
+      if (String.IsNullOrWhiteSpace(attribute.TargetContentType)) {
+        attribute = attribute with {
+          TargetContentType = currentTopic.ContentType
+        };
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set incoming relationships
-      >-------------------------------------------------------------------------------------------------------------------------
-      | ### NOTE JJC20200929: This would be a lot cleaner using the ITopicMappingService. But that would introduce an additional
-      | dependency on the StandardEditorComposer, which would be a breaking change. We can reevaluate this in the future if
-      | other view components would benefit from this.
+      | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topic                 = _topicRepository.Load(currentTopic.UniqueKey);
-
-      foreach(var relatedTopic in topic.IncomingRelationships.GetTopics(attribute.RelationshipKey?? attribute.Key)) {
-        if (
-          !String.IsNullOrWhiteSpace(attribute.AttributeKey) &&
-          relatedTopic.Attributes.GetValue(attribute.AttributeKey) != attribute.AttributeValue
-        ) {
-          continue;
-        }
-        var relatedViewModel    = new TopicViewModel {
-          Id                    = relatedTopic.Id,
-          Key                   = relatedTopic.Key,
-          ContentType           = relatedTopic.ContentType,
-          UniqueKey             = relatedTopic.GetUniqueKey(),
-          WebPath               = relatedTopic.GetWebPath(),
-          IsHidden              = relatedTopic.IsHidden,
-          View                  = relatedTopic.View,
-          Title                 = relatedTopic.Title,
-          LastModified          = relatedTopic.LastModified
-        };
-        model.RelatedTopics.Add(relatedViewModel);
-      }
+      var viewModel = new AttributeViewModel<TopicReferenceAttributeDescriptorTopicViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View(model);
+      return View(viewModel);
 
     }
 

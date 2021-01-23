@@ -5,9 +5,8 @@
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
 
   /*============================================================================================================================
   | CLASS: INSTRUCTION (VIEW COMPONENT)

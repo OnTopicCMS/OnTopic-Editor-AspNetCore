@@ -3,39 +3,37 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
 
   /*============================================================================================================================
-  | CLASS: RELATIONSHIP (VIEW COMPONENT)
+  | CLASS: HTML (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a relationship attribute type.
+  ///   Delivers a view model for a HTML attribute type.
   /// </summary>
-  public class RelationshipViewComponent : ViewComponent {
+  public class HtmlViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="RelationshipViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="HtmlViewComponent"/> with necessary dependencies.
     /// </summary>
-    public RelationshipViewComponent() : base() { }
+    public HtmlViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="RelationshipViewComponent"/>.
+    ///   Assembles the view model for the <see cref="HtmlViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      RelationshipAttributeDescriptorTopicViewModel attribute,
+      HtmlAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -51,31 +49,24 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Set configuration values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (attribute.Height is null || attribute.Height is 0 && attribute.Rows is not null) {
+        attribute = attribute with {
+          Height = attribute.Rows * 20
+        };
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      currentTopic.Attributes.TryGetValue(attribute.Key, out var value);
-
-      var model = new AttributeViewModel<RelationshipAttributeDescriptorTopicViewModel>(currentTopic, attribute) {
-        Value                   = CleanArray(value)
-      };
+      var viewModel = new AttributeViewModel<HtmlAttributeDescriptorTopicViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View(model);
+      return View(viewModel);
 
-    }
-
-    /*==========================================================================================================================
-    | METHOD: CLEAN ARRAY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Takes a string array, converts it to an array, strips any blank entries, and returns it to a string array.  Useful for
-    ///   dealing with potential artifacts such as empty array items introduced by JavaScript.
-    /// </summary>
-    private static string CleanArray(string value) {
-      if (String.IsNullOrWhiteSpace(value)) return "";
-      return String.Join(",", value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
     }
 
   } // Class

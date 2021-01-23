@@ -4,39 +4,46 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Repositories;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
 
   /*============================================================================================================================
-  | CLASS: TEXT (VIEW COMPONENT)
+  | CLASS: NESTED TOPIC LIST (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a text area attribute type.
+  ///   Delivers a view model for a topic list attribute type.
   /// </summary>
-  public class TextViewComponent: ViewComponent {
+  public class NestedTopicListViewComponent : ViewComponent {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITopicRepository                _topicRepository;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TextViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="NestedTopicListViewComponent"/> with necessary dependencies.
     /// </summary>
-    /// <returns>A <see cref="TextViewComponent"/>.</returns>
-    public TextViewComponent() : base() { }
+    public NestedTopicListViewComponent(ITopicRepository topicRepository) : base() {
+      _topicRepository = topicRepository;
+    }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="TextViewComponent"/>.
+    ///   Assembles the view model for the <see cref="NestedTopicListViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      TextAttributeDescriptorTopicViewModel attribute,
+      NestedTopicListAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -54,7 +61,27 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<TextAttributeDescriptorTopicViewModel>(currentTopic, attribute);
+      var viewModel = new NestedTopicListAttributeViewModel(currentTopic, attribute);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set model values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (HttpContext.Request.Query.TryGetValue("IsNew", out var action)) {
+        viewModel.IsNew         = action.FirstOrDefault().Equals("true", StringComparison.OrdinalIgnoreCase);
+      }
+      viewModel.UniqueKey       = currentTopic.UniqueKey;
+      viewModel.WebPath         = currentTopic.WebPath;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish nested topic container, if needed
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!viewModel.IsNew) {
+        var topic = _topicRepository.Load(viewModel.UniqueKey);
+        if (!topic.Children.Contains(attribute.Key)) {
+          var topicContainer = TopicFactory.Create(attribute.Key, "List", topic);
+          _topicRepository.Save(topicContainer);
+        }
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

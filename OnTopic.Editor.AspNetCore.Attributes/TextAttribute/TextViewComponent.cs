@@ -5,37 +5,36 @@
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Components.ViewModels;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.TextAttribute {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED BY (VIEW COMPONENT)
+  | CLASS: TEXT (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a last modified by attribute type.
+  ///   Delivers a view model for a text area attribute type.
   /// </summary>
-  public class LastModifiedByViewComponent : ViewComponent {
+  public class TextViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="LastModifiedByViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="TextViewComponent"/> with necessary dependencies.
     /// </summary>
-    public LastModifiedByViewComponent() : base() { }
+    /// <returns>A <see cref="TextViewComponent"/>.</returns>
+    public TextViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="LastModifiedByViewComponent"/>.
+    ///   Assembles the view model for the <see cref="TextViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      LastModifiedByAttributeDescriptorTopicViewModel attribute,
+      TextAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -53,17 +52,12 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      currentTopic.Attributes.TryGetValue(attribute.Key, out var value);
-
-      var model                 = new LastModifiedByAttributeViewModel(currentTopic, attribute) {
-        CurrentValue            = currentTopic.Attributes["LastModifiedBy"]?? value,
-        Value                   = HttpContext.User.Identity.Name?? "System"
-      };
+      var viewModel = new AttributeViewModel<TextAttributeDescriptorTopicViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View(model);
+      return View(viewModel);
 
     }
 

@@ -3,42 +3,37 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Components.ViewModels;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED (VIEW COMPONENT)
+  | CLASS: LAST MODIFIED BY (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a last modified attribute type.
+  ///   Delivers a view model for a last modified by attribute type.
   /// </summary>
-  public class LastModifiedViewComponent: ViewComponent {
+  public class LastModifiedByViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="LastModifiedViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="LastModifiedByViewComponent"/> with necessary dependencies.
     /// </summary>
-    /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
-    public LastModifiedViewComponent() : base() { }
+    public LastModifiedByViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="LastModifiedViewComponent"/>.
+    ///   Assembles the view model for the <see cref="LastModifiedByViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      LastModifiedAttributeDescriptorTopicViewModel attribute,
+      LastModifiedByAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -54,20 +49,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set model defaults
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      currentTopic.Attributes.TryGetValue(attribute.Key, out var currentValue);
-      if (currentTopic.LastModified != DateTime.MinValue) {
-        currentValue            = currentTopic.LastModified.ToString(CultureInfo.InvariantCulture);
-      }
-      var value                 = DateTime.Now.ToString(CultureInfo.InvariantCulture);
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new LastModifiedAttributeViewModel(currentTopic, attribute) {
-        CurrentValue            = currentValue,
-        Value                   = value
+      currentTopic.Attributes.TryGetValue(attribute.Key, out var value);
+
+      var model                 = new LastModifiedByAttributeViewModel(currentTopic, attribute) {
+        CurrentValue            = currentTopic.Attributes["LastModifiedBy"]?? value,
+        Value                   = HttpContext.User.Identity.Name?? "System"
       };
 
       /*------------------------------------------------------------------------------------------------------------------------

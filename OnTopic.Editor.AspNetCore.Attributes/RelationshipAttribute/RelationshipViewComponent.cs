@@ -4,48 +4,37 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Components.ViewModels;
-using OnTopic.Editor.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
-using OnTopic.Repositories;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
 
   /*============================================================================================================================
-  | CLASS: NESTED TOPIC LIST (VIEW COMPONENT)
+  | CLASS: RELATIONSHIP (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a topic list attribute type.
+  ///   Delivers a view model for a relationship attribute type.
   /// </summary>
-  public class NestedTopicListViewComponent : ViewComponent {
-
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository;
+  public class RelationshipViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="NestedTopicListViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="RelationshipViewComponent"/> with necessary dependencies.
     /// </summary>
-    public NestedTopicListViewComponent(ITopicRepository topicRepository) : base() {
-      _topicRepository = topicRepository;
-    }
+    public RelationshipViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="NestedTopicListViewComponent"/>.
+    ///   Assembles the view model for the <see cref="RelationshipViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      NestedTopicListAttributeDescriptorTopicViewModel attribute,
+      RelationshipAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -63,33 +52,29 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new NestedTopicListAttributeViewModel(currentTopic, attribute);
+      currentTopic.Attributes.TryGetValue(attribute.Key, out var value);
 
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Set model values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (HttpContext.Request.Query.TryGetValue("IsNew", out var action)) {
-        viewModel.IsNew         = action.FirstOrDefault().Equals("true", StringComparison.OrdinalIgnoreCase);
-      }
-      viewModel.UniqueKey       = currentTopic.UniqueKey;
-      viewModel.WebPath         = currentTopic.WebPath;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish nested topic container, if needed
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!viewModel.IsNew) {
-        var topic = _topicRepository.Load(viewModel.UniqueKey);
-        if (!topic.Children.Contains(attribute.Key)) {
-          var topicContainer = TopicFactory.Create(attribute.Key, "List", topic);
-          _topicRepository.Save(topicContainer);
-        }
-      }
+      var model = new AttributeViewModel<RelationshipAttributeDescriptorTopicViewModel>(currentTopic, attribute) {
+        Value                   = CleanArray(value)
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View(viewModel);
+      return View(model);
 
+    }
+
+    /*==========================================================================================================================
+    | METHOD: CLEAN ARRAY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Takes a string array, converts it to an array, strips any blank entries, and returns it to a string array.  Useful for
+    ///   dealing with potential artifacts such as empty array items introduced by JavaScript.
+    /// </summary>
+    private static string CleanArray(string value) {
+      if (String.IsNullOrWhiteSpace(value)) return "";
+      return String.Join(",", value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
     }
 
   } // Class

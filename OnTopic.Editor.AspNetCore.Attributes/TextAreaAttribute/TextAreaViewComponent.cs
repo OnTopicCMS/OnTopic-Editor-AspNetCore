@@ -5,38 +5,44 @@
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.AspNetCore.Components {
+namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
 
   /*============================================================================================================================
-  | CLASS: NUMBER (VIEW COMPONENT)
+  | CLASS: TEXT AREA (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a numeric attribute type.
+  ///   Delivers a view model for a text area attribute type.
   /// </summary>
-  public class NumberViewComponent: ViewComponent {
+  public class TextAreaViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="NumberViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="TextAreaViewComponent"/> with necessary dependencies.
     /// </summary>
-    /// <returns>A <see cref="NumberViewComponent"/>.</returns>
-    public NumberViewComponent() : base() { }
+    /// <returns>A <see cref="TextAreaViewComponent"/>.</returns>
+    public TextAreaViewComponent() : base() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="NumberViewComponent"/>.
+    ///   Assembles the view model for the <see cref="TextAreaViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      NumberAttributeDescriptorTopicViewModel attribute,
+      TextAreaAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attribute, nameof(attribute));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -46,7 +52,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<NumberAttributeDescriptorTopicViewModel>(currentTopic, attribute);
+      var viewModel = new AttributeViewModel<TextAreaAttributeDescriptorTopicViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
