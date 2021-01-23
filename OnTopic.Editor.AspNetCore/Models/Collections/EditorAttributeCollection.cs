@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Models.Collections {

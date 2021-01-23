@@ -3,8 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.ViewModels;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
+using OnTopic.ViewModels;
 
 #nullable enable
 
