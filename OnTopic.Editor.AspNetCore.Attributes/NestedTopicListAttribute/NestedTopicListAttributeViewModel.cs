@@ -3,9 +3,10 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
 
-namespace OnTopic.Editor.Models.Components.ViewModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
 
   /*============================================================================================================================
   | CLASS: NESTED TOPIC LIST ATTRIBUTE (VIEW MODEL)

@@ -3,29 +3,30 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
 
-namespace OnTopic.Editor.Models.Components.ViewModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED BY ATTRIBUTE (VIEW MODEL)
+  | CLASS: TOKENIZED TOPIC LIST ATTRIBUTE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents the data model for the <see cref="LastModifiedByViewComponent"/>. Additionally provides access to the
-  ///   underlying <see cref="LastModifiedByAttributeDescriptorTopicViewModel"/> as well as the instance values for that
-  ///   attribute from the currently selected <see cref="Topic"/>.
+  ///   Represents the data model for the <see cref="TokenizedTopicListViewComponent"/>. Additionally provides access to the
+  ///   underlying <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the
+  ///   currently selected <see cref="Topic"/>.
   /// </summary>
-  public record LastModifiedByAttributeViewModel: AttributeViewModel<LastModifiedByAttributeDescriptorTopicViewModel> {
+  public record TokenizedTopicListAttributeViewModel: AttributeViewModel<TokenizedTopicListAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="LastModifiedByAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="TokenizedTopicListAttributeViewModel"/> class.
     /// </summary>
-    public LastModifiedByAttributeViewModel(
+    public TokenizedTopicListAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      LastModifiedByAttributeDescriptorTopicViewModel attributeDescriptor,
+      TokenizedTopicListAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(
@@ -33,15 +34,15 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
       attributeDescriptor,
       value,
       inheritedValue
-    ) {}
+    ) { }
 
     /*==========================================================================================================================
-    | CURRENT VALUE
+    | SELECTED TOPICS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the current value. Will be set to the newly generated value if unavailable.
+    ///   Provides a JSON formatted version of the attribute value. For use with TokenInput's <c>prePopulate</c> setting.
     /// </summary>
-    public string CurrentValue { get; set; }
+    public string SelectedTopics { get; set; }
 
   } // Class
 } // Namespace

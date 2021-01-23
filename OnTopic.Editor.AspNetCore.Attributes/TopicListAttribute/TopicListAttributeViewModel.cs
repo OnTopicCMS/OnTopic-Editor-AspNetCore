@@ -4,48 +4,50 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
-using OnTopic.Collections;
-using OnTopic.Editor.Models.Metadata;
-using OnTopic.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using OnTopic.Editor.Models;
 
-namespace OnTopic.Editor.Models.Components.ViewModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 
   /*============================================================================================================================
-  | CLASS: INCOMING RELATIONSHIP ATTRIBUTE (VIEW MODEL)
+  | CLASS: TOPIC LIST (ATTRIBUTE VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents the data model for the <see cref="IncomingRelationshipViewComponent"/>. Additionally provides access to the
-  ///   underlying <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the
-  ///   currently selected <see cref="Topic"/>.
+  ///   Extends the <see cref="AttributeViewModel"/> to include properties that are specific to the topic list view component.
   /// </summary>
-  public record IncomingRelationshipAttributeViewModel: AttributeViewModel<IncomingRelationshipAttributeDescriptorTopicViewModel> {
+  public record TopicListAttributeViewModel: AttributeViewModel<TopicListAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="IncomingRelationshipAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="TopicListAttributeViewModel"/> class.
     /// </summary>
-    public IncomingRelationshipAttributeViewModel(
+    public TopicListAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      IncomingRelationshipAttributeDescriptorTopicViewModel attributeDescriptor,
+      TopicListAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
-    ): base(
+    ) : base(
       currentTopic,
       attributeDescriptor,
       value,
       inheritedValue
-    ) { }
+    ) {}
 
     /*==========================================================================================================================
-    | PROPERTY: RELATED TOPICS
+    | TOPIC LIST
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a list of <see cref="Topic"/>s which are related to the current <see cref="Topic"/> based on the specified
-    ///   <see cref="NamedTopicCollection.Name"/>.
+    ///   Provides a list of key/value pairs associated with the topic lookup.
     /// </summary>
-    public Collection<TopicViewModel> RelatedTopics { get; } = new();
+    /// <remarks>
+    ///   The key represents the value that will be persisted to the <see cref="Topic.Attributes"/> collection. The value
+    ///   represents the label as it will be displayed in the interface. For instance, for a <see
+    ///   cref="TopicListAttributeViewModel"/> representing countries, <c>US</c> might by the key associated with a <c>United
+    ///   States</c> value.
+    /// </remarks>
+    public Collection<SelectListItem> TopicList { get; } = new();
 
   } // Class
 } // Namespace

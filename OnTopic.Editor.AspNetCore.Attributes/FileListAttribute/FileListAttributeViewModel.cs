@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Models {
+namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
 
   /*============================================================================================================================
   | CLASS: FILE ATTRIBUTE (VIEW MODEL)

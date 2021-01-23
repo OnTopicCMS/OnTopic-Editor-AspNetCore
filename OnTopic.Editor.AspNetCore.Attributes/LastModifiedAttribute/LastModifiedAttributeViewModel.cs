@@ -3,33 +3,32 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.ObjectModel;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
 
-namespace OnTopic.Editor.AspNetCore.Models {
+namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LIST (ATTRIBUTE VIEW MODEL)
+  | CLASS: LAST MODIFIED ATTRIBUTE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Extends the <see cref="AttributeViewModel"/> to include properties that are specific to the topic list view component.
+  ///   Represents the data model for the <see cref="LastModifiedViewComponent"/>. Additionally provides access to the
+  ///   underlying <see cref="LastModifiedAttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute
+  ///   from the currently selected <see cref="Topic"/>.
   /// </summary>
-  public record TopicListAttributeViewModel: AttributeViewModel<TopicListAttributeDescriptorTopicViewModel> {
+  public record LastModifiedAttributeViewModel: AttributeViewModel<LastModifiedAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TopicListAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="LastModifiedAttributeViewModel"/> class.
     /// </summary>
-    public TopicListAttributeViewModel(
+    public LastModifiedAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      TopicListAttributeDescriptorTopicViewModel attributeDescriptor,
+      LastModifiedAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
-    ) : base(
+    ): base(
       currentTopic,
       attributeDescriptor,
       value,
@@ -37,18 +36,12 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ) {}
 
     /*==========================================================================================================================
-    | TOPIC LIST
+    | CURRENT VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a list of key/value pairs associated with the topic lookup.
+    ///   Gets or sets the current value. Will be set to the newly generated value if unavailable.
     /// </summary>
-    /// <remarks>
-    ///   The key represents the value that will be persisted to the <see cref="Topic.Attributes"/> collection. The value
-    ///   represents the label as it will be displayed in the interface. For instance, for a <see
-    ///   cref="TopicListAttributeViewModel"/> representing countries, <c>US</c> might by the key associated with a <c>United
-    ///   States</c> value.
-    /// </remarks>
-    public Collection<SelectListItem> TopicList { get; } = new();
+    public string CurrentValue { get; set; }
 
   } // Class
 } // Namespace

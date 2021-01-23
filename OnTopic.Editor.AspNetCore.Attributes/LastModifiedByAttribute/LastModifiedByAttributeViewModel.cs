@@ -3,30 +3,29 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.ComponentModel.DataAnnotations;
-using OnTopic.Editor.Models.Metadata;
+using OnTopic.Editor.Models;
 
-namespace OnTopic.Editor.Models.Components.ViewModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
 
   /*============================================================================================================================
-  | CLASS: FILE PATH ATTRIBUTE (VIEW MODEL)
+  | CLASS: LAST MODIFIED BY ATTRIBUTE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents the data model for the <see cref="FilePathViewComponent"/>. Additionally provides access to the underlying
-  ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
-  ///   selected <see cref="Topic"/>.
+  ///   Represents the data model for the <see cref="LastModifiedByViewComponent"/>. Additionally provides access to the
+  ///   underlying <see cref="LastModifiedByAttributeDescriptorTopicViewModel"/> as well as the instance values for that
+  ///   attribute from the currently selected <see cref="Topic"/>.
   /// </summary>
-  public record FilePathAttributeViewModel: AttributeViewModel<FilePathAttributeDescriptorTopicViewModel> {
+  public record LastModifiedByAttributeViewModel: AttributeViewModel<LastModifiedByAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="FilePathAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="LastModifiedByAttributeViewModel"/> class.
     /// </summary>
-    public FilePathAttributeViewModel(
+    public LastModifiedByAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      FilePathAttributeDescriptorTopicViewModel attributeDescriptor,
+      LastModifiedByAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(
@@ -34,17 +33,15 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
       attributeDescriptor,
       value,
       inheritedValue
-    ) { }
+    ) {}
 
     /*==========================================================================================================================
-    | VALUE
+    | CURRENT VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdocs />
-    [RegularExpression(
-      @"^([A-Za-z]+:)?(\/{0,2}|\\{0,2})(?:[0-9a-zA-Z _\-\.]+(\/|\\?))+$",
-      ErrorMessage = "The image path specified is not a valid file path."
-    )]
-    public override string Value { get; init; }
+    /// <summary>
+    ///   Gets or sets the current value. Will be set to the newly generated value if unavailable.
+    /// </summary>
+    public string CurrentValue { get; set; }
 
   } // Class
 } // Namespace

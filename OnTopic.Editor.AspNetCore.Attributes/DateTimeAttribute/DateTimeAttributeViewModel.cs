@@ -5,9 +5,10 @@
 \=============================================================================================================================*/
 using System;
 using System.Globalization;
+using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
 
-namespace OnTopic.Editor.Models.Components.ViewModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
 
   /*============================================================================================================================
   | CLASS: DATE/TIME  ATTRIBUTE (VIEW MODEL)

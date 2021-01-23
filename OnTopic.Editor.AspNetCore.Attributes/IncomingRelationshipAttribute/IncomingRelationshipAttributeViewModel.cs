@@ -3,29 +3,32 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System.Collections.ObjectModel;
+using OnTopic.Editor.Models;
 using OnTopic.Editor.Models.Metadata;
+using OnTopic.ViewModels;
 
-namespace OnTopic.Editor.Models.Components.ViewModels {
+namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
 
   /*============================================================================================================================
-  | CLASS: TOKENIZED TOPIC LIST ATTRIBUTE (VIEW MODEL)
+  | CLASS: INCOMING RELATIONSHIP ATTRIBUTE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents the data model for the <see cref="TokenizedTopicListViewComponent"/>. Additionally provides access to the
+  ///   Represents the data model for the <see cref="IncomingRelationshipViewComponent"/>. Additionally provides access to the
   ///   underlying <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the
   ///   currently selected <see cref="Topic"/>.
   /// </summary>
-  public record TokenizedTopicListAttributeViewModel: AttributeViewModel<TokenizedTopicListAttributeDescriptorTopicViewModel> {
+  public record IncomingRelationshipAttributeViewModel: AttributeViewModel<IncomingRelationshipAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TokenizedTopicListAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="IncomingRelationshipAttributeViewModel"/> class.
     /// </summary>
-    public TokenizedTopicListAttributeViewModel(
+    public IncomingRelationshipAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      TokenizedTopicListAttributeDescriptorTopicViewModel attributeDescriptor,
+      IncomingRelationshipAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(
@@ -36,12 +39,13 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     ) { }
 
     /*==========================================================================================================================
-    | SELECTED TOPICS
+    | PROPERTY: RELATED TOPICS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a JSON formatted version of the attribute value. For use with TokenInput's <c>prePopulate</c> setting.
+    ///   Provides a list of <see cref="Topic"/>s which are related to the current <see cref="Topic"/> based on the specified
+    ///   <see cref="NamedTopicCollection.Name"/>.
     /// </summary>
-    public string SelectedTopics { get; set; }
+    public Collection<TopicViewModel> RelatedTopics { get; } = new();
 
   } // Class
 } // Namespace
