@@ -40,7 +40,6 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository;
     private readonly            ITopicMappingService            _topicMappingService;
     private                     Topic                           _currentTopic;
 
@@ -65,7 +64,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set values locally
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _topicRepository = topicRepository;
+      TopicRepository = topicRepository;
       _topicMappingService = topicMappingService;
 
     }
@@ -77,7 +76,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Provides a reference to the Topic Repository in order to gain arbitrary access to the entire topic graph.
     /// </summary>
     /// <returns>The TopicRepository associated with the controller.</returns>
-    protected ITopicRepository TopicRepository => _topicRepository;
+    protected ITopicRepository TopicRepository { get; }
 
     /*==========================================================================================================================
     | CURRENT TOPIC
@@ -102,7 +101,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Provides a reference to the a strongly typed content type, if available.
     /// </summary>
     /// <returns>The Content Type associated with the current request.</returns>
-    protected ContentTypeDescriptor GetContentType(string contentType) => _topicRepository
+    protected ContentTypeDescriptor GetContentType(string contentType) => TopicRepository
       .GetContentTypeDescriptors()
       .Where(t => t.Key.Equals(contentType?? "", StringComparison.Ordinal))
       .FirstOrDefault()??
