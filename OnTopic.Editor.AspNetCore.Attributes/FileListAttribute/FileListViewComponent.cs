@@ -9,7 +9,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OnTopic.Editor.Models;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 
 #nullable enable

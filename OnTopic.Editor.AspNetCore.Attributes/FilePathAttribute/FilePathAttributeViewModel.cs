@@ -4,8 +4,8 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
-using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
+using OnTopic.Editor.AspNetCore.Models;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
 

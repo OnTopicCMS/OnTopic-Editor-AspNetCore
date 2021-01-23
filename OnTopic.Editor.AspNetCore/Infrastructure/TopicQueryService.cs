@@ -9,7 +9,7 @@ using System.Linq;
 using OnTopic.Collections;
 using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.Models.Queryable {
+namespace OnTopic.Editor.AspNetCore.Models.Queryable {
 
   /*============================================================================================================================
   | CLASS: TOPIC QUERY SERVICE

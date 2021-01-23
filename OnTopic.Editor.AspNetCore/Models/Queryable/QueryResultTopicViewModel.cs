@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
-namespace OnTopic.Editor.Models.Queryable {
+namespace OnTopic.Editor.AspNetCore.Models.Queryable {
 
   /*============================================================================================================================
   | CLASS: QUERY RESULT (TOPIC VIEW MODEL)

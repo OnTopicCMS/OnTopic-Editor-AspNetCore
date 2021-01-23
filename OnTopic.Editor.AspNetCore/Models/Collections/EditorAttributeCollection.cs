@@ -6,10 +6,10 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using OnTopic.Editor.Models.Components.BindingModels;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.Models.Collections {
+namespace OnTopic.Editor.AspNetCore.Models.Collections {
 
   /*============================================================================================================================
   | CLASS: EDITOR ATTRIBUTE COLLECTION

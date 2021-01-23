@@ -6,7 +6,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using OnTopic.Editor.Models.Components.BindingModels;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {

@@ -7,7 +7,7 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc;
-using OnTopic.Editor.Models;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 

@@ -6,7 +6,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using OnTopic.Editor.Models.Components.BindingModels;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Lookup;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {

@@ -4,8 +4,8 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
-using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
+using OnTopic.Editor.AspNetCore.Models;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.ViewModels;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {

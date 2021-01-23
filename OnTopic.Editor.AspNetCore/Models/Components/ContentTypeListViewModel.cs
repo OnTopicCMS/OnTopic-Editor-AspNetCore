@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OnTopic.Editor.Models;
+using OnTopic.Editor.AspNetCore.Models;
 
 #nullable enable
 

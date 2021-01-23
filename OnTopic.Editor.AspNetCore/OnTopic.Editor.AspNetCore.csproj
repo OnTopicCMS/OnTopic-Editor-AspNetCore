@@ -51,4 +51,8 @@
     <ProjectReference Include="..\OnTopic.Editor.Models\OnTopic.Editor.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Components\" />
+  </ItemGroup>
+
 </Project>

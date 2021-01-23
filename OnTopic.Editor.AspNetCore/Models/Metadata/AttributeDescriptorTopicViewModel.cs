@@ -3,105 +3,106 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: CONTENT TYPE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: ATTRIBUTE DESCRIPTOR TOPIC VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides core properties from a <see cref="ContentTypeDescriptor"/> to provide to the editor interface. Specifically,
-  ///   the <see cref="ContentTypeDescriptorTopicViewModel"/> is critical in providing the schema of attributes to be presented.
+  ///   Provides core properties from a <see cref="AttributeDescriptor"/> to a view component.
   /// </summary>
-  public record ContentTypeDescriptorTopicViewModel: EditingTopicViewModel {
-
-    /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="ContentTypeDescriptorTopicViewModel"/> class.
-    /// </summary>
-    public ContentTypeDescriptorTopicViewModel(): base() {}
-
-    /*==========================================================================================================================
-    | PROPERTY: ATTRIBUTE DESCRIPTORS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   A list of <see cref="AttributeDescriptorTopicViewModel"/> instances representing each of the <see
-    ///   cref="AttributeDescriptor"/> permitted by the underlying <see cref="ContentTypeDescriptor"/>.
-    /// </summary>
-    [Follow(Relationships.Relationships|Relationships.References)]
-    public Collection<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new();
+  public record AttributeDescriptorTopicViewModel: ViewModels.TopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a friendly description for the <see cref="ContentType"/>, intended as documentation for users of the editor.
+    ///   Provides a friendly description for the <see cref="AttributeDescriptor"/>, intended as documentation for users of the
+    ///   editor.
     /// </summary>
     public string Description { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: DISABLE CHILD TOPICS
+    | PROPERTY: MODEL TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether child topics are permitted to be created under the scope of the represented <see cref="Topic"/>.
+    ///   Determines how the attribute is modeled in terms of the object-oriented code (e.g., as a relationship? An attribute?).
     /// </summary>
-    public bool DisableChildTopics { get; init; }
+    public virtual ModelType ModelType { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: DISABLE DELETE
+    | PROPERTY: EDITOR TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether a topic is permitted to be deleted via the user interface. This is disabled for certain out-of-the-
-    ///   box topics, such as <c>Root</c> and <c>Configuration</c>.
+    ///   Determines the editor type to display for the attribute.
     /// </summary>
-    public bool DisableDelete { get; init; }
+    /// <remarks>
+    ///   In OnTopic 4.0.0+, the <see cref="EditorType"/> corresponds to the <see cref="AttributeTypeDescriptor"/> subtype name,
+    ///   such as <see cref="BooleanAttribute"/>. This can be used by the editor to determine the appropriate view component to
+    ///   display.
+    /// </remarks>
+    public virtual string EditorType { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: PERMITTED CONTENT TYPES
+    | PROPERTY: DISPLAY GROUP
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created under <see cref="Topic"/>s of the
-    ///   current <see cref="ContentType"/>.
+    ///   Determines what group of attributes to associate the current attribute with.
     /// </summary>
-    public Collection<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
+    public string DisplayGroup { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: IMPLICITLY PERMITTED?
+    | PROPERTY: IS REQUIRED?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Content types that are marked as implicitly permitted can be created anywhere. Implicitly permitted content types are
-    ///   always superceded by explicitly defined <see cref="PermittedContentTypes"/>.
+    ///   Determines whether the attribute should be considered required or not.
     /// </summary>
-    public bool ImplicitlyPermitted { get; init; }
+    public bool IsRequired { get; init; }
 
     /*==========================================================================================================================
-    | METHOD: GET DISPLAY GROUPS
+    | PROPERTY: DEFAULT VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Retrieves an alphabetized list of display groups associated with this <see cref="ContentTypeDescriptor"/>'s <see
-    ///   cref="AttributeDescriptors"/> collection.
+    ///   Defines a default value for new topics.
     /// </summary>
-    public Collection<string> GetDisplayGroups() =>
-      new(AttributeDescriptors.Where(a => !a.IsHidden).Select(a => a.DisplayGroup).Distinct().OrderBy(a => a).ToList());
+    /// <remarks>
+    ///   Assuming a topic is new, and isn't derived from another topic, the <see cref="DefaultValue"/> should be treated as the
+    ///   value. This helps establish a logical default, but also prevents values from being inherited from e.g. parent topics;
+    ///   as such, this should be used with caution. The value used here will be stored locally on a per-topic basis.
+    /// </remarks>
+    public string DefaultValue { get; init; }
 
     /*==========================================================================================================================
-    | METHOD: GET ATTRIBUTE DESCRIPTORS
+    | PROPERTY: IMPLICIT VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Retrieves a prioritized list of <see cref="AttributeDescriptorTopicViewModel"/> based for a given display group,
-    ///   ordered by <see cref="AttributeDescriptorTopicViewModel.SortOrder"/>.
+    ///   Defines the value that the code is expected to assign if an attribute's value is left empty.
     /// </summary>
-    public Collection<AttributeDescriptorTopicViewModel> GetAttributeDescriptors(string displayGroup) =>
-      new(AttributeDescriptors
-        .Where(a => a.DisplayGroup.Equals(displayGroup, StringComparison.OrdinalIgnoreCase) && !a.IsHidden)
-        .OrderBy(a => a.SortOrder).ToList());
+    /// <remarks>
+    ///   The <see cref="ImplicitValue"/> is not actually used by code to set the value. It is simply a way of communicating to
+    ///   editors what value it is <i>expected</i> code will use. In practice, code may set any default it wishes, and may even
+    ///   set different defaults in different contexts (e.g., based on different views). The <see cref="ImplicitValue"/> will be
+    ///   exposed to editors as an HTML placeholder on input fields that support it.
+    /// </remarks>
+    public string ImplicitValue { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: SORT ORDER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines the attribute's prioritization in the page order.
+    /// </summary>
+    public int SortOrder { get; init; }
+
+    /*==========================================================================================================================
+    | IS ENABLED
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeValue"/> instance.
+    /// </summary>
+    public bool IsEnabled { get; init; } = true;
 
   } //Class
 } //Namespace

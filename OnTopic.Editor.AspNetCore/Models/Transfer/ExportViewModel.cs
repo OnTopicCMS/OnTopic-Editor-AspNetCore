@@ -3,26 +3,25 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.Models.Collections;
+using OnTopic.Data.Transfer.Interchange;
 
-namespace OnTopic.Editor.Models {
+namespace OnTopic.Editor.AspNetCore.Models.Transfer {
 
   /*============================================================================================================================
-  | CLASS: EDITOR BINDING MODEL
+  | CLASS: EXPORT VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents a model for retrieving data from the editor interface, primarily as a collection of
-  ///   <see cref="EditorAttribute"/> instances, via the <see cref="EditorAttributeCollection"/>.
+  ///   Represents a model for soliciting export options from the user.
   /// </summary>
-  public record EditorBindingModel {
+  public record ExportViewModel: EditorViewModel {
 
     /*==========================================================================================================================
-    | ATTRIBUTES
+    | EXPORT OPTIONS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Collection of attribute values extracted from the post.
+    ///   The <see cref="ExportOptions"/> represent the user's preference for how to export the current topic.
     /// </summary>
-    public EditorAttributeCollection Attributes { get; } = new();
+    public ExportOptions ExportOptions { get; init; } = new();
 
   } // Class
 } // Namespace

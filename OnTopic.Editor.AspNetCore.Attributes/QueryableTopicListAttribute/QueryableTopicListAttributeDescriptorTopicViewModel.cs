@@ -4,7 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Diagnostics.CodeAnalysis;
-using OnTopic.Editor.Models.Metadata;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.ViewModels;
 
 #nullable enable

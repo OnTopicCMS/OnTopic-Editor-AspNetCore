@@ -3,33 +3,26 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Data.Transfer.Interchange;
+using OnTopic.Editor.AspNetCore.Models.Collections;
 
-namespace OnTopic.Editor.Models.Transfer {
+namespace OnTopic.Editor.AspNetCore.Models {
 
   /*============================================================================================================================
-  | CLASS: IMPORT VIEW MODEL
+  | CLASS: EDITOR BINDING MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents a model for soliciting import options from the user.
+  ///   Represents a model for retrieving data from the editor interface, primarily as a collection of
+  ///   <see cref="EditorAttribute"/> instances, via the <see cref="EditorAttributeCollection"/>.
   /// </summary>
-  public record ImportViewModel: EditorViewModel {
+  public record EditorBindingModel {
 
     /*==========================================================================================================================
-    | IMPORT OPTIONS
+    | ATTRIBUTES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The <see cref="ImportOptions"/> represent the user's preference for how to import a serialized JSON file.
+    ///   Collection of attribute values extracted from the post.
     /// </summary>
-    public ImportOptions ImportOptions { get; init; } = new();
-
-    /*==========================================================================================================================
-    | IS IMPORTED?
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   The <see cref="IsImported"/> property is set after the file is successfully imported.
-    /// </summary>
-    public bool IsImported { get; init; }
+    public EditorAttributeCollection Attributes { get; } = new();
 
   } // Class
 } // Namespace

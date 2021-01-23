@@ -6,7 +6,7 @@
 using System;
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
-using OnTopic.Editor.Models;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {

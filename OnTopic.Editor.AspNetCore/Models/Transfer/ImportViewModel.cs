@@ -5,23 +5,31 @@
 \=============================================================================================================================*/
 using OnTopic.Data.Transfer.Interchange;
 
-namespace OnTopic.Editor.Models.Transfer {
+namespace OnTopic.Editor.AspNetCore.Models.Transfer {
 
   /*============================================================================================================================
-  | CLASS: EXPORT VIEW MODEL
+  | CLASS: IMPORT VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents a model for soliciting export options from the user.
+  ///   Represents a model for soliciting import options from the user.
   /// </summary>
-  public record ExportViewModel: EditorViewModel {
+  public record ImportViewModel: EditorViewModel {
 
     /*==========================================================================================================================
-    | EXPORT OPTIONS
+    | IMPORT OPTIONS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The <see cref="ExportOptions"/> represent the user's preference for how to export the current topic.
+    ///   The <see cref="ImportOptions"/> represent the user's preference for how to import a serialized JSON file.
     /// </summary>
-    public ExportOptions ExportOptions { get; init; } = new();
+    public ImportOptions ImportOptions { get; init; } = new();
+
+    /*==========================================================================================================================
+    | IS IMPORTED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The <see cref="IsImported"/> property is set after the file is successfully imported.
+    /// </summary>
+    public bool IsImported { get; init; }
 
   } // Class
 } // Namespace

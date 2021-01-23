@@ -3,84 +3,60 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 
-namespace OnTopic.Editor.Models.Components.BindingModels {
+namespace OnTopic.Editor.AspNetCore.Models {
 
   /*============================================================================================================================
-  | CLASS: ATTRIBUTE (BINDING MODEL)
+  | CLASS: EDITOR VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a generic attribute in the Topic Editor.
+  ///   Represents a model for interacting with the editor interface.
   /// </summary>
-  public record AttributeBindingModel {
+  public record EditorViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeBindingModel"/> class.
+    ///   The <see cref="EditingTopicViewModel"/> representing the core properties of the currently selected <see
+    ///   cref="Topic"/>.
     /// </summary>
-    public AttributeBindingModel() : this("") {}
-
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeBindingModel"/> class.
-    /// </summary>
-    /// <param name="editorType">Optionally defines the type of attribute.</param>
-    public AttributeBindingModel(string editorType) {
-      if (String.IsNullOrWhiteSpace(editorType)) {
-        EditorType = GetType().Name.Replace("AttributeBindingModel", "", StringComparison.Ordinal);
-      }
-      else {
-        EditorType = editorType;
-      }
-    }
+    public EditingTopicViewModel Topic { get; init; }
 
     /*==========================================================================================================================
-    | KEY
+    | CONTENT TYPE DESCRIPTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The unique name associated with the specified attribute.
+    ///   The <see cref="ContentTypeDescriptorTopicViewModel"/> representing the core properties of the <see cref="Topic"/>'s
+    ///   <see cref="ContentTypeDescriptor"/>.
     /// </summary>
-    public string Key {
-      get;
-      init;
-    }
+    public ContentTypeDescriptorTopicViewModel ContentTypeDescriptor { get; init; }
 
     /*==========================================================================================================================
-    | EDITOR TYPE
+    | IS MODAL?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The editor type associated with the attribute.
+    ///   Determines whether or not the page should be rendered as a modal (e.g., including the chrome or not).
     /// </summary>
-    public string EditorType {
-      get;
-      init;
-    }
+    public bool IsModal { get; init; }
 
     /*==========================================================================================================================
-    | VALUE
+    | IS NEW?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The value associated with the attribute.
+    ///   Determines whether or not the page is being newly created.
     /// </summary>
-    public string Value {
-      get;
-      init;
-    }
+    public bool IsNew { get; init; }
 
     /*==========================================================================================================================
-    | GET VALUE
+    | IS FULLY LOADED?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Retrieves the value associated with the attribute.
+    ///   Determines if the <see cref="Topic.References"/> and <see cref="Topic.Relationships"/> are both <c>IsFullyLoaded</c>.
+    ///   If not, a warning should be presented.
     /// </summary>
-    /// <remarks>
-    ///   Unlike the <see cref="Value"/> property, which simply returns the literal value associated with the attribute, the
-    ///   <see cref="GetValue()"/> method is intended to be overwritten by derived versions of the <see cref="AttributeBindingModel"/>
-    ///   class, in order to provide specific serialization instructions.
-    /// </remarks>
-    public virtual string GetValue() => Value;
+    public bool IsFullyLoaded { get; init; } = true;
 
   } // Class
 } // Namespace

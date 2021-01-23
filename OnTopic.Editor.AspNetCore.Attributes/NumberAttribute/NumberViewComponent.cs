@@ -4,7 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc;
-using OnTopic.Editor.Models;
+using OnTopic.Editor.AspNetCore.Models;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
 

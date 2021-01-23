@@ -3,8 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
+using OnTopic.Editor.AspNetCore.Models;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
 

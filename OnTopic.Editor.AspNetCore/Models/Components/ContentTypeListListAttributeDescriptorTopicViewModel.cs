@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
 using OnTopic.Editor.AspNetCore.Components;
-using OnTopic.Editor.Models.Metadata;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
 

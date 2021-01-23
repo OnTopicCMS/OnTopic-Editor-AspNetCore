@@ -4,64 +4,83 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using OnTopic.ViewModels;
 
-namespace OnTopic.Editor.Models {
+namespace OnTopic.Editor.AspNetCore.Models {
 
   /*============================================================================================================================
-  | CLASS: EDITING TOPIC VIEW MODEL
+  | CLASS: ATTRIBUTE (BINDING MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents a model for a <see cref="Topic"/>. Since attributes are handled via the <see cref="AttributeViewModel"/>, the
-  ///   <see cref="EditingTopicViewModel"/> needn't account for them. It only accounts for items that will be exposed to the
-  ///   general interface of the Topic Editor.
+  ///   Represents an instance of a generic attribute in the Topic Editor.
   /// </summary>
-  public record EditingTopicViewModel: ViewModels.TopicViewModel {
+  public record AttributeBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="AttributeBindingModel"/> class.
     /// </summary>
-    public EditingTopicViewModel() : base() {}
+    public AttributeBindingModel() : this("") {}
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="AttributeBindingModel"/> class.
+    /// </summary>
+    /// <param name="editorType">Optionally defines the type of attribute.</param>
+    public AttributeBindingModel(string editorType) {
+      if (String.IsNullOrWhiteSpace(editorType)) {
+        EditorType = GetType().Name.Replace("AttributeBindingModel", "", StringComparison.Ordinal);
+      }
+      else {
+        EditorType = editorType;
+      }
+    }
 
     /*==========================================================================================================================
-    | PROPERTY: VERSION HISTORY
+    | KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a collection of <see cref="DateTime"/> instances during which the represented <see cref="Topic"/> was
-    ///   modified.
+    ///   The unique name associated with the specified attribute.
     /// </summary>
-    #pragma warning disable CA2227 // Collection properties should be read only
-    public Collection<DateTime> VersionHistory { get; set; } = new();
-    #pragma warning restore CA2227 // Collection properties should be read only
+    public string Key {
+      get;
+      init;
+    }
 
     /*==========================================================================================================================
-    | PROPERTY: DERIVED TOPIC
+    | EDITOR TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a reference to a derived topic, if one exists.
+    ///   The editor type associated with the attribute.
     /// </summary>
-    public TopicViewModel DerivedTopic { get; set; }
+    public string EditorType {
+      get;
+      init;
+    }
 
     /*==========================================================================================================================
-    | PROPERTY: ATTRIBUTES
+    | VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   A collection of attribute values, as assigned directly to the topic. Does not include inherited or derived values.
+    ///   The value associated with the attribute.
     /// </summary>
-    public Dictionary<string, string> Attributes { get; } = new();
+    public string Value {
+      get;
+      init;
+    }
 
     /*==========================================================================================================================
-    | PROPERTY: INHERITED ATTRIBUTES
+    | GET VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   A collection of inherited attribute values, as inferred from derived or upstream topics.
+    ///   Retrieves the value associated with the attribute.
     /// </summary>
-    public Dictionary<string, string> InheritedAttributes { get; } = new();
+    /// <remarks>
+    ///   Unlike the <see cref="Value"/> property, which simply returns the literal value associated with the attribute, the
+    ///   <see cref="GetValue()"/> method is intended to be overwritten by derived versions of the <see cref="AttributeBindingModel"/>
+    ///   class, in order to provide specific serialization instructions.
+    /// </remarks>
+    public virtual string GetValue() => Value;
 
   } // Class
 } // Namespace

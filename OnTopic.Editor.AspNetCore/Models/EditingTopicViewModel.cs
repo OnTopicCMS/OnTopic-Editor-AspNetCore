@@ -3,60 +3,65 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.Models.Metadata;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using OnTopic.ViewModels;
 
-namespace OnTopic.Editor.Models {
+namespace OnTopic.Editor.AspNetCore.Models {
 
   /*============================================================================================================================
-  | CLASS: EDITOR VIEW MODEL
+  | CLASS: EDITING TOPIC VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents a model for interacting with the editor interface.
+  ///   Represents a model for a <see cref="Topic"/>. Since attributes are handled via the <see cref="AttributeViewModel"/>, the
+  ///   <see cref="EditingTopicViewModel"/> needn't account for them. It only accounts for items that will be exposed to the
+  ///   general interface of the Topic Editor.
   /// </summary>
-  public record EditorViewModel {
+  public record EditingTopicViewModel: ViewModels.TopicViewModel {
 
     /*==========================================================================================================================
-    | TOPIC
+    | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The <see cref="EditingTopicViewModel"/> representing the core properties of the currently selected <see
-    ///   cref="Topic"/>.
+    ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
     /// </summary>
-    public EditingTopicViewModel Topic { get; init; }
+    public EditingTopicViewModel() : base() {}
 
     /*==========================================================================================================================
-    | CONTENT TYPE DESCRIPTOR
+    | PROPERTY: VERSION HISTORY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The <see cref="ContentTypeDescriptorTopicViewModel"/> representing the core properties of the <see cref="Topic"/>'s
-    ///   <see cref="ContentTypeDescriptor"/>.
+    ///   Provides a collection of <see cref="DateTime"/> instances during which the represented <see cref="Topic"/> was
+    ///   modified.
     /// </summary>
-    public ContentTypeDescriptorTopicViewModel ContentTypeDescriptor { get; init; }
+    #pragma warning disable CA2227 // Collection properties should be read only
+    public Collection<DateTime> VersionHistory { get; set; } = new();
+    #pragma warning restore CA2227 // Collection properties should be read only
 
     /*==========================================================================================================================
-    | IS MODAL?
+    | PROPERTY: DERIVED TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether or not the page should be rendered as a modal (e.g., including the chrome or not).
+    ///   Provides a reference to a derived topic, if one exists.
     /// </summary>
-    public bool IsModal { get; init; }
+    public TopicViewModel DerivedTopic { get; set; }
 
     /*==========================================================================================================================
-    | IS NEW?
+    | PROPERTY: ATTRIBUTES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether or not the page is being newly created.
+    ///   A collection of attribute values, as assigned directly to the topic. Does not include inherited or derived values.
     /// </summary>
-    public bool IsNew { get; init; }
+    public Dictionary<string, string> Attributes { get; } = new();
 
     /*==========================================================================================================================
-    | IS FULLY LOADED?
+    | PROPERTY: INHERITED ATTRIBUTES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines if the <see cref="Topic.References"/> and <see cref="Topic.Relationships"/> are both <c>IsFullyLoaded</c>.
-    ///   If not, a warning should be presented.
+    ///   A collection of inherited attribute values, as inferred from derived or upstream topics.
     /// </summary>
-    public bool IsFullyLoaded { get; init; } = true;
+    public Dictionary<string, string> InheritedAttributes { get; } = new();
 
   } // Class
 } // Namespace
