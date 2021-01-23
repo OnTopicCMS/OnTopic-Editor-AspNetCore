@@ -38,12 +38,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     /// <remarks>
     ///   As with other attribute view components, the <see cref="FilePathViewComponent"/> receives a <see
-    ///   cref="EditingTopicViewModel"/> via the <see cref="InvokeAsync(EditingTopicViewModel, FilePathAttributeTopicViewModel,
-    ///   String)"/>. That view model, however, is not sufficient to handle the specialized inheritance logic required by the
-    ///   <see cref="FilePathViewComponent"/>. As a result, it <i>also</i> requires an instance of a <see
-    ///   cref="ITopicRoutingService"/> so that it can work directly off the current <see cref="Topic"/> and its parent tree.
-    ///   The <see cref="EditingTopicViewModel"/> is still passed not only for consistency, but also to spare the overhead and
-    ///   redundant logic of mapping it again, since this was already done in <see cref="Controllers.EditorController"/>.
+    ///   cref="EditingTopicViewModel"/> via the <see cref="InvokeAsync(EditingTopicViewModel,
+    ///   FilePathAttributeDescriptorTopicViewModel, String)"/>. That view model, however, is not sufficient to handle the
+    ///   specialized inheritance logic required by the <see cref="FilePathViewComponent"/>. As a result, it <i>also</i>
+    ///   requires an instance of a <see cref="ITopicRoutingService"/> so that it can work directly off the current <see cref="
+    ///   Topic"/> and its parent tree. The <see cref="EditingTopicViewModel"/> is still passed not only for consistency, but
+    ///   also to spare the overhead and redundant logic of mapping it again, since this was already done in <see cref="
+    ///   Controllers.EditorController"/>.
     /// </remarks>
     public FilePathViewComponent(ITopicRepository topicRepository) : base() {
       Contract.Requires(topicRepository, nameof(topicRepository));
@@ -87,7 +88,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      FilePathAttributeTopicViewModel attribute,
+      FilePathAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -128,7 +129,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     ///   defined by the parent (assuming <see cref="InheritValue"/> is enabled) and the relative path between that topic and
     ///   the current topic (assuming <see cref="RelativeToParent"/> is enabled).
     /// </summary>
-    public string GetInheritedValue(string attributeKey, FilePathAttributeTopicViewModel attribute) {
+    public string GetInheritedValue(string attributeKey, FilePathAttributeDescriptorTopicViewModel attribute) {
 
       var inheritedValue        = "";
 
@@ -155,7 +156,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// <param name="includeLeafTopic">Boolean indicator as to whether to include the endpoint/leaf topic in the path.</param>
     /// <param name="truncatePathAtTopic">The assembled topic keys at which to end the path string.</param>
     /// <returns>A constructed file path.</returns>
-    public string GetPath(string attributeKey, FilePathAttributeTopicViewModel options) {
+    public string GetPath(string attributeKey, FilePathAttributeDescriptorTopicViewModel options) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate parameters

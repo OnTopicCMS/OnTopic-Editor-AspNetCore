@@ -4,18 +4,19 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using OnTopic.Editor.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.TextAttribute {
 
   /*============================================================================================================================
-  | CLASS: TEXT ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: TEXT ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="TextViewComponentView"/>.
   /// </summary>
-  public record TextAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record TextAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | MINIMUM LENGTH

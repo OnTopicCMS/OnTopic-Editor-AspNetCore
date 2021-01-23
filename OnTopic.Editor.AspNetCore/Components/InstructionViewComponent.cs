@@ -34,11 +34,11 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      InstructionAttributeTopicViewModel attribute,
+      InstructionAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      return View(new AttributeViewModel<InstructionAttributeTopicViewModel>(currentTopic, attribute));
+      return View(new AttributeViewModel<InstructionAttributeDescriptorTopicViewModel>(currentTopic, attribute));
     }
 
   } // Class

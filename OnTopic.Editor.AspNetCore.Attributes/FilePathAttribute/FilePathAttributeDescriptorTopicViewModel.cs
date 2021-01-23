@@ -5,64 +5,55 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.Models.Metadata;
 
-namespace OnTopic.Editor.Models.Components.ViewModels {
+#nullable enable
+
+namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
 
   /*============================================================================================================================
-  | CLASS: NESTED TOPIC LIST ATTRIBUTE (VIEW MODEL)
+  | CLASS: FILE PATH ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents the data model for the <see cref="NestedTopicListViewComponent"/>. Additionally provides access to the
-  ///   underlying <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the
-  ///   currently selected <see cref="Topic"/>.
+  ///   Provides access to attributes associated with the <see cref="FilePathViewComponent"/>.
   /// </summary>
-  public record NestedTopicListAttributeViewModel: AttributeViewModel<NestedTopicListAttributeDescriptorTopicViewModel> {
+  public record FilePathAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | PROPERTY: INHERIT VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TopicListAttributeViewModel"/> class.
+    ///   Determines whether the <see cref="Value"/> is expected to be inherited from parent topics if left blank.
     /// </summary>
-    public NestedTopicListAttributeViewModel(
-      EditingTopicViewModel currentTopic,
-      NestedTopicListAttributeDescriptorTopicViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
-    ): base(
-      currentTopic,
-      attributeDescriptor,
-      value,
-      inheritedValue
-    ) { }
+    public bool? InheritValue { get; init; } = true;
 
     /*==========================================================================================================================
-    | IS NEW?
+    | PROPERTY: RELATIVE TO TOPIC PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets whether or not this is an attribute of a new or existing topic.
+    ///   Determines whether the <see cref="Value"/> should automatically inject any parent topics in the path. If set, the
+    ///   value will be set to the inherited value (if present) along with the path between the level at which that value is set
+    ///   and the current topic.
     /// </summary>
-    /// <remarks>
-    ///   This property is important because it's not possible to retrieve or create nested topics under a topic that hasn't yet
-    ///   been saved. In this case, much of the functionality of the <see cref="TopicListViewComponent"/> will be disabled until
-    ///   the user has saved the new topic that they are creating.
-    /// </remarks>
-    public bool IsNew { get; set; }
+    public bool? RelativeToTopicPath { get; init; } = true;
 
     /*==========================================================================================================================
-    | UNIQUE KEY
+    | PROPERTY: BASE TOPIC PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the <see cref="Topic.GetUniqueKey"/> value for the current topic.
+    ///   Determines the Topic level (based on <see cref="Topic.GetUniqueKey"/>) at which to stop the recursive processing
+    ///   logic for <see cref="AttributeViewModel.InheritedValue"/>. If set, the <see cref="AttributeViewModel.InheritedValue"/>
+    ///   will  ignore children under the specified <see cref="Topic"/> when formulating the full file path.
     /// </summary>
-    public string UniqueKey { get; set; }
+    public string? BaseTopicPath { get; init; } = "";
 
     /*==========================================================================================================================
-    | WEB PATH
+    | PROPERTY: INCLUDE CURRENT TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the <see cref="Topic.GetWebPath"/> value for the current topic.
+    ///   Determines whether the current <see cref="Topic"/> should be included in the <see cref="InheritedValue"/>.
     /// </summary>
-    public string WebPath { get; set; }
+    public bool? IncludeCurrentTopic { get; init; } = true;
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
+
+#nullable restore

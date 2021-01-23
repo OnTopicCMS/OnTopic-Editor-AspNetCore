@@ -3,18 +3,19 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: LAST MODIFIED BY ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="LastModifiedViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="LastModifiedByViewComponentView"/>.
   /// </summary>
-  public record LastModifiedAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record LastModifiedByAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
 
   } //Class

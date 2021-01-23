@@ -3,18 +3,19 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
 
   /*============================================================================================================================
-  | CLASS: DATE/TIME ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: DATE/TIME ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="DateTimeViewComponent"/>.
   /// </summary>
-  public record DateTimeAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record DateTimeAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | INCLUDE DATE PICKER?

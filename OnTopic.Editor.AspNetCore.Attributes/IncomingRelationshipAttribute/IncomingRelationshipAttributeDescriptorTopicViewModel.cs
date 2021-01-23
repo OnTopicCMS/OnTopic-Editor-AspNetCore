@@ -3,36 +3,29 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
+using OnTopic.ViewModels;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
 
   /*============================================================================================================================
-  | CLASS: HTML ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: INCOMING RELATIONSHIP ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="HtmlViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="IncomingRelationshipViewComponent"/>.
   /// </summary>
-  public record HtmlAttributeTopicViewModel: TextAreaAttributeTopicViewModel {
+  public record IncomingRelationshipAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | ROWS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc/>
-    public override int? Rows { get; init; } = 20;
-
-    /*==========================================================================================================================
-    | HEIGHT
+    | RELATIONSHIP KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the number of pixels that the <see cref="HtmlViewComponent"/> should take up. Defaults to <see
-    ///   cref="Rows"/> x 20.
+    ///   Optionally provides the relationship key, which mapes to the <see cref="NamedTopicCollection.Name"/> property.
+    ///   Defaults to the <see cref="TopicViewModel.Key"/> if undefined.
     /// </summary>
-    /// <remarks>
-    ///   If set, this value overrides <see cref="Rows"/>.
-    /// </remarks>
-    public int? Height { get; init; }
+    public string? RelationshipKey { get; init; }
 
   } //Class
 } //Namespace

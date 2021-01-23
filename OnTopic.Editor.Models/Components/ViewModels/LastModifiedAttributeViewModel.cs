@@ -12,10 +12,10 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Represents the data model for the <see cref="LastModifiedViewComponent"/>. Additionally provides access to the
-  ///   underlying <see cref="LastModifiedAttributeTopicViewModel"/> as well as the instance values for that attribute from the
-  ///   currently selected <see cref="Topic"/>.
+  ///   underlying <see cref="LastModifiedAttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute
+  ///   from the currently selected <see cref="Topic"/>.
   /// </summary>
-  public record LastModifiedAttributeViewModel: AttributeViewModel<LastModifiedAttributeTopicViewModel> {
+  public record LastModifiedAttributeViewModel: AttributeViewModel<LastModifiedAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -25,7 +25,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     /// </summary>
     public LastModifiedAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      LastModifiedAttributeTopicViewModel attributeDescriptor,
+      LastModifiedAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(

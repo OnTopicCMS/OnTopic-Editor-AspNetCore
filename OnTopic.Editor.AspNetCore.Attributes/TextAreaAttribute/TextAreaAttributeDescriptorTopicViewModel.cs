@@ -3,50 +3,45 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
+using OnTopic.Editor.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
 
   /*============================================================================================================================
-  | CLASS: FILE LIST ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: TEXT AREA ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="FileListViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="TextAreaViewComponentView"/>.
   /// </summary>
-  public record FileListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record TextAreaAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | PROPERTY: PATH
+    | ROWS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the the directory path in which to find available files.
+    ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
+    ///   <c>20</c>.
     /// </summary>
-    public string? Path { get; init; }
+    public virtual int? Rows { get; init; } = 5;
 
     /*==========================================================================================================================
-    | PROPERTY: EXTENSION
+    | MINIMUM LENGTH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets which file extension to restrict the list of files.
+    ///   Gets or sets the length length of the field. Defaults to <c>0</c> if undefined.
     /// </summary>
-    public string? Extension { get; init; }
+    public int? MinimumLength { get; init; } = 10;
 
     /*==========================================================================================================================
-    | PROPERTY: FILTER
+    | MAXIMUM LENGTH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the filter criteria by which to restrict the list of files.
+    ///   Gets or sets the maximimum length of the field.
     /// </summary>
-    public string? Filter { get; init; }
-
-    /*==========================================================================================================================
-    | PROPERTY: INCLUDE SUBDIRECTORIES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets whether to only include the specified directory, or also include files from all subdirectories.
-    /// </summary>
-    public bool? IncludeSubdirectories { get; init; }
+    public int? MaximumLength { get; init; } = Int32.MaxValue;
 
   } //Class
 } //Namespace

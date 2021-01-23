@@ -3,18 +3,19 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
 
   /*============================================================================================================================
-  | CLASS: INSTRUCTION ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: INSTRUCTION ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="InstructionViewComponent"/>.
   /// </summary>
-  public record InstructionAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record InstructionAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | INSTRUCTIONS

@@ -15,7 +15,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
   ///   underlying <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the
   ///   currently selected <see cref="Topic"/>.
   /// </summary>
-  public record TokenizedTopicListAttributeViewModel: AttributeViewModel<TokenizedTopicListAttributeTopicViewModel> {
+  public record TokenizedTopicListAttributeViewModel: AttributeViewModel<TokenizedTopicListAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -25,7 +25,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     /// </summary>
     public TokenizedTopicListAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      TokenizedTopicListAttributeTopicViewModel attributeDescriptor,
+      TokenizedTopicListAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(

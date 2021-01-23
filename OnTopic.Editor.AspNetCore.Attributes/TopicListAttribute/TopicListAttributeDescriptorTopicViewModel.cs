@@ -4,18 +4,19 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.ViewModels;
+using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 
   /*============================================================================================================================
-  | CLASS: TOPIC LIST ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: TOPIC LIST ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="TopicListViewComponent"/>.
   /// </summary>
-  public record TopicListAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
+  public record TopicListAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | DEFAULT LABEL

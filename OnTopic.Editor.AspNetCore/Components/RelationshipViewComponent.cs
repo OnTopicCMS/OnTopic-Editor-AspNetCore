@@ -35,7 +35,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      RelationshipAttributeTopicViewModel attribute,
+      RelationshipAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -55,7 +55,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       currentTopic.Attributes.TryGetValue(attribute.Key, out var value);
 
-      var model = new AttributeViewModel<RelationshipAttributeTopicViewModel>(currentTopic, attribute) {
+      var model = new AttributeViewModel<RelationshipAttributeDescriptorTopicViewModel>(currentTopic, attribute) {
         Value                   = CleanArray(value)
       };
 

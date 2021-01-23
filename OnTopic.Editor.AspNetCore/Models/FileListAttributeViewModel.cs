@@ -18,7 +18,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
   ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
   ///   selected <see cref="Topic"/>.
   /// </summary>
-  public record FileListAttributeViewModel: AttributeViewModel<FileListAttributeTopicViewModel> {
+  public record FileListAttributeViewModel: AttributeViewModel<FileListAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -28,7 +28,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// </summary>
     public FileListAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      FileListAttributeTopicViewModel attributeDescriptor,
+      FileListAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ) : base(
@@ -57,8 +57,8 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   Provides the absolute path where files are being displayed from.
     /// </summary>
     /// <remarks>
-    ///   While the <i>relative</i> file path can be retrieved from <see cref="FileListAttributeTopicViewModel.Path"/>, that
-    ///   doesn't include the base path of the web application. The <see cref="AbsolutePath"/> addresses this.
+    ///   While the <i>relative</i> file path can be retrieved from <see cref="FileListAttributeDescriptorTopicViewModel.Path"
+    ///   />, that doesn't include the base path of the web application. The <see cref="AbsolutePath"/> addresses this.
     /// </remarks>
     public string AbsolutePath { get; set; }
 

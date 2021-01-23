@@ -54,7 +54,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      NestedTopicListAttributeTopicViewModel attributeDescriptor = null,
+      NestedTopicListAttributeDescriptorTopicViewModel attributeDescriptor = null,
       IEnumerable<ContentTypeDescriptorTopicViewModel> values = null,
       string onModalClose = null
     ) {

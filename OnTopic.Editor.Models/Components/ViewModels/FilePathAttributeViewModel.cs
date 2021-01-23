@@ -16,7 +16,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
   ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
   ///   selected <see cref="Topic"/>.
   /// </summary>
-  public record FilePathAttributeViewModel: AttributeViewModel<FilePathAttributeTopicViewModel> {
+  public record FilePathAttributeViewModel: AttributeViewModel<FilePathAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -26,7 +26,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     /// </summary>
     public FilePathAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      FilePathAttributeTopicViewModel attributeDescriptor,
+      FilePathAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(

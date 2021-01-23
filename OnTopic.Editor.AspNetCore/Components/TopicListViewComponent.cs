@@ -49,7 +49,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      TopicListAttributeTopicViewModel attribute,
+      TopicListAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix = null
     ) {
 

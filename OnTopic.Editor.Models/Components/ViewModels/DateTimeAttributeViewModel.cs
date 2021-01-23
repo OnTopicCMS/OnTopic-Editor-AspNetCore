@@ -17,7 +17,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
   ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
   ///   selected <see cref="Topic"/>.
   /// </summary>
-  public record DateTimeAttributeViewModel: AttributeViewModel<DateTimeAttributeTopicViewModel> {
+  public record DateTimeAttributeViewModel: AttributeViewModel<DateTimeAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -34,7 +34,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     /// </summary>
     public DateTimeAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      DateTimeAttributeTopicViewModel attributeDescriptor,
+      DateTimeAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(

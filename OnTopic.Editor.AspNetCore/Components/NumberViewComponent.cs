@@ -34,7 +34,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      NumberAttributeTopicViewModel attribute,
+      NumberAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -46,7 +46,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<NumberAttributeTopicViewModel>(currentTopic, attribute);
+      var viewModel = new AttributeViewModel<NumberAttributeDescriptorTopicViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

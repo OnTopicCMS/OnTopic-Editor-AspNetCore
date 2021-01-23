@@ -3,23 +3,23 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using System.Diagnostics.CodeAnalysis;
+using OnTopic.Editor.Models.Metadata;
 using OnTopic.ViewModels;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute {
 
   /*============================================================================================================================
   | CLASS: QUERYABLE TOPIC LIST (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a base class for exposing properties common to the <see cref="RelationshipAttributeTopicViewModel"/>, <see
-  ///   cref="TopicListAttributeTopicViewModel"/>, <see cref="TokenizedTopicListAttributeTopicViewModel"/>, and any other view
-  ///   components that allow querying of topics via the search API, or similar techniques.
+  ///   Provides a base class for exposing properties common to the <see cref="RelationshipAttributeDescriptorTopicViewModel"/>,
+  ///   <see cref="TopicListAttributeDescriptorTopicViewModel"/>, <see cref="TokenizedTopicListAttributeDescriptorTopicViewModel
+  ///   "/>, and any other view components that allow querying of topics via the search API, or similar techniques.
   /// </summary>
-  public record QueryableTopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record QueryableTopicListAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC

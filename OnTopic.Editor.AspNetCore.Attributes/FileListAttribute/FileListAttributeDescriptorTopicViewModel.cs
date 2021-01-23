@@ -3,54 +3,51 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
 
   /*============================================================================================================================
-  | CLASS: FILE PATH ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: FILE LIST ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="FilePathViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="FileListViewComponent"/>.
   /// </summary>
-  public record FilePathAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record FileListAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | PROPERTY: INHERIT VALUE
+    | PROPERTY: PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether the <see cref="Value"/> is expected to be inherited from parent topics if left blank.
+    ///   Gets or sets the the directory path in which to find available files.
     /// </summary>
-    public bool? InheritValue { get; init; } = true;
+    public string? Path { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: RELATIVE TO TOPIC PATH
+    | PROPERTY: EXTENSION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether the <see cref="Value"/> should automatically inject any parent topics in the path. If set, the
-    ///   value will be set to the inherited value (if present) along with the path between the level at which that value is set
-    ///   and the current topic.
+    ///   Gets or sets which file extension to restrict the list of files.
     /// </summary>
-    public bool? RelativeToTopicPath { get; init; } = true;
+    public string? Extension { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: BASE TOPIC PATH
+    | PROPERTY: FILTER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines the Topic level (based on <see cref="Topic.GetUniqueKey"/>) at which to stop the recursive processing
-    ///   logic for <see cref="AttributeViewModel.InheritedValue"/>. If set, the <see cref="AttributeViewModel.InheritedValue"/>
-    ///   will  ignore children under the specified <see cref="Topic"/> when formulating the full file path.
+    ///   Gets or sets the filter criteria by which to restrict the list of files.
     /// </summary>
-    public string? BaseTopicPath { get; init; } = "";
+    public string? Filter { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: INCLUDE CURRENT TOPIC
+    | PROPERTY: INCLUDE SUBDIRECTORIES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether the current <see cref="Topic"/> should be included in the <see cref="InheritedValue"/>.
+    ///   Gets or sets whether to only include the specified directory, or also include files from all subdirectories.
     /// </summary>
-    public bool? IncludeCurrentTopic { get; init; } = true;
+    public bool? IncludeSubdirectories { get; init; }
 
   } //Class
 } //Namespace

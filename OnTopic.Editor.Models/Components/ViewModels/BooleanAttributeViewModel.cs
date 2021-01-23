@@ -16,7 +16,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
   ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
   ///   selected <see cref="Topic"/>.
   /// </summary>
-  public record BooleanAttributeViewModel: AttributeViewModel<BooleanAttributeTopicViewModel> {
+  public record BooleanAttributeViewModel: AttributeViewModel<BooleanAttributeDescriptorTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -26,7 +26,7 @@ namespace OnTopic.Editor.Models.Components.ViewModels {
     /// </summary>
     public BooleanAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      BooleanAttributeTopicViewModel attributeDescriptor,
+      BooleanAttributeDescriptorTopicViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(

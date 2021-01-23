@@ -33,23 +33,23 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       Add(typeof(EditingTopicViewModel));
       Add(typeof(ContentTypeDescriptorTopicViewModel));
       Add(typeof(AttributeDescriptorTopicViewModel));
-      Add(typeof(BooleanAttributeTopicViewModel));
-      Add(typeof(DateTimeAttributeTopicViewModel));
-      Add(typeof(FileListAttributeTopicViewModel));
-      Add(typeof(FilePathAttributeTopicViewModel));
-      Add(typeof(HtmlAttributeTopicViewModel));
-      Add(typeof(IncomingRelationshipAttributeTopicViewModel));
-      Add(typeof(InstructionAttributeTopicViewModel));
-      Add(typeof(LastModifiedAttributeTopicViewModel));
-      Add(typeof(LastModifiedByAttributeTopicViewModel));
-      Add(typeof(NestedTopicListAttributeTopicViewModel));
-      Add(typeof(NumberAttributeTopicViewModel));
-      Add(typeof(RelationshipAttributeTopicViewModel));
-      Add(typeof(TextAttributeTopicViewModel));
-      Add(typeof(TextAreaAttributeTopicViewModel));
-      Add(typeof(TokenizedTopicListAttributeTopicViewModel));
-      Add(typeof(TopicListAttributeTopicViewModel));
-      Add(typeof(TopicReferenceAttributeTopicViewModel));
+      Add(typeof(BooleanAttributeDescriptorTopicViewModel));
+      Add(typeof(DateTimeAttributeDescriptorTopicViewModel));
+      Add(typeof(FileListAttributeDescriptorTopicViewModel));
+      Add(typeof(FilePathAttributeDescriptorTopicViewModel));
+      Add(typeof(HtmlAttributeDescriptorTopicViewModel));
+      Add(typeof(IncomingRelationshipAttributeDescriptorTopicViewModel));
+      Add(typeof(InstructionAttributeDescriptorTopicViewModel));
+      Add(typeof(LastModifiedAttributeDescriptorTopicViewModel));
+      Add(typeof(LastModifiedByAttributeDescriptorTopicViewModel));
+      Add(typeof(NestedTopicListAttributeDescriptorTopicViewModel));
+      Add(typeof(NumberAttributeDescriptorTopicViewModel));
+      Add(typeof(RelationshipAttributeDescriptorTopicViewModel));
+      Add(typeof(TextAttributeDescriptorTopicViewModel));
+      Add(typeof(TextAreaAttributeDescriptorTopicViewModel));
+      Add(typeof(TokenizedTopicListAttributeDescriptorTopicViewModel));
+      Add(typeof(TopicListAttributeDescriptorTopicViewModel));
+      Add(typeof(TopicReferenceAttributeDescriptorTopicViewModel));
 
     }
 

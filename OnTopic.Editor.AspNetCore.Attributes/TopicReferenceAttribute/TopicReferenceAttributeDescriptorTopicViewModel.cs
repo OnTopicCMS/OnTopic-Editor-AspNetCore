@@ -3,45 +3,50 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System.Diagnostics.CodeAnalysis;
+using OnTopic.Editor.Models.Metadata;
+using OnTopic.Mapping.Annotations;
+using OnTopic.Metadata;
+using OnTopic.ViewModels;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
   /*============================================================================================================================
-  | CLASS: RELATIONSHIP ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: TOPIC REFERENCE ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="RelationshipViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="TopicReferenceViewComponent"/>.
   /// </summary>
-  public record RelationshipAttributeTopicViewModel: QueryableTopicListAttributeTopicViewModel {
+  public record TopicReferenceAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | PROPERTY: SHOW ROOT
+    | PROPERTY: ROOT TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given the <see cref="Scope"/>, determines whether the root node is displayed, or only the children.  The default is
-    ///   false.
+    ///   Gets or sets a <see cref="Topic.Id"/> representing the scope of <see cref="Topic"/>s to display to the user. This
+    ///   allows relationships to be targeted to particular areas of the topic graph.
     /// </summary>
-    public bool? ShowRoot { get; init; }
+    [AttributeKey("RootTopicId")]
+    [NotNull]
+    public TopicViewModel? RootTopic { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: EXPAND RELATED?
+    | RESULT LIMIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether or not the tree panel should be expanded to ensure visibility of any related (checked)
-    ///   relationships upon load. Defaults to <c>true</c>.
+    ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
     /// </summary>
-    public bool? ExpandRelated { get; init; }
+    public int? ResultLimit { get; init; } = 100;
 
     /*==========================================================================================================================
-    | PROPERTY: CHECK ASCENDANTS
+    | TARGET CONTENT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   When a <see cref="Topic"/> is selected as a relationship, determines if the client should automatically select all
-    ///   descendent topics. The default is false.
+    ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
     /// </summary>
-    public bool? CheckAscendants { get; init; }
+    public string? TargetContentType { get; init; }
 
   } //Class
 } //Namespace

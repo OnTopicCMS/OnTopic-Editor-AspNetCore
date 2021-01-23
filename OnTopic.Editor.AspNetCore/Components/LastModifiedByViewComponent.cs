@@ -35,7 +35,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      LastModifiedByAttributeTopicViewModel attribute,
+      LastModifiedByAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 

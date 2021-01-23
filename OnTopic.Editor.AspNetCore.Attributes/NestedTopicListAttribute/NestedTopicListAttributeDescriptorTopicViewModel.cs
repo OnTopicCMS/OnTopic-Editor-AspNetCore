@@ -3,22 +3,22 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using System.Collections.ObjectModel;
+using OnTopic.Editor.Models.Metadata;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
 
   /*============================================================================================================================
-  | CLASS: NESTED TOPIC LIST ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: NESTED TOPIC LIST ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="NestedTopicListViewComponentView"/>.
   /// </summary>
-  public record NestedTopicListAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record NestedTopicListAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: PERMITTED CONTENT TYPES

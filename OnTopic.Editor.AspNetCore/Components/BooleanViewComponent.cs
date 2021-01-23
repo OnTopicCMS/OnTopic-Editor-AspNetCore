@@ -35,7 +35,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      BooleanAttributeTopicViewModel attribute,
+      BooleanAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;

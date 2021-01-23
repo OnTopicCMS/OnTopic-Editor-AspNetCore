@@ -45,7 +45,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      NestedTopicListAttributeTopicViewModel attribute,
+      NestedTopicListAttributeDescriptorTopicViewModel attribute,
       string htmlFieldPrefix
     ) {
 

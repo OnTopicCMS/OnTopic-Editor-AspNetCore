@@ -3,18 +3,19 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.Models.Metadata {
+namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
 
   /*============================================================================================================================
-  | CLASS: BOOLEAN ATTRIBUTE (TOPIC VIEW MODEL)
+  | CLASS: BOOLEAN ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="BooleanViewComponent"/>.
   /// </summary>
-  public record BooleanAttributeTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record BooleanAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
 
   } //Class
