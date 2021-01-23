@@ -67,6 +67,11 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | HANDLE ATTRIBUTE DESCRIPTOR NAMING CONVENTION
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      editorType                = editorType.Replace("AttributeDescriptor", "Attribute", StringComparison.Ordinal);
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var type                  = TypeLookupService.Lookup($"{editorType}BindingModel");
