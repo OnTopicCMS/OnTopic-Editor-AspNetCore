@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnTopic.Editor.Models", "OnTopic.Editor.Models\OnTopic.Editor.Models.csproj", "{02A3D98A-BF8A-4150-8FEC-45A0D9C322E4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnTopic.Editor.AspNetCore", "OnTopic.Editor.AspNetCore\OnTopic.Editor.AspNetCore.csproj", "{77022C14-28B2-4182-9F11-796E8B3C73F7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnTopic.Editor.AspNetCore.Host", "OnTopic.Editor.AspNetCore.Host\OnTopic.Editor.AspNetCore.Host.csproj", "{F197E795-6DCE-4B91-B0CB-7B87E32EE347}"
@@ -25,12 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{02A3D98A-BF8A-4150-8FEC-45A0D9C322E4}.Debug CC|Any CPU.ActiveCfg = Debug|Any CPU
-		{02A3D98A-BF8A-4150-8FEC-45A0D9C322E4}.Debug CC|Any CPU.Build.0 = Debug|Any CPU
-		{02A3D98A-BF8A-4150-8FEC-45A0D9C322E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02A3D98A-BF8A-4150-8FEC-45A0D9C322E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02A3D98A-BF8A-4150-8FEC-45A0D9C322E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02A3D98A-BF8A-4150-8FEC-45A0D9C322E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77022C14-28B2-4182-9F11-796E8B3C73F7}.Debug CC|Any CPU.ActiveCfg = Debug|Any CPU
 		{77022C14-28B2-4182-9F11-796E8B3C73F7}.Debug CC|Any CPU.Build.0 = Debug|Any CPU
 		{77022C14-28B2-4182-9F11-796E8B3C73F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
