@@ -19,7 +19,7 @@
     <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.7.0-TopicViewModel-records.400" />
     <PackageReference Include="OnTopic.Data.Caching" Version="4.7.0-TopicViewModel-records.400" />
     <PackageReference Include="OnTopic.Data.Sql" Version="4.7.0-TopicViewModel-records.400" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.12" />
   </ItemGroup>
 
   <ItemGroup>
