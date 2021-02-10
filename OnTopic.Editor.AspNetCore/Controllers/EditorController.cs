@@ -160,13 +160,13 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
         //Serialize relationships, if it's a relationship type
         if (!isNew && attribute.ModelType is ModelType.Relationship) {
-          var relatedTopicIds = CurrentTopic.Relationships.GetTopics(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
+          var relatedTopicIds = CurrentTopic.Relationships.GetValues(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
           topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
         }
 
         //Serialize references, if it's a topic reference
         else if (!isNew && attribute.ModelType is ModelType.Reference) {
-          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetTopic(attribute.Key)?.Id.ToString(CultureInfo.InvariantCulture));
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetValue(attribute.Key)?.Id.ToString(CultureInfo.InvariantCulture));
         }
 
         //Provide special handling for Key, since it's not stored as an attribute
@@ -399,7 +399,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// </summary>
     private void SetRelationships(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
       var relatedTopics = attributeValue.Value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
-      topic.Relationships.ClearTopics(attribute.Key);
+      topic.Relationships.Clear(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
         Topic relatedTopic = null;
         var isTopicId = Int32.TryParse(topicIdString, out var topicIdInt);
@@ -407,7 +407,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           relatedTopic = TopicRepository.Load(topicIdInt);
         }
         if (relatedTopic is not null) {
-          topic.Relationships.SetTopic(attribute.Key, relatedTopic);
+          topic.Relationships.SetValue(attribute.Key, relatedTopic);
         }
       }
     }
@@ -424,7 +424,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       if (isTopicId && topicIdInt > 0) {
         referencedTopic = TopicRepository.Load(topicIdInt);
       }
-      topic.References.SetTopic(attribute.Key, referencedTopic);
+      topic.References.SetValue(attribute.Key, referencedTopic);
     }
 
     /*============================================================================================================================
@@ -570,10 +570,10 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         if (!String.IsNullOrWhiteSpace(options.RelatedNamespace)) {
-          relatedTopics = new(relatedTopic.Relationships.GetTopics(options.RelatedNamespace));
+          relatedTopics = new(relatedTopic.Relationships.GetValues(options.RelatedNamespace));
         }
         else {
-          relatedTopics = relatedTopic.Relationships.GetAllTopics();
+          relatedTopics = relatedTopic.Relationships.GetAllValues();
         }
 
       }

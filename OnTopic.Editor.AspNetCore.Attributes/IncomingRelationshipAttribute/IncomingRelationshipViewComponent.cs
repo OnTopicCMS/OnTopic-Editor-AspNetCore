@@ -72,7 +72,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topic                 = _topicRepository.Load(currentTopic.UniqueKey);
 
-      foreach(var relatedTopic in topic.IncomingRelationships.GetTopics(attribute.RelationshipKey?? attribute.Key)) {
+      foreach(var relatedTopic in topic.IncomingRelationships.GetValues(attribute.RelationshipKey?? attribute.Key)) {
         if (
           !String.IsNullOrWhiteSpace(attribute.AttributeKey) &&
           relatedTopic.Attributes.GetValue(attribute.AttributeKey) != attribute.AttributeValue
