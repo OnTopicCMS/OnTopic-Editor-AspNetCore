@@ -40,12 +40,12 @@ namespace OnTopic.Editor.AspNetCore.Models {
     #pragma warning restore CA2227 // Collection properties should be read only
 
     /*==========================================================================================================================
-    | PROPERTY: DERIVED TOPIC
+    | PROPERTY: BASE TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a reference to a derived topic, if one exists.
+    ///   Provides a reference to a base topic, if one exists.
     /// </summary>
-    public TopicViewModel DerivedTopic { get; set; }
+    public TopicViewModel BaseTopic { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ATTRIBUTES

@@ -180,7 +180,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         //For new topics that aren't derived from another topic, assign attribute default, if available
-        else if (CurrentTopic.DerivedTopic is null && !attribute.IsRequired && attribute.DefaultValue is not null) {
+        else if (CurrentTopic.BaseTopic is null && !attribute.IsRequired && attribute.DefaultValue is not null) {
           topicViewModel.Attributes.Add(attribute.Key, attribute.DefaultValue);
         }
 
@@ -192,7 +192,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         //Set inherited attribute value, if available
         topicViewModel.InheritedAttributes.Add(
           attribute.Key,
-          isNew? null : CurrentTopic.DerivedTopic?.Attributes.GetValue(attribute.Key)
+          isNew? null : CurrentTopic.BaseTopic?.Attributes.GetValue(attribute.Key)
         );
 
       }
@@ -266,14 +266,14 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
-      var derivedTopicId        = model.Attributes.GetInteger("DerivedTopic");
-      var derivedTopic          = derivedTopicId.HasValue? TopicRepository.Load(derivedTopicId.Value) : null;
+      var baseTopicId           = model.Attributes.GetInteger("BaseTopic");
+      var baseTopic             = baseTopicId.HasValue? TopicRepository.Load(baseTopicId.Value) : null;
       var newKey                = model.Attributes.GetValue("Key");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (derivedTopic is null) {
+      if (baseTopic is null) {
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.GetValue(attribute.Key);
           if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue)) {
@@ -286,7 +286,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | INHERIT KEY VALUE, IF PRESENT
       \-----------------------------------------------------------------------------------------------------------------------*/
       else if (String.IsNullOrEmpty(newKey)) {
-        newKey = derivedTopic.Key;
+        newKey = baseTopic.Key;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -329,8 +329,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         contentType = CurrentTopic.ContentType;
       }
 
-      if (derivedTopic is not null && topic.DerivedTopic != derivedTopic) {
-        topic.DerivedTopic = derivedTopic;
+      if (baseTopic is not null && topic.BaseTopic != baseTopic) {
+        topic.BaseTopic = baseTopic;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
