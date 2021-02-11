@@ -15,7 +15,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
   ///   Provides a mapping between string and class names to be used when mapping <see cref="Topic"/> to a <see
   ///   cref="AttributeBindingModel"/> or derived class.
   /// </summary>
-  public class AttributeBindingModelLookupService : DynamicTypeLookupService {
+  internal class AttributeBindingModelLookupService : DynamicTypeLookupService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -24,7 +24,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     ///   Estabblishes a new instance of the <see cref="EditorBindingModelLookupService"/>.
     /// </summary>
     /// <returns>A new instance of the <see cref="EditorBindingModelLookupService"/>.</returns>
-    public AttributeBindingModelLookupService() : base(t => typeof(AttributeBindingModel).IsAssignableFrom(t)) {
+    internal AttributeBindingModelLookupService() : base(t => typeof(AttributeBindingModel).IsAssignableFrom(t)) {
 
     }
 
