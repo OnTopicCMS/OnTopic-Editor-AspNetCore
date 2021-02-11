@@ -27,7 +27,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     /// <summary>
     ///   Initializes a new instance of a <see cref="AttributeBindingModelBinder"/>.
     /// </summary>
-    public AttributeBindingModelBinder() { }
+    internal AttributeBindingModelBinder() { }
 
     /*==========================================================================================================================
     | PROPERTY: TYPE LOOKUP SERVICE
@@ -35,7 +35,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     /// <summary>
     ///   Establishes static variables for the <see cref="TopicFactory"/>.
     /// </summary>
-    public static ITypeLookupService TypeLookupService { get; set; } = new AttributeBindingModelLookupService();
+    internal static ITypeLookupService TypeLookupService { get; set; } = new AttributeBindingModelLookupService();
 
     /*==========================================================================================================================
     | OVERRIDE: BIND MODEL (ASYNC)

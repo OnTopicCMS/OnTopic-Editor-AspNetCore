@@ -24,7 +24,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     ///   Estabblishes a new instance of the <see cref="EditorBindingModelLookupService"/>.
     /// </summary>
     /// <returns>A new instance of the <see cref="EditorBindingModelLookupService"/>.</returns>
-    public AttributeBindingModelLookupService() : base(t => typeof(AttributeBindingModel).IsAssignableFrom(t)) {
+    internal AttributeBindingModelLookupService() : base(t => typeof(AttributeBindingModel).IsAssignableFrom(t)) {
 
     }
 
