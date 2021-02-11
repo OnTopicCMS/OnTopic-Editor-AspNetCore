@@ -35,7 +35,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   A list of <see cref="AttributeDescriptorTopicViewModel"/> instances representing each of the <see
     ///   cref="AttributeDescriptor"/> permitted by the underlying <see cref="ContentTypeDescriptor"/>.
     /// </summary>
-    [Follow(Relationships.Relationships|Relationships.References)]
+    [Include(AssociationTypes.Relationships | AssociationTypes.References)]
     public Collection<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new();
 
     /*==========================================================================================================================

@@ -28,8 +28,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
     ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created as part of the configured <see
     ///   cref="NestedTopicListAttributeViewComponent"/>.
     /// </summary>
-    [Follow(Relationships.None)]
-    [Relationship("ContentTypes", Type=RelationshipType.Relationship)]
+    [Include(AssociationTypes.None)]
+    [Collection("ContentTypes", Type=CollectionType.Relationship)]
     public Collection<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
 
     /*==============================================================================================================================
