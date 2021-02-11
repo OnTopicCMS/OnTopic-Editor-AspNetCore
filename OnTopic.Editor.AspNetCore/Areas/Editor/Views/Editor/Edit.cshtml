@@ -37,9 +37,9 @@
           @Model.ContentTypeDescriptor.Description
         </div>
       }
-      @if (Model.Topic.DerivedTopic is not null) {
+      @if (Model.Topic.BaseTopic is not null) {
         <div class="alert alert-primary" role="alert">
-          <strong>Note:</strong> This topic derives from <a href="@Url.Action("Edit", new { path = Model.Topic.DerivedTopic.WebPath })">@Model.Topic.DerivedTopic.Title</a>. Any values not explicitly defined here will be inherited from that topic.
+          <strong>Note:</strong> This topic derives from <a href="@Url.Action("Edit", new { path = Model.Topic.BaseTopic.WebPath })">@Model.Topic.BaseTopic.Title</a>. Any values not explicitly defined here will be inherited from that topic.
         </div>
       }
       <div asp-validation-summary="All"></div>
@@ -111,7 +111,7 @@
     }
   });
 
-  @if (Model.Topic.DerivedTopic is not null) {
+  @if (Model.Topic.BaseTopic is not null) {
     <text>
       /**
       * Disable required fields if derived topic, as missing values will be inherited

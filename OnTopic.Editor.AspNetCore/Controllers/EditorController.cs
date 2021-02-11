@@ -160,13 +160,13 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
         //Serialize relationships, if it's a relationship type
         if (!isNew && attribute.ModelType is ModelType.Relationship) {
-          var relatedTopicIds = CurrentTopic.Relationships.GetTopics(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
+          var relatedTopicIds = CurrentTopic.Relationships.GetValues(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
           topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
         }
 
         //Serialize references, if it's a topic reference
         else if (!isNew && attribute.ModelType is ModelType.Reference) {
-          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetTopic(attribute.Key)?.Id.ToString(CultureInfo.InvariantCulture));
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetValue(attribute.Key)?.Id.ToString(CultureInfo.InvariantCulture));
         }
 
         //Provide special handling for Key, since it's not stored as an attribute
@@ -180,7 +180,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         //For new topics that aren't derived from another topic, assign attribute default, if available
-        else if (CurrentTopic.DerivedTopic is null && !attribute.IsRequired && attribute.DefaultValue is not null) {
+        else if (CurrentTopic.BaseTopic is null && !attribute.IsRequired && attribute.DefaultValue is not null) {
           topicViewModel.Attributes.Add(attribute.Key, attribute.DefaultValue);
         }
 
@@ -192,7 +192,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         //Set inherited attribute value, if available
         topicViewModel.InheritedAttributes.Add(
           attribute.Key,
-          isNew? null : CurrentTopic.DerivedTopic?.Attributes.GetValue(attribute.Key)
+          isNew? null : CurrentTopic.BaseTopic?.Attributes.GetValue(attribute.Key)
         );
 
       }
@@ -266,14 +266,14 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
-      var derivedTopicId        = model.Attributes.GetInteger("DerivedTopic");
-      var derivedTopic          = derivedTopicId.HasValue? TopicRepository.Load(derivedTopicId.Value) : null;
+      var baseTopicId           = model.Attributes.GetInteger("BaseTopic");
+      var baseTopic             = baseTopicId.HasValue? TopicRepository.Load(baseTopicId.Value) : null;
       var newKey                = model.Attributes.GetValue("Key");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (derivedTopic is null) {
+      if (baseTopic is null) {
         foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
           var submittedValue = model.Attributes.GetValue(attribute.Key);
           if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue)) {
@@ -286,7 +286,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | INHERIT KEY VALUE, IF PRESENT
       \-----------------------------------------------------------------------------------------------------------------------*/
       else if (String.IsNullOrEmpty(newKey)) {
-        newKey = derivedTopic.Key;
+        newKey = baseTopic.Key;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -329,8 +329,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         contentType = CurrentTopic.ContentType;
       }
 
-      if (derivedTopic is not null && topic.DerivedTopic != derivedTopic) {
-        topic.DerivedTopic = derivedTopic;
+      if (baseTopic is not null && topic.BaseTopic != baseTopic) {
+        topic.BaseTopic = baseTopic;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -399,7 +399,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// </summary>
     private void SetRelationships(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
       var relatedTopics = attributeValue.Value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
-      topic.Relationships.ClearTopics(attribute.Key);
+      topic.Relationships.Clear(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
         Topic relatedTopic = null;
         var isTopicId = Int32.TryParse(topicIdString, out var topicIdInt);
@@ -407,7 +407,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           relatedTopic = TopicRepository.Load(topicIdInt);
         }
         if (relatedTopic is not null) {
-          topic.Relationships.SetTopic(attribute.Key, relatedTopic);
+          topic.Relationships.SetValue(attribute.Key, relatedTopic);
         }
       }
     }
@@ -424,7 +424,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       if (isTopicId && topicIdInt > 0) {
         referencedTopic = TopicRepository.Load(topicIdInt);
       }
-      topic.References.SetTopic(attribute.Key, referencedTopic);
+      topic.References.SetValue(attribute.Key, referencedTopic);
     }
 
     /*============================================================================================================================
@@ -570,10 +570,10 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         if (!String.IsNullOrWhiteSpace(options.RelatedNamespace)) {
-          relatedTopics = new(relatedTopic.Relationships.GetTopics(options.RelatedNamespace));
+          relatedTopics = new(relatedTopic.Relationships.GetValues(options.RelatedNamespace));
         }
         else {
-          relatedTopics = relatedTopic.Relationships.GetAllTopics();
+          relatedTopics = relatedTopic.Relationships.GetAllValues();
         }
 
       }

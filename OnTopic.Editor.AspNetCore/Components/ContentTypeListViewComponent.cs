@@ -105,7 +105,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypes          = _topicRepository.GetContentTypeDescriptors();
       var actualTopic           = _topicRepository.Load(currentTopic.Id)?? _topicRepository.Load(currentTopic.Parent.Id);
-      var actualContentType     = contentTypes.GetTopic(currentTopic.ContentType);
+      var actualContentType     = contentTypes.GetValue(currentTopic.ContentType);
 
       if (actualContentType is null || actualTopic is null) {
         return View(viewModel);
@@ -122,7 +122,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       if (actualContentType.Key.Equals("Container", StringComparison.OrdinalIgnoreCase)) {
         var permittedContentTypes = actualTopic
           .Relationships
-          .GetTopics("ContentTypes")
+          .GetValues("ContentTypes")
           .Select(c =>
             new SelectListItem() {
               Value             = getValue(c.Key),
