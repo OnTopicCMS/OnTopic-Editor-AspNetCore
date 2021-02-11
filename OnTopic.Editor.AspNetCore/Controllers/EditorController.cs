@@ -76,7 +76,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Provides a reference to the Topic Repository in order to gain arbitrary access to the entire topic graph.
     /// </summary>
     /// <returns>The TopicRepository associated with the controller.</returns>
-    protected ITopicRepository TopicRepository { get; }
+    private ITopicRepository TopicRepository { get; }
 
     /*==========================================================================================================================
     | CURRENT TOPIC
@@ -85,7 +85,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Provides a reference to the current topic associated with the request.
     /// </summary>
     /// <returns>The Topic associated with the current request.</returns>
-    protected Topic CurrentTopic {
+    private Topic CurrentTopic {
       get {
         if (_currentTopic is null) {
           _currentTopic = TopicRepository.Load(RouteData);
@@ -101,7 +101,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Provides a reference to the a strongly typed content type, if available.
     /// </summary>
     /// <returns>The Content Type associated with the current request.</returns>
-    protected ContentTypeDescriptor GetContentType(string contentType) => TopicRepository
+    private ContentTypeDescriptor GetContentType(string contentType) => TopicRepository
       .GetContentTypeDescriptors()
       .Where(t => t.Key.Equals(contentType?? "", StringComparison.Ordinal))
       .FirstOrDefault()??
@@ -122,7 +122,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <param name="isNew">Determines whether the topic represents a new or existing object.</param>
     /// <param name="isModal">Determines whether whether the view is being displayed within a modal window.</param>
     /// <returns>The Content Type associated with the current request.</returns>
-    protected async Task<T> GetEditorViewModel<T>(
+    private async Task<T> GetEditorViewModel<T>(
       ContentTypeDescriptor contentTypeDescriptor,
       bool isNew,
       bool isModal
