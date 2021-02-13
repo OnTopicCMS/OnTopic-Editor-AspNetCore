@@ -757,7 +757,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var topics                = target.FindAll(t => !t.IsNew).ToList();
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | INITIAL IMPORT
+      | IMPORT
       \-----------------------------------------------------------------------------------------------------------------------*/
       target.Import(topicData, options);
 
@@ -788,21 +788,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | INITIAL SAVE
+      | SAVE
       \-----------------------------------------------------------------------------------------------------------------------*/
-      TopicRepository.Save(saveRoot, topicData.Children.Count > 0);
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | RESOLVE TOPIC REFERENCES
-      >-------------------------------------------------------------------------------------------------------------------------
-      | ### HACK JJC20200522: When the first Import() is done, topic references may be pointing to objects that haven't yet been
-      | imported (i.e., they occur later in the graph traversal). Likewise, when the first Save() is done, those same topic
-      | references have not yet been saved, and so they can't be resolved to a valid TopicID. To mitigate this, we do a second
-      | Import() followed by a second Save(). This shouldn't impact the items that have already been imported, but it will
-      | ensure that topic references are resolved. This includes relationships, derived topics, and topic pointers from
-      | attribute types such as TokenizedTopicList, TopicList, and TopicReference.
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      target.Import(topicData, options);
       TopicRepository.Save(saveRoot, topicData.Children.Count > 0);
 
       /*------------------------------------------------------------------------------------------------------------------------
