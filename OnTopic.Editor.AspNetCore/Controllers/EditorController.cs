@@ -630,7 +630,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | EXPORT TO JSON
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicData             = CurrentTopic.Export(options);
-      var json                  = JsonSerializer.Serialize(topicData);
+      var json                  = JsonSerializer.Serialize(topicData, new() { IgnoreNullValues = true });
       var jsonStream            =  new MemoryStream(Encoding.UTF8.GetBytes(json), false);
 
       /*------------------------------------------------------------------------------------------------------------------------
