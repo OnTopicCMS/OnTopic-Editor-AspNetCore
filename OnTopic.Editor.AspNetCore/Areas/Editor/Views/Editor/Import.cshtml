@@ -157,6 +157,11 @@
               </label>
               <br />
               <label>
+                <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedReferences)" value="true" /> Topic References
+                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing topic references if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
+              </label>
+              <br />
+              <label>
                 <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedNestedTopics)" value="true" /> Nested Topics
                 <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing nested topics if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
