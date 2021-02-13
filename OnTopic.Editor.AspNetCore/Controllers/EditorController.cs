@@ -783,7 +783,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | Otherwise, Save() will generate an error since the parent ID won't be found.
       \-----------------------------------------------------------------------------------------------------------------------*/
       var saveRoot              = target;
-      if (target.Parent.IsNew) {
+      if (target.Parent?.IsNew?? false) {
         saveRoot = target.Parent;
       }
 
