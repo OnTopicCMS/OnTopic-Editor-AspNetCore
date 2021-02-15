@@ -38,7 +38,7 @@ var     environment             = 'development',
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const files = {
   scss                          : 'Shared/Styles/**/[!_]*.scss',
-  js                            : 'Shared/Scripts/*.js',
+  js                            : 'Shared/Scripts/**/*.js',
   vendor                        : {
     js                          :   [ 'node_modules/jquery-tokeninput/dist/js/jquery-tokeninput.min.js',
                                       'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js'                                                                          ],
@@ -46,11 +46,6 @@ const files = {
                                       'node_modules/jquery-tokeninput/dist/css/token-input-facebook.min.css',
                                       'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css'
                                     ]
-                                  },
-  standalone                    : {
-    'Scripts'                   :   {
-      'CkEditor'                :     'Shared/Scripts/CkEditor/*.js'
-                                    }
                                   }
 };
 
