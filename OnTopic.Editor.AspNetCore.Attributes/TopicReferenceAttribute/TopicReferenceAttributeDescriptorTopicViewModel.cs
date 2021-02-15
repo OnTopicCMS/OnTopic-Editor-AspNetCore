@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
@@ -20,6 +21,18 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
   ///   Provides access to attributes associated with the <see cref="TopicReferenceViewComponent"/>.
   /// </summary>
   public record TopicReferenceAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new instance of a <see cref="TopicReferenceAttributeDescriptorTopicViewModel"/>
+    /// </summary>
+    public TopicReferenceAttributeDescriptorTopicViewModel() {
+      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/Vendor.css", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Scripts.js", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Vendor.js", UriKind.Relative));
+    }
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC

@@ -18,6 +18,16 @@ namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
   public record HtmlAttributeDescriptorTopicViewModel: TextAreaAttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new instance of a <see cref="HtmlAttributeDescriptorTopicViewModel"/>
+    /// </summary>
+    public HtmlAttributeDescriptorTopicViewModel() {
+      Scripts.Register(new("https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"), true, false);
+    }
+
+    /*==========================================================================================================================
     | ROWS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc/>

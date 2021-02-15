@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using OnTopic.Metadata;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
+using System;
 
 #nullable enable
 
@@ -17,6 +18,18 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
   ///   Provides access to attributes associated with the <see cref="TokenizedTopicListViewComponent"/>.
   /// </summary>
   public record TokenizedTopicListAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new instance of a <see cref="TokenizedTopicListAttributeDescriptorTopicViewModel"/>
+    /// </summary>
+    public TokenizedTopicListAttributeDescriptorTopicViewModel() {
+      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/Vendor.css", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Scripts.js", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Vendor.js", UriKind.Relative));
+    }
 
     /*==========================================================================================================================
     | PROPERTY: MODEL TYPE

@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 #nullable enable
@@ -16,6 +17,17 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
   ///   Provides access to attributes associated with the <see cref="DateTimeViewComponent"/>.
   /// </summary>
   public record DateTimeAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new instance of a <see cref="DateTimeAttributeDescriptorTopicViewModel"/>
+    /// </summary>
+    public DateTimeAttributeDescriptorTopicViewModel() {
+      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/Vendor.css", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Vendor.js", UriKind.Relative));
+    }
 
     /*==========================================================================================================================
     | INCLUDE DATE PICKER?

@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 using OnTopic.ViewModels;
 
@@ -17,6 +18,16 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
   ///   Provides access to attributes associated with the <see cref="TopicListViewComponent"/>.
   /// </summary>
   public record TopicListAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new instance of a <see cref="TopicListAttributeDescriptorTopicViewModel"/>
+    /// </summary>
+    public TopicListAttributeDescriptorTopicViewModel() {
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Scripts.js", UriKind.Relative));
+    }
 
     /*==========================================================================================================================
     | DEFAULT LABEL

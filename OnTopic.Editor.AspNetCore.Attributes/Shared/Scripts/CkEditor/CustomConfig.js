@@ -22,7 +22,7 @@ CKEDITOR.editorConfig = function( config ) {
   config.resize_maxWidth        = '800';
   config.fillEmptyBlocks        = false;
   config.shiftEnterMode         = CKEDITOR.ENTER_BR;
-  config.contentsCss            = '/_content/OnTopic.Editor.AspNetCore/Shared/Styles/CKEditor.css';
+  config.contentsCss            = '/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/CKEditor.css';
   config.disableNativeSpellChecker = false;
   config.toolbar                = [
     {
