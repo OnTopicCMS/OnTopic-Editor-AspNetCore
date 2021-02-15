@@ -6,6 +6,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
 
@@ -102,6 +103,24 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
       new(AttributeDescriptors
         .Where(a => a.DisplayGroup.Equals(displayGroup, StringComparison.OrdinalIgnoreCase) && !a.IsHidden)
         .OrderBy(a => a.SortOrder).ToList());
+
+    /*==========================================================================================================================
+    | METHOD: GET STYLE SHEETS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves a collection of <see cref="StyleSheetResource"/>s from the underlying <see cref="AttributeDescriptors"/>
+    /// </summary>
+    public ReadOnlyCollection<StyleSheetResource> GetStyleSheets() =>
+      new(AttributeDescriptors.SelectMany(a => a.StyleSheets.GetResources()).Distinct().ToList());
+
+    /*==========================================================================================================================
+    | METHOD: GET SCRIPTS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves a collection of <see cref="ScriptResource"/>s from the underlying <see cref="AttributeDescriptors"/>
+    /// </summary>
+    public ReadOnlyCollection<ScriptResource> GetScripts(bool inHeader = false, bool? isDeferred = null) =>
+      new(AttributeDescriptors.SelectMany(a => a.Scripts.GetResources(inHeader, isDeferred)).Distinct().ToList());
 
   } //Class
 } //Namespace

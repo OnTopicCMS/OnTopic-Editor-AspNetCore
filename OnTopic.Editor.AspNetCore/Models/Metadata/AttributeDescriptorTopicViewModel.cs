@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models.Metadata {
@@ -103,6 +104,22 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeValue"/> instance.
     /// </summary>
     public bool IsEnabled { get; init; } = true;
+
+    /*==========================================================================================================================
+    | STYLE SHEETS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of client-side stylesheets associated with this <see cref="AttributeDescriptorTopicViewModel"/>.
+    /// </summary>
+    public StyleSheetCollection StyleSheets { get; } = new();
+
+    /*==========================================================================================================================
+    | SCRIPTS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of client-side scripts associated with this <see cref="AttributeDescriptorTopicViewModel"/>.
+    /// </summary>
+    public ScriptCollection Scripts { get; } = new();
 
   } //Class
 } //Namespace

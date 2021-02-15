@@ -13,13 +13,23 @@
     <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Vendor.js" defer></script>
     <script src="https://use.fontawesome.com/fd4f92cdd7.js" defer></script>
 
+    <!-- Plugin Scripts -->
+    @foreach(var script in Model.ContentTypeDescriptor.GetScripts(true)) {
+      <script src=@script.Url.ToString() defer=@script.IsDeferred asp-append-version="true"></script>
+    }
+
     <!-- Vendor Styles -->
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/Vendor.css" asp-append-version="true" />
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/ExtJS/css/ext-all.css" />
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/ExtJS/css/xtheme-gray.css" />
 
-    <!-- Site Stylesheet -->
+    <!-- Site Styles -->
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/Style.css" asp-append-version="true" />
+
+    <!-- Plugin Styles -->
+    @foreach(var styleSheet in Model.ContentTypeDescriptor.GetStyleSheets()) {
+      <link rel="stylesheet" type="text/css" href=@styleSheet.Url.ToString() asp-append-version="true" />
+    }
 
     <!-- Favorite icon -->
     <link rel="shortcut icon" href="~/_content/OnTopic.Editor.AspNetCore/favicon.ico">
@@ -88,6 +98,11 @@
     <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Scripts.js" asp-append-version="true" defer></script>
 
     @RenderSection("Scripts", required: false)
+
+    <!-- Plugin Scripts -->
+    @foreach(var script in Model.ContentTypeDescriptor.GetScripts()) {
+      <script src=@script.Url.ToString() defer=@script.IsDeferred asp-append-version="true"></script>
+    }
 
     <script>
       /**
