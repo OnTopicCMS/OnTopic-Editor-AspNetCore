@@ -25,8 +25,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     ///   Initializes a new instance of a <see cref="DateTimeAttributeDescriptorTopicViewModel"/>
     /// </summary>
     public DateTimeAttributeDescriptorTopicViewModel() {
-      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/Vendor.css", UriKind.Relative));
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Vendor.js", UriKind.Relative));
+      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/jquery-ui-timepicker-addon.min.css", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/jquery-ui-timepicker-addon.min.js", UriKind.Relative));
     }
 
     /*==========================================================================================================================

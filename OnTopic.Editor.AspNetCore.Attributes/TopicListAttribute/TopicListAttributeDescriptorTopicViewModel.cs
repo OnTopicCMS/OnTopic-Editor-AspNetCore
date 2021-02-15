@@ -20,16 +20,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
   public record TopicListAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a <see cref="TopicListAttributeDescriptorTopicViewModel"/>
-    /// </summary>
-    public TopicListAttributeDescriptorTopicViewModel() {
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Scripts.js", UriKind.Relative));
-    }
-
-    /*==========================================================================================================================
     | DEFAULT LABEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

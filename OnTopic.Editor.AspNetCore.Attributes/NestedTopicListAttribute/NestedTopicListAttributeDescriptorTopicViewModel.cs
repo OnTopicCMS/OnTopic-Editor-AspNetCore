@@ -25,7 +25,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     ///   Initializes a new instance of a <see cref="NestedTopicListAttributeDescriptorTopicViewModel"/>
     /// </summary>
     public NestedTopicListAttributeDescriptorTopicViewModel() {
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Scripts.js", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/NestedTopics.js", UriKind.Relative));
     }
 
   } //Class

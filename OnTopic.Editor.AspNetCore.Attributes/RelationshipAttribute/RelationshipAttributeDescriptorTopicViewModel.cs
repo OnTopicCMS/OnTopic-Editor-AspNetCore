@@ -25,7 +25,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
     ///   Initializes a new instance of a <see cref="RelationshipAttributeDescriptorTopicViewModel"/>
     /// </summary>
     public RelationshipAttributeDescriptorTopicViewModel() {
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Scripts.js", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/SelectableTreeView.js", UriKind.Relative));
     }
 
     /*==========================================================================================================================

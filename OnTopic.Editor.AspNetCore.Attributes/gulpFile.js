@@ -42,7 +42,7 @@ const files = {
   vendor                        : {
     js                          :   [ 'node_modules/jquery-tokeninput/dist/js/jquery-tokeninput.min.js',
                                       'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js'                                                                          ],
-  css                           :   [ 'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
+    css                         :   [ 'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
                                       'node_modules/jquery-tokeninput/dist/css/token-input-facebook.min.css',
                                       'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css'
                                     ]
@@ -107,7 +107,6 @@ var jsFactory = (source, destination, filename) =>
     .pipe(sourceMaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
-    .pipe(gulpif(!!filename, concat(filename || 'Ghost.js')))
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
     .pipe(dest(destination));
@@ -120,7 +119,6 @@ var jsFactory = (source, destination, filename) =>
 var vendorFilesFactory = (source, destination, filename) =>
   src(source)
     .pipe(sourceMaps.init())
-    .pipe(concat(filename))
     .pipe(sourceMaps.write('.'))
     .pipe(dest(destination));
 

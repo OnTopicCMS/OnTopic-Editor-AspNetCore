@@ -26,9 +26,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     ///   Initializes a new instance of a <see cref="TokenizedTopicListAttributeDescriptorTopicViewModel"/>
     /// </summary>
     public TokenizedTopicListAttributeDescriptorTopicViewModel() {
-      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/Vendor.css", UriKind.Relative));
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Scripts.js", UriKind.Relative));
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/Vendor.js", UriKind.Relative));
+      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input.min.css", UriKind.Relative));
+      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input-facebook.min.css", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/jquery-tokeninput.min.js", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/TokenizedTopicList.js", UriKind.Relative));
     }
 
     /*==========================================================================================================================
