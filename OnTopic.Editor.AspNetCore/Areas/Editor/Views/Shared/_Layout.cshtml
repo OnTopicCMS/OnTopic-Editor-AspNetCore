@@ -18,8 +18,13 @@
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/ExtJS/css/ext-all.css" />
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/ExtJS/css/xtheme-gray.css" />
 
-    <!-- Site Stylesheet -->
+    <!-- Site Styles -->
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/Style.css" asp-append-version="true" />
+
+    <!-- Plugin Styles -->
+    @foreach(var styleSheet in Model.ContentTypeDescriptor.GetStyleSheets()) {
+      <link rel="stylesheet" type="text/css" href=@styleSheet.Url.ToString() asp-append-version="true" />
+    }
 
     <!-- Favorite icon -->
     <link rel="shortcut icon" href="~/_content/OnTopic.Editor.AspNetCore/favicon.ico">
