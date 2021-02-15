@@ -99,6 +99,11 @@
 
     @RenderSection("Scripts", required: false)
 
+    <!-- Plugin Scripts -->
+    @foreach(var script in Model.ContentTypeDescriptor.GetScripts()) {
+      <script src=@script.Url.ToString() defer=@script.IsDeferred asp-append-version="true"></script>
+    }
+
     <script>
       /**
         * Initialize Foundation and inline scripts
