@@ -13,6 +13,11 @@
     <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Vendor.js" defer></script>
     <script src="https://use.fontawesome.com/fd4f92cdd7.js" defer></script>
 
+    <!-- Plugin Scripts -->
+    @foreach(var script in Model.ContentTypeDescriptor.GetScripts(true)) {
+      <script src=@script.Url.ToString() defer=@script.IsDeferred asp-append-version="true"></script>
+    }
+
     <!-- Vendor Styles -->
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/Vendor.css" asp-append-version="true" />
     <link rel="stylesheet" type="text/css" href="~/_content/OnTopic.Editor.AspNetCore/Shared/Styles/ExtJS/css/ext-all.css" />
