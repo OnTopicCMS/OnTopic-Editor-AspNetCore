@@ -1,17 +1,13 @@
 /*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        GoldSim
-| Project       Website
+| Client        Ignia, LLC
+| Project       OnTopic Editor
 \=============================================================================================================================*/
 
 /*==============================================================================================================================
 | DEPENDENCIES
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const   {src, dest, parallel}   = require('gulp');
-
-const   gulpif                  = require('gulp-if'),
-        concat                  = require('gulp-concat'),
-        merge                   = require('merge2');
 
 const   sass                    = require('gulp-sass'),
         postCss                 = require("gulp-postcss"),
@@ -23,9 +19,7 @@ const   sass                    = require('gulp-sass'),
 /*==============================================================================================================================
 | VARIABLES
 \-----------------------------------------------------------------------------------------------------------------------------*/
-var     environment             = 'development',
-        outputDir               = 'wwwroot',
-        isProduction            = false;
+var     outputDir               = 'wwwroot';
 
 /*==============================================================================================================================
 | SOURCE FILE PATHS
@@ -50,23 +44,6 @@ const files = {
 };
 
 /*==============================================================================================================================
-| SET ENVIRONMENT
->-------------------------------------------------------------------------------------------------------------------------------
-| Looks for an environment variable and conditionally set local context accordingly.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-environment                     = process.env.BUILD_ENVIRONMENT || environment;
-
-// Environment: Development
-if (environment === 'development') {
-  isProduction                  = false;
-}
-
-// Environment: Production
-else {
-  isProduction                  = true;
-}
-
-/*==============================================================================================================================
 | METHOD: GET OUTPUT DIR
 \-----------------------------------------------------------------------------------------------------------------------------*/
 var     getOutputDir            = (contentType) => outputDir.concat("/Shared/", contentType, "/");
@@ -88,8 +65,6 @@ var scssFactory = (source, destination) =>
   ]))
   .pipe(sourceMaps.write('.'))
   .pipe(dest(destination || getOutputDir('Styles')));
-
-var condition = "";
 
 /*==============================================================================================================================
 | FACTORY: JAVASCRIPT FILES
@@ -118,58 +93,6 @@ var vendorFilesFactory = (source, destination, filename) =>
     .pipe(dest(destination));
 
 /*==============================================================================================================================
-| FACTORY: COPY FILES
->-------------------------------------------------------------------------------------------------------------------------------
-| Consolidates third-party files sourced from npm as part of production process.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-var copyFilesFactory = (source, destination) => src(source).pipe(dest(destination));
-
-/*==============================================================================================================================
-| FACTORY: BATCH SET
->-------------------------------------------------------------------------------------------------------------------------------
-| Produces a task based on a given source, destinction, and factory method. Intended to handle files that need to be handled as
-| batches. Expects an source argument broken down by named collections, where the name will be the target folder.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-var batchSetFactory = (source, destination, factory) => {
-  var streams = [];
-  for (var target in source) {
-    streams.push(
-      factory(
-        source[target],
-        destination.concat(target)
-      )
-    );
-  }
-  return merge(streams);
-};
-
-/*==============================================================================================================================
-| TASK: STANDALONE FILES
->-------------------------------------------------------------------------------------------------------------------------------
-| Copies static dependencies from their source folders and into their appropriate build folders.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-var standaloneFilesTask = () => {
-  var streams = [];
-  for (var contentType in files.standalone) {
-    var factory = (function (contentType) {
-      switch (contentType) {
-        case 'Scripts'          : return jsFactory;
-        case 'Styles'           : return scssFactory;
-        case 'Fonts'            : return copyFilesFactory;
-      }
-    })(contentType);
-    streams.push(
-      batchSetFactory(
-        files.standalone[contentType],
-        getOutputDir(contentType),
-        factory
-      )
-    );
-  }
-  return merge(streams);
-};
-
-/*==============================================================================================================================
 | DEFINE TASKS
 >-------------------------------------------------------------------------------------------------------------------------------
 | Using the above factory methods, define available tasks
@@ -188,14 +111,13 @@ exports.js                      = jsTask;
 exports.scss                    = scssTask;
 exports.jsVendor                = jsVendorTask;
 exports.cssVendor               = cssVendorTask;
-exports.standaloneFiles         = standaloneFilesTask;
 
 /*==============================================================================================================================
 | TASK: BUILD
 >-------------------------------------------------------------------------------------------------------------------------------
 | Composite task that will call all build-related tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.build = parallel(standaloneFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
+exports.build = parallel(scssTask, cssVendorTask, jsTask, jsVendorTask);
 
 /*==============================================================================================================================
 | TASK: DEFAULT
@@ -203,4 +125,4 @@ exports.build = parallel(standaloneFilesTask, scssTask, cssVendorTask, jsTask, j
 | The default task when Gulp runs, assuming no task is specified. Assuming the environment variable isn't explicitly defined
 | otherwise, will run on development-oriented tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.default = parallel(standaloneFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
+exports.default = parallel(scssTask, cssVendorTask, jsTask, jsVendorTask);

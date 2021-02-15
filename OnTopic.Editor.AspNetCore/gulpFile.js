@@ -1,7 +1,7 @@
 /*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        GoldSim
-| Project       Website
+| Client        Ignia, LLC
+| Project       OnTopic Editor
 \=============================================================================================================================*/
 
 /*==============================================================================================================================
@@ -23,9 +23,7 @@ const   sass                    = require('gulp-sass'),
 /*==============================================================================================================================
 | VARIABLES
 \-----------------------------------------------------------------------------------------------------------------------------*/
-var     environment             = 'development',
-        outputDir               = 'wwwroot',
-        isProduction            = false;
+var     outputDir               = 'wwwroot';
 
 /*==============================================================================================================================
 | SOURCE FILE PATHS
@@ -51,7 +49,7 @@ const files = {
                                       'Shared/Scripts/ExtJS/ext-ExtendTextField.js',
                                       'node_modules/jquery.are-you-sure/jquery.are-you-sure.js'
                                     ],
-  css                           :   [ 'node_modules/jquery-ui-dist/jquery-ui.min.css'
+    css                         :   [ 'node_modules/jquery-ui-dist/jquery-ui.min.css'
                                     ]
                                   },
   precompiled                   : {
@@ -63,23 +61,6 @@ const files = {
                                     }
                                   }
 };
-
-/*==============================================================================================================================
-| SET ENVIRONMENT
->-------------------------------------------------------------------------------------------------------------------------------
-| Looks for an environment variable and conditionally set local context accordingly.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-environment                     = process.env.BUILD_ENVIRONMENT || environment;
-
-// Environment: Development
-if (environment === 'development') {
-  isProduction                  = false;
-}
-
-// Environment: Production
-else {
-  isProduction                  = true;
-}
 
 /*==============================================================================================================================
 | METHOD: GET OUTPUT DIR
@@ -103,8 +84,6 @@ var scssFactory = (source, destination) =>
   ]))
   .pipe(sourceMaps.write('.'))
   .pipe(dest(destination || getOutputDir('Styles')));
-
-var condition = "";
 
 /*==============================================================================================================================
 | FACTORY: JAVASCRIPT FILES
