@@ -9,10 +9,6 @@
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const   {src, dest, parallel}   = require('gulp');
 
-const   gulpif                  = require('gulp-if'),
-        concat                  = require('gulp-concat'),
-        merge                   = require('merge2');
-
 const   sass                    = require('gulp-sass'),
         postCss                 = require("gulp-postcss"),
         cssNano                 = require("cssnano"),
@@ -36,29 +32,14 @@ var     outputDir               = 'wwwroot';
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const files = {
   scss                          : 'Shared/Styles/**/[!_]*.scss',
-  js                            : 'Shared/Scripts/*.js',
+  js                            : 'Shared/Scripts/**/*.js',
   vendor                        : {
-    js                          :   [ 'node_modules/jquery/dist/jquery.min.js',
-                                      'node_modules/jquery-ui-dist/jquery-ui.min.js',
-                                      'node_modules/jquery-validation/dist/jquery.validate.min.js',
-                                      'node_modules/jquery-validation/dist/additional-methods.min.js',
-                                      'node_modules/popper.js/dist/umd/popper.min.js',
-                                      'node_modules/bootstrap/dist/js/bootstrap.min.js',
-                                      'Shared/Scripts/ExtJS/ext-base.js',
-                                      'Shared/Scripts/ExtJS/ext-all.js',
-                                      'Shared/Scripts/ExtJS/ext-ExtendTextField.js',
-                                      'node_modules/jquery.are-you-sure/jquery.are-you-sure.js'
-                                    ],
-    css                         :   [ 'node_modules/jquery-ui-dist/jquery-ui.min.css'
+    js                          :   [ 'node_modules/jquery-tokeninput/dist/js/jquery-tokeninput.min.js',
+                                      'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js'                                                                          ],
+    css                         :   [ 'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
+                                      'node_modules/jquery-tokeninput/dist/css/token-input-facebook.min.css',
+                                      'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css'
                                     ]
-                                  },
-  precompiled                   : {
-    'Scripts'                   :   {
-      'ExtJS'                   :     'Shared/Scripts/ExtJS/*.js'
-                                    },
-    'Styles': {
-      'ExtJS'                   :     'Shared/Scripts/ExtJS/Resources/**/*'
-                                    }
                                   }
 };
 
@@ -96,7 +77,6 @@ var jsFactory = (source, destination, filename) =>
     .pipe(sourceMaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
-    .pipe(gulpif(!!filename, concat(filename || 'Ghost.js')))
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
     .pipe(dest(destination));
@@ -109,54 +89,8 @@ var jsFactory = (source, destination, filename) =>
 var vendorFilesFactory = (source, destination, filename) =>
   src(source)
     .pipe(sourceMaps.init())
-    .pipe(concat(filename))
     .pipe(sourceMaps.write('.'))
     .pipe(dest(destination));
-
-/*==============================================================================================================================
-| FACTORY: COPY FILES
->-------------------------------------------------------------------------------------------------------------------------------
-| Consolidates third-party files sourced from npm as part of production process.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-var copyFilesFactory = (source, destination) => src(source).pipe(dest(destination));
-
-/*==============================================================================================================================
-| FACTORY: BATCH SET
->-------------------------------------------------------------------------------------------------------------------------------
-| Produces a task based on a given source, destinction, and factory method. Intended to handle files that need to be handled as
-| batches. Expects an source argument broken down by named collections, where the name will be the target folder.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-var batchSetFactory = (source, destination, factory) => {
-  var streams = [];
-  for (var target in source) {
-    streams.push(
-      factory(
-        source[target],
-        destination.concat(target)
-      )
-    );
-  }
-  return merge(streams);
-};
-
-/*==============================================================================================================================
-| TASK: PRECOMPILED FILES
->-------------------------------------------------------------------------------------------------------------------------------
-| Copies precompiled dependencies from their source folders and into their appropriate build folders.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-var precompiledFilesTask = () => {
-  var streams = [];
-  for (var contentType in files.precompiled) {
-    streams.push(
-      batchSetFactory(
-        files.precompiled[contentType],
-        getOutputDir(contentType),
-        copyFilesFactory
-      )
-    );
-  }
-  return merge(streams);
-};
 
 /*==============================================================================================================================
 | DEFINE TASKS
@@ -177,14 +111,13 @@ exports.js                      = jsTask;
 exports.scss                    = scssTask;
 exports.jsVendor                = jsVendorTask;
 exports.cssVendor               = cssVendorTask;
-exports.precompiledFiles        = precompiledFilesTask;
 
 /*==============================================================================================================================
 | TASK: BUILD
 >-------------------------------------------------------------------------------------------------------------------------------
 | Composite task that will call all build-related tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.build = parallel(precompiledFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
+exports.build = parallel(scssTask, cssVendorTask, jsTask, jsVendorTask);
 
 /*==============================================================================================================================
 | TASK: DEFAULT
@@ -192,4 +125,4 @@ exports.build = parallel(precompiledFilesTask, scssTask, cssVendorTask, jsTask, 
 | The default task when Gulp runs, assuming no task is specified. Assuming the environment variable isn't explicitly defined
 | otherwise, will run on development-oriented tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.default = parallel(precompiledFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
+exports.default = parallel(scssTask, cssVendorTask, jsTask, jsVendorTask);

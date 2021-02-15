@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 
 #nullable enable
@@ -16,6 +17,16 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
   ///   Provides access to attributes associated with the <see cref="RelationshipViewComponent"/>.
   /// </summary>
   public record RelationshipAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new instance of a <see cref="RelationshipAttributeDescriptorTopicViewModel"/>
+    /// </summary>
+    public RelationshipAttributeDescriptorTopicViewModel() {
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/SelectableTreeView.js", UriKind.Relative));
+    }
 
     /*==========================================================================================================================
     | PROPERTY: SHOW ROOT

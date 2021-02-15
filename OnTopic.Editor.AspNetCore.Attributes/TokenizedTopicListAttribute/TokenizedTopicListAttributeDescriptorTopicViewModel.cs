@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using OnTopic.Metadata;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
+using System;
 
 #nullable enable
 
@@ -17,6 +18,19 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
   ///   Provides access to attributes associated with the <see cref="TokenizedTopicListViewComponent"/>.
   /// </summary>
   public record TokenizedTopicListAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new instance of a <see cref="TokenizedTopicListAttributeDescriptorTopicViewModel"/>
+    /// </summary>
+    public TokenizedTopicListAttributeDescriptorTopicViewModel() {
+      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input.min.css", UriKind.Relative));
+      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input-facebook.min.css", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/jquery-tokeninput.min.js", UriKind.Relative));
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/TokenizedTopicList.js", UriKind.Relative));
+    }
 
     /*==========================================================================================================================
     | PROPERTY: MODEL TYPE

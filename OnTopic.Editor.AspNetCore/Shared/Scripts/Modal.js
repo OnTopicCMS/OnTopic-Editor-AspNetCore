@@ -7,9 +7,9 @@
 /*==============================================================================================================================
 | CONFIGURE MODAL EDITOR
 >-------------------------------------------------------------------------------------------------------------------------------
-| The TopicListViewComponent exposes a list of "nested topics". To help reinforce that these are components of the parent
-| page, these are loaded in small, lightweight modal windows with minimal navigation. The following methods help configure the
-| modal windows and ensure the page is prepared to handle events related to it.
+| Some attributes support editing nested or child topics. To help reinforce that these are components of the parent page, these
+| are loaded in small, lightweight modal windows with minimal navigation. The following methods help configure the modal windows
+| and ensure the page is prepared to handle events related to it.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 
 /*==============================================================================================================================
