@@ -132,7 +132,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /// <summary>
     ///   Given a date, applies any offsets applied to the date and time.
     /// </summary>
-    public DateTime CalculateOffset(DateTime originalDate) {
+    private DateTime CalculateOffset(DateTime originalDate) {
       var offset = AttributeDescriptor.DateTimeOffset?? 0;
       if (AttributeDescriptor.DateTimeOffset is 0) return originalDate;
       return AttributeDescriptor.DateTimeOffsetUnits switch {
