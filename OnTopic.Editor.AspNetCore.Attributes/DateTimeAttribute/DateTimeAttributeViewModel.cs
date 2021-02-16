@@ -69,6 +69,29 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     }
 
     /*==========================================================================================================================
+    | PROPERTY: FORMATTED VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Parses the <see cref="Value"/> and returns the full date and time in the format expected by the date/time control.
+    /// </summary>
+    public string FormattedValue {
+      get {
+        if (AttributeDescriptor.IncludeDatePicker is not null || AttributeDescriptor.IncludeTimePicker is not null) {
+          if (AttributeDescriptor.IncludeDatePicker is true && AttributeDescriptor.IncludeTimePicker is true) {
+            return DateTimeValue.ToString("o");
+          }
+          else if (AttributeDescriptor.IncludeDatePicker is true) {
+            return GetDefaultDate();
+          }
+          else if (AttributeDescriptor.IncludeTimePicker is true) {
+            return GetDefaultTime();
+          };
+        }
+        return DateTimeValue.ToString("o");
+      }
+    }
+
+    /*==========================================================================================================================
     | METHOD: GET DEFAULT DATE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
