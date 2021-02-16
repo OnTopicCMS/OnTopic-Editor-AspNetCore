@@ -35,9 +35,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   Provides a collection of <see cref="DateTime"/> instances during which the represented <see cref="Topic"/> was
     ///   modified.
     /// </summary>
-    #pragma warning disable CA2227 // Collection properties should be read only
-    public Collection<DateTime> VersionHistory { get; set; } = new();
-    #pragma warning restore CA2227 // Collection properties should be read only
+    public Collection<DateTime> VersionHistory { get; init; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: BASE TOPIC
