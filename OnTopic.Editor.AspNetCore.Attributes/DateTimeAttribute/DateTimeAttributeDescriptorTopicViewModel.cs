@@ -19,17 +19,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
   public record DateTimeAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a <see cref="DateTimeAttributeDescriptorTopicViewModel"/>
-    /// </summary>
-    public DateTimeAttributeDescriptorTopicViewModel() {
-      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/jquery-ui-timepicker-addon.min.css", UriKind.Relative));
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/jquery-ui-timepicker-addon.min.js", UriKind.Relative));
-    }
-
-    /*==========================================================================================================================
     | INCLUDE DATE PICKER?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -44,31 +33,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     ///   Determines whether or not the time picker should be displayed.
     /// </summary>
     public bool? IncludeTimePicker { get; init; }
-
-    /*==========================================================================================================================
-    | DATE FORMAT
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Establishes the date format that the value should be stored in.
-    /// </summary>
-    public string? DateFormat { get; init; } = "yy-mm-dd";
-
-    /*==========================================================================================================================
-    | TIME FORMAT
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Establishes the time format that the value should be stored in. Defaults to "yyyy-mm-dd".
-    /// </summary>
-    public string? TimeFormat { get; init; } = "hh:mm tt";
-
-    /*==========================================================================================================================
-    | DATE/TIME SEPARATOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Establishes the delimiter that should be use to separate the date and time format, if both are selected. Defaults to
-    ///   "hh:mm TT".
-    /// </summary>
-    public string? DateTimeSeparator { get; init; } = " ";
 
     /*==========================================================================================================================
     | DATE/TIME OFFSET

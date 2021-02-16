@@ -23,9 +23,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     string                          _defaultDate;
-    private                     string                          _defaultTime;
     private readonly            IFormatProvider                 _format                         = CultureInfo.InvariantCulture;
+    private                     DateTime?                       _value;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -46,48 +45,86 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     ) {}
 
     /*==========================================================================================================================
-    | METHOD: GET DEFAULT DATE
+    | PROPERTY: INPUT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time plugin.
+    ///   Determines the <c>type</c> value for the <c>input</c> element.
     /// </summary>
-    public string GetDefaultDate() {
-      if (String.IsNullOrEmpty(_defaultDate)) {
-        //Convert from JavaScript date format conventions to C# conventions
-        var dateFormat          = AttributeDescriptor.DateFormat
-          .Replace("y", "yy", StringComparison.Ordinal)
-          .Replace("mm", "MM", StringComparison.Ordinal);
-        if (!String.IsNullOrEmpty(Value)) {
-          if (DateTime.TryParse(Value, out var dateValue)) {
-            _defaultDate        = dateValue.ToString(dateFormat, _format);
+    public string InputType {
+      get {
+        if (AttributeDescriptor.IncludeDatePicker is not null || AttributeDescriptor.IncludeTimePicker is not null) {
+          if (AttributeDescriptor.IncludeDatePicker is not false && AttributeDescriptor.IncludeTimePicker is not false) {
+            return "datetime-local";
+          }
+          else if (AttributeDescriptor.IncludeDatePicker is not false) {
+            return "date";
+          }
+          else if (AttributeDescriptor.IncludeTimePicker is not false) {
+            return "time";
           }
         }
-        else {
-          _defaultDate          = CalculateOffset(DateTime.Now).ToString(dateFormat, _format);
-        }
+        return "datetime-local";
       }
-      return _defaultDate;
     }
 
     /*==========================================================================================================================
-    | METHOD: GET DEFAULT TIME
+    | PROPERTY: DATE/TIME VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time plugin.
+    ///   Determines if the <see cref="Value"/> is set and, if so, returns that value as a <see cref="DateTime"/> object;
+    ///   otherwise returns the current <see cref="DateTime"/>.
     /// </summary>
-    public string GetDefaultTime() {
-      if (String.IsNullOrEmpty(_defaultTime)) {
-        if (!String.IsNullOrEmpty(Value)) {
-          if (DateTime.TryParse(Value, out var timeValue)) {
-            _defaultTime        = timeValue.ToString(AttributeDescriptor.TimeFormat, _format);
-          }
+    public DateTime DateTimeValue {
+      get {
+        if (_value is not null) {
+          return _value.Value;
+        }
+        else if (!String.IsNullOrEmpty(Value) && DateTime.TryParse(Value, out var dateTimeValue)) {
+          _value = dateTimeValue;
         }
         else {
-          _defaultTime          = CalculateOffset(DateTime.Now).ToString(AttributeDescriptor.TimeFormat, _format);
+          _value = CalculateOffset(DateTime.Now);
         }
+        return _value.Value;
       }
-      return _defaultTime;
     }
+
+    /*==========================================================================================================================
+    | PROPERTY: TO FORMATTED STRING
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Parses the <see cref="Value"/> and returns the full date and time in the format expected by the date/time control.
+    /// </summary>
+    public string ToFormattedString() {
+      if (AttributeDescriptor.IncludeDatePicker is not null || AttributeDescriptor.IncludeTimePicker is not null) {
+        if (AttributeDescriptor.IncludeDatePicker is not false && AttributeDescriptor.IncludeTimePicker is not false) {
+          return DateTimeValue.ToString("s");
+        }
+        else if (AttributeDescriptor.IncludeDatePicker is not false) {
+          return ToDateString();
+        }
+        else if (AttributeDescriptor.IncludeTimePicker is not false) {
+          return ToTimeString();
+        };
+      }
+      return DateTimeValue.ToString("s");
+    }
+
+    /*==========================================================================================================================
+    | METHOD: TO DATE STRING
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time control.
+    /// </summary>
+    public string ToDateString() => DateTimeValue.ToString("yyyy-MM-dd", _format);
+
+    /*==========================================================================================================================
+    | METHOD: TO TIME STRING
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time control.
+    /// </summary>
+    public string ToTimeString() => DateTimeValue.ToString("hh:mm:ss", _format);
 
     /*==========================================================================================================================
     | METHOD: CALCULATE OFFSET
@@ -95,7 +132,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /// <summary>
     ///   Given a date, applies any offsets applied to the date and time.
     /// </summary>
-    public DateTime CalculateOffset(DateTime originalDate) {
+    private DateTime CalculateOffset(DateTime originalDate) {
       var offset = AttributeDescriptor.DateTimeOffset?? 0;
       if (AttributeDescriptor.DateTimeOffset is 0) return originalDate;
       return AttributeDescriptor.DateTimeOffsetUnits switch {
