@@ -99,11 +99,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /// </summary>
     public string GetDefaultDate() {
       if (String.IsNullOrEmpty(_defaultDate)) {
-        //Convert from JavaScript date format conventions to C# conventions
-        var dateFormat          = AttributeDescriptor.DateFormat
-          .Replace("y", "yy", StringComparison.Ordinal)
-          .Replace("mm", "MM", StringComparison.Ordinal);
-        _defaultDate            = DateTimeValue.ToString(dateFormat, _format);
+        _defaultDate            = DateTimeValue.ToString("yyyy-MM-dd", _format);
       }
       return _defaultDate;
     }
@@ -116,7 +112,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /// </summary>
     public string GetDefaultTime() {
       if (String.IsNullOrEmpty(_defaultTime)) {
-        _defaultTime            = DateTimeValue.ToString(AttributeDescriptor.TimeFormat, _format);
+        _defaultTime            = DateTimeValue.ToString("hh:mm:ss", _format);
       }
       return _defaultTime;
     }
