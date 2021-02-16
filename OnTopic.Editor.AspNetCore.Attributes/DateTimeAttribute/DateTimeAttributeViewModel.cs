@@ -45,6 +45,29 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     ) {}
 
     /*==========================================================================================================================
+    | PROPERTY: INPUT TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines the <c>type</c> value for the <c>input</c> element.
+    /// </summary>
+    public string InputType {
+      get {
+        if (AttributeDescriptor.IncludeDatePicker is not null || AttributeDescriptor.IncludeTimePicker is not null) {
+          if (AttributeDescriptor.IncludeDatePicker is true && AttributeDescriptor.IncludeTimePicker is true) {
+            return "datetime-local";
+          }
+          else if (AttributeDescriptor.IncludeDatePicker is true) {
+            return "date";
+          }
+          else if (AttributeDescriptor.IncludeTimePicker is true) {
+            return "time";
+          }
+        }
+        return "datetime-local";
+      }
+    }
+
+    /*==========================================================================================================================
     | PROPERTY: DATE/TIME VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
