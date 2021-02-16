@@ -26,6 +26,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     private                     string                          _defaultDate;
     private                     string                          _defaultTime;
     private readonly            IFormatProvider                 _format                         = CultureInfo.InvariantCulture;
+    private                     DateTime?                       _value;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -46,6 +47,28 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     ) {}
 
     /*==========================================================================================================================
+    | PROPERTY: DATE/TIME VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the <see cref="Value"/> is set and, if so, returns that value as a <see cref="DateTime"/> object;
+    ///   otherwise returns the current <see cref="DateTime"/>.
+    /// </summary>
+    public DateTime DateTimeValue {
+      get {
+        if (_value is not null) {
+          return _value.Value;
+        }
+        else if (!String.IsNullOrEmpty(Value) && DateTime.TryParse(Value, out var dateTimeValue)) {
+          _value = dateTimeValue;
+        }
+        else {
+          _value = CalculateOffset(DateTime.Now);
+        }
+        return _value.Value;
+      }
+    }
+
+    /*==========================================================================================================================
     | METHOD: GET DEFAULT DATE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -57,14 +80,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
         var dateFormat          = AttributeDescriptor.DateFormat
           .Replace("y", "yy", StringComparison.Ordinal)
           .Replace("mm", "MM", StringComparison.Ordinal);
-        if (!String.IsNullOrEmpty(Value)) {
-          if (DateTime.TryParse(Value, out var dateValue)) {
-            _defaultDate        = dateValue.ToString(dateFormat, _format);
-          }
-        }
-        else {
-          _defaultDate          = CalculateOffset(DateTime.Now).ToString(dateFormat, _format);
-        }
+        _defaultDate            = DateTimeValue.ToString(dateFormat, _format);
       }
       return _defaultDate;
     }
@@ -77,14 +93,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /// </summary>
     public string GetDefaultTime() {
       if (String.IsNullOrEmpty(_defaultTime)) {
-        if (!String.IsNullOrEmpty(Value)) {
-          if (DateTime.TryParse(Value, out var timeValue)) {
-            _defaultTime        = timeValue.ToString(AttributeDescriptor.TimeFormat, _format);
-          }
-        }
-        else {
-          _defaultTime          = CalculateOffset(DateTime.Now).ToString(AttributeDescriptor.TimeFormat, _format);
-        }
+        _defaultTime            = DateTimeValue.ToString(AttributeDescriptor.TimeFormat, _format);
       }
       return _defaultTime;
     }
