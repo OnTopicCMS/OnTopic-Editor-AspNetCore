@@ -17,7 +17,6 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "jquery-tokeninput": "^1.6.0",
-    "jquery-ui-timepicker-addon": "^1.6.3",
     "jshint": "^2.12.0",
     "merge2": "^1.4.1"
   }

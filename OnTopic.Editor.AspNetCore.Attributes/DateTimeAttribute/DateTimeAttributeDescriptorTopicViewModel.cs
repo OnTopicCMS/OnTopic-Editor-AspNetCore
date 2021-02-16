@@ -19,17 +19,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
   public record DateTimeAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a <see cref="DateTimeAttributeDescriptorTopicViewModel"/>
-    /// </summary>
-    public DateTimeAttributeDescriptorTopicViewModel() {
-      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/jquery-ui-timepicker-addon.min.css", UriKind.Relative));
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/jquery-ui-timepicker-addon.min.js", UriKind.Relative));
-    }
-
-    /*==========================================================================================================================
     | INCLUDE DATE PICKER?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
