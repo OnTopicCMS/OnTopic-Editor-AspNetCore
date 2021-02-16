@@ -53,13 +53,13 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     public string InputType {
       get {
         if (AttributeDescriptor.IncludeDatePicker is not null || AttributeDescriptor.IncludeTimePicker is not null) {
-          if (AttributeDescriptor.IncludeDatePicker is true && AttributeDescriptor.IncludeTimePicker is true) {
+          if (AttributeDescriptor.IncludeDatePicker is not false && AttributeDescriptor.IncludeTimePicker is not false) {
             return "datetime-local";
           }
-          else if (AttributeDescriptor.IncludeDatePicker is true) {
+          else if (AttributeDescriptor.IncludeDatePicker is not false) {
             return "date";
           }
-          else if (AttributeDescriptor.IncludeTimePicker is true) {
+          else if (AttributeDescriptor.IncludeTimePicker is not false) {
             return "time";
           }
         }
@@ -97,13 +97,13 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /// </summary>
     public string ToFormattedString() {
       if (AttributeDescriptor.IncludeDatePicker is not null || AttributeDescriptor.IncludeTimePicker is not null) {
-        if (AttributeDescriptor.IncludeDatePicker is true && AttributeDescriptor.IncludeTimePicker is true) {
+        if (AttributeDescriptor.IncludeDatePicker is not false && AttributeDescriptor.IncludeTimePicker is not false) {
           return DateTimeValue.ToString("o");
         }
-        else if (AttributeDescriptor.IncludeDatePicker is true) {
+        else if (AttributeDescriptor.IncludeDatePicker is not false) {
           return ToDateString();
         }
-        else if (AttributeDescriptor.IncludeTimePicker is true) {
+        else if (AttributeDescriptor.IncludeTimePicker is not false) {
           return ToTimeString();
         };
       }
