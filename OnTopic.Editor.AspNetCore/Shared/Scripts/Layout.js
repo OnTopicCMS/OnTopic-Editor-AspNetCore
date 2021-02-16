@@ -38,7 +38,7 @@ $(function () {
   var $dynamicFormWidth         = $('#PageContentArea').width();
   var $editorNavBar             = $('#Toolbar');
   if ($editorNavBar) {
-    $editorNavBar.css('width', $dynamicFormWidth + 'px').css('top', $topBarHeight+1 + 'px');
+    $editorNavBar.css('width', $dynamicFormWidth + 'px').css('top', $topBarHeight+1 + 'px').show();
   }
 
   /*----------------------------------------------------------------------------------------------------------------------------
