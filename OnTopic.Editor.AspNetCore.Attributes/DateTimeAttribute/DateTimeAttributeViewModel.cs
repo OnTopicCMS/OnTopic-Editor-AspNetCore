@@ -98,7 +98,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     public string ToFormattedString() {
       if (AttributeDescriptor.IncludeDatePicker is not null || AttributeDescriptor.IncludeTimePicker is not null) {
         if (AttributeDescriptor.IncludeDatePicker is not false && AttributeDescriptor.IncludeTimePicker is not false) {
-          return DateTimeValue.ToString("o");
+          return DateTimeValue.ToString("s");
         }
         else if (AttributeDescriptor.IncludeDatePicker is not false) {
           return ToDateString();
@@ -107,7 +107,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
           return ToTimeString();
         };
       }
-      return DateTimeValue.ToString("o");
+      return DateTimeValue.ToString("s");
     }
 
     /*==========================================================================================================================
