@@ -23,8 +23,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     string                          _defaultDate;
-    private                     string                          _defaultTime;
     private readonly            IFormatProvider                 _format                         = CultureInfo.InvariantCulture;
     private                     DateTime?                       _value;
 
@@ -81,10 +79,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
             return DateTimeValue.ToString("o");
           }
           else if (AttributeDescriptor.IncludeDatePicker is true) {
-            return GetDefaultDate();
+            return ToDateString();
           }
           else if (AttributeDescriptor.IncludeTimePicker is true) {
-            return GetDefaultTime();
+            return ToTimeString();
           };
         }
         return DateTimeValue.ToString("o");
@@ -92,30 +90,20 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     }
 
     /*==========================================================================================================================
-    | METHOD: GET DEFAULT DATE
+    | METHOD: TO DATE STRING
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time plugin.
+    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time control.
     /// </summary>
-    public string GetDefaultDate() {
-      if (String.IsNullOrEmpty(_defaultDate)) {
-        _defaultDate            = DateTimeValue.ToString("yyyy-MM-dd", _format);
-      }
-      return _defaultDate;
-    }
+    public string ToDateString() => DateTimeValue.ToString("yyyy-MM-dd", _format);
 
     /*==========================================================================================================================
-    | METHOD: GET DEFAULT TIME
+    | METHOD: TO TIME STRING
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time plugin.
+    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time control.
     /// </summary>
-    public string GetDefaultTime() {
-      if (String.IsNullOrEmpty(_defaultTime)) {
-        _defaultTime            = DateTimeValue.ToString("hh:mm:ss", _format);
-      }
-      return _defaultTime;
-    }
+    public string ToTimeString() => DateTimeValue.ToString("hh:mm:ss", _format);
 
     /*==========================================================================================================================
     | METHOD: CALCULATE OFFSET

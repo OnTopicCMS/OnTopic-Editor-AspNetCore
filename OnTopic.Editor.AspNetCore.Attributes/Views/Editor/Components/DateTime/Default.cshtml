@@ -26,7 +26,7 @@
           @if (includeDatePicker) {
             <text>
               dateFormat        : '@Model.AttributeDescriptor.DateFormat',
-              defaultDate       : '@Model.GetDefaultDate()',
+              defaultDate       : '@Model.ToDateString()',
             </text>
           }
           @if (includeDatePicker && includeTimePicker) {
@@ -37,10 +37,10 @@
           @if (includeTimePicker) {
             <text>
               timeFormat        : '@Model.AttributeDescriptor.TimeFormat',
-              defaultTime       : '@Model.GetDefaultTime()',
+              defaultTime       : '@Model.ToTimeString()',
             </text>
           }
-          defaultValue          : '@Model.GetDefaultDate() @Model.GetDefaultTime()'
+          defaultValue          : '@Model.ToDateString() @Model.ToTimeString()'
         });
 
     })(jQuery);
