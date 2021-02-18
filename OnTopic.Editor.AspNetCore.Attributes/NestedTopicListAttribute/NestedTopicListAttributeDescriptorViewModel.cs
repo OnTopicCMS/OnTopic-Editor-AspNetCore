@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using OnTopic.Editor.AspNetCore.Models.Components;
 
 #nullable enable
@@ -25,7 +24,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     ///   Initializes a new instance of a <see cref="NestedTopicListAttributeDescriptorViewModel"/>
     /// </summary>
     public NestedTopicListAttributeDescriptorViewModel() {
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/NestedTopics.js", UriKind.Relative));
+      Scripts.Register(GetNamespacedUri("/Shared/Scripts/NestedTopics.js"));
     }
 
   } //Class
