@@ -151,7 +151,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
     /// <summary>
     ///   May optionally filter out topics based on attribute values; if so, this property defines the attribute name.
     /// </summary>
-    public string AttributeName {
+    public string? AttributeName {
       get;
       init;
     }
@@ -162,7 +162,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
     /// <summary>
     ///   May optionally filter out topics based on attribute values; if so, this property defines the attribute value.
     /// </summary>
-    public string AttributeValue {
+    public string? AttributeValue {
       get;
       init;
     }
@@ -173,7 +173,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
     /// <summary>
     ///   May optionally filter out topics based on attribute values; if so, this property defines the attribute value.
     /// </summary>
-    public string Query {
+    public string? Query {
       get;
       init;
     }
@@ -241,7 +241,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
     /// <summary>
     ///   The name of the relationship scope to use with the <see cref="RelatedTopicId"/>.
     /// </summary>
-    public string RelatedNamespace {
+    public string? RelatedNamespace {
       get;
       init;
     }

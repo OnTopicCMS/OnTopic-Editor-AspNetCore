@@ -41,7 +41,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicMappingService            _topicMappingService;
-    private                     Topic                           _currentTopic;
+    private                     Topic?                          _currentTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -85,7 +85,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Provides a reference to the current topic associated with the request.
     /// </summary>
     /// <returns>The Topic associated with the current request.</returns>
-    private Topic CurrentTopic {
+    private Topic? CurrentTopic {
       get {
         if (_currentTopic is null) {
           _currentTopic = TopicRepository.Load(RouteData);
@@ -133,11 +133,18 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(contentTypeDescriptor, nameof(contentTypeDescriptor));
 
+      Contract.Assume(CurrentTopic,"The current route could not be resolved to an existing topic.");
+
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorViewModel>(contentTypeDescriptor).ConfigureAwait(true);
       var parentTopic           = isNew ? CurrentTopic : CurrentTopic.Parent;
+
+      Contract.Assume(
+        contentTypeViewModel,
+        $"A contentTypeViewModel could not be created for the content type '{contentTypeDescriptor.Key}'."
+      );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT VIEW MODEL
@@ -151,6 +158,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           Parent                = topicViewModel
         };
       }
+
+      Contract.Assume(
+        topicViewModel,
+        $"A topicViewModel could not be created based on the CurrentTopic, '{CurrentTopic.GetUniqueKey()}'."
+      );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ASSIGN ATTRIBUTES

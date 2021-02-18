@@ -41,7 +41,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
     /// <summary>
     ///   Gets or sets the current value. Will be set to the newly generated value if unavailable.
     /// </summary>
-    public string CurrentValue { get; set; }
+    public string? CurrentValue { get; set; }
 
   } // Class
 } // Namespace
