@@ -56,6 +56,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(currentTopic, nameof(currentTopic));
       Contract.Requires(attribute, nameof(attribute));
+      Contract.Requires(currentTopic.ContentType, nameof(currentTopic.ContentType));
+      Contract.Requires(attribute.Key, nameof(attribute.Key));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -89,9 +91,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 
       if (attribute.RelativeTopicBase is not null) {
         var baseTopic             = _topicRepository.Load(currentTopic.UniqueKey);
+        Contract.Assume(baseTopic, $"The topic with the key '{currentTopic.UniqueKey}' could not be located.");
         if (String.IsNullOrEmpty(currentTopic.Key)) {
           baseTopic               = TopicFactory.Create("NewTopic", currentTopic.ContentType, baseTopic);
-          baseTopic.Parent.Children.Remove(baseTopic);
+          baseTopic.Parent?.Children.Remove(baseTopic);
         }
         rootTopic                 = attribute.RelativeTopicBase switch {
           "CurrentTopic"          => baseTopic,

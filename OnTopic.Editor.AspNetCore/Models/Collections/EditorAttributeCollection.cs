@@ -37,7 +37,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Collections {
     /// <param name="defaultValue">
     ///   The default value to return if the <see cref="AttributeBindingModel"/> cannot be found.
     /// </param>
-    public string GetValue(string attributeKey, string? defaultValue = null) {
+    public string? GetValue(string attributeKey, string? defaultValue = null) {
       if (Contains(attributeKey)) {
         return this[attributeKey].Value;
       }

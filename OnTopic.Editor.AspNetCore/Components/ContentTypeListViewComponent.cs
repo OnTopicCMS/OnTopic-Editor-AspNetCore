@@ -104,7 +104,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | for context.
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypes          = _topicRepository.GetContentTypeDescriptors();
-      var actualTopic           = _topicRepository.Load(currentTopic.Id)?? _topicRepository.Load(currentTopic.Parent.Id);
+      var actualTopic           = _topicRepository.Load(currentTopic.Id)?? _topicRepository.Load(currentTopic.Parent?.Id?? int.MinValue);
       var actualContentType     = contentTypes.GetValue(currentTopic.ContentType);
 
       if (actualContentType is null || actualTopic is null) {

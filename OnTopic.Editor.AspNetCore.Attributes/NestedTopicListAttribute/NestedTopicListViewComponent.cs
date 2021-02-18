@@ -52,6 +52,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(currentTopic, nameof(currentTopic));
       Contract.Requires(attribute, nameof(attribute));
+      Contract.Requires(attribute.Key, nameof(attribute.Key));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -77,6 +78,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!viewModel.IsNew) {
         var topic = _topicRepository.Load(viewModel.UniqueKey);
+        Contract.Assume(topic, $"The topic with the unique key '{viewModel.UniqueKey}' could not be found.");
         if (!topic.Children.Contains(attribute.Key)) {
           var topicContainer = TopicFactory.Create(attribute.Key, "List", topic);
           _topicRepository.Save(topicContainer);

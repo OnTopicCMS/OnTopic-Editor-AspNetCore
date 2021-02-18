@@ -52,6 +52,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(currentTopic, nameof(currentTopic));
       Contract.Requires(attribute, nameof(attribute));
+      Contract.Requires(attribute.Key, nameof(attribute.Key));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -71,6 +72,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
       | other view components would benefit from this.
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topic                 = _topicRepository.Load(currentTopic.UniqueKey);
+
+      Contract.Assume(topic, $"The target topic with the unique key '{currentTopic.UniqueKey}' could not be found.");
 
       foreach(var relatedTopic in topic.IncomingRelationships.GetValues(attribute.RelationshipKey?? attribute.Key)) {
         if (
