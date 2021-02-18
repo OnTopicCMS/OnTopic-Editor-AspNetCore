@@ -28,8 +28,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
     public BooleanAttributeViewModel(
       EditingTopicViewModel currentTopic,
       BooleanAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor,

@@ -28,8 +28,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     public FilePathAttributeViewModel(
       EditingTopicViewModel currentTopic,
       FilePathAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor,

@@ -219,7 +219,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <param name="isNew">Determines whether the topic represents a new or existing object.</param>
     /// <param name="contentType">The key name of the <see cref="ContentTypeDescriptor"/> representing the topic.</param>
     /// <param name="isModal">Determines whether whether the view is being displayed within a modal window.</param>
-    public async Task<IActionResult> Edit(bool isNew = false, string contentType = null, bool isModal = false) {
+    public async Task<IActionResult> Edit(bool isNew = false, string? contentType = null, bool isModal = false) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
@@ -252,7 +252,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     public async Task<IActionResult> Edit(
       EditorBindingModel model,
       bool isNew = false,
-      string contentType = null,
+      string? contentType = null,
       bool isModal = false
     ) {
 
@@ -401,7 +401,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var relatedTopics = attributeValue.Value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
       topic.Relationships.Clear(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
-        Topic relatedTopic = null;
+        Topic? relatedTopic = null;
         var isTopicId = Int32.TryParse(topicIdString, out var topicIdInt);
         if (isTopicId && topicIdInt > 0) {
           relatedTopic = TopicRepository.Load(topicIdInt);
@@ -419,7 +419,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Private helper function that saves a topic reference to the topic.
     /// </summary>
     private void SetReference(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
-      Topic referencedTopic = null;
+      Topic? referencedTopic = null;
       var isTopicId = Int32.TryParse(attributeValue.Value, out var topicIdInt);
       if (isTopicId && topicIdInt > 0) {
         referencedTopic = TopicRepository.Load(topicIdInt);
@@ -560,7 +560,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Get related topics
       \-------------------------------------------------------------------------------------------------------------------------*/
-      var relatedTopics = (ReadOnlyTopicCollection)null;
+      var relatedTopics = (ReadOnlyTopicCollection?)null;
 
       if (options.MarkRelated) {
 

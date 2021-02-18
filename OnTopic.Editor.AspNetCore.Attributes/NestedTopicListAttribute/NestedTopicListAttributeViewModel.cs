@@ -27,8 +27,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     public NestedTopicListAttributeViewModel(
       EditingTopicViewModel currentTopic,
       NestedTopicListAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor,

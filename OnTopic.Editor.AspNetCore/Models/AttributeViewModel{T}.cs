@@ -25,8 +25,8 @@ namespace OnTopic.Editor.AspNetCore.Models {
     public AttributeViewModel(
       EditingTopicViewModel currentTopic,
       T attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor

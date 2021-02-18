@@ -26,8 +26,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {
     public LastModifiedAttributeViewModel(
       EditingTopicViewModel currentTopic,
       LastModifiedAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor,

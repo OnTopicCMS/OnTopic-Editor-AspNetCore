@@ -48,7 +48,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
       TopicListAttributeDescriptorViewModel attribute,
-      string htmlFieldPrefix = null
+      string? htmlFieldPrefix = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Get root topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var rootTopic             = (Topic)null;
+      var rootTopic             = (Topic?)null;
 
       if (attribute.RelativeTopicBase is not null) {
         var baseTopic             = _topicRepository.Load(currentTopic.UniqueKey);
@@ -96,8 +96,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
         rootTopic                 = attribute.RelativeTopicBase switch {
           "CurrentTopic"          => baseTopic,
           "ParentTopic"           => baseTopic.Parent,
-          "GrandparentTopic"      => (Topic)baseTopic.Parent?.Parent,
-          "ContentTypeDescriptor" => (Topic)_topicRepository.GetContentTypeDescriptors().FirstOrDefault(t => t.Key.Equals(baseTopic.ContentType, StringComparison.Ordinal)),
+          "GrandparentTopic"      => (Topic?)baseTopic.Parent?.Parent,
+          "ContentTypeDescriptor" => (Topic?)_topicRepository.GetContentTypeDescriptors().FirstOrDefault(t => t.Key.Equals(baseTopic.ContentType, StringComparison.Ordinal)),
           _ => baseTopic
         };
       }
@@ -154,9 +154,9 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
     | Retrieves a collection of topics with optional control call filter properties Scope, AttributeName and AttributeValue.
     \-------------------------------------------------------------------------------------------------------------------------*/
     public static Collection<QueryResultTopicViewModel> GetTopics(
-      Topic  topic              = null,
-      string attributeKey       = null,
-      string attributeValue     = null
+      Topic?  topic             = null,
+      string? attributeKey      = null,
+      string? attributeValue    = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------

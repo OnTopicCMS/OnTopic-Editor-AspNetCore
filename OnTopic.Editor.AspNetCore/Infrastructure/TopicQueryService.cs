@@ -38,7 +38,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
     public Collection<QueryResultTopicViewModel> Query(
       Topic rootTopic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection related = null
+      ReadOnlyTopicCollection? related = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -88,7 +88,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
       Topic topic,
       TopicQueryOptions options,
       ref int remainingResults,
-      ReadOnlyTopicCollection related = null
+      ReadOnlyTopicCollection? related = null
     )
     {
 

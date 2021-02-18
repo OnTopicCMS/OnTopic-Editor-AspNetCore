@@ -29,8 +29,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     public FileListAttributeViewModel(
       EditingTopicViewModel currentTopic,
       FileListAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ) : base(
       currentTopic,
       attributeDescriptor,

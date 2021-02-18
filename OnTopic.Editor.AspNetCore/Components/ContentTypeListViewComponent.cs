@@ -54,9 +54,9 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      ContentTypeListAttributeDescriptorViewModel attributeDescriptor = null,
-      IEnumerable<ContentTypeDescriptorViewModel> values = null,
-      string onModalClose = null
+      ContentTypeListAttributeDescriptorViewModel? attributeDescriptor = null,
+      IEnumerable<ContentTypeDescriptorViewModel>? values = null,
+      string? onModalClose = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------

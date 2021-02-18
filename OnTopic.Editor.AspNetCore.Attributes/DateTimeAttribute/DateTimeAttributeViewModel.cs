@@ -35,8 +35,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     public DateTimeAttributeViewModel(
       EditingTopicViewModel currentTopic,
       DateTimeAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor,
