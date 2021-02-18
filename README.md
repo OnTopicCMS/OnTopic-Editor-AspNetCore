@@ -20,7 +20,7 @@ Installation can be performed by providing a `<PackageReference />` to the `OnTo
 <Project Sdk="Microsoft.NET.Sdk.Web">
   …
   <ItemGroup>
-    <PackageReference Include="OnTopic.Editor.AspNetCore" Version="4.0.0" />
+    <PackageReference Include="OnTopic.Editor.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 </Project>
 ```
