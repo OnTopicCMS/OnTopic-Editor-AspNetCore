@@ -92,7 +92,9 @@ namespace OnTopicTest {
         mvcBuilder.AddRazorRuntimeCompilation();
         services.Configure<MvcRazorRuntimeCompilationOptions>(options => {
           var libraryPath = Path.GetFullPath(Path.Combine(HostingEnvironment.ContentRootPath, "..", "OnTopic.Editor.AspNetCore"));
+          var pluginsPath = Path.GetFullPath(Path.Combine(HostingEnvironment.ContentRootPath, "..", "OnTopic.Editor.AspNetCore.Attributes"));
           options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
+          options.FileProviders.Add(new PhysicalFileProvider(pluginsPath));
         });
       }
 
