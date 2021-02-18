@@ -136,7 +136,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorTopicViewModel>(contentTypeDescriptor).ConfigureAwait(true);
+      var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorViewModel>(contentTypeDescriptor).ConfigureAwait(true);
       var parentTopic           = isNew ? CurrentTopic : CurrentTopic.Parent;
 
       /*------------------------------------------------------------------------------------------------------------------------

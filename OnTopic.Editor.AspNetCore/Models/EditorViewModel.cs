@@ -28,10 +28,10 @@ namespace OnTopic.Editor.AspNetCore.Models {
     | CONTENT TYPE DESCRIPTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The <see cref="ContentTypeDescriptorTopicViewModel"/> representing the core properties of the <see cref="Topic"/>'s
-    ///   <see cref="ContentTypeDescriptor"/>.
+    ///   The <see cref="ContentTypeDescriptorViewModel"/> representing the core properties of the <see cref="Topic"/>'s <see
+    ///   cref="ContentTypeDescriptor"/>.
     /// </summary>
-    public ContentTypeDescriptorTopicViewModel ContentTypeDescriptor { get; init; }
+    public ContentTypeDescriptorViewModel ContentTypeDescriptor { get; init; }
 
     /*==========================================================================================================================
     | IS MODAL?

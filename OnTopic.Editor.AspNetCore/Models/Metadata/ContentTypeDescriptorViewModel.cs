@@ -17,17 +17,17 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides core properties from a <see cref="ContentTypeDescriptor"/> to provide to the editor interface. Specifically,
-  ///   the <see cref="ContentTypeDescriptorTopicViewModel"/> is critical in providing the schema of attributes to be presented.
+  ///   the <see cref="ContentTypeDescriptorViewModel"/> is critical in providing the schema of attributes to be presented.
   /// </summary>
-  public record ContentTypeDescriptorTopicViewModel: EditingTopicViewModel {
+  public record ContentTypeDescriptorViewModel: EditingTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="ContentTypeDescriptorTopicViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="ContentTypeDescriptorViewModel"/> class.
     /// </summary>
-    public ContentTypeDescriptorTopicViewModel(): base() {}
+    public ContentTypeDescriptorViewModel(): base() {}
 
     /*==========================================================================================================================
     | PROPERTY: ATTRIBUTE DESCRIPTORS
@@ -71,7 +71,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created under <see cref="Topic"/>s of the
     ///   current <see cref="ContentType"/>.
     /// </summary>
-    public Collection<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
+    public Collection<ContentTypeDescriptorViewModel> PermittedContentTypes { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: IMPLICITLY PERMITTED?
