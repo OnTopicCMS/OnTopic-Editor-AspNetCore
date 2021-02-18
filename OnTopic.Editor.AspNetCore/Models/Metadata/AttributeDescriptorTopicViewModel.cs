@@ -31,7 +31,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Determines how the attribute is modeled in terms of the object-oriented code (e.g., as a relationship? An attribute?).
     /// </summary>
-    public virtual ModelType ModelType { get; init; }
+    public ModelType ModelType { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: EDITOR TYPE
@@ -44,7 +44,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   such as <see cref="BooleanAttribute"/>. This can be used by the editor to determine the appropriate view component to
     ///   display.
     /// </remarks>
-    public virtual string EditorType { get; init; }
+    public string EditorType { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: DISPLAY GROUP

@@ -25,13 +25,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
     /// </summary>
     public HtmlAttributeDescriptorTopicViewModel() {
       Scripts.Register(new("https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"), true, false);
+      Rows = 20;
     }
-
-    /*==========================================================================================================================
-    | ROWS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc/>
-    public override int? Rows { get; init; } = 20;
 
     /*==========================================================================================================================
     | HEIGHT

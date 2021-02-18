@@ -25,7 +25,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
     ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
     ///   <c>20</c>.
     /// </summary>
-    public virtual int? Rows { get; init; } = 5;
+    public int? Rows { get; init; } = 5;
 
     /*==========================================================================================================================
     | MINIMUM LENGTH

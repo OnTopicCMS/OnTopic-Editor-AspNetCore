@@ -74,7 +74,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Provides the inherited value, as defined on either parent or derived topics.
     /// </summary>
-    public virtual string InheritedValue { get; init; }
+    public string InheritedValue { get; init; }
 
   } // Class
 } // Namespace
