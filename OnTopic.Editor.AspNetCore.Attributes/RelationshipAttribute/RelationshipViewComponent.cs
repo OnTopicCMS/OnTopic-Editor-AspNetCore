@@ -34,7 +34,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      RelationshipAttributeDescriptorTopicViewModel attribute,
+      RelationshipAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -54,7 +54,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       currentTopic.Attributes.TryGetValue(attribute.Key, out var value);
 
-      var model = new AttributeViewModel<RelationshipAttributeDescriptorTopicViewModel>(currentTopic, attribute) {
+      var model = new AttributeViewModel<RelationshipAttributeDescriptorViewModel>(currentTopic, attribute) {
         Value                   = CleanArray(value)
       };
 
@@ -69,7 +69,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
     | METHOD: CLEAN ARRAY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Takes a string array, converts it to an array, strips any blank entries, and returns it to a string array.  Useful for
+    ///   Takes a string array, converts it to an array, strips any blank entries, and returns it to a string array. Useful for
     ///   dealing with potential artifacts such as empty array items introduced by JavaScript.
     /// </summary>
     private static string CleanArray(string value) {

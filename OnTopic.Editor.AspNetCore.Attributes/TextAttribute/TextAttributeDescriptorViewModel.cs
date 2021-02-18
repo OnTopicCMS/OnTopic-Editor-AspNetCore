@@ -8,47 +8,55 @@ using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.TextAttribute {
 
   /*============================================================================================================================
-  | CLASS: DATE/TIME ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: TEXT ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="DateTimeViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="TextViewComponentView"/>.
   /// </summary>
-  public record DateTimeAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record TextAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
-    | INCLUDE DATE PICKER?
+    | MINIMUM LENGTH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether or not the date picker should be displayed.
+    ///   Gets or sets the length length of the field. Defaults to <c>0</c> if undefined.
     /// </summary>
-    public bool? IncludeDatePicker { get; init; }
+    public int? MinimumLength { get; init; }
 
     /*==========================================================================================================================
-    | INCLUDE TIME PICKER?
+    | MAXIMUM LENGTH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether or not the time picker should be displayed.
+    ///   Gets or sets the maximimum length of the field. Defaults to <c>500</c> if undefined.
     /// </summary>
-    public bool? IncludeTimePicker { get; init; }
+    public int? MaximumLength { get; init; } = Int32.MaxValue;
 
     /*==========================================================================================================================
-    | DATE/TIME OFFSET
+    | INPUT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines the relative offset that the default value should apply. Defaults to 0.
+    ///   Gets or sets the HTML input type of the field. Defaults to <c>text</c> if undefined.
     /// </summary>
-    public int? DateTimeOffset { get; init; }
+    public string? InputType { get; init; } = "text";
 
     /*==========================================================================================================================
-    | DATE/TIME OFFSET UNITS
+    | PATTERN
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines the units that the offset direction is in. Defaults to "Days".
+    ///   Gets or sets a regular expression which should be used to validate the input.
     /// </summary>
-    public string? DateTimeOffsetUnits { get; init; } = "Days";
+    public string? Pattern { get; init; }
+
+    /*==========================================================================================================================
+    | VALIDATION MESSAGE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets a hint to provide if validation fails.
+    /// </summary>
+    public string? ValidationMessage { get; init; }
 
   } //Class
 } //Namespace

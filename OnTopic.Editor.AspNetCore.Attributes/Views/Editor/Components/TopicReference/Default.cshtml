@@ -1,9 +1,9 @@
 ﻿@using OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute
 @using OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute
-@model AttributeViewModel<TopicReferenceAttributeDescriptorTopicViewModel>
+@model AttributeViewModel<TopicReferenceAttributeDescriptorViewModel>
 
 @{
-  var attributeDescriptor       = new TokenizedTopicListAttributeDescriptorTopicViewModel() {
+  var attributeDescriptor       = new TokenizedTopicListAttributeDescriptorViewModel() {
     Key                         = Model.AttributeDescriptor.Key,
     ContentType                 = "TokenizedTopicListAttribute",
     Description                 = Model.AttributeDescriptor.Description,

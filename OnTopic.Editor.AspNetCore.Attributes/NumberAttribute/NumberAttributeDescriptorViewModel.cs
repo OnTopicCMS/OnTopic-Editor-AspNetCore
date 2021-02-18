@@ -3,27 +3,36 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
 
   /*============================================================================================================================
-  | CLASS: INSTRUCTION ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: NUMBER ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="InstructionViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="NumberViewComponentView"/>.
   /// </summary>
-  public record InstructionAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record NumberAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
-    | INSTRUCTIONS
+    | PROPERTY: MINIMUM VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Instructional text to embed in the OnTopic Editor.
+    ///   Determines the lower bound for acceptable values. Defaults to <c>0</c>.
     /// </summary>
-    public string? Instructions { get; init; }
+    public int MinimumValue { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: MAXIMUM VALUE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines the upper bound for acceptable values. Defaults to <see cref="Int32.Max"/>.
+    /// </summary>
+    public int MaximumValue { get; init; } = Int32.MaxValue;
 
   } //Class
 } //Namespace

@@ -12,10 +12,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Represents the data model for the <see cref="LastModifiedByViewComponent"/>. Additionally provides access to the
-  ///   underlying <see cref="LastModifiedByAttributeDescriptorTopicViewModel"/> as well as the instance values for that
-  ///   attribute from the currently selected <see cref="Topic"/>.
+  ///   underlying <see cref="LastModifiedByAttributeDescriptorViewModel"/> as well as the instance values for that attribute
+  ///   from the currently selected <see cref="Topic"/>.
   /// </summary>
-  public record LastModifiedByAttributeViewModel: AttributeViewModel<LastModifiedByAttributeDescriptorTopicViewModel> {
+  public record LastModifiedByAttributeViewModel: AttributeViewModel<LastModifiedByAttributeDescriptorViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -25,7 +25,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
     /// </summary>
     public LastModifiedByAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      LastModifiedByAttributeDescriptorTopicViewModel attributeDescriptor,
+      LastModifiedByAttributeDescriptorViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(

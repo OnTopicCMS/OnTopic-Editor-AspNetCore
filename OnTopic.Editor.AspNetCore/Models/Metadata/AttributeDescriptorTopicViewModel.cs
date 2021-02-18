@@ -9,12 +9,12 @@ using OnTopic.Metadata;
 namespace OnTopic.Editor.AspNetCore.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: ATTRIBUTE DESCRIPTOR TOPIC VIEW MODEL
+  | CLASS: ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides core properties from a <see cref="AttributeDescriptor"/> to a view component.
   /// </summary>
-  public record AttributeDescriptorTopicViewModel: ViewModels.TopicViewModel {
+  public record AttributeDescriptorViewModel: ViewModels.TopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -109,7 +109,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     | STYLE SHEETS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a list of client-side stylesheets associated with this <see cref="AttributeDescriptorTopicViewModel"/>.
+    ///   Provides a list of client-side stylesheets associated with this <see cref="AttributeDescriptorViewModel"/>.
     /// </summary>
     public StyleSheetCollection StyleSheets { get; } = new();
 
@@ -117,7 +117,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     | SCRIPTS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a list of client-side scripts associated with this <see cref="AttributeDescriptorTopicViewModel"/>.
+    ///   Provides a list of client-side scripts associated with this <see cref="AttributeDescriptorViewModel"/>.
     /// </summary>
     public ScriptCollection Scripts { get; } = new();
 

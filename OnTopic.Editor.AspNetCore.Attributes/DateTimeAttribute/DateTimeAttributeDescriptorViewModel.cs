@@ -3,64 +3,51 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
-using OnTopic.Mapping.Annotations;
-using OnTopic.Metadata;
-using OnTopic.ViewModels;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
 
   /*============================================================================================================================
-  | CLASS: TOPIC REFERENCE ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: DATE/TIME ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="TopicReferenceViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="DateTimeViewComponent"/>.
   /// </summary>
-  public record TopicReferenceAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record DateTimeAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | INCLUDE DATE PICKER?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TopicReferenceAttributeDescriptorTopicViewModel"/>
+    ///   Determines whether or not the date picker should be displayed.
     /// </summary>
-    public TopicReferenceAttributeDescriptorTopicViewModel() {
-      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input.min.css", UriKind.Relative));
-      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input-facebook.min.css", UriKind.Relative));
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/jquery-tokeninput.min.js", UriKind.Relative));
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/TokenizedTopicList.js", UriKind.Relative));
-    }
+    public bool? IncludeDatePicker { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: ROOT TOPIC
+    | INCLUDE TIME PICKER?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets a <see cref="Topic.Id"/> representing the scope of <see cref="Topic"/>s to display to the user. This
-    ///   allows relationships to be targeted to particular areas of the topic graph.
+    ///   Determines whether or not the time picker should be displayed.
     /// </summary>
-    [AttributeKey("RootTopicId")]
-    [NotNull]
-    public TopicViewModel? RootTopic { get; init; }
+    public bool? IncludeTimePicker { get; init; }
 
     /*==========================================================================================================================
-    | RESULT LIMIT
+    | DATE/TIME OFFSET
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
+    ///   Determines the relative offset that the default value should apply. Defaults to <c>0</c>.
     /// </summary>
-    public int? ResultLimit { get; init; } = 100;
+    public int? DateTimeOffset { get; init; }
 
     /*==========================================================================================================================
-    | TARGET CONTENT TYPE
+    | DATE/TIME OFFSET UNITS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
+    ///   Determines the units that the offset direction is in. Defaults to "Days".
     /// </summary>
-    public string? TargetContentType { get; init; }
+    public string? DateTimeOffsetUnits { get; init; } = "Days";
 
   } //Class
 } //Namespace

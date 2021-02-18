@@ -11,10 +11,10 @@ namespace OnTopic.Editor.AspNetCore.Models {
   | CLASS: ATTRIBUTE VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to both a <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that
+  ///   Provides access to both a <see cref="AttributeDescriptorViewModel"/> as well as the instance values for that
   ///   attribute from the currently selected <see cref="Topic"/>.
   /// </summary>
-  public record AttributeViewModel<T>: AttributeViewModel where T: AttributeDescriptorTopicViewModel {
+  public record AttributeViewModel<T>: AttributeViewModel where T: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -50,7 +50,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   mimics return type covariance. To ensure that this is safe, the <see cref="AttributeDescriptor"/> value can only be
     ///   set via the constructor—which simultaneously sets the underlying <see cref="AttributeViewModel.AttributeDescriptor"/>
     ///   with the <i>same</i> object. That way, if the object is cast as a <see cref="AttributeViewModel"/> (e.g., in shared
-    ///   views) it will have access to the general <see cref="AttributeDescriptorTopicViewModel"/>, where as if it cast as a
+    ///   views) it will have access to the general <see cref="AttributeDescriptorViewModel"/>, where as if it cast as a
     ///   <see cref="AttributeViewModel{T}"/>, then it will get the strongly-typed derivative at the same location. In either
     ///   case, the <see cref="AttributeDescriptor"/> can be explicitly cast to the general or derived version, since it's
     ///   guaranteed to be an instance of the derived class.

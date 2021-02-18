@@ -10,12 +10,12 @@ using OnTopic.Editor.AspNetCore.Models.Metadata;
 namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED BY ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: LAST MODIFIED BY ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="LastModifiedByViewComponentView"/>.
   /// </summary>
-  public record LastModifiedByAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record LastModifiedByAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
 
   } //Class

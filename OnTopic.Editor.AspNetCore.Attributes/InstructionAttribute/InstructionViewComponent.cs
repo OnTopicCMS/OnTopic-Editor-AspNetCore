@@ -33,11 +33,11 @@ namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      InstructionAttributeDescriptorTopicViewModel attribute,
+      InstructionAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
-      return View(new AttributeViewModel<InstructionAttributeDescriptorTopicViewModel>(currentTopic, attribute));
+      return View(new AttributeViewModel<InstructionAttributeDescriptorViewModel>(currentTopic, attribute));
     }
 
   } // Class

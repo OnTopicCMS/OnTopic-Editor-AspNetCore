@@ -12,14 +12,14 @@ using OnTopic.ViewModels;
 namespace OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute {
 
   /*============================================================================================================================
-  | CLASS: QUERYABLE TOPIC LIST (TOPIC VIEW MODEL)
+  | CLASS: QUERYABLE TOPIC LIST (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a base class for exposing properties common to the <see cref="RelationshipAttributeDescriptorTopicViewModel"/>,
-  ///   <see cref="TopicListAttributeDescriptorTopicViewModel"/>, <see cref="TokenizedTopicListAttributeDescriptorTopicViewModel
-  ///   "/>, and any other view components that allow querying of topics via the search API, or similar techniques.
+  ///   Provides a base class for exposing properties common to the <see cref="RelationshipAttributeDescriptorViewModel"/>, <see
+  ///   cref="TopicListAttributeDescriptorViewModel"/>, <see cref="TokenizedTopicListAttributeDescriptorViewModel"/>, and any
+  ///   other view components that allow querying of topics via the search API, or similar techniques.
   /// </summary>
-  public record QueryableTopicListAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record QueryableTopicListAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC

@@ -33,7 +33,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      HtmlAttributeDescriptorTopicViewModel attribute,
+      HtmlAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -60,7 +60,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<HtmlAttributeDescriptorTopicViewModel>(currentTopic, attribute);
+      var viewModel = new AttributeViewModel<HtmlAttributeDescriptorViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

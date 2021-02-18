@@ -3,42 +3,45 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute;
+using System;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
 
   /*============================================================================================================================
-  | CLASS: HTML ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: TEXT AREA ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="HtmlViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="TextAreaViewComponentView"/>.
   /// </summary>
-  public record HtmlAttributeDescriptorTopicViewModel: TextAreaAttributeDescriptorTopicViewModel {
+  public record TextAreaAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | ROWS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="HtmlAttributeDescriptorTopicViewModel"/>
+    ///   Gets or sets the number of rows (height) that the <see cref="HtmlViewComponent"/> should take up. Defaults to
+    ///   <c>5</c>.
     /// </summary>
-    public HtmlAttributeDescriptorTopicViewModel() {
-      Scripts.Register(new("https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"), true, false);
-      Rows = 20;
-    }
+    public int? Rows { get; init; } = 5;
 
     /*==========================================================================================================================
-    | HEIGHT
+    | MINIMUM LENGTH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the number of pixels that the <see cref="HtmlViewComponent"/> should take up. Defaults to <see
-    ///   cref="Rows"/> x 20.
+    ///   Gets or sets the length length of the field. Defaults to <c>0</c> if undefined.
     /// </summary>
-    /// <remarks>
-    ///   If set, this value overrides <see cref="Rows"/>.
-    /// </remarks>
-    public int? Height { get; init; }
+    public int? MinimumLength { get; init; } = 10;
+
+    /*==========================================================================================================================
+    | MAXIMUM LENGTH
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the maximimum length of the field.
+    /// </summary>
+    public int? MaximumLength { get; init; } = Int32.MaxValue;
 
   } //Class
 } //Namespace

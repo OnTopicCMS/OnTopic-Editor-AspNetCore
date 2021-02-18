@@ -3,36 +3,42 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
+using OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
 
   /*============================================================================================================================
-  | CLASS: NUMBER ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: HTML ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="NumberViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="HtmlViewComponent"/>.
   /// </summary>
-  public record NumberAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record HtmlAttributeDescriptorViewModel: TextAreaAttributeDescriptorViewModel {
 
     /*==========================================================================================================================
-    | PROPERTY: MINIMUM VALUE
+    | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines the lower bound for acceptable values. Defaults to 0.
+    ///   Initializes a new instance of a <see cref="HtmlAttributeDescriptorViewModel"/>
     /// </summary>
-    public int MinimumValue { get; init; }
+    public HtmlAttributeDescriptorViewModel() {
+      Scripts.Register(new("https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"), true, false);
+      Rows = 20;
+    }
 
     /*==========================================================================================================================
-    | PROPERTY: MAXIMUM VALUE
+    | HEIGHT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines the upper bound for acceptable values. Defaults to <see cref="Int32.Max"/>.
+    ///   Gets or sets the number of pixels that the <see cref="HtmlViewComponent"/> should take up. Defaults to <see
+    ///   cref="Rows"/> x 20.
     /// </summary>
-    public int MaximumValue { get; init; } = Int32.MaxValue;
+    /// <remarks>
+    ///   If set, this value overrides <see cref="Rows"/>.
+    /// </remarks>
+    public int? Height { get; init; }
 
   } //Class
 } //Namespace

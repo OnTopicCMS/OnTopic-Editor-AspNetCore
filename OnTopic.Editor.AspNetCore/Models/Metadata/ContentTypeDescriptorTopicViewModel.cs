@@ -13,7 +13,7 @@ using OnTopic.Metadata;
 namespace OnTopic.Editor.AspNetCore.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: CONTENT TYPE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: CONTENT TYPE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides core properties from a <see cref="ContentTypeDescriptor"/> to provide to the editor interface. Specifically,
@@ -33,11 +33,11 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     | PROPERTY: ATTRIBUTE DESCRIPTORS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   A list of <see cref="AttributeDescriptorTopicViewModel"/> instances representing each of the <see
+    ///   A list of <see cref="AttributeDescriptorViewModel"/> instances representing each of the <see
     ///   cref="AttributeDescriptor"/> permitted by the underlying <see cref="ContentTypeDescriptor"/>.
     /// </summary>
     [Include(AssociationTypes.Relationships | AssociationTypes.References)]
-    public Collection<AttributeDescriptorTopicViewModel> AttributeDescriptors { get; } = new();
+    public Collection<AttributeDescriptorViewModel> AttributeDescriptors { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -96,10 +96,10 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     | METHOD: GET ATTRIBUTE DESCRIPTORS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Retrieves a prioritized list of <see cref="AttributeDescriptorTopicViewModel"/> based for a given display group,
-    ///   ordered by <see cref="AttributeDescriptorTopicViewModel.SortOrder"/>.
+    ///   Retrieves a prioritized list of <see cref="AttributeDescriptorViewModel"/> based for a given display group,
+    ///   ordered by <see cref="AttributeDescriptorViewModel.SortOrder"/>.
     /// </summary>
-    public Collection<AttributeDescriptorTopicViewModel> GetAttributeDescriptors(string displayGroup) =>
+    public Collection<AttributeDescriptorViewModel> GetAttributeDescriptors(string displayGroup) =>
       new(AttributeDescriptors
         .Where(a => a.DisplayGroup.Equals(displayGroup, StringComparison.OrdinalIgnoreCase) && !a.IsHidden)
         .OrderBy(a => a.SortOrder).ToList());
