@@ -64,19 +64,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     /// </summary>
     public bool? AutoPostBack { get; init; }
 
-    /*==========================================================================================================================
-    | AS RELATIONSHIP
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Determines whether to utilize the control as a replacement for (or equivalent to) <see
-    ///   cref="RelationshipsViewComponent"/>.
-    /// </summary>
-    /// <remarks>
-    ///   Relationships are modeled using <see cref="Topic.Relationships"/> instead of <see cref="Topic.Attributes"/>, and most
-    ///   implementations of <see cref="ITopicRepository"/> will likely store relationships separate from attributes.
-    /// </remarks>
-    public bool? AsRelationship { get; init; }
-
   } //Class
 } //Namespace
 
