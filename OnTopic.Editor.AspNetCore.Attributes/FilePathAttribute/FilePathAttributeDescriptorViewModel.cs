@@ -7,47 +7,51 @@ using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
 
   /*============================================================================================================================
-  | CLASS: FILE LIST ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: FILE PATH ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="FileListViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="FilePathViewComponent"/>.
   /// </summary>
-  public record FileListAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record FilePathAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
-    | PROPERTY: PATH
+    | PROPERTY: INHERIT VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the the directory path in which to find available files.
+    ///   Determines whether the <see cref="Value"/> is expected to be inherited from parent topics if left blank.
     /// </summary>
-    public string? Path { get; init; }
+    public bool? InheritValue { get; init; } = true;
 
     /*==========================================================================================================================
-    | PROPERTY: EXTENSION
+    | PROPERTY: RELATIVE TO TOPIC PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets which file extension to restrict the list of files.
+    ///   Determines whether the <see cref="Value"/> should automatically inject any parent topics in the path. If set, the
+    ///   value will be set to the inherited value (if present) along with the path between the level at which that value is set
+    ///   and the current topic.
     /// </summary>
-    public string? Extension { get; init; }
+    public bool? RelativeToTopicPath { get; init; } = true;
 
     /*==========================================================================================================================
-    | PROPERTY: FILTER
+    | PROPERTY: BASE TOPIC PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the filter criteria by which to restrict the list of files.
+    ///   Determines the Topic level (based on <see cref="Topic.GetUniqueKey"/>) at which to stop the recursive processing
+    ///   logic for <see cref="AttributeViewModel.InheritedValue"/>. If set, the <see cref="AttributeViewModel.InheritedValue"/>
+    ///   will  ignore children under the specified <see cref="Topic"/> when formulating the full file path.
     /// </summary>
-    public string? Filter { get; init; }
+    public string? BaseTopicPath { get; init; } = "";
 
     /*==========================================================================================================================
-    | PROPERTY: INCLUDE SUBDIRECTORIES
+    | PROPERTY: INCLUDE CURRENT TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets whether to only include the specified directory, or also include files from all subdirectories.
+    ///   Determines whether the current <see cref="Topic"/> should be included in the <see cref="InheritedValue"/>.
     /// </summary>
-    public bool? IncludeSubdirectories { get; init; }
+    public bool? IncludeCurrentTopic { get; init; } = true;
 
   } //Class
 } //Namespace

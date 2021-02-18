@@ -7,15 +7,15 @@ using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {
 
   /*============================================================================================================================
-  | CLASS: BOOLEAN ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: LAST MODIFIED ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="BooleanViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="LastModifiedViewComponentView"/>.
   /// </summary>
-  public record BooleanAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record LastModifiedAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
 
   } //Class

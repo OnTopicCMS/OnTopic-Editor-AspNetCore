@@ -24,10 +24,10 @@ namespace OnTopic.Editor.AspNetCore.Components {
   ///   Provides a list of <see cref="ContentTypeDescriptorTopicViewModel"/>s as a navigation element.
   /// </summary>
   /// <remarks>
-  ///   The <see cref="ContentTypeListViewComponent"/> exposes a list of content types as a dropdown list. The list of
-  ///   <see cref="ContentTypeDescriptorTopicViewModel"/>s is determined based on a source content type, either by displaying
-  ///   the <see cref="ContentTypeDescriptorTopicViewModel.PermittedContentTypes"/>, or by displaying all content types that are
-  ///   not hidden, and are implicitly permitted.
+  ///   The <see cref="ContentTypeListViewComponent"/> exposes a list of content types as a dropdown list. The list of <see cref
+  ///   ="ContentTypeDescriptorTopicViewModel"/>s is determined based on a source content type, either by displaying the <see
+  ///   cref="ContentTypeDescriptorTopicViewModel.PermittedContentTypes"/>, or by displaying all content types that are not
+  ///   hidden, and are implicitly permitted.
   /// </remarks>
   public class ContentTypeListViewComponent : ViewComponent {
 
@@ -54,7 +54,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      ContentTypeListAttributeDescriptorTopicViewModel attributeDescriptor = null,
+      ContentTypeListAttributeDescriptorViewModel attributeDescriptor = null,
       IEnumerable<ContentTypeDescriptorTopicViewModel> values = null,
       string onModalClose = null
     ) {

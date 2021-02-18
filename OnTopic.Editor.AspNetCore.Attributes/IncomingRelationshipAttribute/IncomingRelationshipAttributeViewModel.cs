@@ -15,10 +15,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Represents the data model for the <see cref="IncomingRelationshipViewComponent"/>. Additionally provides access to the
-  ///   underlying <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the
+  ///   underlying <see cref="AttributeDescriptorViewModel"/> as well as the instance values for that attribute from the
   ///   currently selected <see cref="Topic"/>.
   /// </summary>
-  public record IncomingRelationshipAttributeViewModel: AttributeViewModel<IncomingRelationshipAttributeDescriptorTopicViewModel> {
+  public record IncomingRelationshipAttributeViewModel: AttributeViewModel<IncomingRelationshipAttributeDescriptorViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -28,7 +28,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
     /// </summary>
     public IncomingRelationshipAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      IncomingRelationshipAttributeDescriptorTopicViewModel attributeDescriptor,
+      IncomingRelationshipAttributeDescriptorViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(

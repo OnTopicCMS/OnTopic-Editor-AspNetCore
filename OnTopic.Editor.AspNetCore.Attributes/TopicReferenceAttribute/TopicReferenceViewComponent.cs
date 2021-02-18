@@ -35,7 +35,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      TopicReferenceAttributeDescriptorTopicViewModel attribute,
+      TopicReferenceAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -62,7 +62,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<TopicReferenceAttributeDescriptorTopicViewModel>(currentTopic, attribute);
+      var viewModel = new AttributeViewModel<TopicReferenceAttributeDescriptorViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

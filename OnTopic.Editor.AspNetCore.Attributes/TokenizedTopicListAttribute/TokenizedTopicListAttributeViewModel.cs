@@ -13,10 +13,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Represents the data model for the <see cref="TokenizedTopicListViewComponent"/>. Additionally provides access to the
-  ///   underlying <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the
+  ///   underlying <see cref="AttributeDescriptorViewModel"/> as well as the instance values for that attribute from the
   ///   currently selected <see cref="Topic"/>.
   /// </summary>
-  public record TokenizedTopicListAttributeViewModel: AttributeViewModel<TokenizedTopicListAttributeDescriptorTopicViewModel> {
+  public record TokenizedTopicListAttributeViewModel: AttributeViewModel<TokenizedTopicListAttributeDescriptorViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -26,7 +26,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     /// </summary>
     public TokenizedTopicListAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      TokenizedTopicListAttributeDescriptorTopicViewModel attributeDescriptor,
+      TokenizedTopicListAttributeDescriptorViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(

@@ -11,8 +11,8 @@ namespace OnTopic.Editor.AspNetCore.Models {
   | CLASS: ATTRIBUTE VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to both a <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that
-  ///   attribute from the currently selected <see cref="Topic"/>.
+  ///   Provides access to both a <see cref="AttributeDescriptorViewModel"/> as well as the instance values for that attribute
+  ///   from the currently selected <see cref="Topic"/>.
   /// </summary>
   public record AttributeViewModel {
 
@@ -24,7 +24,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// </summary>
     public AttributeViewModel(
       EditingTopicViewModel currentTopic,
-      AttributeDescriptorTopicViewModel attributeDescriptor
+      AttributeDescriptorViewModel attributeDescriptor
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Provides the global definition for the attribute, as defined on the corresponding <see cref="ContentType"/>.
     /// </summary>
-    public AttributeDescriptorTopicViewModel AttributeDescriptor { get; }
+    public AttributeDescriptorViewModel AttributeDescriptor { get; }
 
     /*==========================================================================================================================
     | PROPERTY: CURRENT TOPIC

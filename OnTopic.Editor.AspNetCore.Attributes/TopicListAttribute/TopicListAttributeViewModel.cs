@@ -15,7 +15,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
   /// <summary>
   ///   Extends the <see cref="AttributeViewModel"/> to include properties that are specific to the topic list view component.
   /// </summary>
-  public record TopicListAttributeViewModel: AttributeViewModel<TopicListAttributeDescriptorTopicViewModel> {
+  public record TopicListAttributeViewModel: AttributeViewModel<TopicListAttributeDescriptorViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -25,7 +25,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
     /// </summary>
     public TopicListAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      TopicListAttributeDescriptorTopicViewModel attributeDescriptor,
+      TopicListAttributeDescriptorViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ) : base(

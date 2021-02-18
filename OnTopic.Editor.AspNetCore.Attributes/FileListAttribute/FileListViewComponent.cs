@@ -47,7 +47,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      FileListAttributeDescriptorTopicViewModel attribute,
+      FileListAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -90,7 +90,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     /// </summary>
     public static Collection<SelectListItem> GetFiles(
       string inheritedValue,
-      FileListAttributeDescriptorTopicViewModel attribute,
+      FileListAttributeDescriptorViewModel attribute,
       string absolutePath
     ) {
 

@@ -33,7 +33,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      BooleanAttributeDescriptorTopicViewModel attribute,
+      BooleanAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;

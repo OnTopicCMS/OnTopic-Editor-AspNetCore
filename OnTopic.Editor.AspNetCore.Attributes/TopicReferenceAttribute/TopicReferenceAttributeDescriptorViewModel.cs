@@ -3,34 +3,48 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Metadata;
-using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 using System;
+using System.Diagnostics.CodeAnalysis;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
+using OnTopic.Mapping.Annotations;
+using OnTopic.Metadata;
+using OnTopic.ViewModels;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
   /*============================================================================================================================
-  | CLASS: TOKENIZED TOPIC LIST ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: TOPIC REFERENCE ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="TokenizedTopicListViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="TopicReferenceViewComponent"/>.
   /// </summary>
-  public record TokenizedTopicListAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
+  public record TopicReferenceAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TokenizedTopicListAttributeDescriptorTopicViewModel"/>
+    ///   Initializes a new instance of a <see cref="TopicReferenceAttributeDescriptorViewModel"/>
     /// </summary>
-    public TokenizedTopicListAttributeDescriptorTopicViewModel() {
+    public TopicReferenceAttributeDescriptorViewModel() {
       StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input.min.css", UriKind.Relative));
       StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input-facebook.min.css", UriKind.Relative));
       Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/jquery-tokeninput.min.js", UriKind.Relative));
       Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/TokenizedTopicList.js", UriKind.Relative));
     }
+
+    /*==========================================================================================================================
+    | PROPERTY: ROOT TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets a <see cref="Topic.Id"/> representing the scope of <see cref="Topic"/>s to display to the user. This
+    ///   allows relationships to be targeted to particular areas of the topic graph.
+    /// </summary>
+    [AttributeKey("RootTopicId")]
+    [NotNull]
+    public TopicViewModel? RootTopic { get; init; }
 
     /*==========================================================================================================================
     | RESULT LIMIT
@@ -41,28 +55,12 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     public int? ResultLimit { get; init; } = 100;
 
     /*==========================================================================================================================
-    | TOKEN LIMIT
+    | TARGET CONTENT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the maximum number of tokens allowed to be selected by the user. Maps to TokenInput's <c>tokenLimit</c>
-    ///   setting.
+    ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
     /// </summary>
-    /// <remarks>
-    ///   This is especially useful if an attribute should be limited to a single entry, such as a topic reference, but it is
-    ///   preferred to display a searchable list rather than a predefined dropdown list using <see
-    ///   cref="TopicLookupViewComponent"/>.
-    /// </remarks>
-    public int? TokenLimit { get; init; } = 100;
-
-    /*==========================================================================================================================
-    | AUTO POST BACK?
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Determines if the form should automatically be submitted whenever a new value is selected. This is useful, in
-    ///   particular, for the <see cref="TopicPointerViewComponent"/>, which provides a purpose-built wrapper for the <see
-    ///   cref="TokenizedTopicViewComponent"/>.
-    /// </summary>
-    public bool? AutoPostBack { get; init; }
+    public string? TargetContentType { get; init; }
 
   } //Class
 } //Namespace

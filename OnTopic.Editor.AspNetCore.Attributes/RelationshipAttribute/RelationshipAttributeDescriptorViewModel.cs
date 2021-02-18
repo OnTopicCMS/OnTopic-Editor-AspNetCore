@@ -4,59 +4,56 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
+using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.TextAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
 
   /*============================================================================================================================
-  | CLASS: TEXT ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: RELATIONSHIP ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="TextViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="RelationshipViewComponent"/>.
   /// </summary>
-  public record TextAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record RelationshipAttributeDescriptorViewModel: QueryableTopicListAttributeDescriptorViewModel {
 
     /*==========================================================================================================================
-    | MINIMUM LENGTH
+    | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the length length of the field. Defaults to <c>0</c> if undefined.
+    ///   Initializes a new instance of a <see cref="RelationshipAttributeDescriptorViewModel"/>
     /// </summary>
-    public int? MinimumLength { get; init; }
+    public RelationshipAttributeDescriptorViewModel() {
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/SelectableTreeView.js", UriKind.Relative));
+    }
 
     /*==========================================================================================================================
-    | MAXIMUM LENGTH
+    | PROPERTY: SHOW ROOT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the maximimum length of the field. Defaults to <c>500</c> if undefined.
+    ///   Given the <see cref="Scope"/>, determines whether the root node is displayed, or only the children. The default is
+    ///   false.
     /// </summary>
-    public int? MaximumLength { get; init; } = Int32.MaxValue;
+    public bool? ShowRoot { get; init; }
 
     /*==========================================================================================================================
-    | INPUT TYPE
+    | PROPERTY: EXPAND RELATED?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the HTML input type of the field. Defaults to <c>text</c> if undefined.
+    ///   Determines whether or not the tree panel should be expanded to ensure visibility of any related (checked)
+    ///   relationships upon load. Defaults to <c>true</c>.
     /// </summary>
-    public string? InputType { get; init; } = "text";
+    public bool? ExpandRelated { get; init; }
 
     /*==========================================================================================================================
-    | PATTERN
+    | PROPERTY: CHECK ASCENDANTS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets a regular expression which should be used to validate the input.
+    ///   When a <see cref="Topic"/> is selected as a relationship, determines if the client should automatically select all
+    ///   descendent topics. The default is false.
     /// </summary>
-    public string? Pattern { get; init; }
-
-    /*==========================================================================================================================
-    | VALIDATION MESSAGE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets a hint to provide if validation fails.
-    /// </summary>
-    public string? ValidationMessage { get; init; }
+    public bool? CheckAscendants { get; init; }
 
   } //Class
 } //Namespace

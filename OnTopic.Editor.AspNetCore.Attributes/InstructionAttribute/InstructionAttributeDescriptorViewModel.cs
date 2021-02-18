@@ -7,16 +7,23 @@ using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
 
   /*============================================================================================================================
-  | CLASS: LAST MODIFIED ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: INSTRUCTION ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="LastModifiedViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="InstructionViewComponent"/>.
   /// </summary>
-  public record LastModifiedAttributeDescriptorTopicViewModel: AttributeDescriptorTopicViewModel {
+  public record InstructionAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
+    /*==========================================================================================================================
+    | INSTRUCTIONS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Instructional text to embed in the OnTopic Editor.
+    /// </summary>
+    public string? Instructions { get; init; }
 
   } //Class
 } //Namespace

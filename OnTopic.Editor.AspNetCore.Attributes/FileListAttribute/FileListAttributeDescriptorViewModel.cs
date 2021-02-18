@@ -3,57 +3,51 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
 
   /*============================================================================================================================
-  | CLASS: RELATIONSHIP ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: FILE LIST ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="RelationshipViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="FileListViewComponent"/>.
   /// </summary>
-  public record RelationshipAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
+  public record FileListAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | PROPERTY: PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="RelationshipAttributeDescriptorTopicViewModel"/>
+    ///   Gets or sets the the directory path in which to find available files.
     /// </summary>
-    public RelationshipAttributeDescriptorTopicViewModel() {
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/SelectableTreeView.js", UriKind.Relative));
-    }
+    public string? Path { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: SHOW ROOT
+    | PROPERTY: EXTENSION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given the <see cref="Scope"/>, determines whether the root node is displayed, or only the children.  The default is
-    ///   false.
+    ///   Gets or sets which file extension to restrict the list of files.
     /// </summary>
-    public bool? ShowRoot { get; init; }
+    public string? Extension { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: EXPAND RELATED?
+    | PROPERTY: FILTER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether or not the tree panel should be expanded to ensure visibility of any related (checked)
-    ///   relationships upon load. Defaults to <c>true</c>.
+    ///   Gets or sets the filter criteria by which to restrict the list of files.
     /// </summary>
-    public bool? ExpandRelated { get; init; }
+    public string? Filter { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: CHECK ASCENDANTS
+    | PROPERTY: INCLUDE SUBDIRECTORIES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   When a <see cref="Topic"/> is selected as a relationship, determines if the client should automatically select all
-    ///   descendent topics. The default is false.
+    ///   Gets or sets whether to only include the specified directory, or also include files from all subdirectories.
     /// </summary>
-    public bool? CheckAscendants { get; init; }
+    public bool? IncludeSubdirectories { get; init; }
 
   } //Class
 } //Namespace

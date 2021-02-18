@@ -14,11 +14,11 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
   | CLASS: FILE ATTRIBUTE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents the data model for the <see cref="FileViewComponent"/>. Additionally provides access to the underlying
-  ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
-  ///   selected <see cref="Topic"/>.
+  ///   Represents the data model for the <see cref="FileViewComponent"/>. Additionally provides access to the underlying <see
+  ///   cref="AttributeDescriptorViewModel"/> as well as the instance values for that attribute from the currently selected <see
+  ///   cref="Topic"/>.
   /// </summary>
-  public record FileListAttributeViewModel: AttributeViewModel<FileListAttributeDescriptorTopicViewModel> {
+  public record FileListAttributeViewModel: AttributeViewModel<FileListAttributeDescriptorViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -28,7 +28,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     /// </summary>
     public FileListAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      FileListAttributeDescriptorTopicViewModel attributeDescriptor,
+      FileListAttributeDescriptorViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ) : base(
@@ -57,7 +57,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     ///   Provides the absolute path where files are being displayed from.
     /// </summary>
     /// <remarks>
-    ///   While the <i>relative</i> file path can be retrieved from <see cref="FileListAttributeDescriptorTopicViewModel.Path"
+    ///   While the <i>relative</i> file path can be retrieved from <see cref="FileListAttributeDescriptorViewModel.Path"
     ///   />, that doesn't include the base path of the web application. The <see cref="AbsolutePath"/> addresses this.
     /// </remarks>
     public string AbsolutePath { get; set; }

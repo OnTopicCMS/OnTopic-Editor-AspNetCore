@@ -3,29 +3,30 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
-using OnTopic.ViewModels;
+using System;
+using OnTopic.Editor.AspNetCore.Models.Components;
 
 #nullable enable
 
-namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
 
   /*============================================================================================================================
-  | CLASS: INCOMING RELATIONSHIP ATTRIBUTE DESCRIPTOR (TOPIC VIEW MODEL)
+  | CLASS: NESTED TOPIC LIST ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="IncomingRelationshipViewComponent"/>.
+  ///   Provides access to attributes associated with the <see cref="NestedTopicListViewComponentView"/>.
   /// </summary>
-  public record IncomingRelationshipAttributeDescriptorTopicViewModel: QueryableTopicListAttributeDescriptorTopicViewModel {
+  public record NestedTopicListAttributeDescriptorViewModel: ContentTypeListAttributeDescriptorViewModel {
 
     /*==========================================================================================================================
-    | RELATIONSHIP KEY
+    | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Optionally provides the relationship key, which mapes to the <see cref="NamedTopicCollection.Name"/> property.
-    ///   Defaults to the <see cref="TopicViewModel.Key"/> if undefined.
+    ///   Initializes a new instance of a <see cref="NestedTopicListAttributeDescriptorViewModel"/>
     /// </summary>
-    public string? RelationshipKey { get; init; }
+    public NestedTopicListAttributeDescriptorViewModel() {
+      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/NestedTopics.js", UriKind.Relative));
+    }
 
   } //Class
 } //Namespace

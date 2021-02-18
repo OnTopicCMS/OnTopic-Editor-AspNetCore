@@ -34,7 +34,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      TextAreaAttributeDescriptorTopicViewModel attribute,
+      TextAreaAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -52,7 +52,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<TextAreaAttributeDescriptorTopicViewModel>(currentTopic, attribute);
+      var viewModel = new AttributeViewModel<TextAreaAttributeDescriptorViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

@@ -34,7 +34,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      DateTimeAttributeDescriptorTopicViewModel attribute,
+      DateTimeAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
 

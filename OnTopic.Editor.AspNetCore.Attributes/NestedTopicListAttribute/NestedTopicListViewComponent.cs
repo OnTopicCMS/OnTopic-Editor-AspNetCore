@@ -43,7 +43,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      NestedTopicListAttributeDescriptorTopicViewModel attribute,
+      NestedTopicListAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
 

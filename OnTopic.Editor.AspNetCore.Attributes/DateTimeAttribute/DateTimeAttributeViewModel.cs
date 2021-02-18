@@ -15,10 +15,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Represents the data model for the <see cref="DateTimeViewComponent"/>. Additionally provides access to the underlying
-  ///   <see cref="AttributeDescriptorTopicViewModel"/> as well as the instance values for that attribute from the currently
-  ///   selected <see cref="Topic"/>.
+  ///   <see cref="AttributeDescriptorViewModel"/> as well as the instance values for that attribute from the currently selected
+  ///   <see cref="Topic"/>.
   /// </summary>
-  public record DateTimeAttributeViewModel: AttributeViewModel<DateTimeAttributeDescriptorTopicViewModel> {
+  public record DateTimeAttributeViewModel: AttributeViewModel<DateTimeAttributeDescriptorViewModel> {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -34,7 +34,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /// </summary>
     public DateTimeAttributeViewModel(
       EditingTopicViewModel currentTopic,
-      DateTimeAttributeDescriptorTopicViewModel attributeDescriptor,
+      DateTimeAttributeDescriptorViewModel attributeDescriptor,
       string value = null,
       string inheritedValue = null
     ): base(
