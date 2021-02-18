@@ -1,5 +1,5 @@
 # OnTopic Editor
-The `OnTopic.Editor.AspNetCore` project provides a web-based interface for the [**OnTopic Library**](https://github.com/OnTopicCMS/OnTopic-Library). The editor id distributed as a **Razor Class Library** via **NuGet** so it can easily be added to a website that implements the [`OnTopic.AspNetCore.Mvc`](https://github.com/OnTopicCMS/OnTopic-Library/tree/master/OnTopic.AspNetCore.Mvc) library.
+The `OnTopic.Editor.AspNetCore` project provides a web-based interface for the [**OnTopic Library**](https://github.com/OnTopicCMS/OnTopic-Library). The editor is distributed as a **Razor Class Library** via **NuGet** so it can easily be added to a website that implements the [`OnTopic.AspNetCore.Mvc`](https://github.com/OnTopicCMS/OnTopic-Library/tree/master/OnTopic.AspNetCore.Mvc) library.
 
 [![OnTopic.Editor.AspNetCore package in Internal feed in Azure Artifacts](https://igniasoftware.feeds.visualstudio.com/_apis/public/Packaging/Feeds/46d5f49c-5e1e-47bb-8b14-43be6c719ba8/Packages/682244bf-1062-48de-949e-16f9cb11a6cf/Badge)](https://igniasoftware.visualstudio.com/OnTopic/_packaging?_a=package&feed=46d5f49c-5e1e-47bb-8b14-43be6c719ba8&package=682244bf-1062-48de-949e-16f9cb11a6cf&preferRelease=true)
 [![Build Status](https://igniasoftware.visualstudio.com/OnTopic/_apis/build/status/OnTopic-Editor-CI-V1?branchName=master)](https://igniasoftware.visualstudio.com/OnTopic/_build/latest?definitionId=8&branchName=master)
@@ -45,7 +45,7 @@ public class Startup {
 ```
 
 ### Routes
-The editor lives in an area called `Editor` and a controller called `EditorController`. That said, a custom route can be conigured using the `MapTopicEditorRoute()` extension method to setup the `/OnTopic` route (e.g., `/OnTopic/Edit/Root/Web`):
+The editor lives in an area called `Editor` and a controller called `EditorController`. A custom route can be conigured using the `MapTopicEditorRoute()` extension method to setup the `/OnTopic` route (e.g., `/OnTopic/Edit/Root/Web`):
 ```c#
 public class Startup {
   …
@@ -75,7 +75,7 @@ public class ControllerActivator : IControllerActivator {
 > _Note:_ This assumes a `_topicRepository` and `_topicMappingService` have already been configured; see the [`OnTopic.AspNetCore.Mvc`](https://github.com/OnTopicCMS/OnTopic-Library/tree/master/OnTopic.AspNetCore.Mvc#composition-root) documentation for details.
 
 #### `IViewComponentActivator`
-The [`StandardEditorComposer`](OnTopic.Editor.AspNetCore/StandardEditorComposer.cs) class acts as a clearing house for accepting common dependencies and then composing the appropriate dependency graph for the view components:
+The [`StandardEditorComposer`](OnTopic.Editor.AspNetCore.Attributes/StandardEditorComposer.cs) class acts as a clearing house for accepting common dependencies and then composing the appropriate dependency graph for the view components:
 ```c#
 public class ViewComponentActivator : IViewComponentActivator {
   …
