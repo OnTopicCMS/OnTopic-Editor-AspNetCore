@@ -3,7 +3,10 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
+using System.Reflection;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models.Metadata {
@@ -120,6 +123,27 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   Provides a list of client-side scripts associated with this <see cref="AttributeDescriptorViewModel"/>.
     /// </summary>
     public ScriptCollection Scripts { get; } = new();
+
+    /*==========================================================================================================================
+    | METHOD: GET NAMESPACED URI
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given a <paramref name="url"/>, will convert to a <see cref="Uri"/> format. Optionally, if the <paramref name="url"/>
+    ///   begins with <c>%/</c>, then the assembly namespace will be added to the resulting <see cref="Uri"/>.
+    /// </summary>
+    /// <param name="path">The relative or absolute URL so the client-side resource.</param>
+    /// <returns>A <see cref="Uri"/> version of <paramref name="url"/>.</returns>
+    protected Uri GetNamespacedUri(string path) {
+      Contract.Requires(path, nameof(path));
+      if (
+        path.StartsWith("/_content/", StringComparison.OrdinalIgnoreCase) ||
+        !path.StartsWith("/", StringComparison.Ordinal)
+      ) {
+        return new(path, UriKind.RelativeOrAbsolute);
+      }
+      var assemblyName = GetType().Assembly.GetName().Name;
+      return new($"/_content/{assemblyName}/{path[1..]}", UriKind.Relative);
+    }
 
   } //Class
 } //Namespace
