@@ -30,7 +30,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
     /// </summary>
     [Include(AssociationTypes.None)]
     [Collection("ContentTypes", Type=CollectionType.Relationship)]
-    public Collection<ContentTypeDescriptorTopicViewModel> PermittedContentTypes { get; } = new();
+    public Collection<ContentTypeDescriptorViewModel> PermittedContentTypes { get; } = new();
 
     /*==========================================================================================================================
     | ENABLE MODAL

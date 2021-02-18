@@ -21,13 +21,19 @@ namespace OnTopic.Editor.AspNetCore.Models.ClientResources {
     | METHOD: REGISTER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Registers a client-side resource.
+    ///   Registers a client-side script, optionally placing it <paramref name="inHeader"/> or making sure it is <paramref name=
+    ///   "isDeferred"/>.
     /// </summary>
-    public void Register(Uri url, bool inHeader = false, bool isDeferred = true) {
-      if (!Contains(url)) {
+    /// <param name="uri">The relative or absolute URL of the client-side script.</param>
+    /// <param name="inHeader">Specifies that the script should be placed in the HTML header, instead of the footer.</param>
+    /// <param name="isDeferred">
+    ///   Specifies that the script execution should be deferred, instead of executed immediately.
+    /// </param>
+    public void Register(Uri uri, bool inHeader, bool isDeferred = true) {
+      if (!Contains(uri)) {
         Add(
           new() {
-            Url                 = url,
+            Url                 = uri,
             InHeader            = inHeader,
             IsDeferred          = isDeferred
           }

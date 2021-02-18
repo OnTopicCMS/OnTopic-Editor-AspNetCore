@@ -23,11 +23,12 @@ namespace OnTopic.Editor.AspNetCore.Models.ClientResources {
     /// <summary>
     ///   Registers a client-side resource.
     /// </summary>
-    public void Register(Uri url) {
-      if (!Contains(url)) {
+    /// <param name="uri">The relative or absolute URL so the client-side resource.</param>
+    public void Register(Uri uri) {
+      if (!Contains(uri)) {
         Add(
           new() {
-            Url                 = url
+            Url                 = uri
           }
         );
       }

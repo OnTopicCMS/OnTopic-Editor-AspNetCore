@@ -29,10 +29,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
     ///   Initializes a new instance of a <see cref="TopicReferenceAttributeDescriptorViewModel"/>
     /// </summary>
     public TopicReferenceAttributeDescriptorViewModel() {
-      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input.min.css", UriKind.Relative));
-      StyleSheets.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Styles/token-input-facebook.min.css", UriKind.Relative));
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/jquery-tokeninput.min.js", UriKind.Relative));
-      Scripts.Register(new("/_content/OnTopic.Editor.AspNetCore.Attributes/Shared/Scripts/TokenizedTopicList.js", UriKind.Relative));
+      StyleSheets.Register(GetNamespacedUri("/Shared/Styles/token-input.min.css"));
+      StyleSheets.Register(GetNamespacedUri("/Shared/Styles/token-input-facebook.min.css"));
+      Scripts.Register(GetNamespacedUri("/Shared/Scripts/jquery-tokeninput.min.js"));
+      Scripts.Register(GetNamespacedUri("/Shared/Scripts/TokenizedTopicList.js"));
     }
 
     /*==========================================================================================================================

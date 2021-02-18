@@ -22,5 +22,5 @@ using System.Runtime.InteropServices;
 | Suppress warnings from code analysis that are either false positives or not relevant for this assembly.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 [assembly: SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix", Justification = "Expected by convention for OnTopic Editor", Scope = "namespaceanddescendants", Target = "~N:OnTopic.Editor.AspNetCore")]
-[assembly: SuppressMessage("Naming", "CA1721:Property names should not match get methods", Justification = "By design", Scope = "member", Target = "~P:OnTopic.Editor.AspNetCore.Models.Metadata.ContentTypeDescriptorTopicViewModel.AttributeDescriptors")]
+[assembly: SuppressMessage("Naming", "CA1721:Property names should not match get methods", Justification = "By design", Scope = "member", Target = "~P:OnTopic.Editor.AspNetCore.Models.Metadata.ContentTypeDescriptorViewModel.AttributeDescriptors")]
 [assembly: SuppressMessage("Naming", "CA1721:Property names should not match get methods", Justification = "By design", Scope = "member", Target = "~P:OnTopic.Editor.AspNetCore.Models.AttributeBindingModel.Value")]
