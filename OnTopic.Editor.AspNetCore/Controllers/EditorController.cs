@@ -170,14 +170,19 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       //The attribute collections follow special conventions that can't be automatically mapped from the topic
       foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
 
+        //For new topics that aren't derived from another topic, assign attribute default, if available
+        if (isNew) {
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.BaseTopic is null? null : attribute.DefaultValue);
+        }
+
         //Serialize relationships, if it's a relationship type
-        if (!isNew && attribute.ModelType is ModelType.Relationship) {
+        else if (attribute.ModelType is ModelType.Relationship) {
           var relatedTopicIds = CurrentTopic.Relationships.GetValues(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
           topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
         }
 
         //Serialize references, if it's a topic reference
-        else if (!isNew && attribute.ModelType is ModelType.Reference) {
+        else if (attribute.ModelType is ModelType.Reference) {
           topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetValue(attribute.Key)?.Id.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -187,18 +192,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
 
         //For existing topics, get locally assigned attributes
-        else if (!isNew) {
-          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.Attributes.GetValue(attribute.Key, null, false, false));
-        }
-
-        //For new topics that aren't derived from another topic, assign attribute default, if available
-        else if (CurrentTopic.BaseTopic is null && !attribute.IsRequired && attribute.DefaultValue is not null) {
-          topicViewModel.Attributes.Add(attribute.Key, attribute.DefaultValue);
-        }
-
-        //Otherwise, assign a null value; that way, all attributes are guaranteed to be accounted for
         else {
-          topicViewModel.Attributes.Add(attribute.Key, null);
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.Attributes.GetValue(attribute.Key, null, false, false));
         }
 
         //Set inherited attribute value, if available

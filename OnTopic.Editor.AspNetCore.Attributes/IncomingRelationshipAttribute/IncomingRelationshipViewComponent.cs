@@ -76,11 +76,15 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
       Contract.Assume(topic, $"The target topic with the unique key '{currentTopic.UniqueKey}' could not be found.");
 
       foreach(var relatedTopic in topic.IncomingRelationships.GetValues(attribute.RelationshipKey?? attribute.Key)) {
-        if (
-          !String.IsNullOrWhiteSpace(attribute.AttributeKey) &&
-          relatedTopic.Attributes.GetValue(attribute.AttributeKey) != attribute.AttributeValue
-        ) {
-          continue;
+
+        if (!String.IsNullOrWhiteSpace(attribute.AttributeKey)) {
+          var attributeValue = relatedTopic.Attributes.GetValue(attribute.AttributeKey, "");
+          if (attribute.AttributeKey.Equals("ContentType", StringComparison.OrdinalIgnoreCase)) {
+            attributeValue = relatedTopic.ContentType;
+          }
+          if (!attributeValue.Equals(attribute.AttributeValue, StringComparison.OrdinalIgnoreCase)) {
+            continue;
+          }
         }
         var relatedViewModel    = new TopicViewModel {
           Id                    = relatedTopic.Id,
