@@ -2,29 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <LangVersion>9.0</LangVersion>
-    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Nullable>enable</Nullable>
-    <AnalysisLevel>latest</AnalysisLevel>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <NoWarn>NU5118</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>Ignia</Authors>
-    <Company>Ignia</Company>
-    <Product>Ignia OnTopic Editor</Product>
+    <AssemblyTitle>OnTopic Editor</AssemblyTitle>
     <Description>
       The OnTopic Editor provides a content management interface to Ignia's OnTopic Library, thus allowing users to modify semi-structured, device-independent data. This distribution provides a .NET Core 3 support.
     </Description>
-    <Copyright>©2021 Ignia, LLC</Copyright>
-    <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
     <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia</PackageTags>
-    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
-    <RepositoryType>git</RepositoryType>
-    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
