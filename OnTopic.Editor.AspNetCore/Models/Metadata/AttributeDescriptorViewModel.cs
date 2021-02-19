@@ -4,6 +4,8 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Metadata;
@@ -25,7 +27,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   Provides a friendly description for the <see cref="AttributeDescriptor"/>, intended as documentation for users of the
     ///   editor.
     /// </summary>
-    public string Description { get; init; }
+    public string? Description { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: MODEL TYPE
@@ -46,7 +48,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   such as <see cref="BooleanAttribute"/>. This can be used by the editor to determine the appropriate view component to
     ///   display.
     /// </remarks>
-    public string EditorType { get; init; }
+    [Required, NotNull, DisallowNull]
+    public string? EditorType { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: DISPLAY GROUP
@@ -54,7 +57,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Determines what group of attributes to associate the current attribute with.
     /// </summary>
-    public string DisplayGroup { get; init; }
+    [Required, NotNull, DisallowNull]
+    public string? DisplayGroup { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: IS REQUIRED?
@@ -75,7 +79,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   value. This helps establish a logical default, but also prevents values from being inherited from e.g. parent topics;
     ///   as such, this should be used with caution. The value used here will be stored locally on a per-topic basis.
     /// </remarks>
-    public string DefaultValue { get; init; }
+    public string? DefaultValue { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: IMPLICIT VALUE
@@ -89,7 +93,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   set different defaults in different contexts (e.g., based on different views). The <see cref="ImplicitValue"/> will be
     ///   exposed to editors as an HTML placeholder on input fields that support it.
     /// </remarks>
-    public string ImplicitValue { get; init; }
+    public string? ImplicitValue { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: SORT ORDER

@@ -122,7 +122,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes {
         nameof(TopicListViewComponent)                          => new TopicListViewComponent(_topicRepository),
         nameof(TopicReferenceViewComponent)                     => new TopicReferenceViewComponent(),
         nameof(ContentTypeListViewComponent)                    => new ContentTypeListViewComponent(_topicRepository),
-        _                                                       => throw new InvalidOperationException($"Unknown view component {type.Name}")
+        _                                                       => throw new InvalidOperationException($"Unknown view component {type?.Name}")
       };
 
   } // Class

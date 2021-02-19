@@ -43,7 +43,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Provides a reference to a base topic, if one exists.
     /// </summary>
-    public TopicViewModel BaseTopic { get; set; }
+    public TopicViewModel? BaseTopic { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ATTRIBUTES
