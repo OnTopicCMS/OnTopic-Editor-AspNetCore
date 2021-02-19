@@ -28,7 +28,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     /// <summary>
     ///   Initializes a new instance of a <see cref="AttributeBindingModelBinder"/>.
     /// </summary>
-    internal AttributeBindingModelBinder() { }
+    public AttributeBindingModelBinder() { }
 
     /*==========================================================================================================================
     | PROPERTY: TYPE LOOKUP SERVICE
