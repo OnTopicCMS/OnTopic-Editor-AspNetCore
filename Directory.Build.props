@@ -1,0 +1,30 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <LangVersion>9.0</LangVersion>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <Nullable>enable</Nullable>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <NoWarn>NU5118</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>OnTopic</Product>
+    <Authors>Ignia</Authors>
+    <Company>Ignia</Company>
+    <Copyright>©2021 Ignia, LLC</Copyright>
+    <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
+    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en</NeutralLanguage>
+    <IncludeSymbols>true</IncludeSymbols>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+</Project>
