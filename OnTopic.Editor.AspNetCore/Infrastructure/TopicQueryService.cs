@@ -176,7 +176,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
         if (options.AttributeName is "ContentType") {
           attributeValue = topic.ContentType;
         }
-        if (options.UsePartialMatch) {
+        if (options.UsePartialMatch && !String.IsNullOrEmpty(options.AttributeValue)) {
           if (attributeValue.IndexOf(options.AttributeValue, StringComparison.Ordinal) is -1) {
             return false;
           }

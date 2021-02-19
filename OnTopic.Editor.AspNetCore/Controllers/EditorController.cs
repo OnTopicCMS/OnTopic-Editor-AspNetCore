@@ -292,6 +292,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | VALIDATE PARAMETERS
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Assume(parentTopic, "The parent topic could not be resolved to an existing topic.");
+      Contract.Assume(newKey, "A value for the required 'Key' attribute was not submitted.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
@@ -346,6 +347,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var topic                 = CurrentTopic;
 
       if (isNew) {
+        Contract.Requires(contentType, nameof(contentType));
         topic = TopicFactory.Create(newKey, contentType, CurrentTopic);
       }
       else {
@@ -458,6 +460,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// </summary>
     [HttpGet]
     public IActionResult SetVersion(DateTime version, bool isModal = false) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Initiate rollback
@@ -670,6 +677,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <param name="options">The <see cref="ExportOptions"/> for determing what values should be exported.</param>
     [HttpPost]
     public IActionResult Export([Bind(Prefix="ExportOptions")]ExportOptions options) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE PARAMETERS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | EXPORT TO JSON

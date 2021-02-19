@@ -51,7 +51,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   A collection of attribute values, as assigned directly to the topic. Does not include inherited or derived values.
     /// </summary>
-    public Dictionary<string, string> Attributes { get; } = new();
+    public Dictionary<string, string?> Attributes { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: INHERITED ATTRIBUTES
@@ -59,7 +59,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   A collection of inherited attribute values, as inferred from derived or upstream topics.
     /// </summary>
-    public Dictionary<string, string> InheritedAttributes { get; } = new();
+    public Dictionary<string, string?> InheritedAttributes { get; } = new();
 
   } // Class
 } // Namespace

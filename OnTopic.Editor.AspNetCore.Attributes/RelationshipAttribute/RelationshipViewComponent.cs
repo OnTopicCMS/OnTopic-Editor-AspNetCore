@@ -43,6 +43,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(currentTopic, nameof(currentTopic));
       Contract.Requires(attribute, nameof(attribute));
+      Contract.Requires(attribute.Key, nameof(attribute.Key));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -72,7 +73,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
     ///   Takes a string array, converts it to an array, strips any blank entries, and returns it to a string array. Useful for
     ///   dealing with potential artifacts such as empty array items introduced by JavaScript.
     /// </summary>
-    private static string CleanArray(string value) {
+    private static string CleanArray(string? value) {
       if (String.IsNullOrWhiteSpace(value)) return "";
       return String.Join(",", value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
     }

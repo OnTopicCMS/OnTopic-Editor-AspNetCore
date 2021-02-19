@@ -43,7 +43,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var key                   = AttributeDescriptor.Key;
+      var key                   = AttributeDescriptor.Key!;
       var topic                 = CurrentTopic;
 
       Value                     = topic.Attributes.ContainsKey(key) ? topic.Attributes[key] : null;

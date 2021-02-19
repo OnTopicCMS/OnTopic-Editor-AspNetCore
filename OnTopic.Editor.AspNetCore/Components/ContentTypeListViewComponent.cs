@@ -90,7 +90,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       foreach (var contentType in values.OrderBy(c => c.Title)) {
         viewModel.TopicList.Add(
           new() {
-            Value               = getValue(contentType.Key),
+            Value               = getValue(contentType.Key!),
             Text                = contentType.Title
           }
         );
@@ -105,7 +105,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypes          = _topicRepository.GetContentTypeDescriptors();
       var actualTopic           = _topicRepository.Load(currentTopic.Id)?? _topicRepository.Load(currentTopic.Parent?.Id?? int.MinValue);
-      var actualContentType     = contentTypes.GetValue(currentTopic.ContentType);
+      var actualContentType     = contentTypes.GetValue(currentTopic.ContentType!);
 
       if (actualContentType is null || actualTopic is null) {
         return View(viewModel);
