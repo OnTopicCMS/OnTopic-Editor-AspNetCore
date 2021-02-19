@@ -12,8 +12,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
 
   /*============================================================================================================================
@@ -149,5 +147,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
 
   } // Class
 } // Namespace
-
-#nullable restore

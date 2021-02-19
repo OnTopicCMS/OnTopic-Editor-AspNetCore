@@ -6,8 +6,6 @@
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 using OnTopic.ViewModels;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
 
   /*============================================================================================================================
@@ -29,5 +27,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

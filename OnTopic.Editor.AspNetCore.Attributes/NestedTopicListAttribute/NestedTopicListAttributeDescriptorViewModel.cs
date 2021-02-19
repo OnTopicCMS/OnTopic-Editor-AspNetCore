@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Models.Components;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
 
   /*============================================================================================================================
@@ -29,5 +27,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

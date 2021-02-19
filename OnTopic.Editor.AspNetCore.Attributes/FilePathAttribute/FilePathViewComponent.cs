@@ -11,8 +11,6 @@ using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
 
   /*============================================================================================================================
@@ -230,5 +228,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
 
   } // Class
 } // Namespace
-
-#nullable restore

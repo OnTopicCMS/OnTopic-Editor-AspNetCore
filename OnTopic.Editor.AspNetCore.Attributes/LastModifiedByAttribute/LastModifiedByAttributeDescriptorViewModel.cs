@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
 
   /*============================================================================================================================
@@ -20,5 +18,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

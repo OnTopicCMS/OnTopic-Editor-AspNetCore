@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
 
   /*============================================================================================================================
@@ -42,5 +40,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

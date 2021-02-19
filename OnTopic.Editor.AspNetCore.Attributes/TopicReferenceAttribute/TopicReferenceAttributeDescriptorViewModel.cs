@@ -3,14 +3,11 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
 using OnTopic.ViewModels;
-
-#nullable enable
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
@@ -64,5 +61,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

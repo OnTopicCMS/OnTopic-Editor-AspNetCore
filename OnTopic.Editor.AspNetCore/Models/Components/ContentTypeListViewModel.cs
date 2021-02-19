@@ -6,8 +6,6 @@
 using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Models.Components {
 
   /*============================================================================================================================
@@ -77,5 +75,3 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
 
   } // Class
 } // Namespace
-
-#nullable disable

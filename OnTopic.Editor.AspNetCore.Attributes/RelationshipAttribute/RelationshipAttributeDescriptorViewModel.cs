@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
 
   /*============================================================================================================================
@@ -56,5 +54,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

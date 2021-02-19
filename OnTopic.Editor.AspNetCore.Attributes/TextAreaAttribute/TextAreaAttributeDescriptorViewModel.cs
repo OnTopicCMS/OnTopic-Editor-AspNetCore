@@ -6,8 +6,6 @@
 using System;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
 
   /*============================================================================================================================
@@ -45,5 +43,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore
