@@ -4,6 +4,8 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
@@ -29,8 +31,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     public FileListAttributeViewModel(
       EditingTopicViewModel currentTopic,
       FileListAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ) : base(
       currentTopic,
       attributeDescriptor,
@@ -60,7 +62,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     ///   While the <i>relative</i> file path can be retrieved from <see cref="FileListAttributeDescriptorViewModel.Path"
     ///   />, that doesn't include the base path of the web application. The <see cref="AbsolutePath"/> addresses this.
     /// </remarks>
-    public string AbsolutePath { get; set; }
+    [Required, NotNull, DisallowNull]
+    public string? AbsolutePath { get; set; }
 
   } // Class
 } // Namespace

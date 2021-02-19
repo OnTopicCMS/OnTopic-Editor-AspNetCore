@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
 
   /*============================================================================================================================
@@ -64,5 +62,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

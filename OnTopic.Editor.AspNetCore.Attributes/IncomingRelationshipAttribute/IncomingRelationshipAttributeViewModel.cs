@@ -29,8 +29,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
     public IncomingRelationshipAttributeViewModel(
       EditingTopicViewModel currentTopic,
       IncomingRelationshipAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor,

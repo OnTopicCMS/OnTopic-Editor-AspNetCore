@@ -48,7 +48,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
       TopicListAttributeDescriptorViewModel attribute,
-      string htmlFieldPrefix = null
+      string? htmlFieldPrefix = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -56,6 +56,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(currentTopic, nameof(currentTopic));
       Contract.Requires(attribute, nameof(attribute));
+      Contract.Requires(currentTopic.ContentType, nameof(currentTopic.ContentType));
+      Contract.Requires(attribute.Key, nameof(attribute.Key));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -85,19 +87,20 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Get root topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var rootTopic             = (Topic)null;
+      var rootTopic             = (Topic?)null;
 
       if (attribute.RelativeTopicBase is not null) {
         var baseTopic             = _topicRepository.Load(currentTopic.UniqueKey);
+        Contract.Assume(baseTopic, $"The topic with the key '{currentTopic.UniqueKey}' could not be located.");
         if (String.IsNullOrEmpty(currentTopic.Key)) {
           baseTopic               = TopicFactory.Create("NewTopic", currentTopic.ContentType, baseTopic);
-          baseTopic.Parent.Children.Remove(baseTopic);
+          baseTopic.Parent?.Children.Remove(baseTopic);
         }
         rootTopic                 = attribute.RelativeTopicBase switch {
           "CurrentTopic"          => baseTopic,
           "ParentTopic"           => baseTopic.Parent,
-          "GrandparentTopic"      => (Topic)baseTopic.Parent?.Parent,
-          "ContentTypeDescriptor" => (Topic)_topicRepository.GetContentTypeDescriptors().FirstOrDefault(t => t.Key.Equals(baseTopic.ContentType, StringComparison.Ordinal)),
+          "GrandparentTopic"      => (Topic?)baseTopic.Parent?.Parent,
+          "ContentTypeDescriptor" => (Topic?)_topicRepository.GetContentTypeDescriptors().FirstOrDefault(t => t.Key.Equals(baseTopic.ContentType, StringComparison.Ordinal)),
           _ => baseTopic
         };
       }
@@ -154,9 +157,9 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
     | Retrieves a collection of topics with optional control call filter properties Scope, AttributeName and AttributeValue.
     \-------------------------------------------------------------------------------------------------------------------------*/
     public static Collection<QueryResultTopicViewModel> GetTopics(
-      Topic  topic              = null,
-      string attributeKey       = null,
-      string attributeValue     = null
+      Topic?  topic             = null,
+      string? attributeKey      = null,
+      string? attributeValue    = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------

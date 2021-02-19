@@ -7,8 +7,6 @@ using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.ViewModels;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute {
 
   /*============================================================================================================================
@@ -61,5 +59,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

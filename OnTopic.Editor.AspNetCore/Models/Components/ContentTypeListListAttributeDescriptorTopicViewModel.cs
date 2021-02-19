@@ -9,8 +9,6 @@ using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Models.Components {
 
   /*============================================================================================================================
@@ -49,5 +47,3 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
 
   } //Class
 } //Namespace
-
-#nullable restore

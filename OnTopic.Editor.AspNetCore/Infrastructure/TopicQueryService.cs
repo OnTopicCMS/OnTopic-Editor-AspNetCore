@@ -38,7 +38,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
     public Collection<QueryResultTopicViewModel> Query(
       Topic rootTopic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection related = null
+      ReadOnlyTopicCollection? related = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -61,11 +61,11 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
       | Bootstrap mapping process
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (options.ShowRoot) {
-        MapQueryResult(topicViewModels, rootTopic, options, ref remainingResults, related);
+        MapQueryResult(topicViewModels, rootTopic, options, ref remainingResults, related?? new());
       }
       else {
         foreach (var topic in rootTopic.Children) {
-          MapQueryResult(topicViewModels, topic, options, ref remainingResults, related);
+          MapQueryResult(topicViewModels, topic, options, ref remainingResults, related?? new());
         }
       }
 
@@ -88,7 +88,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
       Topic topic,
       TopicQueryOptions options,
       ref int remainingResults,
-      ReadOnlyTopicCollection related = null
+      ReadOnlyTopicCollection related
     )
     {
 
@@ -176,7 +176,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
         if (options.AttributeName is "ContentType") {
           attributeValue = topic.ContentType;
         }
-        if (options.UsePartialMatch) {
+        if (options.UsePartialMatch && !String.IsNullOrEmpty(options.AttributeValue)) {
           if (attributeValue.IndexOf(options.AttributeValue, StringComparison.Ordinal) is -1) {
             return false;
           }
@@ -192,7 +192,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
       if (searchTerms.Count > 0) {
         if (!searchTerms.All(
           searchTerm => topic.Attributes.Any(
-            a => a.Value.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
+            a => a.Value?.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
           )
         )) {
           return false;

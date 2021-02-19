@@ -27,8 +27,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     public TokenizedTopicListAttributeViewModel(
       EditingTopicViewModel currentTopic,
       TokenizedTopicListAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor,
@@ -42,7 +42,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     /// <summary>
     ///   Provides a JSON formatted version of the attribute value. For use with TokenInput's <c>prePopulate</c> setting.
     /// </summary>
-    public string SelectedTopics { get; set; }
+    public string? SelectedTopics { get; set; }
 
   } // Class
 } // Namespace

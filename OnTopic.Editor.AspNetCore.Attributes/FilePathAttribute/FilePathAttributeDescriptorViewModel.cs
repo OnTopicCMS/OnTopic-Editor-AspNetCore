@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
 
   /*============================================================================================================================
@@ -55,5 +53,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

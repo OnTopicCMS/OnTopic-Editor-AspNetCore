@@ -28,8 +28,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     public FilePathAttributeViewModel(
       EditingTopicViewModel currentTopic,
       FilePathAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor,
@@ -45,7 +45,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
       @"^([A-Za-z]+:)?(\/{0,2}|\\{0,2})(?:[0-9a-zA-Z _\-\.]+(\/|\\?))+$",
       ErrorMessage = "The image path specified is not a valid file path."
     )]
-    public override string Value { get; init; }
+    public override string? Value { get; init; }
 
   } // Class
 } // Namespace

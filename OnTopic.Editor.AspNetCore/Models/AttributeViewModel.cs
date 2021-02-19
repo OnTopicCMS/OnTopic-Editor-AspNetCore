@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Models.Metadata;
+using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 
@@ -28,6 +29,12 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(currentTopic, nameof(currentTopic));
+      Contract.Requires(attributeDescriptor, nameof(attributeDescriptor));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Set properties
       \-----------------------------------------------------------------------------------------------------------------------*/
       CurrentTopic              = currentTopic;
@@ -36,7 +43,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var key                   = AttributeDescriptor.Key;
+      var key                   = AttributeDescriptor.Key!;
       var topic                 = CurrentTopic;
 
       Value                     = topic.Attributes.ContainsKey(key) ? topic.Attributes[key] : null;
@@ -66,7 +73,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Provides the current value, as defined on the <see cref="AttributeValue"/> instance.
     /// </summary>
-    public virtual string Value { get; init; }
+    public virtual string? Value { get; init; }
 
     /*==========================================================================================================================
     | INHERITED VALUE
@@ -74,7 +81,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Provides the inherited value, as defined on either parent or derived topics.
     /// </summary>
-    public string InheritedValue { get; init; }
+    public string? InheritedValue { get; init; }
 
   } // Class
 } // Namespace

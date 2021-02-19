@@ -6,8 +6,6 @@
 using System;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
 
   /*============================================================================================================================
@@ -36,5 +34,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

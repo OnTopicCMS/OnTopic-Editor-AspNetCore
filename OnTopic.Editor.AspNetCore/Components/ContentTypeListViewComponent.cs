@@ -54,9 +54,9 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      ContentTypeListAttributeDescriptorViewModel attributeDescriptor = null,
-      IEnumerable<ContentTypeDescriptorViewModel> values = null,
-      string onModalClose = null
+      ContentTypeListAttributeDescriptorViewModel? attributeDescriptor = null,
+      IEnumerable<ContentTypeDescriptorViewModel>? values = null,
+      string? onModalClose = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       foreach (var contentType in values.OrderBy(c => c.Title)) {
         viewModel.TopicList.Add(
           new() {
-            Value               = getValue(contentType.Key),
+            Value               = getValue(contentType.Key!),
             Text                = contentType.Title
           }
         );
@@ -104,8 +104,8 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | for context.
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypes          = _topicRepository.GetContentTypeDescriptors();
-      var actualTopic           = _topicRepository.Load(currentTopic.Id)?? _topicRepository.Load(currentTopic.Parent.Id);
-      var actualContentType     = contentTypes.GetValue(currentTopic.ContentType);
+      var actualTopic           = _topicRepository.Load(currentTopic.Id)?? _topicRepository.Load(currentTopic.Parent?.Id?? Int32.MinValue);
+      var actualContentType     = contentTypes.GetValue(currentTopic.ContentType!);
 
       if (actualContentType is null || actualTopic is null) {
         return View(viewModel);

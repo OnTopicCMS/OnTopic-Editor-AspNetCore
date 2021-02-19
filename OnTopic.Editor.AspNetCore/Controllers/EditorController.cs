@@ -41,7 +41,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicMappingService            _topicMappingService;
-    private                     Topic                           _currentTopic;
+    private                     Topic?                          _currentTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -85,7 +85,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Provides a reference to the current topic associated with the request.
     /// </summary>
     /// <returns>The Topic associated with the current request.</returns>
-    private Topic CurrentTopic {
+    private Topic? CurrentTopic {
       get {
         if (_currentTopic is null) {
           _currentTopic = TopicRepository.Load(RouteData);
@@ -133,11 +133,18 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(contentTypeDescriptor, nameof(contentTypeDescriptor));
 
+      Contract.Assume(CurrentTopic,"The current route could not be resolved to an existing topic.");
+
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypeViewModel  = await _topicMappingService.MapAsync<ContentTypeDescriptorViewModel>(contentTypeDescriptor).ConfigureAwait(true);
       var parentTopic           = isNew ? CurrentTopic : CurrentTopic.Parent;
+
+      Contract.Assume(
+        contentTypeViewModel,
+        $"A contentTypeViewModel could not be created for the content type '{contentTypeDescriptor.Key}'."
+      );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT VIEW MODEL
@@ -151,6 +158,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           Parent                = topicViewModel
         };
       }
+
+      Contract.Assume(
+        topicViewModel,
+        $"A topicViewModel could not be created based on the CurrentTopic, '{CurrentTopic.GetUniqueKey()}'."
+      );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ASSIGN ATTRIBUTES
@@ -219,7 +231,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <param name="isNew">Determines whether the topic represents a new or existing object.</param>
     /// <param name="contentType">The key name of the <see cref="ContentTypeDescriptor"/> representing the topic.</param>
     /// <param name="isModal">Determines whether whether the view is being displayed within a modal window.</param>
-    public async Task<IActionResult> Edit(bool isNew = false, string contentType = null, bool isModal = false) {
+    public async Task<IActionResult> Edit(bool isNew = false, string? contentType = null, bool isModal = false) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE PARAMETERS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
@@ -252,7 +269,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     public async Task<IActionResult> Edit(
       EditorBindingModel model,
       bool isNew = false,
-      string contentType = null,
+      string? contentType = null,
       bool isModal = false
     ) {
 
@@ -260,6 +277,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | Validate parameters
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(model, nameof(model));
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SET VARIABLES
@@ -269,6 +287,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var baseTopicId           = model.Attributes.GetInteger("BaseTopic");
       var baseTopic             = baseTopicId.HasValue? TopicRepository.Load(baseTopicId.Value) : null;
       var newKey                = model.Attributes.GetValue("Key");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE PARAMETERS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(parentTopic, "The parent topic could not be resolved to an existing topic.");
+      Contract.Assume(newKey, "A value for the required 'Key' attribute was not submitted.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
@@ -323,6 +347,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var topic                 = CurrentTopic;
 
       if (isNew) {
+        Contract.Requires(contentType, nameof(contentType));
         topic = TopicFactory.Create(newKey, contentType, CurrentTopic);
       }
       else {
@@ -401,7 +426,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var relatedTopics = attributeValue.Value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
       topic.Relationships.Clear(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
-        Topic relatedTopic = null;
+        Topic? relatedTopic = null;
         var isTopicId = Int32.TryParse(topicIdString, out var topicIdInt);
         if (isTopicId && topicIdInt > 0) {
           relatedTopic = TopicRepository.Load(topicIdInt);
@@ -419,7 +444,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Private helper function that saves a topic reference to the topic.
     /// </summary>
     private void SetReference(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
-      Topic referencedTopic = null;
+      Topic? referencedTopic = null;
       var isTopicId = Int32.TryParse(attributeValue.Value, out var topicIdInt);
       if (isTopicId && topicIdInt > 0) {
         referencedTopic = TopicRepository.Load(topicIdInt);
@@ -435,6 +460,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// </summary>
     [HttpGet]
     public IActionResult SetVersion(DateTime version, bool isModal = false) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Initiate rollback
@@ -456,6 +486,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// </summary>
     [HttpPost, HttpGet]
     public IActionResult Delete(bool isModal = false) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE PARAMETERS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
+      Contract.Assume(CurrentTopic.Parent, "The parent could not be resolved to an existing topic.");
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Define variables
@@ -484,7 +520,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         return RedirectToAction(
           "Edit",
           new {
-            path                = parent.Parent.GetWebPath(),
+            path                = parent.Parent!.GetWebPath(),
             DeletedTopic        = deletedTopic,
             DeletedFrom         = parent.Title,
             Action              = "Deleted"
@@ -522,7 +558,13 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | Retrieve the source and destination topics
       \-------------------------------------------------------------------------------------------------------------------------*/
       var topic = TopicRepository.Load(topicId);
-      var target = (targetTopicId >= 0)? TopicRepository.Load(targetTopicId) : topic.Parent;
+      var target = (targetTopicId >= 0)? TopicRepository.Load(targetTopicId) : topic?.Parent;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(topic, $"The topicId '{topicId}' could not be resolved to a topic.");
+      Contract.Assume(target, $"The targetTopicId '{targetTopicId}' could not be resolved to a topic.");
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Move the topic and/or reorder it with its siblings; lock the Topic repository prior to execution
@@ -556,17 +598,22 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | Validate parameters
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(options, nameof(options));
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Get related topics
       \-------------------------------------------------------------------------------------------------------------------------*/
-      var relatedTopics = (ReadOnlyTopicCollection)null;
+      var relatedTopics = (ReadOnlyTopicCollection?)null;
 
       if (options.MarkRelated) {
 
         var relatedTopic = CurrentTopic;
         if (options.RelatedTopicId > 0) {
           relatedTopic = TopicRepository.Load(options.RelatedTopicId);
+          Contract.Assume(
+            relatedTopic,
+            $"The {nameof(TopicQueryOptions.RelatedTopicId)} could not be resolved to an existing topic."
+          );
         }
 
         if (!String.IsNullOrWhiteSpace(options.RelatedNamespace)) {
@@ -600,6 +647,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     public async Task<IActionResult> Export() {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE PARAMETERS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypeDescriptor = GetContentType(CurrentTopic.ContentType);
@@ -627,6 +679,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     public IActionResult Export([Bind(Prefix="ExportOptions")]ExportOptions options) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE PARAMETERS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | EXPORT TO JSON
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicData             = CurrentTopic.Export(options);
@@ -649,6 +706,11 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Presents options for importing the current topic.
     /// </summary>
     public async Task<IActionResult> Import() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE PARAMETERS
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL
@@ -682,6 +744,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(jsonFile, nameof(jsonFile));
       Contract.Requires(options, nameof(options));
+      Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH CONTENT TYPE VIEW MODEL

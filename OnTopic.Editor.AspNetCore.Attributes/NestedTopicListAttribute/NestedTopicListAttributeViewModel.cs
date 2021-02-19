@@ -27,8 +27,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     public NestedTopicListAttributeViewModel(
       EditingTopicViewModel currentTopic,
       NestedTopicListAttributeDescriptorViewModel attributeDescriptor,
-      string value = null,
-      string inheritedValue = null
+      string? value = null,
+      string? inheritedValue = null
     ): base(
       currentTopic,
       attributeDescriptor,
@@ -55,7 +55,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     /// <summary>
     ///   Gets or sets the <see cref="Topic.GetUniqueKey"/> value for the current topic.
     /// </summary>
-    public string UniqueKey { get; set; }
+    public string? UniqueKey { get; set; }
 
     /*==========================================================================================================================
     | WEB PATH
@@ -63,7 +63,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     /// <summary>
     ///   Gets or sets the <see cref="Topic.GetWebPath"/> value for the current topic.
     /// </summary>
-    public string WebPath { get; set; }
+    public string? WebPath { get; set; }
 
   } // Class
 } // Namespace

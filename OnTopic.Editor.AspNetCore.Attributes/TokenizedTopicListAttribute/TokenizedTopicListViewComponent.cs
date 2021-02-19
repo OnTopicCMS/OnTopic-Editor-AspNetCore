@@ -81,7 +81,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     /// <summary>
     ///   Provides a JSON formatted version of the attribute value. For use with TokenInput's <c>prePopulate</c> setting.
     /// </summary>
-    public string GetSelectedTopics(string value) {
+    public string GetSelectedTopics(string? value) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Split value into Topic.Ids; retrieve JSON for each topic

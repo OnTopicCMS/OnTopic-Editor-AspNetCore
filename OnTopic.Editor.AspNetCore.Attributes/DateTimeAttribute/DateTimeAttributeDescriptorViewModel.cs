@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
 
   /*============================================================================================================================
@@ -51,5 +49,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

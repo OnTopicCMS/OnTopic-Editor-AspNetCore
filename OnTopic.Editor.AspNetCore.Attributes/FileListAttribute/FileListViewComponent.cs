@@ -12,8 +12,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
 
   /*============================================================================================================================
@@ -89,7 +87,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     ///   Retrieves a collection of files in a directory, given the provided <see cref="Path"/>.
     /// </summary>
     public static Collection<SelectListItem> GetFiles(
-      string inheritedValue,
+      string? inheritedValue,
       FileListAttributeDescriptorViewModel attribute,
       string absolutePath
     ) {
@@ -149,5 +147,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
 
   } // Class
 } // Namespace
-
-#nullable restore

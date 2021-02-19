@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
-#nullable enable
-
 namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
 
   /*============================================================================================================================
@@ -27,5 +25,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 
@@ -42,7 +43,8 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   The unique name associated with the specified attribute.
     /// </summary>
-    public string Key {
+    [NotNull, DisallowNull]
+    public string? Key {
       get;
       init;
     }
@@ -53,7 +55,8 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   The editor type associated with the attribute.
     /// </summary>
-    public string EditorType {
+    [NotNull, DisallowNull]
+    public string? EditorType {
       get;
       init;
     }
@@ -64,7 +67,8 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   The value associated with the attribute.
     /// </summary>
-    public string Value {
+    [NotNull, DisallowNull]
+    public string? Value {
       get;
       init;
     }

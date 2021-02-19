@@ -45,6 +45,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(currentTopic, nameof(currentTopic));
       Contract.Requires(attribute, nameof(attribute));
+      Contract.Requires(attribute.Key, nameof(attribute.Key));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix

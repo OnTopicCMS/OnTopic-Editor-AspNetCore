@@ -45,7 +45,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Provides a friendly description for the <see cref="ContentType"/>, intended as documentation for users of the editor.
     /// </summary>
-    public string Description { get; init; }
+    public string? Description { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: DISABLE CHILD TOPICS

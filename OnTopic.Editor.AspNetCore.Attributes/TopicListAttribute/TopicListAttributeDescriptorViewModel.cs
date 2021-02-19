@@ -3,11 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 using OnTopic.ViewModels;
-
-#nullable enable
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 
@@ -77,5 +74,3 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 
   } //Class
 } //Namespace
-
-#nullable restore

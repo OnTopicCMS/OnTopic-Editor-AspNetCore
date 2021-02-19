@@ -29,7 +29,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     ///   The <see cref="CreateModel(ControllerContext, ModelBindingContext, Type)"/> method is called by the MVC framework, via
     ///   convention, when it attempts to bind a model with a corresponding name.
     /// </remarks>
-    public IModelBinder GetBinder(ModelBinderProviderContext context) {
+    public IModelBinder? GetBinder(ModelBinderProviderContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE INPUT

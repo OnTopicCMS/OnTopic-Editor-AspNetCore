@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OnTopic.Editor.AspNetCore.Models;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Lookup;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
@@ -75,7 +76,18 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       | ESTABLISH MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var type                  = TypeLookupService.Lookup($"{editorType}BindingModel");
-      var model                 = (AttributeBindingModel)Activator.CreateInstance(type);
+
+      Contract.Assume(
+        type,
+        $"The type '{editorType}' could not be located by the {TypeLookupService.GetType().Name}."
+      );
+
+      var model                 = (AttributeBindingModel?)Activator.CreateInstance(type);
+
+      Contract.Assume(
+        model,
+        $"An instance of the type '{type.Name}' could not be instantiated. It may be missing an empty constructor."
+      );
 
       model                     = model with {
         Key                     = key,
