@@ -22,7 +22,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TopicListAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="NestedTopicListAttributeDescriptorViewModel"/> class.
     /// </summary>
     public NestedTopicListAttributeViewModel(
       EditingTopicViewModel currentTopic,
@@ -44,8 +44,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     /// </summary>
     /// <remarks>
     ///   This property is important because it's not possible to retrieve or create nested topics under a topic that hasn't yet
-    ///   been saved. In this case, much of the functionality of the <see cref="TopicListViewComponent"/> will be disabled until
-    ///   the user has saved the new topic that they are creating.
+    ///   been saved. In this case, much of the functionality of the <see cref="NestedTopicListViewComponent"/> will be disabled
+    ///   until the user has saved the new topic that they are creating.
     /// </remarks>
     public bool IsNew { get; set; }
 

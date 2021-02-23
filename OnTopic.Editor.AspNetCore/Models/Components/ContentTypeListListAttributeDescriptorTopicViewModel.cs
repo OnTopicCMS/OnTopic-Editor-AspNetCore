@@ -23,8 +23,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
     | PROPERTY: PERMITTED CONTENT TYPES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created as part of the configured <see
-    ///   cref="NestedTopicListAttributeViewComponent"/>.
+    ///   Determines which <see cref="ContentTypeDescriptor"/>s, if any, are permitted to be created as part of the configured
+    ///   <c>NestedTopicListAttributeViewComponent</c>.
     /// </summary>
     [Include(AssociationTypes.None)]
     [Collection("ContentTypes", Type=CollectionType.Relationship)]
@@ -38,7 +38,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
     /// </summary>
     /// <remarks>
     ///   This is useful in the scenario where a <see cref="ContentTypeDescriptor"/> has multiple levels of attributes
-    ///   implementing <see cref="NestedTopicListViewComponent"/>. This is not a recommended configuration, but is occassionally
+    ///   implementing <c>NestedTopicListViewComponent</c>. This is not a recommended configuration, but is occassionally
     ///   necessary for modeling especially complicated scenarios, such as cases where there are multiple dimensions for each
     ///   topic (e.g., language, device type, etc.). In those cases, nested topics may be the best way to model the capabilities,
     ///   but having multiple levels of modal windows is a poor user experience.

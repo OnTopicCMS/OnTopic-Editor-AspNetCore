@@ -22,7 +22,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
     /// <summary>
     ///   Initializes a new instance of a <see cref="InstructionViewComponent"/> with necessary dependencies.
     /// </summary>
-    /// <returns>A topic <see cref="NavigationTopicViewComponentBase{T}"/>.</returns>
+    /// <returns>A topic <see cref="InstructionViewComponent"/>.</returns>
     public InstructionViewComponent() : base() { }
 
     /*==========================================================================================================================

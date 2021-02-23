@@ -19,7 +19,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TextAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="InstructionAttributeBindingModel"/> class.
     /// </summary>
     public InstructionAttributeBindingModel() : base() {
     }

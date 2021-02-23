@@ -11,7 +11,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {
   | CLASS: LAST MODIFIED ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="LastModifiedViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="LastModifiedViewComponent"/>.
   /// </summary>
   public record LastModifiedAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 

@@ -3,8 +3,10 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 
@@ -55,7 +57,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     | PROPERTY: ATTRIBUTE DESCRIPTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the global definition for the attribute, as defined on the corresponding <see cref="ContentType"/>.
+    ///   Provides the global definition for the attribute, as defined on the corresponding <see cref="ContentTypeDescriptor"/>.
     /// </summary>
     public AttributeDescriptorViewModel AttributeDescriptor { get; }
 
@@ -71,7 +73,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     | VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the current value, as defined on the <see cref="AttributeValue"/> instance.
+    ///   Provides the current value, as defined on the corresponding <see cref="AttributeRecord"/> instance.
     /// </summary>
     public virtual string? Value { get; init; }
 

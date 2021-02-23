@@ -31,10 +31,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Gets or sets the number of pixels that the <see cref="HtmlViewComponent"/> should take up. Defaults to <see
-    ///   cref="Rows"/> x 20.
+    ///   cref="TextAreaAttributeDescriptorViewModel.Rows"/> x <c>20</c>.
     /// </summary>
     /// <remarks>
-    ///   If set, this value overrides <see cref="Rows"/>.
+    ///   If set, this value overrides <see cref="TextAreaAttributeDescriptorViewModel.Rows"/>.
     /// </remarks>
     public int? Height { get; init; }
 

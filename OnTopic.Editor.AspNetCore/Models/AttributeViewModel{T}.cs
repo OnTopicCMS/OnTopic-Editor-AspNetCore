@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Models.Metadata;
+using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 
@@ -40,9 +41,9 @@ namespace OnTopic.Editor.AspNetCore.Models {
     | PROPERTY: ATTRIBUTE TYPE DESCRIPTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the global definition for the specific attribute type, as defined on the corresponding <see
-    ///   cref="ContentType"/>. This differs from the <see cref="AttributeDescriptor"/> in that it provides access to additional
-    ///   properties that are specific to the attribute type.
+    ///   Provides the global definition for the specific attribute type, as defined on the corresponding <see cref="
+    ///   ContentTypeDescriptor"/>. This differs from the <see cref="AttributeDescriptor"/> in that it provides access to
+    ///   additional properties that are specific to the attribute type.
     /// </summary>
     /// <remarks>
     ///   This implementation of <see cref="AttributeDescriptor"/> hides the underlying implementation of <see

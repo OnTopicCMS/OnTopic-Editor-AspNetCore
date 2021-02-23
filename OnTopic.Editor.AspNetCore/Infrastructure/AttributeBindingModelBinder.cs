@@ -45,8 +45,8 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     ///   Binds the incoming post to the <see cref="EditorBindingModel"/>.
     /// </summary>
     /// <remarks>
-    ///   The <see cref="CreateModel(ControllerContext, ModelBindingContext, Type)"/> method is called by the MVC framework, via
-    ///   convention, when it attempts to bind a model with a corresponding name.
+    ///   The <see cref="BindModelAsync(ModelBindingContext)"/> method is called by ASP.NET Core, via convention, when it
+    ///   attempts to bind to a model with a corresponding name.
     /// </remarks>
     public Task BindModelAsync(ModelBindingContext bindingContext) {
 

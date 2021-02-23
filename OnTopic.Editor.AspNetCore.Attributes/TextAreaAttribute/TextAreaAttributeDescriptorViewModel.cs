@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
@@ -12,7 +13,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
   | CLASS: TEXT AREA ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="TextAreaViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="TextAreaViewComponent"/>.
   /// </summary>
   public record TextAreaAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 

@@ -12,7 +12,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
   | CLASS: NUMBER ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="NumberViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="NumberViewComponent"/>.
   /// </summary>
   public record NumberAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
@@ -28,7 +28,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
     | PROPERTY: MAXIMUM VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines the upper bound for acceptable values. Defaults to <see cref="Int32.Max"/>.
+    ///   Determines the upper bound for acceptable values. Defaults to <see cref="Int32.MaxValue"/>.
     /// </summary>
     public int MaximumValue { get; init; } = Int32.MaxValue;
 

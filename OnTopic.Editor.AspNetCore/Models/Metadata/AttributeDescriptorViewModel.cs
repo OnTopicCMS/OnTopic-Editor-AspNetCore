@@ -44,9 +44,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   Determines the editor type to display for the attribute.
     /// </summary>
     /// <remarks>
-    ///   In OnTopic 4.0.0+, the <see cref="EditorType"/> corresponds to the <see cref="AttributeTypeDescriptor"/> subtype name,
-    ///   such as <see cref="BooleanAttribute"/>. This can be used by the editor to determine the appropriate view component to
-    ///   display.
+    ///   The <see cref="EditorType"/> corresponds to the <see cref="AttributeDescriptor"/> subtype name, such as <c>
+    ///   BooleanAttributeDescriptor</c>. This can be used by the editor to determine the appropriate view component to display.
     /// </remarks>
     [Required, NotNull, DisallowNull]
     public string? EditorType { get; init; }
@@ -107,7 +106,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     | IS ENABLED
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeValue"/> instance.
+    ///   Determines whether the field should be enabled, as defined on the <see cref="AttributeDescriptor"/> instance.
     /// </summary>
     public bool IsEnabled { get; init; } = true;
 

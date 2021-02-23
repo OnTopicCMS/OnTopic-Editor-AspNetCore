@@ -26,8 +26,8 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     ///   Binds the incoming post to the <see cref="EditorBindingModel"/>.
     /// </summary>
     /// <remarks>
-    ///   The <see cref="CreateModel(ControllerContext, ModelBindingContext, Type)"/> method is called by the MVC framework, via
-    ///   convention, when it attempts to bind a model with a corresponding name.
+    ///   The <see cref="GetBinder(ModelBinderProviderContext)"/> method is called by ASP.NET Core, via convention, when it
+    ///   attempts to bind a model with a corresponding name.
     /// </remarks>
     public IModelBinder? GetBinder(ModelBinderProviderContext context) {
 
