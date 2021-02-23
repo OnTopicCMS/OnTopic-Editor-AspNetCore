@@ -130,11 +130,11 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     | METHOD: GET NAMESPACED URI
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given a <paramref name="url"/>, will convert to a <see cref="Uri"/> format. Optionally, if the <paramref name="url"/>
-    ///   begins with <c>%/</c>, then the assembly namespace will be added to the resulting <see cref="Uri"/>.
+    ///   Given a <paramref name="path"/>, will convert to a <see cref="Uri"/> format. Optionally, if the <paramref name="path"
+    ///   /> begins with <c>%/</c>, then the assembly namespace will be added to the resulting <see cref="Uri"/>.
     /// </summary>
     /// <param name="path">The relative or absolute URL so the client-side resource.</param>
-    /// <returns>A <see cref="Uri"/> version of <paramref name="url"/>.</returns>
+    /// <returns>A <see cref="Uri"/> version of <paramref name="path"/>.</returns>
     protected Uri GetNamespacedUri(string path) {
       Contract.Requires(path, nameof(path));
       if (
