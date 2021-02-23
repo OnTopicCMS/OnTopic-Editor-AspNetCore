@@ -16,12 +16,12 @@ The `OnTopic.Editor.AspNetCore` project provides a web-based interface for the [
 
 
 ## Installation
-Installation can be performed by providing a `<PackageReference />` to the `OnTopic.Editor.AspNetCore` **NuGet** package.
+Installation can be performed by providing a `<PackageReference />` to the `OnTopic.Editor.AspNetCore.All` **NuGet** metapackage.
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
   …
   <ItemGroup>
-    <PackageReference Include="OnTopic.Editor.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="OnTopic.Editor.AspNetCore.All" Version="5.0.0" />
   </ItemGroup>
 </Project>
 ```
