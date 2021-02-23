@@ -16,7 +16,7 @@ The `OnTopic.Editor.AspNetCore` project provides a web-based interface for the [
 
 
 ## Installation
-Installation can be performed by providing a `<PackageReference />` to the `OnTopic.Editor.AspNetCore.All` **NuGet** metapackage.
+Installation can be performed by providing a `<PackageReference />` to the [`OnTopic.Editor.AspNetCore.All`](OnTopic.Editor.AspNetCore.All/README.md) **NuGet** metapackage.
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
   …
