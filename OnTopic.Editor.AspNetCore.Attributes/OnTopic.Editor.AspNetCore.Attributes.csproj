@@ -34,8 +34,4 @@
     <ProjectReference Include="..\OnTopic.Editor.AspNetCore\OnTopic.Editor.AspNetCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="wwwroot\shared\**\*.map" />
-  </ItemGroup>
-
 </Project>

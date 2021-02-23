@@ -53,9 +53,6 @@ const files = {
                                     ]
                                   },
   precompiled                   : {
-    'Scripts'                   :   {
-      'ExtJS'                   :     'Shared/Scripts/ExtJS/*.js'
-                                    },
     'Styles': {
       'ExtJS'                   :     'Shared/Scripts/ExtJS/Resources/**/*'
                                     }
