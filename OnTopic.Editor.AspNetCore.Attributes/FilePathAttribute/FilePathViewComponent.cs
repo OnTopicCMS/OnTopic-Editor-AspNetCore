@@ -146,10 +146,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     ///   Static helper method that returns a constructed file path based on evaluation and processing of the parameter values/
     ///   settings passed to the method.
     /// </summary>
-    /// <param name="topic">The topic object.</param>
     /// <param name="attributeKey">The attribute key.</param>
-    /// <param name="includeLeafTopic">Boolean indicator as to whether to include the endpoint/leaf topic in the path.</param>
-    /// <param name="truncatePathAtTopic">The assembled topic keys at which to end the path string.</param>
+    /// <param name="options">
+    ///   An <see cref="FilePathAttributeDescriptorViewModel"/> to assess configuration options from.
+    /// </param>
     /// <returns>A constructed file path.</returns>
     public string GetPath(string attributeKey, FilePathAttributeDescriptorViewModel options) {
 
