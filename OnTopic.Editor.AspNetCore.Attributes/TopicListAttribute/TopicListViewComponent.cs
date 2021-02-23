@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.AspNetCore.Models.Queryable;
 using OnTopic.Internal.Diagnostics;
@@ -156,7 +157,16 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
     >---------------------------------------------------------------------------------------------------------------------------
     | Retrieves a collection of topics with optional control call filter properties Scope, AttributeName and AttributeValue.
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public static Collection<QueryResultTopicViewModel> GetTopics(
+    /// <summary>
+    ///   Retrieves a list of <see cref="QueryResultTopicViewModel"/>s that represent topics under the <paramref name="topic"/>
+    ///   which have an <see cref="AttributeRecord"/> with <paramref name="attributeKey"/> and <paramref name="attributeValue"
+    ///   />.
+    /// </summary>
+    /// <param name="topic"></param>
+    /// <param name="attributeKey"></param>
+    /// <param name="attributeValue"></param>
+    /// <returns></returns>
+    private static Collection<QueryResultTopicViewModel> GetTopics(
       Topic?  topic             = null,
       string? attributeKey      = null,
       string? attributeValue    = null
