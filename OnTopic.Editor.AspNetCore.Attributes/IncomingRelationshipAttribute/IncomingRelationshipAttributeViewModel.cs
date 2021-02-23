@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
+using OnTopic.Collections.Specialized;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.ViewModels;
@@ -43,7 +44,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Provides a list of <see cref="Topic"/>s which are related to the current <see cref="Topic"/> based on the specified
-    ///   <see cref="NamedTopicCollection.Name"/>.
+    ///   <see cref="KeyValuesPair{TKey, TValue}.Key"/>.
     /// </summary>
     public Collection<TopicViewModel> RelatedTopics { get; } = new();
 

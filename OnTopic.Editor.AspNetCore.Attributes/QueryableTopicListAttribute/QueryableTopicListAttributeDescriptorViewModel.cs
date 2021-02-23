@@ -4,6 +4,9 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Diagnostics.CodeAnalysis;
+using OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute;
+using OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute;
+using OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.ViewModels;
 

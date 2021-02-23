@@ -6,6 +6,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
+using OnTopic.Editor.AspNetCore.Controllers;
 
 namespace OnTopic.Editor.AspNetCore.Models.Queryable {
 
@@ -144,7 +145,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
     | IS EXPANDED?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether the current node should be expanded, assuming it's not a <see cref="IsLead"/> node.
+    ///   Determines whether the current node should be expanded, assuming it's not a <see cref="IsLeaf"/> node.
     /// </summary>
     /// <remarks>
     ///   The <c>TopicQueryService</c> will set this value based if a <see cref="TopicQueryOptions.RelatedTopicId"/> is

@@ -6,6 +6,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Editor.AspNetCore.Infrastructure;
 using OnTopic.Internal.Diagnostics;
 
@@ -15,8 +16,7 @@ namespace OnTopic.Editor.AspNetCore {
   | CLASS: EDITOR SERVICE COLLECTION (EXTENSIONS)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Extension method to simplify configuration of the editor in an application. Automatically sets up e.g. <see
-  ///   cref="EditorConfigureOptions"/>.
+  ///   Extension method to simplify configuration of the OnTopic Editor in an application.
   /// </summary>
   public static class EditorServiceCollectionExtensions {
 
@@ -24,7 +24,7 @@ namespace OnTopic.Editor.AspNetCore {
     | EXTENSION: ADD TOPIC EDITOR (IMVCBUILDER)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Configures the Razor engine to include OnTopic model binders.
+    ///   Configures the Razor engine to include model binders required by the OnTopic Editor.
     /// </summary>
     public static IMvcBuilder AddTopicEditor(this IMvcBuilder services) {
 
@@ -50,7 +50,7 @@ namespace OnTopic.Editor.AspNetCore {
     | EXTENSION: MAP TOPIC ROUTE (IENDPOINTROUTEBUILDER)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Adds an MVC route for handling OnTopic related requests, and maps it to the <see cref="EditorController"/> by default.
+    ///   Adds an MVC route for handling OnTopic Editor related requests, and maps it to the <see cref="EditorController"/>.
     /// </summary>
     public static ControllerActionEndpointConventionBuilder MapTopicEditorRoute(
       this IEndpointRouteBuilder routes

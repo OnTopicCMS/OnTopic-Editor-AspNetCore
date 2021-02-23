@@ -43,7 +43,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     | PROPERTY: DESCRIPTION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a friendly description for the <see cref="ContentType"/>, intended as documentation for users of the editor.
+    ///   Provides a friendly description for the <see cref="ContentTypeDescriptor"/>, intended as documentation for users of
+    ///   the OnTopic Editor.
     /// </summary>
     public string? Description { get; init; }
 
@@ -68,8 +69,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     | PROPERTY: PERMITTED CONTENT TYPES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines which <see cref="ContentType"/>s, if any, are permitted to be created under <see cref="Topic"/>s of the
-    ///   current <see cref="ContentType"/>.
+    ///   Determines which <see cref="ContentTypeDescriptor"/>s, if any, are permitted to be created under <see cref="Topic"/>s
+    ///   of the current <see cref="ContentTypeDescriptor"/>.
     /// </summary>
     public Collection<ContentTypeDescriptorViewModel> PermittedContentTypes { get; } = new();
 

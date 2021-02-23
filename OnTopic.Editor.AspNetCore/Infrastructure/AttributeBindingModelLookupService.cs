@@ -21,9 +21,9 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Estabblishes a new instance of the <see cref="EditorBindingModelLookupService"/>.
+    ///   Establishes a new instance of the <see cref="AttributeBindingModelLookupService"/>.
     /// </summary>
-    /// <returns>A new instance of the <see cref="EditorBindingModelLookupService"/>.</returns>
+    /// <returns>A new instance of the <see cref="AttributeBindingModelLookupService"/>.</returns>
     internal AttributeBindingModelLookupService() : base(t => typeof(AttributeBindingModel).IsAssignableFrom(t)) {
 
     }

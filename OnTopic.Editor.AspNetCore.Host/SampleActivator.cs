@@ -41,8 +41,8 @@ namespace OnTopicTest {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Establishes a new instance of the <see cref="SampleControllerFactory"/>, including any shared dependencies to be used
-    ///   across instances of controllers.
+    ///   Establishes a new instance of the <see cref="SampleActivator"/>, including any shared dependencies to be used across
+    ///   instances of controllers.
     /// </summary>
     /// <remarks>
     ///   The constructor is responsible for establishing dependencies with the singleton lifestyle so that they are available
@@ -84,7 +84,7 @@ namespace OnTopicTest {
     /// <summary>
     ///   Registers dependencies, and injects them into new instances of controllers in response to each request.
     /// </summary>
-    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
+    /// <returns>A concrete instance of an <see cref="Controller"/>.</returns>
     public object Create(ControllerContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -112,7 +112,7 @@ namespace OnTopicTest {
     /// <summary>
     ///   Registers dependencies, and injects them into new instances of view components in response to each request.
     /// </summary>
-    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
+    /// <returns>A concrete instance of an <see cref="Controller"/>.</returns>
     public object Create(ViewComponentContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------

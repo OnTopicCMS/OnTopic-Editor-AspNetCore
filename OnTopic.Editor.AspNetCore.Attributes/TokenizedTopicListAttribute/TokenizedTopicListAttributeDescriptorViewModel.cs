@@ -4,6 +4,8 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
+using OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute;
+using OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
 
@@ -45,8 +47,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     /// </summary>
     /// <remarks>
     ///   This is especially useful if an attribute should be limited to a single entry, such as a topic reference, but it is
-    ///   preferred to display a searchable list rather than a predefined dropdown list using <see cref="
-    ///   TopicLookupViewComponent"/>.
+    ///   preferred to display a searchable list rather than a predefined dropdown list using <see cref="TopicListViewComponent"
+    ///   />.
     /// </remarks>
     public int? TokenLimit { get; init; } = 100;
 
@@ -55,8 +57,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Determines if the form should automatically be submitted whenever a new value is selected. This is useful, in
-    ///   particular, for the <see cref="TopicPointerViewComponent"/>, which provides a purpose-built wrapper for the <see cref=
-    ///   "TokenizedTopicViewComponent"/>.
+    ///   particular, for the <see cref="TopicReferenceViewComponent"/>, which provides a purpose-built wrapper for the <see
+    ///   cref="TokenizedTopicListViewComponent"/>.
     /// </summary>
     public bool? AutoPostBack { get; init; }
 

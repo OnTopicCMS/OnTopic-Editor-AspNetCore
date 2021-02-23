@@ -730,6 +730,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <summary>
     ///   Imports the current topic, based on any specified <see cref="ImportOptions"/>.
     /// </summary>
+    /// <param name="jsonFile">The JSON to import, as posted to the form body.</param>
     /// <param name="options">The <see cref="ImportOptions"/> for determing how the file should be imported.</param>
     [HttpPost]
     public async Task<IActionResult> Import(IFormFile jsonFile, [Bind(Prefix = "ImportOptions")]ImportOptions options) {

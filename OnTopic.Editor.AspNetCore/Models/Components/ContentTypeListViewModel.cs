@@ -39,10 +39,10 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
     ///   Provides a list of key/value pairs associated with the topic lookup.
     /// </summary>
     /// <remarks>
-    ///   The key represents the value that will be persisted to the <see cref="Topic.Attributes"/> collection. The value
-    ///   represents the label as it will be displayed in the interface. For instance, for a <see
-    ///   cref="TopicListAttributeViewModel"/> representing countries, <c>US</c> might by the key associated with a <c>United
-    ///   States</c> value.
+    ///   The <see cref="SelectListItem.Value"/> represents the value that will be persisted to the <see cref="Topic.Attributes"
+    ///   /> collection. The <see cref="SelectListItem.Text"/> represents the label as it will be displayed in the interface.
+    ///   For instance, for a <c>TopicListAttributeViewModel</c> representing countries, <c>US</c> might by the value associated
+    ///   with a <c>United States</c> label.
     /// </remarks>
     public Collection<SelectListItem> TopicList { get; } = new();
 
@@ -59,8 +59,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
     | ENABLE MODAL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   If a <see cref="TargetUrl"/> is supplied, and <see cref="EnableModal"/> is set to <c>true</c>, then the <see
-    ///   cref="TargetUrl"/> will be loaded in a modal window. Otherwise, the <see cref="TargetUrl"/> will be loaded via a
+    ///   If <see cref="EnableModal"/> is set to <c>true</c>, then the <see cref="SelectListItem.Value"/>—which is assumed to be
+    ///   a URL—will be loaded into a modal window. Otherwise, the <see cref="SelectListItem.Value"/> will be loaded via a
     ///   redirect. The default is <c>false</c>.
     /// </summary>
     public bool? EnableModal { get; init; }

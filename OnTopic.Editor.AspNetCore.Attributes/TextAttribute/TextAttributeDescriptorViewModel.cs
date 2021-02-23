@@ -12,7 +12,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAttribute {
   | CLASS: TEXT ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="TextViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="TextViewComponent"/>.
   /// </summary>
   public record TextAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 

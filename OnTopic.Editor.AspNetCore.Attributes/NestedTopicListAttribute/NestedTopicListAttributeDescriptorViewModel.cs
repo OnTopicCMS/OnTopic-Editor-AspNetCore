@@ -11,7 +11,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
   | CLASS: NESTED TOPIC LIST ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to attributes associated with the <see cref="NestedTopicListViewComponentView"/>.
+  ///   Provides access to attributes associated with the <see cref="NestedTopicListViewComponent"/>.
   /// </summary>
   public record NestedTopicListAttributeDescriptorViewModel: ContentTypeListAttributeDescriptorViewModel {
 

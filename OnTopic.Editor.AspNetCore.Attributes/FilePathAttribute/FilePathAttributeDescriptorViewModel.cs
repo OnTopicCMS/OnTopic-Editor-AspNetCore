@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
@@ -19,7 +20,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     | PROPERTY: INHERIT VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether the <see cref="Value"/> is expected to be inherited from parent topics if left blank.
+    ///   Determines whether the <see cref="AttributeViewModel.Value"/> is expected to be inherited from parent topics if left
+    ///   blank.
     /// </summary>
     public bool? InheritValue { get; init; } = true;
 
@@ -27,9 +29,9 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     | PROPERTY: RELATIVE TO TOPIC PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether the <see cref="Value"/> should automatically inject any parent topics in the path. If set, the
-    ///   value will be set to the inherited value (if present) along with the path between the level at which that value is set
-    ///   and the current topic.
+    ///   Determines whether the <see cref="AttributeViewModel.Value"/> should automatically inject any parent topics in the
+    ///   path. If set, the value will be set to the inherited value (if present) along with the path between the level at which
+    ///   that value is set and the current topic.
     /// </summary>
     public bool? RelativeToTopicPath { get; init; } = true;
 
@@ -47,7 +49,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     | PROPERTY: INCLUDE CURRENT TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether the current <see cref="Topic"/> should be included in the <see cref="InheritedValue"/>.
+    ///   Determines whether the current <see cref="Topic"/> should be included in the <see cref="AttributeViewModel.
+    ///   InheritedValue"/>.
     /// </summary>
     public bool? IncludeCurrentTopic { get; init; } = true;
 

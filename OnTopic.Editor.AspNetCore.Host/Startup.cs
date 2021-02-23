@@ -33,9 +33,8 @@ namespace OnTopicTest {
     /// <summary>
     ///   Constructs a new instances of the <see cref="Startup"/> class. Accepts an <see cref="IConfiguration"/>.
     /// </summary>
-    /// <param name="configuration">
-    ///   The shared <see cref="IConfiguration"/> dependency.
-    /// </param>
+    /// <param name="configuration">The shared <see cref="IConfiguration"/> dependency.</param>
+    /// <param name="webHostEnvironment">The <see cref="IWebHostEnvironment"/> instance.</param>
     public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
       Configuration = configuration;
       HostingEnvironment = webHostEnvironment;

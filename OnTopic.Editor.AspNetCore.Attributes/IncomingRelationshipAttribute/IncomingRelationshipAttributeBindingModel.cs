@@ -19,7 +19,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="RelationshipAttributeBindingModel"/> class.
+    ///   Initializes a new instance of the <see cref="IncomingRelationshipAttributeBindingModel"/> class.
     /// </summary>
     public IncomingRelationshipAttributeBindingModel() : base() {
     }

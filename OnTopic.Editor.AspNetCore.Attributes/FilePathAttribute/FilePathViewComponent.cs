@@ -34,12 +34,12 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     /// </summary>
     /// <remarks>
     ///   As with other attribute view components, the <see cref="FilePathViewComponent"/> receives a <see cref="
-    ///   EditingTopicViewModel"/> via the <see cref="InvokeAsync(EditingTopicViewModel, FilePathAttributeDescriptorViewModel,
-    ///   String)"/>. That view model, however, is not sufficient to handle the specialized inheritance logic required by the
-    ///   <see cref="FilePathViewComponent"/>. As a result, it <i>also</i> requires an instance of a <see cref="
-    ///   ITopicRoutingService"/> so that it can work directly off the current <see cref="Topic"/> and its parent tree. The <see
-    ///   cref="EditingTopicViewModel"/> is still passed not only for consistency, but also to spare the overhead and redundant
-    ///   logic of mapping it again, since this was already done in <see cref="Controllers.EditorController"/>.
+    ///   EditingTopicViewModel"/> via the <see cref="Invoke(EditingTopicViewModel, FilePathAttributeDescriptorViewModel, String
+    ///   )"/>. That view model, however, is not sufficient to handle the specialized inheritance logic required by the <see
+    ///   cref="FilePathViewComponent"/>. As a result, it <i>also</i> requires an instance of a <see cref="ITopicRepository"/>
+    ///   so that it can work directly off the current <see cref="Topic"/> and its parent tree. The <see cref="
+    ///   EditingTopicViewModel"/> is still passed not only for consistency, but also to spare the overhead and redundant logic
+    ///   of mapping it again, since this was already done in <see cref="Controllers.EditorController"/>.
     /// </remarks>
     public FilePathViewComponent(ITopicRepository topicRepository) : base() {
       Contract.Requires(topicRepository, nameof(topicRepository));
@@ -54,7 +54,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     ///   on the route data.
     /// </summary>
     /// <returns>
-    ///   The <see cref="ITopicRepository"/> associated with the <see cref="TopicViewComponentBase{T}"/>.
+    ///   The <see cref="ITopicRepository"/> associated with the <see cref="FilePathViewComponent"/>.
     /// </returns>
     protected ITopicRepository TopicRepository { get; }
 
@@ -121,8 +121,9 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Crawls up the tree to identify the source of inheritance (if available) and sets the value based on the base path
-    ///   defined by the parent (assuming <see cref="InheritValue"/> is enabled) and the relative path between that topic and
-    ///   the current topic (assuming <see cref="RelativeToParent"/> is enabled).
+    ///   defined by the parent (assuming <see cref="AttributeViewModel.InheritedValue"/> is enabled) and the relative path
+    ///   between that topic and the current topic (assuming <see cref="FilePathAttributeDescriptorViewModel.RelativeToTopicPath
+    ///   "/> is enabled).
     /// </summary>
     public string GetInheritedValue(string attributeKey, FilePathAttributeDescriptorViewModel attribute) {
 
@@ -146,10 +147,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
     ///   Static helper method that returns a constructed file path based on evaluation and processing of the parameter values/
     ///   settings passed to the method.
     /// </summary>
-    /// <param name="topic">The topic object.</param>
     /// <param name="attributeKey">The attribute key.</param>
-    /// <param name="includeLeafTopic">Boolean indicator as to whether to include the endpoint/leaf topic in the path.</param>
-    /// <param name="truncatePathAtTopic">The assembled topic keys at which to end the path string.</param>
+    /// <param name="options">
+    ///   An <see cref="FilePathAttributeDescriptorViewModel"/> to assess configuration options from.
+    /// </param>
     /// <returns>A constructed file path.</returns>
     public string GetPath(string attributeKey, FilePathAttributeDescriptorViewModel options) {
 

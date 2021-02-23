@@ -29,8 +29,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
     | PROPERTY: SHOW ROOT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given the <see cref="Scope"/>, determines whether the root node is displayed, or only the children. The default is
-    ///   false.
+    ///   Given the <see cref="QueryableTopicListAttributeDescriptorViewModel.RootTopic"/>, determines whether the root node is
+    ///   displayed, or only the children. The default is <c>false</c>.
     /// </summary>
     public bool? ShowRoot { get; init; }
 

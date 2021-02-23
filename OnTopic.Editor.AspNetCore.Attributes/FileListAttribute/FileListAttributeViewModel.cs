@@ -16,9 +16,9 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
   | CLASS: FILE ATTRIBUTE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents the data model for the <see cref="FileViewComponent"/>. Additionally provides access to the underlying <see
-  ///   cref="AttributeDescriptorViewModel"/> as well as the instance values for that attribute from the currently selected <see
-  ///   cref="Topic"/>.
+  ///   Represents the data model for the <see cref="FileListViewComponent"/>. Additionally provides access to the underlying
+  ///   <see cref="AttributeDescriptorViewModel"/> as well as the instance values for that attribute from the currently selected
+  ///   <see cref="Topic"/>.
   /// </summary>
   public record FileListAttributeViewModel: AttributeViewModel<FileListAttributeDescriptorViewModel> {
 
@@ -26,7 +26,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="FileAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="FileListViewComponent"/> class.
     /// </summary>
     public FileListAttributeViewModel(
       EditingTopicViewModel currentTopic,

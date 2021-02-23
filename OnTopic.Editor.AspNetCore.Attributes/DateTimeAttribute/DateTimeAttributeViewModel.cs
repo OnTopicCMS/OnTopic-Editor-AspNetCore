@@ -30,7 +30,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="DateTimeSelectorAttributeViewModel"/> class.
+    ///   Initializes a new instance of the <see cref="DateTimeAttributeViewModel"/> class.
     /// </summary>
     public DateTimeAttributeViewModel(
       EditingTopicViewModel currentTopic,
@@ -71,8 +71,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     | PROPERTY: DATE/TIME VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines if the <see cref="Value"/> is set and, if so, returns that value as a <see cref="DateTime"/> object;
-    ///   otherwise returns the current <see cref="DateTime"/>.
+    ///   Determines if the <see cref="AttributeViewModel.Value"/> is set and, if so, returns that value as a <see cref="
+    ///   DateTime"/> object; otherwise, returns the current <see cref="DateTime"/>.
     /// </summary>
     public DateTime DateTimeValue {
       get {
@@ -93,7 +93,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     | PROPERTY: TO FORMATTED STRING
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Parses the <see cref="Value"/> and returns the full date and time in the format expected by the date/time control.
+    ///   Parses the <see cref="AttributeViewModel.Value"/> and returns the full date and time in the format expected by the
+    ///   date/time control.
     /// </summary>
     public string ToFormattedString() {
       if (AttributeDescriptor.IncludeDatePicker is not null || AttributeDescriptor.IncludeTimePicker is not null) {
@@ -114,7 +115,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     | METHOD: TO DATE STRING
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time control.
+    ///   Parses the <see cref="AttributeViewModel.Value"/> and returns the date portion in the format expected by the date/time
+    ///   control.
     /// </summary>
     public string ToDateString() => DateTimeValue.ToString("yyyy-MM-dd", _format);
 
@@ -122,7 +124,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     | METHOD: TO TIME STRING
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Parses the <see cref="Value"/> and returns the date portion in the format expected by the date/time control.
+    ///   Parses the <see cref="AttributeViewModel.Value"/> and returns the date portion in the format expected by the date/time
+    ///   control.
     /// </summary>
     public string ToTimeString() => DateTimeValue.ToString("hh:mm:ss", _format);
 

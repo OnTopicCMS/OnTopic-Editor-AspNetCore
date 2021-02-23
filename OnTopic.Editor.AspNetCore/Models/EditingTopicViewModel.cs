@@ -24,7 +24,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeValue"/> class, using the specified key/value pair.
+    ///   Initializes a new instance of the <see cref="EditingTopicViewModel"/> class.
     /// </summary>
     public EditingTopicViewModel() : base() {}
 

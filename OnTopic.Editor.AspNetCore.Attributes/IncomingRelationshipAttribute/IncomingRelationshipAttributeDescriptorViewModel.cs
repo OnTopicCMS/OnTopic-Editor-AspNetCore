@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Collections.Specialized;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 using OnTopic.ViewModels;
 
@@ -20,7 +21,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
     | RELATIONSHIP KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Optionally provides the relationship key, which mapes to the <see cref="NamedTopicCollection.Name"/> property.
+    ///   Optionally provides the relationship key, which maps to the <see cref="KeyValuesPair{TKey, TValue}.Key"/> property.
     ///   Defaults to the <see cref="TopicViewModel.Key"/> if undefined.
     /// </summary>
     public string? RelationshipKey { get; init; }

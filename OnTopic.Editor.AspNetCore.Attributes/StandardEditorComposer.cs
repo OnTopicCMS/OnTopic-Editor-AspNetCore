@@ -24,6 +24,7 @@ using OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute;
 using OnTopic.Editor.AspNetCore.Components;
+using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
@@ -52,14 +53,14 @@ namespace OnTopic.Editor.AspNetCore.Attributes {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Establishes a new instance of a <see cref="EditorComposer"/> with dependencies which are expected to have a singleton
-    ///   lifestyle.
+    ///   Establishes a new instance of a <see cref="StandardEditorComposer"/> with dependencies which are expected to have a
+    ///   singleton lifestyle.
     /// </summary>
     /// <remarks>
     ///   The constructor is responsible for establishing dependencies with the singleton lifestyle so that they are available
     ///   to all requests. If this isn't the appropriate lifestyle for these dependencies given the specific requirements of the
     ///   application, then the components should be composed separately, instead of relying on the convenience of the <see
-    ///   cref="EditorComposer"/>.
+    ///   cref="StandardEditorComposer"/>.
     /// </remarks>
     public StandardEditorComposer(ITopicRepository topicRepository, IWebHostEnvironment webHostEnvironment) {
 
@@ -81,7 +82,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes {
     | METHOD: IS EDITOR COMPONENT?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether a given type is capable of being activated by the <see cref="Activate"/> method.
+    ///   Determines whether a given type is capable of being activated by the <see cref="ActivateEditorComponent(Type,
+    ///   ITopicRepository)"/> method.
     /// </summary>
     public static bool IsEditorComponent(Type type) {
       Contract.Requires(type, nameof(type));
