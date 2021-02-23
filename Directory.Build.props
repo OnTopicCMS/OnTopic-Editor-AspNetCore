@@ -15,7 +15,7 @@
     <Company>Ignia</Company>
     <Copyright>©2021 Ignia, LLC</Copyright>
     <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Ignia/Topic-Editor-MVC/</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
