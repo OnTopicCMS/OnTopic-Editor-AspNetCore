@@ -1,6 +1,10 @@
 <Project>
 
   <ItemGroup>
+    <Content Remove="wwwroot\shared\**\*.map" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="package.json" Pack="false" />
     <Content Update="package-lock.json" Pack="false" />
   </ItemGroup>
