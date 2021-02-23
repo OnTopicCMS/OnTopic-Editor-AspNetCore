@@ -40,7 +40,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
     ///   This is useful in the scenario where a <see cref="ContentTypeDescriptor"/> has multiple levels of attributes
     ///   implementing <see cref="NestedTopicListViewComponent"/>. This is not a recommended configuration, but is occassionally
     ///   necessary for modeling especially complicated scenarios, such as cases where there are multiple dimensions for each
-    ///   topic (e.g., language, device type, &c.). In those cases, nested topics may be the best way to model the capabilities,
+    ///   topic (e.g., language, device type, etc.). In those cases, nested topics may be the best way to model the capabilities,
     ///   but having multiple levels of modal windows is a poor user experience.
     /// </remarks>
     public bool? EnableModal { get; init; } = true;
