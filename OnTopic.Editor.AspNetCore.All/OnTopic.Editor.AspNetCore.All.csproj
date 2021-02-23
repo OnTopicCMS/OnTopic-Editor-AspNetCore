@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnTopic.Editor.AspNetCore.Attributes\OnTopic.Editor.AspNetCore.Attributes.csproj" />
+    <ProjectReference Include="..\OnTopic.Editor.AspNetCore\OnTopic.Editor.AspNetCore.csproj" />
+  </ItemGroup>
+
+</Project>
