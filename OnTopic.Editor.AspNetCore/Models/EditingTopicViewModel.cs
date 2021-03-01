@@ -43,7 +43,31 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Provides a reference to a base topic, if one exists.
     /// </summary>
-    public TopicViewModel? BaseTopic { get; set; }
+    public TopicViewModel? BaseTopic { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: NO INDEX?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the current topic should be indexed by search engines or not.
+    /// </summary>
+    public bool NoIndex { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: IS HIDDEN?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the current topic is hidden or not.
+    /// </summary>
+    public new bool IsHidden { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: IS DISABLED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the current topic is disabled or not.
+    /// </summary>
+    public bool IsDisabled { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ATTRIBUTES

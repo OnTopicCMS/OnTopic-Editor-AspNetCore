@@ -21,15 +21,39 @@
 
     <div class="col-md-12">
       @if (Model.ContentTypeDescriptor.DisableDelete && !Model.IsNew) {
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-danger" role="alert">
           <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Warning:</strong> This topic is part of the OnTopic internal organizational structure and is not intended to be modified. Deletion of this Topic has been disabled.
         </div>
       }
+      @if (Model.Topic.IsDisabled) {
+        <div class="alert alert-danger" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <strong>Warning:</strong> This topic is currently disabled and will not be viewable via the website. This topic can be reenabled on the <i>Navigation</i> tab.
+        </div>
+      }
       @if (!Model.IsFullyLoaded) {
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-danger" role="alert">
           <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Warning:</strong> Not all relationships were successfully loaded from the database. To prevent inadvertent deletion of relationships, any relationships that are removed won't be persisted to the database. You can still add new relationships.
+        </div>
+      }
+      @if (Model.Topic.IsHidden && Model.Topic.NoIndex) {
+        <div class="alert alert-warning" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <strong>Note:</strong> This topic is currently hidden from both search engines and the site navigation. Customers can still access it by URL, including direct links.
+        </div>
+      }
+      else if (Model.Topic.IsHidden) {
+        <div class="alert alert-warning" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <strong>Note:</strong> This topic is currently hidden and will not be displayed in the site navigation. Customers can still access it, and it will still show up in search results.
+        </div>
+      }
+      else if (Model.Topic.NoIndex) {
+        <div class="alert alert-warning" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <strong>Note:</strong> This topic is currently hidden from search engines. Customers can still access it, but it won't show up in search results.
         </div>
       }
       @if (!String.IsNullOrWhiteSpace(Model.ContentTypeDescriptor.Description)) {
