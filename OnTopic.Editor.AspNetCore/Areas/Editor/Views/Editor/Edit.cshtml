@@ -26,6 +26,12 @@
           <strong>Warning:</strong> This topic is part of the OnTopic internal organizational structure and is not intended to be modified. Deletion of this Topic has been disabled.
         </div>
       }
+      @if (Model.Topic.IsDisabled) {
+        <div class="alert alert-warning" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <strong>Warning:</strong> This topic is currently disabled and will not be viewable via the website. This topic can be reenabled on the <i>Navigation</i> tab.
+        </div>
+      }
       @if (!Model.IsFullyLoaded) {
         <div class="alert alert-warning" role="alert">
           <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
