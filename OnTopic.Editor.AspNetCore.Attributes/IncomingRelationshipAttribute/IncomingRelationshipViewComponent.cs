@@ -92,7 +92,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
           ContentType           = relatedTopic.ContentType,
           UniqueKey             = relatedTopic.GetUniqueKey(),
           WebPath               = relatedTopic.GetWebPath(),
-          IsHidden              = relatedTopic.IsHidden,
           View                  = relatedTopic.View,
           Title                 = relatedTopic.Title,
           LastModified          = relatedTopic.LastModified
