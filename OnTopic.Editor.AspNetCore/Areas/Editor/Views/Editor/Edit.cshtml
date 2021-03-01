@@ -38,13 +38,19 @@
           <strong>Warning:</strong> Not all relationships were successfully loaded from the database. To prevent inadvertent deletion of relationships, any relationships that are removed won't be persisted to the database. You can still add new relationships.
         </div>
       }
-      @if (Model.Topic.IsHidden) {
+      @if (Model.Topic.IsHidden && Model.Topic.NoIndex) {
+        <div class="alert alert-warning" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <strong>Note:</strong> This topic is currently hidden from both search engines and the site navigation. Customers can still access it by URL, including direct links.
+        </div>
+      }
+      else if (Model.Topic.IsHidden) {
         <div class="alert alert-warning" role="alert">
           <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Note:</strong> This topic is currently hidden and will not be displayed in the site navigation. Customers can still access it, and it will still show up in search results.
         </div>
       }
-      @if (Model.Topic.NoIndex) {
+      else if (Model.Topic.NoIndex) {
         <div class="alert alert-warning" role="alert">
           <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Note:</strong> This topic is currently hidden from search engines. Customers can still access it, but it won't show up in search results.
