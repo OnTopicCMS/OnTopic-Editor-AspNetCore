@@ -6,9 +6,7 @@
 
   <PropertyGroup>
     <AssemblyTitle>OnTopic Editor</AssemblyTitle>
-    <Description>
-      The OnTopic Editor provides a content management interface to Ignia's OnTopic Library, thus allowing users to modify semi-structured, device-independent data. This distribution provides a .NET Core 3 support.
-    </Description>
+    <Description>The OnTopic Editor provides a content management interface to Ignia's OnTopic Library, thus allowing users to modify semi-structured, device-independent data. This distribution provides a .NET Core 3 support.</Description>
     <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia</PackageTags>
   </PropertyGroup>
 
