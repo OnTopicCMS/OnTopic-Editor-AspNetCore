@@ -7,9 +7,7 @@
 
   <PropertyGroup>
     <AssemblyTitle>OnTopic Editor (Attributes)</AssemblyTitle>
-    <Description>
-      Provides a collection of standard attribute types to support basic configuration of the OnTopic Editor.
-    </Description>
+    <Description>Provides a collection of standard attribute types to support basic configuration of the OnTopic Editor.</Description>
     <PackageTags>DotNetCore UI Editor CMS ASP.NET OnTopic Ignia Plugins Attributes</PackageTags>
   </PropertyGroup>
 
