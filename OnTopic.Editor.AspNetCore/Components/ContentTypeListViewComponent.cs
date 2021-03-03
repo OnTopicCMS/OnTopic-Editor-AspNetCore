@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
+using OnTopic.Editor.AspNetCore.Models.Components;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
@@ -21,13 +21,13 @@ namespace OnTopic.Editor.AspNetCore.Components {
   | CLASS: CONTENT TYPE LIST (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a list of <see cref="ContentTypeDescriptorTopicViewModel"/>s as a navigation element.
+  ///   Provides a list of <see cref="ContentTypeDescriptorViewModel"/>s as a navigation element.
   /// </summary>
   /// <remarks>
-  ///   The <see cref="ContentTypeListViewComponent"/> exposes a list of content types as a dropdown list. The list of
-  ///   <see cref="ContentTypeDescriptorTopicViewModel"/>s is determined based on a source content type, either by displaying
-  ///   the <see cref="ContentTypeDescriptorTopicViewModel.PermittedContentTypes"/>, or by displaying all content types that are
-  ///   not hidden, and are implicitly permitted.
+  ///   The <see cref="ContentTypeListViewComponent"/> exposes a list of content types as a dropdown list. The list of <see cref
+  ///   ="ContentTypeDescriptorViewModel"/>s is determined based on a source content type, either by displaying the <see cref="
+  ///   ContentTypeDescriptorViewModel.PermittedContentTypes"/>, or by displaying all content types that are not hidden, and are
+  ///   implicitly permitted.
   /// </remarks>
   public class ContentTypeListViewComponent : ViewComponent {
 
@@ -54,9 +54,9 @@ namespace OnTopic.Editor.AspNetCore.Components {
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      NestedTopicListAttributeTopicViewModel attributeDescriptor = null,
-      IEnumerable<ContentTypeDescriptorTopicViewModel> values = null,
-      string onModalClose = null
+      ContentTypeListAttributeDescriptorViewModel? attributeDescriptor = null,
+      IEnumerable<ContentTypeDescriptorViewModel>? values = null,
+      string? onModalClose = null
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
       foreach (var contentType in values.OrderBy(c => c.Title)) {
         viewModel.TopicList.Add(
           new() {
-            Value               = getValue(contentType.Key),
+            Value               = getValue(contentType.Key!),
             Text                = contentType.Title
           }
         );
@@ -104,8 +104,8 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | for context.
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentTypes          = _topicRepository.GetContentTypeDescriptors();
-      var actualTopic           = _topicRepository.Load(currentTopic.Id)?? _topicRepository.Load(currentTopic.Parent.Id);
-      var actualContentType     = contentTypes.GetTopic(currentTopic.ContentType);
+      var actualTopic           = _topicRepository.Load(currentTopic.Id)?? _topicRepository.Load(currentTopic.Parent?.Id?? Int32.MinValue);
+      var actualContentType     = contentTypes.GetValue(currentTopic.ContentType!);
 
       if (actualContentType is null || actualTopic is null) {
         return View(viewModel);
@@ -119,18 +119,19 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | to organize a specific type of content. For example, a Container called "Forms" might be used exclusively to organized
       | Form topics.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (actualContentType.Key.Equals("Container", StringComparison.InvariantCultureIgnoreCase)) {
-        viewModel.TopicList.AddRange(
-          actualTopic
-            .Relationships
-            .GetTopics("ContentTypes")
-            .Select(c =>
-              new SelectListItem() {
-                Value           = getValue(c.Key),
-                Text            = c.Title
-              }
-            )
-        );
+      if (actualContentType.Key.Equals("Container", StringComparison.OrdinalIgnoreCase)) {
+        var permittedContentTypes = actualTopic
+          .Relationships
+          .GetValues("ContentTypes")
+          .Select(c =>
+            new SelectListItem() {
+              Value             = getValue(c.Key),
+              Text              = c.Title
+            }
+          );
+        foreach (var contentType in permittedContentTypes) {
+          viewModel.TopicList.Add(contentType);
+        }
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -144,18 +145,20 @@ namespace OnTopic.Editor.AspNetCore.Components {
       | typically include the Page content type, and popular derivatives of it, such as Content List.
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (viewModel.TopicList.Count is 1 && !actualContentType.DisableChildTopics) {
-        viewModel.TopicList.AddRange(
-          contentTypes
-            .Where(c => actualContentType.Equals("Container") || c.Attributes.GetBoolean("ImplicitlyPermitted", false))
-            .Where(c => !c.IsHidden)
-            .OrderBy(c => c.Title)
-            .Select(c =>
-              new SelectListItem {
-                Value           = getValue(c.Key),
-                Text            = c.Title
-              }
-            )
-        );
+
+        var implicitValues = contentTypes
+          .Where(c => actualContentType.Equals("Container") || c.Attributes.GetBoolean("ImplicitlyPermitted", false))
+          .Where(c => !c.IsHidden)
+          .OrderBy(c => c.Title)
+          .Select(c =>
+            new SelectListItem {
+              Value             = getValue(c.Key),
+              Text              = c.Title
+            }
+          );
+        foreach (var contentType in implicitValues) {
+          viewModel.TopicList.Add(contentType);
+        }
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

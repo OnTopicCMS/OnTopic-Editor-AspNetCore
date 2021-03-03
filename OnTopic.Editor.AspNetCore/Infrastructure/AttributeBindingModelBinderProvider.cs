@@ -3,10 +3,9 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using OnTopic.Editor.Models.Components.BindingModels;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
@@ -27,10 +26,10 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     ///   Binds the incoming post to the <see cref="EditorBindingModel"/>.
     /// </summary>
     /// <remarks>
-    ///   The <see cref="CreateModel(ControllerContext, ModelBindingContext, Type)"/> method is called by the MVC framework, via
-    ///   convention, when it attempts to bind a model with a corresponding name.
+    ///   The <see cref="GetBinder(ModelBinderProviderContext)"/> method is called by ASP.NET Core, via convention, when it
+    ///   attempts to bind a model with a corresponding name.
     /// </remarks>
-    public IModelBinder GetBinder(ModelBinderProviderContext context) {
+    public IModelBinder? GetBinder(ModelBinderProviderContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE INPUT

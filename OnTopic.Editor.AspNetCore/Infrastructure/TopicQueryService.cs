@@ -4,11 +4,12 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using OnTopic.Collections;
+using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.Models.Queryable {
+namespace OnTopic.Editor.AspNetCore.Models.Queryable {
 
   /*============================================================================================================================
   | CLASS: TOPIC QUERY SERVICE
@@ -17,7 +18,7 @@ namespace OnTopic.Editor.Models.Queryable {
   ///   Constructs a hierarchy of <see cref="QueryResultTopicViewModel"/> objects based on a root <see cref="Topic"/> and a set
   ///   of options as specified in a <see cref="TopicQueryOptions"/> object.
   /// </summary>
-  internal class TopicQueryService {
+  public class TopicQueryService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -34,26 +35,37 @@ namespace OnTopic.Editor.Models.Queryable {
     ///   Generates and returns a list of <see cref="QueryResultTopicViewModel"/> objects based on a root <see cref="Topic"/> as
     ///   well as a set of options as specified in a <see cref="TopicQueryOptions"/> object.
     /// </summary>
-    public List<QueryResultTopicViewModel> Query(
+    public Collection<QueryResultTopicViewModel> Query(
       Topic rootTopic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection<Topic> related = null
+      ReadOnlyTopicCollection? related = null
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(rootTopic, nameof(rootTopic));
+      Contract.Requires(options, nameof(options));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish containers for mapped objects, tasks
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModels = new List<QueryResultTopicViewModel>();
+      var topicViewModels = new Collection<QueryResultTopicViewModel>();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish counter
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var remainingResults = options.ResultLimit;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Bootstrap mapping process
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (options.ShowRoot) {
-        MapQueryResult(topicViewModels, rootTopic, options, related);
+        MapQueryResult(topicViewModels, rootTopic, options, ref remainingResults, related?? new());
       }
       else {
         foreach (var topic in rootTopic.Children) {
-          MapQueryResult(topicViewModels, topic, options, related);
+          MapQueryResult(topicViewModels, topic, options, ref remainingResults, related?? new());
         }
       }
 
@@ -72,17 +84,18 @@ namespace OnTopic.Editor.Models.Queryable {
     ///   cref="QueryResultTopicViewModel"/>.
     /// </summary>
     private void MapQueryResult(
-      List<QueryResultTopicViewModel> topicList,
+      Collection<QueryResultTopicViewModel> topicList,
       Topic topic,
       TopicQueryOptions options,
-      ReadOnlyTopicCollection<Topic> related = null
+      ref int remainingResults,
+      ReadOnlyTopicCollection related
     )
     {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Loop through children
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var isValid = IsValidTopic(topic, options);
+      var isValid = IsValidTopic(topic, options, remainingResults);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Map topic
@@ -90,7 +103,7 @@ namespace OnTopic.Editor.Models.Queryable {
       if (isValid) {
 
         //Decrement counter
-        options.ResultLimit--;
+        remainingResults--;
 
         //Map topic
         var mappedTopic = new QueryResultTopicViewModel(
@@ -121,6 +134,7 @@ namespace OnTopic.Editor.Models.Queryable {
             topicList,
             childTopic,
             options,
+            ref remainingResults,
             related
           );
         }
@@ -134,7 +148,13 @@ namespace OnTopic.Editor.Models.Queryable {
     /// <summary>
     ///   Static method confirms whether a topic is valid based on the <see cref="TopicQueryOptions"/>.
     /// </summary>
-    public static bool IsValidTopic(Topic topic, TopicQueryOptions options) {
+    public static bool IsValidTopic(Topic topic, TopicQueryOptions options, int remainingResults) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate parameters
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(topic, nameof(topic));
+      Contract.Requires(options, nameof(options));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -146,19 +166,22 @@ namespace OnTopic.Editor.Models.Queryable {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!options.ShowAll && !topic.IsVisible()) return false;
       if (!options.ShowNestedTopics && topic.ContentType is "List") return false;
-      if (options.ResultLimit is 0) return false;
+      if (remainingResults is 0) return false;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate filtered attribute
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!String.IsNullOrEmpty(options.AttributeName) && !String.IsNullOrEmpty(options.AttributeName)) {
+      if (!String.IsNullOrEmpty(options.AttributeName)) {
         var attributeValue = topic.Attributes.GetValue(options.AttributeName, "");
-        if (options.UsePartialMatch) {
+        if (options.AttributeName is "ContentType") {
+          attributeValue = topic.ContentType;
+        }
+        if (options.UsePartialMatch && !String.IsNullOrEmpty(options.AttributeValue)) {
           if (attributeValue.IndexOf(options.AttributeValue, StringComparison.Ordinal) is -1) {
             return false;
           }
         }
-        if (!attributeValue.Equals(options.AttributeValue)) {
+        if (!attributeValue.Equals(options.AttributeValue, StringComparison.Ordinal)) {
           return false;
         }
       }
@@ -169,7 +192,7 @@ namespace OnTopic.Editor.Models.Queryable {
       if (searchTerms.Count > 0) {
         if (!searchTerms.All(
           searchTerm => topic.Attributes.Any(
-            a => a.Value.IndexOf(searchTerm, 0, StringComparison.InvariantCultureIgnoreCase) >= 0
+            a => a.Value?.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
           )
         )) {
           return false;

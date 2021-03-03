@@ -6,7 +6,9 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using OnTopic.Editor.Models.Components.BindingModels;
+using OnTopic.Editor.AspNetCore.Models;
+using OnTopic.Internal.Diagnostics;
+using OnTopic.Lookup;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
 
@@ -34,7 +36,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     /// <summary>
     ///   Establishes static variables for the <see cref="TopicFactory"/>.
     /// </summary>
-    public static ITypeLookupService TypeLookupService { get; set; } = new AttributeBindingModelLookupService();
+    internal static ITypeLookupService TypeLookupService { get; set; } = new AttributeBindingModelLookupService();
 
     /*==========================================================================================================================
     | OVERRIDE: BIND MODEL (ASYNC)
@@ -43,8 +45,8 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     ///   Binds the incoming post to the <see cref="EditorBindingModel"/>.
     /// </summary>
     /// <remarks>
-    ///   The <see cref="CreateModel(ControllerContext, ModelBindingContext, Type)"/> method is called by the MVC framework, via
-    ///   convention, when it attempts to bind a model with a corresponding name.
+    ///   The <see cref="BindModelAsync(ModelBindingContext)"/> method is called by ASP.NET Core, via convention, when it
+    ///   attempts to bind to a model with a corresponding name.
     /// </remarks>
     public Task BindModelAsync(ModelBindingContext bindingContext) {
 
@@ -66,14 +68,32 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | HANDLE ATTRIBUTE DESCRIPTOR NAMING CONVENTION
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      editorType                = editorType.Replace("AttributeDescriptor", "Attribute", StringComparison.Ordinal);
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
       var type                  = TypeLookupService.Lookup($"{editorType}BindingModel");
-      var model                 = (AttributeBindingModel)Activator.CreateInstance(type);
 
-      model.Key                 = key;
-      model.Value               = value;
-      model.EditorType          = editorType;
+      Contract.Assume(
+        type,
+        $"The type '{editorType}' could not be located by the {TypeLookupService.GetType().Name}."
+      );
+
+      var model                 = (AttributeBindingModel?)Activator.CreateInstance(type);
+
+      Contract.Assume(
+        model,
+        $"An instance of the type '{type.Name}' could not be instantiated. It may be missing an empty constructor."
+      );
+
+      model                     = model with {
+        Key                     = key,
+        Value                   = value,
+        EditorType              = editorType
+      };
 
       bindingContext.Result     = ModelBindingResult.Success(model);
 

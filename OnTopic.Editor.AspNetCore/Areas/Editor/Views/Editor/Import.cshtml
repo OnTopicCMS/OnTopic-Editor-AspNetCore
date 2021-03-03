@@ -6,7 +6,7 @@
 
 <form method="post" enctype="multipart/form-data">
 
-  <div id="Toolbar" class="toolbar">
+  <div id="Toolbar" class="toolbar" style="display:none">
     <!-- Action Buttons -->
     <div class="action buttons">
       <button type="submit" class="btn btn-primary btn-sm">Import</button>
@@ -154,6 +154,11 @@
               <label>
                 <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedRelationships)" value="true" /> Relationships
                 <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing relationships if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
+              </label>
+              <br />
+              <label>
+                <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedReferences)" value="true" /> Topic References
+                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing topic references if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
               <br />
               <label>

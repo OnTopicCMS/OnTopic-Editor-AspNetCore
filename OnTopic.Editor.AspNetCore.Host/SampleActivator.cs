@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
-using OnTopic;
 using OnTopic.Data.Caching;
 using OnTopic.Data.Sql;
-using OnTopic.Editor.AspNetCore;
+using OnTopic.Editor.AspNetCore.Attributes;
 using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Editor.AspNetCore.Infrastructure;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
 
@@ -42,8 +42,8 @@ namespace OnTopicTest {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Establishes a new instance of the <see cref="SampleControllerFactory"/>, including any shared dependencies to be used
-    ///   across instances of controllers.
+    ///   Establishes a new instance of the <see cref="SampleActivator"/>, including any shared dependencies to be used across
+    ///   instances of controllers.
     /// </summary>
     /// <remarks>
     ///   The constructor is responsible for establishing dependencies with the singleton lifestyle so that they are available
@@ -85,7 +85,7 @@ namespace OnTopicTest {
     /// <summary>
     ///   Registers dependencies, and injects them into new instances of controllers in response to each request.
     /// </summary>
-    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
+    /// <returns>A concrete instance of an <see cref="Controller"/>.</returns>
     public object Create(ControllerContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ namespace OnTopicTest {
         return new EditorController(_topicRepository, _topicMappingService);
       }
       else {
-        throw new Exception($"Unknown controller {type.Name}");
+        throw new InvalidOperationException($"Unknown controller {type.Name}");
       }
 
     }
@@ -113,7 +113,7 @@ namespace OnTopicTest {
     /// <summary>
     ///   Registers dependencies, and injects them into new instances of view components in response to each request.
     /// </summary>
-    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
+    /// <returns>A concrete instance of an <see cref="Controller"/>.</returns>
     public object Create(ViewComponentContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -133,7 +133,7 @@ namespace OnTopicTest {
         return _standardEditorComposer.ActivateEditorComponent(type, _topicRepository);
       }
 
-      throw new Exception($"Unknown view component {type.Name}");
+      throw new InvalidOperationException($"Unknown view component {type.Name}");
 
     }
 

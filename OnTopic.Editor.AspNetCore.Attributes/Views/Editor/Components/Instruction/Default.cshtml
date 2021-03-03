@@ -1,0 +1,14 @@
+﻿@using OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute
+@model AttributeViewModel<InstructionAttributeDescriptorViewModel>
+
+@{
+  Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+}
+
+<div class="label">
+  <div class="alert alert-warning" role="alert">
+    @Html.Raw(@Model.AttributeDescriptor.Instructions)
+  </div>
+</div>
+
+<input type="hidden" asp-for="Value" />

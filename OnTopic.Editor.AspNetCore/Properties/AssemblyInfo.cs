@@ -1,21 +1,26 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        Ignia, LLC
+| Project       Topics Library
+\=============================================================================================================================*/
+using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
-// COM, set the ComVisible attribute to true on that type.
+/*==============================================================================================================================
+| DEFINE ASSEMBLY ATTRIBUTES
+>===============================================================================================================================
+| Declare and define attributes used in the compiling of the finished assembly.
+\-----------------------------------------------------------------------------------------------------------------------------*/
 [assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
+[assembly: CLSCompliant(false)]
 [assembly: Guid("18159da7-b44e-4681-98c9-f81a2007196b")]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers
-// by using the '*' as shown below:
+/*==============================================================================================================================
+| HANDLE SUPPRESSIONS
+>===============================================================================================================================
+| Suppress warnings from code analysis that are either false positives or not relevant for this assembly.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+[assembly: SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix", Justification = "Expected by convention for OnTopic Editor", Scope = "namespaceanddescendants", Target = "~N:OnTopic.Editor.AspNetCore")]
+[assembly: SuppressMessage("Naming", "CA1721:Property names should not match get methods", Justification = "By design", Scope = "member", Target = "~P:OnTopic.Editor.AspNetCore.Models.Metadata.ContentTypeDescriptorViewModel.AttributeDescriptors")]
+[assembly: SuppressMessage("Naming", "CA1721:Property names should not match get methods", Justification = "By design", Scope = "member", Target = "~P:OnTopic.Editor.AspNetCore.Models.AttributeBindingModel.Value")]

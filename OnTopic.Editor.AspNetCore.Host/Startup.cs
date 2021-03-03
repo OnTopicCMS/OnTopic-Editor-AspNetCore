@@ -33,9 +33,8 @@ namespace OnTopicTest {
     /// <summary>
     ///   Constructs a new instances of the <see cref="Startup"/> class. Accepts an <see cref="IConfiguration"/>.
     /// </summary>
-    /// <param name="configuration">
-    ///   The shared <see cref="IConfiguration"/> dependency.
-    /// </param>
+    /// <param name="configuration">The shared <see cref="IConfiguration"/> dependency.</param>
+    /// <param name="webHostEnvironment">The <see cref="IWebHostEnvironment"/> instance.</param>
     public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
       Configuration = configuration;
       HostingEnvironment = webHostEnvironment;
@@ -92,20 +91,11 @@ namespace OnTopicTest {
         mvcBuilder.AddRazorRuntimeCompilation();
         services.Configure<MvcRazorRuntimeCompilationOptions>(options => {
           var libraryPath = Path.GetFullPath(Path.Combine(HostingEnvironment.ContentRootPath, "..", "OnTopic.Editor.AspNetCore"));
+          var pluginsPath = Path.GetFullPath(Path.Combine(HostingEnvironment.ContentRootPath, "..", "OnTopic.Editor.AspNetCore.Attributes"));
           options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
+          options.FileProviders.Add(new PhysicalFileProvider(pluginsPath));
         });
       }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Configure: Watch Razor Class Library (RCLs) views
-      >-------------------------------------------------------------------------------------------------------------------------
-      | ### HACK JJC20190523: Due to a limitation of Visual Studio, updates in views in RCLs don't trigger a dynamic recompile.
-      | This thus requires rebuilding and reloading the application after every change in a view—not very practical! The
-      | following works around this limitation. It is not necessary in production environments.
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      //services.Configure<RazorViewEngineOptions>(options => options.FileProviders.Add(
-      //  new PhysicalFileProvider(Path.Combine(HostingEnvironment.ContentRootPath, "..\\OnTopic.Editor.AspNetCore"))
-      //));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register: Activators

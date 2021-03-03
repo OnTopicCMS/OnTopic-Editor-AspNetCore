@@ -1,0 +1,23 @@
+{
+  "name": "OnTopic.Editor.AspNetCore.Attributes",
+  "description": "Loads client-side dependencies for the OnTopic Editor attribute types.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ignia/topic-editor-mvc.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^3.0.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-postcss": "^9.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "jquery-tokeninput": "^1.6.0",
+    "jshint": "^2.12.0",
+    "merge2": "^1.4.1"
+  }
+}

@@ -1,7 +1,7 @@
 /*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        GoldSim
-| Project       Website
+| Client        Ignia, LLC
+| Project       OnTopic Editor
 \=============================================================================================================================*/
 
 /*==============================================================================================================================
@@ -23,9 +23,7 @@ const   sass                    = require('gulp-sass'),
 /*==============================================================================================================================
 | VARIABLES
 \-----------------------------------------------------------------------------------------------------------------------------*/
-var     environment             = 'development',
-        outputDir               = 'wwwroot',
-        isProduction            = false;
+var     outputDir               = 'wwwroot';
 
 /*==============================================================================================================================
 | SOURCE FILE PATHS
@@ -46,50 +44,20 @@ const files = {
                                       'node_modules/jquery-validation/dist/additional-methods.min.js',
                                       'node_modules/popper.js/dist/umd/popper.min.js',
                                       'node_modules/bootstrap/dist/js/bootstrap.min.js',
-                                      'node_modules/jquery-tokeninput/dist/js/jquery-tokeninput.min.js',
                                       'Shared/Scripts/ExtJS/ext-base.js',
                                       'Shared/Scripts/ExtJS/ext-all.js',
                                       'Shared/Scripts/ExtJS/ext-ExtendTextField.js',
-                                      'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js',
                                       'node_modules/jquery.are-you-sure/jquery.are-you-sure.js'
                                     ],
-  css                           :   [ 'node_modules/jquery-ui-dist/jquery-ui.min.css',
-                                      'node_modules/jquery-tokeninput/dist/css/token-input.min.css',
-                                      'node_modules/jquery-tokeninput/dist/css/token-input-facebook.min.css',
-                                      'node_modules/jquery-ui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css'
+    css                         :   [ 'node_modules/jquery-ui-dist/jquery-ui.min.css'
                                     ]
                                   },
-  standalone                    : {
-    'Scripts'                   :   {
-      'CkEditor'                :     'Shared/Scripts/CkEditor/*.js'
-                                    }
-                                  },
   precompiled                   : {
-    'Scripts'                   :   {
-      'ExtJS'                   :     'Shared/Scripts/ExtJS/*.js'
-                                    },
     'Styles': {
       'ExtJS'                   :     'Shared/Scripts/ExtJS/Resources/**/*'
                                     }
                                   }
 };
-
-/*==============================================================================================================================
-| SET ENVIRONMENT
->-------------------------------------------------------------------------------------------------------------------------------
-| Looks for an environment variable and conditionally set local context accordingly.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-environment                     = process.env.BUILD_ENVIRONMENT || environment;
-
-// Environment: Development
-if (environment === 'development') {
-  isProduction                  = false;
-}
-
-// Environment: Production
-else {
-  isProduction                  = true;
-}
 
 /*==============================================================================================================================
 | METHOD: GET OUTPUT DIR
@@ -113,8 +81,6 @@ var scssFactory = (source, destination) =>
   ]))
   .pipe(sourceMaps.write('.'))
   .pipe(dest(destination || getOutputDir('Styles')));
-
-var condition = "";
 
 /*==============================================================================================================================
 | FACTORY: JAVASCRIPT FILES
@@ -171,32 +137,6 @@ var batchSetFactory = (source, destination, factory) => {
 };
 
 /*==============================================================================================================================
-| TASK: STANDALONE FILES
->-------------------------------------------------------------------------------------------------------------------------------
-| Copies static dependencies from their source folders and into their appropriate build folders.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-var standaloneFilesTask = () => {
-  var streams = [];
-  for (var contentType in files.standalone) {
-    var factory = (function (contentType) {
-      switch (contentType) {
-        case 'Scripts'          : return jsFactory;
-        case 'Styles'           : return scssFactory;
-        case 'Fonts'            : return copyFilesFactory;
-      }
-    })(contentType);
-    streams.push(
-      batchSetFactory(
-        files.standalone[contentType],
-        getOutputDir(contentType),
-        factory
-      )
-    );
-  }
-  return merge(streams);
-};
-
-/*==============================================================================================================================
 | TASK: PRECOMPILED FILES
 >-------------------------------------------------------------------------------------------------------------------------------
 | Copies precompiled dependencies from their source folders and into their appropriate build folders.
@@ -234,7 +174,6 @@ exports.js                      = jsTask;
 exports.scss                    = scssTask;
 exports.jsVendor                = jsVendorTask;
 exports.cssVendor               = cssVendorTask;
-exports.standaloneFiles         = standaloneFilesTask;
 exports.precompiledFiles        = precompiledFilesTask;
 
 /*==============================================================================================================================
@@ -242,7 +181,7 @@ exports.precompiledFiles        = precompiledFilesTask;
 >-------------------------------------------------------------------------------------------------------------------------------
 | Composite task that will call all build-related tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.build = parallel(standaloneFilesTask, precompiledFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
+exports.build = parallel(precompiledFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
 
 /*==============================================================================================================================
 | TASK: DEFAULT
@@ -250,4 +189,4 @@ exports.build = parallel(standaloneFilesTask, precompiledFilesTask, scssTask, cs
 | The default task when Gulp runs, assuming no task is specified. Assuming the environment variable isn't explicitly defined
 | otherwise, will run on development-oriented tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.default = parallel(standaloneFilesTask, precompiledFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);
+exports.default = parallel(precompiledFilesTask, scssTask, cssVendorTask, jsTask, jsVendorTask);

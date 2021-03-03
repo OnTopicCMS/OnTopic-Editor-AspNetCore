@@ -3,19 +3,25 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.Models;
-using OnTopic.Editor.Models.Metadata;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
+using OnTopic.Lookup;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
 
   /*============================================================================================================================
-  | CLASS: EDITOR TOPIC VIEW MODEL LOOKUP SERVICE
+  | CLASS: EDITOR VIEW MODEL LOOKUP SERVICE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a mapping between string and class names to be used when mapping <see cref="Topic"/> to a <see
-  ///   cref="TopicViewModel"/> or derived class.
+  ///   Dynamically looks up all view models associated with attribute type plugins.
   /// </summary>
-  public class EditorViewModelLookupService : ViewModels.TopicViewModelLookupService {
+  /// <remarks>
+  ///   Each OnTopic Editor attribute type plugin includes a view model derived from <see cref="ContentTypeDescriptorViewModel"
+  ///   /> and another derive from <see cref="AttributeDescriptorViewModel"/>. The latter is responsible for exposing not only
+  ///   the attribute configuration, but also for registered any client-side resources that the attribute type's view will
+  ///   depend upon. The <see cref="EditorViewModelLookupService"/> will discover these regardless of what assembly they're
+  ///   located in, thus providing support for both first-party and third-party plugins.
+  /// </remarks>
+  public class EditorViewModelLookupService: DynamicTypeLookupService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -24,33 +30,10 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
     ///   Instantiates a new instance of the <see cref="EditorViewModelLookupService"/>.
     /// </summary>
     /// <returns>A new instance of the <see cref="EditorViewModelLookupService"/>.</returns>
-    public EditorViewModelLookupService() : base() {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Add Editor-specific view models
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      Add(typeof(EditingTopicViewModel));
-      Add(typeof(ContentTypeDescriptorTopicViewModel));
-      Add(typeof(AttributeDescriptorTopicViewModel));
-      Add(typeof(BooleanAttributeTopicViewModel));
-      Add(typeof(DateTimeAttributeTopicViewModel));
-      Add(typeof(FileListAttributeTopicViewModel));
-      Add(typeof(FilePathAttributeTopicViewModel));
-      Add(typeof(HtmlAttributeTopicViewModel));
-      Add(typeof(IncomingRelationshipAttributeTopicViewModel));
-      Add(typeof(InstructionAttributeTopicViewModel));
-      Add(typeof(LastModifiedAttributeTopicViewModel));
-      Add(typeof(LastModifiedByAttributeTopicViewModel));
-      Add(typeof(NestedTopicListAttributeTopicViewModel));
-      Add(typeof(NumberAttributeTopicViewModel));
-      Add(typeof(RelationshipAttributeTopicViewModel));
-      Add(typeof(TextAttributeTopicViewModel));
-      Add(typeof(TextAreaAttributeTopicViewModel));
-      Add(typeof(TokenizedTopicListAttributeTopicViewModel));
-      Add(typeof(TopicListAttributeTopicViewModel));
-      Add(typeof(TopicReferenceAttributeTopicViewModel));
-
-    }
+    public EditorViewModelLookupService() : base(t =>
+      typeof(ContentTypeDescriptorViewModel).IsAssignableFrom(t) ||
+      typeof(AttributeDescriptorViewModel).IsAssignableFrom(t)
+    ) { }
 
   } //Class
 } //Namespace
