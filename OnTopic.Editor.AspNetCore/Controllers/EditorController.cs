@@ -415,10 +415,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       if (isModal) {
         return View("CloseModal");
       }
-      else if (isNew) {
-        return RedirectToAction("Edit", new { path = topic.GetWebPath() });
-      }
-      return await Edit().ConfigureAwait(true);
+      return RedirectToAction("Edit", new { path = topic.GetWebPath() });
 
     }
 
