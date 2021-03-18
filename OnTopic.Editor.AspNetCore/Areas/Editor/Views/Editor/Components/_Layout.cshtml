@@ -2,7 +2,7 @@
 
 <!-- Begin: @(((RazorView)ViewContext.View).Path) -->
 
-<section id="@Model.AttributeDescriptor.Key" class="attribute @Model.AttributeDescriptor.Key">
+<section id="@Model.AttributeDescriptor.Key" class="attribute @Model.AttributeDescriptor.Key @(Model.AttributeDescriptor.IsRequired? "required" : "")">
 
   @Html.LabelFor(m => m.Value, Model.AttributeDescriptor.Title)
   <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="@Model.AttributeDescriptor.Description"></i>

@@ -66,7 +66,9 @@
           <strong>Note:</strong> This topic derives from <a href="@Url.Action("Edit", new { path = Model.Topic.BaseTopic.WebPath, isModal = Model.IsModal })">@Model.Topic.BaseTopic.Title</a>. Any values not explicitly defined here will be inherited from that topic.
         </div>
       }
-      <div asp-validation-summary="All"></div>
+      @if (!ViewData.ModelState.IsValid) {
+        <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+      }
     </div>
 
     <div class="@(Model.IsModal? "col-sm-10" : "col-lg-9 col-sm-12")">
