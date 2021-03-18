@@ -312,6 +312,17 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | VALIDATE KEY
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (isNew || !CurrentTopic.Key.Equals(newKey, StringComparison.OrdinalIgnoreCase)) {
+        try
+        {
+          TopicFactory.ValidateKey(newKey);
+        }
+        catch (InvalidKeyException) {
+          ModelState.AddModelError(
+            "Key",
+            $"The folder name {newKey} is invalid. Folder names should not contain spaces or symbols outside of periods, " +
+            $"hyphens, and underscores."
+          );
+        }
         if (parentTopic.Children.Contains(newKey)) {
           ModelState.AddModelError(
             "Key",
