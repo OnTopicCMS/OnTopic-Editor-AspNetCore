@@ -1,7 +1,7 @@
 # OnTopic Editor Attribute Types
 The `OnTopic.Editor.AspNetCore.Attributes` project provides a standard set of attribute type plugins for the [**OnTopic Library**](https://github.com/OnTopicCMS/OnTopic-Library). The editor is distributed as a **Razor Class Library** via **NuGet** so it can easily be added to a website that implements the [`OnTopic.AspNetCore.Mvc`](https://github.com/OnTopicCMS/OnTopic-Library/tree/master/OnTopic.AspNetCore.Mvc) library. Each plugin represents an individual user interface element for editing a type of attribute, such as a `Boolean` or a `DateTime` value.
 
-[![OnTopic.Editor.AspNetCore.Attributes package in Internal feed in Azure Artifacts](https://igniasoftware.feeds.visualstudio.com/_apis/public/Packaging/Feeds/46d5f49c-5e1e-47bb-8b14-43be6c719ba8/Packages/3c8689d0-6ff6-4696-b82e-483bfb921977/Badge)](https://igniasoftware.visualstudio.com/OnTopic/_packaging?_a=package&feed=46d5f49c-5e1e-47bb-8b14-43be6c719ba8&package=3c8689d0-6ff6-4696-b82e-483bfb921977&preferRelease=true)
+[![OnTopic.Editor.AspNetCore.Attributes package in Internal feed in Azure Artifacts](https://igniasoftware.feeds.visualstudio.com/_apis/public/Packaging/Feeds/46d5f49c-5e1e-47bb-8b14-43be6c719ba8/Packages/3c8689d0-6ff6-4696-b82e-483bfb921977/Badge)](https://www.nuget.org/packages/OnTopic.Editor.AspNetCore.Attributes/)
 [![Build Status](https://igniasoftware.visualstudio.com/OnTopic/_apis/build/status/OnTopic-Editor-CI-V1?branchName=master)](https://igniasoftware.visualstudio.com/OnTopic/_build/latest?definitionId=8&branchName=master)
 ![NuGet Deployment Status](https://rmsprodscussu1.vsrm.visualstudio.com/A09668467-721c-4517-8d2e-aedbe2a7d67f/_apis/public/Release/badge/bd7f03e0-6fcf-4ec6-939d-4e995668d40f/2/2)
 

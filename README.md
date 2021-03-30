@@ -1,7 +1,7 @@
 # OnTopic Editor
 The `OnTopic.Editor.AspNetCore` project provides a web-based interface for the [**OnTopic Library**](https://github.com/OnTopicCMS/OnTopic-Library). The editor is distributed as a **Razor Class Library** via **NuGet** so it can easily be added to a website that implements the [`OnTopic.AspNetCore.Mvc`](https://github.com/OnTopicCMS/OnTopic-Library/tree/master/OnTopic.AspNetCore.Mvc) library.
 
-[![OnTopic.Editor.AspNetCore package in Internal feed in Azure Artifacts](https://igniasoftware.feeds.visualstudio.com/_apis/public/Packaging/Feeds/46d5f49c-5e1e-47bb-8b14-43be6c719ba8/Packages/682244bf-1062-48de-949e-16f9cb11a6cf/Badge)](https://igniasoftware.visualstudio.com/OnTopic/_packaging?_a=package&feed=46d5f49c-5e1e-47bb-8b14-43be6c719ba8&package=682244bf-1062-48de-949e-16f9cb11a6cf&preferRelease=true)
+[![OnTopic.Editor.AspNetCore package in Internal feed in Azure Artifacts](https://igniasoftware.feeds.visualstudio.com/_apis/public/Packaging/Feeds/46d5f49c-5e1e-47bb-8b14-43be6c719ba8/Packages/682244bf-1062-48de-949e-16f9cb11a6cf/Badge)](https://www.nuget.org/packages/OnTopic.Editor.AspNetCore.All/)
 [![Build Status](https://igniasoftware.visualstudio.com/OnTopic/_apis/build/status/OnTopic-Editor-CI-V1?branchName=master)](https://igniasoftware.visualstudio.com/OnTopic/_build/latest?definitionId=8&branchName=master)
 ![NuGet Deployment Status](https://rmsprodscussu1.vsrm.visualstudio.com/A09668467-721c-4517-8d2e-aedbe2a7d67f/_apis/public/Release/badge/bd7f03e0-6fcf-4ec6-939d-4e995668d40f/2/2)
 
