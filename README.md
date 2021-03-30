@@ -26,8 +26,6 @@ Installation can be performed by providing a `<PackageReference />` to the [`OnT
 </Project>
 ```
 
-> *Note:* This package is currently only available on Ignia's private **NuGet** repository. For access, please contact [Ignia](http://www.ignia.com/).
-
 ## Configuration
 There are a lot of moving parts to the editor, and it requires the configuration of services, routes, and service dependencies. This process is aided by a set of extension methods, which are recommended.
 
