@@ -159,16 +159,19 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Function: Set Label
       \-----------------------------------------------------------------------------------------------------------------------*/
-      void setLabel(string value, string? contextualLabel = "") {
+      void setLabel(string value, string? contextualLabel = null) {
         var inheritedTopic = topics.Where(t => t.Key == value).FirstOrDefault();
+        var label = inheritedTopic?.Title ?? value;
+        if (contextualLabel is not null) {
+          label += " (" + contextualLabel + ")";
+        }
         viewModel?.TopicList.Add(
           new() {
             Value = "",
-            Text = (inheritedTopic?.Title ?? value) + " (" + contextualLabel + ")"
+            Text = label
           }
         );
       }
-
 
     }
 
