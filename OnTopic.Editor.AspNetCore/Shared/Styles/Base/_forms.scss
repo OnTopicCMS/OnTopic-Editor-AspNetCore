@@ -39,7 +39,7 @@ label, .label {
 }
 
 .required {
-  label {
+  > label {
     font-weight                 : 600;
     &:after {
       color                     : $red;
