@@ -6,6 +6,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -143,6 +144,22 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
       | RETURN FILE LIST
       \-----------------------------------------------------------------------------------------------------------------------*/
       return files;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Function: Set Label
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      void setLabel(string value, string? contextualLabel = null) {
+        var label = value;
+        if (contextualLabel is not null) {
+          label += " (" + contextualLabel + ")";
+        }
+        viewModel.Files.Add(
+          new() {
+            Value = "",
+            Text = label
+          }
+        );
+      }
 
     }
 
