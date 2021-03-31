@@ -71,16 +71,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       var viewModel = new TopicListAttributeViewModel(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set label
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      viewModel.TopicList.Add(
-        new() {
-          Value = "",
-          Text = attribute.DefaultLabel
-        }
-      );
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Set default value
       \-----------------------------------------------------------------------------------------------------------------------*/
       var defaultValue = currentTopic.Attributes.ContainsKey(attribute.Key)? currentTopic.Attributes[attribute.Key] : null;
@@ -123,6 +113,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       );
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Set label
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      setLabel(attribute.DefaultLabel?? "Select an option…");
+      /*------------------------------------------------------------------------------------------------------------------------
       | Get values from repository
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var topic in topics) {
@@ -146,9 +140,23 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       return View(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Helper functions
+      | Function: Get Value
       \-----------------------------------------------------------------------------------------------------------------------*/
       string getValue(QueryResultTopicViewModel topic) => ReplaceTokens(topic, "{" + attribute.ValueProperty + "}");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Function: Set Label
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      void setLabel(string value, string? contextualLabel = "") {
+        var inheritedTopic = topics.Where(t => t.Key == value).FirstOrDefault();
+        viewModel?.TopicList.Add(
+          new() {
+            Value = "",
+            Text = (inheritedTopic?.Title ?? value) + " (" + contextualLabel + ")"
+          }
+        );
+      }
+
 
     }
 
