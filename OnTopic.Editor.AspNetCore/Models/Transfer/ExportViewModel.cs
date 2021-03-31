@@ -21,7 +21,10 @@ namespace OnTopic.Editor.AspNetCore.Models.Transfer {
     /// <summary>
     ///   The <see cref="ExportOptions"/> represent the user's preference for how to export the current topic.
     /// </summary>
-    public ExportOptions ExportOptions { get; init; } = new();
+    public ExportOptions ExportOptions { get; init; } = new() {
+      IncludeChildTopics        = true,
+      IncludeNestedTopics       = true
+    };
 
   } // Class
 } // Namespace
