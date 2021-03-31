@@ -93,6 +93,37 @@ namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
       return false;
     }
 
+    /*==========================================================================================================================
+    | IS VALUE INFERRED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines whether the value is explicitly set to .
+    /// </summary>
+    public bool IsValueInferred([NotNullWhen(true)] out bool? value, out string? source) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Determine source
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      source                    = null;
+
+      if (IsBoolean(AttributeDescriptor.DefaultValue, out value)) {
+        if (!IsBoolean(Value, out _)) {
+          source = "default value";
+        }
+      }
+      else if (IsBoolean(AttributeDescriptor.ImplicitValue, out value)) {
+        source = "implicit value";
+      }
+      else if (IsBoolean(InheritedValue, out value)) {
+        source = "inherited value";
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Handle default
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return source is not null;
+
+    }
 
   } // Class
 } // Namespace

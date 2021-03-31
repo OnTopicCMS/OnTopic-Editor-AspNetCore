@@ -17,3 +17,12 @@
     No
   </label>
 </div>
+
+@if (Model.IsValueInferred(out var value, out var source)) {
+  <div class="form-check form-check-inline">
+    <input type="radio" asp-for="Value" value="" id="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("Inferred"), "_")" class="form-check-input" checked=@(String.IsNullOrEmpty(Model.Value)? true : null) disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired />
+    <label class="form-check-label" for="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("No"), "_")">
+      <span class="context">@(value.Value? "Yes" : "No") (@source)</span>
+    </label>
+  </div>
+}
