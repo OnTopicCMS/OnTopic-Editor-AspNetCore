@@ -6,12 +6,14 @@
 }
 
 <div class="FormField Field form-check form-check-inline">
-  <label class="form-check-label">
-    <input type="radio" asp-for="Value" value="1" id="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("Yes"), "_")" class="form-check-input" checked=@Model.IsTrue() disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired /> Yes
+  <input type="radio" asp-for="Value" value="1" id="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("Yes"), "_")" class="form-check-input default" checked=@Model.IsTrue() disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired />
+  <label class="form-check-label" for="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("Yes"), "_")">
+    Yes
   </label>
 </div>
 <div class="form-check form-check-inline">
-  <label class="form-check-label">
-    <input type="radio" asp-for="Value" value="0" id="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("No"), "_")" class="form-check-input" checked=@Model.IsFalse() disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired /> No
+  <input type="radio" asp-for="Value" value="0" id="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("No"), "_")" class="form-check-input" checked=@Model.IsFalse() disabled=@(!Model.AttributeDescriptor.IsEnabled) required=@Model.AttributeDescriptor.IsRequired />
+  <label class="form-check-label" for="@TagBuilder.CreateSanitizedId(ViewData.TemplateInfo.GetFullHtmlFieldName("No"), "_")">
+    No
   </label>
 </div>
