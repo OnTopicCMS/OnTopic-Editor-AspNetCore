@@ -131,9 +131,22 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var foundFiles = Directory.GetFiles(absolutePath, searchPattern, searchOption);
 
-      if (!String.IsNullOrEmpty(inheritedValue)) {
-        files.Add(new("", inheritedValue));
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set label
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!String.IsNullOrEmpty(viewModel.InheritedValue)) {
+        setLabel(viewModel.InheritedValue, "inherited value");
       }
+      else if (!String.IsNullOrEmpty(viewModel.AttributeDescriptor.DefaultValue)) {
+        setLabel(viewModel.AttributeDescriptor.DefaultValue, "default value");
+      }
+      else if (!String.IsNullOrEmpty(viewModel.AttributeDescriptor.ImplicitValue)) {
+        setLabel(viewModel.AttributeDescriptor.ImplicitValue, "implicit default");
+      }
+      else {
+        setLabel("Select a file…");
+      }
+
       foreach (var foundFile in foundFiles) {
         var fileName = foundFile.Replace(absolutePath, "", StringComparison.OrdinalIgnoreCase);
         var fileNameKey = fileName.Replace("." + attribute.Extension, "", StringComparison.OrdinalIgnoreCase);
