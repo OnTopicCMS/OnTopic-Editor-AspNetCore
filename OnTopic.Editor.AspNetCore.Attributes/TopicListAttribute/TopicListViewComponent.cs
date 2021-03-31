@@ -115,7 +115,19 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set label
       \-----------------------------------------------------------------------------------------------------------------------*/
-      setLabel(attribute.DefaultLabel?? "Select an option…");
+      if (!String.IsNullOrEmpty(viewModel.InheritedValue)) {
+        setLabel(viewModel.InheritedValue, "inherited value");
+      }
+      else if (!String.IsNullOrEmpty(viewModel.AttributeDescriptor.DefaultValue)) {
+        setLabel(viewModel.AttributeDescriptor.DefaultValue, "default value");
+      }
+      else if (!String.IsNullOrEmpty(viewModel.AttributeDescriptor.ImplicitValue)) {
+        setLabel(viewModel.AttributeDescriptor.ImplicitValue, "implicit default");
+      }
+      else {
+        setLabel(attribute.DefaultLabel?? "Select an option…");
+      }
+
       /*------------------------------------------------------------------------------------------------------------------------
       | Get values from repository
       \-----------------------------------------------------------------------------------------------------------------------*/
