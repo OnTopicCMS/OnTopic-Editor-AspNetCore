@@ -519,7 +519,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*--------------------------------------------------------------------------------------------------------------------------
       | If the content type is a nested list, display grandparent.
       \-------------------------------------------------------------------------------------------------------------------------*/
-      else if (parent.Attributes.GetValue("ContentType", "") is "List") {
+      else if (parent.ContentType is "List") {
         return RedirectToAction(
           "Edit",
           new {
