@@ -187,7 +187,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
         AttributeValue          = attributeValue,
         FlattenStructure        = false,
         IsRecursive             = false,
-        ResultLimit             = 100,
+        ResultLimit             = 250,
         ShowRoot                = false
       };
 
