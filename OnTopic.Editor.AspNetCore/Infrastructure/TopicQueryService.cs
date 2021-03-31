@@ -191,9 +191,11 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (searchTerms.Count > 0) {
         if (!searchTerms.All(
-          searchTerm => topic.Attributes.Any(
-            a => a.Value?.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
-          )
+          searchTerm =>
+            topic.Attributes.Any(
+              a => a.Value?.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
+            ) ||
+            topic.Key.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
         )) {
           return false;
         }
