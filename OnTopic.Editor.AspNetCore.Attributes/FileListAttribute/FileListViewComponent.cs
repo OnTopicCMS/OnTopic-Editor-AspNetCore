@@ -68,7 +68,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var file in GetFiles(model.InheritedValue, attribute, model.AbsolutePath)) {
+      foreach (var file in GetFiles(model)) {
         model.Files.Add(file);
       };
       model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
@@ -87,19 +87,20 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     ///   Retrieves a collection of files in a directory, given the provided <see cref="Path"/>.
     /// </summary>
     public static Collection<SelectListItem> GetFiles(
-      string? inheritedValue,
-      FileListAttributeDescriptorViewModel attribute,
-      string absolutePath
+      FileListAttributeViewModel viewModel
     ) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate parameters
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Contract.Requires(attribute, nameof(attribute));
+      Contract.Requires(viewModel, nameof(viewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | INSTANTIATE OBJECTS
       \-----------------------------------------------------------------------------------------------------------------------*/
+      var inheritedValue        = viewModel.InheritedValue;
+      var attribute             = viewModel.AttributeDescriptor;
+      var absolutePath          = viewModel.AbsolutePath;
       var files                 = new Collection<SelectListItem>();
       var searchPattern         = "*";
       var searchOption          = attribute.IncludeSubdirectories is true? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
