@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
@@ -44,10 +45,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
     ///   Determines whether the value is explicitly set to true.
     /// </summary>
     public bool? IsTrue() {
-      if (
-        (Value?.Equals("1", StringComparison.OrdinalIgnoreCase)?? false) ||
-        (Value?.Equals("true", StringComparison.OrdinalIgnoreCase)?? false)
-      ) {
+      if (IsBoolean(Value, out var value) && value.Value) {
         return true;
       }
       return null;
@@ -60,13 +58,39 @@ namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
     ///   Determines whether value is explicitly set to false.
     /// </summary>
     public bool? IsFalse() {
-      if (
-        (Value?.Equals("0", StringComparison.OrdinalIgnoreCase) ?? false) ||
-        (Value?.Equals("false", StringComparison.OrdinalIgnoreCase) ?? false)
-      ) {
-        return false;
+      if (IsBoolean(Value, out var value) && !value.Value) {
+        return true;
       }
       return null;
+    }
+
+    /*==========================================================================================================================
+    | IS BOOLEAN?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the <paramref name="input"/> is a <see cref="Boolean"/>. If it is, converts it to a <see cref="Boolean"
+    ///   /> via the <paramref name="value"/>.
+    /// </summary>
+    public static bool IsBoolean(string? input, [NotNullWhen(true)] out bool? value) {
+      value = null;
+      if (String.IsNullOrEmpty(input)) {
+        return false;
+      }
+      if (
+        input.Equals("1", StringComparison.OrdinalIgnoreCase) ||
+        input.Equals("true", StringComparison.OrdinalIgnoreCase)
+      ) {
+        value = true;
+        return true;
+      }
+      if (
+        input.Equals("0", StringComparison.OrdinalIgnoreCase) ||
+        input.Equals("false", StringComparison.OrdinalIgnoreCase)
+      ) {
+        value = false;
+        return true;
+      }
+      return false;
     }
 
 
