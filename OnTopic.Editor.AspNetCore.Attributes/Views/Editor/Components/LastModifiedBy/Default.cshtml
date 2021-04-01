@@ -18,6 +18,6 @@
     <div class="input-group-prepend">
       <div class="input-group-text">New Value</div>
     </div>
-    <input type="text" asp-for="Value" class="form-control" readonly>
+    <input type="text" asp-for="Value" class="form-control" placeholder="@(Model.AttributeDescriptor.DefaultValue?? Model.InheritedValue?? Model.AttributeDescriptor.ImplicitValue)" readonly>
   </div>
 </div>

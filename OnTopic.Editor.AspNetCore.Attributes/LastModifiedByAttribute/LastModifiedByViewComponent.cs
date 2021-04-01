@@ -56,7 +56,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
 
       var model                 = new LastModifiedByAttributeViewModel(currentTopic, attribute) {
         CurrentValue            = value,
-        Value                   = HttpContext.User.Identity.Name?? "System"
+        Value                   = HttpContext.User.Identity.Name
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
