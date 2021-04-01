@@ -4,10 +4,10 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Diagnostics.CodeAnalysis;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Metadata;
-using OnTopic.ViewModels;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
@@ -41,7 +41,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
     /// </summary>
     [AttributeKey("RootTopicId")]
     [NotNull]
-    public TopicViewModel? RootTopic { get; init; }
+    [MapAs(typeof(CoreTopicViewModel))]
+    public CoreTopicViewModel? RootTopic { get; init; }
 
     /*==========================================================================================================================
     | RESULT LIMIT
