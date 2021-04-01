@@ -17,7 +17,6 @@ using OnTopic.Internal.Diagnostics;
 using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
-using OnTopic.ViewModels;
 
 namespace OnTopicTest {
 
@@ -68,10 +67,7 @@ namespace OnTopicTest {
       | Preload repository
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository          = cachedTopicRepository;
-      _typeLookupService        = new CompositeTypeLookupService(
-        new EditorViewModelLookupService(),
-        new TopicViewModelLookupService()
-      );
+      _typeLookupService        = new EditorViewModelLookupService();
       _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
       _                         = _topicRepository.Load();
 
