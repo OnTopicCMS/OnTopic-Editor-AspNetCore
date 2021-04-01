@@ -4,7 +4,7 @@
 
 <section id="@Model.AttributeDescriptor.Key" class="attribute @Model.AttributeDescriptor.Key @(Model.AttributeDescriptor.IsRequired? "required" : "")">
 
-  @Html.LabelFor(m => m.Value, Model.AttributeDescriptor.Title)
+  <label asp-for="Value" class="form-label">@Model.AttributeDescriptor.Title</label>
   <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="@Model.AttributeDescriptor.Description"></i>
   <div class="fields FormField Field">
 
