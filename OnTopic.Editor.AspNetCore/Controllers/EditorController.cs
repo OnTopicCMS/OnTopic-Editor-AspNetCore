@@ -183,7 +183,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
         //Serialize references, if it's a topic reference
         else if (attribute.ModelType is ModelType.Reference) {
-          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetValue(attribute.Key)?.Id.ToString(CultureInfo.InvariantCulture));
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetValue(attribute.Key, null, false, false)?.Id.ToString(CultureInfo.InvariantCulture));
         }
 
         //Provide special handling for Key, since it's not stored as an attribute
