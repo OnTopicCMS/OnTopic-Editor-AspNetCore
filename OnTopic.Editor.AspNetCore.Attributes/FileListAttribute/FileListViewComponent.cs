@@ -6,7 +6,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -64,7 +63,9 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new FileListAttributeViewModel(currentTopic, attribute);
+      var model                 = new FileListAttributeViewModel(currentTopic, attribute) {
+        AbsolutePath            = _webHostEnvironment.ContentRootPath + attribute.Path
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
@@ -72,7 +73,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
       foreach (var file in GetFiles(model)) {
         model.Files.Add(file);
       };
-      model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
@@ -87,9 +87,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     /// <summary>
     ///   Retrieves a collection of files in a directory, given the provided <see cref="Path"/>.
     /// </summary>
-    public static Collection<SelectListItem> GetFiles(
-      FileListAttributeViewModel viewModel
-    ) {
+    public static Collection<SelectListItem> GetFiles(FileListAttributeViewModel viewModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate parameters
@@ -99,7 +97,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | INSTANTIATE OBJECTS
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var inheritedValue        = viewModel.InheritedValue;
       var attribute             = viewModel.AttributeDescriptor;
       var absolutePath          = viewModel.AbsolutePath;
       var files                 = new Collection<SelectListItem>();
