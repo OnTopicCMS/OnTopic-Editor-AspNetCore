@@ -112,6 +112,19 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     public string? ImplicitValue { get; init; }
 
     /*==========================================================================================================================
+    | IS VALUE REQUIRED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   If the <see cref="AttributeDescriptor"/> <see cref="IsRequired"/> and <see cref="DefaultValue"/> is not defined, then
+    ///   the <see cref="AttributeBindingModel"/> <i>must</i> have a <see cref="AttributeBindingModel.Value"/> set.
+    /// </summary>
+    /// <remarks>
+    ///   This is kept separate from <see cref="IsRequired"/> so that the attribute labels can still be marked as required in
+    ///   the interface; this should be used to disable <c>required</c> on the associated <c>Value</c> field, however.
+    /// </remarks>
+    public bool IsValueRequired => IsRequired && String.IsNullOrEmpty(DefaultValue);
+
+    /*==========================================================================================================================
     | PROPERTY: SORT ORDER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
