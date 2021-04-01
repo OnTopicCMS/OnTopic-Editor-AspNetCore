@@ -279,6 +279,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
+      var attributeDescriptors  = contentTypeDescriptor.AttributeDescriptors.Where(a => !a.IsHidden);
       var baseTopicId           = model.Attributes.GetInteger("BaseTopic");
       var baseTopic             = baseTopicId.HasValue? TopicRepository.Load(baseTopicId.Value) : null;
       var newKey                = model.Attributes.GetValue("Key");
@@ -293,9 +294,12 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | VALIDATE REQUIRED FIELDS
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (baseTopic is null) {
-        foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+        foreach (var attribute in attributeDescriptors) {
           var submittedValue = model.Attributes.GetValue(attribute.Key);
-          if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue)) {
+          if (
+            attribute.IsRequired &&
+            String.IsNullOrEmpty(submittedValue)
+          ) {
             ModelState.AddModelError(attribute.Key, $"The {attribute.Title} field is required.");
           }
         }
@@ -339,7 +343,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         //Establish view model
         var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
-        foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+        foreach (var attribute in attributeDescriptors) {
           editorViewModel.Topic.Attributes[attribute.Key] = model.Attributes.GetValue(attribute.Key);
         }
 
@@ -367,12 +371,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | SET ATTRIBUTES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var attribute in GetContentType(contentType).AttributeDescriptors) {
-
-        //Handle hidden attributes
-        if (attribute.IsHidden) {
-          continue;
-        }
+      foreach (var attribute in attributeDescriptors) {
 
         //Handle new keys
         if (isNew && attribute.Key.Equals("Key", StringComparison.OrdinalIgnoreCase)) {
