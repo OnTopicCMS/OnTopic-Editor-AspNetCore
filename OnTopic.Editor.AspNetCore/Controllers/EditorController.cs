@@ -300,7 +300,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       | should submit an empty value.
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var attribute in attributeDescriptors) {
-        if (model.Attributes.GetValue(attribute.Key) is null) {
+        if (!model.Attributes.Contains(attribute.Key)) {
           throw new InvalidOperationException(
             $"The {attribute.Key} was not found in the POST content. This indicates an error with either the attribute " +
             $"type plugin or the model binding. A non-empty `Key`, `ContentType`, and `Value` are expected for every visible " +
