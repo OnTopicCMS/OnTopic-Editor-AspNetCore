@@ -39,7 +39,7 @@ label, .label {
 }
 
 .required {
-  label {
+  > label {
     font-weight                 : 600;
     &:after {
       color                     : $red;
@@ -65,6 +65,16 @@ textarea {
   &:focus,
   &:active {
     border-color                : $blue;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// DROPDOWN LISTS
+//----------------------------------------------------------------------------------------------
+select {
+  option:first-child {
+    font-style                  : italic;
+    color                       : $grey-light;
   }
 }
 
@@ -125,6 +135,13 @@ span.radio {
         }
       }
     }
+  }
+}
+
+.form-check-label {
+  .context {
+    font-style                  : italic;
+    color                       : $grey-lighter;
   }
 }
 

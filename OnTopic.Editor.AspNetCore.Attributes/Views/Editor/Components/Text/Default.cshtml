@@ -13,7 +13,7 @@
   class                         ="FormField Field form-control"
   title                         =@Model.AttributeDescriptor.ValidationMessage
   pattern                       =@Model.AttributeDescriptor.Pattern
-  placeholder                   =@Model.InheritedValue
+  placeholder                   =@(Model.AttributeDescriptor.DefaultValue?? Model.InheritedValue?? Model.AttributeDescriptor.ImplicitValue)
   disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
   required                      =@Model.AttributeDescriptor.IsRequired
 />

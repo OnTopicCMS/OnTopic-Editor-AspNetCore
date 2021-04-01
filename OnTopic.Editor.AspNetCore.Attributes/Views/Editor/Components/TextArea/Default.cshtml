@@ -11,7 +11,7 @@
   minlength                     =@Model.AttributeDescriptor.MinimumLength
   maxlength                     =@Model.AttributeDescriptor.MaximumLength
   class                         ="FormField Field form-control"
-  placeholder                   =@Model.InheritedValue
+  placeholder                   =@(Model.AttributeDescriptor.DefaultValue?? Model.InheritedValue?? Model.AttributeDescriptor.ImplicitValue)
   disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
   required                      =@Model.AttributeDescriptor.IsRequired
   >
