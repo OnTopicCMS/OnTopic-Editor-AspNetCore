@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using OnTopic.ViewModels;
+using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 
@@ -41,9 +42,10 @@ namespace OnTopic.Editor.AspNetCore.Models {
     | PROPERTY: BASE TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a reference to a base topic, if one exists.
+    ///   Provides a reference to a <see cref="Topic.BaseTopic"/>, if one exists.
     /// </summary>
-    public TopicViewModel? BaseTopic { get; init; }
+    [MapAs(typeof(CoreTopicViewModel))]
+    public CoreTopicViewModel? BaseTopic { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: NO INDEX?
