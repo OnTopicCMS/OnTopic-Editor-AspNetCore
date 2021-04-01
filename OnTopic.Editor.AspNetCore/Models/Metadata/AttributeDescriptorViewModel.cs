@@ -18,7 +18,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
   /// <summary>
   ///   Provides core properties from a <see cref="AttributeDescriptor"/> to a view component.
   /// </summary>
-  public record AttributeDescriptorViewModel: ViewModels.TopicViewModel {
+  public record AttributeDescriptorViewModel: CoreTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -35,7 +35,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Determines if the <see cref="AttributeDescriptorViewModel"/> should be displayed or not.
     /// </summary>
-    public new bool IsHidden { get; init; }
+    public bool IsHidden { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: IS EXTENDED ATTRIBUTE?
