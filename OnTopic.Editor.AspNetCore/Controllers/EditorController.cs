@@ -367,9 +367,6 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         Contract.Requires(contentType, nameof(contentType));
         topic = TopicFactory.Create(newKey, contentType, CurrentTopic);
       }
-      else {
-        contentType = CurrentTopic.ContentType;
-      }
 
       if (baseTopic is not null && topic.BaseTopic != baseTopic) {
         topic.BaseTopic = baseTopic;
