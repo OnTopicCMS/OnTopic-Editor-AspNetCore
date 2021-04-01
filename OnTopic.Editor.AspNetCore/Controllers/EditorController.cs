@@ -414,6 +414,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         else if (attribute.Key is "Key") {
           topic.Key = attributeValue.Value.Replace(" ", "", StringComparison.Ordinal);
         }
+        else if (topic.BaseTopic is null && String.IsNullOrEmpty(attributeValue.Value)) {
+          topic.Attributes.SetValue(attribute.Key, attribute.DefaultValue);
+        }
         else {
           topic.Attributes.SetValue(attribute.Key, attributeValue.Value);
         }
