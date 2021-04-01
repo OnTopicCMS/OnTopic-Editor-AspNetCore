@@ -5,8 +5,8 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
+using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Metadata;
-using OnTopic.ViewModels;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 
@@ -61,16 +61,17 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
     | VALUE PROPERTY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines which topic attribute to bind the topic list to. By default, it is <see cref="TopicViewModel.Key"/>.
+    ///   Determines which topic attribute to bind the topic list to. By default, it is <see cref="CoreTopicViewModel.Key
+    ///   "/>.
     /// </summary>
     /// <remarks>
     ///   The following are valid values for <see cref="ValueProperty"/>:
     ///   <list type="bullet">
-    ///     <item><c>TopicId</c> (for <see cref="TopicViewModel.Id"/>)</item>
-    ///     <item><c>Key</c> (for <see cref="TopicViewModel.Key"/>)</item>
-    ///     <item><c>UniqueKey</c> (for <see cref="TopicViewModel.UniqueKey"/>)</item>
-    ///     <item><c>WebPath</c> (for <see cref="TopicViewModel.WebPath"/>)</item>
-    ///     <item><c>Title</c> (for <see cref="TopicViewModel.Title"/>)</item>
+    ///     <item><c>TopicId</c> (for <see cref="CoreTopicViewModel.Id"/>)</item>
+    ///     <item><c>Key</c> (for <see cref="CoreTopicViewModel.Key"/>)</item>
+    ///     <item><c>UniqueKey</c> (for <see cref="CoreTopicViewModel.UniqueKey"/>)</item>
+    ///     <item><c>WebPath</c> (for <see cref="CoreTopicViewModel.WebPath"/>)</item>
+    ///     <item><c>Title</c> (for <see cref="CoreTopicViewModel.Title"/>)</item>
     ///   </list>
     /// </remarks>
     public string? ValueProperty { get; init; } = "Key";

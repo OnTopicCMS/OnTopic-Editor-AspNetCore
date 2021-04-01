@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using OnTopic.Collections.Specialized;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
-using OnTopic.ViewModels;
+using OnTopic.Models;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
 
@@ -22,7 +22,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Optionally provides the relationship key, which maps to the <see cref="KeyValuesPair{TKey, TValue}.Key"/> property.
-    ///   Defaults to the <see cref="TopicViewModel.Key"/> if undefined.
+    ///   Defaults to the <see cref="ICoreTopicViewModel.Key"/> if undefined.
     /// </summary>
     public string? RelationshipKey { get; init; }
 
