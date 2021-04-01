@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
-using OnTopic.ViewModels;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
 
@@ -86,15 +85,12 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
             continue;
           }
         }
-        var relatedViewModel    = new TopicViewModel {
-          Id                    = relatedTopic.Id,
+        var relatedViewModel    = new CoreTopicViewModel {
           Key                   = relatedTopic.Key,
           ContentType           = relatedTopic.ContentType,
           UniqueKey             = relatedTopic.GetUniqueKey(),
           WebPath               = relatedTopic.GetWebPath(),
-          View                  = relatedTopic.View,
-          Title                 = relatedTopic.Title,
-          LastModified          = relatedTopic.LastModified
+          Title                 = relatedTopic.Title
         };
         model.RelatedTopics.Add(relatedViewModel);
       }

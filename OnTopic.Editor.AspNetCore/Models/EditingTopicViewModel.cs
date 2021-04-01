@@ -6,7 +6,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using OnTopic.ViewModels;
+using System.Diagnostics.CodeAnalysis;
+using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 
@@ -18,7 +19,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
   ///   <see cref="EditingTopicViewModel"/> needn't account for them. It only accounts for items that will be exposed to the
   ///   general interface of the Topic Editor.
   /// </summary>
-  public record EditingTopicViewModel: ViewModels.TopicViewModel {
+  public record EditingTopicViewModel: CoreTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -27,6 +28,24 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   Initializes a new instance of the <see cref="EditingTopicViewModel"/> class.
     /// </summary>
     public EditingTopicViewModel() : base() {}
+
+    /*==========================================================================================================================
+    | PROPERTY: PARENT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to a <see cref="Topic.Parent"/>.
+    /// </summary>
+    [MapAs(typeof(CoreTopicViewModel))]
+    public CoreTopicViewModel? Parent { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: BASE TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to a <see cref="Topic.BaseTopic"/>, if one exists.
+    /// </summary>
+    [MapAs(typeof(CoreTopicViewModel))]
+    public CoreTopicViewModel? BaseTopic { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: VERSION HISTORY
@@ -38,12 +57,12 @@ namespace OnTopic.Editor.AspNetCore.Models {
     public Collection<DateTime> VersionHistory { get; init; } = new();
 
     /*==========================================================================================================================
-    | PROPERTY: BASE TOPIC
+    | PROPERTY: LAST MODIFIED
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a reference to a base topic, if one exists.
+    ///   Provides a reference to the <see cref="Topic.LastModified"/> date.
     /// </summary>
-    public TopicViewModel? BaseTopic { get; init; }
+    public DateTime LastModified { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: NO INDEX?
@@ -59,7 +78,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Determines if the current topic is hidden or not.
     /// </summary>
-    public new bool IsHidden { get; init; }
+    public bool IsHidden { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: IS DISABLED?

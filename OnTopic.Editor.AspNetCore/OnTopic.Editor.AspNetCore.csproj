@@ -26,7 +26,6 @@
     </PackageReference>
     <PackageReference Include="OnTopic" Version="5.1.0-alpha.482" />
     <PackageReference Include="OnTopic.Data.Transfer" Version="2.0.0" />
-    <PackageReference Include="OnTopic.ViewModels" Version="5.1.0-alpha.482" />
     <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="5.1.0-alpha.482" />
   </ItemGroup>
 
