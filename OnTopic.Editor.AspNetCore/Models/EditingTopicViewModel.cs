@@ -30,15 +30,6 @@ namespace OnTopic.Editor.AspNetCore.Models {
     public EditingTopicViewModel() : base() {}
 
     /*==========================================================================================================================
-    | PROPERTY: VERSION HISTORY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a collection of <see cref="DateTime"/> instances during which the represented <see cref="Topic"/> was
-    ///   modified.
-    /// </summary>
-    public Collection<DateTime> VersionHistory { get; init; } = new();
-
-    /*==========================================================================================================================
     | PROPERTY: PARENT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -55,6 +46,15 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// </summary>
     [MapAs(typeof(CoreTopicViewModel))]
     public CoreTopicViewModel? BaseTopic { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: VERSION HISTORY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a collection of <see cref="DateTime"/> instances during which the represented <see cref="Topic"/> was
+    ///   modified.
+    /// </summary>
+    public Collection<DateTime> VersionHistory { get; init; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: LAST MODIFIED
