@@ -279,6 +279,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
+      var attributeDescriptors  = contentTypeDescriptor.AttributeDescriptors.Where(a => !a.IsHidden);
       var baseTopicId           = model.Attributes.GetInteger("BaseTopic");
       var baseTopic             = baseTopicId.HasValue? TopicRepository.Load(baseTopicId.Value) : null;
       var newKey                = model.Attributes.GetValue("Key");
@@ -290,12 +291,39 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       Contract.Assume(newKey, "A value for the required 'Key' attribute was not submitted.");
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE BINDING MODEL
+      >-------------------------------------------------------------------------------------------------------------------------
+      | There should always be a binding model associated with each visible attribute. If there isn't, that suggests an error
+      | with either the AttributeBindingModelBinder or, more likely, the attribute type plugin's view. In this case, an
+      | exception should be thrown instead of assuming a skipped attribute—or, worse, assuming the attribute should be deleted.
+      | In addition, the Value property should never be null; even if no value is selected in e.g. a radio button, the browser
+      | should submit an empty value.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var attribute in attributeDescriptors) {
+        if (!model.Attributes.Contains(attribute.Key)) {
+          throw new InvalidOperationException(
+            $"The {attribute.Key} was not found in the POST content. This indicates an error with either the attribute " +
+            $"type plugin or the model binding. A non-empty `Key`, `ContentType`, and `Value` are expected for every visible " +
+            $"attribute."
+          );
+        }
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
+      >-------------------------------------------------------------------------------------------------------------------------
+      | If a BaseTopic is set, then no fields are required. If a DefaultValue is set for an attribute, that attribute isn't
+      | required—even if it's marked as IsRequired—since a fallback exists. In all other cases, empty IsRequired attributes
+      | should result in a model error.
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (baseTopic is null) {
-        foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+        foreach (var attribute in attributeDescriptors) {
           var submittedValue = model.Attributes.GetValue(attribute.Key);
-          if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue)) {
+          if (
+            attribute.IsRequired &&
+            String.IsNullOrEmpty(attribute.DefaultValue) &&
+            String.IsNullOrEmpty(submittedValue)
+          ) {
             ModelState.AddModelError(attribute.Key, $"The {attribute.Title} field is required.");
           }
         }
@@ -310,6 +338,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE KEY
+      >-------------------------------------------------------------------------------------------------------------------------
+      | If this topic IsNew or the Key value has changed, ensure that the new Key is valid and that it's unique within the scope
+      | of the current Parent topic.
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (isNew || !CurrentTopic.Key.Equals(newKey, StringComparison.OrdinalIgnoreCase)) {
         try
@@ -319,14 +350,14 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         catch (InvalidKeyException) {
           ModelState.AddModelError(
             "Key",
-            $"The folder name {newKey} is invalid. Folder names should not contain spaces or symbols outside of periods, " +
+            $"The folder name '{newKey}' is invalid. Folder names should not contain spaces or symbols outside of periods, " +
             $"hyphens, and underscores."
           );
         }
         if (parentTopic.Children.Contains(newKey)) {
           ModelState.AddModelError(
             "Key",
-            $"The folder name {newKey} already exists under '{parentTopic.Title}'. Please choose a unique folder name."
+            $"The folder name '{newKey}' already exists under '{parentTopic.GetWebPath()}'. Please choose a unique folder name"
           );
         }
       }
@@ -339,7 +370,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         //Establish view model
         var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
-        foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+        foreach (var attribute in attributeDescriptors) {
           editorViewModel.Topic.Attributes[attribute.Key] = model.Attributes.GetValue(attribute.Key);
         }
 
@@ -356,9 +387,6 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         Contract.Requires(contentType, nameof(contentType));
         topic = TopicFactory.Create(newKey, contentType, CurrentTopic);
       }
-      else {
-        contentType = CurrentTopic.ContentType;
-      }
 
       if (baseTopic is not null && topic.BaseTopic != baseTopic) {
         topic.BaseTopic = baseTopic;
@@ -367,25 +395,14 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | SET ATTRIBUTES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var attribute in GetContentType(contentType).AttributeDescriptors) {
+      foreach (var attribute in attributeDescriptors) {
 
-        //Handle hidden attributes
-        if (attribute.IsHidden) {
-          continue;
-        }
-
-        //Handle new keys
+        //New topics will already have had their key set by the TopicFactory call
         if (isNew && attribute.Key.Equals("Key", StringComparison.OrdinalIgnoreCase)) {
           continue;
         }
 
-        //Handle missing attributes
-        if (!model.Attributes.Contains(attribute.Key)) {
-          topic.Attributes.Remove(attribute.Key);
-          continue;
-        }
-
-        //Get reference to current instance
+        //Get reference to current attribute
         var attributeValue = model.Attributes[attribute.Key];
 
         //Save value
@@ -397,6 +414,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
         else if (attribute.Key is "Key") {
           topic.Key = attributeValue.Value.Replace(" ", "", StringComparison.Ordinal);
+        }
+        else if (topic.BaseTopic is null && String.IsNullOrEmpty(attributeValue.Value)) {
+          topic.Attributes.SetValue(attribute.Key, attribute.DefaultValue);
         }
         else {
           topic.Attributes.SetValue(attribute.Key, attributeValue.Value);
@@ -429,11 +449,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var relatedTopics = attributeValue.Value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
       topic.Relationships.Clear(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
-        Topic? relatedTopic = null;
-        var isTopicId = Int32.TryParse(topicIdString, out var topicIdInt);
-        if (isTopicId && topicIdInt > 0) {
-          relatedTopic = TopicRepository.Load(topicIdInt);
-        }
+        Topic? relatedTopic = GetAssociatedTopic(topicIdString);
         if (relatedTopic is not null) {
           topic.Relationships.SetValue(attribute.Key, relatedTopic);
         }
@@ -447,12 +463,22 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Private helper function that saves a topic reference to the topic.
     /// </summary>
     private void SetReference(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
-      Topic? referencedTopic = null;
-      var isTopicId = Int32.TryParse(attributeValue.Value, out var topicIdInt);
-      if (isTopicId && topicIdInt > 0) {
-        referencedTopic = TopicRepository.Load(topicIdInt);
-      }
+      Topic? referencedTopic = GetAssociatedTopic(attributeValue.Value);
       topic.References.SetValue(attribute.Key, referencedTopic);
+    }
+
+    /*==========================================================================================================================
+    | GET ASSOCIATED TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Private helper function to retrieve a <see cref="Topic"/> from the <see cref="ITopicRepository"/> based on the
+    ///   <paramref name="topicId"/>.
+    /// </summary>
+    private Topic? GetAssociatedTopic(string? topicId) {
+      if (Int32.TryParse(topicId, out var topicIdInt) && topicIdInt > 0) {
+        return TopicRepository.Load(topicIdInt);
+      }
+      return null;
     }
 
     /*============================================================================================================================

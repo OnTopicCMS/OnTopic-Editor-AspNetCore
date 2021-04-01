@@ -14,6 +14,6 @@
   }
   <div class="col input-group">
     <label class="input-group-text" asp-for="Value">New Value</label>
-    <input type="text" asp-for="Value" class="form-control" placeholder="@(Model.AttributeDescriptor.DefaultValue?? Model.InheritedValue?? Model.AttributeDescriptor.ImplicitValue)" readonly>
+    <input type="text" asp-for="Value" class="form-control" placeholder="@(Model.AttributeDescriptor.DefaultValue?? Model.InheritedValue?? Model.AttributeDescriptor.ImplicitValue)" readonly required=@Model.AttributeDescriptor.IsValueRequired>
   </div>
 </div>
