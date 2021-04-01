@@ -292,6 +292,10 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
+      >-------------------------------------------------------------------------------------------------------------------------
+      | If a BaseTopic is set, then no fields are required. If a DefaultValue is set for an attribute, that attribute isn't
+      | required—even if it's marked as IsRequired—since a fallback exists. In all other cases, empty IsRequired attributes
+      | should result in a model error.
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (baseTopic is null) {
         foreach (var attribute in attributeDescriptors) {
@@ -314,6 +318,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE KEY
+      >-------------------------------------------------------------------------------------------------------------------------
+      | If this topic IsNew or the Key value has changed, ensure that the new Key is valid and that it's unique within the scope
+      | of the current Parent topic.
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (isNew || !CurrentTopic.Key.Equals(newKey, StringComparison.OrdinalIgnoreCase)) {
         try
@@ -323,14 +330,14 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         catch (InvalidKeyException) {
           ModelState.AddModelError(
             "Key",
-            $"The folder name {newKey} is invalid. Folder names should not contain spaces or symbols outside of periods, " +
+            $"The folder name '{newKey}' is invalid. Folder names should not contain spaces or symbols outside of periods, " +
             $"hyphens, and underscores."
           );
         }
         if (parentTopic.Children.Contains(newKey)) {
           ModelState.AddModelError(
             "Key",
-            $"The folder name {newKey} already exists under '{parentTopic.Title}'. Please choose a unique folder name."
+            $"The folder name '{newKey}' already exists under '{parentTopic.GetWebPath()}'. Please choose a unique folder name"
           );
         }
       }
@@ -373,7 +380,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var attribute in attributeDescriptors) {
 
-        //Handle new keys
+        //New topics will already have had their key set by the TopicFactory call
         if (isNew && attribute.Key.Equals("Key", StringComparison.OrdinalIgnoreCase)) {
           continue;
         }
@@ -384,7 +391,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           continue;
         }
 
-        //Get reference to current instance
+        //Get reference to current attribute
         var attributeValue = model.Attributes[attribute.Key];
 
         //Save value
