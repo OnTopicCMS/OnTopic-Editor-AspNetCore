@@ -321,6 +321,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           var submittedValue = model.Attributes.GetValue(attribute.Key);
           if (
             attribute.IsRequired &&
+            !String.IsNullOrEmpty(attribute.DefaultValue) &&
             String.IsNullOrEmpty(submittedValue)
           ) {
             ModelState.AddModelError(attribute.Key, $"The {attribute.Title} field is required.");
