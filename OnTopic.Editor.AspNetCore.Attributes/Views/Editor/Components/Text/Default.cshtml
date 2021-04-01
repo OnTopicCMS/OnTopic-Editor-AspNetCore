@@ -9,7 +9,7 @@
   type                          =@Model.AttributeDescriptor.InputType
   asp-for                       =@Model.Value
   minlength                     =@Model.AttributeDescriptor.MinimumLength
-  maxlength                     =@Model.AttributeDescriptor.MaximumLength
+  maxlength                     =@(Model.AttributeDescriptor.MaximumLength?? (Model.AttributeDescriptor.IsExtendedAttribute? Int32.MaxValue : 250))
   class                         ="FormField Field form-control"
   title                         =@Model.AttributeDescriptor.ValidationMessage
   pattern                       =@Model.AttributeDescriptor.Pattern

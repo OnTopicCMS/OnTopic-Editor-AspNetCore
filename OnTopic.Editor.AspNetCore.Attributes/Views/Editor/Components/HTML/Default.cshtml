@@ -20,6 +20,7 @@
   asp-for                       ="Value"
   rows                          =@Model.AttributeDescriptor.Rows
   class                         ="FormField Field form-control"
+  maxlength                     =@(Model.AttributeDescriptor.MaximumLength?? (Model.AttributeDescriptor.IsExtendedAttribute? Int32.MaxValue : 250))
   placeholder                   =@(Model.AttributeDescriptor.DefaultValue?? Model.InheritedValue?? Model.AttributeDescriptor.ImplicitValue)
   disabled                      =@(!Model.AttributeDescriptor.IsEnabled)
   required                      =@Model.AttributeDescriptor.IsRequired

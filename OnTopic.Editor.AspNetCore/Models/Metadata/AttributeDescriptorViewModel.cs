@@ -38,6 +38,15 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     public new bool IsHidden { get; init; }
 
     /*==========================================================================================================================
+    | PROPERTY: IS EXTENDED ATTRIBUTE?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the attribute is intended to be stored as an extended attribute. This has implications on the maximum
+    ///   length.
+    /// </summary>
+    public bool IsExtendedAttribute { get; init; }
+
+    /*==========================================================================================================================
     | PROPERTY: MODEL TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
