@@ -5,8 +5,19 @@
   Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
 }
 
-<div class="label">
-  @Model.CurrentValue
+<div class="form-row">
+  @if (Model.CurrentTopic.Id > 0 && !String.IsNullOrEmpty(Model.CurrentValue + Model.InheritedValue + Model.AttributeDescriptor.ImplicitValue)) {
+    <div class="col input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Current Value</div>
+      </div>
+      <input type="text" asp-for="CurrentValue" class="form-control" placeholder=@(Model.InheritedValue?? Model.AttributeDescriptor.ImplicitValue) readonly>
+    </div>
+  }
+  <div class="col input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">New Value</div>
+    </div>
+    <input type="text" asp-for="Value" class="form-control" readonly>
+  </div>
 </div>
-
-<input type="hidden" asp-for="Value" />

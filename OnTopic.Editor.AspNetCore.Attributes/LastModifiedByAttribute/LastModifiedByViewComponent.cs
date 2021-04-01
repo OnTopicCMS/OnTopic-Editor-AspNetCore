@@ -55,7 +55,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
       currentTopic.Attributes.TryGetValue(attribute.Key, out var value);
 
       var model                 = new LastModifiedByAttributeViewModel(currentTopic, attribute) {
-        CurrentValue            = currentTopic.Attributes["LastModifiedBy"]?? value,
+        CurrentValue            = value,
         Value                   = HttpContext.User.Identity.Name?? "System"
       };
 
