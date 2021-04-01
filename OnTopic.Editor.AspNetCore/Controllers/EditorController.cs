@@ -445,11 +445,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       var relatedTopics = attributeValue.Value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
       topic.Relationships.Clear(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
-        Topic? relatedTopic = null;
-        var isTopicId = Int32.TryParse(topicIdString, out var topicIdInt);
-        if (isTopicId && topicIdInt > 0) {
-          relatedTopic = TopicRepository.Load(topicIdInt);
-        }
+        Topic? relatedTopic = GetAssociatedTopic(topicIdString);
         if (relatedTopic is not null) {
           topic.Relationships.SetValue(attribute.Key, relatedTopic);
         }
@@ -463,12 +459,22 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Private helper function that saves a topic reference to the topic.
     /// </summary>
     private void SetReference(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
-      Topic? referencedTopic = null;
-      var isTopicId = Int32.TryParse(attributeValue.Value, out var topicIdInt);
-      if (isTopicId && topicIdInt > 0) {
-        referencedTopic = TopicRepository.Load(topicIdInt);
-      }
+      Topic? referencedTopic = GetAssociatedTopic(attributeValue.Value);
       topic.References.SetValue(attribute.Key, referencedTopic);
+    }
+
+    /*==========================================================================================================================
+    | GET ASSOCIATED TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Private helper function to retrieve a <see cref="Topic"/> from the <see cref="ITopicRepository"/> based on the
+    ///   <paramref name="topicId"/>.
+    /// </summary>
+    private Topic? GetAssociatedTopic(string? topicId) {
+      if (Int32.TryParse(topicId, out var topicIdInt) && topicIdInt > 0) {
+        return TopicRepository.Load(topicIdInt);
+      }
+      return null;
     }
 
     /*============================================================================================================================
