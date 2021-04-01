@@ -291,6 +291,25 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       Contract.Assume(newKey, "A value for the required 'Key' attribute was not submitted.");
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE BINDING MODEL
+      >-------------------------------------------------------------------------------------------------------------------------
+      | There should always be a binding model associated with each visible attribute. If there isn't, that suggests an error
+      | with either the AttributeBindingModelBinder or, more likely, the attribute type plugin's view. In this case, an
+      | exception should be thrown instead of assuming a skipped attribute—or, worse, assuming the attribute should be deleted.
+      | In addition, the Value property should never be null; even if no value is selected in e.g. a radio button, the browser
+      | should submit an empty value.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var attribute in attributeDescriptors) {
+        if (model.Attributes.GetValue(attribute.Key) is null) {
+          throw new InvalidOperationException(
+            $"The {attribute.Key} was not found in the POST content. This indicates an error with either the attribute " +
+            $"type plugin or the model binding. A non-empty `Key`, `ContentType`, and `Value` are expected for every visible " +
+            $"attribute."
+          );
+        }
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
       >-------------------------------------------------------------------------------------------------------------------------
       | If a BaseTopic is set, then no fields are required. If a DefaultValue is set for an attribute, that attribute isn't
@@ -379,12 +398,6 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
         //New topics will already have had their key set by the TopicFactory call
         if (isNew && attribute.Key.Equals("Key", StringComparison.OrdinalIgnoreCase)) {
-          continue;
-        }
-
-        //Handle missing attributes
-        if (!model.Attributes.Contains(attribute.Key)) {
-          topic.Attributes.Remove(attribute.Key);
           continue;
         }
 
