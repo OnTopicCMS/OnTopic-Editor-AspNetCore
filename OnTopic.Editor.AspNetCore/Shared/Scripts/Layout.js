@@ -52,19 +52,19 @@ $(function () {
   });
 
   /*----------------------------------------------------------------------------------------------------------------------------
-  | Set height of modal window
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  var $percentageHeight = $windowHeight * 0.785;
-  $('[id*="EditorModal"]').on('show.bs.modal', function(e) {
-    $('div[id*="EditorModal"] iframe').attr('height', $percentageHeight + 'px');
-  });
-
-  /*----------------------------------------------------------------------------------------------------------------------------
   | Set height of form area
   \---------------------------------------------------------------------------------------------------------------------------*/
   var $formAreaOffset   = $('#DisplayGroupTabsContent').offset();
   if ($formAreaOffset) {
     $('#DisplayGroupTabsContent').css('min-height', $windowHeight-$formAreaOffset.top + 'px');
   }
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | Initialize tooltips
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
 
 });

@@ -13,13 +13,13 @@
     </div>
     <ul id="DisplayGroupNavTabs" class="nav nav-tabs" role="tablist">
       <li class="nav-item">
-        <a id="Tab_Options" class="nav-link active" href="#Group_Options" data-toggle="tab" role="tab" aria-controls="#Group_Options" aria-expanded="true">Options</a>
+        <button id="Tab_Options" class="nav-link active" data-bs-target="#Group_Options" data-bs-toggle="tab" type="button" role="tab" aria-controls="Group_Options" aria-selected="true">Options</button>
       </li>
       <li class="nav-item">
-        <a id="Tab_LastModified" class="nav-link" href="#Group_LastModified" data-toggle="tab" role="tab" aria-controls="#Group_LastModified" aria-expanded="true">Attribution</a>
+        <button id="Tab_LastModified" class="nav-link" data-bs-target="#Group_LastModified" data-bs-toggle="tab" type="button" role="tab" aria-controls="Group_LastModified" aria-selected="false">Attribution</button>
       </li>
       <li class="nav-item">
-        <a id="Tab_Advanced" class="nav-link" href="#Group_Advanced" data-toggle="tab" role="tab" aria-controls="#Group_Advanced" aria-expanded="true">Advanced</a>
+        <button id="Tab_Advanced" class="nav-link" data-bs-target="#Group_Advanced" data-bs-toggle="tab" type="button" role="tab" aria-controls="Group_Advanced" aria-selected="false">Advanced</button>
       </li>
     </ul>
   </div>
@@ -45,7 +45,7 @@
 
             <h3>
               Source
-              <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="The JSON file containing a previous export from a topic graph."></i>
+              <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="The JSON file containing a previous export from a topic graph."></i>
             </h3>
             <section class="attribute">
               <input name="JsonFile" type="file" accept=".json" required />
@@ -55,22 +55,22 @@
             <section class="attribute">
               <label>
                 <input type="radio" asp-for="ImportOptions.Strategy" value="@ImportStrategy.Add" /> Add
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Adds missing attributes; leaves existing attributes alone."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Adds missing attributes; leaves existing attributes alone."></i>
               </label>
               <br />
               <label>
                 <input type="radio" asp-for="ImportOptions.Strategy" value="@ImportStrategy.Merge" /> Merge
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Adds missing attributes; replaces existing attributes if the imported value is newer."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Adds missing attributes; replaces existing attributes if the imported value is newer."></i>
               </label>
               <br />
               <label>
                 <input type="radio" asp-for="ImportOptions.Strategy" value="@ImportStrategy.Overwrite" /> Overwrite
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Overwrites all attributes. Leaves unmatched attributes as is."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Overwrites all attributes. Leaves unmatched attributes as is."></i>
               </label>
               <br />
               <label>
                 <input type="radio" asp-for="ImportOptions.Strategy" value="@ImportStrategy.Replace" /> Replace
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Overwrites all attributes. Deletes unmatched attributes, relationships, and topics."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Overwrites all attributes. Deletes unmatched attributes, relationships, and topics."></i>
               </label>
             </section>
 
@@ -89,22 +89,22 @@
             <section class="attribute">
               <label>
                 <input type="radio" asp-for="ImportOptions.LastModifiedByStrategy" value="@LastModifiedImportStrategy.Inherit" /> Use Import Strategy
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Will treat the byline just like any other attribute, merging it according to the import strategy."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Will treat the byline just like any other attribute, merging it according to the import strategy."></i>
               </label>
               <br />
               <label>
                 <input type="radio" asp-for="ImportOptions.LastModifiedByStrategy" value="@LastModifiedImportStrategy.TargetValue" /> Previous Value
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Will always retain the existing byline, if present."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Will always retain the existing byline, if present."></i>
               </label>
               <br />
               <label>
                 <input type="radio" asp-for="ImportOptions.LastModifiedByStrategy" value="@LastModifiedImportStrategy.Current" /> Current User (@(Context.User.Identity.Name?? "System"))
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Updates the byline to the current user, just like it would when manually updating a topic via the editor."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Updates the byline to the current user, just like it would when manually updating a topic via the editor."></i>
               </label>
               <br />
               <label>
                 <input type="radio" asp-for="ImportOptions.LastModifiedByStrategy" value="@LastModifiedImportStrategy.System" /> System
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Updates the byline to 'System', which indicates that this was part of a system update and shouldn't be assigned to a specific contributor."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Updates the byline to 'System', which indicates that this was part of a system update and shouldn't be assigned to a specific contributor."></i>
               </label>
             </section>
 
@@ -112,17 +112,17 @@
             <section class="attribute">
               <label>
                 <input type="radio" asp-for="ImportOptions.LastModifiedStrategy" value="@LastModifiedImportStrategy.Inherit" /> Use Import Strategy
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Will treat the dateline just like any other attribute, merging it according to the import strategy."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Will treat the dateline just like any other attribute, merging it according to the import strategy."></i>
               </label>
               <br />
               <label>
                 <input type="radio" asp-for="ImportOptions.LastModifiedStrategy" value="@LastModifiedImportStrategy.TargetValue" /> Previous Value
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Will always retain the existing last modified date, if present."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Will always retain the existing last modified date, if present."></i>
               </label>
               <br />
               <label>
                 <input type="radio" asp-for="ImportOptions.LastModifiedStrategy" value="@LastModifiedImportStrategy.Current" /> Current Time (@DateTime.Now.ToString("g"))
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Updates the dateline to the current time, just like it would when manually updating a topic via the editor."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Updates the dateline to the current time, just like it would when manually updating a topic via the editor."></i>
               </label>
               <br />
             </section>
@@ -140,7 +140,7 @@
             <section class="attribute">
               <label>
                 <input type="checkbox" asp-for="ImportOptions.OverwriteContentType" /> Content Type
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Overwrites the content type if imported content type differs from the existing content type. Implicit if the merge strategy is set to overwrite or replace."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Overwrites the content type if imported content type differs from the existing content type. Implicit if the merge strategy is set to overwrite or replace."></i>
               </label>
             </section>
 
@@ -148,27 +148,27 @@
             <section class="attribute">
               <label>
                 <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedAttributes)" value="true" /> Attributes
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing attributes if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletes existing attributes if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
               <br />
               <label>
                 <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedRelationships)" value="true" /> Relationships
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing relationships if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletes existing relationships if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
               <br />
               <label>
                 <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedReferences)" value="true" /> Topic References
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing topic references if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletes existing topic references if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
               <br />
               <label>
                 <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedNestedTopics)" value="true" /> Nested Topics
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing nested topics if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletes existing nested topics if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
               <br />
               <label>
                 <input type="checkbox" name="@nameof(ImportOptions).@nameof(ImportOptions.DeleteUnmatchedChildren)" value="true" /> Children
-                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Deletes existing children—including nested topics—if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
+                <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletes existing children—including nested topics—if they aren't included in the import. Implicit if the merge strategy is set to replace."></i>
               </label>
             </section>
 
