@@ -74,11 +74,11 @@
 
   <script>
     window.addEventListener('DOMContentLoaded', function () {
-      (function($) {
-        $('[id^="EditorModal"]').on('hide.bs.modal', function(e) {
-          @($"{treeName}.refresh")();
-        });
-      })(jQuery);
+      var modalElement = document.getElementById('@($"EditorModal_{attributeKey}")');
+      new bootstrap.Modal(modalElement);
+      modalElement.addEventListener('hide.bs.modal', function(e) {
+        @($"{treeName}.refresh")();
+      });
     });
   </script>
 
