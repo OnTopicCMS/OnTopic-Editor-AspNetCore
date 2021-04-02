@@ -63,8 +63,8 @@
     @for (int i = 0; i < @displayGroups.Count(); i++) {
       var displayGroupName      = displayGroups[i];
       var displayGroupId        = displayGroups[i].Replace(" ", String.Empty);
-      <li class="nav-item">
-        <a id="Tab_@displayGroupId" class="nav-link @(i is 0 ? "active" : "")" href="#Group_@displayGroupId" data-toggle="tab" role="tab" aria-controls="#Group_@displayGroupId" aria-expanded="@(i is 0 ? "true" : "false")">@displayGroupName</a>
+      <li class="nav-item" role="presentation">
+        <button id="Tab_@displayGroupId" class="nav-link @(i is 0 ? "active" : "")" href="#Group_@displayGroupId" data-bs-toggle="tab" role="tab" aria-controls="Group_@displayGroupId" aria-selected="@(i is 0 ? "true" : "false")">@displayGroupName</button>
       </li>
     }
   </ul>
