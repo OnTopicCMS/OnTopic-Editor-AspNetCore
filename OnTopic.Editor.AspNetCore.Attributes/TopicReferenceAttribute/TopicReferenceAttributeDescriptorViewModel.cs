@@ -31,13 +31,5 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
     }
 
-    /*==========================================================================================================================
-    | TARGET CONTENT TYPE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
-    /// </summary>
-    public string? TargetContentType { get; init; }
-
   } //Class
 } //Namespace
