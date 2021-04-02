@@ -42,7 +42,7 @@ const files = {
                                       'node_modules/jquery-ui-dist/jquery-ui.min.js',
                                       'node_modules/jquery-validation/dist/jquery.validate.min.js',
                                       'node_modules/jquery-validation/dist/additional-methods.min.js',
-                                      'node_modules/popper.js/dist/umd/popper.min.js',
+                                      'node_modules/@popperjs/core/dist/umd/popper.min.js',
                                       'node_modules/bootstrap/dist/js/bootstrap.min.js',
                                       'Shared/Scripts/ExtJS/ext-base.js',
                                       'Shared/Scripts/ExtJS/ext-all.js',
@@ -53,7 +53,7 @@ const files = {
                                     ]
                                   },
   precompiled                   : {
-    'Styles': {
+    'Styles'                    :   {
       'ExtJS'                   :     'Shared/Scripts/ExtJS/Resources/**/*'
                                     }
                                   }
