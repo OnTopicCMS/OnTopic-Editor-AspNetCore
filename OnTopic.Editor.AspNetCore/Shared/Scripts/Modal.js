@@ -85,14 +85,16 @@ window.closeModal = function () {
 /*==============================================================================================================================
 | JQUERY: WIRE UP ACTIONS
 \-----------------------------------------------------------------------------------------------------------------------------*/
-(function (bootstrap, document) {
+(function (document) {
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Event Handler: Close Button
   \---------------------------------------------------------------------------------------------------------------------------*/
   var modalCloseElement = document.getElementById('ModalCloseButton');
-  modalCloseElement.addEventListener('click', function(e) {
-    window.parent.closeModal();
-  });
+  if (modalCloseElement) {
+    modalCloseElement.addEventListener('click', function (e) {
+      window.parent.closeModal();
+    });
+  }
 
-})(bootstrap, document);
+})(document);
