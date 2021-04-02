@@ -75,7 +75,7 @@ namespace OnTopic.Editor.AspNetCore.Infrastructure {
       /*------------------------------------------------------------------------------------------------------------------------
       | ESTABLISH MODEL
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var type                  = TypeLookupService.Lookup($"{editorType}BindingModel");
+      var type                  = TypeLookupService.Lookup($"{editorType}BindingModel", "AttributeBindingModel");
 
       Contract.Assume(
         type,
