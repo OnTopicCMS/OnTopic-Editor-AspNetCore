@@ -61,6 +61,8 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
   | Open modal window
   \---------------------------------------------------------------------------------------------------------------------------*/
   if (editorModal) {
+    var percentageHeight = window.innerHeight * 0.785;
+    editorFrame.height = percentageHeight + 'px';
     var modal = bootstrap.Modal.getInstance(editorModal);
     modal.show();
   }
