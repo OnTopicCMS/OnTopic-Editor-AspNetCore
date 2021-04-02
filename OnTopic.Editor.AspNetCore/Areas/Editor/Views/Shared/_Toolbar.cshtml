@@ -46,10 +46,10 @@
     <!-- Delete -->
     @if (!Model.IsNew && !Model.ContentTypeDescriptor.DisableDelete) {
       <a
-        id                        ="DeletePageButton"
-        data-title                ="@Model.Topic.Title?.Replace("\"", "&quot;")"
-        href                      =@Url.Action("Delete", "Editor", new { path=Model.Topic.WebPath, isModal=Model.IsModal })
-        class                     ="btn btn-default btn-sm"
+        id                      ="DeletePageButton"
+        data-title              ="@Model.Topic.Title?.Replace("\"", "&quot;")"
+        href                    =@Url.Action("Delete", "Editor", new { path=Model.Topic.WebPath, isModal=Model.IsModal })
+        class                   ="btn btn-default btn-sm"
       >Delete</a>
     }
 
