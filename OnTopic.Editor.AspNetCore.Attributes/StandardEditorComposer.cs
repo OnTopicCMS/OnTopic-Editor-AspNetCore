@@ -15,6 +15,7 @@ using OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute;
+using OnTopic.Editor.AspNetCore.Attributes.MetadataListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.NumberAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute;
@@ -117,6 +118,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes {
         nameof(InstructionViewComponent)                        => new InstructionViewComponent(),
         nameof(LastModifiedViewComponent)                       => new LastModifiedViewComponent(),
         nameof(LastModifiedByViewComponent)                     => new LastModifiedByViewComponent(),
+        nameof(MetadataListViewComponent)                       => new MetadataListViewComponent(),
         nameof(NestedTopicListViewComponent)                    => new NestedTopicListViewComponent(_topicRepository),
         nameof(NumberViewComponent)                             => new NumberViewComponent(),
         nameof(RelationshipViewComponent)                       => new RelationshipViewComponent(),
