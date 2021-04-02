@@ -59,8 +59,8 @@
     values                      =@Model.AttributeDescriptor.PermittedContentTypes>
   </vc:content-type-list>
 
-  <div id="@($"EditorModal_{attributeKey}")" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1"  role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+  <div id="@($"EditorModal_{attributeKey}")" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="@($"ModalTitle_{attributeKey}")" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
       <div class="modal-header page title">
         <h2 id="@($"ModalTitle_{attributeKey}")" class="modal-title"><!-- determined by modal open script caller --></h2>
       </div>
