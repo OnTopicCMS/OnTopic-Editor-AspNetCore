@@ -54,11 +54,12 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
       | Set configuration values
       \-----------------------------------------------------------------------------------------------------------------------*/
       //### TODO 6.0.0: Remove hard-coded reference to BaseTopic; this is only needed for backward compatibility with 5.0.0.
-      if (attribute.Key.Equals("BaseTopic", StringComparison.OrdinalIgnoreCase)) {
+      var isBaseTopic           = attribute.Key.Equals("BaseTopic", StringComparison.OrdinalIgnoreCase);
+      if (attribute.UseCurrentContentType || isBaseTopic) {
         attribute = attribute with {
           AttributeKey          = "ContentType",
           AttributeValue        = currentTopic.ContentType,
-          AutoPostBack          = true
+          AutoPostBack          = isBaseTopic? true : attribute.AutoPostBack
         };
       }
 

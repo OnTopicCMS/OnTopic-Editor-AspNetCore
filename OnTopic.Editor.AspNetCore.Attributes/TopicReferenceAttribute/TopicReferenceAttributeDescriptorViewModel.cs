@@ -31,5 +31,18 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
     }
 
+    /*==========================================================================================================================
+    | USE CURRENT CONTENT TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Specifies that the underlying <see cref="TokenizedTopicListViewComponent"/> should be filtered by the <see cref="Topic
+    ///   .ContentType"/> on the current <see cref="Topic"/>.
+    /// </summary>
+    /// <remarks>
+    ///   This is useful for scenarios where the topic reference must target the same <see cref="ContentTypeDescriptor"/> as the
+    ///   current <see cref="Topic"/>, as is the case on <see cref="Topic.BaseTopic"/>.
+    /// </remarks>
+    public bool UseCurrentContentType { get; init; }
+
   } //Class
 } //Namespace
