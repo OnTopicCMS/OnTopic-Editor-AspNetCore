@@ -93,10 +93,13 @@ function confirmDelete(title) {
   /*----------------------------------------------------------------------------------------------------------------------------
   | Tooltip: Attribute Descriptions
   \---------------------------------------------------------------------------------------------------------------------------*/
-  $('.Content-Description').tooltip({
-    placement           : 'right',
-  //delay               : { 'show': 25, 'hide': 100 },
-    viewport            : '#DisplayGroupTabsContent'
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl, {
+      placement                 : 'right',
+    //delay                     : { 'show': 25, 'hide': 100 },
+      viewport                  : '#DisplayGroupTabsContent'
+    });
   });
 
   /*----------------------------------------------------------------------------------------------------------------------------
