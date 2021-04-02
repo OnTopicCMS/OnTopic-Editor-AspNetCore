@@ -75,7 +75,10 @@
   <script>
     window.addEventListener('DOMContentLoaded', function () {
       var modalElement = document.getElementById('@($"EditorModal_{attributeKey}")');
-      new bootstrap.Modal(modalElement);
+      new bootstrap.Modal(modalElement, {
+        backdrop: 'static',
+        keyboard: false
+      });
       modalElement.addEventListener('hide.bs.modal', function(e) {
         @($"{treeName}.refresh")();
       });
