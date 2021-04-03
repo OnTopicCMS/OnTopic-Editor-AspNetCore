@@ -20,7 +20,7 @@
   <div id="FormArea" class="row form area">
 
     <div class="col-md-12">
-      @if (Model.ContentTypeDescriptor.DisableDelete && !Model.IsNew) {
+      @if (Model.ContentTypeDescriptor.DisableDelete && !Model.IsNew || Model.Topic.IsProtected) {
         <div class="alert alert-danger" role="alert">
           <strong>Warning:</strong> This topic is part of the OnTopic internal organizational structure and is not intended to be modified. Deletion of this Topic has been disabled.
         </div>

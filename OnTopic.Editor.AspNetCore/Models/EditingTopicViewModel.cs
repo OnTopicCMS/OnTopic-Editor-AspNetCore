@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
+using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 
@@ -87,6 +89,20 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   Determines if the current topic is disabled or not.
     /// </summary>
     public bool IsDisabled { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: IS PROTECTED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the current topic part of the system.
+    /// </summary>
+    /// <remarks>
+    ///   The <see cref="IsProtected"/> operates similar to <see cref="ContentTypeDescriptorViewModel.DisableDelete"/>, except
+    ///   that it can be assigned to an individual <see cref="Topic"/>, and not <i>just</i> a <see cref="ContentTypeDescriptor"
+    ///   />. If the <see cref="IsProtected"/> is set, then the topic cannot be deleted or moved directly via the editor—
+    ///   though nothing prevents these operations from being performed programmatically.
+    /// </remarks>
+    public bool IsProtected { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ATTRIBUTES
