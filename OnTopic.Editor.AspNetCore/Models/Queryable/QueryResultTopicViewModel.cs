@@ -36,7 +36,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
       string                    uniqueKey,
       string                    webPath,
       bool?                     isChecked                       = null,
-      bool                      isDraggable                     = true,
+      bool                      isMovable                       = true,
       bool                      isExpanded                      = false
     ) {
 
@@ -48,7 +48,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
       Title                     = title;
       UniqueKey                 = uniqueKey;
       WebPath                   = webPath;
-      IsDraggable               = isDraggable;
+      IsMovable                 = isMovable;
       IsExpanded                = isExpanded;
 
       if (isChecked.HasValue) {
@@ -121,14 +121,14 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
     }
 
     /*==========================================================================================================================
-    | IS DRAGGABLE?
+    | IS MOVABLE?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines whether the current topic is intended to be draggable or not.
+    ///   Determines whether the current topic is permitted to be movable or not.
     /// </summary>
-    [JsonPropertyName("draggable")]
+    [JsonPropertyName("isMovable")]
     [DefaultValue(true)]
-    public bool IsDraggable {
+    public bool IsMovable {
       get;
     }
 
