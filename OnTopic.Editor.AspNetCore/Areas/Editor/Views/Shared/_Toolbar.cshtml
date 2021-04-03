@@ -44,7 +44,7 @@
     <!-- /Export -->
 
     <!-- Delete -->
-    @if (!Model.IsNew && !Model.ContentTypeDescriptor.DisableDelete) {
+    @if (!Model.IsNew && !Model.ContentTypeDescriptor.DisableDelete || Model.Topic.IsProtected) {
       <a
         id                      ="DeletePageButton"
         data-title              ="@Model.Topic.Title?.Replace("\"", "&quot;")"
