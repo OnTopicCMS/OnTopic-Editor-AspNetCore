@@ -1,0 +1,28 @@
+﻿@using OnTopic.Metadata;
+@model AttributeViewModel<AttributeDescriptorViewModel>
+
+@{
+
+  var excludedModelTypes        = new ModelType[] { ModelType.Reflexive, ModelType.Relationship, ModelType.NestedTopic };
+  var modelType                 = Model.AttributeDescriptor.ModelType;
+  var isSupported               = !excludedModelTypes.Contains(modelType);
+
+  if (!isSupported) {
+    Layout                      = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+  }
+
+}
+
+@if (isSupported) {
+  <text>
+    @await Component.InvokeAsync(
+      Model.CurrentTopic.ContentType.Replace("AttributeDescriptor", ""),
+      new { CurrentTopic = Model.CurrentTopic, Attribute = Model.AttributeDescriptor, HtmlFieldPrefix = Html.ViewData.TemplateInfo.HtmlFieldPrefix }
+    )
+  </text>
+}
+else {
+  <div class="alert alert-warning" role="alert">
+    <strong>Note:</strong> This attribute cannot be displayed on topics implementing the @Model.CurrentTopic.ContentType content type.
+  </div>
+}

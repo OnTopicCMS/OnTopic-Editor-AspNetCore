@@ -108,6 +108,27 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       (ContentTypeDescriptor)TopicFactory.Create(contentType, "ContentTypeDescriptor");
 
     /*==========================================================================================================================
+    | GET MODEL TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given the <see cref="AttributeDescriptor.ModelType"/>, returns the current <see cref="ModelType"/>.
+    /// </summary>
+    /// <remarks>
+    ///   Typically, the <see cref="AttributeDescriptor.ModelType"/> is the current <see cref="ModelType"/>. The one exception
+    ///   is if the <see cref="AttributeDescriptor.ModelType"/> is set to <see cref="ModelType.Reflexive"/>, in which case the
+    ///   <see cref="ModelType"/> should instead be pulled from the <see cref="CurrentTopic"/>—which should be a <see cref="
+    ///   AttributeDescriptor"/>.
+    /// </remarks>
+    /// <param name="modelType"></param>
+    /// <returns></returns>
+    private ModelType GetModelType(ModelType modelType) {
+      if (modelType == ModelType.Reflexive && CurrentTopic is AttributeDescriptor) {
+        return ((AttributeDescriptor)CurrentTopic).ModelType;
+      }
+      return modelType;
+    }
+
+    /*==========================================================================================================================
     | GET EDITOR VIEW MODEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -170,19 +191,21 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       //The attribute collections follow special conventions that can't be automatically mapped from the topic
       foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
 
+        var modelType = GetModelType(attribute.ModelType);
+
         //For new topics that aren't derived from another topic, assign attribute default, if available
         if (isNew) {
           topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.BaseTopic is null? null : attribute.DefaultValue);
         }
 
         //Serialize relationships, if it's a relationship type
-        else if (attribute.ModelType is ModelType.Relationship) {
+        else if (modelType is ModelType.Relationship) {
           var relatedTopicIds = CurrentTopic.Relationships.GetValues(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
           topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
         }
 
         //Serialize references, if it's a topic reference
-        else if (attribute.ModelType is ModelType.Reference) {
+        else if (modelType is ModelType.Reference) {
           topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetValue(attribute.Key, null, false, false)?.Id.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -402,14 +425,16 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           continue;
         }
 
+        var modelType = GetModelType(attribute.ModelType);
+
         //Get reference to current attribute
         var attributeValue = model.Attributes[attribute.Key];
 
         //Save value
-        if (attribute.ModelType is ModelType.Relationship) {
+        if (modelType is ModelType.Relationship) {
           SetRelationships(topic, attribute, attributeValue);
         }
-        else if (attribute.ModelType is ModelType.Reference) {
+        else if (modelType is ModelType.Reference) {
           SetReference(topic, attribute, attributeValue);
         }
         else if (attribute.Key is "Key") {
