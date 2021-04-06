@@ -43,11 +43,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   The unique name associated with the specified attribute.
     /// </summary>
-    [NotNull, DisallowNull]
-    public string? Key {
-      get;
-      init;
-    }
+    public string Key { get; init; } = default!;
 
     /*==========================================================================================================================
     | EDITOR TYPE
@@ -55,11 +51,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   The editor type associated with the attribute.
     /// </summary>
-    [NotNull, DisallowNull]
-    public string? EditorType {
-      get;
-      init;
-    }
+    public string EditorType { get; init; } = default!;
 
     /*==========================================================================================================================
     | VALUE
@@ -67,11 +59,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   The value associated with the attribute.
     /// </summary>
-    [NotNull, DisallowNull]
-    public string? Value {
-      get;
-      init;
-    }
+    public string Value { get; init; } = default!;
 
     /*==========================================================================================================================
     | GET VALUE

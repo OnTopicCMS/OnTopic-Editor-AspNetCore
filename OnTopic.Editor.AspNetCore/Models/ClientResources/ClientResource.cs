@@ -22,8 +22,7 @@ namespace OnTopic.Editor.AspNetCore.Models.ClientResources {
     /// <summary>
     ///   Gets or sets the URL associated with the client-side resource.
     /// </summary>
-    [NotNull, DisallowNull]
-    public Uri? Url { get; set; }
+    public Uri Url { get; set; } = default!;
 
   }
 }

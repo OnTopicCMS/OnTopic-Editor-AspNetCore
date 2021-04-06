@@ -62,8 +62,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     ///   While the <i>relative</i> file path can be retrieved from <see cref="FileListAttributeDescriptorViewModel.Path"
     ///   />, that doesn't include the base path of the web application. The <see cref="AbsolutePath"/> addresses this.
     /// </remarks>
-    [Required, NotNull, DisallowNull]
-    public string? AbsolutePath { get; set; }
+    [Required]
+    public string AbsolutePath { get; set; } = default!;
 
   } // Class
 } // Namespace
