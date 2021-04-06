@@ -1,13 +1,19 @@
-﻿@model AttributeViewModel<AttributeDescriptorViewModel>
+﻿@using OnTopic.Metadata;
+@model AttributeViewModel<AttributeDescriptorViewModel>
 
 @{
-  var isReflexive = Model.CurrentTopic.ContentType == "ReflexiveAttributeDescriptor" || !Model.CurrentTopic.ContentType.EndsWith("AttributeDescriptor");
-  if (isReflexive) {
-    Layout = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
+
+  var excludedModelTypes        = new ModelType[] { ModelType.Reflexive, ModelType.Relationship, ModelType.NestedTopic };
+  var modelType                 = Model.AttributeDescriptor.ModelType;
+  var isSupported               = !excludedModelTypes.Contains(modelType);
+
+  if (!isSupported) {
+    Layout                      = "~/Areas/Editor/Views/Editor/Components/_Layout.cshtml";
   }
+
 }
 
-@if (!isReflexive) {
+@if (isSupported) {
   <text>
     @await Component.InvokeAsync(
       Model.CurrentTopic.ContentType.Replace("AttributeDescriptor", ""),
