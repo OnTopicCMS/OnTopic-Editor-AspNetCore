@@ -3,7 +3,7 @@
 
 @{
 
-  var excludedModelTypes        = new ModelType[] { ModelType.Reflexive, ModelType.Relationship, ModelType.NestedTopic };
+  var excludedModelTypes        = new ModelType[] { ModelType.Reflexive, ModelType.Relationship, ModelType.NestedTopic, ModelType.None };
   var modelType                 = Model.AttributeDescriptor.ModelType;
   var isSupported               = !excludedModelTypes.Contains(modelType);
 
@@ -20,6 +20,11 @@
       new { CurrentTopic = Model.CurrentTopic, Attribute = Model.AttributeDescriptor, HtmlFieldPrefix = Html.ViewData.TemplateInfo.HtmlFieldPrefix }
     )
   </text>
+}
+else if (modelType is ModelType.None) {
+  <div class="alert alert-warning" role="alert">
+    <strong>Note:</strong> This attribute can only be set once the current topic has been saved.
+  </div>
 }
 else {
   <div class="alert alert-warning" role="alert">
