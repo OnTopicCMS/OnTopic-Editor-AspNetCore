@@ -22,7 +22,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   The <see cref="EditingTopicViewModel"/> representing the core properties of the currently selected <see
     ///   cref="Topic"/>.
     /// </summary>
-    public EditingTopicViewModel? Topic { get; init; } = default!;
+    public EditingTopicViewModel Topic { get; init; } = default!;
 
     /*==========================================================================================================================
     | CONTENT TYPE DESCRIPTOR
