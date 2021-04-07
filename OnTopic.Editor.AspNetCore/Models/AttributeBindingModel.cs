@@ -58,7 +58,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   The value associated with the attribute.
     /// </summary>
-    public string Value { get; init; } = default!;
+    public string? Value { get; init; } = default!;
 
     /*==========================================================================================================================
     | GET VALUE
@@ -71,7 +71,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   <see cref="GetValue()"/> method is intended to be overwritten by derived versions of the <see cref="AttributeBindingModel"/>
     ///   class, in order to provide specific serialization instructions.
     /// </remarks>
-    public virtual string GetValue() => Value;
+    public virtual string GetValue() => Value?? "";
 
   } // Class
 } // Namespace
