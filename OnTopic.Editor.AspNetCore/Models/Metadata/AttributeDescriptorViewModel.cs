@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Metadata;
