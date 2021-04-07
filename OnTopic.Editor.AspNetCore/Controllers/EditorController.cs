@@ -438,7 +438,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           SetReference(topic, attribute, attributeValue);
         }
         else if (attribute.Key is "Key") {
-          topic.Key = attributeValue.Value.Replace(" ", "", StringComparison.Ordinal);
+          topic.Key = attributeValue.Value!.Replace(" ", "", StringComparison.Ordinal);
         }
         else if (topic.BaseTopic is null && String.IsNullOrEmpty(attributeValue.Value)) {
           topic.Attributes.SetValue(attribute.Key, attribute.DefaultValue);
@@ -471,7 +471,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Private helper function that saves relationship values to the topic.
     /// </summary>
     private void SetRelationships(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
-      var relatedTopics = attributeValue.Value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
+      var relatedTopics = attributeValue.Value!.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
       topic.Relationships.Clear(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
         Topic? relatedTopic = GetAssociatedTopic(topicIdString);
