@@ -122,8 +122,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <param name="modelType"></param>
     /// <returns></returns>
     private ModelType GetModelType(ModelType modelType) {
-      if (modelType == ModelType.Reflexive && CurrentTopic is AttributeDescriptor) {
-        return ((AttributeDescriptor)CurrentTopic).ModelType;
+      if (modelType == ModelType.Reflexive && CurrentTopic is AttributeDescriptor attributeDescriptor) {
+        return attributeDescriptor.ModelType;
       }
       return modelType;
     }

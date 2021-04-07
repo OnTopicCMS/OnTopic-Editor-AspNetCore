@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Metadata;
@@ -64,8 +63,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   The <see cref="EditorType"/> corresponds to the <see cref="AttributeDescriptor"/> subtype name, such as <c>
     ///   BooleanAttributeDescriptor</c>. This can be used by the editor to determine the appropriate view component to display.
     /// </remarks>
-    [Required, NotNull, DisallowNull]
-    public string? EditorType { get; init; }
+    [Required]
+    public string EditorType { get; init; } = default!;
 
     /*==========================================================================================================================
     | PROPERTY: DISPLAY GROUP
@@ -73,8 +72,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Determines what group of attributes to associate the current attribute with.
     /// </summary>
-    [Required, NotNull, DisallowNull]
-    public string? DisplayGroup { get; init; }
+    [Required]
+    public string DisplayGroup { get; init; } = default!;
 
     /*==========================================================================================================================
     | PROPERTY: IS REQUIRED?

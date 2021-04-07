@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore.Models;
@@ -65,7 +66,15 @@ namespace OnTopic.Editor.AspNetCore.Attributes.ReflexiveAttribute {
       | Establish snapshot of previously saved attribute descriptor
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topic                 = _topicRepository.Load(currentTopic.UniqueKey);
-      var reflexiveViewModel    = (AttributeDescriptorViewModel?)await _topicMappingService.MapAsync(topic).ConfigureAwait(false);
+      var reflexiveViewModel    = (AttributeDescriptorViewModel?)null;
+
+      if (topic?.ContentType.EndsWith("AttributeDescriptor", StringComparison.OrdinalIgnoreCase)?? false) {
+        reflexiveViewModel      = (AttributeDescriptorViewModel?)await _topicMappingService.MapAsync(topic).ConfigureAwait(false);
+      }
+
+      if (reflexiveViewModel is null) {
+        reflexiveViewModel      = new();
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish hybrid view model

@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models {
@@ -23,8 +22,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   The <see cref="EditingTopicViewModel"/> representing the core properties of the currently selected <see
     ///   cref="Topic"/>.
     /// </summary>
-    [NotNull, DisallowNull]
-    public EditingTopicViewModel? Topic { get; init; }
+    public EditingTopicViewModel Topic { get; init; } = default!;
 
     /*==========================================================================================================================
     | CONTENT TYPE DESCRIPTOR
@@ -33,8 +31,7 @@ namespace OnTopic.Editor.AspNetCore.Models {
     ///   The <see cref="ContentTypeDescriptorViewModel"/> representing the core properties of the <see cref="Topic"/>'s <see
     ///   cref="ContentTypeDescriptor"/>.
     /// </summary>
-    [NotNull, DisallowNull]
-    public ContentTypeDescriptorViewModel? ContentTypeDescriptor { get; init; }
+    public ContentTypeDescriptorViewModel ContentTypeDescriptor { get; init; } = default!;
 
     /*==========================================================================================================================
     | IS MODAL?

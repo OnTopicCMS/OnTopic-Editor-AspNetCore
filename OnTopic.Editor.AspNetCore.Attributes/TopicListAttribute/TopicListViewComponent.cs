@@ -95,8 +95,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
           _ => baseTopic
         };
       }
-      else {
-        rootTopic = _topicRepository.Load(attribute.RootTopic?.UniqueKey);
+      else if (attribute.RootTopic is not null) {
+        rootTopic = _topicRepository.Load(attribute.RootTopic.UniqueKey);
       }
 
       if (rootTopic is not null && !String.IsNullOrEmpty(attribute.RelativeTopicPath)) {
