@@ -444,7 +444,8 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
           topic.Attributes.SetValue(attribute.Key, attribute.DefaultValue);
         }
         else {
-          topic.Attributes.SetValue(attribute.Key, attributeValue.Value);
+          var value = attributeValue.Value?.Replace("\r\n", "\n", StringComparison.Ordinal);
+          topic.Attributes.SetValue(attribute.Key, value);
         }
 
       }
