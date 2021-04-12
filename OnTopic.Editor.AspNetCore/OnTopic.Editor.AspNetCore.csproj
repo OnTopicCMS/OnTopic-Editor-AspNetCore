@@ -24,9 +24,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OnTopic" Version="5.1.0-rc.1" />
+    <PackageReference Include="OnTopic" Version="5.1.0" />
     <PackageReference Include="OnTopic.Data.Transfer" Version="2.0.0" />
-    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="5.1.0-rc.1" />
+    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="5.1.0" />
   </ItemGroup>
 
 </Project>
