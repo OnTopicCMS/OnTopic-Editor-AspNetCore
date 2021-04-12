@@ -108,6 +108,27 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       (ContentTypeDescriptor)TopicFactory.Create(contentType, "ContentTypeDescriptor");
 
     /*==========================================================================================================================
+    | GET MODEL TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given the <see cref="AttributeDescriptor.ModelType"/>, returns the current <see cref="ModelType"/>.
+    /// </summary>
+    /// <remarks>
+    ///   Typically, the <see cref="AttributeDescriptor.ModelType"/> is the current <see cref="ModelType"/>. The one exception
+    ///   is if the <see cref="AttributeDescriptor.ModelType"/> is set to <see cref="ModelType.Reflexive"/>, in which case the
+    ///   <see cref="ModelType"/> should instead be pulled from the <see cref="CurrentTopic"/>—which should be a <see cref="
+    ///   AttributeDescriptor"/>.
+    /// </remarks>
+    /// <param name="modelType"></param>
+    /// <returns></returns>
+    private ModelType GetModelType(ModelType modelType) {
+      if (modelType == ModelType.Reflexive && CurrentTopic is AttributeDescriptor attributeDescriptor) {
+        return attributeDescriptor.ModelType;
+      }
+      return modelType;
+    }
+
+    /*==========================================================================================================================
     | GET EDITOR VIEW MODEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -170,20 +191,22 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       //The attribute collections follow special conventions that can't be automatically mapped from the topic
       foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
 
+        var modelType = GetModelType(attribute.ModelType);
+
         //For new topics that aren't derived from another topic, assign attribute default, if available
         if (isNew) {
           topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.BaseTopic is null? null : attribute.DefaultValue);
         }
 
         //Serialize relationships, if it's a relationship type
-        else if (attribute.ModelType is ModelType.Relationship) {
+        else if (modelType is ModelType.Relationship) {
           var relatedTopicIds = CurrentTopic.Relationships.GetValues(attribute.Key).Select<Topic, int>(m => m.Id).ToArray();
           topicViewModel.Attributes.Add(attribute.Key, String.Join(",", relatedTopicIds));
         }
 
         //Serialize references, if it's a topic reference
-        else if (attribute.ModelType is ModelType.Reference) {
-          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetValue(attribute.Key)?.Id.ToString(CultureInfo.InvariantCulture));
+        else if (modelType is ModelType.Reference) {
+          topicViewModel.Attributes.Add(attribute.Key, CurrentTopic.References.GetValue(attribute.Key, null, false, false)?.Id.ToString(CultureInfo.InvariantCulture));
         }
 
         //Provide special handling for Key, since it's not stored as an attribute
@@ -279,6 +302,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = isNew? CurrentTopic : CurrentTopic.Parent;
       var contentTypeDescriptor = GetContentType(contentType?? CurrentTopic.ContentType);
+      var attributeDescriptors  = contentTypeDescriptor.AttributeDescriptors.Where(a => !a.IsHidden);
       var baseTopicId           = model.Attributes.GetInteger("BaseTopic");
       var baseTopic             = baseTopicId.HasValue? TopicRepository.Load(baseTopicId.Value) : null;
       var newKey                = model.Attributes.GetValue("Key");
@@ -290,12 +314,39 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       Contract.Assume(newKey, "A value for the required 'Key' attribute was not submitted.");
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | VALIDATE BINDING MODEL
+      >-------------------------------------------------------------------------------------------------------------------------
+      | There should always be a binding model associated with each visible attribute. If there isn't, that suggests an error
+      | with either the AttributeBindingModelBinder or, more likely, the attribute type plugin's view. In this case, an
+      | exception should be thrown instead of assuming a skipped attribute—or, worse, assuming the attribute should be deleted.
+      | In addition, the Value property should never be null; even if no value is selected in e.g. a radio button, the browser
+      | should submit an empty value.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var attribute in attributeDescriptors) {
+        if (!model.Attributes.Contains(attribute.Key)) {
+          throw new InvalidOperationException(
+            $"The {attribute.Key} was not found in the POST content. This indicates an error with either the attribute " +
+            $"type plugin or the model binding. A non-empty `Key`, `ContentType`, and `Value` are expected for every visible " +
+            $"attribute."
+          );
+        }
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE REQUIRED FIELDS
+      >-------------------------------------------------------------------------------------------------------------------------
+      | If a BaseTopic is set, then no fields are required. If a DefaultValue is set for an attribute, that attribute isn't
+      | required—even if it's marked as IsRequired—since a fallback exists. In all other cases, empty IsRequired attributes
+      | should result in a model error.
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (baseTopic is null) {
-        foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+        foreach (var attribute in attributeDescriptors) {
           var submittedValue = model.Attributes.GetValue(attribute.Key);
-          if (attribute.IsRequired && !attribute.IsHidden && String.IsNullOrEmpty(submittedValue)) {
+          if (
+            attribute.IsRequired &&
+            String.IsNullOrEmpty(attribute.DefaultValue) &&
+            String.IsNullOrEmpty(submittedValue)
+          ) {
             ModelState.AddModelError(attribute.Key, $"The {attribute.Title} field is required.");
           }
         }
@@ -310,12 +361,26 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | VALIDATE KEY
+      >-------------------------------------------------------------------------------------------------------------------------
+      | If this topic IsNew or the Key value has changed, ensure that the new Key is valid and that it's unique within the scope
+      | of the current Parent topic.
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (isNew || !CurrentTopic.Key.Equals(newKey, StringComparison.OrdinalIgnoreCase)) {
+        try
+        {
+          TopicFactory.ValidateKey(newKey);
+        }
+        catch (InvalidKeyException) {
+          ModelState.AddModelError(
+            "Key",
+            $"The folder name '{newKey}' is invalid. Folder names should not contain spaces or symbols outside of periods, " +
+            $"hyphens, and underscores."
+          );
+        }
         if (parentTopic.Children.Contains(newKey)) {
           ModelState.AddModelError(
             "Key",
-            $"The folder name {newKey} already exists under '{parentTopic.Title}'. Please choose a unique folder name."
+            $"The folder name '{newKey}' already exists under '{parentTopic.GetWebPath()}'. Please choose a unique folder name"
           );
         }
       }
@@ -328,7 +393,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         //Establish view model
         var editorViewModel = await GetEditorViewModel<EditorViewModel>(contentTypeDescriptor, isNew, isModal).ConfigureAwait(true);
 
-        foreach (var attribute in contentTypeDescriptor.AttributeDescriptors) {
+        foreach (var attribute in attributeDescriptors) {
           editorViewModel.Topic.Attributes[attribute.Key] = model.Attributes.GetValue(attribute.Key);
         }
 
@@ -345,9 +410,6 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         Contract.Requires(contentType, nameof(contentType));
         topic = TopicFactory.Create(newKey, contentType, CurrentTopic);
       }
-      else {
-        contentType = CurrentTopic.ContentType;
-      }
 
       if (baseTopic is not null && topic.BaseTopic != baseTopic) {
         topic.BaseTopic = baseTopic;
@@ -356,39 +418,34 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | SET ATTRIBUTES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var attribute in GetContentType(contentType).AttributeDescriptors) {
+      foreach (var attribute in attributeDescriptors) {
 
-        //Handle hidden attributes
-        if (attribute.IsHidden) {
-          continue;
-        }
-
-        //Handle new keys
+        //New topics will already have had their key set by the TopicFactory call
         if (isNew && attribute.Key.Equals("Key", StringComparison.OrdinalIgnoreCase)) {
           continue;
         }
 
-        //Handle missing attributes
-        if (!model.Attributes.Contains(attribute.Key)) {
-          topic.Attributes.Remove(attribute.Key);
-          continue;
-        }
+        var modelType = GetModelType(attribute.ModelType);
 
-        //Get reference to current instance
+        //Get reference to current attribute
         var attributeValue = model.Attributes[attribute.Key];
 
         //Save value
-        if (attribute.ModelType is ModelType.Relationship) {
+        if (modelType is ModelType.Relationship) {
           SetRelationships(topic, attribute, attributeValue);
         }
-        else if (attribute.ModelType is ModelType.Reference) {
+        else if (modelType is ModelType.Reference) {
           SetReference(topic, attribute, attributeValue);
         }
         else if (attribute.Key is "Key") {
-          topic.Key = attributeValue.Value.Replace(" ", "", StringComparison.Ordinal);
+          topic.Key = attributeValue.Value!.Replace(" ", "", StringComparison.Ordinal);
+        }
+        else if (topic.BaseTopic is null && String.IsNullOrEmpty(attributeValue.Value)) {
+          topic.Attributes.SetValue(attribute.Key, attribute.DefaultValue);
         }
         else {
-          topic.Attributes.SetValue(attribute.Key, attributeValue.Value);
+          var value = attributeValue.Value?.Replace("\r\n", "\n", StringComparison.Ordinal);
+          topic.Attributes.SetValue(attribute.Key, value);
         }
 
       }
@@ -404,10 +461,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       if (isModal) {
         return View("CloseModal");
       }
-      else if (isNew) {
-        return RedirectToAction("Edit", new { path = topic.GetWebPath() });
-      }
-      return await Edit().ConfigureAwait(true);
+      return RedirectToAction("Edit", new { path = topic.GetWebPath() });
 
     }
 
@@ -418,14 +472,10 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Private helper function that saves relationship values to the topic.
     /// </summary>
     private void SetRelationships(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
-      var relatedTopics = attributeValue.Value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
+      var relatedTopics = attributeValue.Value!.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
       topic.Relationships.Clear(attribute.Key);
       foreach (var topicIdString in relatedTopics) {
-        Topic? relatedTopic = null;
-        var isTopicId = Int32.TryParse(topicIdString, out var topicIdInt);
-        if (isTopicId && topicIdInt > 0) {
-          relatedTopic = TopicRepository.Load(topicIdInt);
-        }
+        Topic? relatedTopic = GetAssociatedTopic(topicIdString);
         if (relatedTopic is not null) {
           topic.Relationships.SetValue(attribute.Key, relatedTopic);
         }
@@ -439,17 +489,27 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     ///   Private helper function that saves a topic reference to the topic.
     /// </summary>
     private void SetReference(Topic topic, AttributeDescriptor attribute, AttributeBindingModel attributeValue) {
-      Topic? referencedTopic = null;
-      var isTopicId = Int32.TryParse(attributeValue.Value, out var topicIdInt);
-      if (isTopicId && topicIdInt > 0) {
-        referencedTopic = TopicRepository.Load(topicIdInt);
-      }
+      Topic? referencedTopic = GetAssociatedTopic(attributeValue.Value);
       topic.References.SetValue(attribute.Key, referencedTopic);
     }
 
-    /*============================================================================================================================
+    /*==========================================================================================================================
+    | GET ASSOCIATED TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Private helper function to retrieve a <see cref="Topic"/> from the <see cref="ITopicRepository"/> based on the
+    ///   <paramref name="topicId"/>.
+    /// </summary>
+    private Topic? GetAssociatedTopic(string? topicId) {
+      if (Int32.TryParse(topicId, out var topicIdInt) && topicIdInt > 0) {
+        return TopicRepository.Load(topicIdInt);
+      }
+      return null;
+    }
+
+    /*==========================================================================================================================
     | [POST] SET TOPIC VERSION
-    \---------------------------------------------------------------------------------------------------------------------------*/
+    \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Calls Topic.Rollback() with the selected version datetime to set the data to that version and re-save the Topic.
     /// </summary>
@@ -461,21 +521,21 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Initiate rollback
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       TopicRepository.Rollback(CurrentTopic, version);
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Render index
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       return RedirectToAction("Edit", new { path = CurrentTopic.GetWebPath(), IsModal = isModal });
 
     }
 
-    /*============================================================================================================================
+    /*==========================================================================================================================
     | [POST] DELETE TOPIC
-    \---------------------------------------------------------------------------------------------------------------------------*/
+    \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Fires when the user clicks the "Delete" button; deletes the current topic and any child attributes.
     /// </summary>
@@ -488,30 +548,30 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
       Contract.Assume(CurrentTopic.Parent, "The parent could not be resolved to an existing topic.");
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Define variables
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       var parent = CurrentTopic.Parent;
       var deletedTopic = CurrentTopic.Title;
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Lock the Topic repository before executing the delete
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       lock (TopicRepository) {
         TopicRepository.Delete(CurrentTopic, true);
       }
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | If the editor is in modal view, close the window; otherwise, redirect to the parent topic.
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       if (isModal) {
         return View("CloseModal");
       }
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | If the content type is a nested list, display grandparent.
-      \-------------------------------------------------------------------------------------------------------------------------*/
-      else if (parent.Attributes.GetValue("ContentType", "") is "List") {
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      else if (parent.ContentType is "List") {
         return RedirectToAction(
           "Edit",
           new {
@@ -523,18 +583,18 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         );
       }
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Redirect to parent
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       else {
         return RedirectToAction("Edit", new { path = parent.GetWebPath() });
       }
 
     }
 
-    /*============================================================================================================================
+    /*==========================================================================================================================
     | [POST] MOVE
-    \---------------------------------------------------------------------------------------------------------------------------*/
+    \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   AJAX-parsable, querystring-configurable wrapper to the OnTopic engine code that moves a node from one place in the
     ///   hierarchy to another. "true" if succeeded, Returns "false" if failure, as string values. The JS throws a generic
@@ -549,9 +609,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     [HttpPost]
     public IActionResult Move(int topicId, int targetTopicId = -1, int siblingId = -1) {
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Retrieve the source and destination topics
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       var topic = TopicRepository.Load(topicId);
       var target = (targetTopicId >= 0)? TopicRepository.Load(targetTopicId) : topic?.Parent;
 
@@ -561,9 +621,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       Contract.Assume(topic, $"The topicId '{topicId}' could not be resolved to a topic.");
       Contract.Assume(target, $"The targetTopicId '{targetTopicId}' could not be resolved to a topic.");
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Move the topic and/or reorder it with its siblings; lock the Topic repository prior to execution
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       lock (TopicRepository) {
         if (siblingId > 0) {
           var sibling = TopicRepository.Load(siblingId);
@@ -574,9 +634,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
         }
       }
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Return
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       return Content("true");
 
     }
@@ -595,9 +655,9 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
       Contract.Requires(options, nameof(options));
       Contract.Assume(CurrentTopic, "The current route could not be resolved to an existing topic.");
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Get related topics
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       var relatedTopics = (ReadOnlyTopicCollection?)null;
 
       if (options.MarkRelated) {
@@ -620,15 +680,15 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
       }
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Assemble view model
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       var jsonTopicMappingService = new TopicQueryService();
       var jsonTopicViewModel = jsonTopicMappingService.Query(CurrentTopic, options, relatedTopics);
 
-      /*--------------------------------------------------------------------------------------------------------------------------
+      /*------------------------------------------------------------------------------------------------------------------------
       | Return hierarchical view
-      \-------------------------------------------------------------------------------------------------------------------------*/
+      \-----------------------------------------------------------------------------------------------------------------------*/
       return new(jsonTopicViewModel);
 
     }

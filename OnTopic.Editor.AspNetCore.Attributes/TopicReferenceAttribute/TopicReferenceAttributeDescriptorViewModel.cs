@@ -3,11 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Diagnostics.CodeAnalysis;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
-using OnTopic.Mapping.Annotations;
+using OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute;
 using OnTopic.Metadata;
-using OnTopic.ViewModels;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
@@ -17,7 +14,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
   /// <summary>
   ///   Provides access to attributes associated with the <see cref="TopicReferenceViewComponent"/>.
   /// </summary>
-  public record TopicReferenceAttributeDescriptorViewModel: AttributeDescriptorViewModel {
+  public record TopicReferenceAttributeDescriptorViewModel: TokenizedTopicListAttributeDescriptorViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -25,39 +22,27 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
     /// <summary>
     ///   Initializes a new instance of a <see cref="TopicReferenceAttributeDescriptorViewModel"/>
     /// </summary>
-    public TopicReferenceAttributeDescriptorViewModel() {
-      StyleSheets.Register(GetNamespacedUri("/Shared/Styles/token-input.min.css"));
-      StyleSheets.Register(GetNamespacedUri("/Shared/Styles/token-input-facebook.min.css"));
-      Scripts.Register(GetNamespacedUri("/Shared/Scripts/jquery-tokeninput.min.js"));
-      Scripts.Register(GetNamespacedUri("/Shared/Scripts/TokenizedTopicList.js"));
+    public TopicReferenceAttributeDescriptorViewModel(): base() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Restrict token limit
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      TokenLimit = 1;
+
     }
 
     /*==========================================================================================================================
-    | PROPERTY: ROOT TOPIC
+    | USE CURRENT CONTENT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets a <see cref="Topic.Id"/> representing the scope of <see cref="Topic"/>s to display to the user. This
-    ///   allows relationships to be targeted to particular areas of the topic graph.
+    ///   Specifies that the underlying <see cref="TokenizedTopicListViewComponent"/> should be filtered by the <see cref="Topic
+    ///   .ContentType"/> on the current <see cref="Topic"/>.
     /// </summary>
-    [AttributeKey("RootTopicId")]
-    [NotNull]
-    public TopicViewModel? RootTopic { get; init; }
-
-    /*==========================================================================================================================
-    | RESULT LIMIT
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the maximum number of <see cref="Topic"/> results to pull from the web service.
-    /// </summary>
-    public int? ResultLimit { get; init; } = 100;
-
-    /*==========================================================================================================================
-    | TARGET CONTENT TYPE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the <see cref="Topic.Key"/> of the <see cref="ContentTypeDescriptor"/> to filter results by.
-    /// </summary>
-    public string? TargetContentType { get; init; }
+    /// <remarks>
+    ///   This is useful for scenarios where the topic reference must target the same <see cref="ContentTypeDescriptor"/> as the
+    ///   current <see cref="Topic"/>, as is the case on <see cref="Topic.BaseTopic"/>.
+    /// </remarks>
+    public bool UseCurrentContentType { get; init; }
 
   } //Class
 } //Namespace

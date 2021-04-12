@@ -38,6 +38,17 @@ fieldset {
 label, .label {
 }
 
+.required {
+  > label {
+    font-weight                 : 600;
+    &:after {
+      color                     : $red;
+      padding-left              : 2px;
+      content                   : "*";
+    }
+  }
+}
+
 //----------------------------------------------------------------------------------------------
 // INPUT
 //----------------------------------------------------------------------------------------------
@@ -54,6 +65,16 @@ textarea {
   &:focus,
   &:active {
     border-color                : $blue;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// DROPDOWN LISTS
+//----------------------------------------------------------------------------------------------
+select {
+  option:first-child {
+    font-style                  : italic;
+    color                       : $grey-light;
   }
 }
 
@@ -117,6 +138,13 @@ span.radio {
   }
 }
 
+.form-check-label {
+  .context {
+    font-style                  : italic;
+    color                       : $grey-lighter;
+  }
+}
+
 //----------------------------------------------------------------------------------------------
 // TOKEN INPUT
 //----------------------------------------------------------------------------------------------
@@ -133,7 +161,7 @@ span.radio {
 //----------------------------------------------------------------------------------------------
 
 //Tabs
-a.nav-link.error {
+button.nav-link.error {
   border-bottom-color           : $red !important;
   small.required {
     color                       : $red;
@@ -142,8 +170,14 @@ a.nav-link.error {
 
 //Summary
 .validation-summary-errors {
-  padding                       : 20px 0px;
+  padding                       : 0px;
   color                         : $red;
+  ul {
+    list-style                  : disc;
+    padding-left                : 38px;
+    margin                      : 1rem;
+    margin-left                 : 0rem;
+  }
 }
 
 //Labels

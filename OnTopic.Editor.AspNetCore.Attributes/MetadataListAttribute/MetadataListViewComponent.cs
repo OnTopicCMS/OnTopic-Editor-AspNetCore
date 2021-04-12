@@ -3,39 +3,38 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Internal.Diagnostics;
 
-namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.MetadataListAttribute {
 
   /*============================================================================================================================
-  | CLASS: TOPIC REFERENCE (VIEW COMPONENT)
+  | CLASS: METADATA LIST (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for a topic reference attribute type.
+  ///   Delivers a view model for a metadata list attribute type.
   /// </summary>
-  public class TopicReferenceViewComponent : ViewComponent {
+  public class MetadataListViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TopicReferenceViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="MetadataListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public TopicReferenceViewComponent() : base() {
+    public MetadataListViewComponent() : base() {
     }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="TopicReferenceViewComponent"/>.
+    ///   Assembles the view model for the <see cref="MetadataListViewComponent"/>.
     /// </summary>
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
-      TopicReferenceAttributeDescriptorViewModel attribute,
+      MetadataListAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -51,22 +50,9 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set configuration values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      //### TODO 6.0.0: Remove hard-coded reference to BaseTopic; this is only needed for backward compatibility with 5.0.0.
-      var isBaseTopic           = attribute.Key.Equals("BaseTopic", StringComparison.OrdinalIgnoreCase);
-      if (attribute.UseCurrentContentType || isBaseTopic) {
-        attribute = attribute with {
-          AttributeKey          = "ContentType",
-          AttributeValue        = currentTopic.ContentType,
-          AutoPostBack          = isBaseTopic? true : attribute.AutoPostBack
-        };
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = new AttributeViewModel<TopicReferenceAttributeDescriptorViewModel>(currentTopic, attribute);
+      var viewModel = new AttributeViewModel<MetadataListAttributeDescriptorViewModel>(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model

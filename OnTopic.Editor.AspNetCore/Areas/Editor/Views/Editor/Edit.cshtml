@@ -20,39 +20,33 @@
   <div id="FormArea" class="row form area">
 
     <div class="col-md-12">
-      @if (Model.ContentTypeDescriptor.DisableDelete && !Model.IsNew) {
+      @if (Model.ContentTypeDescriptor.DisableDelete && !Model.IsNew || Model.Topic.IsProtected) {
         <div class="alert alert-danger" role="alert">
-          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Warning:</strong> This topic is part of the OnTopic internal organizational structure and is not intended to be modified. Deletion of this Topic has been disabled.
         </div>
       }
       @if (Model.Topic.IsDisabled) {
         <div class="alert alert-danger" role="alert">
-          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Warning:</strong> This topic is currently disabled and will not be viewable via the website. This topic can be reenabled on the <i>Navigation</i> tab.
         </div>
       }
       @if (!Model.IsFullyLoaded) {
         <div class="alert alert-danger" role="alert">
-          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Warning:</strong> Not all relationships were successfully loaded from the database. To prevent inadvertent deletion of relationships, any relationships that are removed won't be persisted to the database. You can still add new relationships.
         </div>
       }
       @if (Model.Topic.IsHidden && Model.Topic.NoIndex) {
         <div class="alert alert-warning" role="alert">
-          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Note:</strong> This topic is currently hidden from both search engines and the site navigation. Customers can still access it by URL, including direct links.
         </div>
       }
       else if (Model.Topic.IsHidden) {
         <div class="alert alert-warning" role="alert">
-          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Note:</strong> This topic is currently hidden and will not be displayed in the site navigation. Customers can still access it, and it will still show up in search results.
         </div>
       }
       else if (Model.Topic.NoIndex) {
         <div class="alert alert-warning" role="alert">
-          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong>Note:</strong> This topic is currently hidden from search engines. Customers can still access it, but it won't show up in search results.
         </div>
       }
@@ -66,7 +60,9 @@
           <strong>Note:</strong> This topic derives from <a href="@Url.Action("Edit", new { path = Model.Topic.BaseTopic.WebPath, isModal = Model.IsModal })">@Model.Topic.BaseTopic.Title</a>. Any values not explicitly defined here will be inherited from that topic.
         </div>
       }
-      <div asp-validation-summary="All"></div>
+      @if (!ViewData.ModelState.IsValid) {
+        <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+      }
     </div>
 
     <div class="@(Model.IsModal? "col-sm-10" : "col-lg-9 col-sm-12")">
@@ -125,11 +121,11 @@
     ignore: [],
     invalidHandler: function () {
       setTimeout(function () {
-        $('.nav-tabs a small.required').remove();
-        $('.nav-tabs a.error').removeClass("error");
+        $('.nav-tabs button small.required').remove();
+        $('.nav-tabs button.error').removeClass("error");
         $('.tab-content.tab-validate .tab-pane:has(input.error, textarea.error, select.error)').each(function () {
           var id = $(this).attr('id');
-          $('.nav-tabs').find('a[href^="#' + id + '"]').addClass("error").append(' <small class="required">*</small>');
+          $('.nav-tabs').find('button[data-bs-target^="#' + id + '"]').addClass("error").append(' <small class="required">*</small>');
         });
       });
     }

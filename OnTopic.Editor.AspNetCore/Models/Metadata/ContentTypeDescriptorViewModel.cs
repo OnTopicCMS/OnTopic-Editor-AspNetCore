@@ -91,7 +91,17 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   cref="AttributeDescriptors"/> collection.
     /// </summary>
     public Collection<string> GetDisplayGroups() =>
-      new(AttributeDescriptors.Where(a => !a.IsHidden).Select(a => a.DisplayGroup).Distinct().OrderBy(a => a).ToList());
+      new(
+        AttributeDescriptors
+          .Where(a => !a.IsHidden)
+          .Select(a => a.DisplayGroup)
+          .Distinct()
+          .OrderByDescending(a => a is "Content")
+          .ThenBy(a => a is "Settings")
+          .ThenBy(a => a is "Navigation")
+          .ThenBy(a => a)
+          .ToList()
+      );
 
     /*==========================================================================================================================
     | METHOD: GET ATTRIBUTE DESCRIPTORS

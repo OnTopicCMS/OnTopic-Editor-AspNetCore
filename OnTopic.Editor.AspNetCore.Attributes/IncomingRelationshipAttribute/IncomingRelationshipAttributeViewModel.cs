@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using OnTopic.Collections.Specialized;
 using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.AspNetCore.Models.Metadata;
-using OnTopic.ViewModels;
+using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
 
@@ -46,7 +46,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
     ///   Provides a list of <see cref="Topic"/>s which are related to the current <see cref="Topic"/> based on the specified
     ///   <see cref="KeyValuesPair{TKey, TValue}.Key"/>.
     /// </summary>
-    public Collection<TopicViewModel> RelatedTopics { get; } = new();
+    [MapAs(typeof(CoreTopicViewModel))]
+    public Collection<CoreTopicViewModel> RelatedTopics { get; } = new();
 
   } // Class
 } // Namespace

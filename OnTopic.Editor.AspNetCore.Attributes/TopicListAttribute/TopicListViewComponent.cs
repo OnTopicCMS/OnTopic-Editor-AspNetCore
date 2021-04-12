@@ -71,16 +71,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       var viewModel = new TopicListAttributeViewModel(currentTopic, attribute);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Set label
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      viewModel.TopicList.Add(
-        new() {
-          Value = "",
-          Text = attribute.DefaultLabel
-        }
-      );
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Set default value
       \-----------------------------------------------------------------------------------------------------------------------*/
       var defaultValue = currentTopic.Attributes.ContainsKey(attribute.Key)? currentTopic.Attributes[attribute.Key] : null;
@@ -105,8 +95,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
           _ => baseTopic
         };
       }
-      else {
-        rootTopic = _topicRepository.Load(attribute.RootTopic?.UniqueKey);
+      else if (attribute.RootTopic is not null) {
+        rootTopic = _topicRepository.Load(attribute.RootTopic.UniqueKey);
       }
 
       if (rootTopic is not null && !String.IsNullOrEmpty(attribute.RelativeTopicPath)) {
@@ -121,6 +111,22 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
         attribute.AttributeKey,
         attribute.AttributeValue
       );
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set label
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!String.IsNullOrEmpty(viewModel.InheritedValue)) {
+        setLabel(viewModel.InheritedValue, "inherited value");
+      }
+      else if (!String.IsNullOrEmpty(viewModel.AttributeDescriptor.DefaultValue)) {
+        setLabel(viewModel.AttributeDescriptor.DefaultValue, "default value");
+      }
+      else if (!String.IsNullOrEmpty(viewModel.AttributeDescriptor.ImplicitValue)) {
+        setLabel(viewModel.AttributeDescriptor.ImplicitValue, "implicit default");
+      }
+      else {
+        setLabel(attribute.DefaultLabel?? "Select an option…");
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get values from repository
@@ -146,9 +152,26 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       return View(viewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Helper functions
+      | Function: Get Value
       \-----------------------------------------------------------------------------------------------------------------------*/
       string getValue(QueryResultTopicViewModel topic) => ReplaceTokens(topic, "{" + attribute.ValueProperty + "}");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Function: Set Label
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      void setLabel(string value, string? contextualLabel = null) {
+        var inheritedTopic = topics.Where(t => t.Key == value).FirstOrDefault();
+        var label = inheritedTopic?.Title ?? value;
+        if (contextualLabel is not null) {
+          label += " (" + contextualLabel + ")";
+        }
+        viewModel?.TopicList.Add(
+          new() {
+            Value = "",
+            Text = label
+          }
+        );
+      }
 
     }
 
@@ -187,7 +210,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
         AttributeValue          = attributeValue,
         FlattenStructure        = false,
         IsRecursive             = false,
-        ResultLimit             = 100,
+        ResultLimit             = 250,
         ShowRoot                = false
       };
 

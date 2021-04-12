@@ -4,45 +4,50 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore.Models;
+using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Mapping;
 using OnTopic.Repositories;
 
-namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.ReflexiveAttribute {
 
   /*============================================================================================================================
-  | CLASS: INCOMING RELATIONSHIP (VIEW COMPONENT)
+  | CLASS: REFLEXIVE (VIEW COMPONENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Delivers a view model for an incoming relationship attribute type.
+  ///   Delivers a view model for a reflexive attribute type.
   /// </summary>
-  public class IncomingRelationshipViewComponent : ViewComponent {
+  public class ReflexiveViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
+    private readonly            ITopicMappingService            _topicMappingService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="IncomingRelationshipViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="ReflexiveViewComponent"/> with necessary dependencies.
     /// </summary>
-    public IncomingRelationshipViewComponent(ITopicRepository topicRepository) : base() {
-      _topicRepository          = topicRepository;
+    public ReflexiveViewComponent(ITopicRepository topicRepository, ITopicMappingService topicMappingService) : base() {
+      _topicRepository = topicRepository;
+      _topicMappingService = topicMappingService;
     }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Assembles the view model for the <see cref="IncomingRelationshipViewComponent"/>.
+    ///   Assembles the view model for the <see cref="ReflexiveViewComponent"/>.
     /// </summary>
-    public IViewComponentResult Invoke(
+    public async Task<IViewComponentResult> InvokeAsync(
       EditingTopicViewModel currentTopic,
-      IncomingRelationshipAttributeDescriptorViewModel attribute,
+      ReflexiveAttributeDescriptorViewModel attribute,
       string htmlFieldPrefix
     ) {
 
@@ -51,7 +56,6 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Contract.Requires(currentTopic, nameof(currentTopic));
       Contract.Requires(attribute, nameof(attribute));
-      Contract.Requires(attribute.Key, nameof(attribute.Key));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set HTML prefix
@@ -59,46 +63,45 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
       ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish view model
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new IncomingRelationshipAttributeViewModel(currentTopic, attribute);
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Set incoming relationships
-      >-------------------------------------------------------------------------------------------------------------------------
-      | ### NOTE JJC20200929: This would be a lot cleaner using the ITopicMappingService. But that would introduce an additional
-      | dependency on the StandardEditorComposer, which would be a breaking change. We can reevaluate this in the future if
-      | other view components would benefit from this.
+      | Establish snapshot of previously saved attribute descriptor
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topic                 = _topicRepository.Load(currentTopic.UniqueKey);
+      var reflexiveViewModel    = (AttributeDescriptorViewModel?)null;
 
-      Contract.Assume(topic, $"The target topic with the unique key '{currentTopic.UniqueKey}' could not be found.");
-
-      foreach(var relatedTopic in topic.IncomingRelationships.GetValues(attribute.RelationshipKey?? attribute.Key)) {
-
-        if (!String.IsNullOrWhiteSpace(attribute.AttributeKey)) {
-          var attributeValue = relatedTopic.Attributes.GetValue(attribute.AttributeKey, "");
-          if (attribute.AttributeKey.Equals("ContentType", StringComparison.OrdinalIgnoreCase)) {
-            attributeValue = relatedTopic.ContentType;
-          }
-          if (!attributeValue.Equals(attribute.AttributeValue, StringComparison.OrdinalIgnoreCase)) {
-            continue;
-          }
-        }
-        var relatedViewModel    = new CoreTopicViewModel {
-          Key                   = relatedTopic.Key,
-          ContentType           = relatedTopic.ContentType,
-          UniqueKey             = relatedTopic.GetUniqueKey(),
-          WebPath               = relatedTopic.GetWebPath(),
-          Title                 = relatedTopic.Title
-        };
-        model.RelatedTopics.Add(relatedViewModel);
+      if (topic?.ContentType.EndsWith("AttributeDescriptor", StringComparison.OrdinalIgnoreCase)?? false) {
+        reflexiveViewModel      = (AttributeDescriptorViewModel?)await _topicMappingService.MapAsync(topic).ConfigureAwait(false);
       }
+
+      if (reflexiveViewModel is null) {
+        reflexiveViewModel      = new();
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish hybrid view model
+      >-------------------------------------------------------------------------------------------------------------------------
+      | The ParentAttributeDescriptor will be of the target type expected for the view component that will be executed. But it
+      | should use the core AttributeDescriptor attributes of the current attribute, so it shows up in the same location with
+      | the same title and description as defined for the ReflexiveAttributeDescriptorViewModel.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      reflexiveViewModel        = reflexiveViewModel with {
+        Key                     = attribute.Key,
+        Description             = attribute.Description,
+        DisplayGroup            = attribute.DisplayGroup,
+        DefaultValue            = attribute.DefaultValue,
+        IsRequired              = attribute.IsRequired,
+        SortOrder               = attribute.SortOrder,
+        Title                   = attribute.Title
+      };
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var viewModel = new AttributeViewModel<AttributeDescriptorViewModel>(currentTopic, reflexiveViewModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View(model);
+      return View(viewModel);
 
     }
 

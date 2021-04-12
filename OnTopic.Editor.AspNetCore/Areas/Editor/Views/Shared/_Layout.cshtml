@@ -9,7 +9,7 @@
     <title>@Model.Topic.Title (OnTopic)</title>
 
     <!-- Vendor Scripts -->
-    <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Vendor.js" defer></script>
+    <script src="~/_content/OnTopic.Editor.AspNetCore/Shared/Scripts/Vendor.js" defer asp-append-version="true"></script>
     <script src="https://use.fontawesome.com/fd4f92cdd7.js" defer></script>
 
     <!-- Plugin Scripts -->
@@ -61,7 +61,7 @@
     }
 
     <main id="MainContentArea" class="@(Model.IsModal? "container-fluid" : "container")" role="main">
-      <div class="row @(Model.IsModal? "no-gutters" : "")">
+      <div class="@(Model.IsModal? "no-gutters" : "row")">
 
         <!-- Primary (Treeview) Sidebar -->
         @if (!Model.IsModal) {

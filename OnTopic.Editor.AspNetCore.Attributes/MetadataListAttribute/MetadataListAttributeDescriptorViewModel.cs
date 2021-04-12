@@ -3,34 +3,32 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.AspNetCore.Models;
+using OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute;
 
-namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
+namespace OnTopic.Editor.AspNetCore.Attributes.MetadataListAttribute {
 
   /*============================================================================================================================
-  | CLASS: TEXT AREA ATTRIBUTE (BINDING MODEL)
+  | CLASS: METADATA LIST ATTRIBUTE DESCRIPTOR (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a text attribute in the Topic Editor.
+  ///   Provides access to attributes associated with the <see cref="MetadataListViewComponent"/>.
   /// </summary>
-  public record TextAreaAttributeBindingModel : AttributeBindingModel {
+  public record MetadataListAttributeDescriptorViewModel: TopicListAttributeDescriptorViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="TextAreaAttributeBindingModel"/> class.
+    ///   Initializes a new instance of a <see cref="MetadataListAttributeDescriptorViewModel"/>
     /// </summary>
-    public TextAreaAttributeBindingModel() : base() {
+    public MetadataListAttributeDescriptorViewModel(): base() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Customize values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      RelativeTopicPath         = "LookupList";
+
     }
 
-    /*==========================================================================================================================
-    | GET VALUE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Retrieves the value associated with the attribute.
-    /// </summary>
-    public override string GetValue() => Value;
-
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace

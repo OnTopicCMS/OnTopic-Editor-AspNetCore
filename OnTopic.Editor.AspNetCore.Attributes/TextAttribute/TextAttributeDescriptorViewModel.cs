@@ -28,9 +28,9 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAttribute {
     | MAXIMUM LENGTH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the maximimum length of the field. Defaults to <c>500</c> if undefined.
+    ///   Gets or sets the maximimum length of the field. Defaults to <see cref="Int32.MaxValue"/> if undefined.
     /// </summary>
-    public int? MaximumLength { get; init; } = Int32.MaxValue;
+    public int? MaximumLength { get; init; }
 
     /*==========================================================================================================================
     | INPUT TYPE

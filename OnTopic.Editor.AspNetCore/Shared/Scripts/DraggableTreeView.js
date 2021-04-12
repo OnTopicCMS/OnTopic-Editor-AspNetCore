@@ -29,8 +29,10 @@ OnTopic.DraggableTreeView = Ext.extend(Ext.tree.TreePanel, {
   /*============================================================================================================================
   | METHOD: VALIDATE SOURCE TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
-  validateSourceTopic           : function(tree, node, event) {
-    node.draggable              = (node.attributes.draggable == 'false');
+  validateSourceTopic: function (e) {
+    if (!e.dropNode.attributes.isMovable && e.dropNode.parentNode.attributes.path !== e.target.parentNode.attributes.path) {
+      e.cancel = true;
+    }
   },
 
   /*============================================================================================================================
@@ -124,7 +126,7 @@ OnTopic.DraggableTreeView = Ext.extend(Ext.tree.TreePanel, {
     \-------------------------------------------------------------------------------------------------------------------------*/
     var me = this;
 
-    me.on('startdrag',          me.validateSourceTopic,         this);
+    me.on('nodedragover',       me.validateSourceTopic,         this);
     me.on('movenode',           me.moveTopic,                   this);
 
   }

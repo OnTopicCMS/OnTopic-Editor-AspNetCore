@@ -6,6 +6,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using OnTopic.Attributes;
 using OnTopic.Collections;
 using OnTopic.Internal.Diagnostics;
 
@@ -113,7 +114,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
           topic.GetUniqueKey(),
           topic.GetWebPath(),
           options.EnableCheckboxes ? (!options.MarkRelated || related.Contains(topic)) : new bool?(),
-          topic.Attributes.GetValue("DisableDelete", "0") is "0",
+          !topic.Attributes.GetBoolean("DisableDelete") && !topic.Attributes.GetBoolean("IsProtected"),
           options.ExpandRelated && related.Any(r => r.GetUniqueKey().StartsWith(topic.GetUniqueKey(), StringComparison.Ordinal))
         );
 
@@ -191,9 +192,11 @@ namespace OnTopic.Editor.AspNetCore.Models.Queryable {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (searchTerms.Count > 0) {
         if (!searchTerms.All(
-          searchTerm => topic.Attributes.Any(
-            a => a.Value?.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
-          )
+          searchTerm =>
+            topic.Attributes.Any(
+              a => a.Value?.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
+            ) ||
+            topic.Key.IndexOf(searchTerm, 0, StringComparison.OrdinalIgnoreCase) >= 0
         )) {
           return false;
         }

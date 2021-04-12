@@ -15,8 +15,10 @@ using OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute;
+using OnTopic.Editor.AspNetCore.Attributes.MetadataListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.NumberAttribute;
+using OnTopic.Editor.AspNetCore.Attributes.ReflexiveAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.TextAttribute;
@@ -25,7 +27,10 @@ using OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute;
 using OnTopic.Editor.AspNetCore.Components;
 using OnTopic.Editor.AspNetCore.Controllers;
+using OnTopic.Editor.AspNetCore.Infrastructure;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Lookup;
+using OnTopic.Mapping;
 using OnTopic.Repositories;
 
 namespace OnTopic.Editor.AspNetCore.Attributes {
@@ -48,6 +53,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
     private readonly            IWebHostEnvironment             _webHostEnvironment;
+    private readonly            ITypeLookupService              _typeLookupService;
+    private readonly            ITopicMappingService            _topicMappingService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -75,6 +82,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes {
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository          = topicRepository;
       _webHostEnvironment       = webHostEnvironment;
+      _typeLookupService        = new EditorViewModelLookupService();
+      _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
 
     }
 
@@ -117,8 +126,10 @@ namespace OnTopic.Editor.AspNetCore.Attributes {
         nameof(InstructionViewComponent)                        => new InstructionViewComponent(),
         nameof(LastModifiedViewComponent)                       => new LastModifiedViewComponent(),
         nameof(LastModifiedByViewComponent)                     => new LastModifiedByViewComponent(),
+        nameof(MetadataListViewComponent)                       => new MetadataListViewComponent(),
         nameof(NestedTopicListViewComponent)                    => new NestedTopicListViewComponent(_topicRepository),
         nameof(NumberViewComponent)                             => new NumberViewComponent(),
+        nameof(ReflexiveViewComponent)                          => new ReflexiveViewComponent(_topicRepository, _topicMappingService),
         nameof(RelationshipViewComponent)                       => new RelationshipViewComponent(),
         nameof(TextViewComponent)                               => new TextViewComponent(),
         nameof(TextAreaViewComponent)                           => new TextAreaViewComponent(),

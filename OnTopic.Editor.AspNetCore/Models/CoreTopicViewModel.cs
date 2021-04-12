@@ -3,75 +3,67 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
+using OnTopic.Models;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 
   /*============================================================================================================================
-  | CLASS: ATTRIBUTE (BINDING MODEL)
+  | CLASS: CORE TOPIC VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a generic attribute in the Topic Editor.
+  ///   Represents the core <see cref="Topic"/> properties shared between the <see cref="EditingTopicViewModel"/>, <see cref="
+  ///   AttributeViewModel"/>, and any topic associations, such as <see cref="EditingTopicViewModel.BaseTopic"/>.
   /// </summary>
-  public record AttributeBindingModel {
+  /// <remarks>
+  ///   In addition to being useful as a base class for <see cref="EditingTopicViewModel"/> and <see cref="AttributeViewModel"
+  ///   />, the <see cref="CoreTopicViewModel"/> is intended to be used for any topic associations—such as topic references and
+  ///   relationships. By mapping explicitly to the <see cref="CoreTopicViewModel"/>, these models are not dependent on any
+  ///   explicit view models from e.g. the OnTopic View Models library, third-party libraries, or those implemented by adopters.
+  ///   It also ensures they aren't mapping extraneous properties that they aren't likely to need.
+  /// </remarks>
+  public record CoreTopicViewModel : ICoreTopicViewModel, IAssociatedTopicBindingModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | PROPERTY: ID
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeBindingModel"/> class.
+    ///   The <see cref="Topic.Id"/> of the associated <see cref="Topic"/>.
     /// </summary>
-    public AttributeBindingModel() : this("") {}
-
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="AttributeBindingModel"/> class.
-    /// </summary>
-    /// <param name="editorType">Optionally defines the type of attribute.</param>
-    public AttributeBindingModel(string editorType) {
-      if (String.IsNullOrWhiteSpace(editorType)) {
-        EditorType = GetType().Name.Replace("AttributeBindingModel", "", StringComparison.Ordinal);
-      }
-      else {
-        EditorType = editorType;
-      }
-    }
+    public int Id { get; init; } = -1;
 
     /*==========================================================================================================================
-    | KEY
+    | PROPERTY: KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   The unique name associated with the specified attribute.
-    /// </summary>
-    public string Key { get; init; } = default!;
+    /// <inheritdoc/>
+    public string Key { get; init; } = null!;
 
     /*==========================================================================================================================
-    | EDITOR TYPE
+    | PROPERTY: CONTENT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   The editor type associated with the attribute.
-    /// </summary>
-    public string EditorType { get; init; } = default!;
+    /// <inheritdoc/>
+    public string ContentType { get; init; } = null!;
 
     /*==========================================================================================================================
-    | VALUE
+    | PROPERTY: UNIQUE KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   The value associated with the attribute.
-    /// </summary>
-    public string? Value { get; init; } = default!;
+    /// <inheritdoc/>
+    public string UniqueKey { get; init; } = null!;
 
     /*==========================================================================================================================
-    | GET VALUE
+    | PROPERTY: WEB PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Retrieves the value associated with the attribute.
+    ///   Defines the <see cref="Topic.GetWebPath()"/> of the <see cref="Topic"/>.
     /// </summary>
-    /// <remarks>
-    ///   Unlike the <see cref="Value"/> property, which simply returns the literal value associated with the attribute, the
-    ///   <see cref="GetValue()"/> method is intended to be overwritten by derived versions of the <see cref="AttributeBindingModel"/>
-    ///   class, in order to provide specific serialization instructions.
-    /// </remarks>
-    public virtual string GetValue() => Value?? "";
+    public string WebPath { get; init; } = null!;
 
-  } // Class
-} // Namespace
+    /*==========================================================================================================================
+    | PROPERTY: TITLE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Represents the title of the <see cref="Topic"/>, if defined; otherwise, falls back to the <see cref="Key"/>.
+    /// </summary>
+    public string Title { get; init; } = null!;
+
+  }
+}

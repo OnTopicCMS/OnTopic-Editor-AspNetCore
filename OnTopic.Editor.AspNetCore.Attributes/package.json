@@ -7,7 +7,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "cssnano": "^4.1.10",
+    "cssnano": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-if": "^3.0.0",

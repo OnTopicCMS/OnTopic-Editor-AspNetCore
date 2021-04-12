@@ -12,15 +12,15 @@
     @if (Model.Topic.VersionHistory.Count > 1) {
       <!-- Versions -->
       <div id="VersionsDropdown" class="dropdown d-none d-md-inline-block" style="display:inline-block;">
-        <button class="btn btn-sm btn-ancillary dropdown-toggle" type="button" id="VersionsButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-sm btn-ancillary dropdown-toggle" type="button" id="VersionsButton" data-bs-toggle="dropdown" aria-expanded="false">
           <span class="fa fa-history"></span>
           Versions
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="VersionsButton">
+        <ul class="dropdown-menu" aria-labelledby="VersionsButton">
           @foreach (DateTime version in Model.Topic.VersionHistory) {
-            <li role="presentation" class="small">
-              <a tabindex="-1" role="menuitem" href="@Url.Action("SetVersion", "Editor", new { path=Model.Topic.WebPath, version=version.ToString("MM/dd/yyyy hh:mm:ss.fff tt"), isModal=Model.IsModal })">@version.ToLocalTime().ToString()</a>
+            <li class="small">
+              <a tabindex="-1" href="@Url.Action("SetVersion", "Editor", new { path=Model.Topic.WebPath, version=version.ToString("o"), isModal=Model.IsModal })"><nobr>@version.ToLocalTime().ToString()</nobr></a>
             </li>
           }
         </ul>
@@ -30,7 +30,7 @@
 
     <!-- Cancel -->
     @if (Model.IsModal) {
-      <button id="ModalCloseButton" type="button" class="btn btn-ancillary btn-sm" data-dismiss="modal">Cancel</button>
+      <button id="ModalCloseButton" type="button" class="btn btn-ancillary btn-sm" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
     }
     <!-- /Cancel -->
 
@@ -44,12 +44,12 @@
     <!-- /Export -->
 
     <!-- Delete -->
-    @if (!Model.IsNew && !Model.ContentTypeDescriptor.DisableDelete) {
+    @if (!Model.IsNew && !Model.ContentTypeDescriptor.DisableDelete && !Model.Topic.IsProtected) {
       <a
-        id                        ="DeletePageButton"
-        data-title                ="@Model.Topic.Title?.Replace("\"", "&quot;")"
-        href                      =@Url.Action("Delete", "Editor", new { path=Model.Topic.WebPath, isModal=Model.IsModal })
-        class                     ="btn btn-default btn-sm"
+        id                      ="DeletePageButton"
+        data-title              ="@Model.Topic.Title?.Replace("\"", "&quot;")"
+        href                    =@Url.Action("Delete", "Editor", new { path=Model.Topic.WebPath, isModal=Model.IsModal })
+        class                   ="btn btn-default btn-sm"
       >Delete</a>
     }
 
@@ -63,8 +63,8 @@
     @for (int i = 0; i < @displayGroups.Count(); i++) {
       var displayGroupName      = displayGroups[i];
       var displayGroupId        = displayGroups[i].Replace(" ", String.Empty);
-      <li class="nav-item">
-        <a id="Tab_@displayGroupId" class="nav-link @(i is 0 ? "active" : "")" href="#Group_@displayGroupId" data-toggle="tab" role="tab" aria-controls="#Group_@displayGroupId" aria-expanded="@(i is 0 ? "true" : "false")">@displayGroupName</a>
+      <li class="nav-item" role="presentation">
+        <button id="Tab_@displayGroupId" class="nav-link @(i is 0 ? "active" : "")" data-bs-target="#Group_@displayGroupId" data-bs-toggle="tab" type="button" role="tab" aria-controls="Group_@displayGroupId" aria-selected="@(i is 0 ? "true" : "false")">@displayGroupName</button>
       </li>
     }
   </ul>

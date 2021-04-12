@@ -63,15 +63,16 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new FileListAttributeViewModel(currentTopic, attribute);
+      var model                 = new FileListAttributeViewModel(currentTopic, attribute) {
+        AbsolutePath            = _webHostEnvironment.ContentRootPath + attribute.Path
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set model values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var file in GetFiles(model.InheritedValue, attribute, model.AbsolutePath)) {
+      foreach (var file in GetFiles(model)) {
         model.Files.Add(file);
       };
-      model.AbsolutePath        = _webHostEnvironment.ContentRootPath + attribute.Path;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view with view model
@@ -86,20 +87,18 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     /// <summary>
     ///   Retrieves a collection of files in a directory, given the provided <see cref="Path"/>.
     /// </summary>
-    public static Collection<SelectListItem> GetFiles(
-      string? inheritedValue,
-      FileListAttributeDescriptorViewModel attribute,
-      string absolutePath
-    ) {
+    public static Collection<SelectListItem> GetFiles(FileListAttributeViewModel viewModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate parameters
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Contract.Requires(attribute, nameof(attribute));
+      Contract.Requires(viewModel, nameof(viewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | INSTANTIATE OBJECTS
       \-----------------------------------------------------------------------------------------------------------------------*/
+      var attribute             = viewModel.AttributeDescriptor;
+      var absolutePath          = viewModel.AbsolutePath;
       var files                 = new Collection<SelectListItem>();
       var searchPattern         = "*";
       var searchOption          = attribute.IncludeSubdirectories is true? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
@@ -129,9 +128,22 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var foundFiles = Directory.GetFiles(absolutePath, searchPattern, searchOption);
 
-      if (!String.IsNullOrEmpty(inheritedValue)) {
-        files.Add(new("", inheritedValue));
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set label
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!String.IsNullOrEmpty(viewModel.InheritedValue)) {
+        setLabel(viewModel.InheritedValue, "inherited value");
       }
+      else if (!String.IsNullOrEmpty(viewModel.AttributeDescriptor.DefaultValue)) {
+        setLabel(viewModel.AttributeDescriptor.DefaultValue, "default value");
+      }
+      else if (!String.IsNullOrEmpty(viewModel.AttributeDescriptor.ImplicitValue)) {
+        setLabel(viewModel.AttributeDescriptor.ImplicitValue, "implicit default");
+      }
+      else {
+        setLabel("Select a file…");
+      }
+
       foreach (var foundFile in foundFiles) {
         var fileName = foundFile.Replace(absolutePath, "", StringComparison.OrdinalIgnoreCase);
         var fileNameKey = fileName.Replace("." + attribute.Extension, "", StringComparison.OrdinalIgnoreCase);
@@ -142,6 +154,22 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
       | RETURN FILE LIST
       \-----------------------------------------------------------------------------------------------------------------------*/
       return files;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Function: Set Label
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      void setLabel(string value, string? contextualLabel = null) {
+        var label = value;
+        if (contextualLabel is not null) {
+          label += " (" + contextualLabel + ")";
+        }
+        viewModel.Files.Add(
+          new() {
+            Value = "",
+            Text = label
+          }
+        );
+      }
 
     }
 

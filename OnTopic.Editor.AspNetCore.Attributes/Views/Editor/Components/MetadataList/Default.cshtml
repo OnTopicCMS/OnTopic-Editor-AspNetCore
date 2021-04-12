@@ -1,0 +1,8 @@
+﻿@using OnTopic.Editor.AspNetCore.Attributes.MetadataListAttribute
+@model AttributeViewModel<MetadataListAttributeDescriptorViewModel>
+
+<vc:topic-list
+  current-topic                 =@Model.CurrentTopic
+  attribute                     =@Model.AttributeDescriptor
+  html-field-prefix             =@ViewData.TemplateInfo.HtmlFieldPrefix>
+</vc:topic-list>

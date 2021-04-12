@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Metadata;
@@ -18,7 +17,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
   /// <summary>
   ///   Provides core properties from a <see cref="AttributeDescriptor"/> to a view component.
   /// </summary>
-  public record AttributeDescriptorViewModel: ViewModels.TopicViewModel {
+  public record AttributeDescriptorViewModel: CoreTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -35,7 +34,16 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Determines if the <see cref="AttributeDescriptorViewModel"/> should be displayed or not.
     /// </summary>
-    public new bool IsHidden { get; init; }
+    public bool IsHidden { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: IS EXTENDED ATTRIBUTE?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the attribute is intended to be stored as an extended attribute. This has implications on the maximum
+    ///   length.
+    /// </summary>
+    public bool IsExtendedAttribute { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: MODEL TYPE
@@ -55,8 +63,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   The <see cref="EditorType"/> corresponds to the <see cref="AttributeDescriptor"/> subtype name, such as <c>
     ///   BooleanAttributeDescriptor</c>. This can be used by the editor to determine the appropriate view component to display.
     /// </remarks>
-    [Required, NotNull, DisallowNull]
-    public string? EditorType { get; init; }
+    [Required]
+    public string EditorType { get; init; } = default!;
 
     /*==========================================================================================================================
     | PROPERTY: DISPLAY GROUP
@@ -64,8 +72,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Determines what group of attributes to associate the current attribute with.
     /// </summary>
-    [Required, NotNull, DisallowNull]
-    public string? DisplayGroup { get; init; }
+    [Required]
+    public string DisplayGroup { get; init; } = default!;
 
     /*==========================================================================================================================
     | PROPERTY: IS REQUIRED?
@@ -101,6 +109,19 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   exposed to editors as an HTML placeholder on input fields that support it.
     /// </remarks>
     public string? ImplicitValue { get; init; }
+
+    /*==========================================================================================================================
+    | IS VALUE REQUIRED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   If the <see cref="AttributeDescriptor"/> <see cref="IsRequired"/> and <see cref="DefaultValue"/> is not defined, then
+    ///   the <see cref="AttributeBindingModel"/> <i>must</i> have a <see cref="AttributeBindingModel.Value"/> set.
+    /// </summary>
+    /// <remarks>
+    ///   This is kept separate from <see cref="IsRequired"/> so that the attribute labels can still be marked as required in
+    ///   the interface; this should be used to disable <c>required</c> on the associated <c>Value</c> field, however.
+    /// </remarks>
+    public bool IsValueRequired => IsRequired && String.IsNullOrEmpty(DefaultValue);
 
     /*==========================================================================================================================
     | PROPERTY: SORT ORDER

@@ -27,9 +27,9 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
   /*----------------------------------------------------------------------------------------------------------------------------
   | Establish variables
   \---------------------------------------------------------------------------------------------------------------------------*/
-  var $editorModal              = $('#EditorModal_' + namespace);
-  var $modalTitle               = $('#ModalTitle_' + namespace);
-  var $editorFrame              = $('#EditorFrame_' + namespace);
+  var editorModal               = document.getElementById('EditorModal_' + namespace);
+  var modalTitle                = document.getElementById('ModalTitle_' + namespace);
+  var editorFrame               = document.getElementById('EditorFrame_' + namespace);
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Provide debug data for testing
@@ -39,30 +39,32 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
   console.log('title: '         + title);
   console.log('targetUrl: '     + targetUrl);
   console.log('onCloseFunction: ' + onCloseFunction);
-  console.log('#EditorModal'    + namespace + ': ' + $editorModal);
-  console.log('#ModalTitle'     + namespace  + ': ' + $modalTitle);
-  console.log('#EditorFrame'    + namespace + ': ' + $editorFrame);
+  console.log('#EditorModal'    + namespace + ': ' + editorModal.id);
+  console.log('#ModalTitle'     + namespace  + ': ' + modalTitle.id);
+  console.log('#EditorFrame'    + namespace + ': ' + editorFrame.id);
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Set modal window title
   \---------------------------------------------------------------------------------------------------------------------------*/
-  if ($modalTitle && title.length > 0) {
-    $modalTitle.html(title);
+  if (modalTitle && title.length > 0) {
+    modalTitle.innerText = title;
   }
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Set modal iframe source
   \---------------------------------------------------------------------------------------------------------------------------*/
-  if ($editorFrame && targetUrl.length > 0) {
-    $editorFrame.attr('src', targetUrl);
+  if (editorFrame && targetUrl.length > 0) {
+    editorFrame.src = targetUrl;
   }
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Open modal window
   \---------------------------------------------------------------------------------------------------------------------------*/
-  if ($editorModal) {
-    $editorModal.modal();
-    $(".nav-tabs a.active").tab("show");
+  if (editorModal) {
+    var percentageHeight = window.innerHeight * 0.785;
+    editorFrame.height = percentageHeight + 'px';
+    var modal = bootstrap.Modal.getInstance(editorModal);
+    modal.show();
   }
 
 };
@@ -74,28 +76,25 @@ initEditorModal = function (namespace, title, targetUrl, onCloseFunction) {
  * Closes the current modal window
  */
 window.closeModal = function () {
-  $('[id^="EditorModal"]').modal('hide');
+  var modalTriggerList = [].slice.call(document.querySelectorAll('[id^="EditorModal"]'));
+  modalTriggerList.map(function (tooltipTriggerEl) {
+    bootstrap.Modal.getInstance(tooltipTriggerEl).hide();
+  });
 };
 
 /*==============================================================================================================================
 | JQUERY: WIRE UP ACTIONS
 \-----------------------------------------------------------------------------------------------------------------------------*/
-(function ($) {
+(function (document) {
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Event Handler: Close Button
   \---------------------------------------------------------------------------------------------------------------------------*/
-  $('#ModalCloseButton').on('click', function (e) {
-    window.parent.closeModal();
-  });
+  var modalCloseElement = document.getElementById('ModalCloseButton');
+  if (modalCloseElement) {
+    modalCloseElement.addEventListener('click', function (e) {
+      window.parent.closeModal();
+    });
+  }
 
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | Precondition: Set first tab as active
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  //Set the first tab (and associated content pane) as active
-  $('.tab-content div.tab-pane:first-child').addClass('active');
-  $('[id*="EditorModal"]').on('shown.bs.modal', function(e) {
-    $('.tab-content div.tab-pane:first-child').addClass('active');
-  });
-
-})(jQuery);
+})(document);
