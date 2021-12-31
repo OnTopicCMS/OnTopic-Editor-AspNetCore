@@ -5,8 +5,6 @@
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 

@@ -3,10 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.ObjectModel;
 using OnTopic.Collections.Specialized;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {

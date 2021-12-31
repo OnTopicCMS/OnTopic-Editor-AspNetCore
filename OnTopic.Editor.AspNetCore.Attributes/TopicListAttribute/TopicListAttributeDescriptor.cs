@@ -4,7 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
-using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 

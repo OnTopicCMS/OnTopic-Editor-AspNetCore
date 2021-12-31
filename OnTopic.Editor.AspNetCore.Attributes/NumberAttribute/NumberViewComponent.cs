@@ -3,8 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using Microsoft.AspNetCore.Mvc;
-using OnTopic.Editor.AspNetCore.Models;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
 

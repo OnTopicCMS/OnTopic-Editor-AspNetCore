@@ -4,9 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Globalization;
-using Microsoft.AspNetCore.Mvc;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {

@@ -4,7 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
 
