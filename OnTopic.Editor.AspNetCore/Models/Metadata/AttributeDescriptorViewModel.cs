@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using System.ComponentModel.DataAnnotations;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Internal.Diagnostics;

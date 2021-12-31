@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore.Models;
