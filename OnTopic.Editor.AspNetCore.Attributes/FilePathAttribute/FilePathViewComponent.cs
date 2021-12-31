@@ -203,7 +203,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
         foreach (var truncationTopic in truncatePathAtTopic) {
           var truncateTopicLocation = relativePath?.IndexOf(truncationTopic, StringComparison.OrdinalIgnoreCase);
           if (truncateTopicLocation >= 0) {
-            relativePath        = relativePath?.Substring(0, truncateTopicLocation.Value + truncationTopic.Length + 1);
+            relativePath        = relativePath?[..(truncateTopicLocation.Value + truncationTopic.Length + 1)];
           }
         }
       }

@@ -854,7 +854,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
       //Create target if it doesn't exist
       if (target is null) {
-        var parentKey           = uniqueKey.Substring(0, uniqueKey.LastIndexOf(":", StringComparison.Ordinal));
+        var parentKey           = uniqueKey[..uniqueKey.LastIndexOf(":", StringComparison.Ordinal)];
         var parent              = TopicRepository.Load(parentKey);
 
         if (parent is not null) {
