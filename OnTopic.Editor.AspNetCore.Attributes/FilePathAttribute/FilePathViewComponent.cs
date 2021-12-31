@@ -216,7 +216,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Replace path slashes with backslashes if the resulting file path value uses a UNC or basic file path format
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (filePath.Contains("\\", StringComparison.Ordinal)) {
+      if (filePath.Contains('\\', StringComparison.Ordinal)) {
         filePath                = filePath.Replace("/", "\\", StringComparison.Ordinal);
       }
 
