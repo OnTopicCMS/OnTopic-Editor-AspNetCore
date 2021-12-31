@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>NU5118</NoWarn>
   </PropertyGroup>
 
