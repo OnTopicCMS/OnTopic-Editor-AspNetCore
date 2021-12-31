@@ -3,10 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.ObjectModel;
 using OnTopic.Attributes;
 using OnTopic.Collections;
-using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Models.Queryable {
 

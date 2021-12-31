@@ -4,9 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Attributes;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
-using OnTopic.Internal.Diagnostics;
-using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 

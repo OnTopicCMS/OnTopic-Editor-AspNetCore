@@ -3,8 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.AspNetCore.Models.Metadata;
-using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models {
 

@@ -12,13 +12,9 @@ using OnTopic.AspNetCore.Mvc;
 using OnTopic.Collections;
 using OnTopic.Data.Transfer;
 using OnTopic.Data.Transfer.Interchange;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Editor.AspNetCore.Models.Queryable;
 using OnTopic.Editor.AspNetCore.Models.Transfer;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
-using OnTopic.Metadata;
 using OnTopic.Querying;
 using OnTopic.Repositories;
 

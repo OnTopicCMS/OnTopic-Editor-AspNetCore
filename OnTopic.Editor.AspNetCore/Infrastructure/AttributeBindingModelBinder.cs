@@ -4,8 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Lookup;
 
 #pragma warning disable CA1812 // Avoid uninstantiated internal classes

@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Lookup;
 
 namespace OnTopic.Editor.AspNetCore.Infrastructure {
