@@ -11,6 +11,8 @@ using OnTopic.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore;
 using OnTopicTest;
 
+#pragma warning disable CA1812 // Avoid uninstantiated internal classes
+
 /*==============================================================================================================================
 | CONFIGURE SERVICES
 \-----------------------------------------------------------------------------------------------------------------------------*/
@@ -85,4 +87,6 @@ app.UseRouting();
 | Configure: MVC
 \-----------------------------------------------------------------------------------------------------------------------------*/
 app.MapControllers();
-  app.MapTopicEditorRoute();
+app.MapTopicEditorRoute();
+
+#pragma warning restore CA1812 // Avoid uninstantiated internal classes
