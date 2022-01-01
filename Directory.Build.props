@@ -14,7 +14,7 @@
     <Product>OnTopic</Product>
     <Authors>Ignia</Authors>
     <Company>Ignia</Company>
-    <Copyright>©2021 Ignia, LLC</Copyright>
+    <Copyright>©2022 Ignia, LLC</Copyright>
     <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
