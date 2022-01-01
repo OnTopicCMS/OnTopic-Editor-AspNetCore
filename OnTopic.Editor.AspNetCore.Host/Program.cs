@@ -9,53 +9,15 @@ using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.FileProviders;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore;
-
-namespace OnTopicTest {
-
-  /*============================================================================================================================
-  | CLASS: STARTUP
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  /// <summary>
-  ///   Configures the application and sets up dependencies.
-  /// </summary>
-  public class Startup {
+using OnTopicTest;
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | CONFIGURE SERVICES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Constructs a new instances of the <see cref="Startup"/> class. Accepts an <see cref="IConfiguration"/>.
-    /// </summary>
-    /// <param name="configuration">The shared <see cref="IConfiguration"/> dependency.</param>
-    /// <param name="webHostEnvironment">The <see cref="IWebHostEnvironment"/> instance.</param>
-    public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
-      Configuration = configuration;
-      HostingEnvironment = webHostEnvironment;
-    }
-
-    /*==========================================================================================================================
-    | PROPERTY: CONFIGURATION
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a (public) reference to the application's <see cref="IConfiguration"/> service.
-    /// </summary>
-    public IConfiguration Configuration { get; }
-
-    /*==========================================================================================================================
-    | PROPERTY: HOSTING ENVIRONMENT
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a (public) reference to the application's <see cref="IWebHostEnvironment"/> service.
-    /// </summary>
-    public IWebHostEnvironment HostingEnvironment { get; }
-
-    /*==========================================================================================================================
-    | METHOD: CONFIGURE SERVICES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides configuration of services. This method is called by the runtime to bootstrap the server configuration.
-    /// </summary>
-    public void ConfigureServices(IServiceCollection services) {
+    var builder                 = WebApplication.CreateBuilder(args);
+    var services                = builder.Services;
+    var Configuration           = builder.Configuration;
+    var HostingEnvironment      = builder.Environment;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Cookie Policy
@@ -98,16 +60,12 @@ namespace OnTopicTest {
       services.AddSingleton<IControllerActivator>(activator);
       services.AddSingleton<IViewComponentActivator>(activator);
 
-    }
-
     /*==========================================================================================================================
-    | METHOD: CONFIGURE (APPLICATION)
+    | CONFIGURE APPLICATION
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides configuration the application. This method is called by the runtime to bootstrap the application
-    ///   configuration, including the HTTP pipeline.
-    /// </summary>
-    public static void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+    var app                     = builder.Build();
+    var env                     = app.Environment;
+    var endpoints               = app;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Error Pages
@@ -135,8 +93,3 @@ namespace OnTopicTest {
         endpoints.MapControllers();
         endpoints.MapTopicEditorRoute();
       });
-
-    }
-
-  } //Class
-} //Namespace
