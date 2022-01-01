@@ -15,14 +15,11 @@ using OnTopicTest;
     | CONFIGURE SERVICES
     \-------------------------------------------------------------------------------------------------------------------------*/
     var builder                 = WebApplication.CreateBuilder(args);
-    var services                = builder.Services;
-    var Configuration           = builder.Configuration;
-    var HostingEnvironment      = builder.Environment;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Cookie Policy
       \-----------------------------------------------------------------------------------------------------------------------*/
-      services.Configure<CookiePolicyOptions>(options => {
+      builder.Services.Configure<CookiePolicyOptions>(options => {
         // This lambda determines whether user consent for non-essential cookies is needed for a given request.
         options.CheckConsentNeeded = context => true;
         options.MinimumSameSitePolicy = SameSiteMode.None;
@@ -31,7 +28,7 @@ using OnTopicTest;
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: MVC
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var mvcBuilder = services.AddControllersWithViews()
+      var mvcBuilder = builder.Services.AddControllersWithViews()
 
         //Add OnTopic support
         .AddTopicSupport()
@@ -42,11 +39,11 @@ using OnTopicTest;
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Runtime View Compilation
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (HostingEnvironment.IsDevelopment()) {
+      if (builder.Environment.IsDevelopment()) {
         mvcBuilder.AddRazorRuntimeCompilation();
-        services.Configure<MvcRazorRuntimeCompilationOptions>(options => {
-          var libraryPath = Path.GetFullPath(Path.Combine(HostingEnvironment.ContentRootPath, "..", "OnTopic.Editor.AspNetCore"));
-          var pluginsPath = Path.GetFullPath(Path.Combine(HostingEnvironment.ContentRootPath, "..", "OnTopic.Editor.AspNetCore.Attributes"));
+        builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options => {
+          var libraryPath = Path.GetFullPath(Path.Combine(builder.Environment.ContentRootPath, "..", "OnTopic.Editor.AspNetCore"));
+          var pluginsPath = Path.GetFullPath(Path.Combine(builder.Environment.ContentRootPath, "..", "OnTopic.Editor.AspNetCore.Attributes"));
           options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
           options.FileProviders.Add(new PhysicalFileProvider(pluginsPath));
         });
@@ -55,22 +52,20 @@ using OnTopicTest;
       /*------------------------------------------------------------------------------------------------------------------------
       | Register: Activators
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var activator = new SampleActivator(Configuration.GetConnectionString("OnTopic"), HostingEnvironment);
+      var activator = new SampleActivator(builder.Configuration.GetConnectionString("OnTopic"), builder.Environment);
 
-      services.AddSingleton<IControllerActivator>(activator);
-      services.AddSingleton<IViewComponentActivator>(activator);
+      builder.Services.AddSingleton<IControllerActivator>(activator);
+      builder.Services.AddSingleton<IViewComponentActivator>(activator);
 
     /*==========================================================================================================================
     | CONFIGURE APPLICATION
     \-------------------------------------------------------------------------------------------------------------------------*/
     var app                     = builder.Build();
-    var env                     = app.Environment;
-    var endpoints               = app;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Error Pages
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (env.IsDevelopment()) {
+      if (app.Environment.IsDevelopment()) {
         app.UseDeveloperExceptionPage();
       }
       else {
@@ -89,7 +84,5 @@ using OnTopicTest;
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: MVC
       \-----------------------------------------------------------------------------------------------------------------------*/
-      app.UseEndpoints(endpoints => {
-        endpoints.MapControllers();
-        endpoints.MapTopicEditorRoute();
-      });
+        app.MapControllers();
+        app.MapTopicEditorRoute();
