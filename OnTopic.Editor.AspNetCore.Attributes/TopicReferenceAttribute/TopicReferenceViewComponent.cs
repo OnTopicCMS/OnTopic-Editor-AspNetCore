@@ -3,10 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using Microsoft.AspNetCore.Mvc;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 

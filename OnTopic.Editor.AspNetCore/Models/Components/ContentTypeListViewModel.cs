@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace OnTopic.Editor.AspNetCore.Models.Components {

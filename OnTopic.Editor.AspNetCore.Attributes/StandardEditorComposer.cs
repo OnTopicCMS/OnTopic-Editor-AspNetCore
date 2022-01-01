@@ -3,9 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.FileListAttribute;
@@ -28,7 +26,6 @@ using OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute;
 using OnTopic.Editor.AspNetCore.Components;
 using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Editor.AspNetCore.Infrastructure;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Repositories;

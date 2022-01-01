@@ -3,7 +3,19 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
+
+/*==============================================================================================================================
+| USING DIRECTIVES (GLOBAL)
+\-----------------------------------------------------------------------------------------------------------------------------*/
+global using System.Collections.ObjectModel;
+global using OnTopic.Editor.AspNetCore.Models;
+global using OnTopic.Editor.AspNetCore.Models.Metadata;
+global using OnTopic.Internal.Diagnostics;
+global using OnTopic.Metadata;
+
+/*==============================================================================================================================
+| USING DIRECTIVES (LOCAL)
+\-----------------------------------------------------------------------------------------------------------------------------*/
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 

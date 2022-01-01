@@ -3,9 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OnTopic.Editor.AspNetCore.Models;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
 

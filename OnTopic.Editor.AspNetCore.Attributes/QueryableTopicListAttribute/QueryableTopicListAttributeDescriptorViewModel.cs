@@ -7,8 +7,6 @@ using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute {

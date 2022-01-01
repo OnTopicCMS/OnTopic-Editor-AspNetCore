@@ -3,15 +3,9 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic.Attributes;
-using OnTopic.Editor.AspNetCore.Models;
 using OnTopic.Editor.AspNetCore.Models.Queryable;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Querying;
 using OnTopic.Repositories;
 

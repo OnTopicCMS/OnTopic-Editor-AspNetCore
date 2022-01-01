@@ -3,12 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Repositories;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
@@ -203,7 +198,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
         foreach (var truncationTopic in truncatePathAtTopic) {
           var truncateTopicLocation = relativePath?.IndexOf(truncationTopic, StringComparison.OrdinalIgnoreCase);
           if (truncateTopicLocation >= 0) {
-            relativePath        = relativePath?.Substring(0, truncateTopicLocation.Value + truncationTopic.Length + 1);
+            relativePath        = relativePath?[..(truncateTopicLocation.Value + truncationTopic.Length + 1)];
           }
         }
       }
@@ -216,7 +211,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
       /*------------------------------------------------------------------------------------------------------------------------
       | Replace path slashes with backslashes if the resulting file path value uses a UNC or basic file path format
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (filePath.Contains("\\", StringComparison.Ordinal)) {
+      if (filePath.Contains('\\', StringComparison.Ordinal)) {
         filePath                = filePath.Replace("/", "\\", StringComparison.Ordinal);
       }
 
