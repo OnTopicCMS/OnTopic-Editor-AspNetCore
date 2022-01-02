@@ -18,14 +18,6 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
   public record PermittedContentTypeViewModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="PermittedContentTypeViewModel"/> class.
-    /// </summary>
-    public PermittedContentTypeViewModel(): base() {}
-
-    /*==========================================================================================================================
     | PROPERTY: KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc cref="ICoreTopicViewModel.Key"/>
