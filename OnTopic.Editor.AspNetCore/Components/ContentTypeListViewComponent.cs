@@ -49,7 +49,7 @@ namespace OnTopic.Editor.AspNetCore.Components {
     public IViewComponentResult Invoke(
       EditingTopicViewModel currentTopic,
       ContentTypeListAttributeDescriptorViewModel? attributeDescriptor = null,
-      IEnumerable<ContentTypeDescriptorViewModel>? values = null,
+      IEnumerable<PermittedContentTypeViewModel>? values = null,
       string? onModalClose = null
     ) {
 
