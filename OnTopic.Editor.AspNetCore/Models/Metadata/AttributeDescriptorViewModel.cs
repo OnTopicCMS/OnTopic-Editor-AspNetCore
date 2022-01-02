@@ -6,6 +6,7 @@
 using System.ComponentModel.DataAnnotations;
 using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
+using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Models.Metadata {
 
@@ -145,6 +146,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   This is kept separate from <see cref="IsRequired"/> so that the attribute labels can still be marked as required in
     ///   the interface; this should be used to disable <c>required</c> on the associated <c>Value</c> field, however.
     /// </remarks>
+    [DisableMapping]
     public bool IsValueRequired => IsRequired && String.IsNullOrEmpty(DefaultValue);
 
     /*==========================================================================================================================
@@ -169,6 +171,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Provides a list of client-side stylesheets associated with this <see cref="AttributeDescriptorViewModel"/>.
     /// </summary>
+    [DisableMapping]
     public StyleSheetCollection StyleSheets { get; } = new();
 
     /*==========================================================================================================================
@@ -177,6 +180,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Provides a list of client-side scripts associated with this <see cref="AttributeDescriptorViewModel"/>.
     /// </summary>
+    [DisableMapping]
     public ScriptCollection Scripts { get; } = new();
 
     /*==========================================================================================================================

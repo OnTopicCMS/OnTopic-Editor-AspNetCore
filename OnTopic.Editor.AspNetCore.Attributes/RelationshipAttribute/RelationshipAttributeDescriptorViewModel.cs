@@ -19,9 +19,32 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
+    ///   Initializes a new <see cref="RelationshipAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public RelationshipAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      ShowRoot                  = attributes.GetBoolean(nameof(ShowRoot));
+      ExpandRelated             = attributes.GetBoolean(nameof(ExpandRelated));
+      CheckAscendants           = attributes.GetBoolean(nameof(CheckAscendants));
+      RegisterResources();
+    }
+
+    /// <summary>
     ///   Initializes a new instance of a <see cref="RelationshipAttributeDescriptorViewModel"/>
     /// </summary>
     public RelationshipAttributeDescriptorViewModel() {
+      RegisterResources();
+    }
+
+    /*==========================================================================================================================
+    | REGISTER RESOURCES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Derived classes may optionally override this method in order to register resources, as an alternative to setting these
+    ///   in the constructor.
+    /// </summary>
+    protected void RegisterResources() {
       Scripts.Register(GetNamespacedUri("/Shared/Scripts/SelectableTreeView.js"));
     }
 

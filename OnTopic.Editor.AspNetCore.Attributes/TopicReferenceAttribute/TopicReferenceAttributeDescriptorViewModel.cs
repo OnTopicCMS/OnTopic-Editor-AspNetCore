@@ -33,12 +33,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
     ///   Initializes a new instance of a <see cref="TopicReferenceAttributeDescriptorViewModel"/>
     /// </summary>
     public TopicReferenceAttributeDescriptorViewModel(): base() {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Restrict token limit
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      TokenLimit = 1;
-
+      TokenLimit                = 1;
     }
 
     /*==========================================================================================================================
