@@ -29,7 +29,7 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
       DefaultLabel              = attributes.GetValue(nameof(DefaultLabel))?? DefaultLabel;
       RelativeTopicBase         = attributes.GetValue(nameof(RelativeTopicBase));
       RelativeTopicPath         = attributes.GetValue(nameof(RelativeTopicPath));
-      ValueProperty              = attributes.GetValue(nameof(ValueProperty))?? ValueProperty;
+      ValueProperty             = attributes.GetValue(nameof(ValueProperty))?? ValueProperty;
     }
 
     /// <summary>
