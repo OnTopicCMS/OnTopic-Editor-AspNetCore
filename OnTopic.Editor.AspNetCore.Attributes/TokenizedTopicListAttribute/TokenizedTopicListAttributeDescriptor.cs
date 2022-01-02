@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
