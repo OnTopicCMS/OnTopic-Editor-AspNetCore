@@ -17,6 +17,27 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
   public record TopicListAttributeDescriptorViewModel: QueryableTopicListAttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="TopicListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TopicListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      DefaultLabel              = attributes.GetValue(nameof(DefaultLabel))?? DefaultLabel;
+      RelativeTopicBase         = attributes.GetValue(nameof(RelativeTopicBase));
+      RelativeTopicPath         = attributes.GetValue(nameof(RelativeTopicPath));
+      ValueProperty              = attributes.GetValue(nameof(ValueProperty))?? ValueProperty;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="TopicListAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public TopicListAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | DEFAULT LABEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

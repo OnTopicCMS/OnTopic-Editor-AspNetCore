@@ -21,6 +21,17 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
+    ///   Initializes a new <see cref="TokenizedTopicListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TokenizedTopicListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      ResultLimit               = attributes.GetInteger(nameof(ResultLimit));
+      TokenLimit                = attributes.GetInteger(nameof(TokenLimit));
+      AutoPostBack              = attributes.GetBoolean(nameof(AutoPostBack));
+      RegisterResources();
+    }
+
+    /// <summary>
     ///   Initializes a new instance of a <see cref="TokenizedTopicListAttributeDescriptorViewModel"/>
     /// </summary>
     public TokenizedTopicListAttributeDescriptorViewModel() {

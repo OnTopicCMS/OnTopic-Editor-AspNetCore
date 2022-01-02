@@ -15,6 +15,28 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAttribute {
   public record TextAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="TextAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TextAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      MinimumLength             = attributes.GetInteger(nameof(MinimumLength));
+      MaximumLength             = attributes.GetInteger(nameof(MaximumLength));
+      InputType                 = attributes.GetValue(nameof(InputType));
+      Pattern                   = attributes.GetValue(nameof(Pattern));
+      ValidationMessage         = attributes.GetValue(nameof(ValidationMessage));
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="TextAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public TextAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | MINIMUM LENGTH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

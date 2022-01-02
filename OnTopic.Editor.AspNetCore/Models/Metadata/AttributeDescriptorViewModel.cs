@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
+using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
 
 namespace OnTopic.Editor.AspNetCore.Models.Metadata {
@@ -15,6 +16,32 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
   ///   Provides core properties from a <see cref="AttributeDescriptor"/> to a view component.
   /// </summary>
   public record AttributeDescriptorViewModel: CoreTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="AttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public AttributeDescriptorViewModel(AttributeDictionary attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Description               = attributes.GetValue(nameof(Description));
+      IsHidden                  = attributes.GetBoolean(nameof(IsHidden))?? IsHidden;
+      IsExtendedAttribute       = attributes.GetBoolean(nameof(IsExtendedAttribute))?? IsExtendedAttribute;
+      EditorType                = attributes.GetValue(nameof(EditorType))?? EditorType;
+      DisplayGroup              = attributes.GetValue(nameof(DisplayGroup))?? DisplayGroup;
+      IsRequired                = attributes.GetBoolean(nameof(IsRequired))?? IsRequired;
+      DefaultValue              = attributes.GetValue(nameof(DefaultValue));
+      ImplicitValue             = attributes.GetValue(nameof(ImplicitValue));
+      SortOrder                 = attributes.GetInteger(nameof(SortOrder))?? SortOrder;
+      IsEnabled                 = attributes.GetBoolean(nameof(IsEnabled))?? IsEnabled;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="AttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public AttributeDescriptorViewModel(): base() { }
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION

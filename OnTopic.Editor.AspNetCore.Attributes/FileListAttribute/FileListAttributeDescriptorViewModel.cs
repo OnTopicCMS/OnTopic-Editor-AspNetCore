@@ -15,6 +15,26 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
   public record FileListAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="FileListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public FileListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Path                      = attributes.GetValue(nameof(Path));
+      Extension                 = attributes.GetValue(nameof(Extension));
+      Filter                    = attributes.GetValue(nameof(Filter));
+      IncludeSubdirectories     = attributes.GetBoolean(nameof(IncludeSubdirectories))?? false;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="FileListAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public FileListAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | PROPERTY: PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

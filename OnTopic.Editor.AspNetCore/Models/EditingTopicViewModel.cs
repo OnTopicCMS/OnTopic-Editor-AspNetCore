@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Attributes;
 using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Models {
@@ -20,6 +21,18 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="EditingTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public EditingTopicViewModel(AttributeDictionary attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      NoIndex                   = attributes.GetBoolean(nameof(NoIndex))?? false;
+      IsHidden                  = attributes.GetBoolean(nameof(IsHidden))?? false;
+      IsDisabled                = attributes.GetBoolean(nameof(IsDisabled))?? false;
+      IsProtected               = attributes.GetBoolean(nameof(IsProtected))?? false;
+    }
+
     /// <summary>
     ///   Initializes a new instance of the <see cref="EditingTopicViewModel"/> class.
     /// </summary>

@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Components;
 using OnTopic.Mapping.Annotations;
 
@@ -15,6 +16,23 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
   ///   Provides access to attributes associated with the <see cref="ContentTypeListViewComponent"/>.
   /// </summary>
   public record ContentTypeListAttributeDescriptorViewModel: AttributeDescriptorViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ContentTypeListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ContentTypeListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      EnableModal               = attributes.GetBoolean(nameof(EnableModal))?? EnableModal;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="ContentTypeListAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public ContentTypeListAttributeDescriptorViewModel() : base() { }
 
     /*==========================================================================================================================
     | PROPERTY: PERMITTED CONTENT TYPES

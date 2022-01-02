@@ -18,6 +18,24 @@ namespace OnTopic.Editor.AspNetCore.Attributes.IncomingRelationshipAttribute {
   public record IncomingRelationshipAttributeDescriptorViewModel: QueryableTopicListAttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="IncomingRelationshipAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public IncomingRelationshipAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      RelationshipKey           = attributes.GetValue(nameof(RelationshipKey));
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="IncomingRelationshipAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public IncomingRelationshipAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | RELATIONSHIP KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
