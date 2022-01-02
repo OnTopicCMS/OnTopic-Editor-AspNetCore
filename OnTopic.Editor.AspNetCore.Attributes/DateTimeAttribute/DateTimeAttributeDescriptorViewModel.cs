@@ -15,6 +15,27 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
   public record DateTimeAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="DateTimeAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public DateTimeAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      IncludeDatePicker         = attributes.GetBoolean(nameof(IncludeDatePicker));
+      IncludeTimePicker         = attributes.GetBoolean(nameof(IncludeTimePicker));
+      DateTimeOffset            = attributes.GetInteger(nameof(DateTimeOffset));
+      DateTimeOffsetUnits       = attributes.GetValue(nameof(DateTimeOffsetUnits))?? DateTimeOffsetUnits;
+
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="DateTimeAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public DateTimeAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | INCLUDE DATE PICKER?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

@@ -15,6 +15,24 @@ namespace OnTopic.Editor.AspNetCore.Attributes.InstructionAttribute {
   public record InstructionAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="InstructionAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public InstructionAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Instructions              = attributes.GetValue(nameof(Instructions));
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="InstructionAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public InstructionAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | INSTRUCTIONS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

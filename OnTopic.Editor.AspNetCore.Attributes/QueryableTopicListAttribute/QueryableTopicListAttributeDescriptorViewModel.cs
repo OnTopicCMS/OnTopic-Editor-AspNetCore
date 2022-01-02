@@ -22,6 +22,25 @@ namespace OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute {
   public record QueryableTopicListAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="QueryableTopicListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public QueryableTopicListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      AttributeKey              = attributes.GetValue(nameof(AttributeKey));
+      AttributeValue            = attributes.GetValue(nameof(AttributeValue));
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="QueryableTopicListAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public QueryableTopicListAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

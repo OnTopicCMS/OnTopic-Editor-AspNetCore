@@ -14,6 +14,20 @@ namespace OnTopic.Editor.AspNetCore.Attributes.ReflexiveAttribute {
   /// </summary>
   public record ReflexiveAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ReflexiveAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ReflexiveAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) { }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="ReflexiveAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public ReflexiveAttributeDescriptorViewModel() : base() { }
 
   } //Class
 } //Namespace

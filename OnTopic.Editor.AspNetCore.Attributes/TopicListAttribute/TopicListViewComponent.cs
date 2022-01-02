@@ -4,7 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.Globalization;
-using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models.Queryable;
 using OnTopic.Querying;
 using OnTopic.Repositories;

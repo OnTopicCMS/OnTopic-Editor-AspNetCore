@@ -16,6 +16,26 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
   public record TextAreaAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="TextAreaAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TextAreaAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Rows                      = attributes.GetInteger(nameof(Rows))?? Rows;
+      MinimumLength             = attributes.GetInteger(nameof(MinimumLength))?? MinimumLength;
+      MaximumLength             = attributes.GetInteger(nameof(MaximumLength))?? MaximumLength;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="TextAreaAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public TextAreaAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | ROWS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

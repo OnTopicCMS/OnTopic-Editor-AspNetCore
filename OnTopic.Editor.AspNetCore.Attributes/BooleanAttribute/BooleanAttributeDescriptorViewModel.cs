@@ -14,6 +14,19 @@ namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
   /// </summary>
   public record BooleanAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="BooleanAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public BooleanAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) { }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="BooleanAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public BooleanAttributeDescriptorViewModel(): base() {}
 
   } //Class
 } //Namespace

@@ -15,6 +15,24 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
   public record NumberAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="NumberAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public NumberAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      MinimumValue              = attributes.GetInteger(nameof(MinimumValue))?? MinimumValue;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="NumberAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public NumberAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | PROPERTY: MINIMUM VALUE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
