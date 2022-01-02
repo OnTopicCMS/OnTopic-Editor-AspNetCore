@@ -41,9 +41,9 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
     ///   Determines which <see cref="ContentTypeDescriptor"/>s, if any, are permitted to be created as part of the configured
     ///   <c>NestedTopicListAttributeViewComponent</c>.
     /// </summary>
-    [Include(AssociationTypes.None)]
+    [MapAs(typeof(PermittedContentTypeViewModel))]
     [Collection("ContentTypes", Type=CollectionType.Relationship)]
-    public Collection<ContentTypeDescriptorViewModel> PermittedContentTypes { get; } = new();
+    public Collection<PermittedContentTypeViewModel> PermittedContentTypes { get; } = new();
 
     /*==========================================================================================================================
     | ENABLE MODAL

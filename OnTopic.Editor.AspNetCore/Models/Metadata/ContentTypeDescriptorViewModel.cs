@@ -81,7 +81,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   Determines which <see cref="ContentTypeDescriptor"/>s, if any, are permitted to be created under <see cref="Topic"/>s
     ///   of the current <see cref="ContentTypeDescriptor"/>.
     /// </summary>
-    public Collection<ContentTypeDescriptorViewModel> PermittedContentTypes { get; } = new();
+    [MapAs(typeof(PermittedContentTypeViewModel))]
+    public Collection<PermittedContentTypeViewModel> PermittedContentTypes { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: IMPLICITLY PERMITTED?
