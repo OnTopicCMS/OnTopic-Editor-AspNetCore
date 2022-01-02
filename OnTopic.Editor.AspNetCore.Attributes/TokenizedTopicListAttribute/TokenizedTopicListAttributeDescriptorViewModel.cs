@@ -24,6 +24,17 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute {
     ///   Initializes a new instance of a <see cref="TokenizedTopicListAttributeDescriptorViewModel"/>
     /// </summary>
     public TokenizedTopicListAttributeDescriptorViewModel() {
+      RegisterResources();
+    }
+
+    /*==========================================================================================================================
+    | REGISTER RESOURCES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Derived classes may optionally override this method in order to register resources, as an alternative to setting these
+    ///   in the constructor.
+    /// </summary>
+    protected void RegisterResources() {
       StyleSheets.Register(GetNamespacedUri("/Shared/Styles/token-input.min.css"));
       StyleSheets.Register(GetNamespacedUri("/Shared/Styles/token-input-facebook.min.css"));
       Scripts.Register(GetNamespacedUri("/Shared/Scripts/jquery-tokeninput.min.js"));

@@ -22,6 +22,17 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     ///   Initializes a new instance of a <see cref="NestedTopicListAttributeDescriptorViewModel"/>
     /// </summary>
     public NestedTopicListAttributeDescriptorViewModel() {
+      RegisterResources();
+    }
+
+    /*==========================================================================================================================
+    | REGISTER RESOURCES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Derived classes may optionally override this method in order to register resources, as an alternative to setting these
+    ///   in the constructor.
+    /// </summary>
+    protected void RegisterResources() {
       Scripts.Register(GetNamespacedUri("/Shared/Scripts/NestedTopics.js"));
     }
 

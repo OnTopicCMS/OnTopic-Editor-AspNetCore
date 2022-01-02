@@ -22,8 +22,19 @@ namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
     ///   Initializes a new instance of a <see cref="HtmlAttributeDescriptorViewModel"/>
     /// </summary>
     public HtmlAttributeDescriptorViewModel() {
-      Scripts.Register(new("https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"), true, false);
       Rows = 20;
+      RegisterResources();
+    }
+
+    /*==========================================================================================================================
+    | REGISTER RESOURCES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Derived classes may optionally override this method in order to register resources, as an alternative to setting these
+    ///   in the constructor.
+    /// </summary>
+    protected void RegisterResources() {
+      Scripts.Register(new("https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"), true, false);
     }
 
     /*==========================================================================================================================
