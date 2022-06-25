@@ -4,7 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
-using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Mapping.Annotations;
 

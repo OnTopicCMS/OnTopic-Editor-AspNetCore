@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Mapping.Annotations;
 

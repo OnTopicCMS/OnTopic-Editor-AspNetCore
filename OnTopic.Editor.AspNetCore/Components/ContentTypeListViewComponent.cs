@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OnTopic.Attributes;
 using OnTopic.Editor.AspNetCore.Models.Components;
 using OnTopic.Repositories;
 
