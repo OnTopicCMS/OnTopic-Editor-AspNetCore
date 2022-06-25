@@ -9,7 +9,7 @@
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const   {src, dest, parallel}   = require('gulp');
 
-const   sass                    = require('gulp-sass'),
+const   sass                    = require('gulp-sass')(require('node-sass')),
         postCss                 = require("gulp-postcss"),
         cssNano                 = require("cssnano"),
         sourceMaps              = require("gulp-sourcemaps"),
