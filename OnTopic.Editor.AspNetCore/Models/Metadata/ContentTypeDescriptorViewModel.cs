@@ -24,8 +24,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Initializes a new <see cref="ContentTypeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    public ContentTypeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
+    public ContentTypeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       Description               = attributes.GetValue(nameof(Description));
       DisableChildTopics        = attributes.GetBoolean(nameof(DisableChildTopics))?? false;
