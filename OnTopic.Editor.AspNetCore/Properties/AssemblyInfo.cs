@@ -8,6 +8,7 @@
 | USING DIRECTIVES (GLOBAL)
 \-----------------------------------------------------------------------------------------------------------------------------*/
 global using System.Collections.ObjectModel;
+global using OnTopic.Attributes;
 global using OnTopic.Editor.AspNetCore.Models;
 global using OnTopic.Editor.AspNetCore.Models.Metadata;
 global using OnTopic.Internal.Diagnostics;
