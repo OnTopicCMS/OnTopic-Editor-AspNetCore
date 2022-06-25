@@ -24,8 +24,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Initializes a new <see cref="AttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    public AttributeDescriptorViewModel(AttributeDictionary attributes) {
+    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
+    public AttributeDescriptorViewModel(AttributeValueDictionary attributes) {
       Contract.Requires(attributes, nameof(attributes));
       Description               = attributes.GetValue(nameof(Description));
       IsHidden                  = attributes.GetBoolean(nameof(IsHidden))?? IsHidden;

@@ -22,8 +22,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
     ///   Initializes a new <see cref="TopicReferenceAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
     ///   dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    public TopicReferenceAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
+    public TopicReferenceAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       UseCurrentContentType     = attributes.GetBoolean(nameof(UseCurrentContentType))?? false;
       TokenLimit                = 1;

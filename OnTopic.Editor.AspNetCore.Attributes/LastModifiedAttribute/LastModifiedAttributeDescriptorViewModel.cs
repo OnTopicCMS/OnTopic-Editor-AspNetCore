@@ -21,8 +21,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedAttribute {
     ///   Initializes a new <see cref="LastModifiedAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
     ///   dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    public LastModifiedAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) { }
+    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
+    public LastModifiedAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) { }
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="LastModifiedAttributeDescriptorViewModel"/> class.

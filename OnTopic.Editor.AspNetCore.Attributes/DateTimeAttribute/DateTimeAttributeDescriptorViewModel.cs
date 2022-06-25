@@ -20,8 +20,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.DateTimeAttribute {
     /// <summary>
     ///   Initializes a new <see cref="DateTimeAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    public DateTimeAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
+    public DateTimeAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       IncludeDatePicker         = attributes.GetBoolean(nameof(IncludeDatePicker));
       IncludeTimePicker         = attributes.GetBoolean(nameof(IncludeTimePicker));

@@ -21,8 +21,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
     ///   Initializes a new <see cref="NumberAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
     ///   dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    public NumberAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
+    public NumberAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       MinimumValue              = attributes.GetInteger(nameof(MinimumValue))?? MinimumValue;
       MaximumValue              = attributes.GetInteger(nameof(MaximumValue))?? MaximumValue;

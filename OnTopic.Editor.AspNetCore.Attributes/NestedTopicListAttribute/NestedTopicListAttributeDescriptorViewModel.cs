@@ -21,8 +21,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NestedTopicListAttribute {
     /// <summary>
     ///   Initializes a new <see cref="NestedTopicListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    public NestedTopicListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
+    public NestedTopicListAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
       RegisterResources();
     }
 
