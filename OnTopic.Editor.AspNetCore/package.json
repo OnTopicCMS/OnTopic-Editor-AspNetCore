@@ -22,7 +22,7 @@
     "jquery-ui-dist": "^1.13.0",
     "jquery-validation": "^1.19.3",
     "jquery.are-you-sure": "^1.9.0",
-    "jshint": "^2.13.2",
+    "jshint": "^2.13.4",
     "merge2": "^1.4.1",
     "node-sass": "^6.0.1"
   }
