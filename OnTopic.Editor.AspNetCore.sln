@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29326.143
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnTopic.Editor.AspNetCore", "OnTopic.Editor.AspNetCore\OnTopic.Editor.AspNetCore.csproj", "{77022C14-28B2-4182-9F11-796E8B3C73F7}"
 EndProject
