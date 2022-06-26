@@ -20,10 +20,11 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new <see cref="ContentTypeListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    ///   Initializes a new <see cref="ContentTypeListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
-    public ContentTypeListAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ContentTypeListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       EnableModal               = attributes.GetBoolean(nameof(EnableModal))?? EnableModal;
     }

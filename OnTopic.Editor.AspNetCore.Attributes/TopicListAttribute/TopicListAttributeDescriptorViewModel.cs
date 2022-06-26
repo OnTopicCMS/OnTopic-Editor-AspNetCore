@@ -23,8 +23,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute {
     ///   Initializes a new <see cref="TopicListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
     ///   dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
-    public TopicListAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TopicListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       DefaultLabel              = attributes.GetValue(nameof(DefaultLabel))?? DefaultLabel;
       RelativeTopicBase         = attributes.GetValue(nameof(RelativeTopicBase));

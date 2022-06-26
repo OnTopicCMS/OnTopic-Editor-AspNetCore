@@ -20,8 +20,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FileListAttribute {
     /// <summary>
     ///   Initializes a new <see cref="FileListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
-    public FileListAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public FileListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       Path                      = attributes.GetValue(nameof(Path));
       Extension                 = attributes.GetValue(nameof(Extension));
