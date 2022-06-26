@@ -11,8 +11,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OnTopic.Data.Caching" Version="5.2.0-alpha.255" />
-    <PackageReference Include="OnTopic.Data.Sql" Version="5.2.0-alpha.255" />
+    <PackageReference Include="OnTopic.Data.Caching" Version="5.2.0" />
+    <PackageReference Include="OnTopic.Data.Sql" Version="5.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.6" />
   </ItemGroup>
 
