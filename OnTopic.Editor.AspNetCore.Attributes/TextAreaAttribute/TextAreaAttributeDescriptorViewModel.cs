@@ -3,9 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
 
@@ -16,6 +14,26 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TextAreaAttribute {
   ///   Provides access to attributes associated with the <see cref="TextAreaViewComponent"/>.
   /// </summary>
   public record TextAreaAttributeDescriptorViewModel: AttributeDescriptorViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="TextAreaAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TextAreaAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Rows                      = attributes.GetInteger(nameof(Rows))?? Rows;
+      MinimumLength             = attributes.GetInteger(nameof(MinimumLength))?? MinimumLength;
+      MaximumLength             = attributes.GetInteger(nameof(MaximumLength))?? MaximumLength;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="TextAreaAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public TextAreaAttributeDescriptorViewModel() : base() { }
 
     /*==========================================================================================================================
     | ROWS

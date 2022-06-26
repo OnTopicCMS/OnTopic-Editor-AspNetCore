@@ -3,8 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
 
@@ -15,6 +13,25 @@ namespace OnTopic.Editor.AspNetCore.Attributes.NumberAttribute {
   ///   Provides access to attributes associated with the <see cref="NumberViewComponent"/>.
   /// </summary>
   public record NumberAttributeDescriptorViewModel: AttributeDescriptorViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="NumberAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public NumberAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      MinimumValue              = attributes.GetInteger(nameof(MinimumValue))?? MinimumValue;
+      MaximumValue              = attributes.GetInteger(nameof(MaximumValue))?? MaximumValue;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="NumberAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public NumberAttributeDescriptorViewModel() : base() { }
 
     /*==========================================================================================================================
     | PROPERTY: MINIMUM VALUE

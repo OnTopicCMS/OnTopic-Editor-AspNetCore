@@ -3,11 +3,9 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using System.ComponentModel.DataAnnotations;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
-using OnTopic.Internal.Diagnostics;
-using OnTopic.Metadata;
+using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Models.Metadata {
 
@@ -18,6 +16,32 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
   ///   Provides core properties from a <see cref="AttributeDescriptor"/> to a view component.
   /// </summary>
   public record AttributeDescriptorViewModel: CoreTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="AttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public AttributeDescriptorViewModel(AttributeDictionary attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Description               = attributes.GetValue(nameof(Description));
+      IsHidden                  = attributes.GetBoolean(nameof(IsHidden))?? IsHidden;
+      IsExtendedAttribute       = attributes.GetBoolean(nameof(IsExtendedAttribute))?? IsExtendedAttribute;
+      EditorType                = attributes.GetValue(nameof(EditorType))?? EditorType;
+      DisplayGroup              = attributes.GetValue(nameof(DisplayGroup))?? DisplayGroup;
+      IsRequired                = attributes.GetBoolean(nameof(IsRequired))?? IsRequired;
+      DefaultValue              = attributes.GetValue(nameof(DefaultValue));
+      ImplicitValue             = attributes.GetValue(nameof(ImplicitValue));
+      SortOrder                 = attributes.GetInteger(nameof(SortOrder))?? SortOrder;
+      IsEnabled                 = attributes.GetBoolean(nameof(IsEnabled))?? IsEnabled;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="AttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public AttributeDescriptorViewModel(): base() { }
 
     /*==========================================================================================================================
     | PROPERTY: DESCRIPTION
@@ -121,6 +145,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   This is kept separate from <see cref="IsRequired"/> so that the attribute labels can still be marked as required in
     ///   the interface; this should be used to disable <c>required</c> on the associated <c>Value</c> field, however.
     /// </remarks>
+    [DisableMapping]
     public bool IsValueRequired => IsRequired && String.IsNullOrEmpty(DefaultValue);
 
     /*==========================================================================================================================
@@ -145,6 +170,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Provides a list of client-side stylesheets associated with this <see cref="AttributeDescriptorViewModel"/>.
     /// </summary>
+    [DisableMapping]
     public StyleSheetCollection StyleSheets { get; } = new();
 
     /*==========================================================================================================================
@@ -153,6 +179,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /// <summary>
     ///   Provides a list of client-side scripts associated with this <see cref="AttributeDescriptorViewModel"/>.
     /// </summary>
+    [DisableMapping]
     public ScriptCollection Scripts { get; } = new();
 
     /*==========================================================================================================================

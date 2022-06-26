@@ -4,7 +4,6 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute;
-using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
 
@@ -20,15 +19,21 @@ namespace OnTopic.Editor.AspNetCore.Attributes.TopicReferenceAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
+    ///   Initializes a new <see cref="TopicReferenceAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TopicReferenceAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      UseCurrentContentType     = attributes.GetBoolean(nameof(UseCurrentContentType))?? false;
+      TokenLimit                = 1;
+    }
+
+    /// <summary>
     ///   Initializes a new instance of a <see cref="TopicReferenceAttributeDescriptorViewModel"/>
     /// </summary>
     public TopicReferenceAttributeDescriptorViewModel(): base() {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Restrict token limit
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      TokenLimit = 1;
-
+      TokenLimit                = 1;
     }
 
     /*==========================================================================================================================

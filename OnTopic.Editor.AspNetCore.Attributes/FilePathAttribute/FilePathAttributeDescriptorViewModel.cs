@@ -3,8 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
 
@@ -15,6 +13,26 @@ namespace OnTopic.Editor.AspNetCore.Attributes.FilePathAttribute {
   ///   Provides access to attributes associated with the <see cref="FilePathViewComponent"/>.
   /// </summary>
   public record FilePathAttributeDescriptorViewModel: AttributeDescriptorViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="FilePathAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public FilePathAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      InheritValue              = attributes.GetBoolean(nameof(InheritValue))?? InheritValue;
+      RelativeToTopicPath       = attributes.GetBoolean(nameof(RelativeToTopicPath))?? RelativeToTopicPath;
+      BaseTopicPath             = attributes.GetValue(nameof(BaseTopicPath))?? BaseTopicPath;
+      IncludeCurrentTopic       = attributes.GetBoolean(nameof(IncludeCurrentTopic))?? IncludeCurrentTopic;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="FilePathAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public FilePathAttributeDescriptorViewModel() : base() { }
 
     /*==========================================================================================================================
     | PROPERTY: INHERIT VALUE

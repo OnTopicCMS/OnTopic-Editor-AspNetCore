@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
 
@@ -15,6 +14,20 @@ namespace OnTopic.Editor.AspNetCore.Attributes.LastModifiedByAttribute {
   /// </summary>
   public record LastModifiedByAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="LastModifiedByAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public LastModifiedByAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) { }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="LastModifiedByAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public LastModifiedByAttributeDescriptorViewModel() : base() { }
 
   } //Class
 } //Namespace

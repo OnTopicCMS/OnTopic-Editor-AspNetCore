@@ -3,9 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using System.Collections.ObjectModel;
-using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore.Models.Collections {
 
@@ -57,7 +54,7 @@ namespace OnTopic.Editor.AspNetCore.Models.Collections {
     /// </param>
     public int? GetInteger(string attributeKey, int? defaultValue = null) {
       var stringValue = GetValue(attributeKey);
-      if (!String.IsNullOrEmpty(stringValue) && Int32.TryParse(stringValue, out var result)) {
+      if (!String.IsNullOrWhiteSpace(stringValue) && Int32.TryParse(stringValue, out var result)) {
         return result;
       }
       return defaultValue;

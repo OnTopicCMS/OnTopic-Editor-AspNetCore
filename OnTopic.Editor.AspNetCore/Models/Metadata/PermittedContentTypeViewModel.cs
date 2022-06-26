@@ -3,42 +3,32 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using OnTopic.Mapping.Annotations;
+using OnTopic.Models;
 
-namespace OnTopic.Editor.AspNetCore.Attributes.BooleanAttribute {
+namespace OnTopic.Editor.AspNetCore.Models.Metadata {
 
   /*============================================================================================================================
-  | CLASS: BOOLEAN ATTRIBUTE (BINDING MODEL)
+  | CLASS: PERMITTED CONTENT TYPE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Represents an instance of a boolean attribute in the Topic Editor.
+  ///   Provides core properties from a <see cref="ContentTypeDescriptor"/> to provide to the editor interface. Specifically,
+  ///   the <see cref="ContentTypeDescriptorViewModel"/> is critical in providing the schema of attributes to be presented.
   /// </summary>
-  /// <remarks>
-  /// </remarks>
-  public record BooleanAttributeBindingModel : AttributeBindingModel {
+  public record PermittedContentTypeViewModel {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
+    | PROPERTY: KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc cref="ICoreTopicViewModel.Key"/>
+    [Include(AssociationTypes.Relationships | AssociationTypes.References)]
+    public string Key { get; init; } = default!;
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | PROPERTY: TITLE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="BooleanAttributeBindingModel"/> class.
-    /// </summary>
-    public BooleanAttributeBindingModel() : base() {
-    }
+    /// <inheritdoc cref="ITopicViewModel.Title"/>
+    public string? Title { get; init; }
 
-    /*==========================================================================================================================
-    | GET VALUE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Retrieves the value associated with the attribute.
-    /// </summary>
-    /// <remarks>
-    ///   Determines whether the value is checked and, if it is, returns "1"; otherwise returns "0".
-    /// </remarks>
-    public override string GetValue() => Value is "True"? "1" : "0";
-
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace

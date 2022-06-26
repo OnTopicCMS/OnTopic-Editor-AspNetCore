@@ -19,11 +19,33 @@ namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
+    ///   Initializes a new <see cref="HtmlAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public HtmlAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Height                    = attributes.GetInteger(nameof(Height));
+      Rows                      = 20;
+      RegisterResources();
+    }
+
+    /// <summary>
     ///   Initializes a new instance of a <see cref="HtmlAttributeDescriptorViewModel"/>
     /// </summary>
     public HtmlAttributeDescriptorViewModel() {
-      Scripts.Register(new("https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"), true, false);
       Rows = 20;
+      RegisterResources();
+    }
+
+    /*==========================================================================================================================
+    | REGISTER RESOURCES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Derived classes may optionally override this method in order to register resources, as an alternative to setting these
+    ///   in the constructor.
+    /// </summary>
+    protected void RegisterResources() {
+      Scripts.Register(new("https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"), true, false);
     }
 
     /*==========================================================================================================================

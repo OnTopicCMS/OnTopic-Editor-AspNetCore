@@ -3,26 +3,18 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Collections;
 using OnTopic.Data.Transfer;
 using OnTopic.Data.Transfer.Interchange;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Editor.AspNetCore.Models.Queryable;
 using OnTopic.Editor.AspNetCore.Models.Transfer;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
-using OnTopic.Metadata;
 using OnTopic.Querying;
 using OnTopic.Repositories;
 
@@ -122,7 +114,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
     /// <param name="modelType"></param>
     /// <returns></returns>
     private ModelType GetModelType(ModelType modelType) {
-      if (modelType == ModelType.Reflexive && CurrentTopic is AttributeDescriptor attributeDescriptor) {
+      if (modelType is ModelType.Reflexive && CurrentTopic is AttributeDescriptor attributeDescriptor) {
         return attributeDescriptor.ModelType;
       }
       return modelType;
@@ -854,7 +846,7 @@ namespace OnTopic.Editor.AspNetCore.Controllers {
 
       //Create target if it doesn't exist
       if (target is null) {
-        var parentKey           = uniqueKey.Substring(0, uniqueKey.LastIndexOf(":", StringComparison.Ordinal));
+        var parentKey           = uniqueKey[..uniqueKey.LastIndexOf(":", StringComparison.Ordinal)];
         var parent              = TopicRepository.Load(parentKey);
 
         if (parent is not null) {

@@ -13,7 +13,7 @@ const   gulpif                  = require('gulp-if'),
         concat                  = require('gulp-concat'),
         merge                   = require('merge2');
 
-const   sass                    = require('gulp-sass'),
+const   sass                    = require('gulp-sass')(require('node-sass')),
         postCss                 = require("gulp-postcss"),
         cssNano                 = require("cssnano"),
         sourceMaps              = require("gulp-sourcemaps"),

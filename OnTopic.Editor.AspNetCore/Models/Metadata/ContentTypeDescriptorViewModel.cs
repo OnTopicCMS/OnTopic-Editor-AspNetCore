@@ -3,12 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 using OnTopic.Editor.AspNetCore.Models.ClientResources;
 using OnTopic.Mapping.Annotations;
-using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models.Metadata {
 
@@ -24,6 +20,18 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ContentTypeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ContentTypeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Description               = attributes.GetValue(nameof(Description));
+      DisableChildTopics        = attributes.GetBoolean(nameof(DisableChildTopics))?? false;
+      DisableDelete             = attributes.GetBoolean(nameof(DisableDelete))?? false;
+      ImplicitlyPermitted       = attributes.GetBoolean(nameof(ImplicitlyPermitted))?? false;
+    }
+
     /// <summary>
     ///   Initializes a new instance of the <see cref="ContentTypeDescriptorViewModel"/> class.
     /// </summary>
@@ -72,7 +80,8 @@ namespace OnTopic.Editor.AspNetCore.Models.Metadata {
     ///   Determines which <see cref="ContentTypeDescriptor"/>s, if any, are permitted to be created under <see cref="Topic"/>s
     ///   of the current <see cref="ContentTypeDescriptor"/>.
     /// </summary>
-    public Collection<ContentTypeDescriptorViewModel> PermittedContentTypes { get; } = new();
+    [MapAs(typeof(PermittedContentTypeViewModel))]
+    public Collection<PermittedContentTypeViewModel> PermittedContentTypes { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: IMPLICITLY PERMITTED?

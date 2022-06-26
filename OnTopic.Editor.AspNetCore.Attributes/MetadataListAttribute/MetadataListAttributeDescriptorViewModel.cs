@@ -19,15 +19,18 @@ namespace OnTopic.Editor.AspNetCore.Attributes.MetadataListAttribute {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
+    ///   Initializes a new <see cref="MetadataListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public MetadataListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      RelativeTopicPath         = "LookupList";
+    }
+
+    /// <summary>
     ///   Initializes a new instance of a <see cref="MetadataListAttributeDescriptorViewModel"/>
     /// </summary>
     public MetadataListAttributeDescriptorViewModel(): base() {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Customize values
-      \-----------------------------------------------------------------------------------------------------------------------*/
       RelativeTopicPath         = "LookupList";
-
     }
 
   } //Class

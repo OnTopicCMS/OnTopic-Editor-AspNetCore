@@ -3,11 +3,8 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.ObjectModel;
 using OnTopic.Editor.AspNetCore.Components;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
-using OnTopic.Metadata;
 
 namespace OnTopic.Editor.AspNetCore.Models.Components {
 
@@ -20,15 +17,33 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
   public record ContentTypeListAttributeDescriptorViewModel: AttributeDescriptorViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ContentTypeListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ContentTypeListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      EnableModal               = attributes.GetBoolean(nameof(EnableModal))?? EnableModal;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="ContentTypeListAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public ContentTypeListAttributeDescriptorViewModel() : base() { }
+
+    /*==========================================================================================================================
     | PROPERTY: PERMITTED CONTENT TYPES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Determines which <see cref="ContentTypeDescriptor"/>s, if any, are permitted to be created as part of the configured
     ///   <c>NestedTopicListAttributeViewComponent</c>.
     /// </summary>
-    [Include(AssociationTypes.None)]
+    [MapAs(typeof(PermittedContentTypeViewModel))]
     [Collection("ContentTypes", Type=CollectionType.Relationship)]
-    public Collection<ContentTypeDescriptorViewModel> PermittedContentTypes { get; } = new();
+    public Collection<PermittedContentTypeViewModel> PermittedContentTypes { get; } = new();
 
     /*==========================================================================================================================
     | ENABLE MODAL

@@ -7,8 +7,6 @@ using System.Diagnostics.CodeAnalysis;
 using OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.TokenizedTopicListAttribute;
 using OnTopic.Editor.AspNetCore.Attributes.TopicListAttribute;
-using OnTopic.Editor.AspNetCore.Models;
-using OnTopic.Editor.AspNetCore.Models.Metadata;
 using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute {
@@ -22,6 +20,25 @@ namespace OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute {
   ///   other view components that allow querying of topics via the search API, or similar techniques.
   /// </summary>
   public record QueryableTopicListAttributeDescriptorViewModel: AttributeDescriptorViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="QueryableTopicListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
+    ///   dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public QueryableTopicListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      AttributeKey              = attributes.GetValue(nameof(AttributeKey));
+      AttributeValue            = attributes.GetValue(nameof(AttributeValue));
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="QueryableTopicListAttributeDescriptorViewModel"/> class.
+    /// </summary>
+    public QueryableTopicListAttributeDescriptorViewModel() : base() { }
 
     /*==========================================================================================================================
     | PROPERTY: ROOT TOPIC

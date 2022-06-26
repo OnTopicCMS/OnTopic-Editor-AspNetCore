@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Editor.AspNetCore.Infrastructure;
-using OnTopic.Internal.Diagnostics;
 
 namespace OnTopic.Editor.AspNetCore {
 

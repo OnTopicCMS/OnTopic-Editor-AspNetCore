@@ -1,11 +1,12 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <Nullable>enable</Nullable>
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>NU5118</NoWarn>
   </PropertyGroup>
 
@@ -13,7 +14,7 @@
     <Product>OnTopic</Product>
     <Authors>Ignia</Authors>
     <Company>Ignia</Company>
-    <Copyright>©2021 Ignia, LLC</Copyright>
+    <Copyright>©2022 Ignia, LLC</Copyright>
     <PackageProjectUrl>https://github.com/Ignia/Topic-Editor-MVC/</PackageProjectUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>

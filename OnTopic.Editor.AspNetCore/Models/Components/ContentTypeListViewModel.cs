@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace OnTopic.Editor.AspNetCore.Models.Components {
@@ -15,14 +14,6 @@ namespace OnTopic.Editor.AspNetCore.Models.Components {
   ///   Provides a view model for displaying a navigable list of content types.
   /// </summary>
   public record ContentTypeListViewModel {
-
-    /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="ContentTypeListViewModel"/> class.
-    /// </summary>
-    public ContentTypeListViewModel() { }
 
     /*==========================================================================================================================
     | PROPERTY: CURRENT TOPIC

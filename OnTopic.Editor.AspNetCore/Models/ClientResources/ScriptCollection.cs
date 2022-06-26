@@ -3,9 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace OnTopic.Editor.AspNetCore.Models.ClientResources {
 
