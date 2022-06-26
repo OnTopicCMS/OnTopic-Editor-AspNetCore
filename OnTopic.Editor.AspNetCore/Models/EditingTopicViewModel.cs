@@ -3,7 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.Attributes;
 using OnTopic.Mapping.Annotations;
 
 namespace OnTopic.Editor.AspNetCore.Models {
