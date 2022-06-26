@@ -23,8 +23,8 @@ namespace OnTopic.Editor.AspNetCore.Models {
     /// <summary>
     ///   Initializes a new <see cref="EditingTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
-    public EditingTopicViewModel(AttributeValueDictionary attributes) {
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public EditingTopicViewModel(AttributeDictionary attributes) {
       Contract.Requires(attributes, nameof(attributes));
       NoIndex                   = attributes.GetBoolean(nameof(NoIndex))?? false;
       IsHidden                  = attributes.GetBoolean(nameof(IsHidden))?? false;

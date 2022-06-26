@@ -28,8 +28,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.QueryableTopicListAttribute {
     ///   Initializes a new <see cref="QueryableTopicListAttributeDescriptorViewModel"/> with an <paramref name="attributes"/>
     ///   dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
-    public QueryableTopicListAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public QueryableTopicListAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       AttributeKey              = attributes.GetValue(nameof(AttributeKey));
       AttributeValue            = attributes.GetValue(nameof(AttributeValue));

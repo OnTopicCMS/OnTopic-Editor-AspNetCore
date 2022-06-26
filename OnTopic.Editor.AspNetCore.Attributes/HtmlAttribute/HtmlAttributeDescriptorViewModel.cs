@@ -21,8 +21,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.HtmlAttribute {
     /// <summary>
     ///   Initializes a new <see cref="HtmlAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
-    public HtmlAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public HtmlAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       Height                    = attributes.GetInteger(nameof(Height));
       Rows                      = 20;

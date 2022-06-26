@@ -21,8 +21,8 @@ namespace OnTopic.Editor.AspNetCore.Attributes.RelationshipAttribute {
     /// <summary>
     ///   Initializes a new <see cref="RelationshipAttributeDescriptorViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
-    /// <param name="attributes">An <see cref="AttributeValueDictionary"/> of attribute values.</param>
-    public RelationshipAttributeDescriptorViewModel(AttributeValueDictionary attributes): base(attributes) {
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public RelationshipAttributeDescriptorViewModel(AttributeDictionary attributes): base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       ShowRoot                  = attributes.GetBoolean(nameof(ShowRoot));
       ExpandRelated             = attributes.GetBoolean(nameof(ExpandRelated));
